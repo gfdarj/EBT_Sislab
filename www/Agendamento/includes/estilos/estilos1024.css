@@ -1,0 +1,335 @@
+/*
+	Arquivo estilos1024.css - estilos para Resolucao 800x600
+
+ESTILO		 EQUIVALENTE
+texto		=> input type=text
+botao 	=> input type=button ou submit ou reset ...
+select 	=> select
+
+onde...
+1 a 5 	=> largura 50, 100 ... 250
+fp			=> fonte pequena
+fg			=> fonte grande
+
+*/
+
+
+/*			TEXTO			*/
+
+.texto05 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:25px;
+}
+.texto1 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:40px;
+}
+.texto2 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:80px;
+}
+.texto3 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:150px;
+}
+.texto4 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:200px;
+}
+.texto5 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:250px;
+}
+.texto6 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:300px;
+}
+.texto7 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:350px;
+}
+.texto10 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:500px;
+}
+
+.texto1fp {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:50px;
+}
+
+.texto2fp {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	letter-spacing:1px;
+	color:black;
+	width:100px;
+}
+.textofp {
+	font-size:12px;
+	font-weight: bolder;
+	letter-spacing:1px;
+}
+
+/*			BOTOES			*/
+
+.botao05 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:30px;
+}
+.botao1 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:50px;
+}
+.botao2 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:90px;
+}
+.botao3 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:150px;
+}
+.botao4 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:200px;
+}
+.botao5 {
+	background-color: #9BE3FF;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:250px;
+}
+.botaoEscuro1 {
+	background-color: #008000;
+	font-family: Verdana, Arial;
+	font-size:12px;
+	color:#E0FFE0;
+	width:50px;
+}
+.botaoFigura {
+	background-color: #E0FFE0;
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:60px;
+}
+
+/*			SELECT			*/
+
+.select1 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:60px;
+}
+
+.select2 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:100px;
+}
+.select3 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:170px;
+}
+.select4 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:200px;
+}
+.select5 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:250px;
+}
+.select6 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:300px;
+}
+.select7 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:350px;
+}
+
+/*  OUTROS  */
+
+.textoNormal{
+	font-family : Verdana, Sans-Serif;
+	font-size : 15px;
+	color : Blue;
+	background-color : transparent;
+}
+.textoErro{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 15px;
+	font-style : italic;
+	font-weight : bold;
+	color : Red;
+	background-color : transparent;
+}
+A {
+	font-family : Verdana, Arial;
+	font-size : 12px;
+	text-decoration: none;
+	color: #ffffff;
+}
+A:Hover {
+	font-family : Verdana, Arial;
+	font-size : 12px;
+	font-weight : 100;
+	text-decoration: underline;
+	color: #f4f400;
+}
+
+.inputProd {
+	width : 100px;
+	border-style : solid;
+	border-width : 1;
+}
+.textoTitulo {
+	color : #FFFFF0;
+}
+.textoProduto {
+	font-family: helvetica, verdana, arial;
+	font-size : 12px;
+}
+.textoProduto14 {
+	font-family : helvetica, verdana, arial;
+	font-size : 14px;
+}
+
+.list4 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:200px;
+}
+.list5 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:250px;
+}
+.list9 {
+	font-family: Verdana, Arial;
+	font-size:10px;
+	color:black;
+	width:450px;
+}
+
+/* FONTES */
+.fonte1 {
+  font-family: Verdana, Arial;
+	font-size: 9px;
+}
+.fonte2 {
+  font-family: Verdana, Arial;
+	font-size: 11px;
+}
+.fonte3 {
+  font-family: Verdana, Arial;
+	font-size: 12px;
+}
+.fonte4 {
+  font-family: Verdana, Arial;
+	font-size: 14px;
+}
+.fonte5 {
+  font-family: Verdana, Arial;
+	font-size: 16px;
+}
+.fonte6 {
+  font-family: Verdana, Arial;
+	font-size: 18px;
+}
+.fonte1T {
+	font-family: Verdana, Arial;
+	font-size:12px;
+	letter-spacing:1px;
+	color:black;
+}
+.fonte2T {
+	font-family: Verdana, Arial;
+	font-size:14px;
+	letter-spacing:1px;
+	color:black;
+}
+.fonteIndice {
+	font-family : Verdana, Arial;
+	font-size : 12px;
+	text-decoration: none;
+	color: #006000;
+}
+
+.camadaProdutores {
+ position:relative; 
+ background-color:#FFFFFF; 
+ border-color:#008000; 
+ border-style:solid; 
+ border-width:thin;
+}
+
+.tam1 {
+ height:16px;
+}
+.tam2 {
+ height:22px;
+}
+
+.nropedra{
+	font-family:Verdana, Arial;
+	font-size:12px;
+	vertical-align:top;
+	text-align:center;
+}
+.propedra{
+	font-family:Verdana, Arial;
+	font-size:11px;
+	vertical-align:bottom;
+	text-align:center;
+}

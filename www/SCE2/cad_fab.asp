@@ -1,0 +1,80 @@
+<!------- SCE ------->
+<!--#include file="includes/global_SCE.asp"-->
+<!--#include file="includes/Estado.asp"-->
+<!--#include file="includes/Func.asp"-->
+<!------- SISLAB ---->
+<!--#include file="../includes/bib_str.asp"-->
+<!--#include file="../includes/padraoHTML.asp"-->
+<!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
+<!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../includes/Sislab_Lib.asp"-->
+<%
+Tela.SetNomeTela = "SCE > Cadastro > Fabricante" : Tela.SetCaminhoRelativo = "../"
+Call Tela.MostraCabecalho()
+
+If Env.UsuarioSCE() Then
+    Call Tela.ImprimeMenuSce()
+%>
+<script language="javascript">
+function ValidaCampos()
+{
+	var frm = document.formulario;
+	if (frm.enf_nome.value.length == 0)
+	{
+		alert("Defina o Nome da Empresa!");
+		frm.enf_nome.focus()
+		return false;
+	}
+	return true;
+}
+
+function Mascara (keypress, objeto){
+	campo = eval (objeto);
+	separador = '-'; 
+	conjunto1 = 5;
+	if (campo.value.length == conjunto1){
+		campo.value = campo.value + separador;
+	}
+}
+
+function Mascara2 (keypress, objeto){
+	campo = eval (objeto);
+	separador = '-'; 
+	conjunto1 = 4;
+	if (campo.value.length == conjunto1){
+		campo.value = campo.value + separador;
+	}
+}
+<!--#include file="includes/vform.js"-->
+</script>
+
+<form method="post" action="cad_fab2.asp" name="formulario"  onsubmit="vdform('formulario','nome','Nome','R'); return document.ValorPassou;">
+<div align="center">
+<table width="100%">	
+	<tr>
+		<td class="texto1">
+		<%if request("msg") <> "" then response.write "<br><strong>Fabricante cadastrado com sucesso!</strong><br><br>"%></td>
+	</tr>
+    <tr> 
+      <td>
+  		<table width="100%" cellpadding=0 cellspacing=0>
+    		<tr> 
+      			<td bgcolor="#FFFFFF" align="left" class="texto1">Fabricante<br>
+					<input type="text" class="texto1" name="nome" style="width:600px" maxlength="100"></td>
+    		</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+      			<td><input type="submit" name="Submit" value="Cadastrar" class="texto1"></td>
+		    </tr>
+		</table>
+      </td>
+    </tr>
+</form>
+  </table>
+<%
+Else
+    RW Tela.Mensagem.AcessoRestritoSCE()
+End If
+
+Call Tela.MostraRodape()
+%>

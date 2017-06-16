@@ -1,0 +1,189 @@
+<!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
+<!--#include file="includes/padraoHTML.asp"-->
+<!--#include file="includes/abre.asp"-->
+<!--#include file="includes/bib_str.asp"-->
+<!--#include file="includes/bib_bd.asp"-->
+<%
+Server.ScriptTimeout = 10000
+
+dim status, doc_id, rec, nserie
+Dim chr_Buf
+
+if request("enf_id") <> "" or request("codbarras") <> "" or request("modelo") <> "" or _
+	request("notafiscal") <> "" or request("numeroserie") <> "" or request("codbarras") <> "" or _
+	request("fabricante") <> "" or request("documento") <> "" or request("desc_modelo") <> "" or _
+	request("conforme") <> "" or request("instrumental") <> "" or request("status") <> "" or _
+	request("cde_equip") <> "" or request("localizacao") <> "" or request("propriedade") <> "" or _
+	request("idtipo") <> "" or request("plataforma") <> "" then
+
+	if request("busca") <> "" then
+		ssql =	"SELECT distinct a.status, a.eq_id, a.eq_codigobarras AS [EQ_CODIGOBARRAS_M], mod_descricao AS [MOD_DESCRICAO_M], " & _
+				"a.eq_numeroserie AS [EQ_NUMEROSERIE_M], a.mod_id, a.eq_id, e.mod_codnome AS [MOD_CODNOME_M], " & _
+				"CASE WHEN (SELECT count(*) FROM SCE_Acessorios where EQ_ID = a.EQ_ID) > 0 THEN 'Sim' ELSE 'Não' END AS [EQ_TEMACESSORIO_M], fab_nome AS [FAB_NOME_M], " & _
+				"CASE WHEN A.STATUS = 2 THEN 'Em Uso' " & _
+				"WHEN A.STATUS = 1 THEN 'Estoque' " & _
+				"WHEN A.STATUS = 3 THEN 'Expedido' " & _
+				"WHEN A.STATUS = 0 THEN 'Cadastrado' END AS STATUS_M " & _
+				"FROM  sce_modelos e, SCE_Equipamentos a , SCE_Fabricantes f " & _
+				"where (a.mod_id = e.mod_id)  AND (e.fab_id = f.fab_id) "
+
+		If request("documento") <> "" and isnumeric(request("documento")) Then
+			ssql = ssql & _
+				" AND EXISTS (SELECT mov.DOC_ID FROM SCE_Movimentacao mov " & _
+				"WHERE mov.doc_id = " & request("documento") & " AND mov.EQ_ID = a.EQ_ID) "
+		End If
+
+		If request("plataforma") <> "" Then
+			ssql = ssql & _
+				" AND EXISTS (SELECT plat.EQ_ID FROM PLATAFORMA_EQUIPAMENTOS plat " & _
+				"WHERE plat.S_ID = " & request("plataforma") & " AND plat.EQ_ID = a.EQ_ID) "
+		End If
+
+		if request("notafiscal") <> "" or request("enf_id") <> "" Then
+			ssql = ssql & _
+				" AND EXISTS (SELECT nf.NF_ID FROM SCE_Movimentacao mov, " & _
+				"SCE_nota_fiscal nf " & _
+				"WHERE mov.nf_id = nf.nf_id AND mov.EQ_ID = a.EQ_ID "
+	
+			if request("notafiscal") <> "" Then
+				ssql = ssql &" and nf.nf_numeronota like '" & trim(request("notafiscal")) & "' "
+			End If
+	
+			if request("enf_id") <> "" Then 
+				ssql = ssql &" and nf.enf_id = " & request("enf_id") & " "
+			End If
+	
+			ssql = ssql & ") "
+		end if
+
+		if request("codbarras") <> "" then
+			ssql = ssql &"and a.eq_codigobarras like '%"& trim(replace(request("codbarras"), "'", "")) &"%' "
+		end if
+		if request("modelo") <> "" then
+			ssql = ssql &"and e.mod_codnome like '%"& trim(replace(request("modelo"), "'", "")) &"%' "
+		end if
+		if request("desc_modelo") <> "" then
+			ssql = ssql &"and e.mod_descricao like '%"& trim(replace(request("desc_modelo"), "'", "")) &"%' "
+		end if
+		if request("numeroserie") <> "" then
+			ssql = ssql &"and a.eq_numeroserie like '%" & trim(replace(request("numeroserie"), "'", "")) &"%' "
+		end if
+		if request("fabricante") <> "" then
+			ssql = ssql &"and e.fab_id = "& request("fabricante") & " "
+		end if
+		if request("conforme") <> "" then
+			ssql = ssql &"and a.EQ_CONFORME = "& request("conforme") & " "
+		end if
+		if request("status") <> "" then
+			ssql = ssql &"and a.STATUS = "& request("status") & " "
+		end if
+		if request("idtipo") <> "" then
+			ssql = ssql &"and e.TIPO_ID = "& request("idtipo") & " "
+		end if
+		if request("instrumental") <> "" then
+			ssql = ssql &"and a.EQ_INSTRUMENTAL = "& request("instrumental") & " "
+		end if
+		if request("localizacao") <> "" then
+			ssql = ssql &"and UPPER(a.EQ_LOCALIZACAO) like '%" & UCase(request("localizacao")) & "%' "
+		end if
+		if request("cde_equip") <> "" then  '-- registro de controle do equipamento
+			ssql = ssql &"and EXISTS (SELECT eqc.EQC_REGISTRO FROM SCE_Equipamentos_Controle eqc WHERE eqc.EQ_ID = a.EQ_ID AND UPPER(eqc.EQC_REGISTRO) LIKE '" & UCase(request("cde_equip")) & "') "
+		end if
+		if request("propriedade") <> "" then
+			ssql = ssql &"and a.EQ_PROPRIEDADE IN ('" & request("propriedade") & "') "
+		end if
+		ssql = ssql &" order by e.mod_codnome asc, a.EQ_CODIGOBARRAS ASC;"
+
+'		response.write ssql & "<BR>" & request("fabricante")
+		response.write "<!-- SQL:" & VbCrLf & ssql & VbCrLf & "-->" & VbCrLf & VbCrLf
+'		response.end
+
+		set rec = conn.execute(ssql)
+	end if
+
+	Response.Buffer = True
+
+	call ImprimeCabecalho ("", MENU_ON, true, "Consulta de Itens", "", "history.go(-1);")
+
+	Dim url_xls
+	url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Consulta de Item&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+
+	chr_Buf = _
+		"<div align='center'>" & VbCRLf & _
+		"<table width='100%' cellpadding='0' cellspacing='0'>" & VbCRLf & _
+		"<tr valign='top'>" & VbCRLf & _
+		"	<td class='titulo' align='center'>Escolha um Item</td>" & VbCRLf & _
+		"	<td align='right' class='texto'>" & url_xls & "</td>" & VbCRLf & _
+		"</tr>" & VbCRLf & _
+		"</table>" & VbCRLf & _
+		"<br>" & VbCRLf & _
+		"<table width='100%' cellpadding='0' cellspacing='0'>" & VbCRLf & _
+		"<tr valign='top'>" & VbCRLf & _
+		"	<td class='titulo' align='center'>" & VbCRLf & _
+		"		<table width='100%' cellpadding='2' cellspacing='0' bgcolor='#008080' border='1'>" & VbCRLf & _
+		"			<tr bgcolor='#c0c0c0'>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Item</td>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Núm. de Série</td>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Modelo / Fab.</td>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Descrição</td>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Situação Item</td>" & VbCRLf & _
+		"				<td bgcolor='#C0E0EF' class='titulo' align='center'>Acess.</td>" & VbCRLf & _
+		"			</tr>" & VbCRLf
+
+	response.write chr_Buf
+	Response.Flush
+
+	if not rec.eof then
+		while not rec.eof
+
+			nserie = InsereBR(rec("eq_numeroserie_M"), 20)
+
+			chr_Buf = _
+			"			<tr bgcolor='#c0c0c0' valign='top'>" & VbCrLf & _
+			"				<td bgcolor='#C0E0EF' class='texto' align='center'><a href='alt_item.asp?mod_id=" & rec("mod_id") & "&eq_id=" & rec("eq_id") & "'>" & rec("eq_codigobarras_M") & "</a>&nbsp;</td>" & VbCrLf & _
+			"				<td bgcolor='#C0E0EF' class='texto' align='center'>" & nserie & "&nbsp;</td>" & VbCrLf
+
+			if rec("mod_id") <> 0 then
+				chr_Buf = chr_Buf & _
+					"			<td bgcolor='#C0E0EF' class='texto' align='center'>" & rec("mod_codnome_M") & "<BR>" & rec("fab_nome_M") & "&nbsp;</td>" & VbCrLf & _
+					"			<td bgcolor='#C0E0EF' class='texto' align='center'>" & rec("mod_descricao_M") & "&nbsp;</td>" & VbCrLf & _
+					"			<td bgcolor='#C0E0EF' class='texto' align='center'>" & PegaStatusItem(Conn, rec("EQ_ID"), true) & "&nbsp;</td>" & VbCrLf
+			else
+				chr_Buf = chr_Buf & _
+					"			<td bgcolor='#C0E0EF' class='texto' align='center'>&nbsp;</td>" & VbCrLf & _
+					"			<td bgcolor='#C0E0EF' class='texto' align='center'>&nbsp;</td>" & VbCrLf
+			end if
+
+			chr_Buf = chr_Buf & _
+				"				<td bgcolor='#C0E0EF' class='texto' align='center'>" & rec("EQ_TEMACESSORIO_M") & "</td>" & VbCrLf & _
+				"		</tr>"
+
+			Response.Write chr_Buf
+			Response.Flush
+		 	rec.movenext
+		wend
+	else
+		Response.Write "<td bgcolor='#C0E0EF' class='texto' align='center' colspan='8'>Não existem equipamentos cadastrados com esses parâmetros.</td>"
+	end if
+
+	chr_Buf = _
+		"		</table>" & VbCrLf & _
+		"	</td>" & VbCrLf & _
+		"</tr>" & VbCrLf & _
+		"<tr valign='top' align='left'>" & VbCrLf & _
+		"	<td class='texto' align='left'><br></td>" & VbCrLf & _
+		"</tr>" & VbCrLf & _
+		"</table>" & VbCrLf & _
+		"</div><br><br>" & VbCrLf
+
+	Response.Write chr_Buf
+	Response.Flush
+
+	conn.close
+	set conn=nothing
+
+	call ImprimeRodape (RODAPE_OFF)
+else
+	response.redirect("sel_cad_acessorio.asp?msg=4")
+end if
+%>
