@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "www", "www", "{DA17265A-143B-40A2-BBB9-C296AC6C00BF}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_61555"
+		Debug.AspNetCompiler.PhysicalPath = "www\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61555\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_61555"
+		Release.AspNetCompiler.PhysicalPath = "www\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61555\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61555"
+		SlnRelativePath = "www\"
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database_Sislab", "Database_Sislab\Database_Sislab.sqlproj", "{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
