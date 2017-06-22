@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Tipo_Sigilo] (
+    [TS_ID]        TINYINT      NOT NULL,
+    [TS_DESCRICAO] VARCHAR (40) NULL,
+    CONSTRAINT [PK_Tipo_Sigilo] PRIMARY KEY NONCLUSTERED ([TS_ID] ASC) WITH (FILLFACTOR = 90)
+);
+

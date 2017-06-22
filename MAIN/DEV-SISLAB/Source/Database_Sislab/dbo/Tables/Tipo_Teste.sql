@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Tipo_Teste] (
+    [TIT_ID]        INT           IDENTITY (1, 1) NOT NULL,
+    [TIT_DESCRICAO] VARCHAR (200) NULL,
+    PRIMARY KEY CLUSTERED ([TIT_ID] ASC) WITH (FILLFACTOR = 90)
+);
+
