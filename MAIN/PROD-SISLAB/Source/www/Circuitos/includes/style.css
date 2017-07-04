@@ -1,0 +1,447 @@
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:link {text-decoration: none}
+a:hover {text-decoration: underline}
+
+/* Scrollbar properties are only supported by Internet Explorer 5.5  */
+body {
+	scrollbar-3dlight-color : #999999;
+	scrollbar-arrow-color : #999999;
+	scrollbar-base-color : #666666;
+	scrollbar-darkshadow-color : white;
+	scrollbar-face-color : white;
+	scrollbar-highlight-color : #999999;
+	scrollbar-shadow-color : #999999;
+	scrollbar-track-color : white;
+}
+
+.Fontplantao
+{
+ FONT-FAMILY: tahoma, Verdana, arial; 
+ COLOR:#000050; 
+ Font-size:8pt;
+ FONT-WEIGHT: bold;
+}
+.faqans
+{
+ FONT-FAMILY:tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+ COLOR:#0000A0; 
+ Font-size:10pt;
+ FONT-WEIGHT: italic;
+}
+.legenda
+{
+ FONT-FAMILY:tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif; 
+ COLOR:#FFFFFF; 
+ Font-size:8pt;
+ FONT-WEIGHT: bold;
+}
+.faqask
+{
+ FONT-FAMILY:tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif; 
+ COLOR:#000070; 
+ Font-size:10pt;
+ FONT-WEIGHT: bold;
+}
+.trCadtit1
+{
+  BACKGROUND-COLOR:'#BDCDFF';
+  border-color:'#000033';
+  border-size: 0;
+}
+.trCadtit2
+{
+  BACKGROUND-COLOR:'#666688';
+  border-color:'#330033';
+  border-size: 0;
+}
+.trCadtit3
+{
+  BACKGROUND-COLOR:'#C5DEFF';
+  border-color:'#330033';
+  border-size: 0;
+}
+.combo
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+    PADDING-BOTTOM: 1px;
+    PADDING-LEFT: 5px;
+    PADDING-TOP: 1px
+}
+.select10
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+		WIDTH: 500pt;
+    PADDING-BOTTOM: 1px;
+    PADDING-LEFT: 5px;
+    PADDING-TOP: 1px
+}
+.cxtexto
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    PADDING-BOTTOM: 1px;
+    PADDING-LEFT: 5px;
+    PADDING-TOP: 1px;
+	Text-transform: uppercase;
+ }
+.FontMarquee
+{
+ FONT-FAMILY: tahoma, Verdana, arial; 
+ COLOR:#000050; 
+ Font-size:9pt;
+ FONT-WEIGHT: bold;
+}
+.Fonttit1Cad
+{
+ FONT-FAMILY:arial; 
+ COLOR:#FFFFFF; 
+ Font-size:11pt;
+}
+.Fonttit2Cad
+{
+ FONT-FAMILY:tahoma;
+ FONT-color=#000000;
+ Font-size:9pt;
+}
+.Fonttit3Cad
+{
+  FONT-FAMILY:tahoma;
+  FONT-color=#000000;
+  font-size:8pt;
+}
+.Fonttit4Cad
+{
+  FONT-FAMILY:arial;
+  FONT-color=#000000;
+  font-size:11pt;
+}
+.FontMenu
+{
+  FONT-color=#DDDD00; 
+  font-size:10pt;
+}
+.FontMenu1
+{
+  FONT-FAMILY:Tahoma;
+  FONT-color=#000000;
+  font-size:7pt;
+}
+.FontMenuPrincipal
+{
+  FONT-FAMILY:Tahoma;
+  FONT-color=#000000;
+  font-size:7pt;
+}
+.branco
+{
+    FONT-SIZE: 3pt;
+}
+.titulo
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 28pt;
+    FONT-WEIGHT: bold;
+    COLOR: #000040;
+}
+.menu
+{
+    FONT-FAMILY: Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    COLOR: #000060;
+}
+.opcao
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+    COLOR: #000000;
+}
+.submenu
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold;
+    COLOR: #FFFFBB;
+}
+.trsubmenu
+{
+   HEIGht: 50pt
+   BACKGROUND-COLOR: #000000
+}
+.tittab
+{
+    FONT-FAMILY: Verdana, tahoma, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10pt;
+    COLOR: #000000;
+    FONT-WEIGHT: bold;
+}
+.item
+{
+    FONT-FAMILY: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10pt;
+    COLOR: #000000;
+}
+
+A.menu:link
+{
+    COLOR: white;
+    TEXT-DECORATION: none
+}
+A.menu:visited
+{
+    COLOR: white;
+    TEXT-DECORATION: none
+}
+A.menu:hover
+{
+    COLOR: gold;
+    TEXT-DECORATION: none
+}
+.intmn
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 7.5pt;
+    FONT-WEIGHT: bolder
+}
+A.intmn:link
+{
+    COLOR: navy;
+    TEXT-DECORATION: none
+}
+A.intmn:visited
+{
+    COLOR: navy;
+    TEXT-DECORATION: none
+}
+A.intmn
+{
+    COLOR: blue;
+    TEXT-DECORATION: none
+}
+.box
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+A.box:link
+{
+    COLOR: white;
+    TEXT-DECORATION: none
+}
+A.box:visited
+{
+    COLOR: white;
+    TEXT-DECORATION: none
+}
+A.box
+{
+    TEXT-DECORATION: underline
+}
+A:link
+{
+    COLOR: black
+}
+A:visited
+{
+    COLOR: black
+}
+A
+{
+    COLOR: black;
+    TEXT-DECORATION: none
+}
+
+/*------------------------------*/
+.fonte2
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+}
+.fonte3
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+.text1
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	width: 150px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.select1
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	width: 150px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.select4
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	width: 200px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.select5
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	width: 250px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.select7
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	width: 350px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.select8
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	width: 400px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+.botao0
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	width: 30px;
+	background-color:"#C1DDFF";
+}
+.botao1
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	width: 100px;
+	background-color:"#C1DDFF";
+}
+.botao3
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	width: 150px;
+	background-color:"#C1DDFF";
+}
+.botaoMenu
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	width: 370px;
+	background-color:"#C1DDFF";
+  color: #000000;
+}
+.botaoMenuRel
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: lighter;
+	width: 500px;
+	background-color:"#C1DDFF";
+	color: #000000;
+	text-align : left;
+	text-indent : 10px;
+}
+
+table.tipo1
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	border : thin solid Black;
+	background-color: "#BDCDFF";
+	text-align: left;
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo1 .titulo
+{
+	font-size: larger;
+	font-weight: bolder;
+	background-color: '#666688';
+	text-align: right;
+	color: White;
+}
+
+table.tipo1 th
+{
+	font-weight: bolder;
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo1 td
+{
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo1 .col_tit
+{
+	text-align: left;
+	background-color: '#666688';
+	color: white;
+	font-weight: bolder;
+}
+
+table.tipo2
+{
+	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	border : thin solid Black;
+	background-color: "#BDffcd";
+	text-align: left;
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo2 .titulo
+{
+	font-size: larger;
+	font-weight: bolder;
+	background-color: '#666688';
+	text-align: right;
+	color: White;
+}
+
+table.tipo2 th
+{
+	font-weight: bolder;
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo2 td
+{
+	margin : 0px 0px 0px 0px;
+}
+
+table.tipo2 .col_tit
+{
+	text-align: left;
+	background-color: '#666688';
+	color: white;
+	font-weight: bolder;
+}
+
+.circ_ativ
+{
+	color: green;
+}
+
+.circ_desat
+{
+	color: red;
+}

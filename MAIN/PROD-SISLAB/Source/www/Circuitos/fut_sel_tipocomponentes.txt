@@ -1,0 +1,120 @@
+<!-- #INCLUDE FILE="includes/montatela.inc" -->
+<!-- #INCLUDE FILE="includes/conexao.inc" -->
+<%
+Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
+Response.Addheader "Cache-Control","no-cache, must-revalidate"
+Response.Addheader "Pragma","no-cache"
+%>
+<html>
+<head>
+	<title>Site do Centro de Referência Tecnológica</title>
+	<meta http-equiv="Pragma" content="no-cache">
+	<link rel="stylesheet" href="includes/style.css">
+</head>
+<script language="JavaScript" src="includes/qtd_caract.js"></script>
+<script language="JavaScript">
+function DadosTipo(eu)
+{	var f = document.all;
+	if( eu.value == "" )
+	{
+		alert( "Nenhum tipo de componente selecionado" );
+		f.caracteristica.style.display = "none";
+		f.botaoconfirma.style.display = "none";
+	}
+	else
+	{
+		f.caracteristica.style.display = "block";
+		f.caracteristica.src = "fut_cad_caracteristicas.asp?tipo=" + eu.value;
+		f.botaoconfirma.style.display = "block";
+	}
+}
+function CadastraTipoCarac()	// liga as caracteristicas ao tipo
+{
+	var car = "", qtd = "", i, fc = window.frames["caracteristica"].document.formulario;
+
+	for( i=0; i<fc.carac_comp.length; i++)
+	{
+		car += fc.carac_comp[i].value + ",";
+		qtd += ExtraiQtdeSemPar(fc.carac_comp[i].text) + ",";
+	}
+
+	document.formulario.lista_car.value = car.substring(0, car.length-1);
+	document.formulario.lista_qtd.value = qtd.substring(0, qtd.length-1);
+	document.formulario.action = "ins_tipocaracteristicas.asp";
+	document.formulario.target = "escondido";
+	document.formulario.submit(); 
+}
+function ApagaTipo()
+{	var eu = document.formulario.tipocomponente;
+	if( eu.value == "" )
+		alert( "Nenhum tipo de componente selecionado" );
+	else
+		alert( "Terminar o apagar");
+}
+</script>
+<body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 scroll="auto">
+<%
+Call MostraHeader
+%>
+<form name="formulario" method="post">
+<input type="Hidden" name="lista_car" value="">
+<input type="Hidden" name="lista_qtd" value="">
+<table width="700" class="trcadtit1" border="1" align="center">
+<tr> 
+	<td width="130"></td>
+	<td width="570"></td>
+</tr>
+<tr>
+  <td colspan="2" bgcolor="#000030" align="right"><font face="tahoma" style="font-size=10pt" color="#FFFFFF">&nbsp;<B><a href="index.asp" class="Menu">Voltar</a></B>&nbsp;&nbsp;&nbsp;<br></font></td>
+</tr>
+
+<tr valign="middle" class="trcadtit2"> 
+  <td colspan="2" align="left"><font  class="fonttit1cad"><b>&nbsp;&nbsp;&nbsp;Cadastro de Tipo de Componentes - CRT</b></font></td>
+</tr>
+
+<tr>
+	<td><font class="Fonttit3Cad"><b>Tipo do Componente:</b></font></td>
+	<td>
+		<%
+		dim objRS, objConn
+		call Connection(true, objConn)
+		call RecordSet(true, objRS, "select * from FAC_Tipo_Componente order by TPC_NOME", objConn) 
+		if not ( objRS.EOF and ObjRS.BOF ) then%>
+			<select name="tipocomponente" class="combo" onchange="javascript:DadosTipo(this);">
+			<option value="">-- Selecione o tipo do componente --</option><%
+			while not objRS.EOF%>
+				<option value="<%=objRS("TPC_ID")%>"><%=objRS("TPC_NOME")%></option><%
+				objRS.MoveNext
+			wend%>
+			</select><%
+		else%>
+			<font class="Fonttit3Cad"><b><i>Nenhum Tipo foi encontrado !</i></b></font>
+			<input type="Hidden" name="tipocomponente" value=""><%
+		end if
+		call RecordSet(false, objRS, null, objConn) 
+		call Connection(false, objConn)
+		%>
+		&nbsp;&nbsp;&nbsp;
+		<input type="Button" class="botao0" value="+" onclick="javascript:window.open('novotipo.asp', 'TIPO', 'width=420, height=160, toolbar=no, status=no, menubar=no, scrollbars=no');">&nbsp;
+		<input type="Button" class="botao0" value="..." disabled onclick="ApagaTipo();">&nbsp;
+		<input type="Button" class="botao0" value="-" disabled onclick="ApagaTipo();">
+	</td>
+</tr>
+<tr><td width="100%" colspan="2"><iframe name="caracteristica" src="" scrolling="Auto" frameborder="0" style="display: none; width:690; height:160;"></iframe></td></tr>
+<tr id="botaoconfirma" style="display: none;">
+	<td colspan="2" align="center">
+		<input type="Button" class="botao1" value="Cadastrar" onclick="javascript:CadastraTipoCarac();">&nbsp;
+		<input type="Button" class="botao1" value="Cancelar" onclick="javascript:location.href = 'sel_tipocomponentes.asp';">
+	</td>
+</tr>
+</table>
+</form>
+<iframe name="escondido" frameborder="0" style="display:none; width:300px; height:100px;"></iframe>
+<script language="JavaScript">
+	document.formulario.tipocomponente.value="<%=request.querystring("tipo")%>";
+<%if request.querystring("tipo") <> "" then%>
+	DadosTipo( document.formulario.tipocomponente );
+<%end if%>
+</script><%
+Call MostraFooter
+%>

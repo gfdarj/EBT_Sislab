@@ -1,0 +1,47 @@
+/*** RELATÓRIOS DO SISTEMA DE SEGURANÇA ***/
+
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:link {text-decoration: none}
+a:hover {text-decoration: underline}
+
+/* Scrollbar properties are only supported by Internet Explorer 5.5  */
+body {
+	scrollbar-3dlight-color : #999999;
+	scrollbar-arrow-color : #999999;
+	scrollbar-base-color : #666666;
+	scrollbar-darkshadow-color : white;
+	scrollbar-face-color : white;
+	scrollbar-highlight-color : #999999;
+	scrollbar-shadow-color : #999999;
+	scrollbar-track-color : white;
+	font-family: arial, Helvetica, sans-serif;
+	font-size: larger;
+}
+
+.table0 {
+	border-color: Black;
+	border-style: solid;
+	font-size: xx-large;
+	font-family: arial, Helvetica, sans-serif;
+}
+
+.table1 {
+	border-color: Black;
+	border-style: solid;
+	font-size: x-small;
+	font-family: arial, Helvetica, sans-serif;
+}
+
+.table2 {
+	border-color: Black;
+	border-style: solid;
+	font-size: xx-small;
+	font-family: arial, Helvetica, sans-serif;
+}
+
+.table3 {
+	border-style: none;
+	font-size: xx-small;
+	font-family: arial, Helvetica, sans-serif;
+}

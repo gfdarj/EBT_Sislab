@@ -1,0 +1,3 @@
+﻿CREATE RULE [dbo].[ru_SCE_NOTA_FISCAL_CONFORMIDADE]
+    AS @col IN (NULL, 0, 1);
+
