@@ -388,22 +388,22 @@ end if
 	<th align="left" colspan="10">&nbsp;Dados do Solicitante</th>
 </tr>
 <tr height="34"> 
-	<td colspan="6">&nbsp;&nbsp;Nome do Responsável: &nbsp;
-		<input type="text" class="texto1" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
+	<td colspan="4">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Nome do Responsável: &nbsp;
+		<input type="text" class="texto1" name="txtResponsavel" size="55" tabindex="2" maxlength="200">
 	</td>
-	<td colspan="4">&nbsp;&nbsp;Matrícula:&nbsp;
-		<input class="texto1" READONLY  name="txtMatricula" size="7" tabindex="3">
+	<td colspan="6">&nbsp;&nbsp;Matrícula:&nbsp;
+		<input class="texto1" name="txtMatricula" size="7" tabindex="3">
 	</td>
 </tr>
 <tr height="34">
-	<td  colspan="3">&nbsp;&nbsp;Órgão:&nbsp;
-		<input class="texto1" READONLY name="txtOrgao" size="12" tabindex="4" maxlength="50">
+	<td  colspan="2">&nbsp;&nbsp;Órgão:&nbsp;
+		<input class="texto1" name="txtOrgao" size="12" tabindex="4" maxlength="50">
 	</td>
-	<td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp;
+	<td  colspan="2">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;E-mail:&nbsp;
 		<input type=hidden name="Username">
-		<input class="texto1"  READONLY  name="txtEMail" size="30" tabindex="5" maxlength="200">
+		<input class="texto1" name="txtEMail" size="30" tabindex="5" maxlength="200">
 	</td>
-	<td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp;
+	<td  colspan="6">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Telefone/Ramal:&nbsp;
 		<input class="texto1"  name="txtRamal" size="20" tabindex="6" maxlength="10" >
 	</td>
 </tr>

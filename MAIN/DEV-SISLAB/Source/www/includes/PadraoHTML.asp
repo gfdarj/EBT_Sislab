@@ -25,12 +25,14 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" href="estilos/principal.css" type="text/css">
 </head>
+
 <map name="Map"> 
   <area shape="rect" coords="671,18,741,46" href="http://pegasus" target="_top" alt="Site da Embratel" title="Site da Embratel">
   <area shape="poly" coords="11,1" href="#">
   <area shape="poly" coords="135,34" href="#">
   <area shape="poly" coords="10,4,175,4,175,43,221,43,235,43,235,62,10,62,10,4" href="<%=retornaInicio()%>" alt="P&aacute;gina Inicial" title="P&aacute;gina Inicial">
 </map>
+
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" border="0">
 <!--<table width="<%=w_princ%>" border="0" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="tbl_principal" style="border: none; display: block;">-->
 <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="Table1" style="border: none; display: block;">

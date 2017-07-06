@@ -77,7 +77,7 @@ Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, text
 'rw "<BR><BR>texto: " & texto
 're
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
+	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
 		Exit Sub
 	End If
 
@@ -105,7 +105,7 @@ End Sub
 Sub Enviar_Email(para_email, para_nome, assunto, texto)
 	Dim objMail
 
-	If Application("SISLAB_AMBIENTE") <> "LOC" Then
+	If Left(Application("SISLAB_AMBIENTE"), 3) <> "LOC" Then
 		Set objMail = Server.CreateObject("CDONTS.NewMail") 
 		objMail.from = EMAILDEENVIODOSISLAB & "<" & EMAILDEENVIODOSISLAB & ">"
 		objMail.to = para_nome & "<" & para_email & ">"
@@ -145,7 +145,7 @@ End Function
 Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 	dim Rat, Rt, rsAgendamento,sSQL,rsRATs,Solicitante:Solicitante=""
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
+	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
 		Exit Function
 	End If
 
@@ -391,7 +391,7 @@ Function EnviaEmailRespondaPesquisa(numAS)
 	Dim Rat, Rt, NomeRT, rsAgendamento, sSQL, rsRATs, Solicitante : Solicitante = ""
 	Dim RS, Titulo, Texto
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
+	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
 		Exit Function
 	End If
 
@@ -439,7 +439,7 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 	Dim Titulo, Texto
 	Dim Rt, NomeRT, NomeRat, Rat
 
-	'If Application("SISLAB_AMBIENTE") = "LOC" Then
+	'If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
 	'	Exit Function
 	'End If
 
