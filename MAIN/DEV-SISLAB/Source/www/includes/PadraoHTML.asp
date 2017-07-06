@@ -366,21 +366,20 @@ stm_em();
 		<table width="<%=w_princ%>" cellpadding="0" cellspacing="0" border="0" style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
 			<td class="realce1"> <!-- #d9d9d9 -->
-				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="display: block;">
+				<table border="0" width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="111display: block;">
 				<tr valign="middle">
 					<td valign="middle">
 						<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">&nbsp;<span style="color: red;">&raquo;</span>&nbsp;
 							<i><%=nomeTela%></i>
 						</span>
 					</td>
-					<td align="right" id="td2_tbl_principal_nomeform" style="display: inline;">
+					<td align="right" id="td2_tbl_principal_nomeform" width="*" style="1display: inline;">
 <%			if ucase(linkVoltar) <> "NENHUM" then
 				if ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
-						</b><a href="javascript:<%=linkVoltar%>;">Voltar</a>
-						&nbsp;&nbsp;
+						<a href="javascript:<%=linkVoltar%>;">Voltar</a>&nbsp;&nbsp;
 <%				end if
 				if ucase(linkVoltar) <> "SO_LINK" then%>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 14px; width: 16px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela"></a></button>
+                        <a href="#" id="btn_imprimeTelaPrincipalSistema" onclick="javascript:imprimeTelaPrincipalSistema();"><img src="<%=PathRelativo%>img/impressora.gif" border="0" alt="Imprimir conteúdo da tela"></a>
 <%				end if
 			end if%>
 						&nbsp;&nbsp;
