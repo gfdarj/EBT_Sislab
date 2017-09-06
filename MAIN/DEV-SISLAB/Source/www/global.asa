@@ -10,7 +10,7 @@ Sub Application_OnStart()
 	Application("SISLAB_ID_APLICACAO_SISLAB")	= 1
 	Application("SISLAB_ID_APLICACAO_SCE") 	= 2
 
-	Application("SISLAB_AMBIENTE") = "LOC_NOTE"
+	Application("SISLAB_AMBIENTE") = "LOC_AL"
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
 
@@ -62,9 +62,8 @@ Sub Application_OnStart()
 		Application("SISLAB_SERVER") = "localhost"
 		Application("SISLAB_PROTOCS") = "http://"
 		Application("SISLAB_SiteFolder") = ""
-		'Application("SISLAB_InitialCatalog") = "sislab1"
-		Application("SISLAB_InitialCatalog") = "sislab"
-		Application("SISLAB_DataSource") = "DIPD-N80000"
+		Application("SISLAB_InitialCatalog") = "SISLAB_PROD"
+		Application("SISLAB_DataSource") = "051843W\SQLEXPRESS2008"
 		Application("SISLAB_DataUser") = "sislab1"
 		Application("SISLAB_DataUserPwd") = "sislab1"
 
