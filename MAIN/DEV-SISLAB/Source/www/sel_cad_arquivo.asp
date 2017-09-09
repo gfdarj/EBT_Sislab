@@ -20,16 +20,12 @@ function pesquisar()
 }
 </script>
 <%
-Dim objSiteRS, cont, sSQL, AuxOrgao
+Dim objSiteRS, cont, sSQL, AuxOrgao, linha
 cont = 0
 
 dim nomeArquivo, tipoArquivo
 nomeArquivo = replace(request("txNomeArq"),"*","%")
 tipoArquivo = request("sbtipoarquivo")
-
-'Dim objSiteRSTipoArquivo
-'sSQL = "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo order by tar_tipoarquivo asc"
-'call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 %>
 <form name="formulario" method="post" action="cad_arquivo.asp">
 <input type="Hidden" name="arquivos" value="">
@@ -54,7 +50,7 @@ tipoArquivo = request("sbtipoarquivo")
 		</tr>
 		<tr>
 			<td>Arquivo:</td>
-			<td><input name="txNomeArq" class="texto1" type="Text" value="<%=request("txNomeArq")%>"></td>
+			<td><input name="txNomeArq" class="texto1" type="Text" value="<%=nomeArquivo%>"></td>
 			<td><input type="button" value="Pesquisar" class="texto1" name="btnPesq" onClick="pesquisar();"></td>
 		</tr>
 		</table>
@@ -70,6 +66,7 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
 		<!--<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">-->
 			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
 			<tr>
+                <th>#</th>
 				<th style="font-size: xx-small;" align="left">Tipo do arquivo</th>
 				<th style="font-size: xx-small;" align="left">Nome</th>
 				<th style="font-size: xx-small;">Situa&ccedil;&atilde;o</th>
@@ -93,15 +90,18 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
 	call Env.RecordSet( true, objSiteRS, sSQL)
 	If Not objSiteRS.EOF Then 
 		objSiteRS.MoveFirst
+        linha = 1
 		do while not objSiteRS.EOF %>
 			<tr>
+                <td><%=linha%></td>
 				<td><%=objSiteRS("TAR_TipoArquivo")%></td>
 				<td><a href="arquivos/<%=objSiteRS("ARQ_NOMEARQ")%>"  target="_blank" title="Clique aqui para editar este arquivo"><%=UCase(objSiteRS("ARQ_Link"))%></a>&nbsp;</td>
 				<td align="center"><%=objSiteRS("SAR_SitArquivo")%>&nbsp;</td>
 				<td align="center"><%=objSiteRS("ARQ_Versao")%>&nbsp;</td>
 				<td align="center"><a href="#" onclick="navselecao(<%=objSiteRS("ARQ_codARQ")%>);" title="Clique aqui para editar este arquivo">Editar</a></td>
 			</tr>
-<%			objSiteRS.movenext
+<%			linha = linha + 1
+            objSiteRS.movenext
 		loop
 	else %>
 			<tr><td colspan="5" align="center"><b><i>Não existem arquivos cadastrados no Momento</i></b></td></tr>
@@ -120,6 +120,9 @@ End If
 </table>
 </form>
 <br>
+<script type="text/javascript">
+    document.forms[0].sbtipoarquivo.value = '<%=tipoArquivo%>';
+</script>
 <%
-call ImprimeRodape(RODAPE_OFF)
+Call ImprimeRodape(RODAPE_OFF)
 %>

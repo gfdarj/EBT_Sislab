@@ -19,6 +19,7 @@ Private chr_PrefixoNomePasta
 Public Arquivos
 
 Private Sub Class_Initialize()
+    int_ArquivosCarregados = 0
 	bln_TemErro = False
 	chr_MsgErro = ""
 	bln_OverWrite = False
@@ -144,6 +145,9 @@ Public Sub Upload()
 	If chr_Obj = "UP" Then
 		On Error Resume Next
 		int_ArquivosCarregados = objUpload.SaveToMemory()
+        If VVVNZ(int_ArquivosCarregados) Then
+            int_ArquivosCarregados = 0
+        End If
 'RW server.mappath(".")& "\Arquivos\"
 'RE
 		'int_ArquivosCarregados = objUpload.Save
