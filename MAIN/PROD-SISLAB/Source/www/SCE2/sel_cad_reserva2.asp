@@ -13,7 +13,7 @@
 '-- CONSULTA DE RESERVAS
 Server.ScriptTimeout = 10000
 
-Dim ssql, where, agnumero, ReservaOK, ehRelatorio, nomeTela
+Dim ssql, where, agnumero, agtemp, ReservaOK, ehRelatorio, nomeTela
 Dim contaAS, ehReservado, dt_inicio, dt_termino, abrir_como, ambiente
 
 abrir_como = UCase(request("abrir_como"))
@@ -140,189 +140,172 @@ If Env.UsuarioSCE() Then
 <table width="100%" class="texto1">
 <%
     if rec.eof and rec.bof then%>
-<tr>
-	<td align="center" class="texto1"><i>Nenhuma reserva encontrada !</i></td>
-</tr>
+    <tr>
+	    <td align="center" class="texto1"><i>Nenhuma reserva encontrada !</i></td>
+    </tr>
 <%  else %>
-<tr><td class="destaque">Listagem de reservas por ordem de cadastro</td></tr>
-<tr><td class="texto1"><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<td>
-		<table width="100%" border="0" class="texto1" cellpadding="0" cellspacing="0">
-		<tr class="linha_par">
-			<th>AS</th>
-			<th>Dt In&iacute;cio</th>
-			<th>Dt T&eacute;rmino</th>
-			<th>Respons&aacute;vel</th>
-			<th><!--Ambiente--></th>
-			<th>
-<%	    if ehRelatorio then%>
-				&nbsp;
-<%	    else%>
-				Planilha XLS
-<%	    end if%>
-			</th>
-		</tr>
-<%	    ambiente = ""
-	    While Not rec.eof
-		    contaAS = 1
-		    agnumero = rec("AG_NUMERO")
-		    obs = rec("RES_OBSERVACAO")
-		    If IsNull(obs) Then obs = ""
-		    ehRepetido = true
-%>		<tr class="linha_par"><td align="center"><a href="cad_reserva.asp?ag_numero=<%=rec("AG_NUMERO")%>"><b><%=rec("AG_NUMERO")%></b></a></td>
-			<td align="center"><b><%=FormataData(rec("AG_DATAINICIO"), null)%></b></td>
-			<td align="center"><b><%=FormataData(rec("AG_DATATERMINO"), null)%></b></td>
-			<td align="center"><b><%if isnull(rec("RES_RESPONSAVEL")) then response.write "&nbsp;" else response.write rec("RES_RESPONSAVEL")%></b></td>
-			<td align="center"><b><%'if isnull(rec("AMB_NOME")) then response.write "&nbsp;" else response.write rec("AMB_NOME")%></b></td>
-			<td align="center">
-<%		    if not ehRelatorio then%>
+    <tr><td class="destaque">Listagem de reservas por ordem de cadastro</td></tr>
+    <tr><td class="texto1"><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
+</table>
+
+<br />
+
+<%
+While Not rec.eof
+    ambiente = ""
+	contaAS = 1
+	agnumero = rec("AG_NUMERO")
+	obs = rec("RES_OBSERVACAO")
+	If IsNull(obs) Then obs = "" End If
+%>
+<table width="100%" border="0" class="texto1" cellpadding="0" cellspacing="0">
+    <tr class="linha_par">
+	    <th>AS</th>
+	    <th>Dt In&iacute;cio</th>
+	    <th>Dt T&eacute;rmino</th>
+	    <th>Respons&aacute;vel</th>
+	    <th><%If ehRelatorio Then Response.Write "&nbsp;" Else Response.Write "Planilha XLS" End If %></th>
+    </tr>
+	<tr class="linha_par">
+        <td align="center"><a href="cad_reserva.asp?ag_numero=<%=rec("AG_NUMERO")%>"><b><%=rec("AG_NUMERO")%></b></a></td>
+		<td align="center"><b><%=FormataData(rec("AG_DATAINICIO"), null)%></b></td>
+		<td align="center"><b><%=FormataData(rec("AG_DATATERMINO"), null)%></b></td>
+		<td align="center"><b><%if isnull(rec("RES_RESPONSAVEL")) then response.write "&nbsp;" else response.write rec("RES_RESPONSAVEL")%></b></td>
+		<td align="center">
+<%		    If Not ehRelatorio Then%>
 				<b>(<a href="#" onclick="javascript:geraPlanilhaReserva(<%=rec("AG_NUMERO")%>);">Gerar</a>)</b>
-<%		    else%>
+<%		    Else%>
 				&nbsp;
-<%		    end if%>
-			</td>
-		</tr>
-		<tr><td colspan="5">&nbsp;</td></tr>
-<%		    If Not IsNull(rec("EQ_ID")) Then %>
-<%			    If ambiente <> rec("AMB_NOME") Then %>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="5">
-				<font color="#008080"><p><b><%=rec("AMB_NOME")%></b>&nbsp;</p></font>
-			</td>
-		</tr>
-		<tr><td>&nbsp;</td></tr>
-<%			    End If %>
-<%			    ambiente = rec("AMB_NOME") %>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="5">
-				<table width="100%" border="1" class="texto1" cellpadding="2" cellspacing="0" style="border: none ;">
-				<tr>
-					<th>C&oacute;d Barras</th>
-					<th>Modelo</th>
-					<th>Descri&ccedil;&atilde;o</th>
-					<th>Fabricante</th>
-					<th>Num. S&eacute;rie</th>
-					<th>Dt. In&iacute;cio</th>
-					<th>Dt. T&eacute;mino</th>
-					<th>Aceito</th>
-				</tr>
-<%			    while (not rec.eof) and (ehRepetido)
-				    ehReservado = Trim(Sce.VerificaReservaItem(false, agnumero, rec("EQ_ID"), false))
-				    if ehReservado <> "" then%>
-				<tr class="vencido">
-<%				    else%>
-				<tr>
-<%				    end if%>	
-					<td><b><%if IsNull(rec("EQ_CODIGOBARRAS")) then response.write "&nbsp;" else response.write rec("EQ_CODIGOBARRAS")%></b></td>
-					<td><%=rec("MOD_CODNOME")%></td>
-					<td><%=rec("MOD_DESCRICAO")%></td>
-					<td><%=rec("FAB_NOME")%></td>
-					<td><%if IsNull(rec("EQ_NUMEROSERIE")) then response.write "&nbsp;" else response.write InsereBR(rec("EQ_NUMEROSERIE"),10)%></td>
-					<td><%=FormataData(rec("REQ_DATAINICIO"), null)%></td>
-					<td><%=FormataData(rec("REQ_DATATERMINO"), null)%></td>
-					<td align="center">
+<%		    End If%>
+		</td>
+	</tr>
+    <tr><td>&nbsp;</td></tr>
+</table>
+
+<center>
+
+<table width="90%" border="0" class="texto1" cellpadding="0" cellspacing="0">
+<%  If Not IsNull(rec("EQ_ID")) Then %>
+
+<%      agtemp = rec("AG_NUMERO") %>
+<%      While (Not rec.Eof) And (agnumero = IIf(VVVN(rec("AG_NUMERO")), 0, rec("AG_NUMERO"))) %>
+<%	        If ambiente <> rec("AMB_NOME") Then %>
+<%              If ambiente <> "" Then %>
+            </table>
+        </td>
+    </tr>
+	<tr><td>&nbsp;</td></tr>
+<%              End If %>
+	<tr><td><font color="#008080"><p><b><%=rec("AMB_NOME")%></b>&nbsp;</p></font></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td>
+			<table width="100%" border="1" class="texto1" cellpadding="2" cellspacing="0" style="border: none ;">
+			<tr>
+                <th>#</th>
+				<th>C&oacute;d Barras</th>
+				<th>Modelo</th>
+				<th>Descri&ccedil;&atilde;o</th>
+				<th>Fabricante</th>
+				<th>Num. S&eacute;rie</th>
+				<th>Dt. In&iacute;cio</th>
+				<th>Dt. T&eacute;mino</th>
+				<th>Aceito</th>
+			</tr>
+<%		    End If %>
+
+<%			ehReservado = Trim(Sce.VerificaReservaItem(false, agnumero, rec("EQ_ID"), false))
+
+		    If ehReservado <> "" then%>
+			<tr class="vencido">
+<%			Else%>
+			<tr>
+<%			End If%>
+                <td><%=contaAS%></td>
+			    <td><b><%if IsNull(rec("EQ_CODIGOBARRAS")) then response.write "&nbsp;" else response.write rec("EQ_CODIGOBARRAS")%></b></td>
+			    <td><%=rec("MOD_CODNOME")%></td>
+			    <td><%=rec("MOD_DESCRICAO")%></td>
+			    <td><%=rec("FAB_NOME")%></td>
+			    <td><%if IsNull(rec("EQ_NUMEROSERIE")) then response.write "&nbsp;" else response.write InsereBR(rec("EQ_NUMEROSERIE"),10)%></td>
+			    <td><%=FormataData(rec("REQ_DATAINICIO"), null)%></td>
+			    <td><%=FormataData(rec("REQ_DATATERMINO"), null)%></td>
+			    <td align="center">
 <%  			'-- MOSTRO COMBO DE ACEITE PARA CASO NAO TENHA TIDO NENHUMA RESERVA ACEITA
 	    		'-- RESERVA ACEITA = MOVIMENTACAO FEITA
-		    		if rec("REQ_MOVIMENTOU") or session("status") = PERFIL_RAT or ehRelatorio then
-						if not IsNull(rec("REQ_ACEITO")) then
-						    response.write SimNao(rec("REQ_ACEITO"))
-						else 
-						    response.write "--"
-						End If
-			    	else %>
-						<select name="aceite_<%=agnumero%>_<%=contaAS%>" class="combo">
-							<option value="__<%=rec("EQ_ID")%>">--</option>
-							<option value="1_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 1 then response.write "selected"%>>Sim</option>
-							<option value="0_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 0 then response.write "selected"%>>Não</option>
-						</select>
-<%						contaAS = contaAS + 1
-				    end if%>
-					</td>
-				</tr>
-<%			    	if ehReservado <> "" then%>
-				<tr class="vencido">
-<%				    else%>
-				<tr>
-<%		    		end if%>
-					<td colspan="8"><i>
-						Localiza&ccedil;&atilde;o:&nbsp;<%=rec("EQ_LOCALIZACAO")%>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Status:&nbsp;<%=rec("DESC_STATUS")%>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Instrumental:&nbsp;<%=SimNao(rec("EQ_INSTRUMENTAL"))%>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Conforme:&nbsp;<%=SimNao(rec("EQ_CONFORME"))%>
-<%				    if ehReservado <> "" then%>
-						<br><b>Reserva(s):<%=ehReservado%></b>
-<%				    end if%>
-						</i>
-					</td>
-				</tr>
-
-<%			    	rec.MoveNext
-				    if not rec.eof then 
-					    if agnumero <> rec("AG_NUMERO") then
-						    ehRepetido = false
-    						rec.MovePrevious
-'	    				else%>
-<!--				<tr><td colspan="8">&nbsp;</td></tr> -->
-<%		    			end if
-			    	end if
-			    wend
-
-    			If obs <> "" Then%>
-				<tr>
-					<td colspan="8">
-						<table class="texto1" cellpadding="0" cellspacing="0" width="100%">
-						<tr>
-							<td width="60px" valign="top"><i>Observação:</i></td>
-							<td><i><%=Replace(obs, VbCrLf, "<br>")%></i></td>
-						</tr>
-						</table>
-					</td>
-				</tr>
-<%			    End If%>
-				</table>
-<%			    ReservaOK = Sce.ReservaFechada(agnumero)
-			    if Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
-				<p align="right"><input type="Button" class="texto1" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<%			    elseif ReservaOK then%>
-				<p align="right"><i>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</i></p>
-<%			    end if%>
-			</td>
-		</tr>
-<%          End If
-
-		    If Not rec.eof then
-			    rec.MoveNext%>
-		<tr><td colspan="5">&nbsp;</td></tr>
-		<tr><td colspan="5">&nbsp;</td></tr>
-		<tr class="linha_par">
-			<th>AS</th>
-			<th>Dt In&iacute;cio</th>
-			<th>Dt T&eacute;rmino</th>
-			<th>Respons&aacute;vel</th>
-			<th>Ambiente</th>
-			<th>
-<%			    if ehRelatorio then%>
-				&nbsp;
-<%			    else%>
-				Planilha XLS
-<%			    end if%>
-			</th>
-		</tr>
+		    If rec("REQ_MOVIMENTOU") or session("status") = PERFIL_RAT or ehRelatorio then
+				If Not IsNull(rec("REQ_ACEITO")) Then response.write SimNao(rec("REQ_ACEITO")) else response.write "--" End If
+			Else %>
+				    <select name="aceite_<%=agnumero%>_<%=contaAS%>" class="combo">
+					    <option value="__<%=rec("EQ_ID")%>">--</option>
+					    <option value="1_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 1 then response.write "selected"%>>Sim</option>
+					    <option value="0_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 0 then response.write "selected"%>>Não</option>
+				    </select>
 <%		    End If
-	    WEnd%>
-    
-		</table>
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
+			contaAS = contaAS + 1    %>
+				</td>
+			</tr>
+
+<%			if ehReservado <> "" then%>
+			<tr class="vencido">
+<%		    else%>
+			<tr>
+<%		    end if%>
+			    <td colspan="9"><i>
+				    Localiza&ccedil;&atilde;o:&nbsp;<%=rec("EQ_LOCALIZACAO")%>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    Status:&nbsp;<%=rec("DESC_STATUS")%>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    Instrumental:&nbsp;<%=SimNao(rec("EQ_INSTRUMENTAL"))%>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    Conforme:&nbsp;<%=SimNao(rec("EQ_CONFORME"))%>
+    <%				    if ehReservado <> "" then%>
+				    <br><b>Reserva(s):<%=ehReservado%></b>
+    <%				    end if%>
+				    </i>
+			    </td>
+			</tr>
+<%
+            agnumero = rec("AG_NUMERO")
+            ambiente = rec("AMB_NOME")
+            agtemp = rec("AG_NUMERO")   'fiz isso porque dava erro !!!
+            rec.MoveNext
+            
+	    WEnd 'Loop pelo agendamento
+
+    	If obs <> "" Then%>
+			<tr>
+				<td colspan="9">
+					<table class="texto1" cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td width="60px" valign="top"><i>Observação:</i></td>
+						<td><i><%=Replace(obs, VbCrLf, "<br>")%></i></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+<%      End If%>
+		    </table>
+
+<%	    ReservaOK = Sce.ReservaFechada(agnumero)
+
+		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
+		    <p align="right"><input type="Button" class="texto1" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<%	    Elseif ReservaOK then%>
+    		<p align="right"><i>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</i></p>
+<%		End if%>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+<%  End If
+
+    If Not (rec.Eof Or rec.BOF) Then
+        rec.MoveNext 
+    End If
+WEnd
+%>
 </table>
+</center>
 
 <iframe style="display: none;" name="escondido"></iframe>
 
