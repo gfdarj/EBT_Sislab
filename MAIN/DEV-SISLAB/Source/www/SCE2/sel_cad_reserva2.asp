@@ -302,6 +302,10 @@ While Not rec.eof
     If Not (rec.Eof Or rec.BOF) Then
         rec.MoveNext 
     End If
+
+    If contaAS mod 6 Then
+        Response.Flush
+    End If
 WEnd
 %>
 </table>
