@@ -28,7 +28,6 @@ verificaNavegador();
 '-- Inicializa as constantes do tipo Application no caso de não serem lidas pelo Global.Asa
 'If Application("SISLAB_AMBIENTE") = "" Then
 	Call Application_OnStart()
-	Call OnSession_Start()
 'End If
 %>
 <!--#include file="includes/PadraoHTML.asp" -->
