@@ -3,6 +3,7 @@ Dim net
 set net = createobject("wscript.network")
 
 RESPONSE.wRITE "<br>net.username: " & net.username
+RESPONSE.wRITE "<br>net.UserDomain: " & net.UserDomain
 response.write "<br>request.servervariables(LOGON_USER): " & request.servervariables("LOGON_USER")
 
 Dim objSysInfo

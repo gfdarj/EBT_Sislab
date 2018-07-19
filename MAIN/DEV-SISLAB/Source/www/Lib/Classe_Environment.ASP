@@ -35,7 +35,15 @@ Public Ebt
 
 Private int_TAMANHOPAGINA
 
+Private Function ObtemWindowsUserName()
+    Dim objUser
+    Set objUser = Server.CreateObject("wscript.network")   'pega o usuário logado no Windows
+    ObtemWindowsUserName = objUser.UserName
+    Set objUser = Nothing
+End Function
+
 Private Sub Class_Initialize()
+
 
 	Set Ebt = New TEbt
 
@@ -50,7 +58,10 @@ Private Sub Class_Initialize()
 	chr_Matricula = ""
 	chr_PaginaInicial = "index.asp"
 
-	chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+
+	'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+	chr_Usuario = ObtemWindowsUserName()
+
 	chr_MeuIP = Request.ServerVariables("REMOTE_ADDR")
 
 	chr_CaminhoAnt = ""
@@ -289,7 +300,8 @@ Public Sub LoginUsuario(chr_LoginName)
 		chr_Usuario = "JOSESP"
 	Else
 		If chr_LoginName = "" then
-			chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+			'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+            chr_Usuario = ObtemWindowsUserName()
 		Else
 			chr_Usuario = chr_LoginName
 		End if
