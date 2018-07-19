@@ -57,7 +57,7 @@ function LogaUsuario(user)
 	Response.Cookies("SISLAB").Expires = Date + 700
 
 	'-- Rodando Local, armazeno os valores manualmente
-	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
+	If Application("AMBIENTE") = "LOC" Then
 		Response.cookies("SISLAB")("usuario") = "JOSESP"
 	Else
 		If user = "" then
@@ -117,7 +117,7 @@ end function
 function BuscaDadosEmbratel(armazenaSessao,usuario)
 	dim musuario, sql, objConn, objRS
 
-	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
+	If Application("AMBIENTE") = "LOC" Then
 
 		Response.cookies("SISLAB")("ehFuncionario") = true
 		Response.cookies("SISLAB")("Nome_Reduzido") = "Nome de Teste Local"

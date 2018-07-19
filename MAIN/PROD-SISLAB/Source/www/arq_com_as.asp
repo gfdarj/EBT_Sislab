@@ -4,10 +4,7 @@
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/bib_str.asp" -->
 <script language="javascript" src="includes/anexo.js"></script>
-<%
-
-    '''''' CUIDADO POIS ESSE SCRIPT DÁ UPDATE NOS REGISTROS DO BANCO DE DADOS !!!! 
-
+<% 
 Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
 
 Dim RS

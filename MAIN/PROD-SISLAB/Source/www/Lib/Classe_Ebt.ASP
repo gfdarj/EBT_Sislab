@@ -80,7 +80,7 @@ Public Sub BuscaDadosEmbratel(chr_Usuario)
 	Dim objConn
 	Dim objRS
 
-	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
+	If Application("SISLAB_AMBIENTE") = "LOC" Then
 		bln_ehFuncionario = True
 		chr_Nome_Reduzido = "Nome de Teste Local"
 		chr_Sigla_Orgao = "LOCAL"
@@ -168,7 +168,7 @@ Public Function AchaNomeEmbratel(chr_Usuario)
 	Dim rst
 	Dim obj1
 
-	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
+	If Application("SISLAB_AMBIENTE") = "LOC" Then
 		AchaNomeEmbratel = "Ambiente de Testes"
 	Else
 		On Error Resume Next
