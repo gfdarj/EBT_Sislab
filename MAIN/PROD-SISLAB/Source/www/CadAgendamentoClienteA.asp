@@ -5,6 +5,8 @@
 <!--#include file="includes/emailHTML.ASP" -->
 <%
 Dim chr_Buf
+Dim matriculResp, nomeResp, telefoneResp
+
 
 '-- redireciona caso expirado
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
@@ -13,6 +15,9 @@ if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.
 'Dados Básico - Cliente -----------------------------------------------------------
 usuario = request.form("username")
 orgao = request.form("txtOrgao")
+matriculResp = request.form("txtMatricula")
+nomeResp = request.form("txtResponsavel")
+telefoneResp = request.form("txtRamal")
 titulo = trocaPlic2Aspas(request("txtTitulo"))
 data_inicio = request.form("diaINICIO") & "/" & request.form("mesINICIO") & "/" & request.form("anoINICIO")
 data_fim = request.form("diaFIM") & "/" & request.form("mesFIM") & "/" & request.form("anoFIM")
@@ -26,6 +31,9 @@ ambiente = trocaPlic2Aspas(request.form("ambiente"))
 recursos = trocaPlic2Aspas(request.form("recursos"))
 obs = trocaPlic2Aspas(request.form("obs"))
 ag = request("hdAG")
+
+Response.Write nomeResp & "<BR>" & matriculResp & "<BR>" & telefoneResp
+Response.End
 
 if request("cmbPartExternos") = "1" then
 	listaParticipantesExternos = Trim(trocaPlic2Aspas(request("strParticipantesExternos")))
@@ -54,8 +62,10 @@ end if
 if ag = "" then ag = "null"
 
 ssql = "exec sp_CadAgendamento '" & SEPARADOR_CAMPO & "','" & SEPARADOR_REGISTRO & "'," & ag & ",'" & titulo & "'," & receber_email & "," & tecnologia & ",'" & _
-	   data_inicio & "','" & data_fim & "','" & sigilo & "','" & objetivos & "','" & _
-	   ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & Cliente_Nome & "'," & Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & listaParticipantesExternos & "'"
+        data_inicio & "','" & data_fim & "','" & sigilo & "','" & objetivos & "','" & _
+        ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & _
+        matriculResp & "','" & nomeResp & "','" & telefoneResp & "','" & _
+        Cliente_Nome & "'," & Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & listaParticipantesExternos & "'"
 ssql = replace(ssql,",,",",null,")
 ssql = replace(ssql,"''","null")
 ssql = replace(ssql,"'//'","null")

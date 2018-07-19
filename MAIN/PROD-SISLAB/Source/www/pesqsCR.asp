@@ -258,7 +258,7 @@ Else
 	Else
 
 		'### Se nao existe a pesquisa, entao busco os dados do usuario solicitante do AS
-		If Application("SISLAB_AMBIENTE") <> "LOC" Then
+		If Left(Application("SISLAB_AMBIENTE"), 3) <> "LOC" Then
 
 			Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
 
@@ -517,7 +517,8 @@ function taPreenchido(obj) {
 	return false;
 }
 
-function Confirma() {
+function Confirma()
+{
 	selec=0;
 
 	if (!(formulario.opttipousu(0).checked)&!(formulario.opttipousu(1).checked)) {
@@ -592,7 +593,7 @@ function Confirma() {
 
 <%		If Not (ehRAT Or ehGQ) Then%>
 	document.all.p_conifrmaResposta.innerHTML = '';
-	document.all.p_aviso.innerHTML = '<b>Aviso: Esta pesquisa já foi respondida. Para alguma alteração entre em contato com o CRT.</b>';
+	document.all.p_aviso.innerHTML = '<b>Obrigado! Para alguma alteração entre em contato com o CRT.</b>';
 <%		end if
 
 	end if

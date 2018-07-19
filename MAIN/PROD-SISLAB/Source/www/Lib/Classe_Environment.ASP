@@ -285,7 +285,7 @@ Public Sub LoginUsuario(chr_LoginName)
 	Dim chr_SQL
 	Dim objRS
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
+	If Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" Then
 		chr_Usuario = "JOSESP"
 	Else
 		If chr_LoginName = "" then

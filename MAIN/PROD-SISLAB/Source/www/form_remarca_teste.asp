@@ -210,172 +210,129 @@ function voltar()
 
 function PreparaCampos(f)
 {
-	frm1 = document.all;
-//	if( f.cmbCancelar[ 0 ].checked ){
-//		frm1.tabAgendamento.style.display = 'none';
-//		frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo do Cancelamento:&nbsp;";
-//		msgMotivo = "O campo 'Motivo do Cancelamento' deve ser preenchido.";
-//		remarca = 0;
-//		//frm1.OSCelula.innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>"
-//	}
-//	else{
-		frm1.tabAgendamento.style.display = 'block';
-		frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da Remarcação:&nbsp;";
-		msgMotivo = "O campo 'Motivo da Remarcação' deve ser preenchido.";
-		remarca = 1;
-//	}
+	frm1 = document.forms[0];
+	//frm1.tabAgendamento.style.display = 'block';
+	//frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da Remarcação:&nbsp;";
+	msgMotivo = "O campo 'Motivo da Remarcação' deve ser preenchido.";
+	remarca = 1;
 }
 //=========================================================================================
 
 </script>
 
 <form method="post" action="form_remarca_testeA.asp" name="frmRemarcaTeste" onSubmit="return validaCampos(this);">
-<input type="hidden" name="txtInicioAnt" value="<%=data_inicio%>">
-<input type="hidden" name="txtFimAnt" value="<%=data_termino%>">
-<input type="hidden" name="txtNum_agendamento" value="<%= num_agendamento%>">
+    <input type="hidden" name="txtInicioAnt" value="<%=data_inicio%>">
+    <input type="hidden" name="txtFimAnt" value="<%=data_termino%>">
+    <input type="hidden" name="txtNum_agendamento" value="<%= num_agendamento%>">
 
-<input type="hidden" name="txtUsernameSol" value="<%=email%>">
-<input type="hidden" name="txtNomeSol" value="<%=nome_Responsavel%>">
+    <input type="hidden" name="txtUsernameSol" value="<%=email%>">
+    <input type="hidden" name="txtNomeSol" value="<%=nome_Responsavel%>">
 
-<TABLE border=0 cellSpacing=0 width="100%" class="tabela1">
-	<TR>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-	</TR>
-	<tr>
-		<td colspan="10"> 
-			<p>
-			<!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="1" tabindex="13" checked /><font class="opcao">Cancelamento&nbsp;-->
-			<!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="0" tabindex="14" checked/><font class="opcao">Remarcação&nbsp;-->
-			<input type="radio" name="cmbCancelar" value="0" tabindex="13" checked/><font class="opcao">Remarcação</fonte>
-			</p>
-		</td>
-	</tr>
+    <p style="margin-left: 10px;">
+        <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="1" tabindex="13" checked /><font class="opcao">Cancelamento&nbsp;-->
+        <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="0" tabindex="14" checked/><font class="opcao">Remarcação&nbsp;-->
+        <input type="radio" name="cmbCancelar" value="0" tabindex="13" checked/><font class="opcao">Remarcação</fonte>
+    </p>
 
-	<%If remarcado Then%>
-	<TR height="34">
-		<TD colSpan=10>
-			&nbsp;&nbsp;<b>Este teste está aguardando validação de remarcação</b>
-		</TD>
-	</TR>
-	<%End If%>
-	<tr height="34"> 
-		<td  colspan="10" id="tabAgendamento" style="display: none;">
-			&nbsp;&nbsp;Período previsto para teste:&nbsp;
-			&nbsp;&nbsp;Início:&nbsp;
-			<input type="hidden" name="txtInicio" size="10" value="<%=formataData(data_inicio)%>">
-			<select name="cmbInicio_dia" class="combo" tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
-				<option value="0" selected></option>
-				<%For i=1 to 31
-					if (i \ 10) = 0 then%>
-						<option value="0<%=i%>" <%if day(data_inicio) = i then response.write "selected"%>><%=i%></option>
-					<%else%>
-						<option value="<%=i%>" <%if day(data_inicio) = i then response.write "selected"%>><%=i%></option>
-					<%end if%>
-				<%Next%>
-			</select>/
-			<select name="cmbInicio_mes" class="combo" tabindex="8" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
-				<option value="0" selected></option>
-				<%For i=1 to 12
-					if (i \ 10) = 0 then%>
-						<option value="0<%=i%>" <%if month(data_inicio) = i then response.write "selected"%>><%=mes(i)%></option>
-					<%else%>
-						<option value="<%=i%>" <%if month(data_inicio) = i then response.write "selected"%>><%=mes(i)%></option>
-					<%end if%>
-				<%Next%>
-			</select>/
-				<select name="cmbInicio_ano" class="combo" tabindex="9" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
-				<option value="0" selected></option>
-				<%For i=year(date())-1 to year(date())+1%>
-					<option value="<%=i%>" <%if year(data_inicio) = i then response.write "selected"%>><%=i%></option>
-				<%Next%>
-			</select>
+<%If remarcado Then%>
+    <p>&nbsp;&nbsp;<b>Este teste está aguardando validação de remarcação</b></p>
+<%End If%>
+
+    <p style="margin-left: 10px;">
+        <div id="tabAgendamento">
+			    &nbsp;&nbsp;Período previsto para teste:&nbsp;
+			    &nbsp;&nbsp;Início:&nbsp;
+			    <input type="hidden" name="txtInicio" size="10" value="<%=formataData(data_inicio)%>">
+			    <select name="cmbInicio_dia" class="combo" tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+				    <option value="0" selected></option>
+				    <%For i=1 to 31
+					    if (i \ 10) = 0 then%>
+						    <option value="0<%=i%>" <%if day(data_inicio) = i then response.write "selected"%>><%=i%></option>
+					    <%else%>
+						    <option value="<%=i%>" <%if day(data_inicio) = i then response.write "selected"%>><%=i%></option>
+					    <%end if%>
+				    <%Next%>
+			    </select>/
+			    <select name="cmbInicio_mes" class="combo" tabindex="8" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+				    <option value="0" selected></option>
+				    <%For i=1 to 12
+					    if (i \ 10) = 0 then%>
+						    <option value="0<%=i%>" <%if month(data_inicio) = i then response.write "selected"%>><%=mes(i)%></option>
+					    <%else%>
+						    <option value="<%=i%>" <%if month(data_inicio) = i then response.write "selected"%>><%=mes(i)%></option>
+					    <%end if%>
+				    <%Next%>
+			    </select>/
+				    <select name="cmbInicio_ano" class="combo" tabindex="9" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+				    <option value="0" selected></option>
+				    <%For i=year(date())-1 to year(date())+1%>
+					    <option value="<%=i%>" <%if year(data_inicio) = i then response.write "selected"%>><%=i%></option>
+				    <%Next%>
+			    </select>
 	
-			&nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;
-			<input type="hidden" name="txtFim" size="10" tabindex="7" value="<%=formataData(data_termino)%>">
-			<select name="cmbFim_dia" class="combo" tabindex="10" onchange="montaFim()">
-				<option value="0" selected></option>
-				<%For i=1 to 31
-					if (i \ 10) = 0 then%>
-						<option value="0<%=i%>" <%if day(data_termino) = i then response.write "selected"%>><%=i%></option>
-					<%else%>
-						<option value="<%=i%>" <%if day(data_termino) = i then response.write "selected"%>><%=i%></option>
-					<%end if%>
-				<%Next%>
-			</select>/
-			<select name="cmbFim_mes" class="combo" tabindex="11" onchange="montaFim()">
-				<option value="0" selected></option>
-				<%For i=1 to 12
-					if (i \ 10) = 0 then%>
-						<option value="0<%=i%>" <%if month(data_termino) = i then response.write "selected"%>><%=mes(i)%></option>
-					<%else%>
-						<option value="<%=i%>" <%if month(data_termino) = i then response.write "selected"%>><%=mes(i)%></option>
-					<%end if%>
-				<%Next%>
-        	</select>/
-			<select name="cmbFim_ano" class="combo" tabindex="12" onchange="montaFim()">
-				<option value="0" selected></option>
-				<%For i=year(date())-1 to year(date())+1%>
-					<option value="<%=i%>" <%if year(data_termino) = i then response.write "selected"%>><%=i%></option>
-				<%Next%>
-        	</select>
-		</td>
-	</tr>
-	<TR height="34">
-		<TD colSpan=5>
-			&nbsp;&nbsp;Tecnologia:&nbsp;
-			<%=tecnologia%>
-			
-		</TD>
-		<TD colSpan=5>
-			
-				<b>Nº do Agendamento:&nbsp;<%= num_agendamento%></b>
-			
-		</TD>
-	</TR>
-	<TR height="34"> 
-		<td colspan="7">
-			&nbsp;&nbsp;Nome do Responsável: &nbsp; <%= nome_responsavel%>
-	    </td>
-	    <td colspan="3">
-              &nbsp;&nbsp;Matrícula:&nbsp; <%=matricula%>
-		</td>
-	</tr>
-	<tr height="34">	
-		<td  colspan="3">
-			&nbsp;&nbsp;Órgão:&nbsp; <%= orgao%>
-		</td>
-		<td  colspan="4">
-			&nbsp;&nbsp;E-mail:&nbsp; <%= email%>
-		</td>
-		<td  colspan="3"> 
-			&nbsp;&nbsp;Ramal:&nbsp; <%= ramal%>
-	    </td>
-	</tr>
+			    &nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;
+			    <input type="hidden" name="txtFim" size="10" tabindex="7" value="<%=formataData(data_termino)%>">
+			    <select name="cmbFim_dia" class="combo" tabindex="10" onchange="montaFim()">
+				    <option value="0" selected></option>
+				    <%For i=1 to 31
+					    if (i \ 10) = 0 then%>
+						    <option value="0<%=i%>" <%if day(data_termino) = i then response.write "selected"%>><%=i%></option>
+					    <%else%>
+						    <option value="<%=i%>" <%if day(data_termino) = i then response.write "selected"%>><%=i%></option>
+					    <%end if%>
+				    <%Next%>
+			    </select>/
+			    <select name="cmbFim_mes" class="combo" tabindex="11" onchange="montaFim()">
+				    <option value="0" selected></option>
+				    <%For i=1 to 12
+					    if (i \ 10) = 0 then%>
+						    <option value="0<%=i%>" <%if month(data_termino) = i then response.write "selected"%>><%=mes(i)%></option>
+					    <%else%>
+						    <option value="<%=i%>" <%if month(data_termino) = i then response.write "selected"%>><%=mes(i)%></option>
+					    <%end if%>
+				    <%Next%>
+        	    </select>/
+			    <select name="cmbFim_ano" class="combo" tabindex="12" onchange="montaFim()">
+				    <option value="0" selected></option>
+				    <%For i=year(date())-1 to year(date())+1%>
+					    <option value="<%=i%>" <%if year(data_termino) = i then response.write "selected"%>><%=i%></option>
+				    <%Next%>
+        	    </select>
+        </div>
+    </p>
 
-    <tr height="34"> 
-        <td valign="top" colspan="2" id="TabMotivo">
-			&nbsp;&nbsp;Motivo do Cancelamento:&nbsp;
-        </td>
-        <td valign="top" colspan="8">
-          	<TEXTAREA class="texto1" cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA>
-        </td>
-    </tr>
-</TABLE>
-<br><br>
-  <p align="center"> 
-    <input class="texto1" type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
-    <input class="texto1" type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
-  </p>
+    <p>
+        <div style="width: 400px; display:inline-block; margin-left: 10px;"><b>Nº do Agendamento:&nbsp;<%= num_agendamento%></b></div>
+	    <div style="display:inline-block; margin-left: 10px;">Tecnologia:&nbsp;<%=tecnologia%></div>
+    </p>
+
+    <p>
+        <div style="width: 400px; display:inline-block; margin-left: 10px;">Nome do Responsável: &nbsp; <%= nome_responsavel%></div>
+	    <div style="display:inline-block; margin-left: 10px;">Matrícula:&nbsp; <%=matricula%></div>
+    </p>
+
+    <p>
+        <div style="width: 400px; display:inline-block; margin-left: 10px;">E-mail:&nbsp; <%= email%></div>
+	    <div style="width: 200px; display:inline-block; margin-left: 10px;">Órgão:&nbsp; <%= orgao%></div>
+	    <div style="width: 200px; display:inline-block; margin-left: 10px;">Ramal:&nbsp; <%= ramal%></div>
+    </p>
+
+    <p >
+        <div style="vertical-align: top; margin-left: 10px;">
+            <div style="display:inline-block; vertical-align:top;">Motivo do Cancelamento:</div>
+	        <div style="display:inline-block; vertical-align: top;"><TEXTAREA class="texto1" cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA></div>
+        </div>
+    </p>
+
+    <br>
+
+    <p align="center"> 
+        <input class="texto1" type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
+        <input class="texto1" type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
+    </p>
+
 </form>
+
 <script language="JavaScript">
 	/*** O cancelamento pelo usuario foi retirado em 29/01/2007 ***/
 	PreparaCampos(null);

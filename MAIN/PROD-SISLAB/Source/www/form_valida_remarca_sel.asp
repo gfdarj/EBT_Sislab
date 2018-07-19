@@ -27,18 +27,6 @@ function abre(codigo)
 
 <TABLE border="1" cellpadding="2" cellspacing="0" width="100%" class="tabela1">
 	<TR>
-		<TD width="20%"></TD>
-		<TD width="10%"></TD>
-		<!--<TD width="10%"></TD>-->
-		<TD width="10%"></TD>
-		<TD width="10%"></TD>
-		<TD width="10%"></TD>
-		<TD width="10%"></TD>
-		<TD width="10%"></TD>
-		<TD width="5%"></TD>
-		<TD width="15%"></TD>
-	</TR>
-	<TR>
 		<Th colSpan=2 style="font-size: 10px;">N<sup>o</sup> Agendamento - Tipo de Teste</Th>
 		<Th style="font-size: 10px;">Situação</Th>
 		<!--<th style="font-size: 10px;">Tarefa</th>-->

@@ -461,7 +461,7 @@ else
 end if
 
 
-If Application("SISLAB_AMBIENTE") <> "LOC" Then
+If Left(Application("SISLAB_AMBIENTE"), 3) <> "LOC" Then
 
 	'-- Pega os dados 
 	Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
@@ -525,7 +525,7 @@ vUFComercual = ""
 vCidade = ""
 vRIT =  ""
 
-If Application("SISLAB_AMBIENTE") <> "LOC" Then
+If Left(Application("SISLAB_AMBIENTE"), 3) <> "LOC" Then
 	Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
 	Matricula = obj1.GetMatricula(AuxUsername)
 	set obj1=nothing
