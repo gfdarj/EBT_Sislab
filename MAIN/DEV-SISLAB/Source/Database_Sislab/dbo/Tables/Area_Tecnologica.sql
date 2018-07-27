@@ -1,6 +1,0 @@
-﻿CREATE TABLE [dbo].[Area_Tecnologica] (
-    [AT_ID]   SMALLINT      IDENTITY (1, 1) NOT NULL,
-    [AT_NOME] VARCHAR (200) NULL,
-    CONSTRAINT [PK__Area_Tecnologica__117F9D94] PRIMARY KEY CLUSTERED ([AT_ID] ASC) WITH (FILLFACTOR = 90)
-);
-
