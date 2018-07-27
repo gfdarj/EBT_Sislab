@@ -28,8 +28,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "www", "www", "{DA17265A-143
 		SlnRelativePath = "www\"
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database_Sislab", "Database_Sislab\Database_Sislab.sqlproj", "{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,18 +38,15 @@ Global
 		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA17265A-143B-40A2-BBB9-C296AC6C00BF}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A2FF662-C7B4-470D-8D29-4FFD0A2585FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {901509EF-16AB-4741-A320-04F3D9329988}
+	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://galmeida.visualstudio.com/
 		SccLocalPath0 = .
@@ -60,8 +55,5 @@ Global
 		SccProjectName1 = www
 		SccLocalPath1 = www
 		SccProjectEnlistmentChoice1 = 2
-		SccProjectUniqueName2 = Database_Sislab\\Database_Sislab.sqlproj
-		SccProjectName2 = Database_Sislab
-		SccLocalPath2 = Database_Sislab
 	EndGlobalSection
 EndGlobal
