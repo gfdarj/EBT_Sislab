@@ -1756,3 +1756,1716 @@ BEGIN
 END
 GO
 
+
+/****** Object:  StoredProcedure [dbo].[sp_CadAmbiente]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadAmbiente]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadAmbiente]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadAmbiente]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510),
+	@pUsadoPorAg BIT
+)
+AS
+BEGIN
+	BEGIN TRANSACTION
+	SET NOCOUNT ON 
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF (@pID IS NULL) OR (@pID = 0) BEGIN
+		INSERT INTO Ambientes (AMB_NOME, AMB_USADOPORAG) VALUES (@pDescricao, @pUsadoPorAg)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir o ambiente ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE	Ambientes SET AMB_NOME = @pDescricao, AMB_USADOPORAG = @pUsadoPorAg
+		WHERE	AMB_ID = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar o ambiente ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_CadAreaTecnologica]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadAreaTecnologica]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadAreaTecnologica]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadAreaTecnologica]
+	@pId INT,
+	@pDescricao VARCHAR(510)
+AS
+BEGIN
+	SET NOCOUNT ON 
+	BEGIN TRANSACTION
+
+	IF @pID IS NULL OR @pID = 0 BEGIN
+		INSERT INTO Area_tecnologica (at_nome) VALUES (@pDescricao)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível inserir Área Tecnológica', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível inserir Área Tecnológica' AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE Area_tecnologica SET at_nome = @pDescricao
+		WHERE at_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível atualizar Área Tecnológica', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível atualizar Área Tecnológica' AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CADASTRA_ARQUIVOS]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CADASTRA_ARQUIVOS]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CADASTRA_ARQUIVOS]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CADASTRA_ARQUIVOS]
+	@ACAO VARCHAR(10),
+	@pAG_NUMERO INT,
+	@DATA_ACAO VARCHAR(20),
+	@pARQ_CODARQ INT,
+	@pARQ_CODARQTIPO INT,
+	@pARQ_LINK VARCHAR (400),
+	@pARQ_NOMEARQ VARCHAR(200),
+	@pARQ_RESPONSAVEL VARCHAR(80),
+	@pARQ_IDORGAO INT,
+	@pARQ_OBSERVACAO VARCHAR(510),
+	@pARQ_VERSAO VARCHAR(100),
+	@pARQ_OCULTAR bit,
+	@pARQ_DATAAPROVACAO VARCHAR(20),
+	@pIPCADASTRO VARCHAR(40),
+	@pUSERIDCADASTRO VARCHAR(80),
+	@pARQ_DESCRICAO VARCHAR(510),
+	@pARQ_IDSITUACAO INT,
+	@pARQ_OS INT,
+	@pARQ_O1 INT,
+	@pARQ_O2 INT,
+	@pARQ_O3 INT
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @RETORNO INT
+	SET @RETORNO = @pARQ_CODARQ
+
+	IF @ACAO = 'VALIDAR' BEGIN
+		INSERT INTO HISTORICO_ARQUIVOS (HA_CODARQ,HA_USUARIO,HA_DATAATUALIZACAO,HA_ACAO) 
+			VALUES (@pARQ_CODARQ, @pUSERIDCADASTRO, CONVERT(SMALLDATETIME,@DATA_ACAO,103), @ACAO)
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível inserir no histórico', 16, 1)
+			RETURN -1
+		END
+	END
+
+	IF @ACAO = 'EXCLUIR' BEGIN	
+		DELETE diagramas where Arq_codArq = @pARQ_CODARQ
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível apagar diagramas', 16, 1)
+			RETURN -1
+		END
+		DELETE FROM HISTORICO_ARQUIVOS WHERE HA_CODARQ = @pARQ_CODARQ
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível excluir o histórico', 16, 1)
+			RETURN -1
+		END
+		DELETE arquivos Where Arq_codArq= @pARQ_CODARQ
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível apagar os arquivos', 16, 1)
+			RETURN -1
+		END
+	END
+	
+	IF @ACAO = 'INSERIR' BEGIN
+		INSERT INTO ARQUIVOS 
+			(ARQ_NOTIFICACAOEXPIRACAO, ARQ_LINK, ARQ_NOMEARQ, ARQ_CODARQTIPO, ARQ_Observacao, ARQ_Descricao, 
+			 ARQ_Responsavel, ARQ_IDOrgao, ARQ_DATAAPROVACAO, ARQ_DATAATUALIZACAO, IPcadastro, UserIDCadastro, ARQ_IDSituacao, 
+			 ARQ_Ocultar, ARQ_Versao, ARQ_OS, ARQ_O1, ARQ_O2, ARQ_O3) 	
+			VALUES	(0, @pARQ_LINK, @pARQ_NOMEARQ, @pARQ_CODARQTIPO, @pARQ_Observacao, @pARQ_Descricao,
+			 @pARQ_Responsavel, @pARQ_IDOrgao, CONVERT(smalldatetime,@pARQ_DATAAPROVACAO,103), getDate(),@pIPcadastro, @pUSERIDCADASTRO, @pARQ_IDSituacao, 
+			 @pARQ_Ocultar, @pARQ_Versao, @pARQ_OS, @pARQ_O1, @pARQ_O2, @pARQ_O3) 	
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível inserir o arquivo', 16, 1)
+			RETURN -1
+		END
+
+		SET @RETORNO = @@IDENTITY
+
+		IF not @pAG_NUMERO is null BEGIN
+			INSERT INTO Diagramas (AG_Numero, ARQ_CodARQ) VALUES (@pAG_NUMERO, @RETORNO)
+			IF (@@ERROR <> 0) BEGIN 
+				ROLLBACK TRANSACTION
+				SELECT -1 as 'saida'
+				RAISERROR('Não foi possível inserir diagrama', 16, 1)
+				RETURN -1
+			END
+		END
+	END
+
+	IF @ACAO = 'ALTERAR' BEGIN
+		DELETE Diagramas where  ARQ_CodARQ = @pARQ_CODARQ
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível excluir diagramas', 16, 1)
+			RETURN -1
+		END
+
+		UPDATE ARQUIVOS SET
+			ARQ_LINK = @pARQ_LINK,
+			ARQ_NOMEARQ = @pARQ_NOMEARQ,
+			ARQ_CODARQTIPO = @pARQ_CODARQTIPO,
+			ARQ_Observacao = @pARQ_Observacao,
+			ARQ_Descricao = @pARQ_Descricao,
+			ARQ_Responsavel = @pARQ_Responsavel,
+			ARQ_IDOrgao = @pARQ_IDOrgao,
+			ARQ_DATAAPROVACAO = CONVERT(smalldatetime,@pARQ_DATAAPROVACAO,103),
+			ARQ_DATAATUALIZACAO = getDate(),
+			IPcadastro = @pIPcadastro,
+			UserIDCadastro = @pUSERIDCADASTRO,
+			ARQ_IDSituacao = @pARQ_IDSituacao,
+			ARQ_Ocultar = @pARQ_Ocultar,
+			ARQ_Versao = @pARQ_Versao,
+			ARQ_OS = @pARQ_OS,
+			ARQ_O1 = @pARQ_O1,
+			ARQ_O2 = @pARQ_O2,
+			ARQ_O3 = @pARQ_O3
+		WHERE  Arq_codArq= @pARQ_CODARQ
+		IF (@@ERROR <> 0) BEGIN 
+			ROLLBACK TRANSACTION
+			SELECT -1 as 'saida'
+			RAISERROR('Não foi possível atualisar o arquivo', 16, 1)
+			RETURN -1
+		END
+
+		IF @pAG_NUMERO is not null BEGIN
+			INSERT INTO Diagramas (AG_Numero, ARQ_CodARQ)
+				VALUES (@pAG_NUMERO, @pARQ_CODARQ)
+			IF (@@ERROR <> 0) BEGIN 
+				ROLLBACK TRANSACTION
+				SELECT -1 as 'saida'
+				RAISERROR('Não foi possível inserir diagrama', 16, 1)
+				RETURN -1
+			END
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @RETORNO as 'saida'
+
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadDePara]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadDePara]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadDePara]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadDePara]
+(
+	@separa_campo varchar(4),
+	@separa_registro varchar(4),
+	@pTabela VARCHAR(50),
+	@pDE	 VARCHAR(8000),
+	@pPARA 	 VARCHAR(510)
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+	BEGIN TRANSACTION
+
+	--VARIÁVEIS NECESSÁRIAS PARA QUEBRA DAS STRINGS
+	DECLARE @reg VARCHAR(7000), @fim BIT, @iini INT, @ifim INT
+	DECLARE @DADOS VARCHAR(7000)
+	DECLARE @st1 VARCHAR(255), @st2 VARCHAR(255)
+
+	SET @DADOS = @pDE
+
+	--RETIRO O ULTIMO SEPARADO DE REGISTRO
+	SET @DADOS = REVERSE(SUBSTRING(REVERSE(@DADOS),LEN(@separa_registro)+1,LEN(@DADOS)))
+
+	IF @pTabela = 'ClienteExterno' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				UPDATE AGENDAMENTO 
+				SET AG_CLIENTEEXTERNO  = @pPARA
+				WHERE AG_CLIENTEEXTERNO = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+	IF @pTabela = 'Orgao' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				UPDATE AGENDAMENTO 
+				SET ag_orgao  = @pPARA
+				WHERE ag_orgao = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+	IF @pTabela = 'TipoAtividade' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				UPDATE AGENDAMENTO 
+				SET TA_ID  = CONVERT(INTEGER,@pPARA)
+				WHERE TA_ID = CONVERT(INTEGER,@st1)
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+
+					RETURN -1
+				END
+	
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA
+				IF @pPARA <> @st1 BEGIN
+					DELETE FROM TIPO_ATIVIDADE WHERE TA_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+	IF @pTabela = 'Tecnologia' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				UPDATE AGENDAMENTO 
+				SET TEC_ID  = CONVERT(INTEGER,@pPARA)
+				WHERE TEC_ID = CONVERT(INTEGER,@st1)
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA	
+				IF @pPARA <> @st1 BEGIN
+					DELETE FROM TECNOLOGIA WHERE TEC_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+	IF @pTabela = 'Testes' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA	
+				IF @pPARA <> @st1 BEGIN
+					-------------------------------------------------------------------
+					UPDATE ORDEM_DE_SERVICO
+					SET T_ID  = CONVERT(INTEGER,@pPARA)
+					WHERE T_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+					-------------------------------------------------------------------
+					DELETE FROM TESTES WHERE T_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+
+		END
+	END
+
+	IF @pTabela = 'LB_TipoOcorrencia' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA	
+				IF @pPARA <> @st1 BEGIN
+					-------------------------------------------------------------------
+					UPDATE LB_LogBook
+					SET LBTO_ID  = CONVERT(INTEGER,@pPARA)
+					WHERE LBTO_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+					-------------------------------------------------------------------
+					DELETE FROM LB_TipoOcorrencia WHERE LBTO_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+
+	IF @pTabela = 'TipoArquivo' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA	
+				IF @pPARA <> @st1 BEGIN
+					-------------------------------------------------------------------
+					UPDATE Arquivos
+					SET ARQ_CODARQTIPO  = CONVERT(INTEGER,@pPARA)
+					WHERE ARQ_CODARQTIPO = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+					-------------------------------------------------------------------
+					DELETE FROM TipoArquivo WHERE TAR_CODTIPOARQUIVO = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+
+	IF @pTabela = 'OrgaoInterno' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				--CRIADO PARA CONTROLAR CASOS EM QUE ENTRE O CONJUNTO  DAS CLAUSULAS "DE" TENHA UM ELEMENTO DA CLAUSULA PARA	
+				IF @pPARA <> @st1 BEGIN
+					-------------------------------------------------------------------
+					UPDATE UserCRT
+					SET ORGA_ID = CONVERT(INTEGER,@pPARA)
+					WHERE ORGA_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+					-------------------------------------------------------------------
+					UPDATE Arquivos
+					SET ARQ_IDORGAO = CONVERT(INTEGER,@pPARA)
+					WHERE ARQ_IDORGAO = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+					-------------------------------------------------------------------
+					DELETE FROM Orgao WHERE ORGA_ID = CONVERT(INTEGER,@st1)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+
+	IF @pTabela = 'TipoTeste' BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				UPDATE Testes
+				SET TIT_ID = @pPARA
+				WHERE TIT_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+
+				DELETE FROM Tipo_Teste
+				WHERE TIT_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+
+	IF (@pTabela = 'Plataformas') OR (@pTabela = 'Servicos') BEGIN
+		--EXECUTAR PARA SEPARAR AS OCORRÊNCIAS
+		IF @DADOS IS NOT NULL BEGIN
+			SET @DADOS = rtrim(ltrim(@DADOS))
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				end 
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				end
+				SET @st1 = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+
+				-----------------------------------------------------------------------------------
+				--EXECUTAR ESTE SCRIPT PRA CADA STRING
+				-----------------------------------------------------------------------------------
+				IF (@pTabela = 'Plataformas') 
+				BEGIN
+
+					--apaga o histórico de eventos, caso a OS venha a ser excluída
+					DELETE FROM Historico_EventosOS 
+					WHERE AG_NUMERO IN (
+						SELECT AG_NUMERO FROM Ordem_de_Servico a1
+						WHERE S_ID_PLATAFORMA = @pPARA
+						AND EXISTS (
+							SELECT a2.ag_numero FROM Ordem_de_Servico a2
+							WHERE a2.S_ID_PLATAFORMA = @st1 and a1.ag_numero = a2.ag_numero
+						)
+					)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+
+					--Verifica os casos que existem OS com os 2 servicos/plataformas
+					DELETE FROM Ordem_de_Servico
+					WHERE S_ID_PLATAFORMA = @pPARA AND AG_NUMERO IN (
+						SELECT AG_NUMERO FROM Ordem_de_Servico a1
+						WHERE S_ID_PLATAFORMA = @pPARA
+						AND EXISTS (
+							SELECT a2.ag_numero FROM Ordem_de_Servico a2
+							WHERE a2.S_ID_PLATAFORMA = @st1 and a1.ag_numero = a2.ag_numero
+						)
+					)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+
+					UPDATE Ordem_de_Servico
+					SET S_ID_PLATAFORMA = @pPARA
+					WHERE S_ID_PLATAFORMA = @st1
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+
+				-----------------------------------------------------------------------------------
+
+				IF (@pTabela = 'Servicos')
+				BEGIN
+					--Verifica os casos que existem OS com os 2 servicos/plataformas
+					DELETE FROM Ordem_de_Servico
+					WHERE S_ID_SERVICO = @pPARA AND AG_NUMERO IN (
+						SELECT AG_NUMERO FROM Ordem_de_Servico a1
+						WHERE S_ID_SERVICO = @pPARA
+						AND EXISTS (
+							SELECT a2.ag_numero FROM Ordem_de_Servico a2
+							WHERE a2.S_ID_SERVICO = @st1 and a1.ag_numero = a2.ag_numero
+						)
+					)
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+
+					UPDATE Ordem_de_Servico
+					SET S_ID_SERVICO = @pPARA
+					WHERE S_ID_SERVICO = @st1
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+						RETURN -1
+					END
+				END
+				-----------------------------------------------------------------------------------
+				UPDATE Historico_Plataforma_Equipamentos
+				SET S_ID = @pPARA
+				WHERE S_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+
+				--Apaga os equipamentos que ficarao duplicados em uma plataforma
+				DELETE FROM Plataforma_Equipamentos
+				WHERE S_ID = @pPARA AND EQ_ID IN (
+					SELECT EQ_ID FROM Plataforma_Equipamentos a1
+					WHERE s_id = @pPARA
+					AND EXISTS (
+						SELECT a2.EQ_ID FROM Plataforma_Equipamentos a2
+						WHERE a2.s_id = @st1 and a1.EQ_ID = a2.EQ_ID
+					)
+				)
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+
+				UPDATE Plataforma_Equipamentos
+				SET S_ID = @pPARA
+				WHERE S_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+				DELETE FROM Agenda_Servicos_Plataforma
+				WHERE S_ID = @pPARA AND AG_NUMERO IN (
+					SELECT AG_NUMERO FROM Agenda_Servicos_Plataforma a1
+					WHERE s_id = @pPARA
+					and EXISTS (
+						SELECT a2.ag_numero FROM Agenda_Servicos_Plataforma a2
+						WHERE a2.s_id = @st1 and a1.ag_numero = a2.ag_numero
+					)
+				)
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+
+				UPDATE Agenda_Servicos_Plataforma
+				SET S_ID = @pPARA
+				WHERE S_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( '222 Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+				UPDATE Servicos_Plataformas
+				SET S_ID_PAI = @pPARA
+				WHERE S_ID_PAI = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END
+				-----------------------------------------------------------------------------------
+				/*DELETE FROM Servicos_Plataformas
+				WHERE S_ID = @st1
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível realizar substituição', 16, 1)
+					RETURN -1
+				END*/
+				-----------------------------------------------------------------------------------
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadLogBookAcaoTomada]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadLogBookAcaoTomada]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadLogBookAcaoTomada]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_CadLogBookAcaoTomada]
+(
+	@pACT_ID INT OUTPUT,
+	@pACT_LB INT,
+	@pACT_DESCRICAO VARCHAR(255),
+	@pACT_RESPONSAVEL VARCHAR(80),
+	@pACT_EXECUTANTE VARCHAR(200),
+	@pACT_PRAZO SMALLDATETIME,
+	@pACT_DATACONCLUSAO SMALLDATETIME,
+	@pACT_EFICACIA TINYINT,
+	@pACT_OBS TEXT,
+	@pACT_TIPOACAO INT,
+	@pACT_ARQUIVO VARCHAR(5000),
+	@pACT_USUARIOCADASTROU VARCHAR(80)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRANSACTION
+
+	IF @pACT_ID IS NULL OR 	@pACT_ID = 0 BEGIN
+		INSERT INTO LB_ACOESTOMADAS 
+			VALUES (@pACT_LB, @pACT_DESCRICAO, @pACT_EXECUTANTE, @pACT_PRAZO,
+			@pACT_DATACONCLUSAO, @pACT_EFICACIA, @pACT_OBS, @pACT_TIPOACAO, @pACT_RESPONSAVEL)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível incluir esta ação.', 16, 1 )
+			SELECT -1 AS SAIDA
+			RETURN -1
+		END
+		SET @pACT_ID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE LB_ACOESTOMADAS 
+			SET ACT_LB = @pACT_LB,
+			ACT_DESCRICAO = @pACT_DESCRICAO,
+			ACT_RESPONSAVEL = @pACT_RESPONSAVEL,
+			ACT_EXECUTANTE = @pACT_EXECUTANTE,
+			ACT_PRAZO = @pACT_PRAZO,
+			ACT_DATACONCLUSAO = @pACT_DATACONCLUSAO, 
+			ACT_EFICACIA = @pACT_EFICACIA, 
+			ACT_OBS = @pACT_OBS, 
+			ACT_TIPOACAO = @pACT_TIPOACAO
+			WHERE ACT_ID = @pACT_ID
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível atualizar esta ação.', 16, 1 )
+			SELECT -1 AS SAIDA
+			RETURN -1
+		END
+	END
+
+
+	IF @pACT_ARQUIVO IS NOT NULL
+	BEGIN
+		INSERT INTO LB_ACOESTOMADAS_ARQUIVOS
+			VALUES (@pACT_ID, @pACT_LB, @pACT_ARQUIVO, @pACT_USUARIOCADASTROU, GETDATE())
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível anexar o arquivo desta esta ação.', 16, 1 )
+			SELECT -1 AS SAIDA
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pACT_ID AS SAIDA
+	RETURN @pACT_ID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadLogBookTipoOcorrencia]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadLogBookTipoOcorrencia]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadLogBookTipoOcorrencia]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadLogBookTipoOcorrencia]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510)
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+	BEGIN TRANSACTION
+
+	IF @pID IS NULL OR @pID = 0 BEGIN
+		INSERT INTO LB_TipoOcorrencia (LBTO_DESCRICAO) VALUES (@pDescricao)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível inserir tipo de ocorrência', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível inserir tipo de ocorrência' AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE LB_TipoOcorrencia SET LBTO_DESCRICAO = @pDescricao
+		WHERE LBTO_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível atualizar tipo de ocorrência', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível atualizar tipo de ocorrência' AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadOrgao]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadOrgao]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadOrgao]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadOrgao]
+(
+	@orga_id INT,
+	@orga_sigla VARCHAR(50),
+	@orga_descricao VARCHAR(100),
+	@orga_fax VARCHAR(50),
+	@orga_ramal VARCHAR(50),
+	@orga_exibir BIT,
+	@orga_useridchefe VARCHAR(80),
+	@orga_hierarquia INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF @orga_id IS NULL BEGIN
+		INSERT INTO Orgao 
+			(ORGA_SIGLA, ORGA_DESCRICAO, ORGA_FAX, ORGA_RAMAL, ORGA_EXIBIR, ORGA_USERIDCHEFE, ORGA_HIERARQUIA, ORGA_TIPO)
+			VALUES
+			(@orga_sigla, @orga_descricao, @orga_fax, @orga_ramal, @orga_exibir, @orga_useridchefe, @orga_hierarquia, 0)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir órgão ' + @orga_descricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @orga_id = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE Orgao SET
+				ORGA_SIGLA = @orga_sigla,
+				ORGA_DESCRICAO = @orga_descricao,
+				ORGA_FAX = @orga_fax,
+				ORGA_RAMAL = @orga_ramal,
+				ORGA_EXIBIR = @orga_exibir,
+				ORGA_USERIDCHEFE = @orga_useridchefe,
+				ORGA_HIERARQUIA = @orga_hierarquia
+			WHERE ORGA_ID = @orga_id
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar órgão ' + @orga_descricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @orga_id AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @orga_id
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_CadPesquisa]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadPesquisa]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadPesquisa]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_CadPesquisa]
+	@pPSQ_ID INT OUTPUT,
+	@pUSERNAMECADASTRO VARCHAR(80),
+	@pIP_CADASTRO VARCHAR(100),
+	@pAG_NUMERO INT,
+	@pNOME VARCHAR(300),
+	@pTELEFONE VARCHAR(100),
+	@pEMAIL VARCHAR(100),
+	@pORGAOEMPRESA VARCHAR(100),
+	@pORIGEM CHAR(1),
+	@pR1 INT, @pR2 INT, @pR3 INT, @pR4 INT, @pR5 INT, @pR6 INT, @pR7 INT, @pR8 INT, @pR9 INT, @pR10 INT, @pR11 INT,
+	@pC1 TEXT, @pC2 TEXT, @pC3 TEXT, @pC4 TEXT, @pC5 TEXT, @pC6 TEXT, @pC7 TEXT, @pC8 TEXT, @pC9 TEXT, @pC10 TEXT, @pC11 TEXT,
+	@pC_3 TEXT,
+	@pC_4 TEXT
+AS
+BEGIN
+	/* Apaga uma ou todas as Ordens de Servico para um Agendamento */
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	IF @pPSQ_ID IS NULL OR @pPSQ_ID = 0 BEGIN
+		INSERT INTO PesquisaSatisfacao (
+			PSQ_UsernameCadastro,PSQ_IPCAdastro,PSQ_DataHoraCadastro,
+			PSQ_NAg, PSQ_Nome,PSQ_Telefone,PSQ_Email,PSQ_OrgaoEmpresa,PSQ_origem,
+			PSQ_R1, PSQ_R2, PSQ_R3, PSQ_R4, PSQ_R5, PSQ_R6, PSQ_R7, PSQ_R8, PSQ_R9, PSQ_R10, PSQ_R11,
+			PSQ_C1, PSQ_C2, PSQ_C3, PSQ_C4, PSQ_C5, PSQ_C6, PSQ_C7, PSQ_C8, PSQ_C9, PSQ_C10, PSQ_C11, PSQ_C_3, PSQ_C_4
+			)
+			VALUES (@pUSERNAMECADASTRO, @pIP_CADASTRO, GETDATE(), @pAG_NUMERO, @pNOME, @pTELEFONE,
+			@pEMAIL, @pORGAOEMPRESA, @pORIGEM, @pR1, @pR2, @pR3, @pR4, @pR5, @pR6, @pR7, @pR8, @pR9, @pR10, @pR11,
+			@pC1, @pC2, @pC3, @pC4, @pC5, @pC6, @pC7, @pC8, @pC9, @pC10, @pC11, @pC_3, @pC_4
+			)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível inserir pesquisa de satisfação.', 16, 1 )
+			SELECT -1 AS SAIDA
+			RETURN -1
+		END
+		SET @pPSQ_ID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE PesquisaSatisfacao
+			SET	PSQ_UsernameCadastro = @pUSERNAMECADASTRO,
+				PSQ_IPCAdastro = @pIP_CADASTRO,
+				--PSQ_DataHoraCadastro = GETDATE(),
+				PSQ_NAg = @pAG_NUMERO,
+				PSQ_Nome = @pNOME,
+				PSQ_Telefone = @pTELEFONE,
+				PSQ_Email = @pEMAIL,
+				PSQ_OrgaoEmpresa = @pORGAOEMPRESA,
+				PSQ_origem = @pORIGEM,
+				PSQ_R1 = @pR1,
+				PSQ_R2 = @pR2, PSQ_R3 = @pR3, PSQ_R4 = @pR4, PSQ_R5 = @pR5, PSQ_R6 = @pR6, 
+				PSQ_R7 = @pR7, PSQ_R8 = @pR8, PSQ_R9 = @pR9, PSQ_R10 = @pR10, PSQ_R11 = @pR11,
+				PSQ_C1 = @pC1, PSQ_C2 = @pC2, PSQ_C3 = @pC3, PSQ_C4 = @pC4, PSQ_C5 = @pC5, PSQ_C6 = @pC6,
+				PSQ_C7 = @pC7, PSQ_C8 = @pC8, PSQ_C9 = @pC9, PSQ_C10 = @pC10, PSQ_C11 = @pC11,
+				PSQ_C_3 = @pC_3, PSQ_C_4 = @pC_4
+			WHERE PSQ_ID = @pPSQ_ID 
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível atualizar pesquisa de satisfação.', 16, 1 )
+			SELECT -1 AS SAIDA
+			RETURN -1
+		END
+	END
+	COMMIT TRANSACTION
+	SELECT @pPSQ_ID AS SAIDA
+	RETURN @pPSQ_ID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadPlataformaEquipamento]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadPlataformaEquipamento]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadPlataformaEquipamento]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadPlataformaEquipamento]
+(
+	@pS_ID INT,
+	@pEQ_ID_LISTA VARCHAR(8000)
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+	DECLARE @Hoje DATETIME
+	DECLARE @Dados VARCHAR(8000)
+	DECLARE @reg VARCHAR(8000)
+	DECLARE @separa_registro VARCHAR(1)
+	DECLARE @fim INT
+	DECLARE @ifim INT
+	DECLARE @iini INT
+	DECLARE @qtd_Lista INT
+
+	SET @Hoje = GETDATE()
+
+	IF (@pS_ID IS NULL) OR (@pS_ID = 0) BEGIN
+		ROLLBACK TRANSACTION
+		SET @msg = 'Nenhuma plataforma informada'
+		RAISERROR(@msg, 16, 1)
+		SELECT -1 AS SAIDA, @msg AS MENSAGEM
+		RETURN -1
+	END
+	ELSE BEGIN
+		-- passo a lista de strings para uma tabela temporaria
+		CREATE TABLE #EQ_Lista (
+			EQ_ID INT PRIMARY KEY
+		)
+
+		IF @pEQ_ID_LISTA IS NOT NULL
+		BEGIN
+			SET @DADOS = rtrim(ltrim(@pEQ_ID_LISTA))
+			SET @separa_registro = ','
+
+			SET @fim = 0
+			SET @iini = 1
+
+			WHILE ( @fim = 0 ) BEGIN
+				SET @ifim = PATINDEX('%' + @separa_registro + '%', @DADOS )
+				IF @ifim = 0 begin
+					SET @reg = SUBSTRING( @DADOS, @iini, LEN( @DADOS ) )
+				END
+				ELSE begin
+					SET @reg = SUBSTRING( @DADOS, @iini, @ifim - 1 )
+				END
+
+				IF @reg IS NOT NULL OR @reg <> ''
+				BEGIN
+					INSERT INTO #EQ_Lista (EQ_ID) VALUES (CAST(@reg AS INT))
+					IF @@ERROR <> 0 BEGIN
+						ROLLBACK TRANSACTION
+						SELECT -1 AS SAIDA, 'Não foi possível operar lista de equipamentos da plataforma' AS MENSAGEM
+						RETURN -1
+					END
+				END
+
+				SET @DADOS = LTRIM(SUBSTRING( @DADOS, @ifim + len(@separa_registro), LEN(@DADOS) ))
+				IF @ifim = 0 SET @fim = 1
+			END
+
+			-- esta na base, mas nao esta na lista - FACO A SAIDA DO EQUIPAMENTO
+			INSERT INTO Historico_Plataforma_Equipamentos
+				SELECT @Hoje, 'S', EQ_ID, S_ID FROM Plataforma_Equipamentos
+				WHERE S_ID = @pS_ID AND EQ_ID NOT IN (SELECT EQ_ID FROM #EQ_Lista)
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				SELECT -1 AS SAIDA, 'Não foi possível operar lista de equipamentos da plataforma' AS MENSAGEM
+				RETURN -1
+			END
+
+			-- esta na lista, e nao esta na base
+			INSERT INTO Historico_Plataforma_Equipamentos
+				-- lista de equipamentos sendo incluidos
+				SELECT @Hoje, 'E', e.EQ_ID, @pS_ID FROM #EQ_Lista e
+				WHERE NOT EXISTS (
+					SELECT pe1.EQ_ID FROM Plataforma_Equipamentos pe1
+					WHERE pe1.S_ID = @pS_ID AND e.EQ_ID = pe1.EQ_ID
+				)
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				SELECT -1 AS SAIDA, 'Não foi possível operar lista de equipamentos da plataforma' AS MENSAGEM
+				RETURN -1
+			END
+		END
+		ELSE BEGIN
+			-- esta na base, mas nao esta na lista - FACO A SAIDA DO EQUIPAMENTO
+			INSERT INTO Historico_Plataforma_Equipamentos
+				SELECT @Hoje, 'S', EQ_ID, S_ID FROM Plataforma_Equipamentos
+				WHERE S_ID = @pS_ID
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				SELECT -1 AS SAIDA, 'Não foi possível operar lista de equipamentos da plataforma' AS MENSAGEM
+				RETURN -1
+			END
+		END
+
+
+		-- apago os equipamentos da plataforma
+		DELETE FROM PLATAFORMA_EQUIPAMENTOS WHERE S_ID = @pS_ID
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível excluir os equipamentos desta plataforma'
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+
+		-- se lista vazia entao estou removendo os equipamentos
+		IF @pEQ_ID_LISTA IS NOT NULL
+		BEGIN
+			INSERT INTO PLATAFORMA_EQUIPAMENTOS
+				SELECT @pS_ID, EQ_ID FROM #EQ_Lista
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				SELECT -1 AS SAIDA, 'Não foi possível cadastrar os equipamentos da plataforma' AS MENSAGEM
+				RETURN -1
+			END
+		END
+
+		DROP TABLE #EQ_Lista
+
+		COMMIT TRANSACTION
+		SELECT 1 AS SAIDA, 'OK' AS MENSAGEM
+		RETURN 1
+	END
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadServPlataforma]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadServPlataforma]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadServPlataforma]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadServPlataforma]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510),
+	@pTipo BIT,
+	@pId_Pai INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF (@pID IS NULL) OR (@pID = 0) BEGIN
+		INSERT INTO Servicos_Plataformas (s_descricao,s_servico,s_id_pai)
+		VALUES (UPPER(@pDescricao), @pTipo, @pId_Pai)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir o serviço/sistema ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE Servicos_Plataformas SET
+			s_descricao = UPPER(@pDescricao),
+			s_servico = @pTipo,
+			s_id_pai = @pId_Pai
+		WHERE	s_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar o serviço/sistema ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadTecnologia]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadTecnologia]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadTecnologia]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadTecnologia]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510),
+	@pAreaTecnologica INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF (@pID IS NULL) OR (@pID = 0) BEGIN
+		INSERT INTO tecnologia (tec_nome, at_id) VALUES (UPPER(@pDescricao), @pAreaTecnologica)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir a tecnologia ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE	tecnologia SET tec_nome = UPPER(@pDescricao), at_id = @pAreaTecnologica
+		WHERE	tec_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar a tecnologia ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_CadTeste]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadTeste]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadTeste]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadTeste]
+(
+	@pT_ID INT,
+	@pT_TITULO VARCHAR(200),
+	@pT_DISPONIVEL BIT,
+	@pT_DESCRICAO VARCHAR(200),
+	@pT_OBSERVACAO VARCHAR(200),
+	@pTIT_ID INT,
+	@pT_PERIODOREPETICAO INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+	DECLARE @msg VARCHAR(8000)
+	BEGIN TRANSACTION
+
+	IF @pT_ID IS NULL OR @pT_ID = 0
+	BEGIN
+		INSERT INTO Testes(T_TITULO, T_DISPONIVEL, T_OBSERVACAO, T_DESCRICAO, TIT_ID, T_PERIODOREPETICAO)
+		VALUES (@pT_TITULO, @pT_DISPONIVEL, @pT_OBSERVACAO, @pT_DESCRICAO, @pTIT_ID, @pT_PERIODOREPETICAO)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir o teste ' + @pT_TITULO
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pT_ID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE Testes SET
+			T_TITULO = @pT_TITULO,
+			T_DISPONIVEL = @pT_DISPONIVEL,
+			TIT_ID = @pTIT_ID,
+			T_OBSERVACAO = @pT_OBSERVACAO,
+			T_DESCRICAO = @pT_DESCRICAO,
+			T_PERIODOREPETICAO = @pT_PERIODOREPETICAO
+			WHERE T_ID = @pT_ID
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar o teste ' + @pT_TITULO
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pT_ID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pT_ID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadTipoArquivo]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadTipoArquivo]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadTipoArquivo]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadTipoArquivo]
+(
+	@pId INT,
+	@pDescricao VARCHAR(480),
+	@pConfidencial BIT,
+	@pDocQuali BIT
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	IF @pID IS NULL OR @pID = 0 
+	BEGIN
+		INSERT INTO TipoArquivo (TAR_TIPOARQUIVO, TAR_CONFIDENCIAL, TAR_DocQual) 
+			VALUES (@pDescricao, @pConfidencial, @pDocQuali)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível inserir tipo de arquivo', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível inserir tipo de arquivo' AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE 
+	BEGIN
+		UPDATE TipoArquivo 
+		SET 	TAR_TIPOARQUIVO = @pDescricao,
+			TAR_CONFIDENCIAL = @pConfidencial, 
+			TAR_DocQual = @pDocQuali
+		WHERE TAR_CODTIPOARQUIVO = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível atualizar tipo de arquivo', 16, 1)
+			SELECT -1 AS SAIDA, 'Não foi possível atualizar tipo de arquivo' AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadTipoAtividade]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadTipoAtividade]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadTipoAtividade]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadTipoAtividade]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510)
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF (@pID IS NULL) OR (@pID = 0) BEGIN
+		INSERT INTO tipo_atividade (ta_descricao) VALUES (UPPER(@pDescricao))
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir a tipo de atividade ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE tipo_atividade 
+		SET ta_descricao = UPPER(@pDescricao)
+		WHERE ta_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar o tipo de atividade ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadTipoTeste]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadTipoTeste]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadTipoTeste]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadTipoTeste]
+(
+	@pId INT,
+	@pDescricao VARCHAR(510)
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF (@pID IS NULL) OR (@pID = 0) BEGIN
+		INSERT INTO tipo_teste (tit_descricao) VALUES (@pDescricao)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir o tipo de teste ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+		SET @pID = @@IDENTITY
+	END
+	ELSE BEGIN
+		UPDATE tipo_teste
+		SET tit_descricao = @pDescricao
+		WHERE tit_id = @pId
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar o tipo de teste ' + @pDescricao
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT @pID AS SAIDA, 'OK' AS MENSAGEM
+	RETURN @pID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_CadUserCRT]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CadUserCRT]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CadUserCRT]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_CadUserCRT]
+(
+	@pEhNovoUsuario BIT,
+	@pUsername VARCHAR(80),
+	@pMatricula FLOAT,
+	@pNome VARCHAR(510),
+	@pCelular VARCHAR(510),
+	@pRamal FLOAT,
+	@pOrgao INT,
+	@pRAT BIT,
+	@pRT BIT,
+	@pQG BIT,
+	@pEXIBIR BIT,
+	@pPerfilSce TINYINT
+)
+AS
+BEGIN
+	SET NOCOUNT ON 
+
+	BEGIN TRANSACTION
+
+	DECLARE @msg VARCHAR(8000)
+
+	IF @pEhNovoUsuario = 0 BEGIN
+		UPDATE USERCRT SET
+			Matricula = @pMatricula,
+			Nome = @pNome,
+			Celular = @pCelular,
+			Ramal = @pRamal,
+			Orga_ID = @pOrgao,
+			RAT = @pRAT,
+			RT = @pRT,
+			GQ = @pQG,
+			EXIBIR = @pEXIBIR,
+			ID_PERFIL_SCE = @pPerfilSce
+		WHERE
+			USERID = @pUsername
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível atualizar os dados do usuário ' + @pUsername
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+	ELSE BEGIN
+		INSERT INTO USERCRT (USERID,MATRICULA,NOME,CELULAR,RAMAL,ORGA_ID,RAT,RT,GQ,EXIBIR,ID_PERFIL_SCE)
+		VALUES (@pUsername,@pMatricula,@pNome,@pCelular,@pRamal,@pOrgao,@pRAT,@pRT,@pQG,@pEXIBIR,@pPerfilSce)
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg = 'Não foi possível inserir os dados do usuário ' + @pUsername + '. Atenção ao tentar cadastrar um usuário cujo USERNAME já exista.'
+			RAISERROR(@msg, 16, 1)
+			SELECT -1 AS SAIDA, @msg AS MENSAGEM
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	SELECT 1 AS SAIDA, 'OK' AS MENSAGEM
+	RETURN 1
+END
+GO
+
