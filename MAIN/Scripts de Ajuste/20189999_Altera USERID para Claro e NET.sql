@@ -1,5 +1,6 @@
 /****
-	Alterações para permitir que o nome do usuário do sistema seja o email ao invés de ser apenas o LOGIN
+
+	ALTERAÇÕES PARA PERMITIR QUE O NOME DO USUÁRIO DO SISTEMA SEJA O EMAIL AO INVÉS DE SER APENAS O LOGIN
 
 	EMBRATEL
 	CRT
@@ -116,9 +117,23 @@ ALTER TABLE agendamento ADD CONSTRAINT FK_Agendamento_UserCRT_RAT foreign key (A
 go
 
 
+/*********************************************************************************************************
+
+	OUTRAS ALTERAÇÕES PARA CORREÇÃO DE CAMPOS E/OU INDICES
+***/
+
 ALTER TABLE Agendamento ADD AG_MATRICULARESP varchar(50)
 go
 ALTER TABLE Agendamento ADD AG_NOMERESP varchar(300)
 go
 ALTER TABLE Agendamento ADD AG_TELEFONERESP varchar(50)
 go
+
+
+ALTER TABLE PesquisaSatisfacao ADD CONSTRAINT PK_PesquisaSatisfacao PRIMARY KEY (PSQ_ID)
+GO
+
+
+
+
+
