@@ -3469,3 +3469,1562 @@ BEGIN
 END
 GO
 
+
+/****** Object:  StoredProcedure [dbo].[sp_CancelaTeste]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_CancelaTeste]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_CancelaTeste]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_CancelaTeste]
+(
+	@pAG_NUMERO SMALLINT,
+	@pAG_MOTIVO VARCHAR(7000)
+)
+AS
+BEGIN
+	/*** Solicita o cancelamento de um agendamento */
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	-- marca para cancelamento e desmarca para Remarcacao de datas
+	UPDATE Agendamento
+		SET AG_SOLICITOUCANCELAMENTO = 1, AG_FLAGREMARCACAO = 0
+		WHERE AG_NUMERO = @pAG_NUMERO
+	IF @@ERROR <> 0 BEGIN
+		RAISERROR('Não foi possível marcar o agendamento para ser cancelado.', 16, 1)
+		ROLLBACK TRANSACTION
+		RETURN -1
+	END
+
+	-- crio uma entrada no histórico de datas para guardar o motivo do cancelamento
+	SELECT AG_NUMERO FROM Historico_datas WHERE AG_NUMERO = @pAG_NUMERO
+	IF @@ROWCOUNT > 0 BEGIN
+		INSERT INTO Historico_datas 
+			(AG_NUMERO, HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, HD_FLAGREMARCADO, HD_MOTIVO)
+			SELECT AG_NUMERO, HD_MARCACAO + 1, HD_DATAINICIO, HD_DATATERMINO, 0, 'SOLICITAÇÃO DE CANCELAMENTO' + CHAR(13) + CHAR(10) + @pAG_MOTIVO
+			from historico_datas
+  			where AG_NUMERO = @pAG_NUMERO and HD_MARCACAO = (SELECT max(HD_MARCACAO) FROM historico_datas WHERE AG_NUMERO = @pAG_NUMERO)
+		IF @@ERROR <> 0 BEGIN
+			RAISERROR('Não foi possível inserir no histórico de datas.', 16, 1)
+			ROLLBACK TRANSACTION
+			RETURN -1
+		END
+	END
+	ELSE BEGIN	-- nao existem registros em Historico_Datas
+		INSERT INTO Historico_datas 
+			(AG_NUMERO, HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, HD_FLAGREMARCADO, HD_MOTIVO)
+			VALUES (@pAG_NUMERO , 1, GETDATE(), GETDATE(), 0, 'SOLICITAÇÃO DE CANCELAMENTO' + CHAR(13) + CHAR(10) + @pAG_MOTIVO)
+		IF @@ERROR <> 0 BEGIN
+			RAISERROR('Não foi possível inserir no histórico de datas.', 16, 1)
+			ROLLBACK TRANSACTION
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_CONSULTA_TAREFA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_CONSULTA_TAREFA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_Consulta_Tarefa]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Consulta_Tarefa]
+(
+	@tpid  INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	SELECT TP.TAREFA_ID, AG_TITULO AS DESCRICAO_TAREFA, TP.TP_DATAINICIAL, TP.TP_DATAFINAL, TP.PES_USERNAME, TP.TP_OBSERVACAO, TP.TAREFA_TIPO
+	FROM TAREFAS_PREVISTAS AS TP
+	LEFT JOIN AGENDAMENTO AS A ON A.AG_NUMERO = TP.TAREFA_ID
+	WHERE TP.TP_ID = @tpid
+	AND TAREFA_TIPO = 0
+	UNION
+	SELECT TP.TAREFA_ID, T.TAR_DESCRICAO AS DESCRICAO_TAREFA, TP.TP_DATAINICIAL, TP.TP_DATAFINAL, TP.PES_USERNAME, TP.TP_OBSERVACAO, TP.TAREFA_TIPO
+	FROM TAREFAS_PREVISTAS AS TP
+	LEFT JOIN TAREFAS AS T ON T.TAR_ID = TP.TAREFA_ID
+	WHERE TP.TP_ID = @tpid
+	AND TAREFA_TIPO = 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_CARACTERISTICA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_CARACTERISTICA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_CARACTERISTICA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_CARACTERISTICA]
+(
+	@carID		INT,
+	@carNome	VARCHAR(50),
+	@carDefinicao	VARCHAR(5000)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_CARACTERISTICAS SET CAR_NOME = UPPER( @carNome ), CAR_DEFINICAO = UPPER( @carDefinicao ) WHERE CAR_ID = @carID
+
+	IF @@ERROR > 0
+		RETURN -1
+	ELSE
+		RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_CIRCUITO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_CIRCUITO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_CIRCUITO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_CIRCUITO]
+(
+	@ctoID			INT,
+	@ctoNome		VARCHAR(200),
+	@tpcID			INT,
+	@ASID			INT,
+	@ctoPermanente	BIT,
+	@ctoAtivado		BIT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_CIRCUITO SET CTO_NOME = UPPER( @ctoNome ), AG_Numero = @ASID,  TPC_ID = @tpcID, CTO_PERMANENTE = @ctoPermanente, CTO_ATIVADO = @ctoAtivado WHERE CTO_ID = @ctoID
+
+	IF @@ERROR > 0
+		RETURN -1 --erro na atualização
+	ELSE
+		RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_COMPONENTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_COMPONENTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_COMPONENTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_COMPONENTE]
+(
+	@cptID			INT,
+	@cptNome		VARCHAR(200),
+	@vsw_atu		VARCHAR(100),
+	@vsw_std		VARCHAR(100),
+	@obs			VARCHAR(255),
+	@tpcID			INT,
+	@intIDs			VARCHAR(8000),
+	@intQuants		VARCHAR(8000),
+	@leeID			INT,
+	@cptCodSGPSCE	VARCHAR(50)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	BEGIN TRAN
+
+	UPDATE FAC_COMPONENTES SET CPT_NOME =  UPPER( @cptNome ), TPC_ID = @tpcID, LEE_ID = @leeID, CPT_COD_SGP_SCE = @cptCodSGPSCE, vsw_atu = @vsw_atu, vsw_std = @vsw_std, obs = @obs  WHERE CPT_ID = @cptID
+
+
+	DECLARE @intID INT, @intQuant INT, @ifim INT, @ifim2 INT
+
+
+	/* Parte das Interfaces */
+	DELETE FROM FAC_COMPONENTES_INTERFACE WHERE CPT_ID = @cptID
+	IF @@ERROR > 0 BEGIN
+		ROLLBACK TRAN
+		RETURN -1 --ocorreu um erro durante a exclusão
+	END
+
+	IF @intIDs <> '' AND @intIDs IS NOT NULL BEGIN
+	
+		SET @ifim = 1	
+		WHILE ( @ifim != 0 ) BEGIN
+			SET @ifim = PATINDEX('%,%', @intIDs )
+			SET @ifim2 = PATINDEX('%,%', @intQuants )
+			IF @ifim = 0 BEGIN
+				SET @intID = SUBSTRING( @intIDs, 1, len(@intIDs) )
+				SET @intQuant = SUBSTRING( @intQuants, 1, len(@intQuants) )
+			END
+			ELSE BEGIN
+				SET @intID = SUBSTRING( @intIDs, 1, @ifim -1 )
+				SET @intQuant = SUBSTRING( @intQuants, 1, @ifim2 -1 )
+			END
+
+			INSERT INTO FAC_COMPONENTES_INTERFACE (TIPO_INTERFACE_ID, CPT_ID, Qtd_Int) VALUES (@intID, @cptID, @intQuant)
+			IF @@ERROR > 0 BEGIN
+				ROLLBACK TRAN
+				RETURN -2 --erro na inserção
+			END
+
+			SET @intIDs = LTRIM(SUBSTRING( @intIDs, @ifim + 1, LEN(@intIDs) ))
+			SET @intQuants = LTRIM(SUBSTRING( @intQuants, @ifim2 + 1, LEN(@intQuants) ))
+		END
+	END
+
+
+	/* Fim Parte das Interfaces */
+
+	COMMIT TRAN
+
+	IF @@ERROR > 0
+		RETURN -1
+	ELSE
+		RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_FABRICANTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_FABRICANTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_FABRICANTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_FABRICANTE]
+(
+	@fabID		INT,
+	@fabNome	VARCHAR(200)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_FABRICANTE_TIPO_COMPONENTE SET FAB_NOME = UPPER ( @fabNome ) WHERE FAB_ID = @fabID
+
+	IF @@ERROR > 0
+		RETURN -1 --erro ao atualizar
+	ELSE
+		RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_FAMILIA_TIPO_COMPONENTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_FAMILIA_TIPO_COMPONENTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_FAMILIA_TIPO_COMPONENTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_FAMILIA_TIPO_COMPONENTE]
+(
+	@ftcID		INT,
+	@ftcNome	VARCHAR(200)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_FAMILIA_TIPO_COMPONENTE SET FTC_NOME = UPPER( @ftcNome ) WHERE FTC_ID = @ftcID
+
+	IF @@ERROR > 0
+		RETURN -1--erro na inserção
+	ELSE
+		RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_LOCAL_ESPECIFICO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_LOCAL_ESPECIFICO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_LOCAL_ESPECIFICO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_LOCAL_ESPECIFICO]
+(
+	@leeID		INT,
+	@leeNome	VARCHAR(50),
+	@lgeID		INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_LOCAIS_ESPECIFICOS_EQUIP SET LGE_ID = @lgeID, LEE_NOME = UPPER( @leeNome) WHERE LEE_ID = @leeID
+
+	IF @@ERROR > 0
+		RETURN -1
+	ELSE
+		RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_LOCAL_GENERICO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_LOCAL_GENERICO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_LOCAL_GENERICO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_LOCAL_GENERICO]
+(
+	@lgeID		INT,
+	@lgeNome	VARCHAR(50),
+	@lgeTipo	CHAR
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	UPDATE FAC_LOCAIS_GENERICOS_EQUIP SET LGE_NOME = UPPER( @lgeNome), LGE_TIPO = @lgeTipo WHERE LGE_ID = @lgeID
+
+	IF @@ERROR > 0
+		RETURN -1
+	ELSE
+		RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_REL_CARACTERISTICAS_TIPO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_REL_CARACTERISTICAS_TIPO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_REL_CARACTERISTICAS_TIPO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_REL_CARACTERISTICAS_TIPO]
+(
+	@carIDs	VARCHAR(8000),
+	@rctQuants	VARCHAR(8000),
+	@tpcID		INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @carID INT, @rctQuant INT, @ifim INT, @ifim2 INT
+
+	BEGIN TRAN
+
+		DELETE FROM FAC_REL_CARACTERISTICAS_TIPO WHERE @tpcID = TPC_ID
+		IF @@ERROR > 0 BEGIN
+			ROLLBACK TRAN
+			RETURN -1 --ocorreu um erro durante a exclusão
+		END
+
+		IF @carIDs <> '' AND @carIDs IS NOT NULL BEGIN
+	
+			SET @ifim = 1	
+			WHILE ( @ifim != 0 ) BEGIN
+				SET @ifim = PATINDEX('%,%', @carIDs )
+				SET @ifim2 = PATINDEX('%,%', @rctQuants )
+				IF @ifim = 0 BEGIN
+					SET @carID = SUBSTRING( @carIDs, 1, len(@carIDs) )
+					SET @rctQuant = SUBSTRING( @rctQuants, 1, len(@rctQuants) )
+				END
+				ELSE BEGIN
+					SET @carID = SUBSTRING( @carIDs, 1, @ifim -1 )
+					SET @rctQuant = SUBSTRING( @rctQuants, 1, @ifim2 -1 )
+				END
+
+				INSERT INTO FAC_REL_CARACTERISTICAS_TIPO (CAR_ID, TPC_ID, RCT_QUANTIDADE) VALUES (@carID, @tpcID, @rctQuant)
+				IF @@ERROR > 0 BEGIN
+					ROLLBACK TRAN
+					RETURN -2 --erro na inserção
+				END
+
+				SET @carIDs = LTRIM(SUBSTRING( @carIDs, @ifim + 1, LEN(@carIDs) ))
+				SET @rctQuants = LTRIM(SUBSTRING( @rctQuants, @ifim2 + 1, LEN(@rctQuants) ))
+			END
+		END
+
+	COMMIT TRAN
+	RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_ATUALIZA_REL_CIRCUITO_AGENDAMENTO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_ATUALIZA_REL_CIRCUITO_AGENDAMENTO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_ATUALIZA_REL_CIRCUITO_AGENDAMENTO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_ATUALIZA_REL_CIRCUITO_AGENDAMENTO]
+(
+	@agNumeros	VARCHAR(8000),
+	@ctoID		INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @agNumero INTEGER, @ifim INTEGER
+
+	BEGIN TRAN
+
+		DELETE FROM FAC_REL_CIRCUITO_AGENDAMENTO WHERE @ctoID = CTO_ID
+
+		IF @@ERROR > 0 BEGIN
+			ROLLBACK TRAN
+			RETURN -1 --ocorreu um erro durante a exclusão
+		END
+
+		IF @agNumeros <> '' AND @agNumeros IS NOT NULL BEGIN
+	
+			SET @ifim = 1	
+			WHILE ( @ifim != 0 ) BEGIN
+				SET @ifim = PATINDEX('%,%', @agNumeros )
+
+				IF @ifim = 0
+					SET @agNumero = SUBSTRING( @agNumeros, 1, len(@agNumeros) )
+				ELSE
+					SET @agNumero = SUBSTRING( @agNumeros, 1, @ifim -1 )
+
+				INSERT INTO FAC_REL_CIRCUITO_AGENDAMENTO ( AG_NUMERO, CTO_ID ) VALUES ( @agNumero, @ctoID )
+				IF @@ERROR > 0 BEGIN
+					ROLLBACK TRAN
+					RETURN -2 --erro na inserção
+				END
+
+				SET @agNumeros = LTRIM(SUBSTRING( @agNumeros, @ifim + 1, LEN(@agNumeros) ))
+			END
+		END
+
+	COMMIT TRAN
+	RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_CARACTERISTICA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_CARACTERISTICA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_CARACTERISTICA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_CARACTERISTICA]
+(
+	@carNome	VARCHAR(50),
+	@carDefinicao	VARCHAR(5000)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = CAR_ID FROM FAC_CARACTERISTICAS WHERE UPPER( @carNome ) = CAR_NOME
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+	ELSE BEGIN
+
+		INSERT INTO FAC_CARACTERISTICAS (CAR_NOME, CAR_DEFINICAO) VALUES ( UPPER( @carNome ), UPPER( @carDefinicao ) )
+
+		IF @@ERROR > 0
+			RETURN -1
+		ELSE
+			RETURN @@IDENTITY
+	END
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_CIRCUITO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_CIRCUITO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_CIRCUITO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_CIRCUITO]
+(
+	@ctoNome		VARCHAR(200),
+	@tpcID			INT, --tipo de circuito
+	@ASID			INT, --tipo de circuito
+	@ctoPermanente	BIT,
+	@ctoAtivado		BIT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	INSERT INTO FAC_CIRCUITO (CTO_NOME, TPC_ID, CTO_PERMANENTE, CTO_ATIVADO, AG_NUMERO) VALUES ( UPPER( @ctoNome ), @tpcID, @ctoPermanente, @ctoAtivado, @ASID)
+
+	IF @@ERROR > 0
+		RETURN -1
+	ELSE
+		RETURN @@IDENTITY
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_COMPONENTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_COMPONENTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_COMPONENTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_COMPONENTE]
+(
+	@cptNome		VARCHAR(200),
+	@vsw_atu		VARCHAR(100),
+	@vsw_std		VARCHAR(100),
+	@obs			VARCHAR(255),
+	@tpcID			INT,
+	@intIDs			VARCHAR(8000),
+	@intQuants		VARCHAR(8000),
+	@leeID			INT,
+	@cptCodSGPSCE	VARCHAR(50)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	DECLARE @intID INT, @intQuant INT, @ifim INT, @ifim2 INT
+
+	SELECT @tmp = CPT_ID FROM FAC_COMPONENTES WHERE UPPER( @cptNome ) = CPT_NOME AND @tpcID = TPC_ID AND @leeID = LEE_ID
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+	ELSE BEGIN
+
+		INSERT INTO FAC_COMPONENTES (CPT_NOME, TPC_ID, LEE_ID, CPT_COD_SGP_SCE,vsw_atu,vsw_std,obs) VALUES ( UPPER( @cptNome ), @tpcID, @leeID, @cptCodSGPSCE,@vsw_atu, @vsw_std,@obs)
+
+
+	/* Parte das Interfaces */
+
+		SELECT @tmp = CPT_ID FROM FAC_COMPONENTES WHERE UPPER( @cptNome ) = CPT_NOME AND @tpcID = TPC_ID AND @leeID = LEE_ID
+
+
+		DELETE FROM FAC_COMPONENTES_INTERFACE WHERE @tmp = CPT_ID
+		IF @@ERROR > 0 BEGIN
+			ROLLBACK TRAN
+			RETURN -1 --ocorreu um erro durante a exclusão
+		END
+
+		IF @intIDs <> '' AND @intIDs IS NOT NULL BEGIN
+	
+			SET @ifim = 1	
+			WHILE ( @ifim != 0 ) BEGIN
+				SET @ifim = PATINDEX('%,%', @intIDs )
+				SET @ifim2 = PATINDEX('%,%', @intQuants )
+				IF @ifim = 0 BEGIN
+					SET @intID = SUBSTRING( @intIDs, 1, len(@intIDs) )
+					SET @intQuant = SUBSTRING( @intQuants, 1, len(@intQuants) )
+				END
+				ELSE BEGIN
+					SET @intID = SUBSTRING( @intIDs, 1, @ifim -1 )
+					SET @intQuant = SUBSTRING( @intQuants, 1, @ifim2 -1 )
+				END
+
+				INSERT INTO FAC_COMPONENTES_INTERFACE (TIPO_INTERFACE_ID, CPT_ID, Qtd_Int) VALUES (@intID, @tmp, @intQuant)
+				IF @@ERROR > 0 BEGIN
+					ROLLBACK TRAN
+					RETURN -2 --erro na inserção
+				END
+
+				SET @intIDs = LTRIM(SUBSTRING( @intIDs, @ifim + 1, LEN(@intIDs) ))
+				SET @intQuants = LTRIM(SUBSTRING( @intQuants, @ifim2 + 1, LEN(@intQuants) ))
+			END
+		END
+
+
+	/* Fim Parte das Interfaces */
+
+
+		IF @@ERROR > 0
+			RETURN -1
+		ELSE
+			RETURN @@IDENTITY
+	END 
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_FABRICANTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_FABRICANTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_FABRICANTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_FABRICANTE]
+(
+	@fabNome	VARCHAR(200)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = FAB_ID FROM FAC_FABRICANTE_TIPO_COMPONENTE WHERE FAB_NOME = UPPER( @fabNome )
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+
+	INSERT INTO FAC_FABRICANTE_TIPO_COMPONENTE (FAB_NOME) VALUES ( UPPER ( @fabNome ) )
+
+	IF @@ERROR > 0
+		RETURN -1 --erro ao inserir
+	ELSE
+		RETURN @@IDENTITY
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_FACILIDADE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_FACILIDADE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_FACILIDADE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_FACILIDADE]
+(
+	@ctoID		INT,
+	@cptID		INT,
+	@intID		INT,
+	@facOrdem	TINYINT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	IF @facOrdem IS NULL
+
+		SELECT @facOrdem =
+					CASE
+						WHEN MAX(FAC_ORDEM) IS NULL THEN 0
+						ELSE MAX(FAC_ORDEM) + 1
+					END
+		FROM FAC_FACILIDADES WHERE CPT_ID = @cptID AND CTO_ID = @ctoID
+	
+	BEGIN TRAN
+
+	SELECT FAC_ID FROM FAC_FACILIDADES WHERE FAC_ORDEM = @facOrdem AND CTO_ID = @ctoID
+
+	IF @@ROWCOUNT > 0 BEGIN
+
+		UPDATE FAC_FACILIDADES SET FAC_ORDEM = FAC_ORDEM + 1 WHERE FAC_ORDEM >= @facOrdem AND CTO_ID = @ctoID
+
+		IF @@ERROR > 0 BEGIN
+			ROLLBACK TRAN
+			RETURN -1 --erro de atualização
+		END
+	END
+
+	INSERT INTO FAC_FACILIDADES (CPT_ID, CTO_ID, FAC_ORDEM,Tipo_Interface_Id) VALUES (@cptID, @ctoID, @facOrdem,@intID)
+
+	IF @@ERROR > 0 BEGIN
+		ROLLBACK TRAN
+		RETURN -2 --erro na inserção
+	END
+	ELSE BEGIN
+		COMMIT TRAN
+		RETURN @@IDENTITY
+	END
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_FAMILIA_TIPO_COMPONENTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_FAMILIA_TIPO_COMPONENTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_FAMILIA_TIPO_COMPONENTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_FAMILIA_TIPO_COMPONENTE]
+(
+	@ftcNome	VARCHAR(200)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = FTC_ID FROM FAC_FAMILIA_TIPO_COMPONENTE WHERE FTC_NOME = UPPER( @ftcNome )
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+
+	INSERT INTO FAC_FAMILIA_TIPO_COMPONENTE ( FTC_NOME ) VALUES ( UPPER( @ftcNome ) )
+
+	IF @@ERROR > 0
+		RETURN -1--erro na inserção
+	ELSE
+		RETURN @@IDENTITY
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_LOCAL_ESPECIFICO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_LOCAL_ESPECIFICO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_LOCAL_ESPECIFICO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_LOCAL_ESPECIFICO]
+(
+	@lgeID		INT,
+	@leeNome	VARCHAR(50)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = LEE_ID FROM FAC_LOCAIS_ESPECIFICOS_EQUIP WHERE LGE_ID = @lgeID AND LEE_NOME = UPPER(@leeNome)
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+	ELSE BEGIN
+		INSERT INTO FAC_LOCAIS_ESPECIFICOS_EQUIP (LGE_ID, LEE_NOME) VALUES ( @lgeID, UPPER(@leeNome) )
+
+		IF @@ERROR > 0
+			RETURN -1
+		ELSE
+			RETURN @@IDENTITY
+	END
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_LOCAL_GENERICO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_LOCAL_GENERICO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_LOCAL_GENERICO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_LOCAL_GENERICO]
+(
+	@lgeNome	VARCHAR(50),
+	@lgeTipo	CHAR
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = LGE_ID FROM FAC_LOCAIS_GENERICOS_EQUIP WHERE UPPER(@lgeNome) = LGE_NOME AND UPPER(@lgeTipo) = LGE_TIPO
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+	ELSE BEGIN
+		INSERT INTO FAC_LOCAIS_GENERICOS_EQUIP (LGE_NOME, LGE_TIPO) VALUES ( UPPER(@lgeNome), UPPER(@lgeTipo) )
+
+		IF @@ERROR > 0
+			RETURN -1 --erro na inserção
+		ELSE
+			RETURN @@IDENTITY
+	END
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_REL_CARACTERISTICAS_FACILIDADES]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_REL_CARACTERISTICAS_FACILIDADES]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_REL_CARACTERISTICAS_FACILIDADES]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_REL_CARACTERISTICAS_FACILIDADES]
+(
+	@carID		INT,
+	@tpcID		INT,
+	@facID		INT,
+	@rcfIdentCaract	VARCHAR(255)
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	SELECT FAC_ID FROM	FAC_FACILIDADES
+		INNER JOIN FAC_COMPONENTES ON FAC_FACILIDADES.CPT_ID = FAC_COMPONENTES.CPT_ID
+		INNER JOIN FAC_TIPO_COMPONENTE ON FAC_COMPONENTES.TPC_ID = FAC_TIPO_COMPONENTE.TPC_ID
+		INNER JOIN FAC_REL_CARACTERISTICAS_TIPO ON FAC_TIPO_COMPONENTE. TPC_ID = FAC_REL_CARACTERISTICAS_TIPO.TPC_ID
+	WHERE FAC_REL_CARACTERISTICAS_TIPO.CAR_ID = @carID AND FAC_REL_CARACTERISTICAS_TIPO.TPC_ID = @tpcID AND FAC_FACILIDADES.FAC_ID = @facID
+
+	IF @@ROWCOUNT = 0
+		RETURN -1 --o relacionamento não existe, logo esta característica não pertence a este tipo de equipamento
+	ELSE BEGIN
+		INSERT INTO FAC_REL_CARACTERISTICAS_FACILIDADES (CAR_ID, TPC_ID, FAC_ID, RCF_IDENTIFICADOR_CARACTERISTICA) VALUES (@carID, @tpcID, @facID, @rcfIdentCaract)
+		IF @@ERROR > 0
+			RETURN -2 --erro de inserção
+		ELSE
+			RETURN 1 --OK
+	END
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_CADASTRA_TIPO_COMPONENTE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_CADASTRA_TIPO_COMPONENTE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_CADASTRA_TIPO_COMPONENTE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_CADASTRA_TIPO_COMPONENTE]
+(
+	@tpcNome	VARCHAR(50),
+	@ftcID		INT,
+	@fabID		INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp INT
+
+	SELECT @tmp = TPC_ID FROM FAC_TIPO_COMPONENTE WHERE UPPER( @tpcNome ) = TPC_NOME AND FTC_ID = @ftcID AND FAB_ID = @fabID
+
+	IF @@ROWCOUNT > 0
+		RETURN @tmp
+	ELSE BEGIN
+
+		INSERT INTO FAC_TIPO_COMPONENTE (TPC_NOME, FTC_ID, FAB_ID) VALUES ( UPPER( @tpcNome ), @ftcID, @fabID )
+
+		IF @@ERROR > 0
+			RETURN -1
+		ELSE
+			RETURN @@IDENTITY
+	END
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_EXCLUI_FACILIDADE]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_EXCLUI_FACILIDADE]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_EXCLUI_FACILIDADE]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_EXCLUI_FACILIDADE]
+(
+	@facID	INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @tmp1 TINYINT, @tmp2 INT
+
+	SELECT @tmp1 = FAC_ORDEM, @tmp2 = CTO_ID FROM FAC_FACILIDADES WHERE FAC_ID = @facID
+
+	IF @@ROWCOUNT = 0
+		RETURN -1 --erro: FAC_ID não existia
+	ELSE BEGIN
+
+		BEGIN TRAN
+
+			DELETE FROM FAC_FACILIDADES WHERE FAC_ID = @facID
+			IF @@ERROR > 0 BEGIN
+				ROLLBACK TRAN
+				RETURN - 2 --erro na exclusão
+			END
+			ELSE BEGIN
+				IF @@ROWCOUNT > 0 BEGIN
+					UPDATE FAC_FACILIDADES SET FAC_ORDEM = FAC_ORDEM - 1 WHERE FAC_ORDEM > @tmp1 AND CTO_ID = @tmp2
+					IF @@ERROR > 0 BEGIN
+						ROLLBACK TRAN
+						RETURN -3 --erro na atualização
+					END
+				END
+				ELSE BEGIN
+					COMMIT TRAN
+					RETURN 1 --OK
+				END
+			END
+	END
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_FAC_EXCLUI_LOCAL_ESPECIFICO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_FAC_EXCLUI_LOCAL_ESPECIFICO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_FAC_EXCLUI_LOCAL_ESPECIFICO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_FAC_EXCLUI_LOCAL_ESPECIFICO]
+(
+	@leeID	INT
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DELETE FROM FAC_LOCAIS_ESPECIFICOS_EQUIP WHERE LEE_ID = @leeID
+	IF @@ERROR > 0
+		RETURN - 1 --erro na exclusão
+	ELSE
+		RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_Indicador_Eficiencia_Geral]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_Indicador_Eficiencia_Geral]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_Indicador_Eficiencia_Geral]
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_Indicador_Eventos_Atividade]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_Indicador_Eventos_Atividade]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_Indicador_Eventos_Atividade]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Indicador_Eventos_Atividade]
+(
+	@dataIni AS DATETIME,
+	@dataFim AS DATETIME,
+	@Retorno AS VARCHAR(50)
+)
+AS
+BEGIN
+	/***
+		Calcula os indicadores de Atidade dentro de uma faixa de datas.
+		O calculo pode ser feito por tipo de atividade ou por responsável ou ambos
+
+		Obs: A primeira linha do recordset é sempre o somatório dos índices
+
+		Gilberto - COPPETEC
+		Criado em: 13/04/2004
+	***/
+	SET NOCOUNT ON
+
+	-- crio uma tabela temporária para calculo dos indicadores
+	CREATE TABLE #Indicadores (
+		Nome VARCHAR(80),
+		Inicio DATETIME,
+		Fim DATETIME,
+		Agendamento INT,
+		Responsavel VARCHAR(80),
+		Dias INT
+	)
+
+	INSERT INTO #Indicadores (nome, inicio, fim, Agendamento, Responsavel, dias)
+		SELECT ta.TA_DESCRICAO, AG_DATAINICIO, a.AG_DATATERMINO, a.AG_NUMERO, a.AG_RESPONSAVEL,
+		CASE	-- calculo a média do mês
+			WHEN (CONVERT(DATETIME, AG_DATAINICIO, 103) <= @dataIni) and (CONVERT(DATETIME, AG_DATATERMINO, 103) <= @dataFim)
+			THEN CAST(datediff(day, @dataIni, CONVERT(DATETIME, AG_DATATERMINO, 103)) AS DECIMAL) + 1
+
+			WHEN (CONVERT(DATETIME, AG_DATAINICIO, 103) <= @dataIni) and (CONVERT(DATETIME, AG_DATATERMINO, 103) > @dataFim)
+			THEN CAST(datediff(day, @dataIni, @dataFim) AS DECIMAL) + 1
+
+			WHEN  (CONVERT(DATETIME, AG_DATAINICIO, 103) > @dataIni) and (CONVERT(DATETIME, AG_DATATERMINO, 103) <= @dataFim)
+			THEN CAST(datediff(day, CONVERT(DATETIME, AG_DATAINICIO, 103), CONVERT(DATETIME, AG_DATATERMINO, 103)) AS DECIMAL) + 1
+
+			WHEN  (CONVERT(DATETIME, AG_DATAINICIO, 103) > @dataIni) and (CONVERT(DATETIME, AG_DATATERMINO, 103) > @dataFim)
+			THEN CAST(datediff(day, CONVERT(DATETIME, AG_DATAINICIO, 103), @dataFim) AS DECIMAL) + 1
+		END
+		FROM Agendamento a LEFT JOIN Tipo_Atividade ta on ta.TA_ID = a.TA_ID
+		WHERE (CONVERT(DATETIME, AG_DATATERMINO, 103) BETWEEN @dataIni and @dataFim) OR 
+			(CONVERT(DATETIME, AG_DATAINICIO, 103) BETWEEN @dataIni and @dataFim) OR
+			((CONVERT(DATETIME, AG_DATAINICIO, 103) < @dataIni) AND (CONVERT(DATETIME, AG_DATATERMINO, 103) > @dataFim))
+		--GROUP BY ta.TA_DESCRICAO, AG_DATAINICIO, AG_DATATERMINO
+	IF @@ERROR <> 0
+	BEGIN
+		RAISERROR('Erro ao criar tabela temporária #Indicadores', 16, 1)
+		RETURN -1
+	END
+
+	SET @Retorno = UPPER(@Retorno)
+
+	IF @Retorno IS NULL OR @Retorno = 'ATIVIDADE'
+	BEGIN
+		SELECT	nome AS 'Atividade', CAST(CAST(SUM(dias) AS DECIMAL) / (DATEDIFF(DAY, @dataIni, @dataFim) + 1) AS DECIMAL(10,2)) AS 'Média'
+		FROM #Indicadores
+		GROUP BY Nome WITH CUBE
+		ORDER BY 'Média' DESC;
+	END
+
+	IF @Retorno IS NULL OR @Retorno = 'RESPONSAVEL'
+	BEGIN
+		SELECT	Responsavel AS 'Responsável', CAST(CAST(SUM(dias) AS DECIMAL) / (DATEDIFF(DAY, @dataIni, @dataFim) + 1) AS DECIMAL(10,2)) AS 'Média'
+		FROM #Indicadores
+		GROUP BY Responsavel WITH CUBE
+		ORDER BY 'Média' DESC;
+	END
+
+	DROP TABLE #Indicadores
+
+	RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_Indicador_Nao_Conformidade]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_Indicador_Nao_Conformidade]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_Indicador_Nao_Conformidade]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Indicador_Nao_Conformidade]
+(
+        @datainicio as smalldatetime,
+        @datafim as smalldatetime
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DECLARE @numerador FLOAT, @denominador FLOAT
+
+	-- não conformidades
+	SELECT @numerador = count(L.LB_ID)
+	FROM lb_acoestomadas R INNER JOIN LB_LogBook L on L.LB_ID = R.act_lb 
+	WHERE (act_tipoacao = 2) AND (LB_DATAHORAOCO BETWEEN @datainicio AND @datafim)
+
+	-- total de ocorrencias
+	SELECT @denominador = count(*)
+	FROM LB_LOGBOOK
+	WHERE LB_DATAHORAOCO BETWEEN @datainicio AND @datafim
+
+	IF @denominador = 0
+		SELECT @numerador AS 'numerador', @denominador AS 'denominador', 0 AS 'porcentagem'
+	ELSE
+		SELECT @numerador AS 'numerador', @denominador AS 'denominador', (@numerador/@denominador)*100 AS 'porcentagem'
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_IndiceRetornoSatisfacao]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_IndiceRetornoSatisfacao]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_IndiceRetornoSatisfacao]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_IndiceRetornoSatisfacao]
+(
+	@ta_id INT,
+	@tec_id INT,
+	@chr_Rat VARCHAR(80),
+	@chr_Rt VARCHAR(80),
+	@dtt_Inicio DATETIME,
+	@dtt_Final DATETIME
+)
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	CREATE TABLE #TabFinalizado (
+		ag_numero INT PRIMARY KEY
+	)
+
+	DECLARE @int_Finalizado NUMERIC(15,2),
+		@id_Finalizado INT,
+		@int_Pesquisa NUMERIC(15,2),
+		@int_IndiceRetorno NUMERIC(15,2),
+		@int_ERRO INT
+
+	SELECT @id_Finalizado = id_Situacao FROM Situacoes WHERE s_descricao = 'Finalizado' AND s_os = 0
+
+	-- seleciona os agendamentos finalizados
+	INSERT INTO #TabFinalizado
+		SELECT
+			ag_numero
+		FROM
+			vw_Agendamento A
+		WHERE
+			A.id_Situacao = @id_Finalizado
+			AND
+			(@ta_id IS NULL OR @ta_id = A.ta_id)
+			AND
+			(@chr_Rt IS NULL OR @chr_Rt = A.ag_responsavel)
+			AND
+			(@chr_Rat IS NULL OR @chr_Rat = A.ag_rat)
+			AND
+			(@tec_id IS NULL OR @tec_id = A.tec_id)
+			AND
+			(A.ag_datatermino BETWEEN @dtt_Inicio AND @dtt_Final)
+
+	SELECT @int_Finalizado = @@ROWCOUNT, @int_ERRO = @@ERROR
+
+	IF @int_ERRO <> 0
+	BEGIN
+		SELECT 1 AS ERRO, NULL AS INDICE, @int_Finalizado AS TOTALAGENDAMENTO, NULL AS TOTALPESQUISA
+		RETURN 1
+	END
+
+	IF @int_Finalizado = 0
+	BEGIN
+		SELECT 0 AS ERRO, NULL AS INDICE, @int_Finalizado AS TOTALAGENDAMENTO, NULL AS TOTALPESQUISA
+		RETURN 0
+	END
+
+
+	IF @dtt_Inicio IS NULL SET @dtt_Inicio = '1980-01-01 00:00'
+	IF @dtt_Final IS NULL SET @dtt_Final = GETDATE()
+
+
+	SELECT
+		@int_Pesquisa = COUNT(DISTINCT psq_nag)
+	FROM
+		PesquisaSatisfacao P
+	WHERE
+		EXISTS (SELECT ag_numero FROM #TabFinalizado WHERE ag_numero = P.psq_nag)
+		--AND
+		--P.psq_datahoracadastro BETWEEN @dtt_Inicio AND @dtt_Final
+
+
+	SET @int_IndiceRetorno = (@int_Pesquisa * 100) / @int_Finalizado
+
+	DROP TABLE #TabFinalizado
+
+	SELECT 0 AS ERRO, CAST(@int_IndiceRetorno AS VARCHAR) + '%' AS INDICE, @int_Finalizado AS TOTALAGENDAMENTO, @int_Pesquisa AS TOTALPESQUISA
+	RETURN 0
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_LogEvento]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_LogEvento]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_LogEvento]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_LogEvento]
+(
+	@USER_ID VARCHAR(80)
+	,@MODULO VARCHAR(10)
+	,@MSG VARCHAR(8000)
+)
+AS
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000), @user_nome VARCHAR(100)
+
+	SET NOCOUNT ON
+
+	--LOG
+	INSERT INTO SCE_Historico(ID_USUARIO, ACAO, DATA, MODULO)
+		VALUES (@USER_ID, @MSG, CONVERT(VARCHAR, GETDATE(), 120), @MODULO)
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+		RETURN -1
+	END
+
+	RETURN 0
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_RemarcaTeste]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_RemarcaTeste]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_RemarcaTeste]
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_RemarcaTeste]
+(
+	@pAG_NUMERO INT,
+	@pAG_DATAINICIO varchar(10),
+	@pAG_DATATERMINO varchar(10),
+	@pAG_MOTIVO varchar(7000)
+)
+AS
+BEGIN
+	/*** Solicita um agendamento para Remarcacao de datas ***/
+	DECLARE @vID_SITUACAO SMALLINT, @vHD_MARCACAO SMALLINT
+
+	BEGIN TRANSACTION
+
+	UPDATE AGENDAMENTO SET AG_FLAGREMARCACAO = 1 WHERE AG_NUMERO = @pAG_NUMERO
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RETURN @@error
+	END
+ 
+	SELECT @vHD_MARCACAO = max(HD_MARCACAO) FROM historico_datas WHERE AG_NUMERO = @pAG_NUMERO
+
+	IF @vHD_MARCACAO IS NULL
+  		SET @vHD_MARCACAO = 1
+ 	ELSE
+  		SET @vHD_MARCACAO = @vHD_MARCACAO + 1
+
+	INSERT INTO Historico_datas 
+		(AG_NUMERO, HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, HD_FLAGREMARCADO, 
+		HD_MOTIVO)
+ 		VALUES (@pAG_NUMERO, @vHD_MARCACAO, 
+		convert(smalldatetime, @pAG_DATAINICIO, 103), convert(smalldatetime, @pAG_DATATERMINO, 103),
+		0, 'SOLICITAÇÃO DE REMARCAÇÃO' + CHAR(13) + CHAR(10) + @pAG_MOTIVO)
+	IF @@ERROR <> 0 BEGIN
+  		ROLLBACK TRANSACTION
+  		RETURN @@error
+ 	END
+
+	SELECT @vID_SITUACAO = ID_SITUACAO FROM HISTORICO_EVENTOS
+ 	WHERE AG_NUMERO = @pAG_NUMERO and HE_DATATERMINO IS NULL
+
+ 	if @vID_SITUACAO = 3 BEGIN  -- agendado
+ 		UPDATE HISTORICO_EVENTOS 
+			SET HE_DATATERMINO = getDate()
+			WHERE AG_NUMERO = @pAG_NUMERO and HE_DATATERMINO IS NULL
+  		IF @@ERROR <> 0 BEGIN
+   			ROLLBACK TRANSACTION
+   			RETURN(@@error)
+  		END
+
+  		INSERT into HISTORICO_EVENTOS(AG_NUMERO, ID_SITUACAO, HE_DATAINICIO)
+  		VALUES (@pAG_NUMERO, 1, getDate())
+  		IF @@ERROR <> 0 BEGIN
+   			ROLLBACK TRANSACTION
+   			RETURN(@@error)
+  		END
+ 	END
+
+ 	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_TAREFAS_POR_PERIODO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_TAREFAS_POR_PERIODO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[SP_TAREFAS_POR_PERIODO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Tarefas_Por_Periodo]
+(
+	@data  VARCHAR(10),
+	@username VARCHAR(80)
+)
+AS
+BEGIN
+	SELECT TP.TP_ID, TP.TAREFA_ID, A.AG_NUMERO AS ORDEM, 'Nº AS:'+CAST(A.AG_NUMERO AS VARCHAR) AS TIPO, CAST(A.AG_OBJETIVO AS VARCHAR(8000)) AS DESCRICAO_TAREFA,
+		CONVERT(SMALLDATETIME, CAST(DAY(TP.TP_DATAINICIAL) AS VARCHAR)+'/'+CAST(MONTH(TP.TP_DATAINICIAL) AS VARCHAR)+'/'+CAST(YEAR(TP.TP_DATAINICIAL) AS VARCHAR), 103) AS TP_DATAINICIAL,
+		CONVERT(SMALLDATETIME, CAST(DAY(TP.TP_DATAFINAL) AS VARCHAR)+'/'+CAST(MONTH(TP.TP_DATAFINAL) AS VARCHAR)+'/'+CAST(YEAR(TP.TP_DATAFINAL) AS VARCHAR), 103) AS TP_DATAFINAL,
+		TP.PES_USERNAME, TP.TP_OBSERVACAO, TP.TAREFA_TIPO
+	FROM TAREFAS_PREVISTAS AS TP
+	LEFT JOIN AGENDAMENTO AS A ON A.AG_NUMERO = TP.TAREFA_ID
+	WHERE TP_DATAINICIAL <= DATEADD(DD, 13, CONVERT(DATETIME, @data, 103))
+	AND TP_DATAFINAL >= CONVERT(DATETIME, @data, 103)
+	AND TP.PES_USERNAME = @username
+	AND TAREFA_TIPO = 0
+	UNION
+	SELECT TP.TP_ID, TP.TAREFA_ID, 999999 AS ORDEM,  'TAR' AS TIPO, T.TAR_DESCRICAO AS DESCRICAO_TAREFA,
+		CONVERT(SMALLDATETIME, CAST(DAY(TP.TP_DATAINICIAL) AS VARCHAR)+'/'+CAST(MONTH(TP.TP_DATAINICIAL) AS VARCHAR)+'/'+CAST(YEAR(TP.TP_DATAINICIAL) AS VARCHAR), 103) AS TP_DATAINICIAL,
+		CONVERT(SMALLDATETIME, CAST(DAY(TP.TP_DATAFINAL) AS VARCHAR)+'/'+CAST(MONTH(TP.TP_DATAFINAL) AS VARCHAR)+'/'+CAST(YEAR(TP.TP_DATAFINAL) AS VARCHAR), 103) AS TP_DATAFINAL,
+		TP.PES_USERNAME, TP.TP_OBSERVACAO, TP.TAREFA_TIPO
+	FROM TAREFAS_PREVISTAS AS TP
+	LEFT JOIN TAREFAS AS T ON T.TAR_ID = TP.TAREFA_ID
+	WHERE TP_DATAINICIAL <= DATEADD(DD, 13, CONVERT(DATETIME, @data, 103))
+	AND TP_DATAFINAL >= CONVERT(DATETIME, @data, 103)
+	AND TP.PES_USERNAME = @username
+	AND TAREFA_TIPO = 1
+	ORDER BY ORDEM, TP_DATAINICIAL
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_ValidaCancelamento]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_ValidaCancelamento]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_ValidaCancelamento]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_ValidaCancelamento]
+(
+	@pAG_NUMERO INT,
+	@pRESPONSAVEL VARCHAR(80),
+	@pCANCELAMENTOACEITOPELORAT BIT
+)
+AS
+BEGIN
+	DECLARE	@Data SMALLDATETIME, 
+		@Motivo VARCHAR(8000), 
+		@os_id INT,
+		@hd_marcacao INT
+
+	SET NOCOUNT ON
+
+	SET @Data = GETDATE()
+
+	/*** Valida e cancela um agendamento */
+
+	BEGIN TRANSACTION
+
+	SELECT
+		@Motivo = HD_MOTIVO, @hd_marcacao = HD_MARCACAO
+	FROM
+		Historico_Datas 
+	WHERE
+		AG_NUMERO = @pAG_NUMERO 
+		AND HD_MARCACAO = (SELECT MAX(HD_MARCACAO) FROM Historico_Datas WHERE AG_NUMERO = @pAG_NUMERO)
+
+
+	-- Indica se o RAT fez o cancelamento do pedido do usuário p/ que o agendamento
+	-- fosse cancelado
+	IF @pCANCELAMENTOACEITOPELORAT = 0
+	BEGIN
+		UPDATE Historico_Datas
+		SET 
+			HD_MOTIVO = 'SOLICITAÇÃO CANCELADA PELO RAT.' + CHAR(13) + CHAR(10) + @Motivo,
+			HD_FLAGREMARCADO = @pCANCELAMENTOACEITOPELORAT
+		WHERE AG_NUMERO = @pAG_NUMERO AND HD_MARCACAO = @hd_marcacao
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR('Não foi possível atualizar o histórico de datas', 16, 1)
+			RETURN (@@error)
+		END
+	END
+	ELSE BEGIN
+
+		UPDATE Historico_Datas
+		SET 
+			HD_FLAGREMARCADO = @pCANCELAMENTOACEITOPELORAT
+		WHERE AG_NUMERO = @pAG_NUMERO AND HD_MARCACAO = @hd_marcacao
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR('Não foi possível atualizar o histórico de datas', 16, 1)
+			RETURN (@@error)
+		END
+
+
+		-- gravo a data no registro em aberto
+		UPDATE HISTORICO_EVENTOS 
+			SET HE_DATATERMINO = @Data
+			WHERE AG_NUMERO = @pAG_NUMERO and HE_DATATERMINO IS NULL
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR('Não foi possível atualizar o histórico de eventos', 16, 1)
+			RETURN (@@error)
+		END
+
+		-- crio um novo evento para a situacao de cancelado
+		INSERT INTO HISTORICO_EVENTOS
+			(HE_RESPONSAVEL, ID_SITUACAO, AG_NUMERO, HE_DATAINICIO, HE_DATATERMINO, HE_MOTIVO)
+		VALUES (@pRESPONSAVEL, 5, @pAG_NUMERO, @Data, @Data, 'CANCELADO PELO USUÁRIO')
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR('Não foi possível inserir no histórico de eventos', 16, 1)
+			RETURN (@@error)
+		END
+
+
+		-- cancelo as ordens de servico do agendamento que ainda nao estao em estado final
+		DECLARE OS_Cursor CURSOR FOR 
+			SELECT DISTINCT OS_ID FROM HISTORICO_EVENTOSOS
+			WHERE AG_NUMERO = @pAG_NUMERO AND HEOS_DATATERMINO IS NULL
+
+		OPEN OS_Cursor
+
+		FETCH NEXT FROM OS_Cursor INTO @os_id
+
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			-- gravo a data no registro em aberto
+			UPDATE HISTORICO_EVENTOSOS
+				SET HEOS_DATATERMINO = @Data
+				WHERE AG_NUMERO = @pAG_NUMERO and OS_ID = @os_id AND HEOS_DATATERMINO IS NULL
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR('Não foi possível atualizar o histórico de eventos da OS', 16, 1)
+				RETURN (@@error)
+			END
+
+			-- crio um novo evento para a situacao de OS cancelada
+			INSERT INTO HISTORICO_EVENTOSOS (HEOS_RESPONSAVEL, AG_NUMERO, ID_SITUACAO, OS_ID, HEOS_DATAINICIO, HEOS_DATATERMINO, HEOS_MOTIVO)
+			VALUES (@pRESPONSAVEL, @pAG_NUMERO, 14, @os_id, @Data, @Data, 'CANCELADO PELO USUÁRIO')
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR('Não foi possível inserir o histórico de eventos da OS', 16, 1)
+				RETURN (@@error)
+			END
+
+			FETCH NEXT FROM OS_Cursor INTO @os_id
+		END
+
+		CLOSE OS_Cursor
+		DEALLOCATE OS_Cursor
+	END
+
+	-- desmarco o flag do agendamento para solicitacao de cancelamento
+	UPDATE Agendamento SET AG_SOLICITOUCANCELAMENTO = 0 WHERE AG_NUMERO = @pAG_NUMERO
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR('Não foi possível atualizar o agendamento', 16, 1)
+		RETURN (@@error)
+	END
+
+	COMMIT TRANSACTION
+ 	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_ValidaRemarcacao]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_ValidaRemarcacao]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_ValidaRemarcacao]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_ValidaRemarcacao]
+(
+	@pAG_NUMERO INT,
+	@pAG_FLAGREMARCADO BIT
+)
+AS
+BEGIN
+	/*** Remarco um agendamento selecionado ***/
+	declare @vAG_DATAINICIO smalldatetime, @vAG_DATATERMINO smalldatetime
+	declare @vHD_DATAINICIO smalldatetime, @vHD_DATATERMINO smalldatetime
+	declare @vHD_MARCACAO INT
+	declare @vPRIMEIRAMARCACAO BIT
+
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	select @vPRIMEIRAMARCACAO = count(*) from historico_datas
+ 	where AG_NUMERO = @pAG_NUMERO and HD_MARCACAO = 0
+
+	select @vHD_MARCACAO = max(HD_MARCACAO) from historico_datas
+ 	where AG_NUMERO = @pAG_NUMERO
+
+	if (@vPRIMEIRAMARCACAO = 0) and (@pAG_FLAGREMARCADO=1)begin
+		select @vAG_DATAINICIO = AG_DATAINICIO, @vAG_DATATERMINO = AG_DATATERMINO
+		from agendamento
+	 	where AG_NUMERO = @pAG_NUMERO
+
+		insert into historico_datas(AG_NUMERO, HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, HD_FLAGREMARCADO, HD_MOTIVO)
+ 		values(@pAG_NUMERO, 0, @vAG_DATAINICIO, @vAG_DATATERMINO, 0, 'Primeira Marcação (datas originais do agendamento)')
+
+		if @@error <> 0 begin
+   			rollback transaction
+   			return(@@error)
+  		end
+	end
+
+	if (@pAG_FLAGREMARCADO=1) begin  -- remarca o agendamento
+		select @vHD_DATAINICIO = HD_DATAINICIO, 
+        	       @vHD_DATATERMINO = HD_DATATERMINO
+  		from historico_datas
+  		where AG_NUMERO = @pAG_NUMERO and HD_MARCACAO = @vHD_MARCACAO
+
+	  	UPDATE AGENDAMENTO
+	  		SET  AG_DATAINICIO = @vHD_DATAINICIO,
+		  		AG_DATATERMINO = @vHD_DATATERMINO,
+  				AG_FLAGREMARCACAO = 0
+	  		where AG_NUMERO = @pAG_NUMERO
+	  	if @@error <> 0 begin
+   			rollback transaction
+   			return(@@error)
+  		end
+ 	end
+	else begin  -- volta o agendamento como não remarcado
+		UPDATE AGENDAMENTO
+  		SET  AG_FLAGREMARCACAO = 0
+  		where AG_NUMERO = @pAG_NUMERO
+  		if @@error <> 0 begin
+   			rollback transaction
+   			return(@@error)
+  		end
+ 	end
+
+	-- indica se foi aceito ou nao a remarcação
+  	UPDATE historico_datas
+		SET HD_FLAGREMARCADO = @pAG_FLAGREMARCADO
+		where AG_NUMERO = @pAG_NUMERO and HD_MARCACAO = @vHD_MARCACAO
+  	if @@error <> 0 begin
+		rollback transaction
+		return(@@error)
+	end
+
+	COMMIT TRANSACTION
+END
+GO
