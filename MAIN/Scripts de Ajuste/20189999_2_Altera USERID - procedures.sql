@@ -5028,3 +5028,1309 @@ BEGIN
 	COMMIT TRANSACTION
 END
 GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_ACEITE_RESERVA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_ACEITE_RESERVA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_ACEITE_RESERVA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_CADASTRA_ACEITE_RESERVA]
+(
+	@lista_itens VARCHAR(8000),
+	@ag_numero INT,
+	@user_id VARCHAR(80)
+)
+AS
+/*** Cadastra uma nova movimentacao ***/
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000), @mensagem VARCHAR(8000), @eq_codigobarras VARCHAR(20)
+
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	-- loop para inserir itens movimentados
+	IF @lista_itens IS NOT NULL  BEGIN
+
+		-- a lista de campos está definida da seguinte forma: ","
+		DECLARE @separa_campo VARCHAR(1)
+		SET @separa_campo = ','
+	
+		DECLARE @reg VARCHAR(8000), @fim BIT, @iini INT, @ifim INT
+		DECLARE @aceite VARCHAR(1), @eq_id VARCHAR(10)
+
+		SET @lista_itens = RTRIM( LTRIM( @lista_itens ) )
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_campo + '%', @lista_itens )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @lista_itens, @iini, LEN( @lista_itens ) )
+			ELSE
+				SET @reg = SUBSTRING( @lista_itens, @iini, @ifim - 1 )
+
+			SET @reg = LTRIM( RTRIM( @reg ) )
+
+			SET @aceite = LEFT( @reg, 1 )
+
+			IF  @aceite <> '1' AND @aceite <> '0'
+				SET @aceite = NULL
+
+			SET @eq_id = SUBSTRING( @reg, 3, LEN( @reg ) )
+
+			UPDATE SCE_Reserva_Equipamentos SET REQ_ACEITO = @aceite
+				WHERE AG_NUMERO = @ag_numero AND EQ_ID = @eq_id
+
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				SET @msg_erro = 'Não foi possível aceitar os itens da reserva do agendamento ' + CAST(@ag_numero AS VARCHAR) + '.' 
+				RAISERROR( @msg_erro , 16, 1)
+				RETURN -1
+			END
+
+			-- pega o nome do usuario e o codigo de barras
+			SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos WHERE EQ_ID = @eq_id
+
+			SET @mensagem = 'O usuário ' + @user_id + ' aceitou a reserva do equipamento ' + @eq_codigobarras + ' para o agendamento ' + CAST(@ag_numero AS VARCHAR)
+			EXEC sp_LogEvento @user_id, 'SCE', @mensagem
+	
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+				RETURN -1
+			END
+
+			SET @lista_itens = LTRIM(SUBSTRING( @lista_itens, @ifim + 1, LEN( @lista_itens ) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]
+(
+	@eq_id INT OUTPUT,
+	@eq_codigobarras VARCHAR(20),
+	@eq_codigobarrasanterior VARCHAR(20),
+	@eq_numeroserie VARCHAR(255),
+	@eq_localizacao VARCHAR(255),
+	@mod_id INT,
+	@eq_obs TEXT,
+	@status INT,
+	@eq_oper_delta VARCHAR(50),
+	@eq_oper_umidade VARCHAR(50),
+	@eq_oper_warmup VARCHAR(50),
+	@eq_arma_delta VARCHAR(50),
+	@eq_arma_umidade VARCHAR(50),
+	@eq_manut_preventiva TEXT,
+	@eq_instrumental BIT,
+	@eq_propriedade CHAR(1),
+	@eq_conforme BIT,
+	@eq_lista_acessorios VARCHAR(8000),
+	@eq_lista_controle VARCHAR(8000),
+	@eq_freq_calibracao INT
+)
+AS
+/*** Cadastra um novo equipamento ***/
+BEGIN
+	DECLARE @conta_codbarras INT
+	DECLARE @conta_numeroserie INT
+	DECLARE @msg_erro VARCHAR(8000)
+
+	SET NOCOUNT ON
+
+	-- verifico se ja existe algum equipamento com este código de barras
+	-- OBS:	como existem códigos errados na base, não é possível criar um indice único na tabela, portanto
+	--	tenho que criticar via código
+	SET @conta_codbarras = 0
+	SET @conta_numeroserie = 0
+
+	-- insert
+	IF @eq_id IS NULL
+	BEGIN
+		select @conta_codbarras = count(EQ_CODIGOBARRAS) from SCE_Equipamentos
+			where EQ_CODIGOBARRAS = LTRIM(RTRIM(@eq_codigobarras))
+
+		select @conta_numeroserie = count(EQ_NUMEROSERIE) from SCE_Equipamentos
+			where EQ_NUMEROSERIE = LTRIM(RTRIM(@eq_numeroserie))
+	END
+	ELSE
+	BEGIN
+		select @conta_codbarras = count(EQ_CODIGOBARRAS) from SCE_Equipamentos
+			where EQ_CODIGOBARRAS = LTRIM(RTRIM(@eq_codigobarras)) AND EQ_ID <> @eq_id
+
+		select @conta_numeroserie = count(EQ_NUMEROSERIE) from SCE_Equipamentos
+			where EQ_NUMEROSERIE = LTRIM(RTRIM(@eq_numeroserie)) AND EQ_ID <> @eq_id
+	END
+
+	IF @conta_codbarras > 0
+	BEGIN
+		SET @msg_erro = 'Este código de barras (' + @eq_codigobarras + ') já está cadastrado para um equipamento'
+		RAISERROR( @msg_erro, 16, 1)
+		RETURN -1
+	END
+
+	IF @conta_numeroserie > 0
+	BEGIN
+		SET @msg_erro = 'Este número de série (' + @eq_numeroserie + ') já está cadastrado para um equipamento'
+		RAISERROR( @msg_erro, 16, 1)
+		RETURN -1
+	END
+
+	BEGIN TRANSACTION
+
+	-- insere equipamento
+	IF @eq_id IS NULL BEGIN
+		INSERT INTO SCE_Equipamentos (EQ_CODIGOBARRAS, EQ_CODIGOBARRASANTERIOR, EQ_NUMEROSERIE, EQ_LOCALIZACAO,
+				MOD_ID, EQ_OBS, STATUS,
+				EQ_OPER_DELTA, EQ_OPER_UMIDADE, EQ_OPER_WARMUP, EQ_ARMA_DELTA, EQ_ARMA_UMIDADE,
+				EQ_MANUT_PREVENTIVA, EQ_INSTRUMENTAL, EQ_PROPRIEDADE, EQ_CONFORME, EQ_FREQ_CALIBRACAO)
+			VALUES (@eq_codigobarras, @eq_codigobarrasanterior, @eq_numeroserie, @eq_localizacao, @mod_id, @eq_obs, @status,
+				@eq_oper_delta, @eq_oper_umidade, @eq_oper_warmup, @eq_arma_delta, @eq_arma_umidade,
+				@eq_manut_preventiva, @eq_instrumental, @eq_propriedade, @eq_conforme, @eq_freq_calibracao)
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível cadastrar este equipamento', 16, 1)
+			RETURN -1
+		END
+
+		SET @eq_id = @@identity
+	END
+	-- altera equipamento
+	ELSE BEGIN
+
+		UPDATE SCE_Equipamentos SET EQ_CODIGOBARRAS = @eq_codigobarras, 
+				EQ_CODIGOBARRASANTERIOR = @eq_codigobarrasanterior, EQ_NUMEROSERIE = @eq_numeroserie,
+				EQ_LOCALIZACAO = @eq_localizacao,
+				MOD_ID = @mod_id, EQ_OBS = @eq_obs, STATUS = @status, EQ_OPER_DELTA = @eq_oper_delta, EQ_OPER_UMIDADE = @eq_oper_umidade,
+				EQ_OPER_WARMUP = @eq_oper_warmup, EQ_ARMA_DELTA = @eq_arma_delta, EQ_ARMA_UMIDADE = @eq_arma_umidade,
+				EQ_MANUT_PREVENTIVA = @eq_manut_preventiva, EQ_INSTRUMENTAL = @eq_instrumental, EQ_PROPRIEDADE = @eq_propriedade,
+				EQ_CONFORME = @eq_conforme, EQ_FREQ_CALIBRACAO = @eq_freq_calibracao
+			WHERE EQ_ID = @eq_id
+
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível alterar este equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+
+	-- acessorios
+	DELETE FROM SCE_Acessorios WHERE EQ_ID = @eq_id
+	IF @@error <> 0
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível excluir os acessórios do equipamento', 16, 1)
+		RETURN -1
+	END
+
+	-- a lista de campos está definida da seguinte forma: "»!«" separador de registro e "¿!¿" como separador de campo (ALT + 175 / 174 e ALT 168 respectivamente)
+	DECLARE @separa_registro VARCHAR(3), @separa_campo VARCHAR(3)
+	SET @separa_registro = '»?«'
+	SET @separa_campo = '¿?¿'
+
+	DECLARE @reg VARCHAR(8000), @fim BIT, @iini INT, @ifim INT
+
+	-- loop para inserir acessorios
+	IF @eq_lista_acessorios IS NOT NULL BEGIN
+		DECLARE @d VARCHAR(255), @s VARCHAR(255), @stat VARCHAR(255)
+
+		SET @eq_lista_acessorios = rtrim(ltrim(@eq_lista_acessorios))
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_registro + '%', @eq_lista_acessorios )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @eq_lista_acessorios, @iini, LEN( @eq_lista_acessorios ) )
+			ELSE
+				SET @reg = SUBSTRING( @eq_lista_acessorios, @iini, @ifim - 1 )
+
+			-- retira os 3 campos da string de registro
+			SET @s = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )    -- sequencial
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @d = LTRIM( RTRIM ( SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 ) ) )    -- descricao
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @stat = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )    -- status
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )  -- conforme
+
+			INSERT INTO SCE_Acessorios ( SEQUENCIAL, DESCRICAO, STATUS, CONFORME, EQ_ID ) VALUES ( @s ,@d, @stat, @reg, @eq_id )
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível atualizar os acessórios do equipamento', 16, 1)
+				RETURN -1
+			END
+
+			SET @eq_lista_acessorios = LTRIM(SUBSTRING( @eq_lista_acessorios, @ifim + 3, LEN(@eq_lista_acessorios) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+
+	-- controle
+	DELETE FROM SCE_Equipamentos_Controle WHERE EQ_ID = @eq_id
+	IF @@error <> 0
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível excluir os controles de calibração/manutenção/qualificação do equipamento', 16, 1)
+		RETURN -1
+	END
+
+	-- loop para inserir controles
+	IF @eq_lista_controle IS NOT NULL BEGIN
+		DECLARE @id_controle VARCHAR(255), @controle CHAR(1), @dias VARCHAR(255)
+		DECLARE @data_controle VARCHAR(255), @registro VARCHAR(255)
+
+		SET @eq_lista_controle = rtrim(ltrim( @eq_lista_controle ))
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_registro + '%', @eq_lista_controle )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @eq_lista_controle, @iini, LEN( @eq_lista_controle ) )
+			ELSE
+				SET @reg = SUBSTRING( @eq_lista_controle, @iini, @ifim - 1 )
+
+			-- retira os 5 campos da string de registro
+			SET @id_controle = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )  -- ID do controle
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @controle = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )  -- Tipo do controle (C / M / Q)
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @dias = LTRIM( RTRIM ( SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 ) ) )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @data_controle = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @registro = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+
+			IF @dias = '' OR @dias = ' '
+				SET @dias = NULL
+
+			INSERT INTO SCE_Equipamentos_Controle ( EQ_ID, EQC_DIAS, EQC_DATA, EQC_REGISTRO, EQC_RESPONSAVEL, EQC_TIPO ) 
+				VALUES ( @eq_id, @dias, CONVERT(DATETIME, @data_controle, 103), @registro, @reg, @controle )
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível atualizar os dados de controle (calibração/manutenção/qualificação) do equipamento', 16, 1)
+				RETURN -1
+			END
+
+			SET @eq_lista_controle = LTRIM(SUBSTRING( @eq_lista_controle, @ifim + 3, LEN( @eq_lista_controle ) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN @EQ_ID
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]
+(
+	@mov_id INT,
+	@eq_id INT,
+	@mov_data DATETIME,
+	@no_id INT,
+	@mov_despachante VARCHAR(80),
+	@mov_solicitante VARCHAR(80),
+	@tipo INT,	-- OBS 1
+	@cde VARCHAR(50),
+	@ag_numero INT,
+	@reserva INT,
+	@nf_id INT,
+	@doc_id INT,
+	@mov_passagem BIT,
+	@eq_localizacao VARCHAR(255),
+	@fl_calibracao TINYINT = NULL,
+	@eq_codigobarrasanterior VARCHAR(20) = NULL,
+	@usuario_log VARCHAR(80)
+)
+AS
+	/*** Cadastra uma nova movimentacao ***/
+
+	-- OBS 1: Guardo o campo Tipo de NO para manter a compatibilidade com alguma
+	--        tela do sistema que possa utilizar esta informacao vinda da tabela
+	--        de movimentacao. O correto é pegar o valor da tabela SCE_Natureza_Operacao
+	--        já que a tabela de movimento já possui uma FK para a tabela mencionada.
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000), @eq_codigobarras VARCHAR(20)
+	DECLARE @no_tipo INT, @ultima_mov DATETIME, @novo BIT
+
+	SET NOCOUNT ON
+	SET @novo = 0
+
+	SELECT @no_tipo = NO_TIPO FROM SCE_Natureza_Operacao WHERE NO_ID = @no_id
+	IF @@ROWCOUNT = 0 BEGIN
+		RAISERROR( 'O tipo da natureza de operação não existe.', 16, 1)
+		RETURN -1
+	END
+
+	IF @mov_data IS NULL SET @mov_data = GETDATE() 
+
+	-- pega o nome do usuario e o codigo de barras
+	SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos WHERE EQ_ID = @eq_id
+
+	-- verifica se é inclusao de uma movimentacao ou alteracao
+	IF @mov_id IS NULL BEGIN
+		SET @novo = 1
+
+		INSERT INTO SCE_Movimentacao( EQ_ID, NO_ID, MOV_DESPACHANTE, MOV_SOLICITANTE, TIPO, 
+ 				CDE, ASA, RESERVA, NF_ID, DOC_ID, MOV_DATA, MOV_PASSAGEM, FL_CALIBRACAO)
+		VALUES ( @eq_id, @no_id, @mov_despachante, UPPER( @mov_solicitante ), @no_tipo, @cde,
+				@ag_numero, @reserva, @nf_id, @doc_id, @mov_data, @mov_passagem, @fl_calibracao)
+		IF @@ERROR <> 0 BEGIN
+			RAISERROR( 'Não foi possível inserir esta movimentação', 16, 1)
+			RETURN -1
+		END
+	END
+	ELSE BEGIN
+		UPDATE	SCE_Movimentacao
+		SET		EQ_ID = @eq_id, NO_ID = @no_id, 
+				MOV_DESPACHANTE = @mov_despachante, MOV_SOLICITANTE = UPPER( @mov_solicitante ), 
+				TIPO = @no_tipo, CDE = @cde, ASA = @ag_numero, NF_ID = @nf_id, 
+				DOC_ID = @doc_id, MOV_DATA = @mov_data, FL_CALIBRACAO = @fl_calibracao
+		WHERE MOV_ID = @mov_id
+
+		IF @@ERROR <> 0 BEGIN
+			RAISERROR( 'Não foi possível alterar esta movimentação', 16, 1)
+			RETURN -1
+		END
+	END
+
+	-- Atualizo automaticamente a localizacao do equipamento
+	IF (@eq_localizacao IS NOT NULL) OR (@eq_localizacao <> '')
+	BEGIN
+		UPDATE	SCE_Equipamentos
+		SET		eq_localizacao = @eq_localizacao
+		WHERE	eq_id = @eq_id
+
+		IF @@ERROR <> 0 BEGIN
+			RAISERROR( 'Não foi possível atualizar localização do equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+
+	-- pego a data da ultima movimentacao do item
+	SELECT	@ultima_mov = MAX(m.MOV_DATA)
+	FROM	SCE_Movimentacao m 
+	WHERE	m.EQ_ID = @eq_id AND (m.MOV_ID <> @mov_id OR @mov_id IS NULL)
+
+	-- se for a ultima movimentacao e for de expedicao, entao atualizo os acessorios do item
+	IF (@mov_data > @ultima_mov) OR (@ultima_mov IS NULL)
+	BEGIN
+
+		-- movimentacao de expedicao ou expedição c/ substituição, atualizo os acessorios do equipamento
+		IF @no_tipo = 3 OR @no_tipo = 5
+		BEGIN
+			-- Atualiza o status dos acessórios
+			UPDATE SCE_Acessorios SET STATUS = 3 WHERE EQ_ID = @eq_id
+			IF @@ERROR <> 0 BEGIN
+				SET @msg_erro = 'Não foi possível alterar o status do acessório do equipamento movimentado (' + @eq_codigobarras + ').'
+				RAISERROR( @msg_erro , 16, 1)
+				RETURN -1
+			END
+
+			-- Atualiza o status do item para o novo tipo
+			UPDATE	SCE_Equipamentos 
+			SET		STATUS = @no_tipo, EQ_CODIGOBARRASANTERIOR = @eq_codigobarrasanterior
+			WHERE	EQ_ID = @eq_id
+			IF @@ERROR <> 0 BEGIN
+				SET @msg_erro = 'Não foi possível alterar o equipamento movimentado (' + @eq_codigobarras + ').'
+				RAISERROR( @msg_erro , 16, 1)
+				RETURN -1
+			END
+		END
+	END
+
+	-- Atualizo a reserva de equipamento
+	IF @reserva = 1 BEGIN
+		UPDATE	SCE_Reserva_Equipamentos
+		SET		REQ_MOVIMENTOU = 1
+		WHERE	AG_NUMERO = @ag_numero AND EQ_ID = @eq_id
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível alterar reserva do equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+
+	IF @novo = 1
+		SET @msg_erro = 'O usuário ' + @usuario_log + ' movimentou o equipamento ' + @eq_codigobarras + '.'
+	ELSE 
+		SET @msg_erro = 'O usuário ' + @usuario_log + ' alterou movimento #' + CAST(@mov_id AS VARCHAR) + ' do equipamento ' + @eq_codigobarras + '.'
+
+	EXEC sp_LogEvento @usuario_log, 'SCE', @msg_erro
+
+	IF @@ERROR <> 0 BEGIN
+		RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+		RETURN -1
+	END
+
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_NOTAFISCAL]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_NOTAFISCAL]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_NOTAFISCAL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_CADASTRA_NOTAFISCAL]
+(
+	@nf_id INT OUTPUT,
+	@nf_numeronota INT,
+	@nf_qtdevolumes INT,
+	@nf_valortotal DECIMAL(15,2),
+	@nf_dataemissao DATETIME,
+	@nf_nconhecimento VARCHAR(10),
+	@nf_tipo INT,
+	@trans_id INT,
+	@enf_id INT,
+	@nf_descriminacao TEXT,
+	@nf_aceite INT,
+	@nf_integridade INT,
+	@nf_carta VARCHAR(1),
+	@nf_volume INT,
+	@nf_devolucaocompleta BIT,
+	@nf_cfop VARCHAR(20),
+	@no_id INT,
+	@nf_id_pai INT,
+	@nf_validade VARCHAR(50),
+	@nf_data DATETIME,
+	@nf_recebimento DATETIME,
+	@user_id VARCHAR(80)
+)
+AS
+/*** Cadastra uma nova nota fiscal ***/
+
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000), @user_nome VARCHAR(100)
+
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	IF @nf_id IS NULL BEGIN
+		SELECT NF_ID FROM SCE_Nota_Fiscal WHERE ENF_ID = @enf_id AND NF_NUMERONOTA = @nf_numeronota
+		IF @@ROWCOUNT > 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg_erro = 'Nota ' + CAST(@nf_numeronota AS VARCHAR) + ' já existente para este Fornecedor'
+			RAISERROR( @msg_erro, 16, 1)
+			RETURN -1
+		END
+
+		--insere--
+		INSERT INTO SCE_Nota_Fiscal (NF_NUMERONOTA, NF_QTDEVOLUMES, NF_VALORTOTAL,
+			NF_DATAEMISSAO, NF_NCONHECIMENTO, NF_TIPO, TRANS_ID, ENF_ID, NF_DESCRIMINACAO,
+			NF_ACEITE, NF_INTEGRIDADE, NF_CARTA, NF_VOLUME, NF_DEVOLUCAOCOMPLETA, NF_CFOP,
+			NO_ID, NF_ID_PAI, NF_VALIDADE, NF_DATA, NF_RECEBIMENTO)
+			VALUES
+			(@nf_numeronota, @nf_qtdevolumes, @nf_valortotal, @nf_dataemissao, @nf_nconhecimento, 
+			@nf_tipo, @trans_id, @enf_id, @nf_descriminacao, @nf_aceite, @nf_integridade, @nf_carta,
+			@nf_volume, @nf_devolucaocompleta, @nf_cfop, @no_id, @nf_id_pai, 
+			@nf_validade, @nf_data, @nf_recebimento)
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg_erro = 'Não foi possível inserir a nota fiscal ' + @nf_numeronota
+			RAISERROR( @msg_erro, 16, 1)
+			RETURN -1
+		END
+
+		SET @nf_id = @@IDENTITY
+	END
+	ELSE BEGIN
+		--altera--
+		UPDATE SCE_Nota_Fiscal SET
+			NF_NUMERONOTA = @nf_numeronota, NF_QTDEVOLUMES = @nf_qtdevolumes,
+			NF_VALORTOTAL = @nf_valortotal, NF_DATAEMISSAO = @nf_dataemissao, 
+			NF_NCONHECIMENTO = @nf_nconhecimento, NF_TIPO = @nf_tipo, TRANS_ID = @trans_id,
+			ENF_ID = @enf_id, NF_DESCRIMINACAO = @nf_descriminacao, NF_ACEITE = @nf_aceite,
+			NF_INTEGRIDADE = @nf_integridade, NF_CARTA = @nf_carta, NF_VOLUME = @nf_volume,
+			NF_DEVOLUCAOCOMPLETA = @nf_devolucaocompleta, NF_CFOP = @nf_cfop,
+			NO_ID = @no_id, NF_ID_PAI = @nf_id_pai, 
+			NF_VALIDADE = @nf_validade, NF_DATA = @nf_data, NF_RECEBIMENTO = @nf_recebimento
+			WHERE NF_ID = @nf_id
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			SET @msg_erro = 'Não foi possível atualizar a nota fiscal ' + @nf_numeronota
+			RAISERROR( @msg_erro, 16, 1)
+			RETURN -1
+		END
+
+		SET @nf_id = @nf_id
+	END
+
+	--LOG
+	SET @msg_erro = 'O usuário ' + @user_id + ' cadastrou a nota fiscal ' + CAST(@nf_numeronota AS VARCHAR) + '.'
+
+	INSERT INTO SCE_Historico (ID_USUARIO, ACAO, DATA)
+		VALUES (@user_id, @msg_erro, CONVERT( VARCHAR, GETDATE(), 103))
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+		RETURN -1
+	END
+
+	COMMIT TRANSACTION
+	RETURN @nf_id
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_RESERVA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_RESERVA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_RESERVA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_SCE_CADASTRA_RESERVA]
+(
+	@ag_numero INT,
+	@res_responsavel VARCHAR(80),
+	@amb_id INT,
+	@lista_itens VARCHAR(8000),
+	@observacao TEXT
+)
+AS
+/*** Cadastra uma nova reserva ***/
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000)
+
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	SELECT AG_NUMERO FROM SCE_Reserva WHERE AG_NUMERO = @ag_numero
+
+	-- altera reserva
+	IF @@ROWCOUNT > 0 BEGIN
+		UPDATE SCE_Reserva SET RES_RESPONSAVEL = UPPER(@res_responsavel), AMB_ID = @amb_id, 
+			RES_OBSERVACAO = @observacao
+			WHERE AG_NUMERO = @ag_numero
+
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível alterar esta reserva de equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+	-- insere reserva
+	ELSE BEGIN  -- a principio o responsavel é o mesmo do agendamento !
+		INSERT INTO SCE_Reserva (AG_NUMERO, RES_RESPONSAVEL, AMB_ID, RES_OBSERVACAO)
+			VALUES (@ag_numero, UPPER(@res_responsavel), @amb_id, @observacao)
+
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível cadastrar esta reserva de equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+
+	-- itens da reserva
+	DELETE FROM SCE_Reserva_Equipamentos 
+		WHERE AG_NUMERO = @ag_numero AND REQ_MOVIMENTOU <> 1
+	IF @@error <> 0
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível excluir os itens desta reserva', 16, 1)
+		RETURN -1
+	END
+
+	-- loop para inserir itens reservados
+	IF @lista_itens IS NOT NULL BEGIN
+
+		-- a lista de campos está definida da seguinte forma: "»!«" separador de registro e "¿!¿" como separador de campo (ALT + 175 / 174 e ALT 168 respectivamente)
+		DECLARE @separa_registro VARCHAR(3), @separa_campo VARCHAR(3)
+		SET @separa_registro = '»?«'
+		SET @separa_campo = '¿?¿'
+	
+		DECLARE @reg VARCHAR(8000), @fim BIT, @iini INT, @ifim INT
+
+		DECLARE @eq_id VARCHAR(255), @cod_barras VARCHAR(255), @liberado VARCHAR(255)
+		DECLARE @data_inicio VARCHAR(255), @data_termino VARCHAR(255)
+		DECLARE @aceito TINYINT, @setup VARCHAR(10)
+
+		SET @lista_itens = rtrim(ltrim( @lista_itens ))
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_registro + '%', @lista_itens )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @lista_itens, @iini, LEN( @lista_itens ) )
+			ELSE
+				SET @reg = SUBSTRING( @lista_itens, @iini, @ifim - 1 )
+
+			-- retira os campos da string
+			SET @eq_id = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+
+			/*** nao estou passando o codigo de barras como parametro, apenas do EQ_ID
+			-- SET @cod_barras = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 ) 
+			-- SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			***/
+			SET @data_inicio = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @data_termino = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+			SET @setup = SUBSTRING( @reg, 1, PATINDEX( '%' + @separa_campo + '%', @reg ) -1 )
+			SET @reg = SUBSTRING( @reg, PATINDEX( '%' + @separa_campo + '%', @reg )+3, LEN( @reg ) )
+
+			IF LTRIM( RTRIM( @reg ) ) = '1'
+				SET @aceito = 1
+			ELSE IF LTRIM( RTRIM( @reg ) ) = '0'
+				SET @aceito = 0
+			ELSE 
+				SET @aceito = NULL
+
+			SELECT EQ_ID FROM SCE_Reserva_Equipamentos WHERE AG_NUMERO = @ag_numero AND EQ_ID = @eq_id
+			IF @@ROWCOUNT > 0 BEGIN -- item ja existe na lista
+				UPDATE SCE_Reserva_Equipamentos 
+					SET REQ_DATAINICIO = CONVERT(DATETIME, @data_inicio, 103), 
+						REQ_DATATERMINO = CONVERT(DATETIME, @data_termino, 103),
+						REQ_EQSETUP = @setup,
+						REQ_ACEITO = @aceito
+					WHERE AG_NUMERO = @ag_numero AND EQ_ID = @eq_id
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível atualizar os dados da reserva', 16, 1)
+					RETURN -1
+				END
+			END
+			ELSE BEGIN
+				INSERT INTO SCE_Reserva_Equipamentos ( AG_NUMERO, EQ_ID, REQ_DATAINICIO, REQ_DATATERMINO, REQ_EQSETUP, REQ_ACEITO )
+					VALUES ( @ag_numero, @eq_id, CONVERT(DATETIME, @data_inicio, 103), CONVERT(DATETIME, @data_termino, 103), @setup, @aceito )
+				IF @@ERROR <> 0 BEGIN
+					ROLLBACK TRANSACTION
+					RAISERROR( 'Não foi possível inserir dados da reserva', 16, 1)
+					RETURN -1
+				END
+			END
+
+			SET @lista_itens = LTRIM(SUBSTRING( @lista_itens, @ifim + 3, LEN( @lista_itens ) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN @ag_numero
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_DEPARA_MODELOS]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_DEPARA_MODELOS]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_DEPARA_MODELOS]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_DEPARA_MODELOS]
+(
+	@mod_id_old INT,
+	@mod_id_new INT
+)
+AS
+BEGIN
+	/* DE - PARA de modelos */
+	SET NOCOUNT ON
+	BEGIN TRANSACTION
+
+	UPDATE SCE_Equipamentos SET MOD_ID = @mod_id_new WHERE MOD_ID = @mod_id_old
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR('Não foi possível atualizar os equipamentos', 16, 1)
+		RETURN -1
+	END
+
+	DELETE FROM SCE_Modelos WHERE MOD_ID = @mod_id_old
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR('Não foi possível excluir o modelo antigo', 16, 1)
+		RETURN -1
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_EXCLUI_EQUIPAMENTO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_EXCLUI_EQUIPAMENTO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_EXCLUI_EQUIPAMENTO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_EXCLUI_EQUIPAMENTO]
+(
+	@eq_id INT,
+	@user_id VARCHAR(80)
+)
+AS
+/*** Remove um equipamento consumivel bem como suas movimentações ***/
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRANSACTION
+
+	DECLARE @cod_barras VARCHAR(255), @user_nome VARCHAR(255)
+
+	IF @eq_id IS NOT NULL BEGIN
+		DELETE FROM SCE_Historico_Movimentacao WHERE EQ_ID = @eq_id
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir o histórico de movimentações deste equipamento', 16, 1)
+			RETURN -1
+		END
+
+		DELETE FROM SCE_Movimentacao WHERE EQ_ID = @eq_id
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir as movimentações deste equipamento', 16, 1)
+			RETURN -1
+		END
+
+		DELETE FROM SCE_Equipamentos_Controle WHERE EQ_ID = @eq_id
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir os controles de calibração/manutenção/qualificação do equipamento', 16, 1)
+			RETURN -1
+		END
+
+		DELETE FROM SCE_Acessorios WHERE EQ_ID = @eq_id
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir os acessórios do equipamento', 16, 1)
+			RETURN -1
+		END
+
+		SELECT @cod_barras = EQ_CODIGOBARRAS FROM SCE_Equipamentos WHERE EQ_ID = @eq_id
+
+		DELETE FROM SCE_Equipamentos WHERE EQ_ID = @eq_id
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir este equipamento', 16, 1)
+			RETURN -1
+		END
+
+		-- histórico da operação
+		SELECT @user_nome = USER_NOME FROM SCE_Usuarios WHERE USER_ID = @user_id
+
+		INSERT INTO SCE_Historico (ID_USUARIO, ACAO, DATA)
+			VALUES (@user_id, 'O usuário ' + @user_nome + ' excluiu o equipamento ' + @cod_barras + '.', GETDATE())
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi registrar o histórico de exclusão do equipamento', 16, 1)
+			RETURN -1
+		END
+	END
+	ELSE BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'O código do equipamento consumível é inválido', 16, 1)
+		RETURN -1
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]
+(
+	@mov_id INT,
+	@user_id INT
+)
+AS
+	/*** Apago uma nova movimentacao existente ***/
+BEGIN
+	DECLARE @msg_erro VARCHAR(8000), @user_nome VARCHAR(100), @eq_codigobarras VARCHAR(20)
+
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	-- pega o nome do usuario e o codigo de barras
+	SELECT @user_nome = USER_NOME FROM SCE_Usuarios WHERE USER_ID = @user_id
+	SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos 
+		WHERE EQ_ID = (SELECT EQ_ID FROM SCE_Movimentacao WHERE MOV_ID = @mov_id)
+
+	IF @mov_id IS NOT NULL BEGIN
+		DELETE FROM SCE_Movimentacao WHERE MOV_ID = @mov_id
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível apagar esta movimentação', 16, 1)
+			RETURN -1
+		END
+	END
+
+
+	SET @msg_erro = 'O usuário ' + @user_nome + ' apagou o movimento #' + CAST(@mov_id AS VARCHAR) + ' do equipamento ' + @eq_codigobarras + '.'
+
+	INSERT INTO SCE_Historico ( ID_USUARIO, ACAO, DATA ) 
+		VALUES ( @user_id, @msg_erro, CONVERT( VARCHAR, GETDATE(), 103) )
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+		RETURN -1
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_INDICADOR_MENSAL_MOV_ITEM]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_INDICADOR_MENSAL_MOV_ITEM]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_MOV_ITEM]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_MOV_ITEM]
+(
+	@ano_base INT
+)
+AS
+BEGIN
+	/*
+	Retorna um SELECT com os totais de itens movimentados.
+
+	Criado em: 16/02/2004 - Gilberto F. Almeida - COPPETEC
+	*/
+	SELECT
+		mes.MES, 
+		CASE WHEN qtde_entrada.TOTAL IS NULL THEN 0 ELSE qtde_entrada.TOTAL END AS ENTRADA, 
+		CASE WHEN qtde_logentrada.TOTAL IS NULL THEN 0 ELSE qtde_logentrada.TOTAL END AS ENTRADA_LOG, 
+		CASE WHEN qtde_logsaida.TOTAL IS NULL THEN 0 ELSE qtde_logsaida.TOTAL END AS SAIDA_LOG,
+		CASE WHEN qtde_saida.TOTAL IS NULL THEN 0 ELSE qtde_saida.TOTAL END AS SAIDA
+	FROM
+		(
+		SELECT 1 AS MES UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 
+		UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10
+		UNION SELECT 11 UNION SELECT 12
+		) mes
+	 	LEFT JOIN 
+		(
+			SELECT MONTH(m.MOV_DATA) AS MES, COUNT(*) AS 'TOTAL'
+			FROM SCE_Movimentacao m INNER JOIN SCE_Natureza_Operacao n ON m.NO_ID = n.NO_ID
+			WHERE n.NO_TIPO = 1 /* 1 = entrada */
+				AND YEAR(m.MOV_DATA) = @ano_base
+			GROUP BY MONTH(m.MOV_DATA)
+		) qtde_entrada
+		ON mes.MES= qtde_entrada.MES
+ 		LEFT JOIN 
+		(
+			SELECT MONTH(m.MOV_DATA) AS MES, COUNT(*) AS 'TOTAL'
+			FROM SCE_Movimentacao m INNER JOIN SCE_Natureza_Operacao n ON m.NO_ID = n.NO_ID
+			WHERE n.NO_TIPO = 2 /* 2 = log entrada */
+				AND YEAR(m.MOV_DATA) = @ano_base
+			GROUP BY MONTH(m.MOV_DATA)
+		) qtde_logentrada
+		ON mes.MES= qtde_logentrada.MES
+ 		LEFT JOIN 
+		(
+			SELECT MONTH(m.MOV_DATA) AS MES, COUNT(*) AS 'TOTAL'
+			FROM SCE_Movimentacao m INNER JOIN SCE_Natureza_Operacao n ON m.NO_ID = n.NO_ID
+			WHERE n.NO_TIPO = 3 /* 3 = saida/expedicao */
+				AND YEAR(m.MOV_DATA) = @ano_base
+			GROUP BY MONTH(m.MOV_DATA)
+		) qtde_saida
+		ON mes.MES= qtde_saida.MES
+ 		LEFT JOIN 
+		(
+			SELECT MONTH(m.MOV_DATA) AS MES, COUNT(*) AS 'TOTAL'
+			FROM SCE_Movimentacao m INNER JOIN SCE_Natureza_Operacao n ON m.NO_ID = n.NO_ID
+			WHERE n.NO_TIPO = 4 /* 4 = log saida */
+				AND YEAR(m.MOV_DATA) = @ano_base
+			GROUP BY MONTH(m.MOV_DATA)
+		) qtde_logsaida
+		ON mes.MES= qtde_logsaida.MES
+	ORDER BY mes.MES
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_INDICADOR_MENSAL_QTDE_NOTAFISCAL]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_INDICADOR_MENSAL_QTDE_NOTAFISCAL]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_QTDE_NOTAFISCAL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_QTDE_NOTAFISCAL]
+(
+	@ano_base INT
+)
+AS
+BEGIN
+	/*
+	Retorna um SELECT com a quantidade de notas fiscais de entrada e de
+	saída em um dado ano.
+
+	Criado em: 16/02/2004 - Gilberto F. Almeida - COPPETEC
+	*/
+	SELECT
+		mes.MES, 
+		CASE WHEN qtde_entrada.QUANTIDADE IS NULL THEN 0 ELSE qtde_entrada.QUANTIDADE END AS ENTRADA, 
+		CASE WHEN qtde_saida.QUANTIDADE IS NULL THEN 0 ELSE qtde_saida.QUANTIDADE END AS SAIDA
+	FROM
+		(
+		SELECT 1 AS MES UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 
+		UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10
+		UNION SELECT 11 UNION SELECT 12
+		) mes
+	 	LEFT JOIN 
+		(
+			SELECT MONTH(NF_RECEBIMENTO) AS MES, COUNT(*) AS 'QUANTIDADE'
+			FROM SCE_Nota_Fiscal nf
+			WHERE nf.NF_TIPO = 1 /* 1 = entrada / 2 = saida */
+				AND YEAR(nf.NF_RECEBIMENTO) = @ano_base
+			GROUP BY MONTH(nf.NF_RECEBIMENTO)
+		) qtde_entrada
+		ON mes.MES= qtde_entrada.MES
+ 		LEFT JOIN 
+		(
+			SELECT MONTH(NF_RECEBIMENTO) AS MES, COUNT(*) AS 'QUANTIDADE'
+			FROM SCE_Nota_Fiscal nf 
+			WHERE nf.NF_TIPO = 2 /* 1 = entrada / 2 = saida */
+				AND YEAR(nf.NF_RECEBIMENTO) = @ano_base
+			GROUP BY MONTH(nf.NF_RECEBIMENTO)
+		) qtde_saida
+		ON mes.MES= qtde_saida.MES
+	ORDER BY mes.MES
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_INDICADOR_MENSAL_VALOR_NOTAFISCAL]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_INDICADOR_MENSAL_VALOR_NOTAFISCAL]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_VALOR_NOTAFISCAL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_INDICADOR_MENSAL_VALOR_NOTAFISCAL]
+(
+	@ano_base INT
+)
+AS
+BEGIN
+	/*
+	Retorna um SELECT com os totais de notas fiscais de entrada e de
+	saída em um dado ano.
+
+	Criado em: 16/02/2004 - Gilberto F. Almeida - COPPETEC
+	*/
+	SELECT
+		mes.MES, 
+		CASE WHEN qtde_entrada.TOTAL IS NULL THEN 0 ELSE qtde_entrada.TOTAL END AS ENTRADA, 
+		CASE WHEN qtde_saida.TOTAL IS NULL THEN 0 ELSE qtde_saida.TOTAL END AS SAIDA
+	FROM
+		(
+		SELECT 1 AS MES UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 
+		UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10
+		UNION SELECT 11 UNION SELECT 12
+		) mes
+	 	LEFT JOIN 
+		(
+			SELECT MONTH(NF_RECEBIMENTO) AS MES, SUM(NF_VALORTOTAL) AS 'TOTAL'
+			FROM SCE_Nota_Fiscal nf
+			WHERE nf.NF_TIPO = 1 /* 1 = entrada / 2 = saida */
+				AND YEAR(nf.NF_RECEBIMENTO) = @ano_base
+			GROUP BY MONTH(nf.NF_RECEBIMENTO)
+		) qtde_entrada
+		ON mes.MES= qtde_entrada.MES
+ 		LEFT JOIN 
+		(
+			SELECT MONTH(NF_RECEBIMENTO) AS MES, SUM(NF_VALORTOTAL) AS 'TOTAL'
+			FROM SCE_Nota_Fiscal nf 
+			WHERE nf.NF_TIPO = 2 /* 1 = entrada / 2 = saida */
+				AND YEAR(nf.NF_RECEBIMENTO) = @ano_base
+			GROUP BY MONTH(nf.NF_RECEBIMENTO)
+		) qtde_saida
+		ON mes.MES= qtde_saida.MES
+	ORDER BY mes.MES
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_PASSA_CARGA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_PASSA_CARGA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_PASSA_CARGA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_PASSA_CARGA]
+(
+	@eq_id VARCHAR(8000),
+	@ag_numero_orig INT,
+	@ag_numero_dest INT,
+	@user_id VARCHAR(80)
+)
+AS
+BEGIN
+	/***
+		Cadastra uma passagem de carga (equipamentos) de uma AS para outra.
+		Posteriormente quando o RT da AS destino receber a carga, sera gerada
+		uma movimentacao de entrada no LOG e outra de saida para o novo RT
+
+		COPPETEC: Gilberto Almeida
+		Criado: 11/11/2003	Ultima alteracao: 18/04/2012
+	***/
+	SET NOCOUNT ON
+
+	DECLARE @MSG VARCHAR(8000)
+
+	BEGIN TRANSACTION
+
+	-- Apago a passagem de carga que ainda nao foi aprovada pelo usuario
+	DELETE FROM SCE_Passagem_Carga WHERE AG_NUMERO_ORIG = @ag_numero_orig AND PAS_APROVADO = 0
+	IF @@ERROR <> 0 BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'Não foi possível remover passagem de carga.', 16, 1)
+		RETURN -1
+	END
+
+	IF (@eq_id IS NOT NULL) OR (@eq_id <> '') BEGIN
+		DECLARE @iini INT, @fim INT, @ifim INT
+		DECLARE @separa_registro VARCHAR(1), @reg VARCHAR(255)
+		DECLARE @eq_codigobarras VARCHAR(20)
+
+		SET @separa_registro = ','
+
+		SET @eq_id = rtrim(ltrim( @eq_id ))
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_registro + '%', @eq_id )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @eq_id, @iini, LEN( @eq_id ) )
+			ELSE
+				SET @reg = SUBSTRING( @eq_id, @iini, @ifim - 1 )
+
+			INSERT INTO SCE_Passagem_Carga ( AG_NUMERO_ORIG, AG_NUMERO_DEST, EQ_ID, PAS_APROVADO )
+				VALUES ( @ag_numero_orig, @ag_numero_dest, @reg, 0 )
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível solicitar a passagem de carga.', 16, 1)
+				RETURN -1
+			END
+
+			-- pega o nome do usuario e o codigo de barras
+			SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos WHERE EQ_ID = @reg
+
+			SET @MSG = 'O usuário ' + @user_id + ' passou a carga do equipamento ' + @eq_codigobarras
+
+			EXEC sp_LogEvento @USER_ID, 'SCE', @MSG
+
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+				RETURN -1
+			END
+			--
+
+			SET @eq_id = LTRIM(SUBSTRING( @eq_id, @ifim + 1, LEN( @eq_id ) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+	ELSE BEGIN
+
+		SET @MSG = 'O usuário ' + @user_id + ' removeu a carga do agendamento ' + CAST(@ag_numero_orig as VARCHAR)
+
+		EXEC sp_LogEvento @USER_ID, 'SCE', @MSG
+
+		IF @@ERROR <> 0 BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+			RETURN -1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_RECEBE_CARGA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_RECEBE_CARGA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_RECEBE_CARGA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  PROCEDURE [dbo].[sp_SCE_RECEBE_CARGA]
+(
+	@eq_id VARCHAR(8000),
+	@ag_numero_dest INT,
+	@user_id VARCHAR(80)
+)
+AS
+BEGIN
+	/***
+		Recebe a carga passada por um RT à outro. Gera 2 movimentacoes, uma
+		de entrada na logistica, outra de saida em nome do outro usuario
+
+		COPPETEC: Gilberto Almeida
+		Criado: 12/11/2003	Ultima alteracao:
+	***/
+	SET NOCOUNT ON
+
+	BEGIN TRANSACTION
+
+	-- pega o nome do usuario e o codigo de barras
+	DECLARE @MSG VARCHAR(8000)
+
+	IF (@eq_id IS NOT NULL) OR (@eq_id <> '') BEGIN
+		DECLARE @iini INT, @fim INT, @ifim INT
+		DECLARE @separa_registro VARCHAR(1), @reg VARCHAR(255)
+		DECLARE @eq_codigobarras VARCHAR(20)
+		DECLARE @resp_origem VARCHAR(20), @resp_destino VARCHAR(20)
+		DECLARE @ag_numero_orig INT, @hoje DATETIME
+
+		SET @hoje = GETDATE()
+		SET @separa_registro = ','
+
+		SET @eq_id = rtrim(ltrim( @eq_id ))
+		SET @fim = 0
+		SET @iini = 1
+		WHILE ( @fim = 0 ) BEGIN
+			SET @ifim = PATINDEX('%' + @separa_registro + '%', @eq_id )
+			IF @ifim = 0 
+				SET @reg = SUBSTRING( @eq_id, @iini, LEN( @eq_id ) )
+			ELSE
+				SET @reg = SUBSTRING( @eq_id, @iini, @ifim - 1 )
+
+			UPDATE SCE_Passagem_Carga 
+				SET PAS_APROVADO = 1, PAS_DATARECEBIMENTO = GETDATE()
+				WHERE AG_NUMERO_DEST = @ag_numero_dest AND EQ_ID = CAST(@reg AS INT)
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível realizar o recebimento de carga.', 16, 1)
+				RETURN -1
+			END
+
+			-- responsavel do ag de origem
+			SELECT @resp_origem = a.AG_RESPONSAVEL, @ag_numero_orig = a.AG_NUMERO
+				FROM Agendamento a INNER JOIN
+				SCE_Passagem_Carga p ON a.AG_NUMERO = p.AG_NUMERO_ORIG
+				WHERE AG_NUMERO_DEST = @ag_numero_dest AND p.EQ_ID = @reg
+
+			-- responsavel do ag de destino
+			SELECT @resp_destino = a.AG_RESPONSAVEL FROM Agendamento a INNER JOIN
+				SCE_Passagem_Carga p ON a.AG_NUMERO = p.AG_NUMERO_DEST
+				WHERE AG_NUMERO_DEST = @ag_numero_dest AND p.EQ_ID = @reg
+
+			-- entrada log
+			EXEC sp_SCE_CADASTRA_MOVIMENTACAO NULL, @reg, @hoje, 525 /*LAB - Devolução de teste no laboratório*/, @user_id, @resp_origem, 2 /*Entrada Log*/, NULL, @ag_numero_orig, 0, NULL, NULL, 1, NULL /* Localizacao do item */, null, null, @user_id
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível movimentar a entrada dos itens.', 16, 1)
+				RETURN -1
+			END
+
+			-- saida log
+			EXEC sp_SCE_CADASTRA_MOVIMENTACAO NULL, @reg, @hoje, 524 /*LAB - Saída para teste c/ AS no laboratório*/, @user_id, @resp_destino, 4 /*Saida Log*/, NULL, @ag_numero_dest, 0, NULL, NULL, 1, NULL /* Localizacao do item */, null, null, @user_id
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível movimentar a saída dos itens.', 16, 1)
+				RETURN -1
+			END
+
+
+			-- pega o nome do usuario e o codigo de barras
+			SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos WHERE EQ_ID = @reg
+
+			SET @MSG = 'O usuário ' + @user_id + ' recebeu a carga do equipamento ' + @eq_codigobarras
+
+			EXEC sp_LogEvento @user_id, 'SCE', @MSG
+
+			IF @@ERROR <> 0 BEGIN
+				ROLLBACK TRANSACTION
+				RAISERROR( 'Não foi possível inserir no histórico', 16, 1)
+				RETURN -1
+			END
+			--
+
+			SET @eq_id = LTRIM(SUBSTRING( @eq_id, @ifim + 1, LEN( @eq_id ) ))
+			IF @ifim = 0 SET @fim = 1
+		END
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
