@@ -1,6 +1,6 @@
 ﻿<%
 Dim net
-set net = createobject("wscript.network")
+set net = Server.CreateObject("wscript.network")
 
 RESPONSE.wRITE "<br>net.username: " & net.username
 RESPONSE.wRITE "<br>net.UserDomain: " & net.UserDomain
