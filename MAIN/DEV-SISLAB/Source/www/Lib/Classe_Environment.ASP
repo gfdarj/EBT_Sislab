@@ -35,67 +35,9 @@ Public Ebt
 
 Private int_TAMANHOPAGINA
 
-Private Function ObtemWindowsUserName()
-    Dim objUser
-    Set objUser = Server.CreateObject("wscript.network")   'pega o usuário logado no Windows
-    ObtemWindowsUserName = objUser.UserName
-    Set objUser = Nothing
-End Function
-
-Private Sub Class_Initialize()
-
-
-	Set Ebt = New TEbt
-
-	bln_ehRT = False
-	bln_ehRAT = False
-	bln_ehGQ = False
-	bln_UsuarioCRT = False
-	bln_UsuarioCRT_Cadastrado = False
-	bln_UsuarioSCE = False
-    p_moduloLog = "SISLAB"
-
-	chr_Matricula = ""
-	chr_PaginaInicial = "index.asp"
-
-
-	'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
-	chr_Usuario = ObtemWindowsUserName()
-
-	chr_MeuIP = Request.ServerVariables("REMOTE_ADDR")
-
-	chr_CaminhoAnt = ""
-
-	int_TAMANHOPAGINA = 10
-
-	bln_TemErro = False
-	chr_MsgErro = ""
-
-	int_PerfilSCE = 0 'perfil sem acesso
-
-	'-->>> variáveis de configuração
-	siglaApp = "CRT"
-	nomeApp = "Sistema de Gestão de Laboratório"
-	versaoApp = "2006"
-	orgaoEbt = "VPO28"
-	siglaCrt = "CRT"
-	nomeCrt = "Centro de Referência Tecnológica"
-	ramalContato = "521-8297"
-	emailContato = "ilab@embratel.com.br"
-	periodoValidacaoDocumento = 6
-
-	Call ConectaBD()
-
-	Call Init()
-
-End Sub
-
-Private Sub Class_Terminate()
-	Call DesconectaBD()
-	Call DesconectaBDAccess()
-End Sub
 
 '-Property------------------------------------------------------------------------'
+
 Public Property Get TemErro()
     TemErro = bln_TemErro
 End Property
@@ -195,8 +137,78 @@ End Property
 Public Property Let SetModulo(modulo)
     p_moduloLog = UCase(modulo)
 End Property
+'---------------------------------------------------------------------------------'
+
+Private Sub Class_Initialize()
+
+	Set Ebt = New TEbt
+
+	bln_ehRT = False
+	bln_ehRAT = False
+	bln_ehGQ = False
+	bln_UsuarioCRT = False
+	bln_UsuarioCRT_Cadastrado = False
+	bln_UsuarioSCE = False
+    p_moduloLog = "SISLAB"
+
+	chr_Matricula = ""
+	chr_PaginaInicial = "index.asp"
+
+
+	'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+	chr_Usuario = ObtemWindowsUserName()
+
+	chr_MeuIP = Request.ServerVariables("REMOTE_ADDR")
+
+	chr_CaminhoAnt = ""
+
+	int_TAMANHOPAGINA = 10
+
+	bln_TemErro = False
+	chr_MsgErro = ""
+
+	int_PerfilSCE = 0 'perfil sem acesso
+
+	'-->>> variáveis de configuração
+	siglaApp = "CRT"
+	nomeApp = "Sistema de Gestão de Laboratório"
+	versaoApp = "2006"
+	orgaoEbt = "VPO28"
+	siglaCrt = "CRT"
+	nomeCrt = "Centro de Referência Tecnológica"
+	ramalContato = "521-8297"
+	emailContato = "ilab@embratel.com.br"
+	periodoValidacaoDocumento = 6
+
+	Call ConectaBD()
+
+	Call Init()
+
+End Sub
+
+Private Sub Class_Terminate()
+	Call DesconectaBD()
+	Call DesconectaBDAccess()
+End Sub
+
 
 '---------------------------------------------------------------------------------'
+
+Private Function ObtemWindowsUserName()
+    Dim objSysInfo
+	Dim objUser
+
+    Set objSysInfo = Server.CreateObject("ADSystemInfo")
+    'response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName
+    'response.write "<br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
+    Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
+
+    ObtemWindowsUserName = objUser.Mail
+
+    Set objSysInfo = Nothing
+    Set objUser = Nothing
+End Function
+
 
 Private Sub DesconectaBD()
 	oConn.Close
@@ -297,7 +309,7 @@ Public Sub LoginUsuario(chr_LoginName)
 	Dim objRS
 
 	If Application("SISLAB_AMBIENTE") = "LOC" Then
-		chr_Usuario = "JOSESP"
+		chr_Usuario = "josesp@embratel.com.br"
 	Else
 		If chr_LoginName = "" then
 			'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
