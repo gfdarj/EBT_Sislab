@@ -13,6 +13,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 	w = "785px" '-- tamanho da coluna
 	if IsEmpty(imprimeMenu) or (imprimeMenu="") then imprimeMenu = false
 %>
+<!doctype html>
 <html>
 <head>
 	<title>
@@ -22,9 +23,11 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 		<%=titulo%>
 <%	end if%>
 	</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+	<meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
 	<link rel="stylesheet" href="estilos/principal.css" type="text/css">
 </head>
+
 <map name="Map"> 
   <area shape="rect" coords="671,18,741,46" href="http://pegasus" target="_top" alt="Site da Embratel" title="Site da Embratel">
   <area shape="poly" coords="11,1" href="#">

@@ -119,7 +119,8 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 
 	chr_Buffer = chr_Buffer & _
 		"	</title>" & VbCrLf & _
-		"	<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>" & VbCrLf & _
+        "   <meta charset='iso-8859-1'>" & VbCrLf & _
+		"	<meta http-equiv='Content-Type' content='text/html;' charset='iso-8859-1'>" & VbCrLf & _
 		"	<link rel='stylesheet' href='" & PathRelativo & "estilos/" & p_estilo & "' type='text/css'>" & VbCrLf & _
 		"	</head>"
 
@@ -183,7 +184,7 @@ Private Sub ImprimeImagemSite()
 <%  If Env.Usuario <> "" Then %>
 				            <br />
 					        <b>Usuário: <%=Env.Usuario%><br>
-					        <%=Env.nomeApp%>
+					        <%=Env.nomeAppHtml%>
 					        </b>
 <%  End If %>
 				    </td>

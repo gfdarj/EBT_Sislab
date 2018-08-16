@@ -1,28 +1,101 @@
 ﻿<%
+Dim strNTUser, strUser, strDN, strRootTDSE
+Dim objRootDSE, objConnection, objCommand, objRecordSet, objUser, objNTUserInfo
 Dim net
-set net = Server.CreateObject("wscript.network")
 
-RESPONSE.wRITE "<br>net.username: " & net.username
-RESPONSE.wRITE "<br>net.UserDomain: " & net.UserDomain
-response.write "<br>request.servervariables(LOGON_USER): " & request.servervariables("LOGON_USER")
+set net = createobject("wscript.network")
 
-Dim objSysInfo
-Dim objUsuario
-Dim objGrupo
-Dim objColl
+strNTUser = Request.ServerVariables("AUTH_USER")
+strUser = Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+
+Set objConnection = Server.CreateObject("ADODB.Connection")
+Set objCommand = Server.CreateObject("ADODB.Command")
+objConnection.Provider = "ADsDSOObject"
+objConnection.Open "Active Directory Provider"
+Set objCommand.ActiveConnection = objConnection
+
+'objCommand.Properties("Page Size") = 1000'
+objCommand.Properties("Searchscope") = 2 'ADS_SCOPE_SUBTREE 
+
+Set objRootDSE = GetObject("LDAP://rootDSE")
+strRootTDSE = objRootDSE.Get("defaultNamingContext")
+Set objRootDSE = Nothing
+
+objCommand.CommandText = _
+    "SELECT distinguishedName FROM 'LDAP://" & strRootTDSE & "' " & _
+        "WHERE objectCategory='user' AND sAMAccountName = '" & net.UserName & "'" 
+'objCommand.CommandText = _
+'    "SELECT distinguishedName FROM 'LDAP://" & strRootTDSE & "' " & _
+'        "WHERE objectCategory='user' AND sAMAccountName = '" & strUser & "'" 
+
+Set objRecordSet = objCommand.Execute
+
+If Not objRecordSet.BOF Then objRecordSet.MoveFirst
+If Not objRecordSet.EOF Then
+     response.Write "strDN !!!!!!!!!!!!!!<br>"
+    While Not objRecordSet.Eof
+        strDN = objRecordSet.Fields("distinguishedName").Value
+        response.Write "strDN: " & strDN & "<br>"
+        objRecordSet.MoveNext
+    WEnd
+End If
+
+
+response.write "MAMAMIA !!! " & now
+response.write "<br><br>net.UserName: " & net.UserName
+response.write "<br><br>net.UserDomain: " & net.UserDomain
+response.write "<br><br>strNTUser: " & strNTUser
+response.write "<br><br>strUser: " & strUser
+response.write "<br><br>strRootTDSE: " & strRootTDSE
+response.write "<br><br>objCommand.CommandText: " & objCommand.CommandText
+'response.write "<br><br>fullname: " & objUser.fullname
+'response.write "<br><br>Mail: " & objUser.mail
+
+response.write "<br><br><br>AQUI ! executou !: "
+response.End
+
+
+Set objConnection = Nothing
+Set objCommand = Nothing
+Set objRecordSet = Nothing
+
+Set objUser = GetObject("LDAP://" & strDN)
+
+
+
+
+'====FUNCIONADO===============================================================================
+
+'Dim net
+'set net = Server.CreateObject("wscript.network")
+
+'RESPONSE.wRITE "<br>net.username: " & net.username
+'RESPONSE.wRITE "<br>net.UserDomain: " & net.UserDomain
+'response.write "<br>request.servervariables(LOGON_USER): " & request.servervariables("LOGON_USER")
+
+'Dim objSysInfo
+'Dim objUsuario
+'Dim objGrupo
+'Dim objColl
 		
 'Criação dos objetos
-Set objSysInfo	= Server.CreateObject("ADSystemInfo")
+'Set objSysInfo	= Server.CreateObject("ADSystemInfo")
 
-response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName
-response.write "<br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
+'response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName
+'response.write "<br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
 
-Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
+'Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
 
-response.write "<br><br>Mail: " & objUser.mail
+'response.write "<br><br>fullname: " & objUser.fullname
+'response.write "<br><br>Mail: " & objUser.mail
 
-response.write "<br><br><br>AQUI !: "
-response.End
+'response.write "<br><br><br>AQUI !: "
+'response.End
+
+'====FUNCIONADO===============================================================================
+
+
+
 
 
 '=========Account and connection string information for LDAP=======

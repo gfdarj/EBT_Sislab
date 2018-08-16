@@ -1,204 +1,246 @@
 <%
+'------------------------------------------------------------------------------------------------------
+'
+'   CLASSE EMBRATEL - AQUI PEGA OS DADOS DO USUÁRIO LOGADO NO AD (Active Directory)
+'
+'------------------------------------------------------------------------------------------------------
+
 Class TEbt
 
-Private chr_Matricula
-Private bln_ehFuncionario
-Private chr_Nome_Reduzido
-Private chr_Sigla_Orgao
-Private chr_DN
-Private chr_UF_Com
-Private chr_CID_COM
-Private chr_TEL1_COM
-Private bln_ehGerente
-Private chr_Sigla_Orgao_Gerente
+    Private bln_TemErro
+    Private chr_MsgErro
+    Private chr_Login
+    Private bln_ehFuncionario
+    Private chr_Nome_Reduzido
+	Private bln_usuarioCRT
+	Private bln_ehRT
+	Private bln_ehRAT
+	Private bln_ehGQ
+	Private bln_usuarioCRT_Cadastrado
+	Private bln_UsuarioSCE
+	Private int_PerfilSCE
+	Private chr_Sigla_Orgao
+    Private chr_Ramal
+    Private chr_Celular
+    Private chr_Matricula
+	Private bln_ehGerente
+	Private chr_Sigla_Orgao_Gerente
 
-Private Sub Class_Initialize()
-	bln_ehFuncionario = False
-	chr_Nome_Reduzido = ""
-	chr_Sigla_Orgao = ""
-	chr_DN = ""
-	chr_UF_Com = ""
-	chr_CID_COM = ""
-	chr_TEL1_COM = ""
-	bln_ehGerente = False
-	chr_Matricula = ""
-	chr_Sigla_Orgao_Gerente = ""
-End Sub
+    Private oSql
 
-Private Sub Class_Terminate()
-End Sub
+    '-Property------------------------------------------------------------------------'
+
+    Public Property Get ehFuncionario()
+	    ehFuncionario = bln_ehFuncionario
+    End Property
+
+    Public Property Get Usuario()
+	    Usuario = chr_Login
+    End Property
+
+    Public Property Get NomeReduzido()
+	    NomeReduzido = chr_Nome_Reduzido
+    End Property
+
+    Public Property Get TemErro()
+        TemErro = bln_TemErro
+    End Property
+
+    Public Property Get MensagemErro()
+        MensagemErro = chr_MsgErro
+    End Property
+
+    Public Property Get ehRT()
+	    ehRT = bln_ehRT
+    End Property
+
+    Public Property Get ehRAT()
+	    ehRAT = bln_ehRAT
+    End Property
+
+    Public Property Get ehGQ()
+	    ehGQ = bln_ehGQ
+    End Property
+
+    Public Property Get UsuarioCRT()
+	    UsuarioCRT = bln_UsuarioCRT
+    End Property
+
+    Public Property Get UsuarioSCE()
+        UsuarioSCE = bln_UsuarioSCE
+    End Property
+
+    Public Property Get PerfilSCE()
+        PerfilSCE = int_PerfilSCE
+    End Property
+
+    Public Property Get UsuarioCRTCadastrado()
+	    UsuarioCRTCadastrado = bln_usuarioCRT_Cadastrado
+    End Property
+
+    Public Property Get Matricula()
+	    Matricula = chr_Matricula
+    End Property
+
+    Public Property Get SiglaOrgao()
+	    SiglaOrgao = chr_Sigla_Orgao
+    End Property
+
+    Public Property Get Ramal()
+	    Ramal = chr_Ramal
+    End Property
+
+    Public Property Get Celular()
+	    Celular = chr_Celular
+    End Property
+
+    Public Property Get ehGerente()
+	    ehGerente = bln_ehGerente
+    End Property
+
+    Public Property Get SiglaOrgaoGerente()
+	    SiglaOrgaoGerente = chr_Sigla_Orgao_Gerente
+    End Property
+
+    '-INIT------------------------------------------------------------------------'
+
+    Private Sub Class_Initialize()
+        Set oSql = New TSql
+
+        bln_TemErro = False
+        chr_MsgErro = ""
+		bln_usuarioCRT = False
+		bln_ehRT = False
+		bln_ehRAT = False
+		bln_ehGQ = False
+		bln_usuarioCRT_Cadastrado = False
+		bln_UsuarioSCE = 0
+		int_PerfilSCE = 0
+		chr_Sigla_Orgao = ""
+        chr_Ramal = ""
+        chr_Matricula = ""
+		bln_ehGerente = False
+		chr_Sigla_Orgao_Gerente = ""
+        chr_Nome_Reduzido = ""
+    End Sub
 
 
-'-Property------------------------------------------------------------------------'
+    Private Sub Class_Terminate()
+        Set oSQL = Nothing
+    End Sub
 
-Public Property Get ehFuncionario()
-	ehFuncionario = bln_ehFuncionario
-End Property
 
-Public Property Get Matricula()
-	Matricula = chr_Matricula
-End Property
+    Public Sub LoginUsuario(chr_Usuario)
+	    Dim chr_SQL
+	    Dim objRS
+        Dim bln_EhAmbienteLocal
 
-Public Property Get Nome_Reduzido()
-	Nome_Reduzido = chr_Nome_Reduzido
-End Property
+        chr_Login = ""
 
-Public Property Get Sigla_Orgao()
-	Sigla_Orgao = chr_Sigla_Orgao
-End Property
+        Call BuscaDadosEmbratel(chr_Usuario)    'Preenche as variáveis Login e FullName, vindas do AD
 
-Public Property Get DN()
-	DN = chr_DN
-End Property
+        '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
+        If (Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" And chr_Login = "") Then
+            chr_Login = "josesp@embratel.com.br"
+        End If
 
-Public Property Get UF_Com()
-	UF_Com = chr_UF_Com
-End Property
+	    '-- Pega os dados do usuario se for do CRT
+	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
+                  "     o.ORGA_SIGLA, o.ORGA_DESCRICAO, o.ORGA_USERIDCHEFE " & _
+                  "FROM UserCRT u LEFT JOIN Orgao o ON u.ORGA_ID = o.ORGA_ID " & _
+                  "WHERE UPPER(USERID) = '" & chr_Login & "'"
+	    Set objRS = oSQL.Executar(chr_SQL)
 
-Public Property Get CID_COM()
-	CID_COM = chr_CID_COM
-End Property
+	    If objRS.BOF And objRS.EOF Then 
+		    bln_usuarioCRT = False
+		    bln_ehRT = False
+		    bln_ehRAT = False
+		    bln_ehGQ = False
+		    bln_usuarioCRT_Cadastrado = False
+		    bln_UsuarioSCE = False
+		    int_PerfilSCE = 0
+		    chr_Sigla_Orgao = ""
+            chr_Ramal = ""
+            chr_Celular = ""
+            chr_Matricula = ""
+	    Else
+		    bln_usuarioCRT = True
+		    bln_ehRT = CBool(objRS("RT"))
+		    bln_ehRAT = CBool(objRS("RAT"))
+		    bln_ehGQ = CBool(objRS("GQ"))
+		    bln_usuarioCRT_Cadastrado = True
+		    bln_UsuarioSCE = (int_PerfilSCE > 0)
+		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
+		    chr_Sigla_Orgao = objRS("ORGA_SIGLA")
+            chr_Ramal = objRS("RAMAL")
+            chr_Celular = objRS("CELULAR")
+            chr_Matricula = objRS("MATRICULA")
+	    End If
+	    Set objRS = Nothing
 
-Public Property Get TEL1_COM()
-	TEL1_COM = chr_TEL1_COM
-End Property
+        Set objRS = oSQL.Executar("SELECT ORGA_SIGLA FROM ORGAO WHERE ORGA_USERIDCHEFE = '" & chr_Login & "'")
+        If Not (objRS.Eof And objRS.Bof) Then
+			bln_ehGerente = True
+			chr_Sigla_Orgao_Gerente = objRS("ORGA_SIGLA")
+		End if
+	    Set objRS = Nothing
 
-Public Property Get ehGerente()
-	ehGerente = bln_ehGerente
-End Property
+    End Sub
 
-Public Property Get Sigla_Orgao_Gerente()
-	Sigla_Orgao_Gerente = chr_Sigla_Orgao_Gerente
-End Property
+    '---------------------------------------------------------------------------------'
 
-'---------------------------------------------------------------------------------'
+    Public Sub BuscaDadosEmbratel(chr_Usuario)
+        Dim objSysInfo
+	    Dim objUser
 
-Public Sub BuscaDadosEmbratel(chr_Usuario)
-	Dim sql
-	Dim rst
-	Dim obj1
-	Dim objConn
-	Dim objRS
+        If chr_Usuario = "" Then
+            On Error Resume Next
+            Set objSysInfo = Server.CreateObject("ADSystemInfo")
+            'response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName & " / <br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
+            chr_Login = objSysInfo.UserName
+            On Error Goto 0
+        Else
+            chr_Login = chr_Usuario
+        End If
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
-		bln_ehFuncionario = True
-		chr_Nome_Reduzido = "Nome de Teste Local"
-		chr_Sigla_Orgao = "LOCAL"
-		chr_DN = "0"
-		chr_UF_Com = "RJ"
-		chr_CID_COM = "9876-5432"
-		chr_TEL1_COM = "1234-5678"
-		bln_ehGerente = True
-		chr_Sigla_Orgao_Gerente = "LOCAL"
-		chr_matricula = "000000"
-	Else
-		On Error Resume Next
+        Set objUser = GetObject("LDAP://" & chr_Login)
 
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-		chr_matricula = trim(obj1.GetMatricula(chr_Usuario))
-		set	obj1 = nothing
+        chr_Login = objUser.Mail
+        chr_Nome_Reduzido = objUser.FullName
 
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-		Set rst = obj1.GetDados(chr_Matricula)
+        If VVVNZ(chr_Login) Then
+            bln_ehFuncionario = False
+        Else
+            bln_ehFuncionario = True
+        End If
 
-	 	If rst Is Nothing Then
-			bln_ehFuncionario = False
-		Else
-			bln_ehFuncionario = True
-			chr_Nome_Reduzido = trim(rst("Nome_Reduzido"))
- 			chr_Sigla_Orgao = trim(rst("SiglaOrgao"))
-			chr_DN = trim(rst("DN"))
-			chr_UF_Com = trim(rst("UF_Com"))
- 			chr_CID_COM = trim(rst("CID_COM"))
-			chr_TEL1_COM =  trim(rst("TEL1_COM")) ' caso nulo usuario nao atualizou no CTE
+        Set objSysInfo = Nothing
+        Set objUser = Nothing
+    End Sub
 
-			'-- verifico se o usuário é do órgão de gerencia do CRT
-			sql = "SELECT ORGA_SIGLA FROM ORGAO WHERE ORGA_USERIDCHEFE = '" & chr_Usuario & "'"
-			Call Env.RecordSet(True, objRS, sql)
 
-			If Not (objRS.Eof and objRS.Bof) Then
-				bln_ehGerente = True
-				chr_Sigla_Orgao_Gerente = objRS("ORGA_SIGLA")
-			End if
+    Public Function ExisteUsuario(chr_Usuario)
+	    Dim objUser
 
-			Call Env.RecordSet(False, objRS, Null)
-		End If
+        Set objUser = GetObject("LDAP://" & chr_Usuario)
 
-		Set obj1 = nothing
-		Set rst = nothing
+        If VVVNZ(objUser.FullName) Then
+	        ExisteUsuario = False
+        Else
+	        ExisteUsuario = True
+        End If
 
-		If Err.Count > 0 Then
-			bln_TemErro = True
-			Call ImprimeErrosConexao(Err)
-		End If
+	    Set objUser = Nothing
+    End Function
 
-		On Error Goto 0
 
-	End If
+    Public Function AchaNomeEmbratel(chr_Usuario)
+	    Dim objUser
 
-End Sub
-
-Public Function ExisteUsuario(chr_Usuario)
-	Dim chr_Matricula
-	Dim obj1
-	Dim rst
-
-	On Error Resume Next
-
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-	chr_Matricula = trim(obj1.GetMatricula(chr_Usuario))
-	Set obj1 = Nothing
-
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-	Set rst = obj1.GetDados(chr_Matricula)
-
-	ExisteUsuario = True
- 	If rst Is Nothing Then
-		ExisteUsuario = False
-	End If
-
-	On Error Goto 0
-
-	Set obj1 = Nothing
-	Set rst = Nothing
-End Function
-
-Public Function AchaNomeEmbratel(chr_Usuario)
-	Dim chr_Matricula
-	Dim rst
-	Dim obj1
-
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
-		AchaNomeEmbratel = "Ambiente de Testes"
-	Else
-		On Error Resume Next
-
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-		chr_Matricula = trim(obj1.GetMatricula(chr_Usuario))
-		set	obj1 = nothing
-
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-		Set rst = obj1.GetDados(chr_Matricula)
-
-	 	If rst Is Nothing Then
-			AchaNomeEmbratel = ""
-		Else
-			AchaNomeEmbratel = trim(rst("Nome_Reduzido"))
-		End If
-
-		Set obj1 = nothing
-		Set rst = nothing
-
-		If Err.Count > 0 Then
-			bln_TemErro = True
-			Call ImprimeErrosConexao(Err)
-		End If
-
-		On Error Goto 0
-
-	End If
-
-End Function
+        Set objUser = GetObject("LDAP://" & chr_Usuario)
+        AchaNomeEmbratel = objUser.FullName
+	    Set objUser = Nothing
+    End Function
 
 End Class
 %>

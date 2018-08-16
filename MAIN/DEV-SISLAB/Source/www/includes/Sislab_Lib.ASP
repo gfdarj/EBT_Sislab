@@ -1,5 +1,6 @@
 <!--#include file="../includes/AdoVbs.inc"-->
 <!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../lib/Classe_SQL.asp"-->
 <!--#include file="../lib/Classe_Ebt.asp"-->
 <!--#include file="../lib/Classe_Mensagem.asp"-->
 <!--#include file="../lib/Classe_Tela.asp"-->
@@ -15,5 +16,4 @@ Set Tela = New TTela
 'Set Mensagem = New TMensagem
 
 Env.SetModulo = "SISLAB"
-Call Env.LoginUsuario("")
 %>
