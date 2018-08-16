@@ -193,13 +193,43 @@ Class TEbt
         Dim objSysInfo
 	    Dim objUser
 
-        If chr_Usuario = "" Then
+        'VAZIO: é igual a pegar o usuário logado no sistema
+        If VVNZ(chr_Usuario) Then
             On Error Resume Next
             Set objSysInfo = Server.CreateObject("ADSystemInfo")
             'response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName & " / <br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
             chr_Login = objSysInfo.UserName
             On Error Goto 0
+        'EMAIL: precisa buscar o usuário no AD
         Else
+            Dim conn, strQueryDL, strAttrs, objCmd, objRs
+
+            Set conn = CreateObject("ADODB.Connection")
+            conn.Provider = "ADsDSOObject"
+            conn.Open "ADs Provider"
+
+            strAttrs = "sAMAccountName,displayName,distinguishedName" ' get attributes
+            strQueryDL = "<LDAP://dc=alerj,dc=gov,dc=br>;(& (sAMAccountName=aal*) );" & strAttrs & ";SubTree"
+
+            Set objCmd = CreateObject("ADODB.Command")
+            objCmd.ActiveConnection = Conn
+            objCmd.Properties("SearchScope") = 2 ' search everything
+            objCmd.Properties("Page Size") = 100 ' bulk operation
+            objCmd.CommandText = strQueryDL
+
+            Set objRs = objCmd.Execute
+            idx=0
+            do while Not objRS.eof
+              idx=idx+1
+              Response.Write  objRs.Fields("sAMAccountName") & " / " & objRs.Fields("displayName") & " / " & objRs.Fields("distinguishedName") & "<BR><BR>"
+              if (idx>5) then exit do
+              objRS.MoveNext
+            loop
+            objRs.Close
+            Conn.close
+            set objRs = Nothing
+            set conn = Nothing
+
             chr_Login = chr_Usuario
         End If
 
