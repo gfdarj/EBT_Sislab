@@ -6256,7 +6256,7 @@ BEGIN
 		DECLARE @iini INT, @fim INT, @ifim INT
 		DECLARE @separa_registro VARCHAR(1), @reg VARCHAR(255)
 		DECLARE @eq_codigobarras VARCHAR(20)
-		DECLARE @resp_origem VARCHAR(20), @resp_destino VARCHAR(20)
+		DECLARE @resp_origem VARCHAR(80), @resp_destino VARCHAR(80)
 		DECLARE @ag_numero_orig INT, @hoje DATETIME
 
 		SET @hoje = GETDATE()
