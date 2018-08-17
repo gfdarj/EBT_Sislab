@@ -103,6 +103,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	w = "770px" '-- tamanho da coluna
 
 	chr_Buffer = _
+        "<!DOCTYPE html>" & VbCrLf & _
 		"<html>" & VbCrLf & _
 		"	<head>" & VbCrLf & _
 		"	<title>"
@@ -117,10 +118,12 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 		chr_Buffer = chr_Buffer & titulo
 	end if
 
+'tag do html 4
+'		"	<meta http-equiv='Content-Type' content='text/html;' charset='iso-8859-1'>" & VbCrLf
+
 	chr_Buffer = chr_Buffer & _
 		"	</title>" & VbCrLf & _
         "   <meta charset='iso-8859-1'>" & VbCrLf & _
-		"	<meta http-equiv='Content-Type' content='text/html;' charset='iso-8859-1'>" & VbCrLf & _
 		"	<link rel='stylesheet' href='" & PathRelativo & "estilos/" & p_estilo & "' type='text/css'>" & VbCrLf & _
 		"	</head>"
 
@@ -150,7 +153,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 
 		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" width="<%=tamanhoTela%>">
 		<tr>
-			<td>
+			<td><%="AQI: " & Env.ebt.Usuario %>
 <%
     'mostra mensagem de acesso não autorizado ao sistema
     If usuario = "" Then

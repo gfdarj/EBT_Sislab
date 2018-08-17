@@ -32,6 +32,15 @@ Class TSql
 
     Private Sub Class_Initialize()
 	    int_TAMANHOPAGINA = 10
+
+        'String de conexão
+	    chr_Conn = _
+			    "Provider=sqloledb; " & _
+			    "User ID=" & Application("SISLAB_DataUser") & "; " & _
+			    "Password=" & Application("SISLAB_DataUserPwd") & "; " & _
+			    "Initial Catalog=" & Application("SISLAB_InitialCatalog") & "; " & _
+			    "Data Source=" & Application("SISLAB_DataSource")
+
 	    Call Conectar()
     End Sub
 
@@ -47,13 +56,6 @@ Class TSql
 	    On Error Resume Next
 
 	    Set Conexao = Server.CreateObject("ADODB.Connection")
-
-	    chr_Conn = _
-			    "Provider=sqloledb; " & _
-			    "User ID=" & Application("SISLAB_DataUser") & "; " & _
-			    "Password=" & Application("SISLAB_DataUserPwd") & "; " & _
-			    "Initial Catalog=" & Application("SISLAB_InitialCatalog") & "; " & _
-			    "Data Source=" & Application("SISLAB_DataSource")
 
 	    Conexao.Open chr_Conn
 
@@ -73,10 +75,13 @@ Class TSql
 
     '-- Para a função funcionar precisa retornar o recordset desconectado!
     Public Function Executar(strExec)
-        Dim record, Command
+        Dim record, Command, oConn
+
+	    Set oConn = Server.CreateObject("ADODB.Connection")
+	    oConn.Open chr_Conn
 
         Set Command = Server.CreateObject("ADODB.Command")
-        Command.ActiveConnection = Conexao
+        Command.ActiveConnection = oConn
         Command.CommandText = strExec
 
 		Set record = Server.CreateObject("ADODB.RecordSet")
@@ -95,18 +100,23 @@ Class TSql
         Set Command.ActiveConnection = Nothing
         Set Command = Nothing
         Set record.ActiveConnection = Nothing
+        oConn.Close
+        Set oConn = Nothing
 
         Set Executar = record
     End Function
 
 
     Public Function ExecutarSP(strExec)
-        Dim command
+        Dim command, oConn
+
+	    Set oConn = Server.CreateObject("ADODB.Connection")
+	    oConn.Open chr_Conn
 
 		Set command = Server.CreateObject("ADODB.Command")
 		command.CommandType = adCmdStoredProc
 		command.CommandText = strExec
-		Set command.ActiveConnection = Conexao
+		Set command.ActiveConnection = oConn
 	    on error resume next
         Call Me.Log("EXEC_SP", strExec)
 	    .Execute
@@ -121,16 +131,21 @@ Class TSql
 	    on error goto 0
 		Set command.ActiveConnection = Nothing
 		Set command = Nothing
+        oConn.Close
+        Set oConn = Nothing
     End Function
 
 
     Public Sub StoredProcedure(objSP, strExec)
-        Dim command
+        Dim command, oConn
+
+	    Set oConn = Server.CreateObject("ADODB.Connection")
+	    oConn.Open chr_Conn
 
 		Set command = Server.CreateObject("ADODB.Command")
 		command.CommandType = adCmdStoredProc
 		command.CommandText = strExec
-		Set command.ActiveConnection = Conexao
+		Set command.ActiveConnection = oConn
     End Sub
 
 

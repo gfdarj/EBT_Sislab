@@ -94,12 +94,12 @@ Public Function AcessoNegadoSistema
     buf = _
 	    "<center>" & VbCrLf & _
 	    "<br><br>" & VbCrLf & _
-	    "<font face='verdana' color=#777777 size=5 style='font-size:20pt;'>Atualização de Informações:</font><br><br>" & VbCrLf & _
+	    "<font face='verdana' color=#777777 size=5 style='font-size:20pt;'>Atualiza&ccedil;&atilde;o de Informa&ccedil;&otilde;es:</font><br><br>" & VbCrLf & _
 	    "<table width='70%' align='center'>" & VbCrLf & _
 	    "<tr><td>" & VbCrLf & _
 	    "<center>" & VbCrLf & _
 	    "<br><br><br>" & VbCrLf & _
-	    "<font face='verdana' color=#CC7777 size=5 style='font-size:18pt;'>USUÁRIO " & Replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & " NÃO  ESTÁ AUTORIZADO A ACESSAR ESTA ÁREA OU A SUA SESSÃO ESTÁ EXPIRADA.<BR><BR>" & VbCrLf
+	    "<font face='verdana' color=#CC7777 size=5 style='font-size:18pt;'>USU&Aacute;RIO " & Replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & " N&Atilde;O  EST&Aacute; AUTORIZADO A ACESSAR ESTA &Aacute;REA OU A SUA SESS&Atilde;O EST&Aacute; EXPIRADA.<BR><BR>" & VbCrLf
 
     If bln_EmJanela Then
 	    buf = buf & "CLIQUE <a href='javascript:window.close();'>AQUI</a> PARA FECHAR ESTA JANELA" & VbCrLf

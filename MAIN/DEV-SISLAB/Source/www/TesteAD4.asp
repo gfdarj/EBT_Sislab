@@ -8,18 +8,21 @@ response.write "AGORA: " & now & "<BR><BR>"
             conn.Open "ADs Provider"
 
             strAttrs = "sAMAccountName,displayName,distinguishedName" ' get attributes
-            'strQueryDL = "<LDAP://" & str_dc & ">;(& (sAMAccountName=" & email(0) & ") );" & strAttrs & ";SubTree"
-            strQueryDL = "<LDAP://DC=alerj,DC=gov,DC=br>;(& (sAMAccountName=galmeida*) );sAMAccountName,displayName,distinguishedName,mail;SubTree"
+'            strQueryDL = "<LDAP://" & str_dc & ">;(& (sAMAccountName=" & email(0) & ") );" & strAttrs & ";SubTree"
+'            strQueryDL = "<LDAP://DC=alerj,DC=gov,DC=br>;(& (sAMAccountName=galmeida*) );sAMAccountName,displayName,distinguishedName,mail;SubTree"
+            strQueryDL = "<LDAP://DC=nt,DC=embratel,DC=com,DC=br>;(& (sAMAccountName=t3gfba*) );sAMAccountName,displayName,distinguishedName,mail;SubTree"
 
             Set objCmd = CreateObject("ADODB.Command")
             objCmd.ActiveConnection = Conn
             'objCmd.Properties("SearchScope") = 2 ' search everything
             'objCmd.Properties("Page Size") = 100 ' bulk operation
             objCmd.CommandText = strQueryDL
-'    response.write "AQUI:" & strQueryDL
 '    response.End
 
             Set objRs = objCmd.Execute
+
+'response.write "AQUI:" & strQueryDL
+'Response.End
 
 'ReturnValue = objRs.Fields(0).name
 'response.Write ReturnValue

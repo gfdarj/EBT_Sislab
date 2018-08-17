@@ -3,16 +3,31 @@
 
 Response.Clear
 
+
+response.write "AUTH_USER: " & Request.ServerVariables("AUTH_USER") & "<BR>"
+response.write "LOGON_USER: " & Request.ServerVariables("LOGON_USER")  & "<BR>"
+
+
 Dim objSysInfo, objUser
 Set objSysInfo = CreateObject("ADSystemInfo")
 
-' Currently logged in User
-'Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
- ' or specific user:
-Set objUser = GetObject("LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br")
-'Set objUser = GetObject("LDAP://CN=aalmeida,OU=,DC=alerj,DC=gov,DC=br")
 
+    Set objRootDSE = GetObject("LDAP://RootDSE")
+
+' Currently logged in User
+Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
+ ' or specific user:
+
+Dim strQueryDL
+'strQueryDL = "LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
+'strQueryDL = "<LDAP://CN=T3GFBA,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
+strQueryDL = "<LDAP://CN=T3GSAN,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
+
+'response.Write strQueryDL 
 'response.End
+
+'Set objUser = GetObject(strQueryDL)
+
 
 Response.Write "<BR>DN: " & objUser.distinguishedName
 

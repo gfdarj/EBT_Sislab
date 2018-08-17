@@ -32,8 +32,8 @@ strAttrs = "sAMAccountName,displayName,distinguishedName" ' get attributes
 'strQueryDL = "<LDAP://dc=REGION1,dc=COM>;(& (objectCategory=person) );" & strAttrs & ";SubTree"
 'strQueryDL = "<LDAP://dc=REGION1,dc=COM>;(& (objectCategory=person)(objectClass=user) );" & strAttrs & ";SubTree"    
 'strQueryDL = "<LDAP://dc=REGION1,dc=COM>;(& (objectCategory=person)(objectClass=user)(sAMAccountName=smith*) );" & strAttrs & ";SubTree"
-
-strQueryDL = "<LDAP://dc=alerj,dc=gov,dc=br>;(& (sAMAccountName=aalmeida) );" & strAttrs & ";SubTree"
+'strQueryDL = "<LDAP://dc=alerj,dc=gov,dc=br>;(& (sAMAccountName=aalmeida) );" & strAttrs & ";SubTree"
+strQueryDL = "<LDAP://DC=nt,DC=embratel,DC=com,DC=br>;(& (sAMAccountName=t3gfba*) );" & strAttrs & ";SubTree"
 
 
 set objCmd = createobject("ADODB.Command")

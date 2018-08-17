@@ -1,3 +1,4 @@
+
 <script language="JavaScript">
 function verificaNavegador() {
 	var ehIE;
@@ -22,7 +23,6 @@ function verificaNavegador() {
 verificaNavegador();
 </script>
 
-<!--#include file="Global.asa"-->
 
 <%
 '-- Inicializa as constantes do tipo Application no caso de não serem lidas pelo Global.Asa
@@ -31,6 +31,7 @@ verificaNavegador();
 'End If
 %>
 <!--#include file="includes/PadraoHTML.asp" -->
+<!--#include file="Global.asa"-->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
