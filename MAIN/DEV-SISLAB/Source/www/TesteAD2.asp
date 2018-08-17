@@ -9,8 +9,8 @@ Set objSysInfo = CreateObject("ADSystemInfo")
 ' Currently logged in User
 'Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
  ' or specific user:
-'Set objUser = GetObject("LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br")
-Set objUser = GetObject("LDAP://CN=aalmeida,OU=,DC=alerj,DC=gov,DC=br")
+Set objUser = GetObject("LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br")
+'Set objUser = GetObject("LDAP://CN=aalmeida,OU=,DC=alerj,DC=gov,DC=br")
 
 'response.End
 

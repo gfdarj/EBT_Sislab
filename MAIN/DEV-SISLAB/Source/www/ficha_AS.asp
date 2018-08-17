@@ -42,41 +42,18 @@ auxtitulo = objSiteRS("AG_TITULO")
 AuxTipoTeste = objSiteRS("TA_DESCRICAO")
 AuxUsername = objSiteRS("AG_USERNAME")
 
+'Response.Write "AQUI"
+'response.End
 
-    Dim email, adress, dc, str_dc
-    dc = ""
-    str_dc = ""
-    email = Split(objSiteRS("AG_USERNAME"), "@")
-    adress = Split(email(1), ".")
-    response.Write email(0) & " ---- " & email(1) & "<BR><BR>"
-    response.Write adress(0) & " ---- " & adress(1) & "<BR><BR>"
-
-    For Each dc in adress
-        str_dc = str_dc & "DC=" & dc & ","
-        response.Write "DC=" & dc & ","
-    Next
-
-    str_dc = "CN=" & email(0) & "," & Left(str_dc, Len(str_dc) - 1)
-    str_dc = "CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
-
-            response.Write "<br><br>str_dc --> " & str_dc & "<BR><BR>"
-
-
-	    Dim objUser, objSysInfo, chr_login
-        Set objSysInfo = Server.CreateObject("ADSystemInfo")
-        'response.write "<br>objSysInfo.UserName: " & objSysInfo.UserName & " / <br>objSysInfo.DomainDNSName: " & objSysInfo.DomainDNSName
-        chr_Login = objSysInfo.UserName
-
-    response.Write "chr_Login: " & chr_Login & " <BR><BR>"
-
-        'Set objUser = GetObject("LDAP://" & objSiteRS("AG_USERNAME"))
-        Set objUser = GetObject("LDAP://" & str_dc)
-
-    response.Write objSiteRS("AG_USERNAME") & " AQUI<BR>"
-    response.Write chr_Login & " AQUI2<BR>"
-    response.End
-
+'Call Ebt.BuscaDadosEmbratel("wsaddi@alerj.gov.br")
 Call Ebt.BuscaDadosEmbratel(objSiteRS("AG_USERNAME"))
+
+response.Write Now & "<BR>"
+response.Write ebt.EhFuncionario & "<BR>"
+response.Write ebt.NomeReduzido  & "<BR>"
+response.Write ebt.Usuario & "<BR>"
+response.end 
+
 
 If Ebt.EhFuncionario Then
 	AuxResponsavel = Ebt.Nome_Reduzido
