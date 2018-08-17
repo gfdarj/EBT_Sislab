@@ -74,11 +74,16 @@ go
 ALTER TABLE agendamento alter column AG_USERNAME VARCHAR(80) NULL
 GO
 
+ALTER TABLE Reserva_ambientes ALTER COLUMN RAM_Responsavel VARCHAR(80) NULL
+GO
+
+ALTER TABLE Orgao ALTER COLUMN ORGA_USERIDCHEFE VARCHAR(80) NULL
+GO
+
 ALTER TABLE UserCRT DROP CONSTRAINT PK__UserCRT__0DAF0CB0
 go
 ALTER TABLE UserCRT alter column userid VARCHAR(80) not null
 go
-
 
 
 
@@ -129,6 +134,8 @@ go
 
 
 
+
+
 /*
 	ATUALIZA OS CAMPOS PARA FICAREM COM O EMAIL @EMBRATEL.COM.BR
 */
@@ -165,6 +172,7 @@ GO
 UPDATE LB_ACOESTOMADAS SET ACT_RESPONSAVEL = LTRIM(RTRIM(LOWER(ACT_RESPONSAVEL))) + '@embratel.com.br'
 GO
 
+
 UPDATE agendamento SET AG_USERNAME = LTRIM(RTRIM(LOWER(AG_USERNAME))) + '@embratel.com.br'
 GO
 UPDATE agendamento SET AG_RESPONSAVEL = LTRIM(RTRIM(LOWER(AG_RESPONSAVEL))) + '@embratel.com.br'
@@ -172,13 +180,14 @@ GO
 UPDATE agendamento SET AG_RAT = LTRIM(RTRIM(LOWER(AG_RAT))) + '@embratel.com.br'
 GO
 
-UPDATE UserCRT SET userid = LTRIM(RTRIM(LOWER(userid))) + '@embratel.com.br'
+UPDATE Reserva_Ambientes SET RAM_Responsavel = LTRIM(RTRIM(LOWER(RAM_Responsavel))) + '@embratel.com.br'
 GO
 
 UPDATE Orgao SET ORGA_USERIDCHEFE = LTRIM(RTRIM(LOWER(ORGA_USERIDCHEFE))) + '@embratel.com.br'
 GO
 
-
+UPDATE UserCRT SET userid = LTRIM(RTRIM(LOWER(userid))) + '@embratel.com.br'
+GO
 
 
 /*
@@ -259,8 +268,6 @@ ALTER TABLE Agendamento ADD AG_TELEFONERESP varchar(50)
 go
 
 ALTER TABLE Orgao ALTER COLUMN ORGA_SIGLA VARCHAR(50) NOT NULL
-GO
-ALTER TABLE Orgao ALTER COLUMN ORGA_USERIDCHEFE VARCHAR(80) NOT NULL
 GO
 
 ALTER TABLE PesquisaSatisfacao ADD CONSTRAINT PK_PesquisaSatisfacao PRIMARY KEY (PSQ_ID)
