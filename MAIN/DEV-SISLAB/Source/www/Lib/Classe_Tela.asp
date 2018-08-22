@@ -153,7 +153,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 
 		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" width="<%=tamanhoTela%>">
 		<tr>
-			<td><%="AQI: " & Env.ebt.Usuario %>
+			<td>
 <%
     'mostra mensagem de acesso não autorizado ao sistema
     If usuario = "" Then
@@ -171,7 +171,6 @@ Private Sub ImprimeImagemSite()
     w_princ = p_tamanhoTela
     PathRelativo = p_PathRelativo
 %>
-
 		<table width="<%=w_princ%>" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td background="<%=PathRelativo%>img/titulo_bg.jpg" bgcolor="#FFFFFF" height="70" width="<%=w_princ%>" align="left">
@@ -185,10 +184,10 @@ Private Sub ImprimeImagemSite()
 				    </td>
 				    <td valign="middle" class="texto" align="right">
 <%  If Env.Usuario <> "" Then %>
-				            <br />
-					        <b>Usuário: <%=Env.Usuario%><br>
-					        <%=Env.nomeAppHtml%>
-					        </b>
+				            <br /><br />
+					        <b><%=Env.nomeAppHtml%></b><br />
+					        <b><%=Env.Ebt.NomeReduzido%></b><br>
+					        <b><%=Env.Usuario%></b><br>
 <%  End If %>
 				    </td>
 				    <td align="right">

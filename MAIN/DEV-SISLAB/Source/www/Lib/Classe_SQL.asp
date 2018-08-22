@@ -1,12 +1,13 @@
 ﻿<%
 Class TSql
 
+    Private chr_Conn
     Private bln_TemErro
     Private chr_MsgErro
     Private p_moduloLog
 
     Public Conexao	'conexao SQL Server
-    Public ConexaoAC	'conexao access
+'    Public ConexaoAC	'conexao access
 
     Private int_TAMANHOPAGINA   'Tamanho da página do Recordset
 
@@ -68,7 +69,9 @@ Class TSql
     End Sub
 
     Private Sub Desconectar()
+        On Error Resume Next
 	    Conexao.Close
+        On Error Goto 0
 	    Set Conexao = Nothing
     End Sub
 
@@ -93,7 +96,7 @@ Class TSql
 
 		if Conexao.Errors.Count <> 0 then
 		    bln_TemErro = True
-		    chr_MsgErro = ConexaoAc.Errors.Description
+		    'chr_MsgErro = ConexaoAc.Errors.Description
             Call Me.LogErro(chr_MsgErro)
 		end if
 
@@ -189,9 +192,9 @@ Class TSql
 
     Private Sub DesconectaBDAccess()
         On Error Resume Next
-	    ConexaoAc.Close
+	    'ConexaoAc.Close
 	    On Error Goto 0
-	    Set ConexaoAc = Nothing
+	    'Set ConexaoAc = Nothing
     End Sub
 
     Private Sub ConectaBDAccess()
@@ -207,13 +210,13 @@ Class TSql
 
     'rw Application("SISLAB_ACCESS_PROVIDER") & chr_Caminho & ";User Id=admin;Password=;"
     're
-	    ConexaoAc.Open Application("SISLAB_ACCESS_PROVIDER") & chr_Caminho & ";User Id=admin;Password=;"
+	    'ConexaoAc.Open Application("SISLAB_ACCESS_PROVIDER") & chr_Caminho & ";User Id=admin;Password=;"
     'rw "<BR>" & Me.ConexaoAc.Errors.Count 
     're
-	    If ConexaoAc.Errors.Count > 0 Then
-		    bln_TemErro = True
-		    chr_MsgErro = Me.ConexaoAc.Errors.Description
-	    End If
+	    'If ConexaoAc.Errors.Count > 0 Then
+		'    bln_TemErro = True
+		'    chr_MsgErro = Me.ConexaoAc.Errors.Description
+	    'End If
 
 	    On Error Goto 0
     End Sub
