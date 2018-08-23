@@ -33,7 +33,7 @@ chr_OrgaoSQL = "--"
 'bln_usuarioCRT = False
 '--
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
 
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
@@ -401,7 +401,7 @@ end if
 	</td>
 	<td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp;
 		<input type=hidden name="Username">
-		<input class="texto1"  READONLY  name="txtEMail" size="30" tabindex="5" maxlength="200">
+		<input class="texto1"  READONLY  name="txtEMail" size="50" tabindex="5" maxlength="80">
 	</td>
 	<td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp;
 		<input class="texto1"  name="txtRamal" size="20" tabindex="6" maxlength="10" >
@@ -753,5 +753,6 @@ if as_referencia <> "" then
 <%
 Set Ebt = Nothing
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
+'call imprimeRodape(RODAPE_OFF)
 %>

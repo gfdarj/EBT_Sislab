@@ -13,8 +13,10 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 	w = "785px" '-- tamanho da coluna
 	if IsEmpty(imprimeMenu) or (imprimeMenu="") then imprimeMenu = false
 %>
-<!doctype html>
-<html>
+<!DOCTYPE html>
+
+<HTML>
+
 <head>
 	<title>
 <%	if titulo = "" or IsEmpty(titulo) then%>
@@ -24,7 +26,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 <%	end if%>
 	</title>
 
-	<meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;" charset="<%=Application("SISLAB_CHARSET")%>">
 	<link rel="stylesheet" href="estilos/principal.css" type="text/css">
 </head>
 
@@ -34,6 +36,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
   <area shape="poly" coords="135,34" href="#">
   <area shape="poly" coords="10,4,175,4,175,43,221,43,235,43,235,62,10,62,10,4" href="<%=retornaInicio()%>" alt="P&aacute;gina Inicial" title="P&aacute;gina Inicial">
 </map>
+
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" border="0">
 <!--<table width="<%=w_princ%>" border="0" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="tbl_principal" style="border: none; display: block;">-->
 <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#FFFFFF" id="Table1" style="border: none; display: block;">
@@ -198,29 +201,36 @@ End Sub
 '---------------------------------------------
 
 Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela, linkVoltar, PathRelativo)
-	Dim chr_Buffer
-
-	Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
-	Response.Addheader "Cache-Control","no-cache, must-revalidate"
-	Response.Addheader "Pragma","no-cache"
-	Response.Buffer = True
-	Response.Expires=0
+    	Dim chr_Buffer
 
 	'-- verifica se a sessao esta expirada
 '	if Request.cookies("SISLAB")("usuario") = "" or IsEmpty(Request.cookies("SISLAB")("usuario")) then
 '	If Not LogaUsuario(replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")) Then
 	If Env.Usuario = "" Then
 		response.redirect "msgAcessoNA.ASP"
-	else
-		dim w
+	Else
+		Dim w
+
 		w = "770px" '-- tamanho da coluna
 		if IsEmpty(tamanhoTela) or (tamanhoTela = "") then tamanhoTela = w_princ
 		if IsEmpty(imprimeMenu) or (imprimeMenu="") then imprimeMenu = false
 
+        'Response.Write "<%@LANGUAGE='VBSCRIPT' CODEPAGE='1252'%" & ">" & VbCrLf
+        Response.CharSet = Application("SISLAB_CHARSET")
+        Response.Clear
+	    Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
+	    Response.Addheader "Cache-Control","no-cache, must-revalidate"
+	    Response.Addheader "Pragma","no-cache"
+	    Response.Buffer = True
+	    Response.Expires=0
+
 		chr_Buffer = _
+            "<!DOCTYPE html>" & VbCrLf & _
+			"" & VbCrLf & _
 			"<html>" & VbCrLf & _
+			"" & VbCrLf & _
 			"	<head>" & VbCrLf & _
-			"	<title>"
+			"	    <title>" & VbCrLf
 
 		'-- Indica em que modo o sistema está sendo executado
 		If Application("SISLAB_AMBIENTE") <> "PRO" Then _
@@ -233,9 +243,11 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 		end if
 
 		chr_Buffer = chr_Buffer & _
-			"	</title>" & VbCrLf & _
-			"	<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>" & VbCrLf & _
-			"	<link rel='stylesheet' href='" & PathRelativo & "estilos/principal.css' type='text/css'>" & VbCrLf & _
+			"	    </title>" & VbCrLf & _
+			"" & VbCrLf & _
+            "       <meta charset='" & p_CharSet & "'>" & VbCrLf & _
+			"	    <!--<meta http-equiv='Content-Type' content='text/html; charset='" & Application("SISLAB_CHARSET") & "'>-->" & VbCrLf & _
+			"	    <link rel='stylesheet' href='" & PathRelativo & "estilos/principal.css' type='text/css'>" & VbCrLf & _
 			"	</head>"
 
 		chr_Buffer = chr_Buffer & _
@@ -248,7 +260,7 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 		chr_Buffer = chr_Buffer & _
 			"<div id='divAguarde' class='tempo' style='display: none;'><table><tr><td><img src='" & PathRelativo & "img/tempo.gif' alt='Aguarde'></td><td>&nbsp;&nbsp;Aguarde...</td></tr></table></div>" & VbCrLf
 
-		Response.Write chr_Buffer
+		Response.Write chr_Buffer ' & "<BR><BR><BR><BR>AQUIIIII"
 
 		if imprimeImagem then%>
 
@@ -264,10 +276,10 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
                         <img src="<%=PathRelativo%>img/titulo_centro.jpg" height="70" border="0" id="imgTituloCentro" style="display: inline;">
 				    </td>
 				    <td valign="middle" class="texto" align="right">
-				            <br />
-					        <b>Usu&aacute;rio: <%=Env.Usuario%><br>
-					        <%=Env.nomeApp%>
-					        </b>
+				            <br /><br />
+					        <b><%=Env.nomeAppHtml%></b><br />
+					        <b><%=Env.Ebt.NomeReduzido%></b><br>
+					        <b><%=Env.Usuario%></b><br>
 				    </td>
 				    <td align="right">
                         <img src="<%=PathRelativo%>img/titulo_direita.jpg" height="70" border="0" id="imgTituloDireita" style="display: inline;">
@@ -367,21 +379,21 @@ stm_em();
 		<table width="<%=w_princ%>" cellpadding="0" cellspacing="0" border="0" style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
 			<td class="realce1"> <!-- #d9d9d9 -->
-				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="display: block;">
+				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="display: 1block;">
 				<tr valign="middle">
 					<td valign="middle">
 						<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">&nbsp;<span style="color: red;">&raquo;</span>&nbsp;
 							<i><%=nomeTela%></i>
 						</span>
 					</td>
-					<td align="right" id="td2_tbl_principal_nomeform" style="display: inline;">
+					<td align="right" id="td2_tbl_principal_nomeform" style="display: 1inline;">
 <%			if ucase(linkVoltar) <> "NENHUM" then
 				if ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
 						</b><a href="javascript:<%=linkVoltar%>;">Voltar</a>
 						&nbsp;&nbsp;
 <%				end if
 				if ucase(linkVoltar) <> "SO_LINK" then%>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 14px; width: 16px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela"></a></button>
+						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 17px; width: 25px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela"></a></button>
 <%				end if
 			end if%>
 						&nbsp;&nbsp;

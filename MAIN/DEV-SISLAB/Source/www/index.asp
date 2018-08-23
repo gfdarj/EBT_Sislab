@@ -1,26 +1,26 @@
 
-<script language="JavaScript">
-function verificaNavegador() {
-	var ehIE;
-	var versao;
+<script type="text/javascript">
+    function verificaNavegador() {
+	    var ehIE;
+	    var versao;
 	
-	// Não é um browser IE, pode ser qualquer outro
-	ehIE = navigator.userAgent.indexOf("MSIE");
+	    // Não é um browser IE, pode ser qualquer outro
+	    ehIE = navigator.userAgent.indexOf("MSIE");
 
-	if(ehIE == -1)
-	{
-	    //location.href = 'indexNS.asp';
-	    alert('Atenção !\n\nSeu navegador não é o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoíveis no seu browser.');
-	}
-	else
-	{
-		versao = navigator.userAgent.substring(ehIE);
-		ehIE = versao.indexOf(";");
-		if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			alert('Atenção !\n\nVocê está usando uma versão do Internet Explorer inferior à 5.5. Alguns recursos do sistema SISLAB podem não funcionar corretamente nesta versão.\n\nPor favor, atualize o seu browser antes de continuar.');
-	}
-}
-verificaNavegador();
+	    if(ehIE == -1)
+	    {
+	        //location.href = 'indexNS.asp';
+	        alert('Atenção !\n\nSeu navegador não é o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoíveis no seu browser.');
+	    }
+	    else
+	    {
+		    versao = navigator.userAgent.substring(ehIE);
+		    ehIE = versao.indexOf(";");
+		    if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
+			    alert('Atenção !\n\nVocê está usando uma versão do Internet Explorer inferior à 5.5. Alguns recursos do sistema SISLAB podem não funcionar corretamente nesta versão.\n\nPor favor, atualize o seu browser antes de continuar.');
+	    }
+    }
+    verificaNavegador();
 </script>
 
 

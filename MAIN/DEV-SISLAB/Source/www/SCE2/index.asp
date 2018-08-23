@@ -16,6 +16,9 @@ Dim chr_empresa
 
 chr_User = Env.Usuario
 
+'response.write "<BR><BR><BR><BR>" & env.UsuarioSCE() & "<BR>"
+'response.write env.PerfilSCE()
+
 Tela.SetNomeTela = "SCE"
 Call Tela.MostraCabecalho()
 

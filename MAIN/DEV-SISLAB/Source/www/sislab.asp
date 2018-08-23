@@ -1,44 +1,45 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
-<!--#include file="includes/controleshtml.asp" -->
 <%
 Dim indicador : indicador = "&nbsp;&nbsp;&nbsp;<span class='cinza1'>&raquo;</span>&nbsp;"
 Dim objSiteRS, cont, sSQL, tot
 Dim ehRat
 
-Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AdministraÁ„o do SISLAB", "location.href='index.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administra√ß√£o do SISLAB", "location.href='index.asp'", "")
 
 ehRat = Env.EhRat
 'ehrat = false
 %>
-<script>
-function MostraDFD(){
-	var janela;
-	janela = window.open("eventosinternos.asp?hdnEvento=13", 'DTE', "toolbar=1,location=0,directories=0,status=1,menubar=0,scrollbars=1,resizable=1,width=640,height=480");
-	janela.focus();
-}
+<script type="text/javascript">
+    function MostraDFD(){
+	    var janela;
+	    janela = window.open("eventosinternos.asp?hdnEvento=13", 'DTE', "toolbar=1,location=0,directories=0,status=1,menubar=0,scrollbars=1,resizable=1,width=640,height=480");
+	    janela.focus();
+    }
 </script>
 
 <style>
-br {
-	font-size: 3pt;
-}
+    br {
+	    font-size: 3pt;
+    }
 </style>
+
+
 <table border="0" width="100%" class="tabela1">
 <tr valign=top>
 	<!-- Lado Esquerdo -->
 	<td  valign=top width="49%">
 		<table width="100%" cellpadding="2" cellpadding="0" class="tabela1">
-		<tr><th align="left">AlocaÁ„o de RH</th></tr>
+		<tr><th align="left">Aloca√ß√£o de RH</th></tr>
 		<tr>
 			<td><A href="agendamento/default.htm" class="menu">
-			<%=indicador%>Alocar Pessoal a Tarefas (treinamento, fÈrias, ...)</a>
+			<%=indicador%>Alocar Pessoal a Tarefas (treinamento, f√©rias, ...)</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="consulta_pessoal.asp" class="menu">	
-			<%=indicador%>Consultar AlocaÁ„o de Pessoal</a>
+			<%=indicador%>Consultar Aloca√ß√£o de Pessoal</a>
 			</td>
 		</tr>
 		</table>
@@ -72,17 +73,17 @@ br {
 		</tr>
 		<tr>
 			<td><A href="Cons_Ind_pesqsCRSem.asp" class="menu">
-			<%=indicador%>Pesquisa de SatisfaÁ„o - Consolidado</a>
+			<%=indicador%>Pesquisa de Satisfa√ß√£o - Consolidado</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="cons_indicadores.asp" class="menu">
-			<%=indicador%>Indicadores de Demanda e EficiÍncia</a>
+			<%=indicador%>Indicadores de Demanda e Efici√™ncia</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="cons_indicadoresNC.asp" class="menu">
-			<%=indicador%>Indicadores de N„o Conformidades</a>
+			<%=indicador%>Indicadores de N√£o Conformidades</a>
 			</td>
 		</tr>
 		</table>
@@ -93,12 +94,12 @@ br {
 		</tr>
 		<tr>
 			<td><A href="form_remarca_teste_sel.asp?tipo_remarca=S" class="menu">
-			<%=indicador%>Solicitar RemarcaÁ„o de um ServiÁo</a>
+			<%=indicador%>Solicitar Remarca√ß√£o de um Servi√ßo</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="form_valida_remarca_sel.asp" class="menu">
-			<%=indicador%>Validar RemarcaÁ„o do ServiÁo</a>
+			<%=indicador%>Validar Remarca√ß√£o do Servi√ßo</a>
 			</td>
 		</tr>
 		</table>
@@ -112,14 +113,14 @@ If ehRAT then
 			<th align="left">Administra&ccedil;&atilde;o do SISLAB</th>
 		</tr>
 		<tr>
-			<td><A href="mensagems_mudanca.asp" class="menu" title="Altera as mensagems autom·ticas quando houver mudanÁa na situaÁ„o de uma AS">
-			<%=indicador%>Altera mensagems de mudanÁa de situaÁ„o da AS</a>
+			<td><A href="mensagems_mudanca.asp" class="menu" title="Altera as mensagems autom√°ticas quando houver mudan√ßa na situa√ß√£o de uma AS">
+			<%=indicador%>Altera mensagems de mudan√ßa de situa√ß√£o da AS</a>
 			</td>
 		</tr>
 <%
 End If%>
 		<tr>
-			<td><A href="CadMensagem.asp" class="menu" title="Altera outras mensagems enviadas autom·ticamnte pelo SISLAB">
+			<td><A href="CadMensagem.asp" class="menu" title="Altera outras mensagems enviadas autom√°ticamnte pelo SISLAB">
 			<%=indicador%>Altera outras mensagems de e-mails autom&aacute;ticas</a>
 			</td>
 		</tr>
@@ -128,12 +129,12 @@ If ehRAT then
 %>
 <!--		<tr>
 			<td><A href="CadConfiguracao.asp" class="menu">
-			<%=indicador%>ConfiguraÁ„o dos Par‚metros do sistema</a>
+			<%=indicador%>Configura√ß√£o dos Par√¢metros do sistema</a>
 			</td>
 		</tr>-->
 		<tr>
 			<td><A href="altera_datas.asp" class="menu">
-			<%=indicador%>Corrige datas de AS¥s e OS¥s</a>
+			<%=indicador%>Corrige datas de AS¬¥s e OS¬¥s</a>
 			</td>
 		</tr>
 		<tr>
@@ -143,7 +144,7 @@ If ehRAT then
 		</tr>
 		<tr>
 			<td><A href="includes/adm/bdxls.asp" class="menu">
-			<%=indicador%>Comandos SQL - ExportaÁ„o para Excel</a>
+			<%=indicador%>Comandos SQL - Exporta√ß√£o para Excel</a>
 			</td>
 		</tr>
 		<tr>
@@ -163,17 +164,17 @@ If ehRAT then
 		</tr>
 		<tr>
 			<td><A href="rel_historicoAS_datas.asp" class="menu">
-			<%=indicador%>HistÛrico dos Agendamentos por ordem de data</a>
+			<%=indicador%>Hist√≥rico dos Agendamentos por ordem de data</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="rel_historicoAS_id.asp" class="menu">
-			<%=indicador%>HistÛrico dos Agendamentos por ordem de cadastro</a>
+			<%=indicador%>Hist√≥rico dos Agendamentos por ordem de cadastro</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="rel_numeracao_as.asp" class="menu">
-			<%=indicador%>Verifica NumeraÁ„o dos Agendamentos</a>
+			<%=indicador%>Verifica Numera√ß√£o dos Agendamentos</a>
 			</td>
 		</tr>
 <%
@@ -195,16 +196,16 @@ end if
 		<br>
 		<table width="100%" cellpadding="2" cellpadding="0" class="tabela1">
 		<tr>
-			<th align="left">EspecificaÁıes de Teste</th>
+			<th align="left">Especifica√ß√µes de Teste</th>
 		</tr>
 		<tr>
 			<td><A href="form_especifica_teste.asp" class="menu">
-			<%=indicador%>Incluir Nova EspecificaÁ„o de Teste</a>
+			<%=indicador%>Incluir Nova Especifica√ß√£o de Teste</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="form_atualiza_teste_sel.asp" class="menu">
-			<%=indicador%>Atualizar EspecificaÁ„o de Teste</a>
+			<%=indicador%>Atualizar Especifica√ß√£o de Teste</a>
 			</td>
 		</tr>
 		</table>
@@ -213,7 +214,7 @@ end if
 
 		<table width="100%" cellpadding="2" cellpadding="0" class="tabela1">
 		<tr>
-			<th align="left">GerÍncia de Arquivos no Site</th>
+			<th align="left">Ger√™ncia de Arquivos no Site</th>
 		</tr>
 		<tr>
 			<td><a href="fotos.asp" class="menu">
@@ -222,7 +223,7 @@ end if
 		</tr>
 		<tr>
 			<td><a href="Sel_Cad_Plantao.asp" class="menu">
-			<%=indicador%>Cadastrar NotÌcia</a>
+			<%=indicador%>Cadastrar Not√≠cia</a>
 			</td>
 		</tr>
 		<tr>
@@ -252,12 +253,12 @@ If ehRAT Then
 		</tr>
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;<A href="CadPlataformaEquipamentoHist.asp" class="menu">
-			<%=indicador%>HistÛrico de mudanÁas em plataformas</a>
+			<%=indicador%>Hist√≥rico de mudan√ßas em plataformas</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="Rel_Inv_Equip.asp" class="menu">
-			<%=indicador%>RelatÛrio Geral de Equipamentos</a>
+			<%=indicador%>Relat√≥rio Geral de Equipamentos</a>
 			</td>
 		</tr>
 		</table>
@@ -265,21 +266,21 @@ If ehRAT Then
 
 		<table width="100%" cellpadding="2" cellpadding="0" class="tabela1">
 		<tr>
-			<th align="left">Cadastros Intermedi·rios</th>
+			<th align="left">Cadastros Intermedi√°rios</th>
 		</tr>
 		<tr>
 			<td><A href="CadAreaTecnologica.asp" class="menu">
-			<%=indicador%>Cadastro de ¡rea TecnolÛgica</a>
+			<%=indicador%>Cadastro de √Årea Tecnol√≥gica</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="CadTransporte.asp?altera=S" class="menu">
-			<%=indicador%>Cadastro de Hor·rios do Transporte CRT / Sede</a>
+			<%=indicador%>Cadastro de Hor√°rios do Transporte CRT / Sede</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="CadOrgao.asp" class="menu">
-			<%=indicador%>Cadastro de ”rg„os (Diretores e Gerentes)</a>
+			<%=indicador%>Cadastro de √ìrg√£os (Diretores e Gerentes)</a>
 			</td>
 		</tr>
 		<tr>
@@ -289,7 +290,7 @@ If ehRAT Then
 		</tr>
 		<tr>
 			<td><A href="CadServPlataforma.asp?Acao=S" class="menu">
-			<%=indicador%>Cadastro de ServiÁos</a>
+			<%=indicador%>Cadastro de Servi√ßos</a>
 			</td>
 		</tr>
 		<tr>
@@ -309,17 +310,17 @@ If ehRAT Then
 		</tr>
 		<tr>
 			<td><A href="CadTipoTeste.asp" class="menu">
-			<%=indicador%>Cadastro de Tipos de Teste (EspecificaÁ„o)</a>
+			<%=indicador%>Cadastro de Tipos de Teste (Especifica√ß√£o)</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="CadLbTipoOcorrencia.asp" class="menu">
-			<%=indicador%>Cadastro de Tipos de OcorrÍncia LogBook</a>
+			<%=indicador%>Cadastro de Tipos de Ocorr√™ncia LogBook</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="Cadusercrt.asp" class="menu">
-			<%=indicador%>Cadastro de Usu·rio CRT</a>
+			<%=indicador%>Cadastro de Usu√°rio CRT</a>
 			</td>
 		</tr>
 		<tr>
@@ -339,12 +340,12 @@ End If
 		</tr>
 		<tr>
 			<td><A href="circuitos/index.asp" class="menu">
-			<%=indicador%>Sistema de Gest„o de Facilidades</a>
+			<%=indicador%>Sistema de Gest√£o de Facilidades</a>
 			</td>
 		</tr>
 		<tr>
 			<td><A href="javascript:MostraDFD()" class="menu">
-			<%=indicador%>DTE - SolicitaÁ„o de ServiÁo</a>
+			<%=indicador%>DTE - Solicita√ß√£o de Servi√ßo</a>
 			</td>
 		</tr>
 		</table>
@@ -354,5 +355,6 @@ End If
 </table>
 </font>
 <%
-Call imprimeRodape(RODAPE_On)
+Call Tela.MostraRodape()
+'Call imprimeRodape(RODAPE_On)
 %>

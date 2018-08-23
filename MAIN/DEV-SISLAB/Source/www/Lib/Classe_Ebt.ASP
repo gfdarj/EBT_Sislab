@@ -170,8 +170,8 @@ Class TEbt
 		    bln_ehRAT = CBool(objRS("RAT"))
 		    bln_ehGQ = CBool(objRS("GQ"))
 		    bln_usuarioCRT_Cadastrado = True
-		    bln_UsuarioSCE = (int_PerfilSCE > 0)
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
+		    bln_UsuarioSCE = (int_PerfilSCE > 0)
 		    chr_Sigla_Orgao = objRS("ORGA_SIGLA")
             chr_Ramal = objRS("RAMAL")
             chr_Celular = objRS("CELULAR")

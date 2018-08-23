@@ -29,13 +29,16 @@ Dim ehCrt : ehCrt = Env.UsuarioCRT
 
 '###
 Dim data_pesquisa : data_pesquisa = Right("0"&day(date()),2) & "/" & Right("0"&month(date()),2) & "/" & year(date()) & " " & Right("0"&Hour(Now),2) & ":" & Right("0"&Minute(Now),2)
+
 Dim Ebt
+Set Ebt = New TEbt
+
 
 bln_ExistePesquisa = False
 
 auxidservico = 0
 auxusername = Env.Usuario
-auxEmail = Env.Usuario & "@embratel.com.br"
+auxEmail = Env.Usuario '& "@embratel.com.br"
 auxag = ""
 
 auxag = Request("num_ag")
@@ -122,7 +125,6 @@ If VVVNZ(auxag) Then
 		Call Env.RecordSet(true, objRS, sSQL)
 
 		If Not objRS.Eof Then 
-			Set Ebt = New TEbt
 %>
 	&nbsp;&nbsp;&nbsp;
 	<b>Exibir Solicitante:</b>
@@ -132,20 +134,19 @@ If VVVNZ(auxag) Then
 	<option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>
 	<option value="--">-----------------------</option>
 <%			While Not objRS.Eof
-				'On Error Resume Next
-				'Call Ebt.BuscaDadosEmbratel(objRS("AG_USERNAME"))
-				'chr_NomeReduzido = Ebt.Nome_Reduzido
-				'On Error Goto 0
+                Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
+
 				If objRS("AG_USERNAME") <> Env.Usuario Then %>
-	<option value="<%=objRS("AG_USERNAME")%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(chr_NomeReduzido), "", " - " & chr_NomeReduzido)%></option>
+	<option value="<%=objRS("AG_USERNAME")%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
 <%				End If
+
 				objRS.MoveNext
-			WEnd%>
+			WEnd %>
 	</select>
     <script type="text/javascript" language="javascript">
         document.all.solicitante.value = '<%=solicitante_procurado%>';
     </script>
-<%			Set Ebt = Nothing
+<%
 		End If
 	Else %>
 	<input type="hidden" name="solicitante" value="<%=auxusername%>">
@@ -229,7 +230,7 @@ Else
 	sSQL = "SELECT TOP 1 * FROM PesquisaSatisfacao WHERE PSQ_NAg IN (" & auxag & ")"
 	Call Env.RecordSet(true, objRS_Pesq, sSQL)
 
-	If not (objRS_Pesq.Eof and objRS_Pesq.Bof) Then
+	If Not (objRS_Pesq.Eof and objRS_Pesq.Bof) Then
 		com_comunica = objRS_Pesq("PSQ_C1")
 		com_cortesia = objRS_Pesq("PSQ_C2")
 		com_presteza = objRS_Pesq("PSQ_C3")
@@ -257,15 +258,18 @@ Else
 
 	Else
 
-		'### Se nao existe a pesquisa, entao busco os dados do usuario solicitante do AS
-		If Left(Application("SISLAB_AMBIENTE"), 3) <> "LOC" Then
+		'### Se NÃO existe a pesquisa, entao busco os dados do usuario solicitante do AS
+		If UCase(Application("SISLAB_AMBIENTE")) <> "LOC_MEU_NOTE" Then
+
+            Call Ebt.LoginUsuario(ag_solicitante)
+
 
 			Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
 
 			'Se o array so tiver 1 dimensao entao selecionou apenas 1 AS e o solicitante do Agendamento
 			'If UBound(arrAG) = 0 Then
 				auxusername = ag_solicitante
-				auxEmail = ag_solicitante & "@embratel.com.br"
+				auxEmail = ag_solicitante '& "@embratel.com.br"
 				Matricula = obj1.GetMatricula(ag_solicitante)
 			'Else
 			'	Matricula = obj1.GetMatricula(auxusername)
@@ -282,7 +286,7 @@ Else
 			end if
 		Else
 			auxusername = Env.usuario
-			auxEmail = LCase(auxusername) & "@embratel.com.br"
+			auxEmail = LCase(auxusername) '& "@embratel.com.br"
 			Matricula = "123456"
 			auxnome = "[LOCAL] JOSE PAULA SILVA JUNIOR"
 			auxOrgao = "VPO-28"
@@ -616,6 +620,8 @@ desabilitaUserinfo(<%=IIf(ehCRT, "false", "true")%>);
 </script>
 <%
 end if
+
+Set Ebt = Nothing
 
 if request("emjanela") = "1" or auxag = "" then
 	Call imprimeRodape(RODAPE_OFF)

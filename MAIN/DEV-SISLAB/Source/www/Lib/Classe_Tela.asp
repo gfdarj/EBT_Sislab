@@ -13,6 +13,7 @@ Private bln_TemErro
 Private chr_MsgErro
 
 Private p_estilo
+Private p_CharSet
 Private p_titulo
 Private p_imprimeMenu
 Private p_imprimeImagem
@@ -35,6 +36,12 @@ Private Sub Class_Initialize()
     p_linkVoltar = "history.go(-1)"
     p_PathRelativo = ""
     p_estilo = "principal.css"
+
+    If Application("SISLAB_CHARSET") = "" Then
+        p_CharSet = "iso-8859-1"
+    Else
+        p_CharSet = Application("SISLAB_CHARSET")
+    End If
 
     Set Mensagem = New TMensagem
 End Sub
@@ -77,7 +84,7 @@ Public Sub MostraCabecalho
     Call Me.ImprimeCabecalho2(p_titulo, p_imprimeMenu, p_imprimeImagem, p_tamanhoTela, p_nomeTela, p_linkVoltar, p_PathRelativo)
 End Sub
 
-'mantida para ter um pouco de compatibilidade com as chamadas j· existentes
+'mantida para ter um pouco de compatibilidade com as chamadas j√° existentes
 Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela, linkVoltar, PathRelativo)
 	Dim chr_Buffer
 	Dim usuario
@@ -92,6 +99,8 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
     p_linkVoltar = linkVoltar
     p_PathRelativo = PathRelativo
 
+    Response.CharSet = Application("SISLAB_CHARSET")
+    Response.Clear
 	Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 	Response.Addheader "Cache-Control","no-cache, must-revalidate"
 	Response.Addheader "Pragma","no-cache"
@@ -102,18 +111,19 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	dim w
 	w = "770px" '-- tamanho da coluna
 
-	chr_Buffer = _
+	chr_Buffer = VbCrLf & _ 
         "<!DOCTYPE html>" & VbCrLf & _
+    	"" & VbCrLf & _
 		"<html>" & VbCrLf & _
 		"	<head>" & VbCrLf & _
-		"	<title>"
+		"	    <title>" & VbCrLf
 
-	'-- Indica em que modo o sistema est· sendo executado
+	'-- Indica em que modo o sistema est√° sendo executado
 	If Application("SISLAB_AMBIENTE") <> "PRO" Then _
 			chr_Buffer = chr_Buffer & "[" & Application("SISLAB_AMBIENTE") & "] "
 
 	if titulo = "" or IsEmpty(titulo) then
-		chr_Buffer = chr_Buffer & "SISLAB - Site do Centro de ReferÍncia TecnolÛgica"
+		chr_Buffer = chr_Buffer & "SISLAB - Site do Centro de Refer√™ncia Tecnol√≥gica"
 	else
 		chr_Buffer = chr_Buffer & titulo
 	end if
@@ -122,10 +132,10 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 '		"	<meta http-equiv='Content-Type' content='text/html;' charset='iso-8859-1'>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
-		"	</title>" & VbCrLf & _
-        "   <meta charset='iso-8859-1'>" & VbCrLf & _
-		"	<link rel='stylesheet' href='" & PathRelativo & "estilos/" & p_estilo & "' type='text/css'>" & VbCrLf & _
-		"	</head>"
+		"       </title>" & VbCrLf & _
+        "       <meta charset='" & p_CharSet & "'>" & VbCrLf & _
+		"       <link rel='stylesheet' href='" & PathRelativo & "estilos/" & p_estilo & "' type='text/css'>" & VbCrLf & _
+		"   </head>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
 		"<script language='JavaScript' src='" & PathRelativo & "includes/currency.js'></script>" & VbCrLf & _
@@ -144,18 +154,18 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	end if	'Imprime Tela   
 %>
 
-<!--------------------- Imprime o nome do formul·rio na tela --------------------->
+<!--------------------- Imprime o nome do formul√°rio na tela --------------------->
 <%		if p_nomeTela <> "" And usuario <> "" then
             Call ImprimeNomeTela
 		end if
 %>
 <!--------------------- Imprime a tela Principal --------------------->
 
-		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" width="<%=tamanhoTela%>">
+		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" width="<%=p_tamanhoTela%>">
 		<tr>
 			<td>
 <%
-    'mostra mensagem de acesso n„o autorizado ao sistema
+    'mostra mensagem de acesso n√£o autorizado ao sistema
     If usuario = "" Then
         Response.Write Mensagem.AcessoNegadoSistema
         Call MostraRodape()
@@ -216,72 +226,74 @@ Private Sub ImprimeMenu() %>
     document.close();
 	//-->
 </script>
-<script type="text/javascript" language="JavaScript1.2">
-<!--
-stm_bm(["tubtehr",400,"","<%=p_PathRelativo%>img/blank.gif",1,"0","stgct()",0,0,250,0,1000,1,0,0,"","",0],this);
-stm_bp("p0",[0,4,0,0,0,2,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
-stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=p_PathRelativo%>index.asp","_self","","Retorna ‡ p·gina principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
-stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i1","p0i0",[0,"ServiÁos","","",-1,-1,0,"","_self","","ServiÁos e Agendamentos","","",0,0,0,"<%=p_PathRelativo%>img/arrow_r.gif","<%=p_PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
-stm_bp("p1",[1,4,0,0,0,3,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,1,1,"#006699"]);
-stm_aix("p1i0","p0i1",[0,"Agendamentos","","",-1,-1,0,"","_self","","Agendamentos - OpÁıes"]);
-stm_bp("p2",[1,2,0,0,0,3,0,0,100,"",-2,"",-2,90,0,0,"#7f7f7f","#ffffff","",3,1,1,"#000000"]);
-stm_aix("p2i0","p0i1",[0,"Novo","","",-1,-1,0,"<%=p_PathRelativo%>CadAgendamentoCliente.asp","_self","","Cria um agendamento","","",0,0,0,"","",0,0]);
-stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=p_PathRelativo%>rel_ativ.asp","_self","","Acompanha a execuÁ„o de um agendamento e seu resultado"]);
-stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=p_PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execuÁ„o de um agendamento"]);
-<%				If Env.UsuarioCRT Then %>
-stm_aix("p2i3","p0i1",[0,"RelatÛrio de Acompanhamento","","",-1,-1,0,"<%=p_PathRelativo%>REL_GQ_filtro.asp","_self","","RelatÛrio de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-<%				End If %>
-stm_ep();
-stm_aix("p1i1","p0i1",[0,"Conhecendo o CRT","","",-1,-1,0,"","_self","","Conhecendo o CRT"]);
-stm_bpx("p3","p2",[]);
-stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodaÁ„o e salas disponÌveis"]);
-stm_aix("p3i1","p2i0",[0,"CÛdigo de …tica","","",-1,-1,0,"http://ntspo907/hpembratel/pdf/codigo_de_etica_embrapar.pdf","_self","","CÛdigo de …tica"]);
-stm_aix("p3i2","p2i0",[0,"Equipe / Infra-estrutura Interna","","",-1,-1,0,"<%=p_PathRelativo%>equ_EstIn.asp","_self","","Equipe / Infra-estrutura Interna"]);
 
-<%				'-- se for do CRT exibe o link para o servidor local
-				If Env.usuarioCRT Then %>
-stm_aix("p3i3","p2i3",[0,"EspaÁo CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","EspaÁo reservado aos trabalhos internos do CRT"]);
-<%				End If %>
+<script type="text/javascript">
+    <!--
+    stm_bm(["tubtehr",400,"","<%=p_PathRelativo%>img/blank.gif",1,"0","stgct()",0,0,250,0,1000,1,0,0,"","",0],this);
+    stm_bp("p0",[0,4,0,0,0,2,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
+    stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=p_PathRelativo%>index.asp","_self","","Retorna √† p√°gina principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
+    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
+    stm_aix("p0i1","p0i0",[0,"Servi√ßos","","",-1,-1,0,"","_self","","Servi√ßos e Agendamentos","","",0,0,0,"<%=p_PathRelativo%>img/arrow_r.gif","<%=p_PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
+    stm_bp("p1",[1,4,0,0,0,3,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,1,1,"#006699"]);
+    stm_aix("p1i0","p0i1",[0,"Agendamentos","","",-1,-1,0,"","_self","","Agendamentos - Op√ß√µes"]);
+    stm_bp("p2",[1,2,0,0,0,3,0,0,100,"",-2,"",-2,90,0,0,"#7f7f7f","#ffffff","",3,1,1,"#000000"]);
+    stm_aix("p2i0","p0i1",[0,"Novo","","",-1,-1,0,"<%=p_PathRelativo%>CadAgendamentoCliente.asp","_self","","Cria um agendamento","","",0,0,0,"","",0,0]);
+    stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=p_PathRelativo%>rel_ativ.asp","_self","","Acompanha a execu√ß√£o de um agendamento e seu resultado"]);
+    stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=p_PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execu√ß√£o de um agendamento"]);
+    <%				If Env.UsuarioCRT Then %>
+    stm_aix("p2i3","p0i1",[0,"Relat√≥rio de Acompanhamento","","",-1,-1,0,"<%=p_PathRelativo%>REL_GQ_filtro.asp","_self","","Relat√≥rio de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+    <%				End If %>
+    stm_ep();
+    stm_aix("p1i1","p0i1",[0,"Conhecendo o CRT","","",-1,-1,0,"","_self","","Conhecendo o CRT"]);
+    stm_bpx("p3","p2",[]);
+    stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomoda√ß√£o e salas dispon√≠veis"]);
+    stm_aix("p3i1","p2i0",[0,"C√≥digo de √âtica","","",-1,-1,0,"http://ntspo907/hpembratel/pdf/codigo_de_etica_embrapar.pdf","_self","","C√≥digo de √âtica"]);
+    stm_aix("p3i2","p2i0",[0,"Equipe / Infra-estrutura Interna","","",-1,-1,0,"<%=p_PathRelativo%>equ_EstIn.asp","_self","","Equipe / Infra-estrutura Interna"]);
 
-stm_aix("p3i4","p2i0",[0,"HistÛrico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","HistÛrico do Centro de ReferÍncia TecnolÛgica"]);
-stm_aix("p3i5","p2i0",[0,"LocalizaÁ„o / ¡rea","","",-1,-1,0,"<%=p_PathRelativo%>loc_area.asp","_self","","LocalizaÁ„o e ·rea construÌda"]);
-stm_aix("p3i6","p2i0",[0,"Manual do Sistema de Gest„o","","",-1,-1,0,"arquivos/MSG Rev 08 de 20-02-06 .pdf","_self","","Manual do Sistema de Gest„o"]);
-stm_aix("p3i7","p2i0",[0,"Videos do CRT","","",-1,-1,0,"videos.asp","_self","","VÌdeos do CRT"]);
-stm_ep();
+    <%				'-- se for do CRT exibe o link para o servidor local
+				    If Env.usuarioCRT Then %>
+    stm_aix("p3i3","p2i3",[0,"Espa√ßo CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","Espa√ßo reservado aos trabalhos internos do CRT"]);
+    <%				End If %>
 
-<%				If Env.usuarioCRT_Cadastrado Then%>
-//stm_aix("p1i2","p3i7",[0,"Controle de ConsumÌveis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de ConsumÌveis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-<%				End If%>
+    stm_aix("p3i4","p2i0",[0,"Hist√≥rico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","Hist√≥rico do Centro de Refer√™ncia Tecnol√≥gica"]);
+    stm_aix("p3i5","p2i0",[0,"Localiza√ß√£o / √Årea","","",-1,-1,0,"<%=p_PathRelativo%>loc_area.asp","_self","","Localiza√ß√£o e √°rea constru√≠da"]);
+    stm_aix("p3i6","p2i0",[0,"Manual do Sistema de Gest√£o","","",-1,-1,0,"arquivos/MSG Rev 08 de 20-02-06 .pdf","_self","","Manual do Sistema de Gest√£o"]);
+    stm_aix("p3i7","p2i0",[0,"Videos do CRT","","",-1,-1,0,"videos.asp","_self","","V√≠deos do CRT"]);
+    stm_ep();
 
-stm_aix("p1i3","p2i0",[0,"Sistemas de Gest„o","","",-1,-1,0,"<%=p_PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gest„o disponÌveis para visualizaÁ„o"]);
-stm_aix("p1i4","p2i0",[0,"Lista de Atividades do CRT","","",-1,-1,0,"<%=p_PathRelativo%>sit_crt.asp","_self","","Exibe as atividades do CRT"]);
-stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=p_PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorrÍncias"]);
-stm_aix("p1i6","p2i0",[0,"OcupaÁ„o dos Ambientes","","",-1,-1,0,"<%=p_PathRelativo%>ambientes/cons_agenda.asp","_self","","Cadastro e reserva de salas"]);
-stm_aix("p1i7","p0i1",[0,"Pesquisa de SatisfaÁ„o","","",-1,-1,0,"","_self","","Pesquisa de SatisfaÁ„o"]);
-stm_bpx("p4","p2",[]);
-stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=p_PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfaÁ„o"]);
-stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por n˙mero do agendamento"]);
-stm_ep();
-stm_aix("p1i8","p0i1",[0,"Recursos DisponÌveis","","",-1,-1,0,"","_self","","Recursos DisponÌveis"]);
-stm_bpx("p5","p2",[]);
-stm_aix("p5i0","p2i0",[0,"LogÌstica","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","LogÌstica"]);
-stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
-stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=p_PathRelativo%>CadTransporte.asp","_self","","Hor·rios do transporte para o CRT"]);
-stm_ep();
-//stm_aix("p1i9","p2i0",[0,"Sugestıes (Fale Conosco)","","",-1,-1,0,"<%'=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
-stm_ep();
-<%				if Env.ehRAT or Env.ehRT then %>
-stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i2","p2i0",[0,"AdministraÁ„o do Site","","",-1,-1,0,"<%=p_PathRelativo%>sislab.asp","_self","","AdministraÁ„o do SISLAB"]);
-stm_ep();
-<%				end if %>
-stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i2","p2i0",[0,"Fale Conosco","","",-1,-1,0,"<%=p_PathRelativo%>fale.asp","_self","","AdministraÁ„o do SISLAB"]);
-stm_em();
-//-->
-</script> <%
+    <%				If Env.usuarioCRT_Cadastrado Then%>
+    //stm_aix("p1i2","p3i7",[0,"Controle de Consum√≠veis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consum√≠veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+    stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+    <%				End If%>
+
+    stm_aix("p1i3","p2i0",[0,"Sistemas de Gest√£o","","",-1,-1,0,"<%=p_PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gest√£o dispon√≠veis para visualiza√ß√£o"]);
+    stm_aix("p1i4","p2i0",[0,"Lista de Atividades do CRT","","",-1,-1,0,"<%=p_PathRelativo%>sit_crt.asp","_self","","Exibe as atividades do CRT"]);
+    stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=p_PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorr√™ncias"]);
+    stm_aix("p1i6","p2i0",[0,"Ocupa√ß√£o dos Ambientes","","",-1,-1,0,"<%=p_PathRelativo%>ambientes/cons_agenda.asp","_self","","Cadastro e reserva de salas"]);
+    stm_aix("p1i7","p0i1",[0,"Pesquisa de Satisfa√ß√£o","","",-1,-1,0,"","_self","","Pesquisa de Satisfa√ß√£o"]);
+    stm_bpx("p4","p2",[]);
+    stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=p_PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfa√ß√£o"]);
+    stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por n√∫mero do agendamento"]);
+    stm_ep();
+    stm_aix("p1i8","p0i1",[0,"Recursos Dispon√≠veis","","",-1,-1,0,"","_self","","Recursos Dispon√≠veis"]);
+    stm_bpx("p5","p2",[]);
+    stm_aix("p5i0","p2i0",[0,"Log√≠stica","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","Log√≠stica"]);
+    stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
+    stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=p_PathRelativo%>CadTransporte.asp","_self","","Hor√°rios do transporte para o CRT"]);
+    stm_ep();
+    //stm_aix("p1i9","p2i0",[0,"Sugest√µes (Fale Conosco)","","",-1,-1,0,"<%'=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
+    stm_ep();
+    <%				if Env.ehRAT or Env.ehRT then %>
+    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
+    stm_aix("p0i2","p2i0",[0,"Administra√ß√£o do Site","","",-1,-1,0,"<%=p_PathRelativo%>sislab.asp","_self","","Administra√ß√£o do SISLAB"]);
+    stm_ep();
+    <%				end if %>
+    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
+    stm_aix("p0i2","p2i0",[0,"Fale Conosco","","",-1,-1,0,"<%=p_PathRelativo%>fale.asp","_self","","Administra√ß√£o do SISLAB"]);
+    stm_em();
+    //-->
+</script>
+<%
 End Sub
 
 Private Sub ImprimeNomeTela()
@@ -293,35 +305,39 @@ Private Sub ImprimeNomeTela()
     PathRelativo = p_PathRelativo
     linkVoltar = p_linkVoltar
 
-			if p_linkVoltar = "" then p_linkVoltar = "history.go(-1)"%>
-		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" border="0" style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
+	if p_linkVoltar = "" then p_linkVoltar = "history.go(-1)"%>
+		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0"  style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
 			<td class="realce1"> <!-- #d9d9d9 -->
-				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="display: block;">
+
+				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" >
 				<tr valign="middle">
 					<td valign="middle">
 						<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">&nbsp;<span style="color: red;">&raquo;</span>&nbsp;
 							<i><%=p_nomeTela%></i>
 						</span>
 					</td>
-					<td align="right" id="td2_tbl_principal_nomeform" style="display: inline;">
-<%			if ucase(linkVoltar) <> "NENHUM" then
-				if ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
+
+					<td align="right" id="td2_tbl_principal_nomeform" >
+<%			If ucase(linkVoltar) <> "NENHUM" then
+				If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
 						</b><a href="javascript:<%=p_linkVoltar%>;">Voltar</a>
-						&nbsp;&nbsp;
-<%				end if
-				if ucase(p_linkVoltar) <> "SO_LINK" then%>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 14px; width: 16px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=p_PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conte˙do da tela"></a></button>
-<%				end if
-			end if%>
+						&nbsp;
+<%				End If
+				if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 17px; width: 25px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=p_PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conte√∫do da tela"></a></button>
+<%			    End If
+			End If%>
 						&nbsp;&nbsp;
 					</td>
 				</tr>
 				</table>
+
 			</td>
 		</tr>
 		</table>
-		<script language="JavaScript">
+
+		<script type="text/javascript">
 		    function imprimeTelaPrincipalSistema() {
 		        var d = document.all;
 		        var undef;
@@ -409,11 +425,11 @@ Public Sub ImprimeMenuSce()
     <p class='texto1'>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="20">
 		<tr>
-	        <td align="left" width="120px"><a href="index.asp" class="links"><font class="links"><b>> InÌcio</b></a></td>
+	        <td align="left" width="120px"><a href="index.asp" class="links"><font class="links"><b>> In√≠cio</b></a></td>
 			<td align="left" id="mnuCadastros" width="120px"><a href="#" onMouseOver="javascript:mostraMenuCadastros(true);"><font class="links"><b>> Cadastros</b></a></td>
 			<td align="left" id="mnuConsultas" width="120px"><a href="#" onMouseOver="javascript:mostraMenuConsultas(true);"><font class="links"><b>> Consultas</b></a></td>
-			<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links"><b>> RelatÛrios</b></a></td>
-			<td align="left" id="mnuMovimentacao" width="*"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links"><b>> MovimentaÁ„o</b></a></td>
+			<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links"><b>> Relat√≥rios</b></a></td>
+			<td align="left" id="mnuMovimentacao" width="*"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links"><b>> Movimenta√ß√£o</b></a></td>
 		</tr>
         <tr id="tr_princ_cabecalho_separador2"><td colspan="5" bgcolor="#003366" height="1"></td></tr>
 	    </table>

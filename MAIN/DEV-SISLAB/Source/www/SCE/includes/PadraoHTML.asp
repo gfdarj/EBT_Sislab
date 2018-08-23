@@ -2,7 +2,7 @@
 Dim width_princ : width_princ = 770
 Dim w_princ : w_princ = width_princ & "px" '-- tamanho da coluna
 
-sub ImprimeCabecalho(titulo, imprimeMenu, imprimeHeader, nomeTela, linkTela, onClickTela)
+Sub ImprimeCabecalho(titulo, imprimeMenu, imprimeHeader, nomeTela, linkTela, onClickTela)
 
 	'-- verifico se a sessao terminou
 	If Session("user_id") = "" Then Response.Redirect "index.asp"
@@ -25,7 +25,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu, imprimeHeader, nomeTela, linkTela, onC
 		<%=titulo%>
 <%	End If %>
 	</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=<%=Application("SISLAB_CHARSET")%>">
 	<link rel="stylesheet" href="css/estilo.css" type="text/css">
 </head>
 
@@ -66,7 +66,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu, imprimeHeader, nomeTela, linkTela, onC
 		  <area shape="rect" coords="671,18,741,46" href="http://pegasus" target="_top" alt="Site da Embratel" title="Site da Embratel">
 		  <area shape="poly" coords="11,1" href="#">
 		  <area shape="poly" coords="135,34" href="#">
-		  <area shape="poly" coords="10,4,175,4,175,43,221,43,235,43,235,62,10,62,10,4" href="index2.asp" alt="P&aacute;gina Inicial" title="P&aacute;gina Inicial">
+		  <area shape="poly" coords="10,4,175,4,175,43,221,43,235,43,235,62,10,62,10,4" href="index.asp" alt="P&aacute;gina Inicial" title="P&aacute;gina Inicial">
 		</map>
 
 		<!--<tr><td bgcolor="#FFFFFF" ><img src="../img/barra_superior_03.jpg" width="<%=w_princ%>" height="70" usemap="#Map" border="0"></td></tr>-->
@@ -127,7 +127,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu, imprimeHeader, nomeTela, linkTela, onC
 				<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links">> Relat&oacute;rios</a></td>
 				<td align="left" id="mnuMovimentacao" width="120px"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links">> Movimenta&ccedil;&atilde;o</a></td>
     	        <td align="left" width="120px"><a href="../index.asp" class="links"><font class="links">> Sislab</a></td>
-    	        <td align="left" width="*"><a href="index2.asp" class="links"><font class="links">> Início</a></td>
+    	        <td align="left" width="*"><a href="index.asp" class="links"><font class="links">> Início</a></td>
 			</tr>
 			</table>
 		</td>
