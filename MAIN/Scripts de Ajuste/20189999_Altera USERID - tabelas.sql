@@ -85,6 +85,9 @@ go
 ALTER TABLE UserCRT alter column userid VARCHAR(80) not null
 go
 
+ALTER TABLE SCE_Usuarios ALTER COLUMN USER_LOGIN VARCHAR(80) NULL
+GO
+
 
 
 /*
@@ -130,10 +133,10 @@ go
 			GO
 			SELECT * FROM agendamento WHERE AG_RAT NOT IN (SELECT userid FROM UserCRT)
 			GO
+
+			SELECT * FROM SCE_Usuarios WHERE USER_LOGIN NOT IN (SELECT userid FROM UserCRT)
+			GO
 */
-
-
-
 
 
 /*
@@ -187,6 +190,9 @@ UPDATE Orgao SET ORGA_USERIDCHEFE = LTRIM(RTRIM(LOWER(ORGA_USERIDCHEFE))) + '@em
 GO
 
 UPDATE UserCRT SET userid = LTRIM(RTRIM(LOWER(userid))) + '@embratel.com.br'
+GO
+
+UPDATE SCE_Usuarios SET USER_LOGIN = LTRIM(RTRIM(LOWER(USER_LOGIN))) + '@embratel.com.br'
 GO
 
 
@@ -247,12 +253,15 @@ ALTER TABLE LB_ACOESTOMADAS
 		REFERENCES UserCRT (UserID)
 GO
 
-ALTER TABLE agendamento ADD CONSTRAINT FK_Agendamento_UserCRT_RAT foreign key (AG_RAT) references UserCRT (Userid)
+ALTER TABLE agendamento ADD CONSTRAINT FK_Agendamento_UserCRT_RAT FOREIGN KEY (AG_RAT) REFERENCES UserCRT (Userid)
 go
 
-ALTER TABLE agendamento ADD CONSTRAINT FK_Agendamento_UserCRT_RT foreign key (AG_RESPONSAVEL) references UserCRT (Userid)
+ALTER TABLE agendamento ADD CONSTRAINT FK_Agendamento_UserCRT_RT FOREIGN KEY (AG_RESPONSAVEL) REFERENCES UserCRT (Userid)
 go
 
+
+--ALTER TABLE SCE_Usuarios ADD CONSTRAINT FK_SCE_Usuarios_UserCRT FOREIGN KEY (USER_LOGIN) REFERENCES UserCRT (Userid)
+--go
 
 
 /*********************************************************************************************************
@@ -287,3 +296,10 @@ ALTER TABLE SCE_Equipamentos_Controle ALTER COLUMN EQC_RESPONSAVEL VARCHAR(80) N
 GO
 
 /* FIM DO SCRIPT */
+
+
+
+
+
+
+
