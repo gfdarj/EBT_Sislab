@@ -107,6 +107,7 @@ Class TEbt
     Private Sub Class_Initialize()
         Set oSql = New TSql
 
+        chr_Login = ""
         bln_TemErro = False
         chr_MsgErro = ""
 		bln_usuarioCRT = False
@@ -141,7 +142,7 @@ Class TEbt
         Call BuscaDadosEmbratel(chr_Usuario)    'Preenche as variáveis Login e FullName, vindas do AD
 
         '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
-        If (Left(Application("SISLAB_AMBIENTE"), 3) = "LOC" And chr_Login = "") Then
+        If Application("SISLAB_AMBIENTE") = "LOC_CASA" And chr_Login = "" Then
             chr_Login = "josesp@embratel.com.br"
         End If
 
@@ -204,7 +205,12 @@ Class TEbt
 
             Set objUser = GetObject("LDAP://" & chr_Login)
 
-            chr_Login = objUser.Mail
+            If VVVNZ(objUser.Mail) Then
+                chr_Login = objUser.sAMAccountName
+            Else
+                chr_Login = objUser.Mail
+            End If
+
             chr_Nome_Reduzido = objUser.FullName
             bln_ehFuncionario = True
 
@@ -257,7 +263,14 @@ Class TEbt
     		If oConn.Errors.Count = 0 then
                 If Not objRS.Eof Then
                     'Response.Write  objRs.Fields("sAMAccountName") & " / " & objRs.Fields("displayName") & " / " & objRs.Fields("distinguishedName") & "<BR><BR>"
-                    chr_Login = objRs.Fields("mail")
+
+                    If VVVNZ(objRs.Fields("mail")) Then
+                        chr_Login = objRs.Fields("sAMAccountName")
+                    Else
+                        chr_Login = objRs.Fields("Mail")
+                    End If
+
+
                     chr_Nome_Reduzido = objRs.Fields("displayName")
                 End If
                 bln_TemErro = False

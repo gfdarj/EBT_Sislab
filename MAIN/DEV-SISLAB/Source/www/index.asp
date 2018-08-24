@@ -1,5 +1,6 @@
 
 <script type="text/javascript">
+/*
     function verificaNavegador() {
 	    var ehIE;
 	    var versao;
@@ -21,6 +22,7 @@
 	    }
     }
     verificaNavegador();
+*/
 </script>
 
 
@@ -37,22 +39,22 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
 
-'Set ebt1 = new TEbt
-'call Ebt1.LoginUsuario("")
-'Response.Write Ebt1.Usuario() & "<BR>"
-'Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
-'Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
-'Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
-'Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
-'Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
-'Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
-'Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
-'Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
-'Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRT_Cadastrado & "<BR>"
-'Response.Write "Celular: " & Ebt1.Celular & "<BR>"
-'Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
-'Response.Write "NOW: " & now & "<BR>"
-'response.End
+Set ebt1 = new TEbt
+call Ebt1.LoginUsuario("")
+Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
+Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
+Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
+Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
+Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
+Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
+Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
+Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
+Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
+Response.Write "Celular: " & Ebt1.Celular & "<BR>"
+Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
+Response.Write "NOW: " & now & "<BR>"
+response.End
 
 
 
