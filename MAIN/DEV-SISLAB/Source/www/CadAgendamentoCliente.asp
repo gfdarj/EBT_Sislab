@@ -614,7 +614,7 @@ if num_ag <> "" then
 	<%end if%>
 	frm.txtTitulo.value='<%=objSiteRS("ag_titulo")%>';
 	frm.Username.value='<%=objSiteRS("ag_username")%>';
-    frm.txtEMail.value='<%=objSiteRS("ag_username") & "@embratel.com.br"%>';
+    frm.txtEMail.value='<%=objSiteRS("ag_username")%>';
 	frm.diaINICIO.value = '<%= itoa(day(objSiteRS("ag_datainicio")),2)%>';
 	frm.mesINICIO.value = '<%=itoa(month(objSiteRS("ag_datainicio")),2)%>';
 	frm.anoINICIO.value = '<%=year(objSiteRS("ag_datainicio"))%>';
@@ -669,7 +669,7 @@ if num_ag <> "" then
 	frm.txtMatricula.value = '<%=Env.Matricula%>';
 	frm.txtOrgao.value = '<%=Env.Sigla_Orgao%>';
 	frm.Username.value='<%=Env.usuario%>';
-    frm.txtEMail.value='<%=Env.Usuario & "@embratel.com.br"%>';
+    frm.txtEMail.value='<%=Env.Usuario%>';
 	frm.txtRamal.value='<%=Env.TEL1_COM%>';
 <%end if
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -743,7 +743,7 @@ if as_referencia <> "" then
 			frm.txtOrgao.value = '<%=Ebt.Sigla_Orgao()%>';
 			frm.txtRamal.value='<%=Ebt.TEL1_COM%>';
 			frm.Username.value='<%=solicitante%>';
-			frm.txtEMail.value='<%=solicitante & "@embratel.com.br"%>';
+			frm.txtEMail.value='<%=solicitante%>';
 		<%else%>
 			alert("Username Inválido!")
 <%		end if

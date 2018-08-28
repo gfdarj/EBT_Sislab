@@ -12,7 +12,7 @@ Const RODAPE_OFF = false	'-- esconde a imagem
 
 'Email para o qual sera enviadas mensagems com falta de RT ou RAT
 Const EMAILALTERNATIVO = "ilab@embratel.com.br"
-Const SUFIXOEMAIL = "@EMBRATEL.COM.BR"
+Const SUFIXOEMAIL = "@embratel.com.br"
 Const EMAILDEENVIODOSISLAB = "ilab@embratel.com.br"
 CONST NOMEDEENVIODOSISLAB = "SISLAB"
 CONST SEPARADOR = " #$%@ "

@@ -21,16 +21,14 @@ Call Env.RecordSet(true, rsRATs, sSQL)
 While not rsRATs.eof
 
 	If Env.Ebt.ExisteUsuario(rsRATs(0)) then
-		Call Enviar_EmailGenerico(auxusername & SUFIXOEMAIL, auxusername, rsRATs("userid") & SUFIXOEMAIL, rsRATs("userid"), "SISLAB - Fale Conosco", vTexto)
-''		Call Enviar_EmailGenerico(rsRATs("userid") & SUFIXOEMAIL, rsRATs("userid"), auxusername & "@yahoo.com", auxusername, "[SISLAB - Fale Conosco] Assunto: " & auxassunto, vTexto)
+		Call Enviar_EmailGenerico(auxusername, auxusername, rsRATs("userid"), rsRATs("userid"), "SISLAB - Fale Conosco", vTexto)
 	End If
 
 	rsRATs.movenext
 WEnd
 Call Env.RecordSet(false, rsRATs, sSQL)
 
-'enviar_email auxusername & "@EMBRATEL.COM.BR", auxusername & "@EMBRATEL.COM.BR", "anetto@embratel.com.br", "Site CRT - " & request.form("assunto") ,  "Site CRT - " & request.form("assunto"), vTexto
-'enviar_email auxusername & "@EMBRATEL.COM.BR", auxusername & "@EMBRATEL.COM.BR", "ilab@embratel.com.br", "Site CRT - " & request.form("assunto") ,  "Site CRT - " & request.form("assunto"), vTexto
+'enviar_email auxusername, auxusername, "ilab@embratel.com.br", "Site CRT - " & request.form("assunto") ,  "Site CRT - " & request.form("assunto"), vTexto
 
 call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Fale Conosco - Email enviado !", "", "")
 %>

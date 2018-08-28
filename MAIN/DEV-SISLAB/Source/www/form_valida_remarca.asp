@@ -68,7 +68,7 @@ else
 	Set Ebt = nothing
 
 	orgao = rs_agendamento("AG_ORGAO")
-	email = rs_agendamento("AG_USERNAME") & "@embratel.com.br"
+	email = rs_agendamento("AG_USERNAME")
 	
 	situacao = rs_agendamento("S_DESCRICAO")
 	cancelou = CBool(rs_agendamento("AG_SOLICITOUCANCELAMENTO"))

@@ -216,14 +216,10 @@ Else
 				chr_TextoMudanca = "Você foi designado para ser o RAT deste Agendamento de Serviço.<BR><BR>"
 				If bln_MudouAmbiente Then chr_TextoMudanca = chr_TextoMudanca & "<BR>" & chr_TextoAmbiente Else chr_TextoMudanca = chr_TextoMudanca & "(Mensagem automática)<BR>"
 
-				'Call Enviar_Email("gilberto.rj@ig.com.br", Rat, chr_TituloEmail & " (Mudança de RAT)", chr_TextoMudanca)
-				Call Enviar_Email(Rat & SUFIXOEMAIL, Rat, chr_TituloEmail & " (Mudança de RAT)", chr_TextoMudanca)
+				Call Enviar_Email(Rat, Rat, chr_TituloEmail & " (Mudança de RAT)", chr_TextoMudanca)
 
 			ElseIf bln_MudouAmbiente Then
-				'Call Enviar_Email("gilberto.rj@ig.com.br", Rat, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				Call Enviar_Email(Rat & SUFIXOEMAIL, Rat, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				'Call Enviar_Email("logfund1" & SUFIXOEMAIL, "LOGFUND1", chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				'Call Enviar_Email("logfund2" & SUFIXOEMAIL, "LOGFUND2", chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
+				Call Enviar_Email(Rat, Rat, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
 			End If
 
 			'>>> Avisa ao novo RT que ele foi selecionado para uma AS
@@ -231,20 +227,15 @@ Else
 				chr_TextoMudanca = "Você foi designado para ser o Responsável Técnico deste Agendamento de Serviço.<BR><BR>"
 				If bln_MudouAmbiente Then chr_TextoMudanca = chr_TextoMudanca & "<BR>" & chr_TextoAmbiente Else chr_TextoMudanca = chr_TextoMudanca & "(Mensagem automática)<BR>"
 
-				'Call Enviar_Email("gilberto.rj@ig.com.br", Responsavel, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudanca)
-				Call Enviar_Email(Responsavel & SUFIXOEMAIL, Responsavel, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudanca)
+				Call Enviar_Email(Responsavel, Responsavel, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudanca)
 
 				If chr_RT_Original <> "" Then
 					chr_TextoMudancaDesalocacaoRT = "Este agendamento mudou de Responsável Técnico. O novo Responsável é <b>" & Responsavel & "</b>.<BR><BR>(Mensagem automática).<BR>"
-					'Call Enviar_Email("gilberto.rj@ig.com.br", chr_RT_Original, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudancaDesalocacaoRT)
-					Call Enviar_Email(chr_RT_Original & SUFIXOEMAIL, chr_RT_Original, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudancaDesalocacaoRT)
+					Call Enviar_Email(chr_RT_Original, chr_RT_Original, chr_TituloEmail & " (Mudança de RT)", chr_TextoMudancaDesalocacaoRT)
 				End If
 
 			ElseIf bln_MudouAmbiente Then
-				'Call Enviar_Email("gilberto.rj@ig.com.br", Responsavel, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				Call Enviar_Email(Responsavel & SUFIXOEMAIL, Responsavel, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				'Call Enviar_Email("logfund1" & SUFIXOEMAIL, "LOGFUND1", chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
-				'Call Enviar_Email("logfund2" & SUFIXOEMAIL, "LOGFUND2", chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
+				Call Enviar_Email(Responsavel, Responsavel, chr_TituloEmail & " (Mudança de Ambiente)", chr_TextoAmbiente)
 			End If
 
 		End If

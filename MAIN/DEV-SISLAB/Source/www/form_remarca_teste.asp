@@ -95,7 +95,7 @@ Set Ebt = nothing
 
 
 orgao = rs_agendamento("AG_ORGAO")
-email = rs_agendamento("AG_USERNAME") & "@embratel.com.br"
+email = rs_agendamento("AG_USERNAME")
 
 rs_agendamento.Close
 set rs_agendamento = nothing

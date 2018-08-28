@@ -175,7 +175,7 @@ Else
 			'###									Gilberto (06/09/2010)
 			If Env.Ebt.ExisteUsuario(responsavel) then
 'response.Write responsavel & "<BR>" & assunto & "<BR>" & msgv & "<BR>"
-				Call Enviar_Email(responsavel & SUFIXOEMAIL, responsavel, assunto, msg)
+				Call Enviar_Email(responsavel, responsavel, assunto, msg)
 '				Call Enviar_Email("gilberto.rjo@gmail.com", "GILBERTO", assunto, msg)
 'response.Write "<BR>FIM"
 'response.End

@@ -161,15 +161,15 @@ Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 
 			'Modificação para enviar e-mail a todos os rats do sistema
 			'if Rat <> "" then
-			'	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat & SUFIXOEMAIL,Rat, Titulo, Texto
+			'	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat,Rat, Titulo, Texto
 			'end if
 
 			if Rt <> "" And Env.Ebt.ExisteUsuario(Rt) then
-				Call enviar_email(Rt & SUFIXOEMAIL,Rt, Titulo, Texto)
+				Call enviar_email(Rt, Rt, Titulo, Texto)
 			end if
 
 			if Solicitante <> "" And Env.Ebt.ExisteUsuario(Solicitante) then
-				Call enviar_email(Solicitante & SUFIXOEMAIL,Solicitante, Titulo, Texto)
+				Call enviar_email(Solicitante, Solicitante, Titulo, Texto)
 			end if
 
 			'Modificação para enviar e-mail a todos os rats do sistema
@@ -198,32 +198,24 @@ Function enviaEmailsASFinalizada(objConn, numAS, Titulo, Texto)
 				Solicitante = rsAgendamento("AG_USERNAME")
 			end if
 
-			'Modificação para enviar e-mail a todos os rats do sistema
-			'if Rat <> "" then
-			'	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat & SUFIXOEMAIL,Rat, Titulo, Texto
-			'end if
-
 			if Rt <> "" And Env.Ebt.ExisteUsuario(Rt) then
-				Call enviar_email(Rt & SUFIXOEMAIL, Rt, Titulo, Texto)
+				Call enviar_email(Rt, Rt, Titulo, Texto)
 			end if
 
 			if Solicitante <> "" And Env.Ebt.ExisteUsuario(Solicitante) then
 				'Envia o email ao solicitante como se fosse o RT
 				Call Enviar_EmailGenerico( _
-						Rt & SUFIXOEMAIL, _
+						Rt, _
 						Env.Ebt.AchaNomeEmbratel(Rt), _
-						Solicitante & SUFIXOEMAIL, _
+						Solicitante, _
 						Env.Ebt.AchaNomeEmbratel(Solicitante), _
 						Titulo, _
 						Texto _
 				)
-				'Call Enviar_EmailGenerico(Rt & SUFIXOEMAIL, Env.Ebt.AchaNomeEmbratel(Rt), "gilberto.rj@ig.com.br", "Gilberto Almeida", Titulo, Texto)
 			end if
 
-			'Modificação para enviar e-mail a todos os rats do sistema
-			'if Rat = "" then
-			call enviaEmailRATsGQs(objConn,Titulo,texto)
-			'end if
+			'enviar e-mail a todos os rats do sistema
+			Call enviaEmailRATsGQs(objConn, Titulo, texto)
 		end if
 	end if
 	'RESPONSE.END
@@ -303,7 +295,7 @@ Function enviaEmailGQs( Titulo, Texto)
 
 	while not rsRATs.eof
 		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid") & SUFIXOEMAIL,rsRATs("userid"), Titulo, Texto)
+			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
 		End If
 		rsRATs.movenext
 	wend
@@ -319,7 +311,7 @@ Function EnviaEmailRATs(Titulo, Texto)
 
 	while not rsRATs.eof
 		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid") & SUFIXOEMAIL, rsRATs("userid"), Titulo, Texto)
+			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
 		End If
 		rsRATs.movenext
 	wend
@@ -335,7 +327,7 @@ Function enviaEmailRATsGQs(objConn, Titulo, Texto)
 
 	while not rsRATs.eof
 		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid") & SUFIXOEMAIL, rsRATs("userid"), Titulo, Texto)
+			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
 		End If
 		rsRATs.movenext
 	wend
@@ -351,7 +343,7 @@ Function enviaEmailUserCRT(objConn,Titulo,Texto)
 
 	While not rsRATs.eof
 		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid") & SUFIXOEMAIL, rsRATs("userid"), Titulo, Texto)
+			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
 		End If
 		rsRATs.movenext
 	Wend
@@ -376,8 +368,7 @@ Sub EnviaEmailRespostaPesquisa(objConn, int_AS)
 	call Env.RecordSet(True, RS, chr_SQL)
 	While Not RS.Eof
 		If Env.Ebt.ExisteUsuario(RS(0)) Then
-			Call Enviar_email(RS(0) & SUFIXOEMAIL, RS(0), chr_Titulo, chr_Texto)
-			'enviar_email "gilbertof@yahoo.com", RS(0), RS(0) & "-" & chr_Titulo, chr_Texto
+			Call Enviar_email(RS(0), RS(0), chr_Titulo, chr_Texto)
 		End If
 		RS.MoveNext
 	WEnd
@@ -415,15 +406,13 @@ Function EnviaEmailRespondaPesquisa(numAS)
 
 				'Envia o email ao solicitante como se fosse o RT
 				Call Enviar_EmailGenerico( _
-					Rt & SUFIXOEMAIL, _
+					Rt, _
 					NomeRT, _
-					Solicitante & SUFIXOEMAIL, _
+					Solicitante, _
 					Env.Ebt.AchaNomeEmbratel(Solicitante), _
 					Titulo, _
 					Texto _
 				)
-				'### Envia email para mim como teste
-				'Call Enviar_EmailGenerico(Rt & SUFIXOEMAIL, Env.Ebt.AchaNomeEmbratel(Rt), "gilberto.rj@ig.com.br", "Gilberto Almeida", Titulo, Texto)
 			End If
 			Set RS = Nothing
 		End If
@@ -476,15 +465,10 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 			Texto = "Este agendamento possuí " & RS("Total") & " equipamento(s) de terceiros que deram entrada no CRT.<BR><BR>Verifique se os mesmos já deram saída na logística.<BR><BR>Grato.<BR>Equipe CRT.<BR>"
 
 			'Envia o email ao RT, ao LogFund e aos RATs
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", Rt & SUFIXOEMAIL, NomeRT, Titulo, Texto)
+			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", Rt, NomeRT, Titulo, Texto)
 			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund1" & SUFIXOEMAIL, "Logfund 1", Titulo, Texto)
 			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund2" & SUFIXOEMAIL, "Logfund 2", Titulo, Texto)
 			Call EnviaEmailRATs(Titulo, Texto)
-
-			'### Envia email para mim como teste
-			'Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "gilberto.rj@ig.com.br", "Gilberto", Titulo, Texto )
-'rw titulo & "<BR><BR>" & texto
-'re
 		Else
 			Titulo = "SISLAB/SCE - AS " & num_ag & " foi Finalizada"
 			Texto = "Este agendamento foi finalizado.<BR><BR>" & _
@@ -495,8 +479,6 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 			'Envia o email ao RT, ao LogFund e aos RATs
 			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund1" & SUFIXOEMAIL, "Logfund 1", Titulo, Texto)
 			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund2" & SUFIXOEMAIL, "Logfund 2", Titulo, Texto)
-
-			'Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "gilberto.rjo@gmail.com", "Gilberto", Titulo, Texto )
 		End If
 	End If
 

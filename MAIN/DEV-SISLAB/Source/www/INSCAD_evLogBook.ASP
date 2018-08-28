@@ -169,15 +169,12 @@ if request("resp") = "1" then
 	Call enviaEmailRATsGQs(Env.oConn, assunto, msg)
 
 	If Env.Ebt.ExisteUsuario(auxusername) Then
-		call Enviar_Email(auxusername & SUFIXOEMAIL, auxusername, assunto, msg)
+		call Enviar_Email(auxusername, auxusername, assunto, msg)
 	End If
 
 	If Env.Ebt.ExisteUsuario(auxrespexecucao) Then
-		call Enviar_Email(auxrespexecucao & SUFIXOEMAIL, auxrespexecucao, assunto, msg)
+		call Enviar_Email(auxrespexecucao, auxrespexecucao, assunto, msg)
 	End If
-
-'call Enviar_Email("gilberto.rjo@gmail.com", "gilberto.rjo@gmail.com", assunto, msg)
-'call Enviar_Email("galmeida@outlook.com", "galmeida@outlook.com",assunto,msg)
 
 End If
 

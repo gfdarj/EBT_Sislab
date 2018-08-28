@@ -63,7 +63,7 @@ if (AchaAspas(document.formulario.texto.value))
 	<td width="10%" height="0"></td>
 </tr>
 <tr valign="middle">
-	<td colspan="3"><b>&nbsp;&nbsp;&nbsp;De: <%=lcase(auxusername)%>@embratel.com.br</b></font></td>
+	<td colspan="3"><b>&nbsp;&nbsp;&nbsp;De: <%=lcase(auxusername)%></b></font></td>
 	<td colspan="7"><b>&nbsp;&nbsp;&nbsp;Para: Equipe do CRT</b></font></td>
 </tr>
 <tr><td height="5px"></td></tr>

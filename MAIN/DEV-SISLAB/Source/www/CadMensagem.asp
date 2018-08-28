@@ -93,7 +93,7 @@ Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de automáticas
 <tr>
 	<td>Enviar um teste para o email:</td>
 	<td>
-	    <input type="text" class="texto1" name="txtEmail" size="40" value="@embratel.com.br" />&nbsp;
+	    <input type="text" class="texto1" name="txtEmail" size="40" maxlength="80" value="" />&nbsp;
 	    <input type="button" class="texto1" name="btnTeste" value="Enviar" onclick="javascript:return TestarMensagem(document.forms[0].s_descricao.value, document.forms[0].txtEmail.value);" />
 	</td>
 </tr>

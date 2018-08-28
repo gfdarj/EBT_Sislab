@@ -38,7 +38,7 @@ bln_ExistePesquisa = False
 
 auxidservico = 0
 auxusername = Env.Usuario
-auxEmail = Env.Usuario '& "@embratel.com.br"
+auxEmail = Env.Usuario
 auxag = ""
 
 auxag = Request("num_ag")
@@ -269,7 +269,7 @@ Else
 			'Se o array so tiver 1 dimensao entao selecionou apenas 1 AS e o solicitante do Agendamento
 			'If UBound(arrAG) = 0 Then
 				auxusername = ag_solicitante
-				auxEmail = ag_solicitante '& "@embratel.com.br"
+				auxEmail = ag_solicitante
 				Matricula = obj1.GetMatricula(ag_solicitante)
 			'Else
 			'	Matricula = obj1.GetMatricula(auxusername)
@@ -286,7 +286,7 @@ Else
 			end if
 		Else
 			auxusername = Env.usuario
-			auxEmail = LCase(auxusername) '& "@embratel.com.br"
+			auxEmail = LCase(auxusername)
 			Matricula = "123456"
 			auxnome = "[LOCAL] JOSE PAULA SILVA JUNIOR"
 			auxOrgao = "VPO-28"
