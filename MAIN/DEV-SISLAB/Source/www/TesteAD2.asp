@@ -13,22 +13,27 @@ Set objSysInfo = CreateObject("ADSystemInfo")
 
 
     Set objRootDSE = GetObject("LDAP://RootDSE")
+    'Set objRootDSE = GetObject("LDAP://alerj.gov.br")
 
-' Currently logged in User
-Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
- ' or specific user:
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    ' Currently logged in User
+    'Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
 
-Dim strQueryDL
-'strQueryDL = "LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
-'strQueryDL = "<LDAP://CN=T3GFBA,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
-strQueryDL = "<LDAP://CN=T3GSAN,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+     ' or specific user:
+    Dim strQueryDL
+    strQueryDL = "LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
+    'strQueryDL = "<LDAP://CN=T3GFBA,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
+    'strQueryDL = "<LDAP://CN=T3GSAN,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
 
-'response.Write strQueryDL 
-'response.End
+    'response.Write strQueryDL 
+    'response.End
 
-'Set objUser = GetObject(strQueryDL)
+    Set objUser = GetObject(strQueryDL)
 
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+Response.Write "<BR>objSysInfo.UserName: " & objSysInfo.UserName
 Response.Write "<BR>DN: " & objUser.distinguishedName
 
 Response.Write "<BR>"

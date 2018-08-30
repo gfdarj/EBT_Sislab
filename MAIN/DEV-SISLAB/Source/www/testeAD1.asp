@@ -18,7 +18,7 @@ sDomainADsPath		= "LDAP://" & oRootDSE.Get("defaultNamingContext")
 
 Set oCon 		= Server.CreateObject("ADODB.Connection")
 
-sUser			= "galmeida"
+sUser			= "al\galmeida"
 sPassword		= "230175"
 
 oCon.Provider 		= "ADsDSOObject"
