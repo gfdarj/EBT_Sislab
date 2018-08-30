@@ -28,6 +28,7 @@ Set objCommand.ActiveConnection = objConnection
 objCommand.Properties("Searchscope") = 2 'ADS_SCOPE_SUBTREE 
 
 Set objRootDSE = GetObject("LDAP://rootDSE")
+'Set objRootDSE = GetObject("LDAP://alerj.rj.gov.br")
 strRootTDSE = objRootDSE.Get("defaultNamingContext")
 
 IF txtUsuario = "" Then
@@ -49,6 +50,7 @@ If Not objRecordSet.EOF Then
         strDN = objRecordSet.Fields("distinguishedName").Value
 '        response.Write "strDN: " & strDN & "<br><br>"
 
+Response.Write "<BR>RootDSE: " & strRootTDSE
 Response.Write "<BR>DN: " & objRecordSet.Fields("distinguishedName")
 Response.Write "<BR>"
 Response.Write "<BR>GENERAL"
@@ -56,7 +58,7 @@ Response.Write "<BR>First name: " & objRecordSet.Fields("givenName")
 'Response.Write "<BR>Initials: " & objRecordSet.Fields("initials")
 'Response.Write "<BR>Last name: " & objRecordSet.Fields("sn")
 Response.Write "<BR>Display name: " & objRecordSet.Fields("displayName")
-'Response.Write "<BR>Description: " & CStr(objRecordSet.Fields("description"))
+'Response.Write "<BR>Description: " & objRecordSet.Fields("description")
 'Response.Write "<BR>Office: " & objRecordSet.Fields("physicalDeliveryOfficeName")
 Response.Write "<BR>Telephone number: " & objRecordSet.Fields("telephoneNumber")
 'Response.Write "<BR>Other Telephone numbers: " & objRecordSet.Fields("otherTelephone")

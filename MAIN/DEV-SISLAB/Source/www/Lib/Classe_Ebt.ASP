@@ -224,10 +224,14 @@ Class TEbt
             Dim email, adress, dc, str_dc, str_cn
             dc = ""
             str_dc = ""
+
+            If InStr(1, chr_Usuario, "@") = 0 Then
+                chr_Usuario = Trim(chr_Usuario) & SUFIXOEMAIL
+            End If
+
             email = Split(chr_Usuario, "@")
             adress = Split(email(1), ".")
             'response.Write email(0) & " ---- " & email(1) & "<BR><BR>" & adress(0) & " ---- " & adress(1) & "<BR><BR>"
-
             For Each dc in adress
                 str_dc = str_dc & "DC=" & dc & ","
                 'response.Write "DC=" & dc & ","

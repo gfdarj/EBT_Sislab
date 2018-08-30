@@ -109,11 +109,11 @@ Class TEnvironment
 	    ehFuncionario = Ebt.ehFuncionario
     End Property
 
-    Public Property Get Nome_Reduzido()
-	    Nome_Reduzido = Ebt.NomeReduzido
+    Public Property Get NomeReduzido()
+	    NomeReduzido = Ebt.NomeReduzido
     End Property
 
-    Public Property Get Sigla_Orgao()
+    Public Property Get SiglaOrgao()
 	    Sigla_Orgao = Ebt.SiglaOrgao
     End Property
 
@@ -121,7 +121,7 @@ Class TEnvironment
 	    ehGerente = Ebt.ehGerente
     End Property
 
-    Public Property Get Sigla_Orgao_Gerente()
+    Public Property Get SiglaOrgaoGerente()
 	    Sigla_Orgao_Gerente = Ebt.SiglaOrgaoGerente
     End Property
 

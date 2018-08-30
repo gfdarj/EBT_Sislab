@@ -56,9 +56,9 @@ else
 	Call Ebt.BuscaDadosEmbratel(rs_agendamento("AG_USERNAME"))
 
 	If Ebt.EhFuncionario Then
-		nome_responsavel = Ebt.Nome_Reduzido
+		nome_responsavel = Ebt.NomeReduzido
 		matricula = Ebt.MATRICULA
-		ramal = Ebt.TEL1_COM
+		ramal = Ebt.Ramal
 	Else
 		nome_responsavel = "xxxx"
 		matricula = "xxxx"

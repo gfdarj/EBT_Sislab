@@ -7,7 +7,7 @@
 Dim objSiteRS, cont, sSQL,tot, auxidorgao, EhGQ,EHrat, EHRt, auxusername, i,objConn, EHCrt
 Dim auxassunto, auxresponsavel, auxtipoarq,auxsitarq
 
-auxusername = Env.Nome_Reduzido()
+auxusername = Env.NomeReduzido()
 EH_CRT = Env.usuarioCRT()
 EH_GQ = Env.ehGQ()
 EHrat =  Env.ehRAT()

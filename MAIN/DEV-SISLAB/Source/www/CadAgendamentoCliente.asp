@@ -37,15 +37,15 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendam
 
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
-if Env.ehRAT then solicitante = request("solicitante") else solicitante = "" end if
+If Env.ehRAT Then solicitante = request("solicitante") else solicitante = "" End If
 solicitante = request("solicitante")
-if num_ag = "" then num_ag = request("hdAG")
+If num_ag = "" Then num_ag = request("hdAG")
 
 
-if num_ag <> "" then
+If num_ag <> "" Then
 	sSQL = "Select * from vw_Agendamento where ag_numero=" & num_ag & ";"
-	call Env.RecordSet( true, objSiteRS, sSQL)
-	if not (objSiteRS.Eof and objSiteRS.Bof) then
+	Call Env.RecordSet( true, objSiteRS, sSQL)
+	If Not (objSiteRS.Eof and objSiteRS.Bof) Then
 		SolicitouCancela = objSiteRS("AG_SOLICITOUCANCELAMENTO")
 		situacao_ag = objSiteRS("ID_SITUACAO")
 		situacao_ag_desc = objSiteRS("S_DESCRICAO")
@@ -53,8 +53,8 @@ if num_ag <> "" then
 		chr_Username = objSiteRS("AG_USERNAME")
 		chr_OrgaoSQL = objSiteRS("AG_ORGAO")
 		If IsNull(chr_OrgaoSQL) Then chr_OrgaoSQL = "--" Else chr_OrgaoSQL = Trim(chr_OrgaoSQL)
-	end if
-end if
+	End If
+End If
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 <script>
@@ -590,10 +590,10 @@ if num_ag <> "" then
 
 	Call Ebt.BuscaDadosEmbratel(objSiteRS("ag_username"))
 
-	Nome_Reduzido = Ebt.Nome_Reduzido
+	Nome_Reduzido = Ebt.NomeReduzido
 	Matricula = Ebt.Matricula
-	SiglaOrgao = Ebt.Sigla_Orgao
-	TEL1_COM = Ebt.TEL1_COM
+	SiglaOrgao = Ebt.SiglaOrgao
+	TEL1_COM = Ebt.Ramal
 	bln_AchouEBT = Ebt.ehFuncionario
 
 	sSQL = "Select * from participantes_externos where PE_QUEMINCLUIU = 'CLI' AND ag_numero = " & num_ag
@@ -665,12 +665,12 @@ if num_ag <> "" then
 	frm.recursos.value = '<%=strToTexto(objSiteRS("AG_RECURSOS"))%>';
 	frm.obs.value = '<%=strToTexto(objSiteRS("AG_OBSERVACAO"))%>';
 <%else%>
-	frm.txtResponsavel.value = '<%=Env.Nome_Reduzido%>';
+	frm.txtResponsavel.value = '<%=Env.NomeReduzido%>';
 	frm.txtMatricula.value = '<%=Env.Matricula%>';
-	frm.txtOrgao.value = '<%=Env.Sigla_Orgao%>';
+	frm.txtOrgao.value = '<%=Env.SiglaOrgao%>';
 	frm.Username.value='<%=Env.usuario%>';
     frm.txtEMail.value='<%=Env.Usuario%>';
-	frm.txtRamal.value='<%=Env.TEL1_COM%>';
+	frm.txtRamal.value='<%=Env.Ramal%>';
 <%end if
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -691,24 +691,24 @@ if as_referencia <> "" then
 	frmAll.cmbSigilo<%=objSiteRS("ag_sigilo")%>.checked = true;
 	//frmAll.cmbEmail<%'if objSiteRS("ag_recebemail") then response.write 1 else response.write 0%>.checked = true;
 
-	frmAll.cmbCliExternos<%if IsNull(objSiteRS("ag_clienteexterno")) then response.write 0 else response.write 1%>.checked = true;
+	frmAll.cmbCliExternos<%if IsNull(objSiteRS("ag_clienteexterno")) Then response.write 0 Else response.write 1%>.checked = True;
 	PreparaCamposCLI();
 	frm.txtNomeCliente.value = '<%=objSiteRS("ag_clienteexterno")%>';
 
-	<%IF objSiteRS("AG_retornoCLIENTE") & ""  =  "" THEN%>
+	<%If objSiteRS("AG_retornoCLIENTE") & ""  =  "" Then%>
 		frm.txtRetornoCliente.value = '0,00';
-	<%ELSE%>
+	<%Else%>
 		frm.txtRetornoCliente.value = '<%=mid(formatcurrency(objSiteRS("AG_retornoCLIENTE")),4,len(formatcurrency(objSiteRS("AG_retornoCLIENTE"))))%>';
-	<%END IF%>
+	<%End If%>
 
-	<%IF objSiteRS("AG_VALORCONTRATOCLIENTE") & ""  =  "" THEN%>
+	<%If objSiteRS("AG_VALORCONTRATOCLIENTE") & ""  =  "" Then%>
 		frm.txtValorContratoCliente.value = "0,00";
-	<%ELSE%>
+	<%Else%>
 		frm.txtValorContratoCliente.value = '<%=mid(formatcurrency(objSiteRS("AG_VALORCONTRATOCLIENTE")),4,len(formatcurrency(objSiteRS("AG_VALORCONTRATOCLIENTE"))))%>';
-	<%END IF%>
+	<%End If%>
 
-	<%while not rsPart.eof%>
-		<%if rsPart("PE_EMPRESA") = "EBT" then%>
+	<%While Not rsPart.eof%>
+		<%if rsPart("PE_EMPRESA") = "EBT" Then%>
 			frmAll.cmbPartEBT1.checked = true;
 			PreparaCamposPART();
 			var lista = frm.lst<%="ParticipantesEBT"%>;
@@ -725,34 +725,36 @@ if as_referencia <> "" then
 		<%end if%>
 <%
 		rsPart.MOVENEXT
-	wend%>
+	WEnd%>
+
 	frm.objetivos.value = '<%=strToTexto(objSiteRS("AG_OBJETIVO"))%>';
 	frm.ambiente.value = '<%=strToTexto(objSiteRS("AG_AMBIENTE"))%>';
 	frm.recursos.value = '<%=strToTexto(objSiteRS("AG_RECURSOS"))%>';
 	frm.obs.value = '<%=strToTexto(objSiteRS("AG_OBSERVACAO"))%>';
-<%end if%>
-<%if Env.EhRat() then
-	if solicitante <> "" then
+<%End If%>
+
+<%If Env.EhRat() then
+	If solicitante <> "" Then
 		Set Ebt = New TEbt
 
 		Call Ebt.BuscaDadosEmbratel(solicitante)
 
 		If Ebt.ehFuncionario Then%>
-			frm.txtResponsavel.value = '<%=Ebt.Nome_Reduzido%>';
+			frm.txtResponsavel.value = '<%=Ebt.NomeReduzido%>';
 			frm.txtMatricula.value = '<%=Ebt.Matricula%>';
-			frm.txtOrgao.value = '<%=Ebt.Sigla_Orgao()%>';
-			frm.txtRamal.value='<%=Ebt.TEL1_COM%>';
+			frm.txtOrgao.value = '<%=Ebt.SiglaOrgao()%>';
+			frm.txtRamal.value='<%=Ebt.Ramal%>';
 			frm.Username.value='<%=solicitante%>';
 			frm.txtEMail.value='<%=solicitante%>';
-		<%else%>
+		<%Else%>
 			alert("Username Inválido!")
-<%		end if
-	end if%>
-<%end if%>
+<%		End If
+	End If%>
+<%End If%>
 </script>
 <%
 Set Ebt = Nothing
 
 Call Tela.MostraRodape()
-'call imprimeRodape(RODAPE_OFF)
+'Call imprimeRodape(RODAPE_OFF)
 %>

@@ -37,7 +37,7 @@ Dim bln_EmJanela : bln_EmJanela = (Request("janela") = "1")
 	                    <br /><br /><br />
 
 	                    <font face="verdana" color=#CC7777 size=5 style="font-size:18pt;">
-	                        USUÁRIO <u><%=UCase(Env.Nome_Reduzido())%></u> NÃO  ESTÁ AUTORIZADO A ACESSAR ESTA ÁREA OU A SUA SESSÃO ESTÁ EXPIRADA.<BR><BR>
+	                        USUÁRIO <u><%=UCase(Env.NomeReduzido())%></u> NÃO  ESTÁ AUTORIZADO A ACESSAR ESTA ÁREA OU A SUA SESSÃO ESTÁ EXPIRADA.<BR><BR>
 <%
 If bln_EmJanela Then
 	Response.Write "CLIQUE <a href='javascript:window.close();'>AQUI</a> PARA FECHAR ESTA JANELA"

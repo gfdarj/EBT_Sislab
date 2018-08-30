@@ -56,9 +56,9 @@ response.end
 
 
 If Ebt.EhFuncionario Then
-	AuxResponsavel = Ebt.Nome_Reduzido
+	AuxResponsavel = Ebt.NomeReduzido
 	AuxMatricula = Ebt.MATRICULA
-	AuxRamal = Ebt.TEL1_COM
+	AuxRamal = Ebt.Ramal
 Else
 	AuxResponsavel = "xxxx"
 	AuxMatricula = "xxxx"

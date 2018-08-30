@@ -59,7 +59,7 @@ function abre(codigo)
 			Call Ebt.BuscaDadosEmbratel(rs_numteste("ag_username"))
 
 			If Ebt.EhFuncionario Then
-				Response.Write Ebt.Nome_Reduzido
+				Response.Write Ebt.NomeReduzido
 			Else
 				Response.Write "xxxx"
 			End If
