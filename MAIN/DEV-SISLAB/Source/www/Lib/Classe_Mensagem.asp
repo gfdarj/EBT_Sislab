@@ -55,7 +55,7 @@ Public Function ErroSql()
 
     For Each oErro In Env.oConn.Errors
         buf = buf & _
-            "<p class='" & p_classe & "'>&nbsp;&nbsp;&nbsp;Descrição: " & oErro.Description & "</p>" & VbCrLf
+            "<p class='" & p_classe & "'>&nbsp;&nbsp;&nbsp;DescriÃ§Ã£o: " & oErro.Description & "</p>" & VbCrLf
     Next
 
     buf = buf & _
@@ -74,7 +74,7 @@ Public Function ObjetoErroSql(objetoErro)
 
     For Each oErro In objetoErro.Errors
         buf = buf & _
-            "<p class='" & p_classe & "'>&nbsp;&nbsp;&nbsp;Descrição: " & oErro.Description & "</p>" & VbCrLf
+            "<p class='" & p_classe & "'>&nbsp;&nbsp;&nbsp;DescriÃ§Ã£o: " & oErro.Description & "</p>" & VbCrLf
     Next
 
     buf = buf & _

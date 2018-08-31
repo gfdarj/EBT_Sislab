@@ -19,7 +19,7 @@ Env.SetModulo = "SISLAB"
 
 
 '---------------------------------------------------------------------------------------------------------
-' Define os par‚metros necess·rios ao sistema
+' Define os par√¢metros necess√°rios ao sistema
 '---------------------------------------------------------------------------------------------------------
 
 Application("SISLAB_CHARSET") = "iso-8859-1"

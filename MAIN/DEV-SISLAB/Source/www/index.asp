@@ -1,10 +1,18 @@
-
-
-<%
-'-- Inicializa as constantes do tipo Application no caso de não serem lidas pelo Global.Asa
+ï»¿<%
+'-- Inicializa as constantes do tipo Application no caso de nÃ£o serem lidas pelo Global.Asa
 'If Application("SISLAB_AMBIENTE") = "" Then
 	Call Application_OnStart()
 'End If
+
+'dim strNTUser , email 
+'strNTUser = Request.ServerVariables("AUTH_USER")
+'email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+
+'response.Write "AQUI 1<BR>"
+'response.write email(0)
+'response.Write "<BR>AQUI 2<BR>"
+'response.write email(1)
+'response.End
 %>
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="Global.asa"-->
@@ -12,23 +20,27 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
+Set ebt1 = new TEbt
+response.Write "AQUI1 : " & now
+response.Write "<BR>" 'AQUI2 : " & now
+'response.End
+Call Ebt1.LoginUsuario("")
+'Call Ebt1.BuscaDadosEmbratel("")
 
-'Set ebt1 = new TEbt
-'call Ebt1.LoginUsuario("")
-'Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
-'Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
-'Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
-'Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
-'Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
-'Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
-'Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
-'Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
-'Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
-'Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
-'Response.Write "Celular: " & Ebt1.Celular & "<BR>"
-'Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
-'Response.Write "NOW: " & now & "<BR>"
-'Response.End
+Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
+Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
+Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
+Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
+Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
+Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
+Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
+Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
+Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
+Response.Write "Celular: " & Ebt1.Celular & "<BR>"
+Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
+Response.Write "NOW: " & now & "<BR>"
+Response.End
 
 
 dim usuarioCRT
@@ -51,7 +63,7 @@ if usuarioCRT then%>
 				<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#003366">
 				<tr> 
 					<td>
-						<iframe src="servicos_agendamento.htm" frameborder="0" width="288" height="100" scrolling="auto" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Seu browser não suporta IFRAMES.</font></iframe>
+						<iframe src="servicos_agendamento.htm" frameborder="0" width="288" height="100" scrolling="auto" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Seu browser nï¿½o suporta IFRAMES.</font></iframe>
 						<!--<iframe src="o_que_e_crt.htm" frameborder="0" width="284" height="100" scrolling="auto" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Immerse your soul in love.</font></iframe>-->
 					</td>
 				</tr>
@@ -82,7 +94,7 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px">&nbsp;</td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Acha Fácil CRT</td>
+							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Acha FÃ¡cil CRT</td>
 						</tr>
 						<tr>
 							<td height="1"></td>
@@ -120,7 +132,7 @@ end if%>
 										<tr>
 											<td width="15px"></td>
 											<td valign="top">
-												<span class="texto">Informações dos agendamentos no CRT</span>
+												<span class="texto">InformaÃ§Ãµes dos agendamentos no CRT</span>
 											</td>
 										</tr>
 										</table>
@@ -134,7 +146,7 @@ end if%>
 										<table width="100%" height="100%">
 										<tr valign="top">
 											<td colspan="2" valign="top">
-												<a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a>
+												<a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execuÃ§Ã£o no CRT</a>
 											</td>
 										</tr>
 										<tr>
@@ -289,7 +301,7 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px"></td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Notícias</td>
+							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; NotÃ­cias</td>
 						</tr>
 						<tr>
 							<td height="1"></td>
@@ -303,7 +315,7 @@ end if%>
 						</tr>
 						<tr>
 							<td colspan="2" align="center" valign="middle">
-								<span class="texto1" style="font-size: 9px;"><i>Clique na notícia para abrir</i></span>
+								<span class="texto1" style="font-size: 9px;"><i>Clique na notÃ­cia para abrir</i></span>
 							</td>
 						</tr>
 						</table>
@@ -351,20 +363,20 @@ end if%>
 	    var ehIE;
 	    var versao;
 	
-	    // Não é um browser IE, pode ser qualquer outro
+	    // Nï¿½o ï¿½ um browser IE, pode ser qualquer outro
 	    ehIE = navigator.userAgent.indexOf("MSIE");
 
 	    if(ehIE == -1)
 	    {
 	        //location.href = 'indexNS.asp';
-	        alert('Atenção !\n\nSeu navegador não é o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoíveis no seu browser.');
+	        alert('Atenï¿½ï¿½o !\n\nSeu navegador nï¿½o ï¿½ o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoï¿½veis no seu browser.');
 	    }
 	    else
 	    {
 		    versao = navigator.userAgent.substring(ehIE);
 		    ehIE = versao.indexOf(";");
 		    if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			    alert('Atenção !\n\nVocê está usando uma versão do Internet Explorer inferior à 5.5. Alguns recursos do sistema SISLAB podem não funcionar corretamente nesta versão.\n\nPor favor, atualize o seu browser antes de continuar.');
+			    alert('Atenï¿½ï¿½o !\n\nVocï¿½ estï¿½ usando uma versï¿½o do Internet Explorer inferior ï¿½ 5.5. Alguns recursos do sistema SISLAB podem nï¿½o funcionar corretamente nesta versï¿½o.\n\nPor favor, atualize o seu browser antes de continuar.');
 	    }
     }
     verificaNavegador();

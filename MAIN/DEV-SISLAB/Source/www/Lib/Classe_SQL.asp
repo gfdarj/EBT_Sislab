@@ -1,4 +1,4 @@
-﻿<%
+<%
 Class TSql
 
     Private chr_Conn

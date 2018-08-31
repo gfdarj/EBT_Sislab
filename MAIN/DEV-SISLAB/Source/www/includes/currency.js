@@ -1,4 +1,4 @@
-// IdentificaÁ„o de browser
+// Identifica√ß√£o de browser
 var isNav4, isNav, isIE;
 if (parseInt(navigator.appVersion.charAt(0)) >= 4) {
   isNav = (navigator.appName=="Netscape") ? true : false;
@@ -58,7 +58,7 @@ function range(campo) {
            && campo.value.charAt(i)!='6' && campo.value.charAt(i)!='7' && campo.value.charAt(i)!='8'
            && campo.value.charAt(i)!='9' && campo.value.charAt(i)!=',')
         {
-            alert("Valor inv·lido. Favor redigitar.");
+            alert("Valor inv√°lido. Favor redigitar.");
             campo.value=0
         }
 }

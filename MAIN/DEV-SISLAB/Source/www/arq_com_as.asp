@@ -38,7 +38,7 @@ chr_SQL = "" & _
 
 Set RS = Env.oConn.Execute(chr_SQL)
 
-'chr_arquivo = "arquivo de maçã doce.pdf"
+'chr_arquivo = "arquivo de maï¿½ï¿½ doce.pdf"
 'RW chr_arquivo & "<BR>"
 'RW ValidaNomeArquivo(chr_arquivo, true) & "<BR>"
 'RW chr_arquivo & "<BR>"
@@ -90,13 +90,13 @@ While Not RS.Eof
 	RW "<tr><td><font color='red'>Arquivo: " & chr_SubFolder & chr_Arquivo & "</font><BR><BR></td></tr>"
 %>
 <tr>
-	<td>Código Interno: <%=RS("arq_codarq")%><BR><BR>
+	<td>Cï¿½digo Interno: <%=RS("arq_codarq")%><BR><BR>
 		Tipo de arquivo: <%=RS("tar_tipoarquivo")%><BR><BR>
 		Nome: <%=RS("arq_link")%> <BR><BR>
 		Link: <%=chr_Arquivo%><BR><BR>
-		Sugestão: <b><%=chr_Arquivo%></b><BR><BR>
+		Sugestï¿½o: <b><%=chr_Arquivo%></b><BR><BR>
 		AS: <%=ag_numero%><BR><BR>
-		Responsável: <%=RS("arq_responsavel")%><BR>
+		Responsï¿½vel: <%=RS("arq_responsavel")%><BR>
 		<hr>
 	</td>
 </tr>
@@ -122,10 +122,10 @@ Function ValidaNomeArquivo(ByRef chr_arquivo, bln_TrocaNome)
 	Dim SemAcentos
 	Dim int_Indice
 
-	ComAcentos = "!@#$%¨&*()-?:{}][ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç "
+	ComAcentos = "!@#$%ï¿½&*()-?:{}][ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "
 	SemAcentos = "_________________AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc_"
 
-'	ComAcentos = "+!@#$%¨&*()?:{}][ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç"
+'	ComAcentos = "+!@#$%ï¿½&*()?:{}][ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 '	SemAcentos = "_________________AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc"
 
 	ValidaNomeArquivo = True

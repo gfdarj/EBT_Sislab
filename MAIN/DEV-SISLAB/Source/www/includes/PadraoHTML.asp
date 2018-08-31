@@ -111,7 +111,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 					<td><font class="links">I</font></td>
 					<td align="center" id="mnuServicos"><a href="#" onClick="javascript:mostraMenuServicos(true);"><font class="links">Servi&ccedil;os e Agendamentos</a></td>
 					<td><font class="links">I</font></td>
-					<td align="center"><a href="arq_disp.asp"><font class="links">Sistemas de Gest„o</a></td>
+					<td align="center"><a href="arq_disp.asp"><font class="links">Sistemas de Gest√£o</a></td>
 					<%if Env.UsuarioCRT then%>
 					<td><font class="links">I</font></td>
     	            <td align="center"><a href="sislab.asp" class="links"><font color="#990000">Administra&ccedil;&atilde;o do Site</a></td>
@@ -131,13 +131,13 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 <%
 ' desabilitei o HEIGHT do DIV principal enquanto nao tivermos
 ' uma funcao para imprimir o conteudo deste DIV, pois indo para
-' producao ser· necessario esta funcionalidade visto que os funcs
+' producao ser√° necessario esta funcionalidade visto que os funcs
 ' utilizam muito a impressao das telas
 ' ==> para voltar a colocar o HEIGHT basta tirar o If abaixo e colocar
 '     o valor "height: 310px" no style do div principal (acima)
 	if false then%>
 <script language="JavaScript">
-	//testo a resolucao do video e altero o DIV de informaÁıes
+	//testo a resolucao do video e altero o DIV de informa√ß√µes
 	var resolucao = screen.width + "x" + screen.height;
 	if (resolucao == "800x600") {
 		document.all.div_telaprincipal.style.height = "310px";
@@ -232,12 +232,12 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 			"	<head>" & VbCrLf & _
 			"	    <title>" & VbCrLf
 
-		'-- Indica em que modo o sistema est· sendo executado
+		'-- Indica em que modo o sistema est√° sendo executado
 		If Application("SISLAB_AMBIENTE") <> "PRO" Then _
 				chr_Buffer = chr_Buffer & "[" & Application("SISLAB_AMBIENTE") & "] "
 
 		if titulo = "" or IsEmpty(titulo) then
-			chr_Buffer = chr_Buffer & "SISLAB - Site do Centro de ReferÍncia TecnolÛgica"
+			chr_Buffer = chr_Buffer & "SISLAB - Site do Centro de Refer√™ncia Tecnol√≥gica"
 		else
 			chr_Buffer = chr_Buffer & titulo
 		end if
@@ -301,68 +301,68 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 <!--
 stm_bm(["tubtehr",400,"","<%=PathRelativo%>img/blank.gif",1,"0","stgct()",0,0,250,0,1000,1,0,0,"","",0],this);
 stm_bp("p0",[0,4,0,0,0,2,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
-stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=PathRelativo%>index.asp","_self","","Retorna ‡ p·gina principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
+stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=PathRelativo%>index.asp","_self","","Retorna √† p√°gina principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
 stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i1","p0i0",[0,"ServiÁos","","",-1,-1,0,"","_self","","ServiÁos e Agendamentos","","",0,0,0,"<%=PathRelativo%>img/arrow_r.gif","<%=PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
+stm_aix("p0i1","p0i0",[0,"Servi√ßos","","",-1,-1,0,"","_self","","Servi√ßos e Agendamentos","","",0,0,0,"<%=PathRelativo%>img/arrow_r.gif","<%=PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
 stm_bp("p1",[1,4,0,0,0,3,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,1,1,"#006699"]);
-stm_aix("p1i0","p0i1",[0,"Agendamentos","","",-1,-1,0,"","_self","","Agendamentos - OpÁıes"]);
+stm_aix("p1i0","p0i1",[0,"Agendamentos","","",-1,-1,0,"","_self","","Agendamentos - Op√ß√µes"]);
 stm_bp("p2",[1,2,0,0,0,3,0,0,100,"",-2,"",-2,90,0,0,"#7f7f7f","#ffffff","",3,1,1,"#000000"]);
 stm_aix("p2i0","p0i1",[0,"Novo","","",-1,-1,0,"<%=PathRelativo%>CadAgendamentoCliente.asp","_self","","Cria um agendamento","","",0,0,0,"","",0,0]);
-stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=PathRelativo%>rel_ativ.asp","_self","","Acompanha a execuÁ„o de um agendamento e seu resultado"]);
-stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execuÁ„o de um agendamento"]);
+stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=PathRelativo%>rel_ativ.asp","_self","","Acompanha a execu√ß√£o de um agendamento e seu resultado"]);
+stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execu√ß√£o de um agendamento"]);
 <%
 				If Env.UsuarioCRT then%>
-stm_aix("p2i3","p0i1",[0,"RelatÛrio de Acompanhamento","","",-1,-1,0,"<%=PathRelativo%>REL_GQ_filtro.asp","_self","","RelatÛrio de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+stm_aix("p2i3","p0i1",[0,"Relat√≥rio de Acompanhamento","","",-1,-1,0,"<%=PathRelativo%>REL_GQ_filtro.asp","_self","","Relat√≥rio de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 <%				End If%>
 stm_ep();
 stm_aix("p1i1","p0i1",[0,"Conhecendo o CRT","","",-1,-1,0,"","_self","","Conhecendo o CRT"]);
 stm_bpx("p3","p2",[]);
-stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodaÁ„o e salas disponÌveis"]);
-stm_aix("p3i1","p2i0",[0,"CÛdigo de …tica","","",-1,-1,0,"http://ntspo907/hpembratel/pdf/codigo_de_etica_embrapar.pdf","_self","","CÛdigo de …tica"]);
+stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomoda√ß√£o e salas dispon√≠veis"]);
+stm_aix("p3i1","p2i0",[0,"C√≥digo de √âtica","","",-1,-1,0,"http://ntspo907/hpembratel/pdf/codigo_de_etica_embrapar.pdf","_self","","C√≥digo de √âtica"]);
 stm_aix("p3i2","p2i0",[0,"Equipe / Infra-estrutura Interna","","",-1,-1,0,"<%=PathRelativo%>equ_EstIn.asp","_self","","Equipe / Infra-estrutura Interna"]);
 
 <%				'-- se for do CRT exibe o link para o servidor local
 				if Env.usuarioCRT then%>
-stm_aix("p3i3","p2i3",[0,"EspaÁo CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","EspaÁo reservado aos trabalhos internos do CRT"]);
+stm_aix("p3i3","p2i3",[0,"Espa√ßo CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","Espa√ßo reservado aos trabalhos internos do CRT"]);
 <%				end if%>
 
-stm_aix("p3i4","p2i0",[0,"HistÛrico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","HistÛrico do Centro de ReferÍncia TecnolÛgica"]);
-stm_aix("p3i5","p2i0",[0,"LocalizaÁ„o / ¡rea","","",-1,-1,0,"<%=PathRelativo%>loc_area.asp","_self","","LocalizaÁ„o e ·rea construÌda"]);
-stm_aix("p3i6","p2i0",[0,"Manual do Sistema de Gest„o","","",-1,-1,0,"arquivos/MSG Rev 08 de 20-02-06 .pdf","_self","","Manual do Sistema de Gest„o"]);
-stm_aix("p3i7","p2i0",[0,"Videos do CRT","","",-1,-1,0,"videos.asp","_self","","VÌdeos do CRT"]);
+stm_aix("p3i4","p2i0",[0,"Hist√≥rico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","Hist√≥rico do Centro de Refer√™ncia Tecnol√≥gica"]);
+stm_aix("p3i5","p2i0",[0,"Localiza√ß√£o / √Årea","","",-1,-1,0,"<%=PathRelativo%>loc_area.asp","_self","","Localiza√ß√£o e √°rea constru√≠da"]);
+stm_aix("p3i6","p2i0",[0,"Manual do Sistema de Gest√£o","","",-1,-1,0,"arquivos/MSG Rev 08 de 20-02-06 .pdf","_self","","Manual do Sistema de Gest√£o"]);
+stm_aix("p3i7","p2i0",[0,"Videos do CRT","","",-1,-1,0,"videos.asp","_self","","V√≠deos do CRT"]);
 stm_ep();
 
 <%				if Env.usuarioCRT_Cadastrado then%>
-//stm_aix("p1i2","p3i7",[0,"Controle de ConsumÌveis (SCC)","","",-1,-1,0,"<%=PathRelativo%>scc/index.asp","_self","","Sistema de Controle de ConsumÌveis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+//stm_aix("p1i2","p3i7",[0,"Controle de Consum√≠veis (SCC)","","",-1,-1,0,"<%=PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consum√≠veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 //stm_aix("p1i2","p2i3",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"sce/index.asp","_self","","Sistema de Controle de Equipamentos"]);
 <%				end if%>
 
-stm_aix("p1i3","p2i0",[0,"Sistemas de Gest„o","","",-1,-1,0,"<%=PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gest„o disponÌveis para visualizaÁ„o"]);
+stm_aix("p1i3","p2i0",[0,"Sistemas de Gest√£o","","",-1,-1,0,"<%=PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gest√£o dispon√≠veis para visualiza√ß√£o"]);
 stm_aix("p1i4","p2i0",[0,"Lista de Atividades do CRT","","",-1,-1,0,"<%=PathRelativo%>sit_crt.asp","_self","","Exibe as atividades do CRT"]);
-stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorrÍncias"]);
-stm_aix("p1i6","p2i0",[0,"OcupaÁ„o dos Ambientes","","",-1,-1,0,"<%=PathRelativo%>ambientes/cons_agenda.asp","_self","","Cadastro e reserva de salas"]);
-stm_aix("p1i7","p0i1",[0,"Pesquisa de SatisfaÁ„o","","",-1,-1,0,"","_self","","Pesquisa de SatisfaÁ„o"]);
+stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorr√™ncias"]);
+stm_aix("p1i6","p2i0",[0,"Ocupa√ß√£o dos Ambientes","","",-1,-1,0,"<%=PathRelativo%>ambientes/cons_agenda.asp","_self","","Cadastro e reserva de salas"]);
+stm_aix("p1i7","p0i1",[0,"Pesquisa de Satisfa√ß√£o","","",-1,-1,0,"","_self","","Pesquisa de Satisfa√ß√£o"]);
 stm_bpx("p4","p2",[]);
-stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfaÁ„o"]);
-stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por n˙mero do agendamento"]);
+stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfa√ß√£o"]);
+stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por n√∫mero do agendamento"]);
 stm_ep();
-stm_aix("p1i8","p0i1",[0,"Recursos DisponÌveis","","",-1,-1,0,"","_self","","Recursos DisponÌveis"]);
+stm_aix("p1i8","p0i1",[0,"Recursos Dispon√≠veis","","",-1,-1,0,"","_self","","Recursos Dispon√≠veis"]);
 stm_bpx("p5","p2",[]);
-stm_aix("p5i0","p2i0",[0,"LogÌstica","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","LogÌstica"]);
+stm_aix("p5i0","p2i0",[0,"Log√≠stica","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","Log√≠stica"]);
 stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
-stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=PathRelativo%>CadTransporte.asp","_self","","Hor·rios do transporte para o CRT"]);
-//////stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>transporte.pdf","_blank","","Hor·rios do transporte para o CRT"]);
+stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=PathRelativo%>CadTransporte.asp","_self","","Hor√°rios do transporte para o CRT"]);
+//////stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>transporte.pdf","_blank","","Hor√°rios do transporte para o CRT"]);
 stm_ep();
-//stm_aix("p1i9","p2i0",[0,"Sugestıes (Fale Conosco)","","",-1,-1,0,"<%=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
+//stm_aix("p1i9","p2i0",[0,"Sugest√µes (Fale Conosco)","","",-1,-1,0,"<%=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
 stm_ep();
 <%				if Env.ehRAT or Env.ehRT then%>
 stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i2","p2i0",[0,"AdministraÁ„o do Site","","",-1,-1,0,"<%=PathRelativo%>sislab.asp","_self","","AdministraÁ„o do SISLAB"]);
+stm_aix("p0i2","p2i0",[0,"Administra√ß√£o do Site","","",-1,-1,0,"<%=PathRelativo%>sislab.asp","_self","","Administra√ß√£o do SISLAB"]);
 stm_ep();
 <%				end if%>
 stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-stm_aix("p0i2","p2i0",[0,"Fale Conosco","","",-1,-1,0,"<%=PathRelativo%>fale.asp","_self","","AdministraÁ„o do SISLAB"]);
+stm_aix("p0i2","p2i0",[0,"Fale Conosco","","",-1,-1,0,"<%=PathRelativo%>fale.asp","_self","","Administra√ß√£o do SISLAB"]);
 stm_em();
 //-->
 </script>
@@ -372,7 +372,7 @@ stm_em();
 		</table>
 <%		end if	'Imprime Tela   %>
 
-<!--------------------- Imprime o nome do formul·rio na tela --------------------->
+<!--------------------- Imprime o nome do formul√°rio na tela --------------------->
 
 <%		if nomeTela <> "" then
 			if linkVoltar = "" then linkVoltar = "history.go(-1)"%>
@@ -393,7 +393,7 @@ stm_em();
 						&nbsp;&nbsp;
 <%				end if
 				if ucase(linkVoltar) <> "SO_LINK" then%>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 17px; width: 25px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conte˙do da tela"></a></button>
+						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 17px; width: 25px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conte√∫do da tela"></a></button>
 <%				end if
 			end if%>
 						&nbsp;&nbsp;

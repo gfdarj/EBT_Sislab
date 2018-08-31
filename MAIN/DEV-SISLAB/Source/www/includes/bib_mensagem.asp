@@ -3,8 +3,8 @@
 '-- ARQUIVO DE ROTINAS DE MENSAGENS PADRAO - SISTEMA SISLAB
 '-- coppetec
 '-- 
-'-- Obs: Para rodar é necessário estar incluido no ASP o arquivo contendo a rotina
-'-- de cabeçalho/rodapé padrao
+'-- Obs: Para rodar Ã© necessÃ¡rio estar incluido no ASP o arquivo contendo a rotina
+'-- de cabeÃ§alho/rodapÃ© padrao
 '--------------------------------------------------------------------------------------------
 
 
@@ -15,13 +15,13 @@ function ErroHtml(menu, rodape, chr_mensagem, linkVoltar, path)
 
 	If linkVoltar = "" Then linkVoltar = "javascript:history.go(-1);"
 
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
+	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao GravaÃ§Ã£o de Dados", "SO_IMPRESSORA", path)
 
 	response.write "<br><p class='texto1'>"
 
-	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Descrição do(s) erro(s) encontrado(s)</span><br><br>"
+	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>DescriÃ§Ã£o do(s) erro(s) encontrado(s)</span><br><br>"
 
-	response.write "&nbsp;&nbsp;<b>Descrição:</b> " & chr_mensagem & "<br><br>"
+	response.write "&nbsp;&nbsp;<b>DescriÃ§Ã£o:</b> " & chr_mensagem & "<br><br>"
 
 	response.write "</p>"
 	response.write "<p class='texto1'>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
@@ -30,7 +30,7 @@ end function
 
 
 function MsgGravacaoDados(menu, rodape, msgHtml, linkvoltar, path)
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Gravação de Dados", "SO_IMPRESSORA", path)
+	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "GravaÃ§Ã£o de Dados", "SO_IMPRESSORA", path)
 	response.write "<table border='0' width='100%' class='tabela1' cellpadding='0' cellspacing='3'><tr><td>" & msgHtml & "</td></tr></table>"
 	response.write "<br><p class='texto1'>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
 	call imprimeRodape(rodape)
@@ -43,15 +43,15 @@ end function
 '--------------------------------------------------------------------------------------------
 function erroDB(menu, rodape, apenasErroSistema, Erro, linkVoltar, path)
 	Dim objErro
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
+	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao GravaÃ§Ã£o de Dados", "SO_IMPRESSORA", path)
 	response.write "<br><p class='texto1'>"
 
-	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Descrição do(s) erro(s) encontrado(s)</span><br><br>"
+	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>DescriÃ§Ã£o do(s) erro(s) encontrado(s)</span><br><br>"
 
 	For Each objErro In Erro
 		'if (apenasErroSistema and objErro.NativeError = 50000) or (not apenasErroSistema) then
-			'response.write "&nbsp;&nbsp;Nº Erro: " & objErro.Number & "<br>"
-			response.write "&nbsp;&nbsp;<b>Descrição:</b> " & objErro.Description & "<br><br>"
+			'response.write "&nbsp;&nbsp;NÂº Erro: " & objErro.Number & "<br>"
+			response.write "&nbsp;&nbsp;<b>DescriÃ§Ã£o:</b> " & objErro.Description & "<br><br>"
 			'response.write "&nbsp;&nbsp;Erro nativo: " & objErro.NativeError & "<br>"
 			'response.write "&nbsp;&nbsp;Estado SQL: " & objErro.SQLState & "<br>"
 			'response.write "&nbsp;&nbsp;Reportado por: " & objErro.Source & "<br>"

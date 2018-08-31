@@ -54,22 +54,22 @@
 		<table width="100%" border="0" class="tabela1" style="background-color: #D6EBFF;">
 		<tr>
 			<td width="150px">
-				&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;&nbsp;<a href="javascript:;" title="Informar o nome do Cliente ou Razão Social.">Nome do Cliente:</a>
+				&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;&nbsp;<a href="javascript:;" title="Informar o nome do Cliente ou RazÃ£o Social.">Nome do Cliente:</a>
 			</td>
 			<td>
-	        	<input class="texto1" name="txtNome<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200" title="Informar o nome do Cliente ou Razão Social.">
+	        	<input class="texto1" name="txtNome<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200" title="Informar o nome do Cliente ou RazÃ£o Social.">
 			</td>
 		</tr>
 		<tr> 
 			<td>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="Informar expectativa de retorno associado à atividade ou valor de carteira envolvido.">Retorno Estimado(R$):
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="Informar expectativa de retorno associado Ã  atividade ou valor de carteira envolvido.">Retorno Estimado(R$):
 			</td>
 			<td>
-				<input class="texto1" value="0,00" name="txtRetorno<%=nome%>" size="15" tabindex="<%=index+3%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar a expectativa de retorno associado à atividade ou valor de carteira envolvido.">
+				<input class="texto1" value="0,00" name="txtRetorno<%=nome%>" size="15" tabindex="<%=index+3%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar a expectativa de retorno associado Ã  atividade ou valor de carteira envolvido.">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="javascript:;" title="Informar o valor do contrato associado à atividade.">Valor do Contrato (R$):</a>
+				<a href="javascript:;" title="Informar o valor do contrato associado Ã  atividade.">Valor do Contrato (R$):</a>
 				&nbsp;
-				<input class="texto1" value="0,00" name="txtValorContrato<%=nome%>" size="15" tabindex="<%=index+4%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar o valor do contrato associado à atividade.">
+				<input class="texto1" value="0,00" name="txtValorContrato<%=nome%>" size="15" tabindex="<%=index+4%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar o valor do contrato associado Ã  atividade.">
 			</td>
 		</tr>
 	</table>
@@ -123,7 +123,7 @@ function adiciona_retira_participantes<%=nome%>(tipo)
 			nome.focus();		
 		}
 		else if (motivo.value == ""){
-			alert("O campo 'Motivo da Participação' deve ser preenchido.");
+			alert("O campo 'Motivo da ParticipaÃ§Ã£o' deve ser preenchido.");
 			motivo.focus();		
 		}
 		else{
@@ -153,7 +153,7 @@ function submitFormEscondido(){
 			<td>
 				<input class="texto1" name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
 			</td>
-			<td width="75px">Motivo da participação:&nbsp;</td>
+			<td width="75px">Motivo da participaÃ§Ã£o:&nbsp;</td>
 			<td>
 				<input class="texto1" name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
 			</td>
@@ -205,7 +205,7 @@ function adiciona_retira_participantes<%=nome%>(tipo)
 			empresa.focus();		
 		}
 		else if (motivo.value == ""){
-			alert("O campo 'Motivo da Participação' deve ser preenchido.");
+			alert("O campo 'Motivo da ParticipaÃ§Ã£o' deve ser preenchido.");
 			motivo.focus();		
 		}
 		else{
@@ -263,7 +263,7 @@ function adiciona_retira_participantes<%=nome%>(tipo)
 </tr>
 <tr> 
 	<td width="12%">
-		Motivo da participação:</td>
+		Motivo da participaÃ§Ã£o:</td>
 	<td width="33%"> 
 		<input class="texto1" name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+3%>" maxlength="200"></td>
 </tr>
@@ -506,7 +506,7 @@ resp = str1.value.lastIndexOf(rExp)
 		fac.value = "";
 		fac.focus();
 	}else{
-		alert('Item já consta na lista.');
+		alert('Item jÃ¡ consta na lista.');
 	}
 }
 </script>
@@ -551,7 +551,7 @@ resp = str1.value.lastIndexOf(rExp)
 
 
 '-- tive que colocar este pq o paulo fez uma zona complicando uma coisa
-'-- que deveria ser fácil - nas outras combos ele poe o VALUE combinado com 
+'-- que deveria ser fÃ¡cil - nas outras combos ele poe o VALUE combinado com 
 '-- o ID + DESCRICAO (Gilberto)
 function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index)%>
 <script>
@@ -602,7 +602,7 @@ function adiciona<%=nome%>(){
 		fac.value = "";
 	}
 	else {
-		alert('Este item já existe na lista');
+		alert('Este item jÃ¡ existe na lista');
 	}
 	fac.focus();
 }
@@ -866,7 +866,7 @@ Sub comboRatTodos(nome,objConn,todos)
 	call comboBDSQL( nome, objConn,sSQL, "", todos)
 End Sub
 
-'retorna uma combo com todos os usuários visiveis
+'retorna uma combo com todos os usuÃ¡rios visiveis
 Sub comboUserCRT(nome,objConn,todos)
 	dim sSQL
 	sSQL = "select upper(userid) as valor,nome as descricao from userCRT where exibir =1 and not matricula is null order by nome"
@@ -908,17 +908,17 @@ End Sub
 
 Sub comboDePara(nome,objConn,todos)
 	dim sSQL
-	sSQL = "select 'Orgao' as valor,'Orgão do Solicitante' as descricao union "
-	sSQL = sSQL & "(select 'OrgaoInterno' as valor, 'Órgão Interno' as descricao) union "
+	sSQL = "select 'Orgao' as valor,'OrgÃ£o do Solicitante' as descricao union "
+	sSQL = sSQL & "(select 'OrgaoInterno' as valor, 'Ã“rgÃ£o Interno' as descricao) union "
 	sSQL = sSQL & "(select 'ClienteExterno' as valor,'Cliente Externo' as descricao) union "
 	sSQL = sSQL & "(select 'TipoAtividade' as valor,'Tipo de Atividade' as descricao) union "
 	sSQL = sSQL & "(select 'Tecnologia' as valor,'Tecnologia' as descricao)  UNION"
 	sSQL = sSQL & "(select 'Equipamento' as valor,'Equipamento' as descricao)  UNION"
 	sSQL = sSQL & "(select 'Testes' as valor,'Testes' as descricao) UNION "
 	sSQL = sSQL & "(select 'TipoTeste' as valor, 'TipoTeste' as descricao) UNION "
-	sSQL = sSQL & "(select 'Servicos' as valor, 'Serviços' as descricao) UNION "
+	sSQL = sSQL & "(select 'Servicos' as valor, 'ServiÃ§os' as descricao) UNION "
 	sSQL = sSQL & "(select 'Plataformas' as valor, 'Plataformas' as descricao) UNION "
-	sSQL = sSQL & "(select 'LB_TipoOcorrencia' as valor,'Tipo de Ocorrência LogBook' as descricao) UNION "
+	sSQL = sSQL & "(select 'LB_TipoOcorrencia' as valor,'Tipo de OcorrÃªncia LogBook' as descricao) UNION "
 	sSQL = sSQL & "(select 'TipoArquivo' as valor,'Tipo de Arquivo' as descricao) "
 	sSQL = sSQL & "ORDER BY descricao"
 	'response.write ssql
@@ -1031,8 +1031,8 @@ end function
 function comboEstadoOCorrencia(nome)%>
 	<select name="<%=nome%>" class="combo">
 		<option value="" selected>--</option>
-		<option value="NO">Nova Ocorrência</option>
-		<option value="EA">Em Análise</option>
+		<option value="NO">Nova OcorrÃªncia</option>
+		<option value="EA">Em AnÃ¡lise</option>
 		<option value="C">Concluido</option>
 	</select>
 <%
@@ -1049,7 +1049,7 @@ end function
 
 function opt_meses( ntabs )
 	dim i
-	dim meses : meses = Array( "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" )
+	dim meses : meses = Array( "Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" )
 
 	opt_meses = "<option value="""">M&ecirc;s</option>" & vbCrLf
 	for i = 1 to 12
@@ -1088,7 +1088,7 @@ End Sub
 
 Sub comboSimNao(nome, objConn, todos)
 	dim sSQL
-	sSQL = "select 'S' as valor, 'Sim' as descricao UNION SELECT 'N', 'Não' ORDER BY valor desc"
+	sSQL = "select 'S' as valor, 'Sim' as descricao UNION SELECT 'N', 'NÃ£o' ORDER BY valor desc"
 	call comboBDSQL( nome, objConn, sSQL, "", todos)
 End Sub
 %>

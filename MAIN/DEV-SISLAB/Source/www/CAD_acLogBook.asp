@@ -15,11 +15,11 @@ oc = request("ocorrencia")
 responsavel = ""
 
 if (oc = "" or oc = "0" or idacao = "" or idacao = "0") and acao <> "cadastrar" then%>
-	<script language="JavaScript">alert("OcorrÍncia inv·lida"); window.close();</script>
+	<script language="JavaScript">alert("Ocorr√™ncia inv√°lida"); window.close();</script>
 <%
 end if
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "AÁıes do LogBook", "window.close()", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "A√ß√µes do LogBook", "window.close()", "")
 
 tipoacao = ""
 desc = ""
@@ -57,15 +57,15 @@ end if
 <input type="Hidden" name="resposta" value="N">
 <table width="100%" class="tabela1">
 <tr>
-	<td><b>Tipo da AÁ„o:&nbsp;</b></td>
+	<td><b>Tipo da A√ß√£o:&nbsp;</b></td>
 	<td><%call comboBDSQL( "cmbAcao", objConn,"Select TAT_ID AS VALOR, TAT_DESCRICAO AS DESCRICAO FROM LB_TIPOACAOTOMADA", tipoacao, "N")%></td>
 </tr>
 <tr>
-	<td><b>DescriÁ„o:&nbsp;</b></td>
+	<td><b>Descri√ß√£o:&nbsp;</b></td>
 	<td><input type="text" class="texto1" name="descricao" size=85 maxlength="600" value="<%=desc%>"></td>
 </tr>
 <tr>
-	<td><b>Respons·vel:&nbsp;</b></td>
+	<td><b>Respons√°vel:&nbsp;</b></td>
 	<td><%call comboUSERCRT("responsavel", objConn,"N")%></td>
 <%	if responsavel <> "" then%>
 	<script language="JavaScript">
@@ -78,7 +78,7 @@ end if
 	<td><input type="text" class="texto1" name="executor" size=35 value="<%=executante%>"></td>
 </tr>
 <tr>
-	<td><b>Prazo Previsto<br>Conclus„o:</b></td>
+	<td><b>Prazo Previsto<br>Conclus√£o:</b></td>
 	<td><%call comboData("prazo")%></td>
 <%if not IsNull(prazo) then%>
 	<script language="JavaScript">
@@ -95,7 +95,7 @@ end if
 
 <%if acao = "finalizar" or (not IsNull(conclusao) and acao = "visualizar") then%>
 <tr>
-	<td><b>Data Conclus„o:&nbsp;</b></td>
+	<td><b>Data ConclusÔøΩo:&nbsp;</b></td>
 	<td><%call comboData("conc")%></td>
 <%	if not IsNull(conclusao) then%>
 	<script language="JavaScript">
@@ -107,13 +107,13 @@ end if
 </tr>
 <tr  style="font-weight: lighter;">
 	<td class="nome_cp"  style="font-weight: lighter;">
-		<b>Efic·cia:&nbsp;</b>
+		<b>EficÔøΩcia:&nbsp;</b>
 	</td>
 	<td>
 		<select name="opteficacia" class="combo">
 			<option value="" <%if eficacia = "" then response.write "selected"%>>--</option>
 			<option value="1" <%if eficacia = "1" then response.write "selected"%>>Sim</option>
-			<option value="0" <%if eficacia = "0" then response.write "selected"%>>N„o</option>
+			<option value="0" <%if eficacia = "0" then response.write "selected"%>>N√£o</option>
 		</select>
 	</td>
 </tr>
@@ -126,7 +126,7 @@ end if
 	<td valign="top"><b>Arquivos Anexos:</b></td>
 	<td>
 <%
-'-- Verifica se existem arquivos anexos a esta aÁ„o
+'-- Verifica se existem arquivos anexos a esta a√ß√£o
 Dim chr_Buf : chr_Buf = "<i>Nenhum arquivo anexo</i>"
 
 s = "SELECT ACA_ID, ACA_LINK FROM LB_ACOESTOMADAS_ARQUIVOS WHERE LB_ID = " & oc & " AND ACT_ID = " 
@@ -190,22 +190,22 @@ function Excluir(ac, acnome)
 }
 function envia(){
 	if (frm.cmbAcao.value == "") {
-		alert("Informe a aÁ„o tomada.");
+		alert("Informe a a√ß√£o tomada.");
 	    frm.cmbAcao.focus();
 		return false;
 	}
 	if (frm.descricao.value==""){
-		alert("Informe a descriÁ„o da AÁ„o.");
+		alert("Informe a descri√ß√£o da A√ß√£o.");
 	    frm.descricao.focus();
 		return false;
 	}
 	if (frm.responsavel.value==""){
-		alert("Informe o respons·vel embratel da AÁ„o.");
+		alert("Informe o respons√°vel Embratel da A√ß√£o.");
 	    frm.responsavel.focus();
 		return false;
 	}
 	if (frm.executor.value==""){
-		alert("Informe o executor da AÁ„o.");
+		alert("Informe o executor da A√ß√£o.");
 	    frm.descricao.focus();
 		return false;
 	}
@@ -218,17 +218,17 @@ function envia(){
 
 <%if acao = "finalizar" then%>
 	conc = frm.diaconc.value + '/' + frm.mesconc.value + '/' + frm.anoconc.value
-	if (!ValidaDataMesAno(conc,'FinalizaÁ„o'))
+	if (!ValidaDataMesAno(conc,'Finaliza√ß√£o'))
 		return false;
 <%end if%>
 
 	if (!validaNomeArquivo(extractFileName(frm.arquivo.value))) {
-		alert('O nome do arquivo est· inv·lido. Retire acentuaÁ„o e espaÁos antes de prosseguir.');
+		alert('O nome do arquivo est√° inv√°lido. Retire acentua√ß√£o e espa√ßos antes de prosseguir.');
 		frm.arquivo.focus();
 		return false;
 	}
 
-	var resposta = confirm("Deseja que este cadastro comunique via e-mail o respons·vel por esta aÁ„o ?");
+	var resposta = confirm("Deseja que este cadastro comunique via e-mail o respons√°vel por esta a√ß√£o ?");
 	if (resposta) {
 		frm.resposta.value = "S";
 	}

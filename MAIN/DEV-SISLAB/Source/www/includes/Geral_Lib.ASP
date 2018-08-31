@@ -2,7 +2,7 @@
 '----------------------------------------------------------------------------------
 ' GERAL_LIB.ASP
 '
-' Biblioteca de funções gerais do SISLAB
+' Biblioteca de funÃ§Ãµes gerais do SISLAB
 '----------------------------------------------------------------------------------
 
 Sub RW(chr_Buf)
@@ -30,7 +30,7 @@ Function IIf(condition, string_expression1, string_expression2)
 End Function
 
 '***********************************************************************
-' verifica se o valor passado é nulo, vazio ou zero
+' verifica se o valor passado Ã© nulo, vazio ou zero
 ' Marcio Barbosa - 27/11/2002
 ' VVVNZ = verifica valor vazio nulo zero
 '***********************************************************************
@@ -43,7 +43,7 @@ Function VVVNZ(valor)
 End Function
 
 '***********************************************************************
-' verifica se o valor passado é nulo ou vazio
+' verifica se o valor passado Ã© nulo ou vazio
 ' Marcio Barbosa - 28/01/2003
 ' VVVN = verifica valor vazio nulo
 '***********************************************************************

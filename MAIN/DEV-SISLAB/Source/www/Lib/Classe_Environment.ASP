@@ -183,14 +183,14 @@ Class TEnvironment
 
 	    int_PerfilSCE = 0 'perfil sem acesso
 
-	    '-->>> vari·veis de configuraÁ„o
+	    '-->>> vari√°veis de configura√ß√£o
 	    siglaApp = "CRT"
-	    nomeApp = "Sistema de Gest„o de LaboratÛrio"
+	    nomeApp = "Sistema de Gest√£o de Laborat√≥rio"
 	    nomeAppHtml = "Sistema de Gest&atilde;o de Laborat&oacute;rio"
 	    versaoApp = "2006"
 	    orgaoEbt = "VPO28"
 	    siglaCrt = "CRT"
-	    nomeCrt = "Centro de ReferÍncia TecnolÛgica"
+	    nomeCrt = "Centro de Refer√™ncia Tecnol√≥gica"
 	    ramalContato = "521-8297"
 	    emailContato = "ilab@embratel.com.br"
 	    periodoValidacaoDocumento = 6
@@ -256,7 +256,7 @@ Class TEnvironment
     Private Sub ConectaBDAccess()
 	    Dim chr_Caminho
 
-    'Comentei esse cÛdigo porque d· erro no IIS7+Windows7 (15/03/2012)
+    'Comentei esse c√≥digo porque d√° erro no IIS7+Windows7 (15/03/2012)
     '
     '	On Error Resume Next
 

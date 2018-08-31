@@ -69,12 +69,12 @@ function LogaUsuario(user)
 
 	Response.cookies("SISLAB")("PaginaInicial") = "index.asp"
 
-	'### Verificacao da existencia do usu·rio
+	'### Verificacao da existencia do usu√°rio
 	sSQL= "select USERID, RAT, GQ,RT from UserCRT where UPPER(USERID) = '" & Request.cookies("SISLAB")("usuario") & "' and exibir = 1"
 	call Connection( true, objConn )
 	call RecordSet( true, objRS, sSQL, objConn )
 
-	'### Armazenamento das informaÁıes do usu·rio logado
+	'### Armazenamento das informa√ß√µes do usu√°rio logado
 	if not (objRS.BOF and objRS.EOF) Then 
 		usuarioCRT = true
 		Response.cookies("SISLAB")("ehRT") = CBool(objRS("RT"))
@@ -91,8 +91,8 @@ function LogaUsuario(user)
 	end if
 	call RecordSet( false, objRS, null, objConn )
 
-	'-- Devido aos usu·rios do SCE n„o serem cadastrados, coloquei este novo Cookie
-	'-- para testar no menu RECURSOS se o usu·rio esta cadastrado ou nao, independente do
+	'-- Devido aos usu√°rios do SCE n√£o serem cadastrados, coloquei este novo Cookie
+	'-- para testar no menu RECURSOS se o usu√°rio esta cadastrado ou nao, independente do
 	'-- flag EXIBIR
 	Response.cookies("SISLAB")("usuarioCRT_Cadastrado") = False
 
@@ -154,7 +154,7 @@ function BuscaDadosEmbratel(armazenaSessao,usuario)
 	 			Response.cookies("SISLAB")("CID_COM") = trim(rst("CID_COM"))
 				Response.cookies("SISLAB")("TEL1_COM") =  trim(rst("TEL1_COM")) ' caso nulo usuario nao atualizou no CTE
 
-				'-- verifico se o usu·rio È do Ûrg„o de gerencia do CRT
+				'-- verifico se o usu√°rio √© do √≥rg√£o de gerencia do CRT
 				sql = "SELECT ORGA_SIGLA FROM ORGAO WHERE ORGA_USERIDCHEFE = '" & Request.cookies("SISLAB")("usuario") & "'"
 				call Connection( true, objConn )
 				call RecordSet( true, objRS, sql, objConn )

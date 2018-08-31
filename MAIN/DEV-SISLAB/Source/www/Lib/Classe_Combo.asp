@@ -1,6 +1,6 @@
 <%
 '+-------------------------------------------------------------------------------------------
-'+ Monta o código HTML de combos padronizadas ou não que são utilizadas pelo SISLAB
+'+ Monta o cÃ³digo HTML de combos padronizadas ou nÃ£o que sÃ£o utilizadas pelo SISLAB
 '+
 '+ dependencia: SCE/Global_SCE.asp
 '+              Geral_Lib.asp
@@ -64,7 +64,7 @@ End Function
 
 Public Function SimNao(nome, todos)
 	Dim s
-	s = "select 'S' as valor, 'Sim' as descricao UNION SELECT 'N', 'Não' ORDER BY valor desc"
+	s = "select 'S' as valor, 'Sim' as descricao UNION SELECT 'N', 'NÃ£o' ORDER BY valor desc"
 	SimNap = PadraoSql(nome, s, "", todos)
 End Function
 
@@ -139,7 +139,7 @@ Public Function RatTodos(nome, todos)
 End Function
 
 'antiga comboUserCRT
-'retorna uma combo com todos os usuários visiveis
+'retorna uma combo com todos os usuÃ¡rios visiveis
 Public Function UserCRT(nome, todos)
 	dim sSQL
 	sSQL = "select upper(userid) as valor,nome as descricao from userCRT where exibir =1 and not matricula is null order by nome"
@@ -186,17 +186,17 @@ End Function
 Public Function DePara(nome, todos)
 	dim sSQL
 
-	sSQL = "select 'Orgao' as valor,'Orgão do Solicitante' as descricao union "
-	sSQL = sSQL & "(select 'OrgaoInterno' as valor, 'Órgão Interno' as descricao) union "
+	sSQL = "select 'Orgao' as valor,'OrgÃ£o do Solicitante' as descricao union "
+	sSQL = sSQL & "(select 'OrgaoInterno' as valor, 'Ã“rgÃ£o Interno' as descricao) union "
 	sSQL = sSQL & "(select 'ClienteExterno' as valor,'Cliente Externo' as descricao) union "
 	sSQL = sSQL & "(select 'TipoAtividade' as valor,'Tipo de Atividade' as descricao) union "
 	sSQL = sSQL & "(select 'Tecnologia' as valor,'Tecnologia' as descricao)  UNION"
 	sSQL = sSQL & "(select 'Equipamento' as valor,'Equipamento' as descricao)  UNION"
 	sSQL = sSQL & "(select 'Testes' as valor,'Testes' as descricao) UNION "
 	sSQL = sSQL & "(select 'TipoTeste' as valor, 'TipoTeste' as descricao) UNION "
-	sSQL = sSQL & "(select 'Servicos' as valor, 'Serviços' as descricao) UNION "
+	sSQL = sSQL & "(select 'Servicos' as valor, 'ServiÃ§os' as descricao) UNION "
 	sSQL = sSQL & "(select 'Plataformas' as valor, 'Plataformas' as descricao) UNION "
-	sSQL = sSQL & "(select 'LB_TipoOcorrencia' as valor,'Tipo de Ocorrência LogBook' as descricao) UNION "
+	sSQL = sSQL & "(select 'LB_TipoOcorrencia' as valor,'Tipo de OcorrÃªncia LogBook' as descricao) UNION "
 	sSQL = sSQL & "(select 'TipoArquivo' as valor,'Tipo de Arquivo' as descricao) "
 	sSQL = sSQL & "ORDER BY descricao"
 	DePara = Me.PadraoSql( nome, sSQL, "", todos)
@@ -294,7 +294,7 @@ End Function
 
 Private Function opt_meses(ntabs)
 	Dim i
-	Dim meses : meses = Array( "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" )
+	Dim meses : meses = Array( "Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" )
 
 	opt_meses = "<option value="""">M&ecirc;s</option>" & vbCrLf
 	For i = 1 To 12
@@ -354,8 +354,8 @@ End Function
 Public Function EstadoOcorrencia(nome)
     buffer = "<select name=' " & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 		     "<option value='' selected>--</option>" & VbCrLf & _ 
-		     "<option value='NO'>Nova Ocorrência</option>" & VbCrLf & _
-		     "<option value='EA'>Em Análise</option>" & VbCrLf & _
+		     "<option value='NO'>Nova OcorrÃªncia</option>" & VbCrLf & _
+		     "<option value='EA'>Em AnÃ¡lise</option>" & VbCrLf & _
 		     "<option value='C'>Concluido</option>" & VbCrLf & _
 	         "</select>" & VbCrLf
     EstadoOcorrencia = buffer
@@ -400,7 +400,7 @@ Public Function Fornecedor(ByVal nome, ByVal padrao, ByVal todos, ByVal tipo, By
 End Function
 
 
-'-- monta uma combo de fornecedores mais avançada
+'-- monta uma combo de fornecedores mais avanÃ§ada
 Public Function FornecedorFiltroCnpjDescricao(nome, padrao, todos, tipo, completa, cnpj, descricao)
 	dim ssql
 
@@ -463,7 +463,7 @@ Private Function MeusAgendamentosJS(nomeText, nomeCombo)
 End Function
 
 'antiga comboAgendamento
-'combo dos agendamentos do usuário
+'combo dos agendamentos do usuÃ¡rio
 Public Function MeusAgendamentos(meuAgendamento, nomeText, nomeCombo, padrao, todos)
 	Dim where
 
@@ -537,7 +537,7 @@ Public Function EquipamentoConforme(nome, mesmalinha)
 	    "<select name='" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 		"    <option value=''>Todos</option>" & VbCrLf & _
 		"    <option value='1'>Sim</option>" & VbCrLf & _
-		"    <option value='0'>Não</option>" & VbCrLf & _
+		"    <option value='0'>NÃ£o</option>" & VbCrLf & _
 	    "</select>" & VbCrLf
     EquipamentoConforme = buffer
 End Function
@@ -558,7 +558,7 @@ End Function
 
 Public Function SituacaoEquipamento(nome, mesmalinha, todos, mostraCadastrado, padrao)
     buffer = _
-	    "Situação" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
+	    "SituaÃ§Ã£o" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
 	    "<select name='" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 		"   <option value=''>" & IIf(todos, "Todos", "--") & "</option>" & VbCrLf
 
@@ -571,7 +571,7 @@ Public Function SituacaoEquipamento(nome, mesmalinha, todos, mostraCadastrado, p
         "   <option value='" & STATUS_EM_ESTOQUE & "' " & IIf(padrao = STATUS_EM_ESTOQUE, "selected", "") & ">Em estoque</option>" & VbCrLf & _
 	    "   <option value='" & STATUS_EM_USO & "' " & IIf(padrao = STATUS_EM_USO, "selected", "") & ">Em uso</option>" & VbCrLf & _
 	    "   <option value='" & STATUS_EXPEDIDO & "' " & IIf(padrao = STATUS_EXPEDIDO, "selected", "") & ">Expedido</option>" & VbCrLf & _
-	    "   <option value='" & STATUS_EXPEDIDO_SUBST & "' " & IIf(padrao = STATUS_EXPEDIDO_SUBST, "selected", "") & ">Substituído</option>" & VbCrLf & _
+	    "   <option value='" & STATUS_EXPEDIDO_SUBST & "' " & IIf(padrao = STATUS_EXPEDIDO_SUBST, "selected", "") & ">SubstituÃ­do</option>" & VbCrLf & _
         "</select>" & VbCrLf
 
     SituacaoEquipamento = buffer
@@ -583,7 +583,7 @@ Public Function SimNaoInstrumental(nome, mesmalinha)
 		"<select name='instrumental' class='" & p_classe & "'>" & VbCrLf & _
 		"	<option value=''>Todos</option>" & VbCrLf & _
 		"	<option value='1'>Sim</option>" & VbCrLf & _
-		"	<option value='0'>Não</option>" & VbCrLf & _
+		"	<option value='0'>NÃ£o</option>" & VbCrLf & _
 		"</select>" & VbCrLf
 
     SimNaoInstrumental = buffer

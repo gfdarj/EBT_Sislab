@@ -2,7 +2,7 @@
 '---------------------------------------------------------------------------------
 '	Classe de gerenciamento dos arquivos
 '
-'	Obs: Necess·rio o include Geral_Lib.asp e Bib_Str.asp
+'	Obs: Necess√°rio o include Geral_Lib.asp e Bib_Str.asp
 '---------------------------------------------------------------------------------
 Class TArquivo
 
@@ -120,7 +120,7 @@ Public Sub Init_UP()	'Objeto Persists Upload
 
 	objUpload.OverwriteFiles = bln_OverWrite
 
-    	' Limita o tamanho m·ximo do arquivo em 100MB 
+    	' Limita o tamanho m√°ximo do arquivo em 100MB 
     	objUpload.SetMaxSize 104857600, True
 
 	If Err.Number <> 0 Then
@@ -177,7 +177,7 @@ Public Sub Salva(chr_AS)
 				'	Coloca um limite para que a partir de um numero de AS / LB comece
 				'	a valer o novo esquema
 				'
-				'	Teoricamente esta funcionalidade e tempor·ria
+				'	Teoricamente esta funcionalidade e tempor√°ria
 				chr_SubFolder = ""
 				If chr_PrefixoNomePasta = "AS_" Then
 					'If CInt(chr_AS) > 1958 Then

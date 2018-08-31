@@ -5,7 +5,7 @@ Const TAMANHOPAGINA = 10
 Sub Connection(opcao, conexao)
 	Dim chr_Conn
 
-	On Error Resume Next 'necess·rio novamente devido ‡ forma como este comando foi implementado
+	On Error Resume Next 'necess√°rio novamente devido √† forma como este comando foi implementado
 	If opcao Then
 		Set conexao = Server.CreateObject("ADODB.Connection")
 
@@ -80,7 +80,7 @@ Sub ImprimeErrosConexao( objErro )
 
 <html>
 <head>
-	<title>Erro de conex„o</title>
+	<title>Erro de conex√£o</title>
 	<link rel="stylesheet" type="text/css" href="../css/cirap.css"/>
 </head>
 
@@ -88,19 +88,19 @@ Sub ImprimeErrosConexao( objErro )
 <br/>
 <table width="70%" align="center" bordercolor="#000099" border="1">
 	<tr class="tlabel">
-		<td align="center" colspan="2">Ocorreu algum erro ao tentar se conectar ao banco de dados.<br/>Se o erro persistir, contacte o webmaster deste site, fornecendo as seguintes informaÁıes:</td>
+		<td align="center" colspan="2">Ocorreu algum erro ao tentar se conectar ao banco de dados.<br/>Se o erro persistir, contacte o webmaster deste site, fornecendo as seguintes informa√ß√µes:</td>
 	</tr>
 <%	For Each objTmp in objErro%>
 	<tr>
-		<td><br/>CÛdigo do Erro:</td>
+		<td><br/>C√≥digo do Erro:</td>
 		<td><br/><%=objTmp.Number%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>CÛdigo ADO do Erro:</td>
+		<td>C√≥digo ADO do Erro:</td>
 		<td><%=objTmp.NativeError%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>DescriÁ„o:</td>
+		<td>Descri√ß√£o:</td>
 		<td><%=objTmp.Description%>&nbsp;</td>
 	</tr>
 	<tr>
@@ -116,7 +116,7 @@ Sub ImprimeErrosConexao( objErro )
 		<td><%=objTmp.HelpFile%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>TÛpico de ajuda associado:</td>
+		<td>T√≥pico de ajuda associado:</td>
 		<td><%=objTmp.HelpContext%>&nbsp;</td>
 	</tr>
 <%	Next%>

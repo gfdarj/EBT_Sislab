@@ -1,24 +1,24 @@
 <%
 '----------------------------------------------------------------------------------------------
-'-- Transforma o link de uma mensagem texto simples em um cÛdigo com o link para ser
-'-- inserido em uma p·gina HTML. Procuro pelos caracteres ao final do link como ".", ",",
+'-- Transforma o link de uma mensagem texto simples em um c√≥digo com o link para ser
+'-- inserido em uma p√°gina HTML. Procuro pelos caracteres ao final do link como ".", ",",
 '-- "!", "?", ":", ";"
 '--
 '-- Exemplo:
 '--   ENTRADA:
-'--   Sua solicitaÁ„o foi cadastrada com sucesso, e ser· analisada em atÈ dois dias ˙teis.
-'--   Acompanhe o andamento da sua solicitaÁ„o no site do CRT :
+'--   Sua solicita√ß√£o foi cadastrada com sucesso, e ser√° analisada em at√© dois dias √∫teis.
+'--   Acompanhe o andamento da sua solicita√ß√£o no site do CRT :
 '--   http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/index.asp.
 '--
-'--   SAÕDA
-'--   Sua solicitaÁ„o foi cadastrada com sucesso, e ser· analisada em atÈ dois dias ˙teis.
-'--   Acompanhe o andamento da sua solicitaÁ„o no site do CRT : Clique aqui para acessar.
+'--   SA√çDA
+'--   Sua solicita√ß√£o foi cadastrada com sucesso, e ser√° analisada em at√© dois dias √∫teis.
+'--   Acompanhe o andamento da sua solicita√ß√£o no site do CRT : Clique aqui para acessar.
 '--
-'--   Onde "Clique aqui para acessar" È o link substituÌdo.
+'--   Onde "Clique aqui para acessar" √© o link substitu√≠do.
 '--
-'--   CÛdigo HTML: 
-'--   Sua solicitaÁ„o foi cadastrada com sucesso, e ser· analisada em atÈ dois dias ˙teis.
-'--   Acompanhe o andamento da sua solicitaÁ„o no site do CRT : 
+'--   C√≥digo HTML: 
+'--   Sua solicita√ß√£o foi cadastrada com sucesso, e ser√° analisada em at√© dois dias √∫teis.
+'--   Acompanhe o andamento da sua solicita√ß√£o no site do CRT : 
 '--   <A HREF='http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/index.asp'>Clique aqui para acessar</A>.
 '----------------------------------------------------------------------------------------------
 Function Link2Html( MyString )
@@ -122,8 +122,8 @@ Sub Enviar_Email(para_email, para_nome, assunto, texto)
 	End If
 End Sub
 
-'FUN«√O QUE DADO UM NOVO DOCUMENTO VERIFICA SE … UM DOCUMENTO DA QUALIDADE E ENVIA
-'UM EMAIL DE NOTIFICA«√O A TODOS OS FUNCON¡RIOS DO CRT
+'FUN√á√ÉO QUE DADO UM NOVO DOCUMENTO VERIFICA SE √â UM DOCUMENTO DA QUALIDADE E ENVIA
+'UM EMAIL DE NOTIFICA√á√ÉO A TODOS OS FUNCON√ÅRIOS DO CRT
 Function enviaEmailUpload(objConn,tipoDocumento,Descricao,Responsavel)
 	if ehDocumentoComExpiracao(objConn,tipoDocumento) then
 		ssql = "select tar_tipoarquivo from tipoarquivo where tar_codtipoarquivo = " & tipoDocumento
@@ -133,15 +133,15 @@ Function enviaEmailUpload(objConn,tipoDocumento,Descricao,Responsavel)
 		ssql = "select nome from usercrt where userid = '" & Responsavel & "'"
 		call Env.RecordSet( true, rsSite2, sSQL)
 
-		msg = "Um(a) novo(a) '" & rsSite("tar_tipoarquivo") & "' est· disponÌvel no site, " & _
+		msg = "Um(a) novo(a) '" & rsSite("tar_tipoarquivo") & "' est√° dispon√≠vel no site, " & _
 			  "sob a responsabilidade de " & rsSite2("nome") & ".<br>" & _
-			  "Consulte o site do sislab, na ·rea de documentos disponÌveis para maiores informaÁıes. "
+			  "Consulte o site do sislab, na √°rea de documentos dispon√≠veis para maiores informa√ß√µes. "
 
-		call enviaEmailUserCRT(objConn,"AtualizaÁ„o de documentos no site.", msg)
+		call enviaEmailUserCRT(objConn,"Atualiza√ß√£o de documentos no site.", msg)
 	end if
 End Function
 
-'FUN«√O QUE DADA UMA AS E UM TEXTO ENVIA UM EMAIL PARA AS PESSOAS RELACIONADAS A ESTA AS
+'FUN√á√ÉO QUE DADA UMA AS E UM TEXTO ENVIA UM EMAIL PARA AS PESSOAS RELACIONADAS A ESTA AS
 Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 	dim Rat, Rt, rsAgendamento,sSQL,rsRATs,Solicitante:Solicitante=""
 
@@ -159,7 +159,7 @@ Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 				Solicitante = rsAgendamento("AG_USERNAME")
 			end if
 
-			'ModificaÁ„o para enviar e-mail a todos os rats do sistema
+			'Modifica√ß√£o para enviar e-mail a todos os rats do sistema
 			'if Rat <> "" then
 			'	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat,Rat, Titulo, Texto
 			'end if
@@ -172,7 +172,7 @@ Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 				Call enviar_email(Solicitante, Solicitante, Titulo, Texto)
 			end if
 
-			'ModificaÁ„o para enviar e-mail a todos os rats do sistema
+			'Modifica√ß√£o para enviar e-mail a todos os rats do sistema
 			'if Rat = "" then
 			call enviaEmailRATsGQs(objConn,Titulo,texto)
 			'end if
@@ -182,8 +182,8 @@ Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 End Function
 
 
-'### FUN«√O QUE DADA UMA AS E UM TEXTO ENVIA UM EMAIL PARA AS PESSOAS RELACIONADAS A ESTA AS
-'### Obs: Semelhante a funcao enviaEmailsAS, porÈm envia o email ao solicitante sem ser pelo ilab, usando
+'### FUN√á√ÉO QUE DADA UMA AS E UM TEXTO ENVIA UM EMAIL PARA AS PESSOAS RELACIONADAS A ESTA AS
+'### Obs: Semelhante a funcao enviaEmailsAS, por√©m envia o email ao solicitante sem ser pelo ilab, usando
 '###     o email do RT
 Function enviaEmailsASFinalizada(objConn, numAS, Titulo, Texto)
 	dim Rat, Rt, rsAgendamento,sSQL,rsRATs,Solicitante:Solicitante=""
@@ -240,7 +240,7 @@ Function VerificaVigenciaArquivos()
 'response.write "sp_VerificaVigenciaArquivos " & int_Periodo & ", '" & Env.Usuario & "', " & chr_IP
 'response.end
 
-	chr_MsgExpirado = "O(s) seguinte(s) arquivo(s) est„o expirado(s):<BR><BR>"
+	chr_MsgExpirado = "O(s) seguinte(s) arquivo(s) est√£o expirado(s):<BR><BR>"
 	chr_MsgValidar = "O(s) seguinte(s) arquivo(s) precisam ser validado(s):<BR><BR>"
 
 	If Not (RS Is Nothing) Then
@@ -254,13 +254,13 @@ Function VerificaVigenciaArquivos()
 
 						If RS("Expirou") = 1 Then
 							chr_Msg = "O arquivo '" & RS("Arq_link") & "' expirou.<br>" & _
-								  " Para valida-lo por mais 12 meses, consulte a area documentos disponiveis e execute o procedimento de validaÁ„o."
+								  " Para valida-lo por mais 12 meses, consulte a area documentos disponiveis e execute o procedimento de valida√ß√£o."
 						Else
-							chr_Msg = "O arquivo '" & RS("Arq_link") & "' est· prestes a expirar.<br>" & _
-								  " Para valid·-lo por mais 12 meses, consulte a area documentos disponÌveis e execute o procedimento de validaÁ„o."
+							chr_Msg = "O arquivo '" & RS("Arq_link") & "' est√° prestes a expirar.<br>" & _
+								  " Para valid√°-lo por mais 12 meses, consulte a area documentos dispon√≠veis e execute o procedimento de valida√ß√£o."
 						End If
 
-						'Call enviaEmailRATsGQs(Env.oConn, "SISLAB - ValidaÁ„o do Documento " & RS("Arq_link"), chr_Msg)
+						'Call enviaEmailRATsGQs(Env.oConn, "SISLAB - Valida√ß√£o do Documento " & RS("Arq_link"), chr_Msg)
 						'response.write chr_msg & "<BR><BR><BR>"
 
 						RS.MoveNext
@@ -270,11 +270,11 @@ Function VerificaVigenciaArquivos()
 				End If
 			Else
 				chr_Msg = _
-						"O email de aviso de vencimento/expiraÁ„o dos arquivos n„o pode ser enviado.<BR><BR>" & _
+						"O email de aviso de vencimento/expira√ß√£o dos arquivos n√£o pode ser enviado.<BR><BR>" & _
 						"Data: " & Day(date) & "/" & Month(date) & "/" & Year(date) & "<BR>" & _
 						"Hora: " & Time()
-				'Call Enviar_Email("gilbertof@yahoo.com", "SISLAB - Erro no envio de aviso para validaÁ„o de arquivos", chr_Msg)
-				'Call EnviaEmailGQs("SISLAB - Erro no envio de aviso para validaÁ„o de arquivos", Texto)
+				'Call Enviar_Email("gilbertof@yahoo.com", "SISLAB - Erro no envio de aviso para valida√ß√£o de arquivos", chr_Msg)
+				'Call EnviaEmailGQs("SISLAB - Erro no envio de aviso para valida√ß√£o de arquivos", Texto)
 			End If
 		End If
 	End If
@@ -350,15 +350,15 @@ Function enviaEmailUserCRT(objConn,Titulo,Texto)
 End Function
 
 
-'Envia e-mails para os RT's e GQ's quando o usu·rio responde ‡ pesquisa
+'Envia e-mails para os RT's e GQ's quando o usu√°rio responde √† pesquisa
 Sub EnviaEmailRespostaPesquisa(objConn, int_AS)
 	Dim chr_SQL
 	Dim chr_Texto
 	Dim chr_Titulo
 	Dim RS
 
-	chr_Titulo = "SISLAB - Resposta ‡ Pesquisa de SatisfaÁ„o " & int_AS
-	chr_Texto = "A pesquisa de satisfaÁ„o foi respondida pelo usu·rio do agendamento " & int_AS & "</b>.<br><br>"
+	chr_Titulo = "SISLAB - Resposta √† Pesquisa de Satisfa√ß√£o " & int_AS
+	chr_Texto = "A pesquisa de satisfa√ß√£o foi respondida pelo usu√°rio do agendamento " & int_AS & "</b>.<br><br>"
 
 	chr_SQL = _
 		"SELECT AG_RESPONSAVEL FROM vw_Agendamento WHERE AG_NUMERO = " & int_AS & " " & _
@@ -376,8 +376,8 @@ Sub EnviaEmailRespostaPesquisa(objConn, int_AS)
 End Sub
 
 
-'### FUN«√O QUE DADA UMA AS, envia ao solicitante uma menssagem personalisada pedindo a resposta
-'### ‡ pesquisa de satisfaÁ„o e usando o email remetente como o do RT
+'### FUN√á√ÉO QUE DADA UMA AS, envia ao solicitante uma menssagem personalisada pedindo a resposta
+'### √† pesquisa de satisfa√ß√£o e usando o email remetente como o do RT
 Function EnviaEmailRespondaPesquisa(numAS)
 	Dim Rat, Rt, NomeRT, rsAgendamento, sSQL, rsRATs, Solicitante : Solicitante = ""
 	Dim RS, Titulo, Texto
@@ -397,11 +397,11 @@ Function EnviaEmailRespondaPesquisa(numAS)
 			Solicitante = rsAgendamento("AG_USERNAME") & ""
 			NomeRT = rsAgendamento("NOME") & ""
 
-			'### Busca a menssagem personalizada para a pesquisa de satisfaÁ„o
+			'### Busca a menssagem personalizada para a pesquisa de satisfa√ß√£o
 			Set RS = Env.oConn.Execute("SELECT DeMensagem, TextoMensagem FROM Mensagem WHERE CodMensagem = 1")
 
 			If Not RS.Eof Then
-				Titulo = "Responda ‡ Pesquisa de SatisfaÁ„o do AS " & numAS
+				Titulo = "Responda √† Pesquisa de Satisfa√ß√£o do AS " & numAS
 				Texto = Replace(RS("TextoMensagem"), "%PARAMETRO_1%", numAS)
 
 				'Envia o email ao solicitante como se fosse o RT
@@ -462,7 +462,7 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 		If RS("Total") > 0 Then
 
 			Titulo = "SISLAB/SCE - Equipamento de terceiro na AS " & num_ag & " - AS Finalizada"
-			Texto = "Este agendamento possuÌ " & RS("Total") & " equipamento(s) de terceiros que deram entrada no CRT.<BR><BR>Verifique se os mesmos j· deram saÌda na logÌstica.<BR><BR>Grato.<BR>Equipe CRT.<BR>"
+			Texto = "Este agendamento possu√≠ " & RS("Total") & " equipamento(s) de terceiros que deram entrada no CRT.<BR><BR>Verifique se os mesmos j√° deram sa√≠da na log√≠stica.<BR><BR>Grato.<BR>Equipe CRT.<BR>"
 
 			'Envia o email ao RT, ao LogFund e aos RATs
 			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", Rt, NomeRT, Titulo, Texto)

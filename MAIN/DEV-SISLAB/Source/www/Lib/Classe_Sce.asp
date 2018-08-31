@@ -1,6 +1,6 @@
 <%
 '+-----------------------------------------------------------------------------------------------------
-'+ Classe criada para armazenar as rotinas e informações do Módulo SCE
+'+ Classe criada para armazenar as rotinas e informaÃ§Ãµes do MÃ³dulo SCE
 '+
 '+ dependencia: Classe_Environment.asp
 '+ 05/04/2012
@@ -28,7 +28,7 @@ End Property
 
 '-------------------------------------------------------------------------
 
-'Defino as regras entre o Tipo de Movimentação e o STATUS dos equipamentos/acessórios
+'Defino as regras entre o Tipo de MovimentaÃ§Ã£o e o STATUS dos equipamentos/acessÃ³rios
 Public Function Maquina_de_Estados(notipo)
 	dim status_equipamento
 
@@ -52,7 +52,7 @@ End Function
 
 Public Function VerificaReservaItem(apenasConta, agendamento, item, ehHTML)
 	'-- Retorno a lista de agendamentos na qual um determinado item esta reservado.
-	'-- OBS: a reserva é passada caso a mesma esteja sendo alterada,
+	'-- OBS: a reserva Ã© passada caso a mesma esteja sendo alterada,
 	'-- caso seja vazio significa uma nova reserva
 
 	Dim rec, s, retorno
@@ -88,7 +88,7 @@ Public Function VerificaReservaItem(apenasConta, agendamento, item, ehHTML)
 	else
 		while not rec.eof
 			retorno = retorno & rec("AG_NUMERO") & " (" & rec("RES_RESPONSAVEL") & _
-				" - " & rec("AG_DATAINICIO") & " até " & rec("AG_DATATERMINO") & ")"
+				" - " & rec("AG_DATAINICIO") & " atÃ© " & rec("AG_DATATERMINO") & ")"
 			rec.MoveNext
 			if not rec.eof then retorno = retorno & ", "
 		wend
@@ -142,7 +142,7 @@ Public Function ImprimeStatusItem(rec)
 			buf = "Expedido"
 
 	elseif status = STATUS_EXPEDIDO_SUBST then
-			buf = "Substituído"
+			buf = "SubstituÃ­do"
 
 	elseif status = STATUS_CADASTRADO then
 			'if ehHTML then buf = "Cadastrado" & "<br>" & localiz else buf = "Cadastrado - " & localiz
@@ -156,7 +156,7 @@ Public Function ImprimeStatusItem(rec)
 End Function
 
 Public Function PegaStatusItem(item, ehHTML)
-	'-- Retorno o RT´s que foi o responsavel pela saida do material da logistica
+	'-- Retorno o RTÂ´s que foi o responsavel pela saida do material da logistica
 
 	Dim rec, s, status, local
 	Dim retorno : retorno = ""
@@ -199,7 +199,7 @@ Public Function PegaStatusItem(item, ehHTML)
 			retorno = "Expedido"
 
 		elseif status = STATUS_EXPEDIDO_SUBST then
-			retorno = "Substituído"
+			retorno = "SubstituÃ­do"
 
 		elseif status = STATUS_CADASTRADO then
 			if ehHTML then retorno = "Cadastrado" & "<br>" & local else retorno = "Cadastrado - " & local

@@ -2,7 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Alteração de Datas", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AlteraÃ§Ã£o de Datas", "location.href='sislab.asp'", "")
 
 Dim numAS, frm, s, objRS
 
@@ -32,7 +32,7 @@ if frm <> "" then
 		on error resume next
 		objRS.execute
 		if err <> 0 then
-			response.write "Não foi poss&iacute;vel atualizar o Agendamento.<BR><BR>"
+			response.write "Nï¿½o foi poss&iacute;vel atualizar o Agendamento.<BR><BR>"
         	response.write "ERRO: " & Err.Source & "-->" & Err.Description & "<BR>"
 		else
 			response.write "Agendamento Atualizado !!!<BR><BR>"
@@ -63,7 +63,7 @@ if frm <> "" then
 		on error resume next
 		objRS.execute
 		if err <> 0 then
-			response.write "Não foi poss&iacute;vel atualizar o Hist&oacute;rico de Datas.<BR><BR>"
+			response.write "NÃ£o foi poss&iacute;vel atualizar o Hist&oacute;rico de Datas.<BR><BR>"
         	response.write "ERRO: " & Err.Source & "-->" & Err.Description & "<BR><BR>"
 		else
 			response.write "Hist&oacute;rico de Datas atualizado !!!<BR><BR>"
@@ -95,7 +95,7 @@ if frm <> "" then
 		on error resume next
 		objRS.execute
 		if err <> 0 then
-			response.write "Não foi poss&iacute;vel atualizar o Hist&oacute;rico de Eventos.<BR><BR>"
+			response.write "Nï¿½o foi poss&iacute;vel atualizar o Hist&oacute;rico de Eventos.<BR><BR>"
         	response.write "ERRO: " & Err.Source & "-->" & Err.Description & "<BR><BR>"
 		else
 			response.write "Hist&oacute;rico de Eventos atualizado !!!<BR><BR>"
@@ -126,7 +126,7 @@ if frm <> "" then
 		on error resume next
 		objRS.execute
 		if err <> 0 then
-			response.write "Não foi poss&iacute;vel atualizar o Hist&oacute;rico de Eventos da OS.<BR><BR>"
+			response.write "NÃ£o foi poss&iacute;vel atualizar o Hist&oacute;rico de Eventos da OS.<BR><BR>"
         	response.write "ERRO: " & Err.Source & "-->" & Err.Description & "<BR><BR>"
 		else
 			response.write "Hist&oacute;rico de Eventos da OS atualizado !!!<BR><BR>"
@@ -165,22 +165,22 @@ if numAS <> "" then%>
 	objRS.Open s, Env.oConn
 
 	if objRS.Eof then
-		Response.write "&nbsp;&nbsp;&nbsp;<b><i>Agendamento não encontrado.</i></b><BR>"
+		Response.write "&nbsp;&nbsp;&nbsp;<b><i>Agendamento nï¿½o encontrado.</i></b><BR>"
 	else
 		'--pego as datas da tabela agendamento%>
 <script language="JavaScript">
 function AtualizaAgendamento() {
 	f = document.all.frmAgendamento;
 	if(f.ag_datasolicitacao.value == "") {
-		alert('Data da solicitação inválida.');
+		alert('Data da solicitaÃ§Ã£o invÃ¡lida.');
 		f.ag_datasolicitacao.focus();
 	}
 	else if(f.ag_datainicio.value == "") {
-		alert('Data de início inválida.');
+		alert('Data de inÃ­cio invÃ¡lida.');
 		f.ag_datainicio.focus();
 	}
 	else if(f.ag_datatermino.value == "") {
-		alert('Data de término inválida.');
+		alert('Data de tÃ©rmino invÃ¡lida.');
 		f.ag_datatermino.focus();
 	}
 	else
@@ -208,9 +208,9 @@ function AtualizaAgendamento() {
 </form><br>
 <%		objRS.Close
 
-		'-- Pego o histórico de datas
+		'-- Pego o histï¿½rico de datas
 		s = "Select HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, "
-		s = s & "case when HD_FLAGREMARCADO = 0 then 'Não' "
+		s = s & "case when HD_FLAGREMARCADO = 0 then 'NÃ£o' "
 		s = s & "when HD_FLAGREMARCADO = 1 then 'Sim' end "
 		s = s & "as HD_FLAGREMARCADO, HD_MOTIVO "
 		s = s & "from Historico_Datas where AG_NUMERO = " & numAS
@@ -222,11 +222,11 @@ function AtualizaAgendamento() {
 function AtualizaHistorico_Datas(id_tabela, hd_datainicio, hd_datatermino, hd_motivo) {
 	f = document.all.frmHistorico_Datas;
 	if(hd_datainicio.value == "") {
-		alert('Data de início inválida.');
+		alert('Data de inï¿½cio invï¿½lida.');
 		hd_datainicio.focus();
 	}
 	else if(hd_datatermino.value == "") {
-		alert('Data de término inválida.');
+		alert('Data de tï¿½rmino invï¿½lida.');
 		hd_datatermino.focus();
 	}
 	else {
@@ -239,7 +239,7 @@ function AtualizaHistorico_Datas(id_tabela, hd_datainicio, hd_datatermino, hd_mo
 	}
 }
 function ExcluiHistorico_Datas(id_tabela)	{
-	if(confirm('ATENÇÃO !!!\n\n\nPara confirmar esta exclusão clique em OK.'))
+	if(confirm('ATENï¿½ï¿½O !!!\n\n\nPara confirmar esta exclusï¿½o clique em OK.'))
 	{
 		f = document.all.frmHistorico_Datas;
 		f.excluir.value = '1';
@@ -285,7 +285,7 @@ function ExcluiHistorico_Datas(id_tabela)	{
 		objRS.Close
 
 
-		'-- Pego o histórico de eventos
+		'-- Pego o histï¿½rico de eventos
 		s = "Select HE_ID, sit.S_DESCRICAO, HE_DATAINICIO, HE_DATATERMINO, "
 		s = s & "HE_MOTIVO from Historico_Eventos he inner join "
 		s = s & "Situacoes sit on he.ID_SITUACAO = sit.ID_SITUACAO "
@@ -299,7 +299,7 @@ function ExcluiHistorico_Datas(id_tabela)	{
 function AtualizaHistorico_Eventos(id_tabela, he_datainicio, he_datatermino, he_motivo) {
 	f = document.all.frmHistorico_Eventos;
 	if(he_datainicio.value == "") {
-		alert('Data de início inválida.');
+		alert('Data de inï¿½cio invï¿½lida.');
 		he_datainicio.focus();
 	}
 	else {
@@ -312,7 +312,7 @@ function AtualizaHistorico_Eventos(id_tabela, he_datainicio, he_datatermino, he_
 	}
 }
 function ExcluiHistorico_Eventos(id_tabela)	{
-	if(confirm('ATENÇÃO !!!\n\n\nPara confirmar esta exclusão clique em OK.'))
+	if(confirm('ATENÃ‡ÃƒO !!!\n\n\nPara confirmar esta exclusÃ£o clique em OK.'))
 	{
 		f = document.all.frmHistorico_Eventos;
 		f.excluir.value = '1';
@@ -333,7 +333,7 @@ function ExcluiHistorico_Eventos(id_tabela)	{
 <tr><th align="left" colspan="7"><b>Hist&oacute;rico de Eventos (<%=numAS%>)</b></th></tr>
 <tr>
 	<td colspan="7">
-		<br><span style="font-weight: bold; color: red;">Atenção: A data de término não deverá estar preenchida caso o último evento não seja terminal (Por ex. finalizado, cancelado).</span><br><br>
+		<br><span style="font-weight: bold; color: red;">AtenÃ§Ã£o: A data de tÃ©rmino nÃ£o deverÃ¡ estar preenchida caso o Ãºltimo evento nÃ£o seja terminal (Por ex. finalizado, cancelado).</span><br><br>
 	</td>
 </tr>
 <tr style="font-weight: bold;">
@@ -362,7 +362,7 @@ function ExcluiHistorico_Eventos(id_tabela)	{
 <%		end if
 		objRS.Close
 
-		'-- Pego o histórico de eventos da OS
+		'-- Pego o histï¿½rico de eventos da OS
 		s = "Select HEOS_ID, he.OS_ID, sit.S_DESCRICAO, HEOS_DATAINICIO, "
 		s = s & "HEOS_DATATERMINO, HEOS_MOTIVO from Historico_EventosOS he inner join "
 		s = s & "Situacoes sit on he.ID_SITUACAO = sit.ID_SITUACAO "
@@ -376,7 +376,7 @@ function ExcluiHistorico_Eventos(id_tabela)	{
 function AtualizaHistorico_EventosOS(id_tabela, heos_datainicio, heos_datatermino, heos_motivo) {
 	f = document.all.frmHistorico_EventosOS;
 	if(heos_datainicio.value == "") {
-		alert('Data de início inválida.');
+		alert('Data de inÃ­cio invÃ¡lida.');
 		heos_datainicio.focus();
 	}
 	else {
@@ -389,7 +389,7 @@ function AtualizaHistorico_EventosOS(id_tabela, heos_datainicio, heos_datatermin
 	}
 }
 function ExcluiHistorico_EventosOS(id_tabela)	{
-	if(confirm('ATENÇÃO !!!\n\n\nPara confirmar esta exclusão clique em OK.'))
+	if(confirm('ATENÃ‡ÃƒO !!!\n\n\nPara confirmar esta exclusÃ£o clique em OK.'))
 	{
 		f = document.all.frmHistorico_EventosOS;
 		f.excluir.value = '1';
@@ -410,7 +410,7 @@ function ExcluiHistorico_EventosOS(id_tabela)	{
 <tr><th align="left" colspan="8"><b>Hist&oacute;rico de Eventos - Ordem de Servi&ccedil;o(<%=numAS%>)</b></th></tr>
 <tr style="font-weight: bold;">
 	<td>ID</td>
-	<td>Nº OS</td>
+	<td>NÂº OS</td>
 	<td>Data de In&iacute;cio</td>
 	<td>Data de T&eacute;rmino</td>
 	<td>Situa&ccedil;&atilde;o</td>

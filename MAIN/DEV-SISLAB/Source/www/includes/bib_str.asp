@@ -79,7 +79,7 @@ Function SimNao(valor)
 		if valor then
 			SimNao = "Sim"
 		else
-			SimNao = "Não"
+			SimNao = "NÃ£o"
 		end if
 	end if
 End Function
@@ -153,7 +153,7 @@ Function Nome_do_Mes(mes)
 	Case 2
 		Nome_do_Mes = "Fevereiro"
 	Case 3
-		Nome_do_Mes = "Março"
+		Nome_do_Mes = "MarÃ§o"
 	Case 4
 		Nome_do_Mes = "Abril"
 	Case 5
@@ -173,7 +173,7 @@ Function Nome_do_Mes(mes)
 	Case 12
 		Nome_do_Mes = "Dezembro"
 	Case Else
-		Nome_do_Mes = "Mês Inválido"
+		Nome_do_Mes = "MÃªs InvÃ¡lido"
 	End Select
 End Function
 

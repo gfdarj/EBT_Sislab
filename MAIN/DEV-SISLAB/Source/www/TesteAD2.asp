@@ -3,7 +3,6 @@
 
 Response.Clear
 
-
 response.write "AUTH_USER: " & Request.ServerVariables("AUTH_USER") & "<BR>"
 response.write "LOGON_USER: " & Request.ServerVariables("LOGON_USER")  & "<BR>"
 
@@ -11,46 +10,47 @@ response.write "LOGON_USER: " & Request.ServerVariables("LOGON_USER")  & "<BR>"
 Dim objSysInfo, objUser
 Set objSysInfo = CreateObject("ADSystemInfo")
 
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+    'Set objRootDSE = GetObject("LDAP://ldapebt.embratel.com.br")
     Set objRootDSE = GetObject("LDAP://RootDSE")
     'Set objRootDSE = GetObject("LDAP://alerj.gov.br")
 
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     ' Currently logged in User
     'Set objUser = GetObject("LDAP://" & objSysInfo.UserName)
+    Set objUser = GetObject("LDAP://" & "CN=JOSESP,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br")
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
      ' or specific user:
-    Dim strQueryDL
-    strQueryDL = "LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
-    'strQueryDL = "<LDAP://CN=T3GFBA,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
+'    Dim strQueryDL
+    'strQueryDL = "LDAP://CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br"
+'    strQueryDL = "<LDAP://CN=JOSESP,DC=nt,DC=embratel,DC=com,DC=br>"
     'strQueryDL = "<LDAP://CN=T3GSAN,OU=Rio de Janeiro,OU=Usuarios,DC=nt,DC=embratel,DC=com,DC=br>"
 
-    'response.Write strQueryDL 
-    'response.End
+'    response.Write strQueryDL 
+'    response.End
 
-    Set objUser = GetObject(strQueryDL)
+'    Set objUser = GetObject(strQueryDL)
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Response.Write "<BR>objSysInfo.UserName: " & objSysInfo.UserName
 Response.Write "<BR>DN: " & objUser.distinguishedName
-
 Response.Write "<BR>"
 Response.Write "<BR>GENERAL"
 Response.Write "<BR>First name: " & objUser.givenName
 'Response.Write "<BR>First name: " & objUser.FirstName
 Response.Write "<BR>Initials: " & objUser.initials
 Response.Write "<BR>Last name: " & objUser.sn
-'Response.Write "<BR>Last name: " & objUser.LastName
+Response.Write "<BR>Last name: " & objUser.LastName
 Response.Write "<BR>Display name: " & objUser.displayName
-'Response.Write "<BR>Display name: " & objUser.FullName
+Response.Write "<BR>Full Name: " & objUser.FullName
 Response.Write "<BR>Description: " & objUser.description
 Response.Write "<BR>Office: " & objUser.physicalDeliveryOfficeName
 Response.Write "<BR>Telephone number: " & objUser.telephoneNumber
 Response.Write "<BR>Other Telephone numbers: " & objUser.otherTelephone
 Response.Write "<BR>Email: " & objUser.mail
-' Response.Write "<BR>Email: " & objUser.EmailAddress
+Response.Write "<BR>Email: " & objUser.EmailAddress
 Response.Write "<BR>Web page: " & objUser.wWWHomePage
 Response.Write "<BR>Other Web pages: " & objUser.url
 Response.Write "<BR>"
@@ -67,7 +67,7 @@ Response.Write "<BR>ACCOUNT"
 Response.Write "<BR>User logon name: " & objUser.userPrincipalName
 Response.Write "<BR>pre-Windows 2000 logon name: " & objUser.sAMAccountName
 Response.Write "<BR>AccountDisabled: " & objUser.AccountDisabled
-' Response.Write "<BR>Account Control #: " & objUser.userAccountControl
+Response.Write "<BR>Account Control #: " & objUser.userAccountControl
 Response.Write "<BR>Logon Hours: " & CStr(objUser.logonHours)
 Response.Write "<BR>Logon On To (Logon Workstations): " & objUser.userWorkstations
 ' Response.Write "<BR>User must change password at next logon: " & objUser.pwdLastSet
@@ -89,7 +89,7 @@ Response.Write "<BR>Home: " & objUser.homePhone
 Response.Write "<BR>Other Home phone numbers: " & objUser.otherHomePhone
 Response.Write "<BR>Pager: " & objUser.pager
 Response.Write "<BR>Other Pager numbers: " & objUser.otherPager
-Response.Write "<BR>Mobile: " & objUser.mobile
+Response.Write "<BR>Mobile 1111: " & objUser.mobile
 Response.Write "<BR>Other Mobile numbers: " & objUser.otherMobile
 Response.Write "<BR>Fax: " & objUser.facsimileTelephoneNumber
 Response.Write "<BR>Other Fax numbers: " & objUser.otherFacsimileTelephoneNumber
@@ -102,5 +102,22 @@ Response.Write "<BR>Title: " & objUser.title
 Response.Write "<BR>Department: " & objUser.department
 Response.Write "<BR>Company: " & objUser.company
 Response.Write "<BR>Manager: " & objUser.manager
+Response.Write "<BR>department: " & objUser.department
+Response.Write "<BR>homephone: " & objUser.homephone
+Response.Write "<BR>l: " & objUser.l
+Response.Write "<BR>location: " & objUser.location
+Response.Write "<BR>mobile: " & objUser.mobile
+'Response.Write "<BR>ObjectClass: " & objUser.ObjectClass
+Response.Write "<BR>OU: " & objUser.OU
+Response.Write "<BR>postalCode: " & objUser.postalCode
+Response.Write "<BR>st: " & objUser.st
+Response.Write "<BR>streetAddress: " & objUser.streetAddress
+Response.Write "<BR>userAccountControl: " & objUser.userAccountControl
+Response.Write "<BR>dNSHostname: " & objUser.dNSHostname
+Response.Write "<BR>rID: " & objUser.rID
+Response.Write "<BR>url: " & objUser.url
+
+
+
 
 %>

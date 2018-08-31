@@ -17,13 +17,13 @@ Const EMAILDEENVIODOSISLAB = "ilab@embratel.com.br"
 CONST NOMEDEENVIODOSISLAB = "SISLAB"
 CONST SEPARADOR = " #$%@ "
 CONST SEPARADOR_REGISTRO = "#$%@"
-CONST SEPARADOR_REGISTRO2 = "¡¬¡"
-CONST SEPARADOR_CAMPO = "«»"
-'para formatação de datas
+CONST SEPARADOR_REGISTRO2 = "Â¡Â¬Â¡"
+CONST SEPARADOR_CAMPO = "Â«Â»"
+'para formataÃ§Ã£o de datas
 session.lcid = 1046 'Brasil
 
 
-'-- Situações de Agendamento e Orde de Servico - Tabela SITUACOES
+'-- SituaÃ§Ãµes de Agendamento e Orde de Servico - Tabela SITUACOES
 Const AS_Cadastrado = 1
 Const AS_Pendente = 2
 Const AS_Agendado = 3
@@ -51,7 +51,7 @@ Const Teste_Em_Certificacao = 2
 Const Teste_Certificado = 3
 Const Teste_Nao_Validado = 4
 
-'-- Constantes usadas pelo cadastro de notícias
+'-- Constantes usadas pelo cadastro de notÃ­cias
 Const PLANTAO_Destaque = "D"
 Const PLANTAO_Noticia = "N"
 

@@ -1,8 +1,8 @@
 <%
 '#################################################################################################
-'#	Cópia das rotinas utilizadas pelo SCE
+'#	CÃ³pia das rotinas utilizadas pelo SCE
 '#
-'#	Futuramente quando as rotinas estiverem integradas, usaremos esta com coisas básicas somente
+'#	Futuramente quando as rotinas estiverem integradas, usaremos esta com coisas bÃ¡sicas somente
 '#	do SCE, acessando tudo do SISLAB
 '#################################################################################################
 

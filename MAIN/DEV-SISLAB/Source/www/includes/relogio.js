@@ -37,7 +37,7 @@ function showAguarde(){
 			
 			setTimeout("showAguardeClock()", 10);
 		} catch(e){
-			alert(e);// N„o tem o aguarde definido na p·gina.
+			alert(e);// N√£o tem o aguarde definido na p√°gina.
 		}
 }
 	

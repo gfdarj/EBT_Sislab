@@ -1,4 +1,4 @@
-// Verificação do Campos antes de subimetê-los.
+// VerificaÃ§Ã£o do Campos antes de subimetÃª-los.
 var isNav4, isNav, isIE;
 
 
@@ -10,7 +10,7 @@ if (navigator.appName=="Netscape") {
 	isNav4 = (parseInt(navigator.appVersion.charAt(0))==4);
 }
 
-//não permite outras teclas além de números (EX: onkeypress='onlynum(this)')
+//nÃ£o permite outras teclas alÃ©m de nÃºmeros (EX: onkeypress='onlynum(this)')
 function onlynum(e) {
 	var keyNumber = (isIE) ? event.keyCode : e.which;
 	if (((keyNumber<48)||(keyNumber>57)) && (keyNumber!=13) && (keyNumber!="0") && (keyNumber!=8)) {
@@ -75,18 +75,18 @@ function ValidaDataMesAno(data,campo)
 	//critica data
 	if((dia > 31) || (dia == 0))
 	{
-		alert(auxcampo + " - Dia Inválido.");
+		alert(auxcampo + " - Dia InvÃ¡lido.");
 		return false;		
 	}
 	if ((mes > 12) || (mes == 0))
 	{
-		alert(auxcampo + " - Mês Inválido.");
+		alert(auxcampo + " - MÃªs InvÃ¡lido.");
 		return false;		
 	}
 
 	if ((ano == 0) || (ano == ''))
 	{
-		alert(auxcampo + " - Ano Inválido.");
+		alert(auxcampo + " - Ano InvÃ¡lido.");
 		return false;		
 	}
 
@@ -96,7 +96,7 @@ function ValidaDataMesAno(data,campo)
 		varauxbissexto = 0;
 	if(((mes == 2) && (dia > (28 + parseInt(varauxbissexto,10)))) || (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30))
 	{
-		alert(auxcampo + "  - Preenchimento inválido.");
+		alert(auxcampo + "  - Preenchimento invÃ¡lido.");
 		return false;
 	}	
 	return true;
@@ -161,13 +161,13 @@ function extractFileName(texto)
 	return fileName;
 }
 
-//Método que remove acentos, espaços e carateres indesejados
+//MÃ©todo que remove acentos, espaÃ§os e carateres indesejados
 function validaNomeArquivo(texto)
 {
 	var temCharInvalido = false;
-//	var ComAcentos = new String("!@#$%¨&*()-?:{}][ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç ");
+//	var ComAcentos = new String("!@#$%Â¨&*()-?:{}][Ã„Ã…ÃÃ‚Ã€ÃƒÃ¤Ã¡Ã¢Ã Ã£Ã‰ÃŠÃ‹ÃˆÃ©ÃªÃ«Ã¨ÃÃÃÃŒÃ­Ã®Ã¯Ã¬Ã–Ã“Ã”Ã’Ã•Ã¶Ã³Ã´Ã²ÃµÃœÃšÃ›Ã¼ÃºÃ»Ã¹Ã‡Ã§ ");
 //	var SemAcentos = new String("_________________AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc_");
-	var ComAcentos = new String("!@#$%¨&*()?:{}][ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç");
+	var ComAcentos = new String("!@#$%Â¨&*()?:{}][Ã„Ã…ÃÃ‚Ã€ÃƒÃ¤Ã¡Ã¢Ã Ã£Ã‰ÃŠÃ‹ÃˆÃ©ÃªÃ«Ã¨ÃÃÃÃŒÃ­Ã®Ã¯Ã¬Ã–Ã“Ã”Ã’Ã•Ã¶Ã³Ã´Ã²ÃµÃœÃšÃ›Ã¼ÃºÃ»Ã¹Ã‡Ã§");
 	var SemAcentos = new String("________________AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc");
 
 	for(i=0; i < ComAcentos.length; i++)
@@ -186,20 +186,20 @@ function validaNomeArquivo(texto)
 	return (!temCharInvalido);
 /*
         $novo = strtolower($novo);
-        $novo = str_replace("á","a", $novo);
-        $novo = str_replace("à","a", $novo);
-        $novo = str_replace("â","a", $novo);
-        $novo = str_replace("ã","a", $novo);
-        $novo = str_replace("ê","e", $novo);
-        $novo = str_replace("é","e", $novo);
-        $novo = str_replace("í","i", $novo);
-        $novo = str_replace("ì","i", $novo);
-        $novo = str_replace("õ","o", $novo);
-        $novo = str_replace("ô","o", $novo);
-        $novo = str_replace("ó","o", $novo);
-        $novo = str_replace("ú","u", $novo);
-        $novo = str_replace("ù","u", $novo);
-        $novo = str_replace("ç","c", $novo);
+        $novo = str_replace("Ã¡","a", $novo);
+        $novo = str_replace("Ã ","a", $novo);
+        $novo = str_replace("Ã¢","a", $novo);
+        $novo = str_replace("Ã£","a", $novo);
+        $novo = str_replace("Ãª","e", $novo);
+        $novo = str_replace("Ã©","e", $novo);
+        $novo = str_replace("Ã­","i", $novo);
+        $novo = str_replace("Ã¬","i", $novo);
+        $novo = str_replace("Ãµ","o", $novo);
+        $novo = str_replace("Ã´","o", $novo);
+        $novo = str_replace("Ã³","o", $novo);
+        $novo = str_replace("Ãº","u", $novo);
+        $novo = str_replace("Ã¹","u", $novo);
+        $novo = str_replace("Ã§","c", $novo);
         $novo = str_replace(" ","_", $novo);
 */
 }
@@ -207,7 +207,7 @@ function validaNomeArquivo(texto)
 /* nao consegui por pra funcionar essa funcao */
 function tiraAcentos(texto)
 {
-	var ComAcentos = new String("!@#$%¨&*()-?:{}][ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç ");
+	var ComAcentos = new String("!@#$%Â¨&*()-?:{}][Ã„Ã…ÃÃ‚Ã€ÃƒÃ¤Ã¡Ã¢Ã Ã£Ã‰ÃŠÃ‹ÃˆÃ©ÃªÃ«Ã¨ÃÃÃÃŒÃ­Ã®Ã¯Ã¬Ã–Ã“Ã”Ã’Ã•Ã¶Ã³Ã´Ã²ÃµÃœÃšÃ›Ã¼ÃºÃ»Ã¹Ã‡Ã§ ");
 	var SemAcentos = new String("_________________AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc_");
 
 	for(i=0; i < ComAcentos.length; i++)

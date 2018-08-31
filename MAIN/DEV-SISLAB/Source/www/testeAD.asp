@@ -32,7 +32,7 @@ Set objRootDSE = GetObject("LDAP://rootDSE")
 strRootTDSE = objRootDSE.Get("defaultNamingContext")
 
 IF txtUsuario = "" Then
-    txtUsuario = net.UserName
+    txtUsuario = strUser
 End If
 
 objCommand.CommandText = _
@@ -131,7 +131,7 @@ response.write "<br><hr>FIM"
 %>
 
         <form>
-            Username: <input type="text" name="txtUsuario" />
+            Username: <input type="text" name="txtUsuario" value="" />
             <input type="submit" value="Enviar" />
         </form>
 

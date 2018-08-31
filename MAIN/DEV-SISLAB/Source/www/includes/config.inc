@@ -155,16 +155,16 @@ Sub MostraFooter()%>
 End Sub
 
 '== Comeco do Processamento ============================================================
-' Este È o processo de controle de conexao p/ todas as paginas!
+' Este √© o processo de controle de conexao p/ todas as paginas!
 Sub Conecta(bAbrirConexao)
-	'Se uma conex„o for solicitada, Conecta(true) ent„o...
+	'Se uma conex√£o for solicitada, Conecta(true) ent√£o...
 	If bAbrirConexao Then
 		Set conSite = Server.CreateObject("ADODB.Connection")
 		conSite.CommandTimeout = 30
 		conSite.ConnectionTimeout = 20
  		conSite.Open DB_CONNECTIONSTRING & DB_USERNAME & DB_PASSWORD
 
-	'Se for solicitada uma desconex„o, Conecta(false) ent„o...
+	'Se for solicitada uma desconex√£o, Conecta(false) ent√£o...
 	  else
 		conSite.Close
 		Set conSite = Nothing

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -13,7 +13,7 @@ Dim chr_EstiloTD
 Dim msgData
 Dim chr_BgColor
 
-msgData = "AJUDA !\n\nSelecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."
+msgData = "AJUDA !\n\nSelecione uma data para pesquisa. Caso uma das datas estejam em branco Ã© considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."
 
 EH_CRT = Env.UsuarioCRT()
 
@@ -101,7 +101,7 @@ function controleClientes(eu)
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opÃ§Ãµes de filtro para consulta</span>
 	</td>
 </tr>
 <tr>
@@ -121,11 +121,11 @@ function controleClientes(eu)
 		</tr>
 		<tr>
 			<td colspan="1" <%=chr_EstiloTD%>>
-				Nº AS&nbsp;
+				NÂº AS&nbsp;
 				<input type="Text" name="auxAS" class="texto1" size="5" maxlength="10">
 			</td>
 			<td colspan="9" <%=chr_EstiloTD%>>
-				Palavra-chave (Descrição./Objetivo/Título):&nbsp;
+				Palavra-chave (DescriÃ§Ã£o/Objetivo/TÃ­tulo):&nbsp;
 				<input type="text" size="60" maxlength="60" name="descricao" class="texto1">
 			</td>
 		</tr>
@@ -157,13 +157,13 @@ function controleClientes(eu)
 		</tr>
 		<tr>
 			<td colspan="7" <%=chr_EstiloTD%>>
-				Período agendado&nbsp;
-				<%call comboData("dataIniCadSol")%>&nbsp;até&nbsp;<%call comboData("dataFimCadSol")%>
+				PerÃ­odo agendado&nbsp;
+				<%call comboData("dataIniCadSol")%>&nbsp;atÃ©&nbsp;<%call comboData("dataFimCadSol")%>
 				&nbsp;
 				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');"><img src="img/ajuda.gif" border="0"></a>
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
-				Agendado nos últimos <input class="texto1" name="diasteste" size="5" maxlength="10"> dias
+				Agendado nos Ãºltimos <input class="texto1" name="diasteste" size="5" maxlength="10"> dias
 			</td>
 		</tr>
 		<tr>
@@ -172,10 +172,10 @@ function controleClientes(eu)
 				<input type="text" size="9" name="solicitante" class="texto1">
 			</td>
 			<td colspan="7" <%=chr_EstiloTD%>>
-				Situação do Agendamento:&nbsp;
+				SituaÃ§Ã£o do Agendamento:&nbsp;
 				<select name="situacaoteste"  class="combo">
-					<option value="">Todos as Situações</option>
-					<option value="NC">Todas Não Concluídas</option>
+					<option value="">Todos as SituaÃ§Ãµes</option>
+					<option value="NC">Todas NÃ£o ConcluÃ­das</option>
 					<%call comboBD(Env.oConn,"Select ID_Situacao as valor,left(S_DESCRICAO,35) as descricao from Situacoes where S_OS = 0 order by ID_Situacao asc;")%>
 				</select>
 			</td>
@@ -194,16 +194,7 @@ function controleClientes(eu)
 	End If
 %>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
 		</tr>
 		<tr>
 			<td colspan="10"><b><span class="vermelho2">&raquo;</span>&nbsp;Filtros da Equipe CRT</b></td>
@@ -243,9 +234,9 @@ function controleClientes(eu)
 				Tipo de Teste:&nbsp;<%call comboTipoTeste("cmbTipoTeste", Env.oConn, "", "N")%>
 			</td>
 			<td colspan="4" <%=chr_EstiloTD%>>
-				Órgão Solicitante:&nbsp;
+				ï¿½rgï¿½o Solicitante:&nbsp;
 				<select name="orgao" class="combo">
-					<option value="">Todos os Órgãos</option>
+					<option value="">Todos os Ã“rgÃ£os</option>
 					<%call comboBD(Env.oConn,"Select distinct AG_ORGAO, rtrim(ltrim(AG_ORGAO)) as valor,rtrim(ltrim(AG_ORGAO)) as descricao from agendamento where not(AG_ORGAO is null) and ag_orgao <> '' order by AG_ORGAO asc")%>
 				</select>
 			</td>
@@ -258,7 +249,7 @@ function controleClientes(eu)
 		</tr>
 		<tr>
 			<td colspan="4" <%=chr_EstiloTD%>>
-				Serviço:&nbsp;
+				Serviï¿½o:&nbsp;
 				<%call comboBDSQL ("servico", Env.oConn, "Select S_ID as valor, S_DESCRICAO as descricao from Servicos_Plataformas WHERE S_SERVICO = 1 order by S_DESCRICAO asc", "", true)%>
 			</td>
 			<td colspan="6" <%=chr_EstiloTD%>>
@@ -268,7 +259,7 @@ function controleClientes(eu)
 		</tr>
 		<tr>
 			<td colspan="2" <%=chr_EstiloTD%>>
-				Teste com Repetição:&nbsp;<input class="texto1" type="Checkbox" name="chkRepeticao">
+				Teste com RepetiÃ§Ã£o:&nbsp;<input class="texto1" type="Checkbox" name="chkRepeticao">
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
 				Executante do CRT:&nbsp;<input class="texto1" type="Checkbox" name="chkExecutanteCRT">
@@ -277,7 +268,7 @@ function controleClientes(eu)
 				Tem OS:&nbsp;<input class="texto1" type="Checkbox" name="chkTemOS">
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
-				Tem Comentário:&nbsp;<input class="texto1" type="Checkbox" name="chkTemComentario">
+				Tem ComentÃ¡rio:&nbsp;<input class="texto1" type="Checkbox" name="chkTemComentario">
 			</td>
 		</tr>
 		<tr>

@@ -3,7 +3,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
-'Verifico se estou apenas validando o documento, várias opções são desabilitadas
+'Verifico se estou apenas validando o documento, varias opcoes sao desabilitadas
 ehValidacao = (request("ehValidacao") = "1")
 
 If not Env.usuarioCRT Then
@@ -101,7 +101,7 @@ function selecionaItens(lista) {
 }
 
 function verificaLista(valor, lista) {
-//Verifica se um valor já se encontra na lista
+//Verifica se um valor jï¿½ se encontra na lista
 	var i;
 	for(i=0; i<lista.length; i++)
 		if (lista[i].text.indexOf(valor) != -1)
@@ -138,52 +138,52 @@ function montaAtualiza() {
 }
 function ValidaCampos() {
 <% if  ehValidacao then%>
-if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/" + completa(document.formulario.mesvalidacao.value,2) + "/" + completa(document.formulario.anovalidacao.value,4), "Data Validação" ) ) ) {
+if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/" + completa(document.formulario.mesvalidacao.value,2) + "/" + completa(document.formulario.anovalidacao.value,4), "Data Validaï¿½ï¿½o" ) ) ) {
 		return false;
 	}
 <%end if%>
 <% if not ehValidacao then%>
 	if( document.formulario.titulo.value == "" ) {
-		alert( "Título do arquivo não informado.\nInforme o título do arquivo." );
+		alert( "TÃ­tulo do arquivo nÃ£o informado.\nInforme o tÃ­tulo do arquivo." );
 		document.formulario.titulo.focus();
 		return false;
 	}
 	if( AchaAspas( document.formulario.titulo.value ) )
 	{
-		alert( "Título do arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Título do arquivo." );
+		alert( "TÃ­tulo do arquivo nÃ£o pode conter Aspas ou apÃ³strofes.\nCorrija o TÃ­tulo do arquivo." );
 		document.formulario.titulo.focus();
 		return false;
 	}
-	if( !( ValidaDataMesAno( completa(document.formulario.diaatualiz.value,2) + "/" + completa(document.formulario.mesatualiz.value,2) + "/" + completa(document.formulario.anoatualiz.value,4), "Data Atualização" ) ) ) {
+	if( !( ValidaDataMesAno( completa(document.formulario.diaatualiz.value,2) + "/" + completa(document.formulario.mesatualiz.value,2) + "/" + completa(document.formulario.anoatualiz.value,4), "Data Atualizaï¿½ï¿½o" ) ) ) {
 		return false;
 	}
 	if( document.formulario.tipoarquivo.value == "" ) {
-		alert( "Tipo de arquivo não informado.\nInforme o tipo de arquivo." );
+		alert( "Tipo de arquivo nÃ£o informado.\nInforme o tipo de arquivo." );
 		document.formulario.tipoarquivo.focus();
 		return false;
 	}
 	if( document.formulario.situacao.value == "" ) {
-		alert( "Situação do arquivo não informada.\nInforme a situação do arquivo." );
+		alert( "SituaÃ§Ã£o do arquivo nÃ£o informada.\nInforme a situaÃ§Ã£o do arquivo." );
 		document.formulario.situacao.focus();
 		return false;
 	}
 	if( document.formulario.responsavel.value == "" ) {
-		alert( "Responsável pelo arquivo não informado.\nInforme o Responsável pelo o arquivo." );
+		alert( "ResponsÃ¡vel pelo arquivo nÃ£o informado.\nInforme o ResponsÃ¡vel pelo o arquivo." );
 		document.formulario.responsavel.focus();
 		return false;
 	}
 	if( (document.formulario.o1.value != "") && (isNaN(document.formulario.o1.value)) ) {
-		alert( "Valor da Versão incorreto." );
+		alert( "Valor da VersÃ£o incorreto." );
 		document.formulario.o1.focus();
 		return false;
 	}
 	if( (document.formulario.o2.value != "") && (isNaN(document.formulario.o2.value)) ) {
-		alert( "Valor da Versão incorreto." );
+		alert( "Valor da VersÃ£o incorreto." );
 		document.formulario.o2.focus();
 		return false;
 	}
 	if( (document.formulario.o3.value != "") && (isNaN(document.formulario.o3.value)) ) {
-		alert( "Valor da Versão incorreto." );
+		alert( "Valor da VersÃ£o incorreto." );
 		document.formulario.o3.focus();
 		return false;
 	}
@@ -191,7 +191,7 @@ if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/
 	if( formulario.cmbAgendamento[ 0 ].checked ){
 		if(document.formulario.auxOS.value == "0"){
 			var resp
-			resp=confirm("Você não selecionou nenhuma OS, deseja realmente vincular o arquivo somente ao Agendamento?");
+			resp=confirm("VocÃª nÃ£o selecionou nenhuma OS, deseja realmente vincular o arquivo somente ao Agendamento?");
 			if (!resp){
 				document.formulario.cmbOs.focus();
 				return resp;
@@ -208,17 +208,17 @@ if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/
 
 <% if auxselecao = 0 then %>
 	if( document.formulario.FILE1.value == '' ) {
-		alert( 'Nome do arquivo não informado. Informe o nome do arquivo.' );
+		alert( 'Nome do arquivo nÃ£o informado. Informe o nome do arquivo.' );
 		document.formulario.FILE1.focus();
 		return false;
 	}
 	if( AchaAspas( document.formulario.FILE1.value ) ) {
-		alert("Nome do Arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Nome do arquivo.");
+		alert("Nome do Arquivo nÃ£o pode conter Aspas ou apÃ³strofes.\nCorrija o Nome do arquivo.");
 		document.formulario.FILE1.focus();
 		return false;
 	}
 	if( !validaNomeArquivo(extractFileName(document.formulario.FILE1.value)) ) {
-		alert("O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.");
+		alert("O nome do arquivo estÃ¡ invÃ¡lido. Retire acentuaÃ§Ã£o e espaÃ§os antes de prosseguir.");
 		document.formulario.FILE1.focus();
 		return false;
 	}
@@ -287,7 +287,7 @@ function sugereNome()
 			numOS = '';
 	}
 
-	//Este tipo é para Relatório de Ensaios
+	//Este tipo ï¿½ para Relatï¿½rio de Ensaios
 	if (tipoDoc == '33'){
 		if(formulario.cmbAgendamento[ 0 ].checked)
 			frm.titulo.value = 'REL-' + completa(numAS,4) + numOS;
@@ -441,7 +441,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 <form method="post" action="insCad_arquivo.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
 <!--
 	Preciso deste campo para saber pra onde vou redirecionar quando der o submit,
-	porque este form é usado tanto para validar quanto para editar um arquivo.
+	porque este form ï¿½ usado tanto para validar quanto para editar um arquivo.
 -->
 <input type="Hidden" name="eh_validacao" value="<%=ehValidacao%>">
 
@@ -513,7 +513,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 				}
 				else if (verificaLista(item1, lista))
 				{
-					alert("Este agendamento já se encontra na lista.");
+					alert("Este agendamento jÃ¡ se encontra na lista.");
 					combo.focus();		
 				}
 				else
@@ -583,11 +583,11 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			<%if ehValidacao then%>
 				<tr> 
 					<td colspan="5">
-						<b>Data Validação :</b><br>
+						<b>Data Validaï¿½ï¿½o :</b><br>
 						<%call comboData("validacao")%>
 					</td>
 					<td colspan="5">
-						<b>Responsável Validação :</b><br>
+						<b>Responsï¿½vel Validaï¿½ï¿½o :</b><br>
 						<%call comboUSERCRTcDefault("validador", Env.oConn, Env.usuario(),false)%>
 					</td>
 				</tr>
@@ -603,7 +603,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			</tr>
 			<tr>
 				<td colspan="10">
-					<b>Título do Link do arquivo:</b><br>
+					<b>Tï¿½tulo do Link do arquivo:</b><br>
 					<input type="text" name="titulo" class="texto1" size="60" maxlength="200" value="<%= auxlink %>" />
 				</td>
 			</tr>
@@ -639,7 +639,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			</tr>
 			<tr> 
 				<td colspan="5">
-					<b> Data de Aprovação do arquivo:</b><br>
+					<b> Data de Aprovaï¿½ï¿½o do arquivo:</b><br>
 					<select name="diaatualiz" class="combo"  onchange="montaAtualiza()">
 						<option value="">Dia</option><%
 								for i = 1 to 31
@@ -652,10 +652,10 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 								next %>
 					</select>
 					<select name="mesatualiz" class="combo"  onchange="montaAtualiza()">
-						<option value="">Mês</option>
+						<option value="">MÃªs</option>
 						<option value=01>Janeiro</option>
 						<option value=02>Fevereiro</option>
-						<option value=03>Março</option>
+						<option value=03>MarÃ§o</option>
 						<option value=04>Abril</option>
 						<option value=05>Maio</option>
 						<option value=06>Junho</option>
@@ -668,7 +668,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 					</select>
 					<select name="anoatualiz" class="combo" onchange="montaAtualiza()">
 						<option value="">Ano</option><%
-							for i = -1 to 5 '-- pego o ano seguinte e 5 anos para trás
+							for i = -1 to 5 '-- pego o ano seguinte e 5 anos para trï¿½s
 								cbano = year( now ) - i %>
 						<option value="<%=cbano%>"><%=cbano%></option><%
 							next%>
@@ -704,7 +704,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			</tr>
 			<tr>
 				<td colspan="10">
-					<b>Responsável:</b><br>
+					<b>ResponsÃ¡vel:</b><br>
 					<%call comboUSERCRT("responsavel",Env.oConn,false)%>
 				</td>
 			</tr>
@@ -809,7 +809,7 @@ frm.chkconfidencial.checked = true;
 
 function selexcluir() {
 	var frm = document.forms[0]
-	resposta = confirm("Deseja que a exclusão deste arquivo seja comunicado via e-mail aos usuarios CRT?")
+	resposta = confirm("Deseja que a exclusÃ£o deste arquivo seja comunicado via e-mail aos usuarios CRT?")
 	if (resposta)
 		frm.resp.value = "1";
 

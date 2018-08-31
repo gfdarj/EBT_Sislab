@@ -86,8 +86,8 @@ Function TextoSituacao(pSituacao,objConn)
 	end if
 End Function
 
-'Funções herdadas do LogBook
-'Não as alterarei, nem verificarei sua necessidade no momento em virtude do prazo para tornar-lo 
+'FunÃ§Ãµes herdadas do LogBook
+'NÃ£o as alterarei, nem verificarei sua necessidade no momento em virtude do prazo para tornar-lo 
 'ativo
 Public Function PegaPalavra( Frase, QualCampo, Separador) 
 	Dim i, j 
@@ -111,8 +111,8 @@ Public Function PegaPalavra( Frase, QualCampo, Separador)
 	PegaPalavra = Trim( sPalavra )
 End Function
 
-'FUNÇÕES ENCONTRADAS NO ARQUIVO CONS_IND_PESQCR.ASP
-'RELATIVAS A PESQUISA DE SATISFAÇÃO
+'FUNÃ‡Ã•ES ENCONTRADAS NO ARQUIVO CONS_IND_PESQCR.ASP
+'RELATIVAS A PESQUISA DE SATISFAÃ‡ÃƒO
 function retornaaprox(opcao)
 	dim auxint,auxdec,auxnum
 	opcao = "0" & opcao
@@ -136,7 +136,7 @@ function retornaopcao(opcao)
 	if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 	if opcao=4 then retornaopcao="Satisfeito" end if
 	if opcao=5 then retornaopcao="Muito Satisfeito" end if
-	if Isnull(opcao) then retornaopcao="Não Respondido" end if
+	if Isnull(opcao) then retornaopcao="NÃ£o Respondido" end if
 end function
 
 function retornaopcao1(opcao)
@@ -147,7 +147,7 @@ end function
 
 
 function retornacomentario(comenta)
-	if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment." else retornacomentario="Comentário: "&comenta end if
+	if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment." else retornacomentario="ComentÃ¡rio: "&comenta end if
 end function
 
 Function DescOs(objConn, agnumero)
@@ -227,7 +227,7 @@ Function MontaAgendamentosDoDia(W)
 			"<tr><td height='7px'></td></tr>" & VbCrLf
 
 	If (RS.Eof And RS.Bof) Then
-		chr_Buf = chr_Buf & "<tr><td class='texto' align='center'>Nenhum agendamento em Execução hoje</td></tr>"
+		chr_Buf = chr_Buf & "<tr><td class='texto' align='center'>Nenhum agendamento em ExecuÃ§Ã£o hoje</td></tr>"
 	Else
 		i = 1
 		While Not RS.Eof
@@ -291,7 +291,7 @@ Function MostraDadoSigiloso(int_Sigilo, chr_Username)
 	'### DEBUG ###
 '	int_sigilo = 1 : 	bln_EhCRT = False : 	chr_UserLogado = "ADAO" : 	chr_Username = "CORDOVA"
 
-	'é sigiloso mas o solicitante é o usuario logado
+	'Ã© sigiloso mas o solicitante Ã© o usuario logado
 	If (int_Sigilo > 0 And chr_UserLogado = chr_Username) Or _
 			bln_EhCRT Or _
 			(int_Sigilo = 0) Or _
@@ -303,7 +303,7 @@ Function MostraDadoSigiloso(int_Sigilo, chr_Username)
 End Function
 
 '###
-'	Verifica se um usuario nao CRT é um gerente de uma equipe. Caso seja, permite o acesso do mesmo aos dados
+'	Verifica se um usuario nao CRT Ã© um gerente de uma equipe. Caso seja, permite o acesso do mesmo aos dados
 '	dos agendamentos de sua equipe
 '###
 Function EhGerenteDeEquipeEBT(chr_UserResponsavelAS)
@@ -337,7 +337,7 @@ Function ExibeMensagemSigiloAS(int_Border)
 		"<tr>" & VbCrLf & _
 		"	<td align='left'>" & VbCrLf & _
 		"		&nbsp;<img align='absmiddle' src='img/Iccadeado.gif' border=0>&nbsp;" & VbCrLf & _
-		"		<B>O Teste é Sigiloso. Se desejar uma consulta a este(s) documento(s) envie um e-mail para <a href='mailto:ilab@embratel.com.br'>ilab@embratel.com.br</b></a-->&nbsp;" & VbCrLf & _
+		"		<B>O Teste Ã© Sigiloso. Se desejar uma consulta a este(s) documento(s) envie um e-mail para <a href='mailto:ilab@embratel.com.br'>ilab@embratel.com.br</b></a-->&nbsp;" & VbCrLf & _
 		"	</td>" & VbCrLf & _
 		"</tr>" & VbCrLf & _
 		"</table>" & VbCrLf

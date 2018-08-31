@@ -1,4 +1,4 @@
-<%
+﻿<%
 Class TEmail
 
 Public bln_TemErro
