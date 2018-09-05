@@ -1,9 +1,9 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+﻿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/global.asp"-->
 <!--#include file="../includes/funcoes.asp"-->
 <%
 '#####
-'#	Atualiza o invent�rio do equipamento com a data de hoje
+'#	Atualiza o inventário do equipamento com a data de hoje
 '###
 If Not VVVNZ(Request("eq_id")) Then
 	Dim RS

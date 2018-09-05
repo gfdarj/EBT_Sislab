@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -16,9 +16,9 @@ Ok_Alterar_Mov = (Env.PerfilSce = PERFIL_ADM And request("mov_id") <> "")
 If Env.PerfilSce = PERFIL_ADM Then tipousuario = " <span style='color:#800000;'>(Administrador)</span>"
 
 If Ok_Alterar_Mov Then
-    Tela.SetNomeTela = "SCE > MovimentaÁ„o > Item" & tipousuario & " > AlteraÁ„o"
+    Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Item" & tipousuario & " > Altera√ß√£o"
 Else
-    Tela.SetNomeTela = "SCE > MovimentaÁ„o > Item" & tipousuario
+    Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Item" & tipousuario
 End If
 
 Tela.SetCaminhoRelativo = "../"
@@ -37,7 +37,7 @@ If Env.UsuarioSCE() Then
 <script type="text/javascript" src="../ajax/max_ajax_ref.js" ></script>
 <script type="text/javascript" src="../ajax/montaCombo.js" ></script>
 <script type="text/javascript">
-	/*** FUN«’ES DO AJAX ***/
+	/*** FUN√á√ïES DO AJAX ***/
 	function atualizarNO(valor) {
 		var url = "../ajax/sce_mov_no_cmb.asp";
 		url += "?tipo_mov=" + valor;
@@ -219,11 +219,11 @@ function validaMovimentacao() {
 	var frm = document.forms[0];
 
 	if( frm.notipo.value == "" ) {
-		alert("Tipo de movimentaÁ„o n„o foi selecionado");
+		alert("Tipo de movimenta√ß√£o n√£o foi selecionado");
 		frm.notipo.focus();
 	}
 	else if( frm.noid.value == "" ) {
-		alert("Natureza da OperaÁ„o n„o foi selecionada");
+		alert("Natureza da Opera√ß√£o n√£o foi selecionada");
 		frm.noid.focus();
 	}
 	else if( frm.solicitante.value == "" ) {
@@ -231,32 +231,32 @@ function validaMovimentacao() {
 		frm.solicitante.focus();
 	}
 	else if(isNaN(frm.cde.value)) {
-		alert("CDE inv·lido");
+		alert("CDE inv√°lido");
 		frm.cde.focus();
 	}
 	else if( frm.diaMov.value == "" ) {
-		alert("Nenhum dia para a movimentaÁ„o foi informado");
+		alert("Nenhum dia para a movimenta√ß√£o foi informado");
 		frm.diaMov.focus();
 	}
 	else if( frm.mesMov.value == "" ) {
-		alert("Nenhum mÍs para a movimentaÁ„o foi informado");
+		alert("Nenhum m√™s para a movimenta√ß√£o foi informado");
 		frm.mesMov.focus();
 	}
 	else if( frm.anoMov.value == "" ) {
-		alert("Nenhum ano para a movimentaÁ„o foi informado");
+		alert("Nenhum ano para a movimenta√ß√£o foi informado");
 		frm.anoMov.focus();
 	}
 	else if( frm.horaMov.value == "" ) {
-		alert("Nenhuma hora para a movimentaÁ„o foi informada");
+		alert("Nenhuma hora para a movimenta√ß√£o foi informada");
 		frm.horaMov.focus();
 	}
 	else if( frm.minutoMov.value == "" ) {
-		alert("Nenhum minuto para a movimentaÁ„o foi informado");
+		alert("Nenhum minuto para a movimenta√ß√£o foi informado");
 		frm.minutoMov.focus();
 	}
 	else if(!ValidaEquipamentosSubstituidos(frm.eq_id.value))
 	{
-		alert("Existem cÛdigos inv·lidos para equipamentos de substituiÁ„o");
+		alert("Existem c√≥digos inv√°lidos para equipamentos de substitui√ß√£o");
 	}
 	else {<%
 if Env.PerfilSce <> PERFIL_ADM then %>
@@ -315,17 +315,17 @@ function ValidaEquipamentosSubstituidos(eqs)
 <input type="Hidden" name="status" value="<%=status_eq%>">  <!-- pego o estado dos itens consultados para movimentar -->
 <table width="100%" border="0" CLASS="texto1">
 <%
-'-- Se alterei uma movimentacao exibe uma msg de confirmaÁao OK
+'-- Se alterei uma movimentacao exibe uma msg de confirma√ßao OK
     if request("alterouOK") = "1" then%>
-<tr><td class="texto1b" align="center">MovimentaÁ„o atualizada com sucesso !</td></tr>
+<tr><td class="texto1b" align="center">Movimenta√ß√£o atualizada com sucesso !</td></tr>
 <%  end if
 
 '    if Env.PerfilSce = PERFIL_ADM then%>
 <!--<tr>
 	<td style="color: #800000;">
-		<b>ATEN«√O !</b><br><br>
+		<b>ATEN√á√ÉO !</b><br><br>
 		<blockquote>
-			Estas movimentaÁıes podem estar sendo feitas para itens com diferentes <i>Status</i>
+			Estas movimenta√ß√µes podem estar sendo feitas para itens com diferentes <i>Status</i>
 		</blockquote>
 	</td>
 </tr>
@@ -334,9 +334,9 @@ function ValidaEquipamentosSubstituidos(eqs)
 '    end if%>
 <tr>
 	<td class="destaque">
-		MovimentaÁ„o de itens 
+		Movimenta√ß√£o de itens 
 <%  if status_eq = CStr(STATUS_EXPEDIDO) then response.write "Expedido(s)" %>
-<%  if status_eq = CStr(STATUS_EXPEDIDO_SUBST) then response.write "SubstituÌdo(s)" %>
+<%  if status_eq = CStr(STATUS_EXPEDIDO_SUBST) then response.write "Substitu√≠do(s)" %>
 <%  if status_eq = CStr(STATUS_EM_USO) then response.write "Em Uso" %>
 <%  if status_eq = CStr(STATUS_EM_ESTOQUE) then response.write "Em Estoque" %>
 <%  if status_eq = CStr(STATUS_CADASTRADO) then response.write "Cadastrado(s)" %>
@@ -350,7 +350,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 		<table cellpadding="0" width="100%" CLASS="texto1">
 		<tr>
 			<td width="200px">
-				Tipo de MovimentaÁ„o:<br>
+				Tipo de Movimenta√ß√£o:<br>
 				<select name="notipo" class="texto1" onChange="javascript:atualizarNO(this.value);">
 					<option value="">--</option>
 <%if Env.PerfilSce = PERFIL_ADM or (status_eq = CStr(STATUS_EXPEDIDO) or status_eq = CStr(STATUS_EXPEDIDO_SUBST) or status_eq = CStr(STATUS_CADASTRADO)) then%>
@@ -358,17 +358,17 @@ function ValidaEquipamentosSubstituidos(eqs)
 <%end if%>
 
 <%if Env.PerfilSce = PERFIL_ADM or (status_eq = CStr(STATUS_EM_USO)) then%>
-						<option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if tipo = MOV_LOGISTICA_ENTRADA then response.write "selected"%>>LogÌstica Entrada</option>
+						<option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if tipo = MOV_LOGISTICA_ENTRADA then response.write "selected"%>>Log√≠stica Entrada</option>
 <%end if%>
 <%if Env.PerfilSce = PERFIL_ADM or (status_eq = CStr(STATUS_EM_ESTOQUE)) then%>
-						<option value="<%=MOV_LOGISTICA_SAIDA%>" <%if tipo = MOV_LOGISTICA_SAIDA then response.write "selected"%>>LogÌstica SaÌda</option>
-						<option value="<%=MOV_EXPEDICAO%>" <%if tipo = MOV_EXPEDICAO then response.write "selected"%>>ExpediÁ„o</option>
-						<option value="<%=MOV_EXPEDICAO_SUBST%>" <%if tipo = MOV_EXPEDICAO_SUBST then response.write "selected"%>>SubstituiÁ„o</option>
+						<option value="<%=MOV_LOGISTICA_SAIDA%>" <%if tipo = MOV_LOGISTICA_SAIDA then response.write "selected"%>>Log√≠stica Sa√≠da</option>
+						<option value="<%=MOV_EXPEDICAO%>" <%if tipo = MOV_EXPEDICAO then response.write "selected"%>>Expedi√ß√£o</option>
+						<option value="<%=MOV_EXPEDICAO_SUBST%>" <%if tipo = MOV_EXPEDICAO_SUBST then response.write "selected"%>>Substitui√ß√£o</option>
 <%end if%>
 	 			</select>
 			</td>
 			<td align="left" width="*">
-				Natureza de OperaÁ„o:<br>
+				Natureza de Opera√ß√£o:<br>
 				<div id="div_noid" align="left">
 				<select name="noid" id="noid" class="texto1" onChange="javascript:atualizarNOCampos(this.value);">
 				<option value="">--</option>
@@ -444,7 +444,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 			</td>
 			<td id="id_calibracao" style="display:none;">
 				<br>
-				<input type="checkbox" name="fl_calibracao" value="1" title="Marque esta opÁ„o se o(s) item(ns) È expedido ou retorna de uma CalibraÁ„o"> CalibraÁ„o (<font color="red">Se calibraÁ„o OK, marcar este item!</font>)
+				<input type="checkbox" name="fl_calibracao" value="1" title="Marque esta op√ß√£o se o(s) item(ns) √© expedido ou retorna de uma Calibra√ß√£o"> Calibra√ß√£o (<font color="red">Se calibra√ß√£o OK, marcar este item!</font>)
 			</td>
 		</tr>
 		</table>
@@ -461,7 +461,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		LocalizaÁ„o: (<i>Informar apenas quando for devoluÁ„o</i>)<BR>
+		Localiza√ß√£o: (<i>Informar apenas quando for devolu√ß√£o</i>)<BR>
 		<input type="text" class="texto1" name="localizacao" size="25" value="">
 	</td>
 </tr>
@@ -470,8 +470,8 @@ function ValidaEquipamentosSubstituidos(eqs)
 	<td valign="top" width="100px">
 		<table class="texto1" cellpadding="2" cellspacing="0" border="0" width="400px">
 		<tr>
-			<td><Br>Data Real da MovimentaÁ„o:<br><%=Combo.Data("Mov")%></td>
-			<td><Br>Hora da MovimentaÁ„o:<br><%=Combo.Horario("Mov")%></td>
+			<td><Br>Data Real da Movimenta√ß√£o:<br><%=Combo.Data("Mov")%></td>
+			<td><Br>Hora da Movimenta√ß√£o:<br><%=Combo.Horario("Mov")%></td>
 		</tr>
 		</table>
 	</td>
@@ -481,16 +481,16 @@ function ValidaEquipamentosSubstituidos(eqs)
     <td>
 		<table width="100%" class="texto1" cellpadding="0" cellspacing="0" border="0">
         <tr><td>&nbsp;</td></tr>
-        <tr><td class="destaque">Item(ns) movimentados (preencha se houve a troca ou substituiÁ„o de SGP)</td></tr>
+        <tr><td class="destaque">Item(ns) movimentados (preencha se houve a troca ou substitui√ß√£o de SGP)</td></tr>
         <tr>
             <td valign="top">
-<%  'exibe os equipamentos que est„o sendo movimentados
+<%  'exibe os equipamentos que est√£o sendo movimentados
     ssql = "SELECT EQ_ID, EQ_CODIGOBARRAS, MOD_CODNOME, DESC_STATUS, EQ_CODIGOBARRASANTERIOR " & _
            "FROM vw_SCE_Equipamentos_Fabricantes " & _
            "WHERE EQ_ID IN (" & eq_id & ")"
     Set RS = Env.oConn.Execute(ssql) %>
 		        <table class="texto1" cellpadding="2" cellspacing="2" border="0">
-		        <tr><th>CÛd. Barras (novo)</th><th>Modelo</th><th>SituaÁ„o</th><th>CÛd. Barras Anterior (substituÌdo)</th></tr>
+		        <tr><th>C√≥d. Barras (novo)</th><th>Modelo</th><th>Situa√ß√£o</th><th>C√≥d. Barras Anterior (substitu√≠do)</th></tr>
 <%  Dim sclasse
     linha=0
     While Not RS.Eof
@@ -515,7 +515,7 @@ function ValidaEquipamentosSubstituidos(eqs)
                 <script language="javascript">
                     function TestaEquipamento(eu, eq_id, keypress) {
                         if (eu.value != '') {
-                            //chama a funÁ„o para testar o equipamento
+                            //chama a fun√ß√£o para testar o equipamento
                             if (((eu.value.length > 15) && (keypress)) || ((eu.value.length <= 15) && (!keypress))) {
                                 var url = "../ajax/sce_testa_codbarras.asp";
                                 url += "?codbarras=" + eu.value;
@@ -523,7 +523,7 @@ function ValidaEquipamentosSubstituidos(eqs)
                                 var maxAjaxObj = new max.Ajax(url, { update: "", onComplete:
 			                    function(texto, xml) {
 			                        if (texto == '0') {
-			                            document.getElementById('linhaEQ_ID' + eq_id).innerHTML = '<span class="circ_desat">Equipamento n„o encontrado</span>';
+			                            document.getElementById('linhaEQ_ID' + eq_id).innerHTML = '<span class="circ_desat">Equipamento n√£o encontrado</span>';
 			                        }
 			                        else if (texto == '') {
 			                            document.getElementById('linhaEQ_ID' + eq_id).innerHTML = '';

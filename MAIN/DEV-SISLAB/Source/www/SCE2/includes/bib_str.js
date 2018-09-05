@@ -1,4 +1,4 @@
-/***
+﻿/***
 	Biblioteca de funcoes de STRING
 
 	Gilberto Almeida - COPPETEC

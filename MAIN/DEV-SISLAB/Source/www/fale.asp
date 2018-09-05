@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sugestıes - Fale Conosco", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sugest√µes - Fale Conosco", "", "")
 
 Dim objSiteRS, sSQL,auxusername
 
@@ -16,31 +16,31 @@ function ValidaCampos()
 {
 //if (document.formulario.titulo.value=="")
 //	{
-//	alert("TÌtulo n„o informado.\nInforme o TÌtulo da mensagem.");
+//	alert("T√≠tulo n√£o informado.\nInforme o T√≠tulo da mensagem.");
 //		return false;
 //		formulario.titulo.focus();	
 //	}
 //if (AchaAspas(document.formulario.titulo.value))
 //	{
-//	alert("O tÌtulo n„o pode conter Aspas ou apÛstrofes.\nCorrija o tÌtulo da mensagem.");
+//	alert("O t√≠tulo n√£o pode conter Aspas ou ap√≥strofes.\nCorrija o t√≠tulo da mensagem.");
 //	        formulario.titulo.focus();
 //		return false;
 //	}
 if (document.formulario.assunto.value=="")
 	{
-	alert("Assunto n„o informado.\nInforme o Assunto da mensagem para encaminharmos devidamente sua mensagem.");
+	alert("Assunto n√£o informado.\nInforme o Assunto da mensagem para encaminharmos devidamente sua mensagem.");
 		return false;
 		formulario.assunto.focus();	
 	}
 if (document.formulario.texto.value=="")
 	{
-	alert("Texto n„o informado.\nInforme o Texto da mensagem.");
+	alert("Texto n√£o informado.\nInforme o Texto da mensagem.");
 		return false;
 		formulario.texto.focus();	
 	}
 if (AchaAspas(document.formulario.texto.value))
 	{
-	alert("O texto n„o pode conter Aspas ou apÛstrofes.\nCorrija o texto da mensagem.");
+	alert("O texto n√£o pode conter Aspas ou ap√≥strofes.\nCorrija o texto da mensagem.");
 	        formulario.titulo.focus();
 		return false;
 	}
@@ -71,7 +71,7 @@ if (AchaAspas(document.formulario.texto.value))
     <tr valign="middle"> 
 	<!--
       <td colspan="4">
-			<b>&nbsp;&nbsp;&nbsp;TÌtulo:<br>
+			<b>&nbsp;&nbsp;&nbsp;T√≠tulo:<br>
 			&nbsp;&nbsp;&nbsp;<input type="text" class="texto1" name="titulo" size=50 maxlength="180">
 			</b>
       </td>-->
@@ -80,15 +80,15 @@ if (AchaAspas(document.formulario.texto.value))
 			<b>&nbsp;&nbsp;&nbsp;Assunto:<br>
 			&nbsp;&nbsp;&nbsp;<select class="texto1" name="assunto">
 			<option value="">Selecione o assunto ...</option>
-			<option value="AutomaÁ„o de Testes">AutomaÁ„o de Testes</option>
-			<option value="AvaliaÁ„o de ServiÁos do CRT">AvaliaÁ„o de ServiÁos do CRT</option>
-			<option value="CRT e ¡rea de OperaÁıes e Rede">CRT e ¡rea de OperaÁıes e Rede</option>
-			<option value="CRT e ¡rea de ServiÁos">CRT e ¡rea de ServiÁos</option>
+			<option value="Automa√ß√£o de Testes">Automa√ß√£o de Testes</option>
+			<option value="Avalia√ß√£o de Servi√ßos do CRT">Avalia√ß√£o de Servi√ßos do CRT</option>
+			<option value="CRT e √Årea de Opera√ß√µes e Rede">CRT e √Årea de Opera√ß√µes e Rede</option>
+			<option value="CRT e √Årea de Servi√ßos">CRT e √Årea de Servi√ßos</option>
 			<option value="CRT e Clientes da EMBRATEL">CRT e Clientes da EMBRATEL</option>
-			<option value="CRT e GerÍncia de Programas">CRT e GerÍncia de Programas</option>
+			<option value="CRT e Ger√™ncia de Programas">CRT e Ger√™ncia de Programas</option>
 			<option value="Infra-estrutura do CRT">Infra-estrutura do CRT</option>
-			<option value="IntegraÁ„o de Sistemas">IntegraÁ„o de Sistemas</option>
-			<option value="Parceiros TecnolÛgicos">Parceiros TecnolÛgicos</option>
+			<option value="Integra√ß√£o de Sistemas">Integra√ß√£o de Sistemas</option>
+			<option value="Parceiros Tecnol√≥gicos">Parceiros Tecnol√≥gicos</option>
 			<option value="Projetos Especiais">Projetos Especiais</option>
 			<option value="Visita ao CRT">Visita ao CRT</option>
 			<option value="WebSite do CRT">WebSite do CRT</option>

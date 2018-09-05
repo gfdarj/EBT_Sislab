@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+Ôªø<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%
 '	On Error Resume Next
 
@@ -45,13 +45,13 @@ if opcao=2 then retornaopcao="Insatisfeito" end if
 if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 if opcao=4 then retornaopcao="Satisfeito" end if
 if opcao=5 then retornaopcao="Muito Satisfeito" end if
-if Isnull(opcao) then retornaopcao="N„o Respondido" end if
+if Isnull(opcao) then retornaopcao="N√£o Respondido" end if
 
 end function
 
 function retornacomentario(comenta)
 
-  if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment·rio" else retornacomentario="Coment·rio: "&comenta end if
+  if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment√°rio" else retornacomentario="Coment√°rio: "&comenta end if
 
 end function
 
@@ -68,7 +68,7 @@ end function
 <html>
 <head>
 
-<title>Pesquisa de SatisfaÁ„o - CRT</title>
+<title>Pesquisa de Satisfa√ß√£o - CRT</title>
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 
@@ -102,7 +102,7 @@ function paratras()
 </td>
 <td bgcolor="#000050">
 <FONT face="tahoma" color="#DDDDDD" style="font-size:12pt">
-<b>&nbsp;&nbsp;An·lise Individual dos Formul·rios de SatisfaÁ„o</b><br>
+<b>&nbsp;&nbsp;An√°lise Individual dos Formul√°rios de Satisfa√ß√£o</b><br>
 &nbsp;&nbsp;Agendamento: <%=parnag%>
 </font>
 </td>
@@ -131,15 +131,15 @@ auxEmail=objSiteRS("PSQ_Email")
 
 
 If trim(auxnome)="" then 
-	auxnome="anÙnimo"
+	auxnome="an√¥nimo"
 end if
 
 If trim(auxTelefone)="" then 
-	auxTelefone="n„o informado"
+	auxTelefone="n√£o informado"
 end if
 
 If trim(auxEmail)="" or IsNull(auxEmail) then 
-	auxEmail="n„o informado"
+	auxEmail="n√£o informado"
 end if
 
 auxOrgaoEmpresa=objSiteRS("PSQ_OrgaoEmpresa")
@@ -180,7 +180,7 @@ auxC_4=objSiteRS("PSQ_C_4")
 
 <FONT face="tahoma" color="#000050" style="font-size:10pt">
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Nome:</b>&nbsp;<%=auxnome%><b>, Telefone:</b><%=auxtelefone%> <b>, Email </b><%=auxemail%><br>
-<b>&nbsp;&nbsp;&nbsp;&nbsp;ComunicaÁ„o: </b><%=retornaopcao(auxR1) &" - " & retornacomentario(auxC1)  %><br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;Comunica√ß√£o: </b><%=retornaopcao(auxR1) &" - " & retornacomentario(auxC1)  %><br>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Cortesia: </b><%=retornaopcao(auxR2) &" - " & retornacomentario(auxC2) %><br>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Presteza: </b><%=retornaopcao(auxR3) &" - " & retornacomentario(auxC3) %><br>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Flexibilidade: </b><%=retornaopcao(auxR4) &" - " & retornacomentario(auxC4) %><br>
@@ -191,8 +191,8 @@ auxC_4=objSiteRS("PSQ_C_4")
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Ambiente: </b><%=retornaopcao(auxR9) &" - " & retornacomentario(auxC9) %><br>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Acesso: </b><%=retornaopcao(auxR10) &" - " & retornacomentario(auxC10) %><br>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;Geral: </b><%=retornaopcao(auxR11) &" - " & retornacomentario(auxC11) %><br>
-<b>&nbsp;&nbsp;&nbsp;&nbsp;Sugestıes adicionais nos itens Citados: </b><%=retornacomentario(auxC_3) %><br>
-<b>&nbsp;&nbsp;&nbsp;&nbsp;Outras sugestıes: </b><%=retornacomentario(auxC_4) %><br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;Sugest√µes adicionais nos itens Citados: </b><%=retornacomentario(auxC_3) %><br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;Outras sugest√µes: </b><%=retornacomentario(auxC_4) %><br>
 
 <%
 	objSiteRS.MoveNext

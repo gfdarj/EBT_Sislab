@@ -1,4 +1,4 @@
-// recebe uma data no formato dd/mm/aaaa e retorna true ou false
+﻿// recebe uma data no formato dd/mm/aaaa e retorna true ou false
 function isDate(desData)
 {
   var err=0

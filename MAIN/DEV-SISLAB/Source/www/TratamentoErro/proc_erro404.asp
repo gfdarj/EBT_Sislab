@@ -1,4 +1,4 @@
-
+Ôªø
 
 <%
 response.Write "ok"
@@ -158,15 +158,15 @@ var x = erro();
 		<table width="600" class="font5" ID="Table2" align=center cellpadding=6 cellspacing=2 bgcolor=lightblue>
 			<tr><td class=font5 bgcolor=White width=599>
 				<p align=center>
-				<strong>Problemas com a P·gina Solicitada</strong></p>
+				<strong>Problemas com a P√°gina Solicitada</strong></p>
 				
 			
 				<p align="justify">
-				N„o foi possÌvel encontrar a p·gina solicitada no endereÁo correspondente.<br><br>
-				Estamos recolhendo as informaÁıes correspondentes aos problemas e encaminhando-as aos
-				respons·veis pelo Site para que possam ser regularizadas no menor tempo possÌvel.<br><br>
+				N√£o foi poss√≠vel encontrar a p√°gina solicitada no endere√ßo correspondente.<br><br>
+				Estamos recolhendo as informa√ß√µes correspondentes aos problemas e encaminhando-as aos
+				respons√°veis pelo Site para que possam ser regularizadas no menor tempo poss√≠vel.<br><br>
 				Pedimos desculpas pelo transtorno.<br><br>
-				CoordenaÁ„o da Intranet</p>
+				Coordena√ß√£o da Intranet</p>
 			</td></tr>
 		</table>
 	</td></tr>
@@ -177,19 +177,19 @@ var x = erro();
 		<table class=font5 align="center" ID="Table19" width="600" cellpadding=2 cellspacing=2 >
 			<tr><td class=font5>
 				<p align=center>
-				<strong>InformaÁıes complementares sobre o problema</strong></p>
+				<strong>Informa√ß√µes complementares sobre o problema</strong></p>
 			</td></tr>
 			<tr><td  class=font5 align=left>
 				<table cellpadding=2 cellspacing=2 width=600 bgcolor=#ffffdd align=center ID="Table30">
 					<tr><td class=font5 colspan=2>
-						Usu·rio: 
+						Usu√°rio: 
 						<b><%= buscaNome( right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) ) %> 
 						<i>(<%= right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) %>)</i>
 						</b></td>
 					</tr>
-					<tr><td class=font5 colspan=2>DescriÁ„o:  <b>P·gina n„o encontrada</b></td></tr>
+					<tr><td class=font5 colspan=2>Descri√ß√£o:  <b>P√°gina n√£o encontrada</b></td></tr>
 					<tr>
-					<td class=font5 colspan=2>P·gina: 
+					<td class=font5 colspan=2>P√°gina: 
 					<script language=javascript>
 						<!--
 						if (!((window.navigator.userAgent.indexOf("MSIE") > 0) && (window.navigator.appVersion.charAt(0) == "2")))

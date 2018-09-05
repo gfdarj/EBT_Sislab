@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -40,7 +40,7 @@ end if
 '-----------------------------------------
 
 function Erro( msg )
-	call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Erro na alteração de arquivo !", "NENHUM", "")
+	call ImprimeCabecalho2("AlteraÃ§Ã£o de Arquivo", MENU_OFF, false, "100%", "Erro na alteraÃ§Ã£o de arquivo !", "NENHUM", "")
 %>
 <p class="erro" class="texto1b"><%= msg %></p>
 <p align="center">
@@ -51,7 +51,7 @@ function Erro( msg )
 end function
 
 function Terminar( nome_arq )
-	call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
+	call ImprimeCabecalho2("AlteraÃ§Ã£o de Arquivo", MENU_OFF, false, "100%", "AlteraÃ§Ã£o de Arquivo", "NENHUM", "")
 %>
 	<script language="JavaScript1.2">
 		window.opener.muda_arq("<%=Replace(nome_arq, "\", "\\")%>");

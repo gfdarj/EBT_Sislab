@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -19,7 +19,7 @@ If Env.UsuarioSCE() Then
     ssql =	"select nf.NF_VALORTOTAL AS [NF_VALORTOTAL_M], nf.NF_DEVOLUCAOCOMPLETA AS [NF_DEVOLUCAOCOMPLETA_M], " & _
 		    "nf.nf_id, nf.nf_numeronota AS [NF_NUMERONOTA_M], nf.nf_cfop AS [NF_CFOP_M], " & _
 		    "nf.nf_validade AS [NF_VALIDADE_M], no.NO_DESCRICAO AS [NO_DESCRICAO_M], " & _
-		    "CASE WHEN NF_TIPO = 1 THEN 'Entrada' WHEN NF_TIPO = 2 THEN 'Saída' END AS NF_TIPONOTA_M, " & _
+		    "CASE WHEN NF_TIPO = 1 THEN 'Entrada' WHEN NF_TIPO = 2 THEN 'SaÃ­da' END AS NF_TIPONOTA_M, " & _
 		    "CONVERT(varchar, nf.nf_dataemissao, 103) AS NF_DATAEMISSAO_M, " & _
 		    "CONVERT(varchar, nf.nf_recebimento, 103) AS NF_RECEBIMENTO_M, emp.enf_nome AS ENF_NOME_M, " & _
 		    "CASE WHEN nf.NF_VALIDADE IS NULL THEN NULL ELSE CONVERT(varchar, nf.nf_dataemissao + CAST(nf.nf_validade AS INT), 103) END AS NF_DATAVENCIMENTO_M, " & _
@@ -33,7 +33,7 @@ If Env.UsuarioSCE() Then
 	    ssql = ssql & " and (NF_CARTA = 'P' or NF_ACEITE = 0) "
     end if
 
-    '--pego as notas com prazo de validade, porém nao pego as 
+    '--pego as notas com prazo de validade, porÃ©m nao pego as 
     '--com devolucao completa = OK pois elas sao consideradas finalizadas
     if request("vencidas") = "1" then
 	    ssql = ssql & " and (nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) < getdate() AND no.PRAZO = 1 AND nf.NF_DEVOLUCAOCOMPLETA = 0 "
@@ -131,14 +131,14 @@ If Env.UsuarioSCE() Then
     end if
     if request("avencer") = "1" then
 	    if titulo <> "" then
-		    titulo = titulo & "/ à vencer)"
+		    titulo = titulo & "/ Ã  vencer)"
 	    else
-		    titulo = " (À vencer)"
+		    titulo = " (Ã€ vencer)"
 	    end if
     end if
 
 	Dim url_xls
-	url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Notas Fiscais" & titulo & "&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+	url_xls = "<div align='right'><a href=""../excel.asp?TITULO=RelatÃ³rio de Notas Fiscais" & titulo & "&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
 %>
 <table width="100%" class="texto1" cellpadding="2" cellspacing="0" border="0">
 <tr>
@@ -151,9 +151,9 @@ If Env.UsuarioSCE() Then
 <table width="100%" class="texto1" cellpadding="2" cellspacing="0" border="1">
 	<tr>
 		<th align="left">Fornecedor</th>
-		<th>Data de Emissão</th>
-		<th>Data de Receb. / Expedição</th>
-		<th>Número /<BR>Valor</th>
+		<th>Data de EmissÃ£o</th>
+		<th>Data de Receb. / ExpediÃ§Ã£o</th>
+		<th>NÃºmero /<BR>Valor</th>
 		<th>Natureza Opera&ccedil;&atilde;o</th>
 		<th>Tipo</th>
 		<th>Validade (dias)</th>

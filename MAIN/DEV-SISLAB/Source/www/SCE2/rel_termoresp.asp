@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Termo de Responsabilidade" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Termo de Responsabilidade" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -44,16 +44,16 @@ end if%>
 	</select>
 	</td>
 	<td>
-		Título:&nbsp;
+		TÃ­tulo:&nbsp;
 		<input class="texto1" type="Text" name="titulo" size="70" value="<b><u>Termo de Responsabilidade</u></b>">
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-		Descrição:<br>
+		DescriÃ§Ã£o:<br>
 		<textarea name="descricao" rows="12" cols="90">
-	Declaro para os devidos fins que, o(s) material(is) abaixo relacionado(s) encontra(m)-se sob a minha responsabilidade e uso, estando "<b>NÃO CONFORME</b>" relativo ao <b>PR.5.8-004/DO.5.8-001</b> do <b>Manual da Qualidade do CRT</b>, e através deste, responsabilizo-me pela sua regularização no prazo de 03 dias úteis a contar desta data junto ao <b>Setor de Logística do CRT</b>, no que concerne a confecção da Nota Fiscal do(s) material(is), isentando a EMBRATEL S/A durante o período em que este se encontrar nas suas instalações, de toda e qualquer responsabilidade sobre pagamento de sinistros e/ou problemas técnicos que possam ocorrer no equipamento.
+	Declaro para os devidos fins que, o(s) material(is) abaixo relacionado(s) encontra(m)-se sob a minha responsabilidade e uso, estando "<b>NÃƒO CONFORME</b>" relativo ao <b>PR.5.8-004/DO.5.8-001</b> do <b>Manual da Qualidade do CRT</b>, e atravÃ©s deste, responsabilizo-me pela sua regularizaÃ§Ã£o no prazo de 03 dias Ãºteis a contar desta data junto ao <b>Setor de LogÃ­stica do CRT</b>, no que concerne a confecÃ§Ã£o da Nota Fiscal do(s) material(is), isentando a EMBRATEL S/A durante o perÃ­odo em que este se encontrar nas suas instalaÃ§Ãµes, de toda e qualquer responsabilidade sobre pagamento de sinistros e/ou problemas tÃ©cnicos que possam ocorrer no equipamento.
 		</textarea>
 	</td>
 </tr>

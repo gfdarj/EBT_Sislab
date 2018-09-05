@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -8,7 +8,7 @@ Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objs
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
 Dim auxRT, auxRAT, auxusername, EH_CRT, aux_Sigilo, auxorgao, auxtecnologia, auxorgaosel,auxAs
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de LOGBOOK", "", "")
 
 EH_CRT = Env.UsuarioCRT()
 %>
@@ -28,7 +28,7 @@ EH_CRT = Env.UsuarioCRT()
 	</tr>
 <tr>
 	<td colspan="10">
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opÃ§Ãµes de filtro para consulta</span>
 	</td>
 </tr>
 <tr><td colspan="10">&nbsp;</td></tr>
@@ -41,7 +41,7 @@ EH_CRT = Env.UsuarioCRT()
 		<B>OPM <br><input type="Checkbox" name="chkOPM"></B>
 	</td>
 	<td colspan=8  align=left valign=top>
-		<B>Possui Ações...</B><BR>
+		<B>Possui AÃ§Ãµes...</B><BR>
 		<input type="Checkbox" name="chkAI"> Imediatas
 		&nbsp;&nbsp;&nbsp;
 		<input type="Checkbox" name="chkAP"> Preventivas
@@ -61,7 +61,7 @@ EH_CRT = Env.UsuarioCRT()
 		</td>
 		<td colspan=7  align=left valign=top>
 			<font face="tahoma" class="fontmenu1"><B>
-			&nbsp;Responsável :</B><br>
+			&nbsp;ResponsÃ¡vel :</B><br>
 			&nbsp;
 			<%call comboUserCRTVivoEMortos("responsavel",Env.oConn,true)%>
 			
@@ -70,7 +70,7 @@ EH_CRT = Env.UsuarioCRT()
 <tr>
 		<td colspan=4  align=left valign=top>
 			<font face="tahoma" class="fontmenu1"><B>
-			&nbsp;Descrição :</B><br>
+			&nbsp;DescriÃ§Ã£o :</B><br>
 			&nbsp;
 			<input type="text" class="texto1" name="desc" size="60">
 		</td>
@@ -83,7 +83,7 @@ EH_CRT = Env.UsuarioCRT()
 <tr>
 	<td colspan=2  align=left valign=top>
 		<B>
-		&nbsp;Tipo da Ocorrência :</B><br>
+		&nbsp;Tipo da OcorrÃªncia :</B><br>
 		&nbsp;
 		<%call comboBDSQL( "tipoOcorrencia", Env.oConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", null, true)%>
 		
@@ -101,7 +101,7 @@ EH_CRT = Env.UsuarioCRT()
 	</td>
 	<td colspan=4  align=left valign=top>
 		<B>
-		&nbsp;Estado da Ocorrência :</B><br>
+		&nbsp;Estado da OcorrÃªncia :</B><br>
 		&nbsp;
 		<%call comboEstadoOCorrencia("estado")%>
 	</td>

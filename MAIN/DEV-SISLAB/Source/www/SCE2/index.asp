@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -35,14 +35,14 @@ If Env.UsuarioSCE() Then
 		<table width="100%" class="texto1" border="0" cellpadding="4" cellspacing="0">
 		<tr valign="top">
 			<td>
-				<%'Call ImprimeControles(CONTROLE_CALIBRACAO, "Cód. Barras", "Vencimento")%>
+				<%'Call ImprimeControles(CONTROLE_CALIBRACAO, "CÃ³d. Barras", "Vencimento")%>
 				<%Call ImprimeControleSaidaParaManutencao()%>
 			</td>
 			<td>
-				<%'Call ImprimeControles(CONTROLE_MANUTENCAO, "Cód. Barras", "Vencimento")%>
+				<%'Call ImprimeControles(CONTROLE_MANUTENCAO, "CÃ³d. Barras", "Vencimento")%>
 				<%Call ImprimeControlesSaidaCalibracao()%>
 			</td>
-			<td><%Call ImprimeControles2("Cód. Barras", "Modelo", "Status", "Local")%></td>
+			<td><%Call ImprimeControles2("CÃ³d. Barras", "Modelo", "Status", "Local")%></td>
 		</tr>
 		</table>
 	</td>
@@ -74,7 +74,7 @@ Sub ImprimeControlesSaidaCalibracao()
 	Dim sTitulo
 	Dim total
  
-	sTitulo = "Próximas Calibrações (Venc. até 90 dias)"
+	sTitulo = "PrÃ³ximas CalibraÃ§Ãµes (Venc. atÃ© 90 dias)"
 
 	sSql = _
 			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, E.EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M, M.CDE AS CDE_M, " & _
@@ -105,7 +105,7 @@ Sub ImprimeControlesSaidaCalibracao()
 							<table width="100%" class="texto1">
 <%
 	If Not (RS.eof And RS.bof) Then%>
-							<tr><th align="left">Cód. Barras</th><th align="left">Local</th><th align="center">CDE</th><th align="left">Dt.Prox.Calib.</th></tr>
+							<tr><th align="left">CÃ³d. Barras</th><th align="left">Local</th><th align="center">CDE</th><th align="left">Dt.Prox.Calib.</th></tr>
 <%      total = 0 %>
 <%		While Not RS.Eof%>
 							<tr>
@@ -137,7 +137,7 @@ Sub ImprimeControleSaidaParaManutencao()
 	Dim sTitulo
 	Dim total
 
-	sTitulo = "Pendencias de retorno Manut./Calibração (90 dias)"
+	sTitulo = "Pendencias de retorno Manut./CalibraÃ§Ã£o (90 dias)"
 
     'sinalizar os items com mais de 90 dias
 	sSql = _
@@ -163,7 +163,7 @@ Sub ImprimeControleSaidaParaManutencao()
 							<table width="100%" class="texto1">
 <%
 	If Not (RS.eof And RS.bof) Then%>
-							<tr><th>&nbsp;</th><th align="left">Cód. Barras</th><th align="center">CDE</th><th align="left">Dt. Saída</th><th align="right">Dias</th></tr>
+							<tr><th>&nbsp;</th><th align="left">CÃ³d. Barras</th><th align="center">CDE</th><th align="left">Dt. SaÃ­da</th><th align="right">Dias</th></tr>
 <%      total = 0 %>
 <%		While Not RS.Eof%>
 							<tr bgcolor="<%'=IIf(RS("FL_CALIBRACAO") = 1, "#CCFFFF", "#FFFFCC")%>">
@@ -196,16 +196,16 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 	Dim total
 
 	If (tipo = CONTROLE_CALIBRACAO) Or (tipo = CONTROLE_MANUTENCAO) Then
-		s =	"SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CONVERT(varchar, EQC_VENCIMENTO, 103) AS [Vencimento_M], EQC_TIPO AS [Tipo] " & _
+		s =	"SELECT EQ_ID, EQ_CODIGOBARRAS AS [CÃ³digo Barras_M], MOD_CODNOME AS [Modelo_M], CONVERT(varchar, EQC_VENCIMENTO, 103) AS [Vencimento_M], EQC_TIPO AS [Tipo] " & _
 			"FROM vw_SCE_EQ_CONTROLE_ATUAL " & _
 			"WHERE STATUS <> " & STATUS_EXPEDIDO & _
 			" AND STATUS <> " & STATUS_EXPEDIDO_SUBST & " AND "
 
 		If (tipo = CONTROLE_MANUTENCAO) Then
-			Titulo = "Controle Manutenção"
+			Titulo = "Controle ManutenÃ§Ã£o"
 			s = s & "EQC_TIPO IN ('" & CONTROLE_MANUTENCAO & "', '" & CONTROLE_MANUTENCAO_PREVENTIVA & "')"
 		Else
-			Titulo = "Controle Calibração e Qualificação"
+			Titulo = "Controle CalibraÃ§Ã£o e QualificaÃ§Ã£o"
 			s = s & "EQC_TIPO = '" & tipo & "'"
 		End If
 
@@ -221,7 +221,7 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 
 		s = s & "ORDER BY CAST(EQC_VENCIMENTO AS DATETIME) DESC, EQ_CODIGOBARRAS ASC"
 	Else
-		s =	"SELECT EQ_ID, EQ_CODIGOBARRAS  AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], DESC_STATUS AS [Status_M] /*CASE WHEN LEN(MOD_CODNOME)>10 THEN LEFT(MOD_CODNOME, 7) + '...' ELSE MOD_CODNOME END*/ " & _
+		s =	"SELECT EQ_ID, EQ_CODIGOBARRAS  AS [CÃ³digo Barras_M], MOD_CODNOME AS [Modelo_M], DESC_STATUS AS [Status_M] /*CASE WHEN LEN(MOD_CODNOME)>10 THEN LEFT(MOD_CODNOME, 7) + '...' ELSE MOD_CODNOME END*/ " & _
 			"FROM vw_SCE_Equipamentos_Fabricantes " & _
 			"WHERE STATUS <> " & STATUS_EXPEDIDO & " " & _
 			"AND STATUS <> " & STATUS_EXPEDIDO_SUBST & " " & _
@@ -244,13 +244,13 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 						<table width="100%" border="0" class="texto1">
 <%
 	if tipo = CONTROLE_CALIBRACAO then %>
-						<tr><td><b>Calibração e Qualificação</b></td><td align="right"><%=url_xls%></td></tr>
+						<tr><td><b>CalibraÃ§Ã£o e QualificaÃ§Ã£o</b></td><td align="right"><%=url_xls%></td></tr>
 						<tr><td colspan="2"><i>(Vencidas ou &agrave; vencer)</i></td></tr>
 <%	elseif tipo = CONTROLE_MANUTENCAO then %>
 						<tr><td><b>Manut. <font color='red'>C</font>orretiva/<font color='blue'>P</font>reventiva</b></td><td align="right"><%=url_xls%></td></tr>
 						<tr><td colspan="2"><i>(Vencidas ou &agrave; vencer)</i></td></tr>
 <%	else %>
-						<tr><td><b><font color='#ff0000'>Não Conformidades</font></b></td><td align="right"><%=url_xls%></td></tr>
+						<tr><td><b><font color='#ff0000'>NÃ£o Conformidades</font></b></td><td align="right"><%=url_xls%></td></tr>
 						<tr><td colspan="2">&nbsp;</td></tr>
 <%	end if %>
 						</table>
@@ -262,7 +262,7 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 							<tr><th align="left"><%=chr_Titulo1%></th><th align="left"><%=chr_Titulo2%></th></tr>
 <%      total = 0 %>
 <%		while not rec.eof%>
-							<tr><td><%=ImprimeTipoManutencaoHTML(rec("TIPO"))%><%=ConverteNuloHTML(rec("Código Barras_M"))%></td><td><%=ConverteNuloHTML(rec("Status_M"))%></td></tr>
+							<tr><td><%=ImprimeTipoManutencaoHTML(rec("TIPO"))%><%=ConverteNuloHTML(rec("CÃ³digo Barras_M"))%></td><td><%=ConverteNuloHTML(rec("Status_M"))%></td></tr>
 <%			rec.moveNext
             total = total + 1
 		wend%>
@@ -284,9 +284,9 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 	Dim url_xls
 	Dim total
 
-	Titulo = "Não Conformidades"
+	Titulo = "NÃ£o Conformidades"
 
-	s =	"SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M " & _
+	s =	"SELECT EQ_ID, EQ_CODIGOBARRAS AS [CÃ³digo Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M " & _
 		"FROM vw_SCE_Equipamentos_Fabricantes " & _
 		"WHERE STATUS <> " & STATUS_EXPEDIDO & _
 		" AND STATUS <> " & STATUS_EXPEDIDO_SUBST & _
@@ -313,7 +313,7 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 <%      total = 0 %>
 <%		while not rec.eof%>
 							<tr>
-								<td><%=Sce.LinkEquipamento(rec("EQ_ID"), ConverteNuloHTML(rec("Código Barras_M")), False)%></td>
+								<td><%=Sce.LinkEquipamento(rec("EQ_ID"), ConverteNuloHTML(rec("CÃ³digo Barras_M")), False)%></td>
 								<td><%=ConverteNuloHTML(IIf(Len(rec("Modelo_M")) > 10 , Left(rec("Modelo_M"), 10) & "...", rec("Modelo_M")))%></td>
 								<td><%
 									If CStr(rec("Cod. Status")) = CStr(STATUS_EM_USO) Then 
@@ -346,7 +346,7 @@ Sub ImprimeControlesNotaFiscalVencida()
 	Titulo = "Notas Fiscais Vencidas"
 	int_TotalNota = 0
 
-'vinculacao de equipamento com a nota é pela movimentacao - entrada logistica
+'vinculacao de equipamento com a nota Ã© pela movimentacao - entrada logistica
 	s = ""
 	s = s & "SELECT DISTINCT " & VbCrLf
 	s = s & "	e.EQ_ID, " & VbCrLf
@@ -382,17 +382,17 @@ Sub ImprimeControlesNotaFiscalVencida()
 	'# Notas de Entrada
 	s = s & "	nf.NF_TIPO = 1 " & VbCrLf
 	s = s & "AND " & VbCrLf
-	'# Natureza de Operação Possui prazo para retorno
+	'# Natureza de OperaÃ§Ã£o Possui prazo para retorno
 	s = s & "	no.PRAZO = 1 " & VbCrLf
 	s = s & "AND " & VbCrLf
-	'# Nao existe nota de Saída com devolucao completa
+	'# Nao existe nota de SaÃ­da com devolucao completa
 	s = s & "	NOT EXISTS ( " & VbCrLf
 	s = s & "		SELECT " & VbCrLf
 	s = s & "			nf1.nf_id " & VbCrLf
 	s = s & "		FROM " & VbCrLf
 	s = s & "			sce_nota_fiscal nf1 " & VbCrLf
 	s = s & "		WHERE " & VbCrLf
-	'# Nota Pai é a de entrada
+	'# Nota Pai Ã© a de entrada
 	s = s & "			nf1.nf_id_pai = nf.nf_id " & VbCrLf
 	s = s & "		AND " & VbCrLf
 	'# Saida
@@ -436,7 +436,7 @@ Sub ImprimeControlesNotaFiscalVencida()
 								<th align="left">Vencimento</th>
 								<th align="left">Empresa</th>
 								<th align="left">Equipamento</th>
-								<th align="left">Descrição</th>
+								<th align="left">DescriÃ§Ã£o</th>
 								<th align="left">Local</th>
 							</tr>
 <%      total = 0
@@ -461,7 +461,7 @@ Sub ImprimeControlesNotaFiscalVencida()
 			End If
 			
 			If CDate(rec("NF_DATAVENCIMENTO_M")) >= Date() Then
-				sAvisoVenc = "bgcolor='#CCFF00' title='Nota fiscal à vencer em até 30 dias'"
+				sAvisoVenc = "bgcolor='#CCFF00' title='Nota fiscal Ã  vencer em atÃ© 30 dias'"
 			Else
 				sAvisoVenc = ""
 			End If

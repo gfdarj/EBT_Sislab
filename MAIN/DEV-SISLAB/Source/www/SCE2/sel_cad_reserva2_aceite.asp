@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+ï»¿<!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 '-- GRAVO O ACEITE/NAO ACEITE NA TELA DE CONSULTA RESERVA, CASO TODOS OS ITENS ESTEJAM 
@@ -22,12 +22,12 @@ Call Env.StoredProcedure(False, objSP, "sp_SCE_CADASTRA_ACEITE_RESERVA")
 	<script language="JavaScript">
 <%
 If Env.oconn.Errors.Count > 0 Then%>
-	alert("ERRO DE GRAVAÇÂO:\n\n<%=Env.oconn.Errors(0).Description%>");
+	alert("ERRO DE GRAVAÃ‡Ã‚O:\n\n<%=Env.oconn.Errors(0).Description%>");
 <%
 else%>
 <%
 	'-- gravou o aceite, nao verifico se existe algum nao aceito pois na tela SEL_CAD_RESERVA2.ASP
-	'-- o mesmo já é verificado, entao eu apenas verifico o parametro que indica tal situacao
+	'-- o mesmo jÃ¡ Ã© verificado, entao eu apenas verifico o parametro que indica tal situacao
 	if UCase(request("tudoAceitoOK")) = "SIM" then%>
 		window.parent.location.href = "sel_cad_reserva2_mov.asp?ag_numero=<%=request("ag_numero")%>&lista_itens=<%=request("lista_itens")%>";
 <%	else%>

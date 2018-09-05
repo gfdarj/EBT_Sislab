@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -43,7 +43,7 @@ If nova_os = "0" then
 	End If
 End If
 
-call ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de Serviço", "window.close()", "")
+call ImprimeCabecalho2("Ordem de ServiÃ§o - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de ServiÃ§o", "window.close()", "")
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 
@@ -101,32 +101,32 @@ function envia(){
 
 	if( (frm.cmbSituacao.value == "") || (frm.cmbSituacao.value == "0") )
 	{
-		alert("Escolha a situação da OS");
+		alert("Escolha a situaÃ§Ã£o da OS");
 		frm.cmbSituacao.focus();
 	}
 	else if(frm.diaINICIO.value == "")
 	{
-		alert("Selecione o dia de início");
+		alert("Selecione o dia de inÃ­cio");
 		frm.diaINICIO.focus();
 	}
 	else if(frm.mesINICIO.value == "")
 	{
-		alert("Selecione o mês de início");
+		alert("Selecione o mÃªs de inÃ­cio");
 		frm.mesINICIO.focus();
 	}
 	else if(frm.anoINICIO.value == "")
 	{
-		alert("Selecione o ano de início");
+		alert("Selecione o ano de inÃ­cio");
 		frm.anoINICIO.focus();
 	}
 	else if(frm.horaINICIO.value == "")
 	{
-		alert("Selecione a hora de início");
+		alert("Selecione a hora de inÃ­cio");
 		frm.horaINICIO.focus();
 	}
 	else if(frm.minutoINICIO.value == "")
 	{
-		alert("Selecione o minuto de início");
+		alert("Selecione o minuto de inÃ­cio");
 		frm.minutoINICIO.focus();
 	}
 	else if(frm.cmbTeste.value == "")
@@ -141,7 +141,7 @@ function envia(){
 	}
 	else if(frm.cmbServico.value == "")
 	{
-		alert("Nenhum serviço associado ao teste foi selecionado");
+		alert("Nenhum serviÃ§o associado ao teste foi selecionado");
 		frm.cmbServico.focus();
 	}
 	else {
@@ -164,12 +164,12 @@ function envia(){
 	<td colspan="2">
 		<table width="100%" class="tabela1">
 		<tr>
-			<td ><b>Ordem de Serviço Nº <%=num_os%></b></td>
+			<td ><b>Ordem de ServiÃ§o NÂº <%=num_os%></b></td>
 <%
 If int_Repetido > 0 Then
 %>
 			<td align="right" valign="middle">
-				<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">&nbsp;&nbsp;<b>Esta OS está marcada para repetição</b>&nbsp;&nbsp;
+				<img align="absmiddle" src="img/icon3.gif" border="0" title="RepetiÃ§Ã£o">&nbsp;&nbsp;<b>Esta OS estÃ¡ marcada para repetiÃ§Ã£o</b>&nbsp;&nbsp;
 			</td>
 <%
 End If
@@ -181,20 +181,20 @@ End If
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr valign="middle">
 	<th align="left">
-		&nbsp;&nbsp;Controle da Situação da Ordem de Serviço
+		&nbsp;&nbsp;Controle da SituaÃ§Ã£o da Ordem de ServiÃ§o
 	</th>
 	<th width="100px">
 		&nbsp;&nbsp;
 		<%if nova_os = "0" then%>
-			<a href="javascript:Historico();">Histórico</a>
+			<a href="javascript:Historico();">HistÃ³rico</a>
 		<%else%>
-			Sem Histórico
+			Sem HistÃ³rico
 		<%end if%>
 	</th>
 </tr>
 <tr height="34">
 	<td>
-		Situação:&nbsp;
+		SituaÃ§Ã£o:&nbsp;
 		<select name="cmbSituacao" class="combo" onchange="avaliaSituacao();">
 <%		if nova_os <> "1" then
 			strSQL = "select distinct s.ID_SITUACAO as valor  , s.S_DESCRICAO as descricao"
@@ -213,18 +213,18 @@ End If
 </tr>
 <tr>
 	<td height="34" id="dadosSituacao1">
-		Data Início:&nbsp;
+		Data InÃ­cio:&nbsp;
 		<%call comboData("INICIO")%>
 	</td>
 </tr>
 <tr>
 	<td height="34"  id="dadosSituacao2">
-		Hora Início:&nbsp;
+		Hora InÃ­cio:&nbsp;
 		<%call comboHorario("INICIO")%>
 	</td>
 </tr>
 <tr>
-	<td id="dadosSituacao3">Motivo ( Somente em caso de mudança de Situação ):</font><br>
+	<td id="dadosSituacao3">Motivo ( Somente em caso de mudanÃ§a de SituaÃ§Ã£o ):</font><br>
 		<textarea name="motivo" class="texto1" cols="110" rows="4"><%=motivo%></textarea>
 		<textarea name="motivo_old" class="texto1" style="display:none;"><%=motivo%></textarea>
 	</td>
@@ -237,8 +237,8 @@ End If
 <!--XXXXXXXXXXXXXXXXXXXXXXX  EQUIPAMENTO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
 <tr>
 	<td colspan="2">
-		Equipamento (Atenção: Deve ter sido reservado pelo SCE)&nbsp;<br>
-<%		'-- eq´s movimentado e amostra
+		Equipamento (AtenÃ§Ã£o: Deve ter sido reservado pelo SCE)&nbsp;<br>
+<%		'-- eqÂ´s movimentado e amostra
 		ssql = _
 			"SELECT e.EQ_ID as valor, e.EQ_CODIGOBARRAS + ' - ' + e.MOD_DESCRICAO as descricao " & _
 			"FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Reserva_Equipamentos r " & _
@@ -263,7 +263,7 @@ End If
 </tr>
 <tr>
 	<td colspan="2">
-		Teste Relacionado à OS<br>
+		Teste Relacionado Ã  OS<br>
 		<%call comboBDSQL("cmbTeste", objConn, "SELECT T_ID as valor, LEFT(T_TITULO, 100) as descricao FROM Testes ORDER BY T_TITULO", teste, true)%>
 	</td>
 </tr>
@@ -276,14 +276,14 @@ End If
 				<%call comboBDSQL("cmbPlataforma", objConn, "SELECT S_ID as valor, S_DESCRICAO as descricao FROM Servicos_Plataformas WHERE S_SERVICO = 0 ORDER BY S_DESCRICAO", plataforma, true)%>
 			</td>
 			<td>
-				Serviço ou Solução utilizada no teste<br>
+				ServiÃ§o ou SoluÃ§Ã£o utilizada no teste<br>
 				<%call comboBDSQL("cmbServico", objConn, "SELECT S_ID as valor, S_DESCRICAO as descricao FROM Servicos_Plataformas WHERE S_SERVICO = 1 ORDER BY S_DESCRICAO", servico, true)%>
 			</td>
 		</tr>
 	</td>
 </tr>
 <tr>
-	<td colspan="2">Observação:<br>
+	<td colspan="2">ObservaÃ§Ã£o:<br>
 			<textarea name="obs" class="texto1" cols=110 rows=4 ><%=os_observacoes%></textarea>
 	</td>
 </tr>

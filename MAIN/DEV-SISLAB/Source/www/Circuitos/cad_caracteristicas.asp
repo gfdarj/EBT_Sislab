@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <!--#include file="../includes/controlesHTML.asp" -->
@@ -14,7 +14,7 @@ if tipo = "" then tipo = -1
 %>
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -72,7 +72,7 @@ function adiciona( select1, vetor1, select2, vetor2 ){
 		if(select1[i].selected)
 		{
 			if ( select1.name == "carac_outras" )	{
-				qtd = window.prompt("Entre com a quantidade da característica \"" + select1[i].text + "\"", "0");
+				qtd = window.prompt("Entre com a quantidade da caracterÃ­stica \"" + select1[i].text + "\"", "0");
 				if( !isNaN( qtd ) && (qtd > 0) )
 				{
 					select1[i].selected = false;
@@ -82,7 +82,7 @@ function adiciona( select1, vetor1, select2, vetor2 ){
 					select1[i--] = null;
 				}
 				else	{
-					alert( "Quantidade informada é inválida" );
+					alert( "Quantidade informada Ã© invÃ¡lida" );
 					return false;
 				}
 			}

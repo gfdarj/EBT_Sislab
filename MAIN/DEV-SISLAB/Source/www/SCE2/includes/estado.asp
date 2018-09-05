@@ -1,4 +1,4 @@
-<%
+﻿<%
 function retEstado(numero)
 SELECT CASE numero
 Case 1

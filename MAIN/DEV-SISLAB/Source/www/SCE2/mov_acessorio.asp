@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -9,7 +9,7 @@
 Dim tipousuario : tipousuario = ""
 if Env.PerfilSce = PERFIL_ADM then tipousuario = " <span style='color:#800000;'>(Administrador)</span>"
 
-Tela.SetNomeTela = "SCE > Movimentação > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > MovimentaÃ§Ã£o > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -28,8 +28,8 @@ If Env.UsuarioSCE() Then
 function movimentaItens() {<%
 '--
 '-- Se for administrador pode fazer movimentos para qualquer tipo de situacao.
-'-- Os não ADM´s só poderao fazer movimentacoes para itens com situacao atual selecionada
-'-- por esta combo. Alem disso, as datas nesse caso serão as datas atuais
+'-- Os nÃ£o ADMÂ´s sÃ³ poderao fazer movimentacoes para itens com situacao atual selecionada
+'-- por esta combo. Alem disso, as datas nesse caso serÃ£o as datas atuais
 '--
 if session("status") <> PERFIL_ADM then
 %>	var d = document.forms[0];
@@ -49,7 +49,7 @@ end if
 <form name="formulario" method="post" action="mov_acessorio2.asp" onsubmit="javascript:return movimentaItens();">
 <input type="hidden" name="busca" value="1">
 <table width="750px" class="texto1">
-	<tr><td><%if request("msg") <> "" then response.write " <strong><div align='center'>Movimentação efetuada com sucesso.<br> Foi criado um histórico de movimentação com estes dados.</div></strong><br><br>"%></td></tr>
+	<tr><td><%if request("msg") <> "" then response.write " <strong><div align='center'>MovimentaÃ§Ã£o efetuada com sucesso.<br> Foi criado um histÃ³rico de movimentaÃ§Ã£o com estes dados.</div></strong><br><br>"%></td></tr>
 	<tr>
 	    <td valign="middle" class="destaque">Selecione o filtro</td>
 	</tr>
@@ -61,7 +61,7 @@ end if
       		<table border="0" class="texto1" cellpadding="0" cellspacing="0">
 	  			<tr>
 	    			<td class="texto1" colspan="2">
-						Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:120px" maxlength="50">
+						CÃ³digo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:120px" maxlength="50">
 						<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="Button" value=" Procurar " onclick="buscaCB()" class="form">-->
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -109,14 +109,14 @@ end if
 	  				<td class="texto1" colspan="3">
 						N&deg; AS:&nbsp;<input type="text" class="texto1" name="as" size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50">
+						NÃºmero de SÃ©rie:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Localiza&ccedil;&atilde;o:&nbsp;<input type="text" class="texto1" name="localizacao" size="25" value="">
 					</td>
 				</tr>
 
 				<tr>
-					<td class="texto1" colspan="3" align="right"><input type="submit" name="buscar" value="próximo &gt;&gt;" class="texto1"></td>
+					<td class="texto1" colspan="3" align="right"><input type="submit" name="buscar" value="prÃ³ximo &gt;&gt;" class="texto1"></td>
 				</tr>
 			</table>
       	</td>

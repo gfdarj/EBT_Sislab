@@ -1,11 +1,11 @@
-<!------- SISLAB ---->
+ï»¿<!------- SISLAB ---->
 <!------- LIB ------->
 <!--#include file="../Lib/Classe_Sce.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%
 '-- GERA UMA LISTAGEM DE EQUIPAMENTOS
-'-- RELATORIO DE EQUIPAMENTOS/INSTRUMENTAIS COM BASE NA NOVA FORMA DE GERENCIAR AS CALIBRAÇÔES E MANUTENÇÔES
+'-- RELATORIO DE EQUIPAMENTOS/INSTRUMENTAIS COM BASE NA NOVA FORMA DE GERENCIAR AS CALIBRAÃ‡Ã”ES E MANUTENÃ‡Ã”ES
 
 Dim bln_exportaExcel
 Dim ssql, where, dt_ini, dt_fim, rec, recInst, cont, bg
@@ -97,7 +97,7 @@ If Not bln_exportaExcel Then
 
 	Set rec = Env.oconn.execute(ssql)
 
-    Tela.SetNomeTela = "SCE > Relatório > Controle de Equipamento e Instrumental" : Tela.SetCaminhoRelativo = "../"
+    Tela.SetNomeTela = "SCE > RelatÃ³rio > Controle de Equipamento e Instrumental" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
 %>
@@ -116,10 +116,10 @@ If Not bln_exportaExcel Then
 		<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
 		<tr>
 			<th>*</th>
-			<th>Cód. Barras</th>
+			<th>CÃ³d. Barras</th>
 			<th>Modelo</th>
-			<th>Descrição</th>
-			<th>Num.Série</th>
+			<th>DescriÃ§Ã£o</th>
+			<th>Num.SÃ©rie</th>
 			<th>Fabricante</th>
 			<th>Status</th>
 			<th>Vencimento</th>
@@ -128,7 +128,7 @@ If Not bln_exportaExcel Then
 		while not rec.eof
 			cont = cont+1
 			'if (cont mod 2) = 0 then bg = 1 else bg = 0
-			bg = 1  '-- tirei a modificacao das cores devido a cor dos eq´s vencidos
+			bg = 1  '-- tirei a modificacao das cores devido a cor dos eqÂ´s vencidos
 %>
 	<tr <%if not IsNull(rec("EQC_VENCIMENTO")) then if cdate(rec("EQC_VENCIMENTO")) < date() then response.write "class='vencido'" else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if end if else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if %>>
 			<td align="center"><%=rec("EQC_TIPO")%></td>
@@ -148,7 +148,7 @@ If Not bln_exportaExcel Then
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-	<td><i>(*): C - Calibração / M - Manutenção / Q - Qualificação</i></td>
+	<td><i>(*): C - CalibraÃ§Ã£o / M - ManutenÃ§Ã£o / Q - QualificaÃ§Ã£o</i></td>
 	<td align="right">Total de itens encontrados: <%=cont%></td>
 </tr>
 <%
@@ -162,18 +162,18 @@ If Not bln_exportaExcel Then
 </table>
 <%
 Else
-    ssql =	"SELECT '''' + e.EQ_CODIGOBARRAS as [Código de Barras], e.MOD_CODNOME as [Modelo], e.MOD_DESCRICAO as [Descrição], " & _
-		    "CASE WHEN e.EQ_INSTRUMENTAL = 1 THEN 'Sim' ELSE 'Não' END AS [Instrumental], EQ_NUMEROSERIE as [N.Série], " & _
-		    "CASE WHEN e.EQ_CONFORME = 1 THEN 'Sim' ELSE 'Não' END as [Conforme], " & _
+    ssql =	"SELECT '''' + e.EQ_CODIGOBARRAS as [CÃ³digo de Barras], e.MOD_CODNOME as [Modelo], e.MOD_DESCRICAO as [DescriÃ§Ã£o], " & _
+		    "CASE WHEN e.EQ_INSTRUMENTAL = 1 THEN 'Sim' ELSE 'NÃ£o' END AS [Instrumental], EQ_NUMEROSERIE as [N.SÃ©rie], " & _
+		    "CASE WHEN e.EQ_CONFORME = 1 THEN 'Sim' ELSE 'NÃ£o' END as [Conforme], " & _
 		    "CASE WHEN e.STATUS = " & STATUS_EM_ESTOQUE & " THEN 'Em Estoque'" & _
 		    "	WHEN e.STATUS = " & STATUS_CADASTRADO & " THEN 'Cadastrado'" & _
 		    "	WHEN e.STATUS = " & STATUS_EXPEDIDO & " THEN 'Expedido'" & _
-		    "	WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído'" & _
+		    "	WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'SubstituÃ­do'" & _
 		    "	WHEN e.STATUS = " & STATUS_EM_USO & " THEN 'Em Uso'" & _
-		    "END as [Status], e.EQ_LOCALIZACAO as [Localização], e.FAB_NOME as [Fabricante], " & _
-		    "CASE WHEN EQC_TIPO = 'M' THEN 'Manutenção' " & _
-		    "	WHEN EQC_TIPO = 'C' THEN 'Calibração' " & _
-		    "	WHEN EQC_TIPO = 'Q' THEN 'Qualificação' " & _
+		    "END as [Status], e.EQ_LOCALIZACAO as [LocalizaÃ§Ã£o], e.FAB_NOME as [Fabricante], " & _
+		    "CASE WHEN EQC_TIPO = 'M' THEN 'ManutenÃ§Ã£o' " & _
+		    "	WHEN EQC_TIPO = 'C' THEN 'CalibraÃ§Ã£o' " & _
+		    "	WHEN EQC_TIPO = 'Q' THEN 'QualificaÃ§Ã£o' " & _
 		    "END as [Tipo], " & _
 		    "CONVERT(varchar, EQC_VENCIMENTO, 103) AS [Vencimento] FROM vw_SCE_EQ_CONTROLE_ATUAL e "
 
@@ -181,7 +181,7 @@ Else
 
     Set rec = Env.oconn.execute(ssql)
 
-    Call CriaExcelGeral("Relatório de Controle de Equipamento e Instrumental", rec, null)
+    Call CriaExcelGeral("RelatÃ³rio de Controle de Equipamento e Instrumental", rec, null)
 End If
 
 %>

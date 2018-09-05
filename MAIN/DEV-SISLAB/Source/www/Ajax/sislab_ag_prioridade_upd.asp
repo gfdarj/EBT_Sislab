@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+﻿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/global.asp"-->
 <!--#include file="../includes/funcoes.asp"-->
 <!--#include file="../includes/Geral_Lib.asp"-->

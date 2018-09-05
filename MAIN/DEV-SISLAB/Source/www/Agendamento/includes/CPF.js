@@ -1,4 +1,4 @@
-function CPF(a) {
+﻿function CPF(a) {
 	
 	var numero = "";
 	var multipli = 0;

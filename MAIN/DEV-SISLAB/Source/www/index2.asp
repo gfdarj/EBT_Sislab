@@ -1,22 +1,22 @@
-<script language="JavaScript">
+Ôªø<script language="JavaScript">
 function verificaNavegador() {
 	var ehIE;
 	var versao;
 	
-	// N„o È um browser IE, pode ser qualquer outro
+	// N√£o √© um browser IE, pode ser qualquer outro
 	ehIE = navigator.userAgent.indexOf("MSIE");
 
 	if(ehIE == -1)
 	{
 		//location.href = 'indexNS.asp';
-		alert('AtenÁ„o !\n\nSeu navegador n„o È o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoÌveis no seu browser.');
+		alert('Aten√ß√£o !\n\nSeu navegador n√£o √© o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispo√≠veis no seu browser.');
     }
 	else
 	{
 		versao = navigator.userAgent.substring(ehIE);
 		ehIE = versao.indexOf(";");
 		if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			alert('AtenÁ„o !\n\nVocÍ est· usando uma vers„o do Internet Explorer inferior ‡ 5.5. Alguns recursos do sistema SISLAB podem n„o funcionar corretamente nesta vers„o.\n\nPor favor, atualize o seu browser antes de continuar.');
+			alert('Aten√ß√£o !\n\nVoc√™ est√° usando uma vers√£o do Internet Explorer inferior √† 5.5. Alguns recursos do sistema SISLAB podem n√£o funcionar corretamente nesta vers√£o.\n\nPor favor, atualize o seu browser antes de continuar.');
 	}
 }
 verificaNavegador();
@@ -25,7 +25,7 @@ verificaNavegador();
 <!--#include file="Global.asa"-->
 
 <%
-'-- Inicializa as constantes do tipo Application no caso de n„o serem lidas pelo Global.Asa
+'-- Inicializa as constantes do tipo Application no caso de n√£o serem lidas pelo Global.Asa
 'If Application("SISLAB_AMBIENTE") = "" Then
 	Call Application_OnStart()
 'End If
@@ -56,12 +56,12 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">InformaÁıes de Log Book</td>
+			<td class="menu1th" width="170px">Informa√ß√µes de Log Book</td>
 			<td><a href="#" onclick="javascript:esconde(document.all.tr_LogBook, document.all.img_LogBook, 'img/borda/m1te.gif', 'img/borda/m1tc.gif');"><img id="img_LogBook" src="img/borda/m1te.gif" border="0"></a></td>
 		</tr>
 		<tr id="tr_LogBook">
 			<td colspan="3" class="menu1" height="90px">
-				<iframe src="info_logbook.asp" frameborder="0" width="185px" height="90px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="info_logbook.asp" frameborder="0" width="185px" height="90px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -77,12 +77,12 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">NotÌcias</td>
+			<td class="menu1th" width="170px">Not√≠cias</td>
 			<td><a href="#" onclick="javascript:esconde(document.all.tr_Noticias, document.all.img_Noticias, 'img/borda/m1te.gif', 'img/borda/m1tc.gif');"><img id="img_Noticias" src="img/borda/m1te.gif" border="0"></a></td>
 		</tr>
 		<tr id="tr_Noticias">
 			<td colspan="3" class="menu1">
-				<iframe src="noticias.asp" frameborder="0" width="185px" height="130px" scrolling="auto" id="if_Noticias" name="iframe_noticias" style="display: block;">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="noticias.asp" frameborder="0" width="185px" height="130px" scrolling="auto" id="if_Noticias" name="iframe_noticias" style="display: block;">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -97,12 +97,12 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">ConheÁa o CRT</td>
+			<td class="menu1th" width="170px">Conhe√ßa o CRT</td>
 			<td><a href="#" onclick="javascript:esconde(document.all.tr_ConhecaCRT, document.all.img_ConhecaCRT, 'img/borda/m1te.gif', 'img/borda/m1tc.gif');"><img id="img_ConhecaCRT" src="img/borda/m1te.gif" border="0"></a></td>
 		</tr>
 		<tr id="tr_ConhecaCRT">
 			<td colspan="3" class="menu1">
-				<iframe src="fotos_crt.asp" frameborder="0" width="185px" height="140px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="fotos_crt.asp" frameborder="0" width="185px" height="140px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -128,7 +128,7 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 		<tr><td height="10px"></td><td></td><td></td></tr>
 		<tr>
 			<td width="5px">&nbsp;<!--<img src="img/borda/c1tl.gif" border="0">--></td>
-			<td class="destaque" width="<%=W1%>">Acha F·cil</td>
+			<td class="destaque" width="<%=W1%>">Acha F√°cil</td>
 			<td width="5px">&nbsp;<!--<img src="img/borda/m1te.gif" border="0">--></td>
 		</tr>
 		<tr>
@@ -152,7 +152,7 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 										<table width="100%" height="100%">
 										<tr valign="top">
 											<td colspan="2">
-												<a href="rel_ativ.asp" class="menu" title="RelaÁ„o das suas atividades"><%=indicador%>Acompanhe seus agendamentos</a>
+												<a href="rel_ativ.asp" class="menu" title="Rela√ß√£o das suas atividades"><%=indicador%>Acompanhe seus agendamentos</a>
 											</td>
 										</tr>
 										</table>
@@ -174,7 +174,7 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 										<table width="100%" height="100%">
 										<tr valign="top">
 											<td colspan="2" valign="top">
-												<a href="pesqscr.asp?emjanela=1" class="menu" target="_blank" title="De a sua opini„o sobre nosso atendimento"><%=indicador%>Pesquisa de SatisfaÁ„o</a>
+												<a href="pesqscr.asp?emjanela=1" class="menu" target="_blank" title="De a sua opini√£o sobre nosso atendimento"><%=indicador%>Pesquisa de Satisfa√ß√£o</a>
 											</td>
 										</tr>
 										</table>
@@ -188,8 +188,8 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 											<td colspan="2" valign="top">
 												<table cellpadding="0" cellspacing="0" border="0">
 												<tr>
-													<td width="105px" valign="middle"><a href="#" class="menu" target="_blank" title="InformaÁıes consolidadas das atividades no CRT"><%=indicador%>RelatÛrios</a></td>
-													<td valign="middle"><a href="#" class="menu" title="InformaÁıes consolidadas das atividades no CRT" onclick="javascript:esconde(document.all.id_relatorios, document.all.img_relatorios, 'img/bullets/mte.gif', 'img/bullets/mtc.gif');"><img src="img/bullets/mtc.gif" id="img_relatorios" border="0" align='middle'></a></td>
+													<td width="105px" valign="middle"><a href="#" class="menu" target="_blank" title="Informa√ß√µes consolidadas das atividades no CRT"><%=indicador%>Relat√≥rios</a></td>
+													<td valign="middle"><a href="#" class="menu" title="Informa√ß√µes consolidadas das atividades no CRT" onclick="javascript:esconde(document.all.id_relatorios, document.all.img_relatorios, 'img/bullets/mte.gif', 'img/bullets/mtc.gif');"><img src="img/bullets/mtc.gif" id="img_relatorios" border="0" align='middle'></a></td>
 												</tr>
 												</table>
 											</td>
@@ -211,7 +211,7 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 														<table width="100%" cellpadding="0" cellspacing="0">
 														<tr valign="top">
 															<td colspan="2" valign="top">
-																<a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank" title="Veja as atividades executadas no CRT pelos Ûrg„os Embratel"><%=indicador%>”rg„os Clientes</a>
+																<a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank" title="Veja as atividades executadas no CRT pelos √≥rg√£os Embratel"><%=indicador%>√ìrg√£os Clientes</a>
 															</td>
 														</tr>
 														</table>
@@ -219,7 +219,7 @@ indicador = "&nbsp;&nbsp;<img align='middle' src='img/bullet.gif' border='0'>&nb
 														<table width="100%" cellpadding="0" cellspacing="0">
 														<tr valign="top">
 															<td colspan="2" valign="top">
-																<a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank" title="Trabalhos voltados para clientes Embratel"><%=indicador%>ServiÁos para Clientes</a>
+																<a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank" title="Trabalhos voltados para clientes Embratel"><%=indicador%>Servi√ßos para Clientes</a>
 															</td>
 														</tr>
 														</table>

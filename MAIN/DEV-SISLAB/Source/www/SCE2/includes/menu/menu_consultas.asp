@@ -1,4 +1,4 @@
-<!--#include file="../global_SCE.asp" -->
+﻿<!--#include file="../global_SCE.asp" -->
 <%
 Dim perfil
 perfil = CInt(Request("Perfil"))

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
@@ -9,7 +9,7 @@ if not rec.eof then%>
 	<meta 
 		<body>
 			<script>
-				alert('Fabricante j· existente!');
+				alert('Fabricante j√° existente!');
 				document.location.href = "cad_fab2.asp";
 			</script>
 		</body>
@@ -21,7 +21,7 @@ ssql = "insert into sce_fabricantes (fab_nome) values ('"& trim(replace(request(
 'response.end
 Env.oconn.execute(ssql)
 
-acao = "O usu·rio "& Env.Usuario &" cadastrou o fabricante "& trim(replace(request("nome"), "'", "&#39;")) &"."
+acao = "O usu√°rio "& Env.Usuario &" cadastrou o fabricante "& trim(replace(request("nome"), "'", "&#39;")) &"."
 data = year(now)&"/"&right(month(now)+100,2)&"/"&right(day(now)+100,2)&" "&right(hour(now)+100,2)&":"&right(minute(now)+100,2)&":"&right(second(now)+100,2)
 ssql = "insert into sce_historico (id_usuario,acao,data) values ('" & Env.Usuario & "','"& acao &"','"& data&"')"
 Env.oconn.execute(ssql)

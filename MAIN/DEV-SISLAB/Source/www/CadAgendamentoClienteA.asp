@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -10,7 +10,7 @@ Dim chr_Buf
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
 
 
-'Dados B·sico - Cliente -----------------------------------------------------------
+'Dados B√°sico - Cliente -----------------------------------------------------------
 usuario = request.form("username")
 orgao = request.form("txtOrgao")
 titulo = trocaPlic2Aspas(request("txtTitulo"))
@@ -87,7 +87,7 @@ else	'-- novo agendamento
 
 	call Env.RecordSet(false, objrs1, null)
 
-	'-- imprime tela de confirmaÁ„o do agendamento
+	'-- imprime tela de confirma√ß√£o do agendamento
 	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "location.href='CadAgendamentoCliente.asp?selecao=" & objrs(0) & "'", "")
 
 	chr_Buf = _
@@ -95,13 +95,13 @@ else	'-- novo agendamento
 		"<tr><td>&nbsp;</td></tr>" & _
 		"<tr>" & _
 		"	<td>" & _
-		"	&nbsp;<b>Seu agendamento foi criado com o n˙mero : <span class='vermelho2'>" & objrs(0) & "</b></span>" & _
+		"	&nbsp;<b>Seu agendamento foi criado com o n√∫mero : <span class='vermelho2'>" & objrs(0) & "</b></span>" & _
 		"	</td>" & _
 		"</tr>" & _
 		"<tr><td>&nbsp;</td></tr>" & _
 		"<tr>" & _
 		"	<td>" & _
-		"	&nbsp;Para adicionar arquivos ao agendamento, volte ‡ tela de cadastro e clique no bot„o 'Anexar Arquivos'." & _
+		"	&nbsp;Para adicionar arquivos ao agendamento, volte √† tela de cadastro e clique no bot√£o 'Anexar Arquivos'." & _
 		"	</td>" & _
 		"</tr>" & _
 		"<tr><td>&nbsp;</td></tr>" & _
@@ -120,9 +120,9 @@ else	'-- novo agendamento
 %>
 <script>
 //	var resp
-//	resp = confirm("Seu agendamento foi criado com o numero : <%'=objrs(0)%>.\n\nSe deseja adicionar arquivos a seu agendamento selecione OK,\ncaso contr·rio selecione CANCELA.");
+//	resp = confirm("Seu agendamento foi criado com o numero : <%'=objrs(0)%>.\n\nSe deseja adicionar arquivos a seu agendamento selecione OK,\ncaso contr√°rio selecione CANCELA.");
 
-//	alert("ATEN«√O !\n\nSeu agendamento foi criado com o numero : <%'=objrs(0)%>.");
+//	alert("ATEN√á√ÉO !\n\nSeu agendamento foi criado com o numero : <%'=objrs(0)%>.");
 
 //	if (resp == false)
 //		window.location.replace("index.asp")

@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+﻿<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <!--#include file="includes\funcoesAux.inc"-->
 <%
@@ -29,7 +29,7 @@ else
 	nome = "-1"
 end if
 
-semana = array("","Dom","Seg","Ter","Qua","Qui","Sex","S�b")
+semana = array("","Dom","Seg","Ter","Qua","Qui","Sex","Sáb")
 nrodia = weekday(data)
 %>
 

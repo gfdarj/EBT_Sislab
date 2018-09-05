@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
@@ -7,7 +7,7 @@ If IsEmpty(Env.usuarioCRT) Then response.redirect "msgAcessoNA.asp"
 Dim objRS, cont, sSQL, AuxOrgao
 cont=0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do CRT", "location.href='sislab.asp';", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "PlantÃ£o de NotÃ­cias do CRT", "location.href='sislab.asp';", "")
 %>
 <script language=javascript>
 	function navselecao(noticiaID) {
@@ -21,19 +21,19 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do C
 <table width="100%" border="0" class="tabela1">
 <tr valign="middle"> 
 	<td>
-		<a href="cad_plantao.asp"><b>&lt;Cadastrar Nova Notícia&gt;</b></a>
+		<a href="cad_plantao.asp"><b>&lt;Cadastrar Nova NotÃ­cia&gt;</b></a>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr valign="top">
 	<td valign="top">
-		<b>Editar Notícia Cadastrada</b><br><br>
+		<b>Editar NotÃ­cia Cadastrada</b><br><br>
 		<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">
 			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
 			<tr>
-				<th style="font-size: xx-small;" align="left">Notícia</th>
-				<th style="font-size: xx-small;" width="100px">Data Início</th>
-				<th style="font-size: xx-small;" width="100px">Data Término</th>
+				<th style="font-size: xx-small;" align="left">NotÃ­cia</th>
+				<th style="font-size: xx-small;" width="100px">Data InÃ­cio</th>
+				<th style="font-size: xx-small;" width="100px">Data TÃ©rmino</th>
 			</tr>
 <%
 sSQL = "Select PLA_codNoticia, PLA_titNoticia, CONVERT(VARCHAR, PLA_DATAINICIO, 103) AS PLA_DATAINICIO, "
@@ -45,14 +45,14 @@ If Not objRS.EOF Then
 	objRS.MoveFirst
 	do while not objRS.EOF%>
 			<tr>
-				<td><a href="#" onclick="navselecao(<%=objRS("PLA_codNoticia")%>);" title="Clique aqui para editar esta notícia"><%=objRS( "PLA_titNoticia" )%></a>&nbsp;</td>
+				<td><a href="#" onclick="navselecao(<%=objRS("PLA_codNoticia")%>);" title="Clique aqui para editar esta notÃ­cia"><%=objRS( "PLA_titNoticia" )%></a>&nbsp;</td>
 				<td align="center"><%=objRS("PLA_DATAINICIO")%>&nbsp;</td>
 				<td align="center"><%=objRS("PLA_DATATERMINO")%>&nbsp;</td>
 			</tr>
 <%		objRS.movenext
 	loop
 else %>
-			<tr><td align="center" colspan="3"><b><i>Não existem notícias cadastradas no momento</i></b></td></tr>
+			<tr><td align="center" colspan="3"><b><i>NÃ£o existem notÃ­cias cadastradas no momento</i></b></td></tr>
 <%
 end if %>
 		</table>

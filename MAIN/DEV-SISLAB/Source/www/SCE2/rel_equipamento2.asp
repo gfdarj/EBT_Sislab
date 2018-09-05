@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -10,7 +10,7 @@
 '-- GERA UMA LISTAGEM DE EQUIPAMENTOS
 '-- RELATORIO DE EQUIPAMENTOS
 
-Tela.SetNomeTela = "SCE > Relatório > Equipamento" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Equipamento" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -33,7 +33,7 @@ If Env.UsuarioSCE() Then
 
     'Tem que alterar a view vw_SCE_Equipamentos_Fabricantes
     ssql =	"SELECT DISTINCT e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_PROPRIEDADE, e.MOD_CODNOME, e.MOD_DESCRICAO, e.EQ_INSTRUMENTAL, " & _
-		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
+		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'SubstituÃ­do' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
 		    "e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, CAST(e1.EQ_OBS AS VARCHAR(8000)) AS EQ_OBS, CAST(e1.EQ_MANUT_PREVENTIVA AS VARCHAR(8000)) AS EQ_MANUT_PREVENTIVA " & _
 		    "FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Equipamentos e1 ON e.EQ_ID = e1.EQ_ID  LEFT JOIN SCE_Equipamentos_Controle ec " & _
 		    "ON e.EQ_ID = ec.EQ_ID "
@@ -84,7 +84,7 @@ If Env.UsuarioSCE() Then
     end if
 
     '-- Tive q repetir este codigo abaixo, alem de fazer um JOIN neste select pois
-    '-- acabei implementando de forma incorreta esta busca (Fazendo 2 select´s)
+    '-- acabei implementando de forma incorreta esta busca (Fazendo 2 selectÂ´s)
     if request("controle") <> "" then
 	    if where <> "" then where = where & " AND "
 	    where = where &"ec.EQC_TIPO = '" & request("controle") & "' "
@@ -130,7 +130,7 @@ If Env.UsuarioSCE() Then
 		</tr>
 		<tr><td></td></tr>
 		<tr>
-			<td colspan="2">Número de Série:&nbsp;<%=rec("EQ_NUMEROSERIE")%></td>
+			<td colspan="2">NÃºmero de SÃ©rie:&nbsp;<%=rec("EQ_NUMEROSERIE")%></td>
 		</tr>
 		</table>
 	</td>
@@ -251,10 +251,10 @@ If Env.UsuarioSCE() Then
 <%	    	end if%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Observações:</b></td></tr>
+<tr><td>&nbsp;</td><td><b>ObservaÃ§Ãµes:</b></td></tr>
 <tr><td>&nbsp;</td><%If IsNull(rec("EQ_OBS")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td style='border: thin solid gray;'>" & Replace(Trim(rec("EQ_OBS")), VbCrLf, "<BR>") & "</td>"%></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Dados de manutenção:</b></td></tr>
+<tr><td>&nbsp;</td><td><b>Dados de manutenÃ§Ã£o:</b></td></tr>
 <tr><td>&nbsp;</td><%If IsNull(rec("EQ_MANUT_PREVENTIVA")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td style='border: thin solid gray;'>" & Replace(Trim(rec("EQ_MANUT_PREVENTIVA")), VbCrLf, "<BR>") & "</td>"%></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <%
@@ -265,14 +265,14 @@ If Env.UsuarioSCE() Then
 
 		    if not (recInst.eof and recInst.bof) then%>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Acessórios do Equipamento</b></td></tr>
+<tr><td>&nbsp;</td><td><b>AcessÃ³rios do Equipamento</b></td></tr>
 <tr>
 	<td>&nbsp;</td>
 	<td>
 		<table class="texto1" cellpadding="2" cellspacing="0" border="1" width="550px">
 		<tr>
 			<td width="70px"><b><i>Sequencial</i></b></td>
-			<td width="*"><i><b>Descrição</i></b></td>
+			<td width="*"><i><b>DescriÃ§Ã£o</i></b></td>
 			<td width="70px" align="center"><i><b>Status</i></b></td>
 			<td width="70px" align="center"><i><b>Conforme</i></b></td>
 		</tr>
@@ -288,7 +288,7 @@ If Env.UsuarioSCE() Then
 				    elseIf CStr(recInst("Status")) = CStr(STATUS_EXPEDIDO) then
 					    response.write "Expedido"
 				    elseIf CStr(recInst("Status")) = CStr(STATUS_EXPEDIDO_SUBST) then
-					    response.write "Substituído"
+					    response.write "SubstituÃ­do"
 				    else
 					    response.write "&nbsp;"
 				    end if

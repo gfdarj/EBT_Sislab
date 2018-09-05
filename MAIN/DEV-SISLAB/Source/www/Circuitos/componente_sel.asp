@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+Ôªø<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de ReferÍncia TecnolÛgica</title>
+	<title>Site do Centro de Refer√™ncia Tecnol√≥gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -40,7 +40,7 @@ end if
 '	response.end
 	call Env.RecordSet( true, objRS, strSQL)
 	if( objRS.BOF and objRS.EOF ) then
-		call ErroBD( "Identificador de componente inv·lido" )
+		call ErroBD( "Identificador de componente inv√°lido" )
 	end if
 end if
 
@@ -93,25 +93,25 @@ Componente: <%=cpt_nome%></td>
 
 	<tr>
 		<td><br>
-<b><u>FICHA T…CNICA DO COMPONENTE:</u></b><br><br>
+<b><u>FICHA T√âCNICA DO COMPONENTE:</u></b><br><br>
 
 &nbsp;&nbsp;<b>Componente:</b> <%= cpt_nome %> - <b>tipo(modelo):</b> <%= tpc_nome %></td>
 	</tr>
 
 	<tr>
-		<td class="fonte3" >&nbsp;&nbsp;&nbsp;<b>LocalizaÁ„o:</b> <%= lge_nome %> - <%= lee_nome %></td>
+		<td class="fonte3" >&nbsp;&nbsp;&nbsp;<b>Localiza√ß√£o:</b> <%= lge_nome %> - <%= lee_nome %></td>
 	</tr>
 
 	<tr>
-		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>vers„o de SW atual:</b> <%= vsw_atu %> &nbsp;&nbsp;&nbsp;<b>vers„o de SW padr„o:</b><%= vsw_std %></td>
+		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>vers√£o de SW atual:</b> <%= vsw_atu %> &nbsp;&nbsp;&nbsp;<b>vers√£o de SW padr√£o:</b><%= vsw_std %></td>
 	</tr>
 
 	<tr>
-		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>CÛdigo SGP:</b> <%= cpt_cod %></td>
+		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>C√≥digo SGP:</b> <%= cpt_cod %></td>
 	</tr>
 
 	<tr>
-		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>ObservaÁ„o:</b> <%= obs %></td>
+		<td  class="fonte3" >&nbsp;&nbsp;&nbsp;<b>Observa√ß√£o:</b> <%= obs %></td>
 	</tr>
 
 	<tr>
@@ -147,7 +147,7 @@ end if
 <br>
 <b><u>RECURSOS EM USO:</u></b>
 <br><br>
-<u>L”GICO:</u>
+<u>L√ìGICO:</u>
 <br>
 
 <%
@@ -158,7 +158,7 @@ if Not( objRS2.BOF and objRS2.EOF ) then
 
 while( not( objRS2.EOF ) ) %>
 <br>
-<div align=justify>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<b>AS N∫ <%= objRS2( "AG_Numero" ) %> - </b><%= objRS2( "observacao" ) %></div><br>
+<div align=justify>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<b>AS N¬∫ <%= objRS2( "AG_Numero" ) %> - </b><%= objRS2( "observacao" ) %></div><br>
 
 <%
 	objRS2.MoveNext
@@ -170,7 +170,7 @@ end if
 %>
 
 <br><br>
-<u>FÕSICO:</u>
+<u>F√çSICO:</u>
 <br>
 
 <%

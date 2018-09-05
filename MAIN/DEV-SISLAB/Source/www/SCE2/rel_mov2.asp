@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,14 +7,14 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Movimentação de Item" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > MovimentaÃ§Ã£o de Item" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 
-    '-- request("ssql") é utilizado na exclusao de um movimento, faz com que esta página seja
+    '-- request("ssql") Ã© utilizado na exclusao de um movimento, faz com que esta pÃ¡gina seja
     '-- recarregada
     if trim(request("ssql")) = "" then
 
@@ -120,11 +120,11 @@ function excluiMovimentacao(mov_id) {
 end if
 
 Dim url_xls
-url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimentação de Item&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+url_xls = "<div align='right'><a href=""../excel.asp?TITULO=RelatÃ³rio de MovimentaÃ§Ã£o de Item&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
 %>
 <table width="100%" cellpadding="2" cellspacing="0" class="destaque">
 <tr>
-	<td>Listagem do relatório de movimentação de itens</td>
+	<td>Listagem do relatÃ³rio de movimentaÃ§Ã£o de itens</td>
 	<td align="right"><%=url_xls%></td>
 </tr>
 </table>
@@ -147,7 +147,7 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimen
 		<th align="center" valign="top" width="70">CDE</th>
 		<th align="center" valign="top" width="70">NF</th>
 		<th align="center" valign="top" width="70">Doc</th>
-		<th align="center" valign="top" width="600">Data de Movimentação (tipo)</th>
+		<th align="center" valign="top" width="600">Data de MovimentaÃ§Ã£o (tipo)</th>
 	</tr>
 <%	    Dim bg, cont
 	    cont = 0
@@ -157,7 +157,7 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimen
 %>
 	<tr <%if bg = 0 then response.write "bgcolor='#C0E0EF'"%>>
 <%		    if Env.PerfilSce = PERFIL_ADM then%>
-		<td><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação"></a></td>
+		<td><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentaÃ§Ã£o"></a></td>
 		<td><a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a></td>
 <%		    end if%>
 		<td class="texto1" align="center" valign="top">
@@ -176,7 +176,7 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimen
 			<%=ConverteNuloHTML(rec("mov_solicitante_M"))%>
 			<%if rec("MOV_PASSAGEM") then response.write "&nbsp;<b>(*)</b>" end if%>
 		</td>
-		<td class="texto1" align="center" valign="top" <%=IIf(rec("FL_CALIBRACAO_M"), "title='Envio para Calibração' style='background-color: Silver;'", "")%>>
+		<td class="texto1" align="center" valign="top" <%=IIf(rec("FL_CALIBRACAO_M"), "title='Envio para CalibraÃ§Ã£o' style='background-color: Silver;'", "")%>>
 			<%=ConverteNuloHTML(rec("cde_M"))%>
 		</td>
 		<td class="texto1" align="center" valign="top">
@@ -195,8 +195,8 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimen
 	    wend
     end if%>
 </table>
-<p align="left" class="texto1"><i><b>(*)</b> Movimentação de passagem de carga</i></p>
-<p align="left" class="texto1"><i><b>(**)</b> Os CDE´s em <span style='background-color: Silver;'>cinza</span> indicam envio para calibração</i></p>
+<p align="left" class="texto1"><i><b>(*)</b> MovimentaÃ§Ã£o de passagem de carga</i></p>
+<p align="left" class="texto1"><i><b>(**)</b> Os CDEÂ´s em <span style='background-color: Silver;'>cinza</span> indicam envio para calibraÃ§Ã£o</i></p>
 <br>
 <%
 Else

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp" -->
+ï»¿<!--#include file="includes/Sislab_Lib.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <%
@@ -98,11 +98,11 @@ Call Env.RecordSet(False, objSiteRS, sSQL)
 <tr>
 	<td colspan="4" align="center">
 		<span class='texto1b' style='font-size: 15px;'>EQUIPE CRT</span><br>
-		<a target="_blank" href="http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/arquivos/DO%205.2-002_09%20-%20DESIGNAÇÃO%20DE%20FUNCOES%2010-07-06.pdf"><i>(veja o quadro com a designação de funções)</i></a>
+		<a target="_blank" href="http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/arquivos/DO%205.2-002_09%20-%20DESIGNAÃ‡ÃƒO%20DE%20FUNCOES%2010-07-06.pdf"><i>(veja o quadro com a designaÃ§Ã£o de funÃ§Ãµes)</i></a>
 	</td>
 </tr>
 <tr class="texto1b">
-	<td bgcolor="#FFFFBB">&nbsp;Matrícula</td>
+	<td bgcolor="#FFFFBB">&nbsp;MatrÃ­cula</td>
 	<td bgcolor="#FFFFBB">&nbsp;Empregado</td>
 	<td bgcolor="#FFFFBB">&nbsp;Ramal</td>
 	<td bgcolor="#FFFFBB">&nbsp;Username</td>

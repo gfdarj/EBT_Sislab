@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/abre.asp" -->
+Ôªø<!-- #INCLUDE FILE="includes/abre.asp" -->
 <!-- #INCLUDE FILE="includes/conexao.inc" -->
 <!-- #INCLUDE FILE="includes/bib_bd.asp" -->
 <%
@@ -26,7 +26,7 @@ if categoria = CAT_CONSUMIVEL or categoria = CAT_EQUIPAMENTO then
 	end if
 
 	if categoria = CAT_CONSUMIVEL then
-		'-- apaga o consumivel e todo o seu histÛrico
+		'-- apaga o consumivel e todo o seu hist√≥rico
 		Call StoredProcedure(True, objSP, "SP_SCE_EXCLUI_CONSUMIVEL", Conn)
 		With objSP
 			.Parameters.item("@CON_ID") = eq_id
@@ -37,7 +37,7 @@ if categoria = CAT_CONSUMIVEL or categoria = CAT_EQUIPAMENTO then
 		End With
 		Call StoredProcedure(False, objSP, Null, Null)
 	else
-		'-- apaga o equipamento e todo o seu histÛrico
+		'-- apaga o equipamento e todo o seu hist√≥rico
 		Call StoredProcedure(True, objSP, "SP_SCE_EXCLUI_EQUIPAMENTO", Conn)
 		With objSP
 			.Parameters.item("@EQ_ID") = eq_id
@@ -58,7 +58,7 @@ if categoria = CAT_CONSUMIVEL or categoria = CAT_EQUIPAMENTO then
 else%>
 <html>
 	<head><title>SCE - [ERRO]</title></head>
-	<body><script language="JavaScript">alert('Categoria inv·lida !'); history.go(-1);</script></body>
+	<body><script language="JavaScript">alert('Categoria inv√°lida !'); history.go(-1);</script></body>
 </html>
 <%
 end if
@@ -67,13 +67,13 @@ Conn.Close
 
 
 '-- Exibe alert para usuario confirmar a exclusao do equipamento, caso
-'-- existam movimentaÁoes para o mesmo
+'-- existam movimenta√ßoes para o mesmo
 Function ConfirmaExclusao(eq_id, categoria)%>
 <html>
-	<head><title>SCE - [ConfirmaÁ„o de exclus„o]</title></head>
+	<head><title>SCE - [Confirma√ß√£o de exclus√£o]</title></head>
 	<body>
 	<script language="JavaScript">
-	if(confirm('ATEN«√O !!!\n\nEste equipamento possui movimentaÁıes.\n\nExcluindo o mesmo, TODAS os seus movimentos, controles e histÛricos tambÈm ser„o excluÌdos.\n\nDeseja continuar ?')) {
+	if(confirm('ATEN√á√ÉO !!!\n\nEste equipamento possui movimenta√ß√µes.\n\nExcluindo o mesmo, TODAS os seus movimentos, controles e hist√≥ricos tamb√©m ser√£o exclu√≠dos.\n\nDeseja continuar ?')) {
 		location.href = 'exc_item.asp?eq_id=<%=eq_id%>&categoria=<%=categoria%>&apagamovimentos=1';
 	}
 	else

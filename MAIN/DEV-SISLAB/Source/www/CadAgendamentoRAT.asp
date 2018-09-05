@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -34,7 +34,7 @@ If num_ag <> "" Then
 	Call Env.RecordSet( true, objSiteRS2, sSQL)
 
 
-	'>>> Verifica o usu·rio RAT do agendamento
+	'>>> Verifica o usu√°rio RAT do agendamento
 	bln_RAT_Visivel = True
 	bln_RAT_TodosUsuarios = False
 	chr_RAT_MsgErro = ""
@@ -46,13 +46,13 @@ If num_ag <> "" Then
 				bln_RAT_Visivel = False
 			ElseIf Not RS("RAT") Then
 				bln_RAT_TodosUsuarios = True
-				chr_RAT_MsgErro = "* O Usu·rio " & UCase(objSiteRS("AG_RAT")) & " n„o est· selecionado como RAT"
+				chr_RAT_MsgErro = "* O Usu√°rio " & UCase(objSiteRS("AG_RAT")) & " n√£o est√° selecionado como RAT"
 			End If
 		End If
 		RS.Close
 	End If
 
-	'>>> Verifica o usu·rio RT do agendamento
+	'>>> Verifica o usu√°rio RT do agendamento
 	bln_RT_Visivel = True
 	bln_RT_TodosUsuarios = False
 	chr_RT_MsgErro = ""
@@ -64,7 +64,7 @@ If num_ag <> "" Then
 				bln_RT_Visivel = False
 			ElseIf Not RS("RT") Then
 				bln_RT_TodosUsuarios = True
-				chr_RT_MsgErro = "* O Usu·rio " & UCase(objSiteRS("AG_RESPONSAVEL")) & " n„o est· selecionado como RT"
+				chr_RT_MsgErro = "* O Usu√°rio " & UCase(objSiteRS("AG_RESPONSAVEL")) & " n√£o est√° selecionado como RT"
 			End If
 		End If
 		RS.Close
@@ -110,31 +110,31 @@ function ValidaCampos(){
 	if (frm.hdnSituacao.value != frm.cmbSituacao.value){
 
 		if ((frm.cmbSituacao.value=="") || (frm.cmbSituacao.value=="0")) {
-			alert("Informe a SituaÁ„o do agendamento.");
+			alert("Informe a Situa√ß√£o do agendamento.");
 	    	frm.cmbSituacao.focus();
 			return false;
 		}
 
 		if (frm.motivo.value==""){
-			alert("O Motivo da mudanÁa n„o foi informado.");
+			alert("O Motivo da mudan√ßa n√£o foi informado.");
 	    	frm.motivo.focus();
 			return false;
 		}
 
 		if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
-			alert("A data de inicio da situaÁ„o atual deve ser uma uma data v·lida.");
+			alert("A data de inicio da situa√ß√£o atual deve ser uma uma data v√°lida.");
 			frm.diaINICIO.focus();
 			return false;
 		}
 
 		if ((frm.horaINICIO.value=="")||(frm.minutoINICIO.value=="")){
-			alert("Hora e/ou minuto do inÌcio n„o informada.");
+			alert("Hora e/ou minuto do in√≠cio n√£o informada.");
 	    	frm.horaINICIO.focus();
 			return false;
 		}
 
 		if (AchaAspas(frm.motivo.value)){
-			alert("O Motivo da mudanÁa n„o pode conter Aspas ou apÛstrofes.");
+			alert("O Motivo da mudan√ßa n√£o pode conter Aspas ou ap√≥strofes.");
 	    	frm.motivo.focus();
 			return false;	
 		}
@@ -142,20 +142,20 @@ function ValidaCampos(){
 
 <%if tem_os then%>
 	if (frm.cmbOS[1].checked) { // NAO NECESSITA OS
-			alert("ATEN«√O !\n\nEste agendamento possui Ordem de ServiÁo.\n\nN·o È permitido retirar a necessidade de OS sem antes o\nRAT/RT remover as mesmas.");
+			alert("ATEN√á√ÉO !\n\nEste agendamento possui Ordem de Servi√ßo.\n\nN√°o √© permitido retirar a necessidade de OS sem antes o\nRAT/RT remover as mesmas.");
 	    	frm.cmbOS1.focus();
 			return false;
 	}
 <%end if%>
 
 	if (frm.cmbRATRESP.value==""){
-		alert("Informe RAT respons·vel pelo agendamento.");
+		alert("Informe RAT respons√°vel pelo agendamento.");
 	    frm.cmbRATRESP.focus();
 		return false;
 	}
 	
 	if (frm.cmbRESP.value==""){
-		alert("Informe RT respons·vel pelo agendamento.");
+		alert("Informe RT respons√°vel pelo agendamento.");
 	    frm.cmbRESP.focus();
 		return false;
 	}
@@ -187,8 +187,8 @@ function ValidaCampos(){
 <table border="0" width="100%" class="tabela1">
 <tr> 
 	<td>
-		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
-		<td align="right"><b><span class="menu">Agendamento N∫ &nbsp;<%=num_ag%></span></b></td>
+		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
+		<td align="right"><b><span class="menu">Agendamento N¬∫ &nbsp;<%=num_ag%></span></b></td>
 </tr>
 </table>
 
@@ -213,7 +213,7 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td  colspan="2">
-		&nbsp;&nbsp;&nbsp;SituaÁ„o:&nbsp;
+		&nbsp;&nbsp;&nbsp;Situa√ß√£o:&nbsp;
 		<select name="cmbSituacao" class="combo" onchange="avaliaSituacao();">
          		<option value="0" selected></option>
 			<%	strSQL = "select distinct s.ID_SITUACAO as valor  , s.S_DESCRICAO as descricao"
@@ -226,23 +226,23 @@ function ValidaCampos(){
 		</select> 
 	</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Data InÌcio:&nbsp;
+			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Data In√≠cio:&nbsp;
 			<%call comboData("INICIO")%>
 		</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Hora InÌcio:&nbsp;
+			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Hora In√≠cio:&nbsp;
 			<%call comboHorario("INICIO")%>
 	</td>
 </tr>
 <tr>
 	<td colspan="10">
-		&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudanÁa de SituaÁ„o ):</a><br>
+		&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudan√ßa de Situa√ß√£o ):</a><br>
 		&nbsp;&nbsp;<textarea name="motivo" class="texto1" cols=147 rows=4 ></textarea>
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;RAT Respons·vel : &nbsp;
+        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;RAT Respons√°vel : &nbsp;
 		<%
 		If bln_RAT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRATRESP",objConn,"N")
@@ -260,7 +260,7 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td colspan="10">
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Respons·vel TÈcnico : &nbsp;
+        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Respons√°vel T√©cnico : &nbsp;
 		<%
 		If bln_RT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRESP",objConn,"N")
@@ -286,14 +286,14 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td colspan="10">
-		<p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de ServiÁo (OS): &nbsp;
+		<p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de Servi√ßo (OS): &nbsp;
 		<input type="radio" name="cmbOS" value="1" id = "cmbOS1">Sim&nbsp;
-		<input type="radio" name="cmbOS" value="0"  id = "cmbOS0">N„o
+		<input type="radio" name="cmbOS" value="0"  id = "cmbOS0">N√£o
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="3">
-		&nbsp;&nbsp;Teste tem repetiÁ„o:&nbsp;
+		&nbsp;&nbsp;Teste tem repeti√ß√£o:&nbsp;
 		<input type="Checkbox" name="chkRepeticao" class="texto1">
 	</td>
 	<td colspan="7">
@@ -312,11 +312,11 @@ function ValidaCampos(){
 
 <tr>
 	<th align="left" colspan="10">
-		&nbsp;&nbsp;RelatÛrio de andamento de agendamentos (interno CRT)
+		&nbsp;&nbsp;Relat√≥rio de andamento de agendamentos (interno CRT)
 	</th>
 </tr>
 <tr>
-	<td colspan="10">&nbsp;&nbsp;RelatÛrio de Agendamento:<br>
+	<td colspan="10">&nbsp;&nbsp;Relat√≥rio de Agendamento:<br>
 		&nbsp;&nbsp;<textarea name="relatAS" class="texto1" cols="147" rows="12"></textarea>
 	</td>
 </tr>
@@ -328,8 +328,8 @@ function ValidaCampos(){
 			<input type="Button" class="texto1" onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
 
-		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;¡rea do Cliente &nbsp;&nbsp;"/>
-		<input type="Button" class="texto1" onclick="areaRT()" value=" &nbsp;&nbsp;¡rea do RT &nbsp;&nbsp;"/>
+		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;√Årea do Cliente &nbsp;&nbsp;"/>
+		<input type="Button" class="texto1" onclick="areaRT()" value=" &nbsp;&nbsp;√Årea do RT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

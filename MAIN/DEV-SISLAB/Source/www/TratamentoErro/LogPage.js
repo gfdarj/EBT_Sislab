@@ -1,4 +1,4 @@
-function LogPage() {
+﻿function LogPage() {
 	
    	var browserName = navigator.appName;
    	var browserVersion = navigator.appVersion;

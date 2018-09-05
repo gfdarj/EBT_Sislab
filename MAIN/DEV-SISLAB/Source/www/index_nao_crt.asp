@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <script language="JavaScript">
 function verificaNavegador() {
 	var ehIE;
 	var versao;
 	
-	// Não é um browser IE, pode ser qualquer outro
+	// NÃ£o Ã© um browser IE, pode ser qualquer outro
 	ehIE = navigator.userAgent.indexOf("MSIE");
 
 	if(ehIE == -1)
@@ -16,7 +16,7 @@ function verificaNavegador() {
 		versao = navigator.userAgent.substring(ehIE);
 		ehIE = versao.indexOf(";");
 		if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			alert('Atenção !\n\nVocê está usando uma versão do Internet Explorer inferior à 5.5. Alguns recursos do sistema SISLAB podem não funcionar corretamente nesta versão.\n\nPor favor, atualize o seu browser antes de continuar.');
+			alert('AtenÃ§Ã£o !\n\nVocÃª estÃ¡ usando uma versÃ£o do Internet Explorer inferior Ã  5.5. Alguns recursos do sistema SISLAB podem nÃ£o funcionar corretamente nesta versÃ£o.\n\nPor favor, atualize o seu browser antes de continuar.');
 	}
 }
 
@@ -26,7 +26,7 @@ verificaNavegador();
 <!--#include file="Global.asa"-->
 
 <%
-'-- Inicializa as constantes do tipo Application no caso de não serem lidas pelo Global.Asa
+'-- Inicializa as constantes do tipo Application no caso de nÃ£o serem lidas pelo Global.Asa
 'If Application("SISLAB_AMBIENTE") = "" Then
 	Call Application_OnStart()
 'End If
@@ -139,7 +139,7 @@ end if%>
 										<table width="100%" height="100%">
 										<tr valign="top">
 											<td colspan="2" valign="top">
-												<a href="sit_crt.asp?hoje=1" class="menu"><%=indicador%>Em execução no CRT</a>
+												<a href="sit_crt.asp?hoje=1" class="menu"><%=indicador%>Em execuÃ§Ã£o no CRT</a>
 											</td>
 										</tr>
 										<tr>

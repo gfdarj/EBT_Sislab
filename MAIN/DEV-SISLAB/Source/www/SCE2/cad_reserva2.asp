@@ -1,11 +1,11 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <%
 '-- GRAVA OS DADOS DA RESERVA --
-'Dim separador_campo : separador_campo = "¿?¿"
-'Dim separador_registro : separador_registro = "»?«"
+'Dim separador_campo : separador_campo = "Â¿?Â¿"
+'Dim separador_registro : separador_registro = "Â»?Â«"
 
 Dim operacao, id, ag_numero, ag_responsavel, ambiente, lista_itens, item, obs, aceito
 Dim oErro, RS, lista_eqid
@@ -97,7 +97,7 @@ Next
 'response.write lista_eqid
 'response.end
 
-'Apago os equipamentos que não estao na lista
+'Apago os equipamentos que nÃ£o estao na lista
 If Len(lista_eqid) > 0 Then
 	lista_eqid = Left(lista_eqid, Len(lista_eqid)-1)
 
@@ -128,7 +128,7 @@ Response.Redirect "cad_reserva.asp?ag_numero=" & ag_numero & "&" & operacao & "=
 
 '########################################################################################
 ' Acrescentei o campo ambiente na tabela de reserva de equipomentos, logo tenho que
-' mudar a procedure. Como isso não é possível por enquanto, tenho que mudar a gravação.
+' mudar a procedure. Como isso nÃ£o Ã© possÃ­vel por enquanto, tenho que mudar a gravaÃ§Ã£o.
 '
 '											Gilberto (19/09/2010)
 '########################################################################################
@@ -141,7 +141,7 @@ Response.Redirect "cad_reserva.asp?ag_numero=" & ag_numero & "&" & operacao & "=
 'obs = request("obs")
 'if obs = "" then obs = null
 
-'-- pega a lista de itens (campos separados por "¿!¿" e separa cada registro concatenando
+'-- pega a lista de itens (campos separados por "Â¿!Â¿" e separa cada registro concatenando
 '-- em uma string passada ao banco de dados
 'if request("lista_itens") = "" then
 '	lista_itens = null

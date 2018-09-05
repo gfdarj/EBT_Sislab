@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -23,7 +23,7 @@ Dim dataIni, dataFim
 Dim chr_DataIni
 Dim chr_DataFim
 
-call ImprimeCabecalho2("SISLAB - Pesquisa de SatisfaÁ„o", MENU_ON, true, "", "Pesquisa de SatisfaÁ„o - RelatÛrio Consolidado", "", "")
+call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfa√ß√£o", MENU_ON, true, "", "Pesquisa de Satisfa√ß√£o - Relat√≥rio Consolidado", "", "")
 
 dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
 dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))
@@ -113,18 +113,18 @@ function contC(parag, paritem, parativ, pardataini, pardatafim) {
 <table width="100%" class="tabela1" cellpadding="2" cellspacing="0">
 <tr>
 	<td colspan="2">
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">An·lise PeriÛdica dos Formul·rios de SatisfaÁ„o</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">An√°lise Peri√≥dica dos Formul√°rios de Satisfa√ß√£o</span>
 	</td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-	<td colspan="2"><b>PerÌodo:</b></td>
+	<td colspan="2"><b>Per√≠odo:</b></td>
 </tr>
 
 <tr> 
 	<td colspan="2">
-		De <%call comboData("dataIni")%>&nbsp;atÈ&nbsp;<%call comboData("dataFim")%>
+		De <%call comboData("dataIni")%>&nbsp;at√©&nbsp;<%call comboData("dataFim")%>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="Button" value="Pesquisar" class="texto1" onclick="retornavalor();">
 		<script language="JavaScript">
@@ -271,10 +271,10 @@ if request("enviou") = "1" then
 	<!--<b>Total de Agendamentos:</b> <%'=int_TotalAgendamento%> (Finalizados: <%'=rs("totalagendamento")%>) -->
 	<b>Total de Agendamentos Finalizados:</b> <%=rs("totalagendamento")%>
 	&nbsp;&nbsp;&nbsp;
-	<b>Õndice de retorno:</b> <%=chr_Indice%>
+	<b>√çndice de retorno:</b> <%=chr_Indice%>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b> - <b>Coment·rio Adicional</b> - <b>Outros Coment·rios</b><br>
-	<b>ServiÁo:</b> <%=objRS("TA_Descricao")%>
+	<b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b> - <b>Coment√°rio Adicional</b> - <b>Outros Coment√°rios</b><br>
+	<b>Servi√ßo:</b> <%=objRS("TA_Descricao")%>
 	</font>
 <!--
 	<%'="dbo.sp_IndiceRetornoSatisfacao " & objRS("PSQ_TipoAtiv") & ", NULL, NULL, NULL, " & chr_DataIni & ", " & chr_DataFim%>
@@ -286,7 +286,7 @@ if request("enviou") = "1" then
 <tr class="azul1bg">
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>ComunicaÁ„o</b></font>
+	<b>Comunica√ß√£o</b></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
@@ -499,7 +499,7 @@ End If
 <!--		<b>Total de Agendamentos:</b> <%'=int_TotalAgendamento%> (Finalizados: <%'=rs("totalagendamento")%>) -->
 		<b>Total de Agendamentos Finalizados:</b> <%=rs("totalagendamento")%>
 		&nbsp;&nbsp;&nbsp;
-		<b>Õndice de retorno:</b> <%=chr_Indice%>
+		<b>√çndice de retorno:</b> <%=chr_Indice%>
 		<br>
 		<b>TOTAL</b></font>
 		<%'="dbo.sp_IndiceRetornoSatisfacao " & "NULL, NULL, NULL, NULL, " & chr_DataIni & ", " & chr_DataFim%>
@@ -509,7 +509,7 @@ End If
 <tr  class="azul1bg">
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>ComunicaÁ„o</b></font>
+	<b>Comunica√ß√£o</b></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
@@ -616,7 +616,7 @@ End If
 <%
 '----------------------------------------------------------------
 '
-' funcoes usadas nesta p·gina para ExibiÁ„o dos valores
+' funcoes usadas nesta p√°gina para Exibi√ß√£o dos valores
 '
 '----------------------------------------------------------------
 function retornaaprox(opcao)
@@ -641,7 +641,7 @@ Function retornaopcao(opcao)
 	If opcao=3 Then retornaopcao="Nem Satisfeito, Nem Insatisfeito" End If
 	If opcao=4 Then retornaopcao="Satisfeito" End If
 	If opcao=5 Then retornaopcao="Muito Satisfeito" End If
-	If Isnull(opcao) Then retornaopcao="N„o Respondido" End If
+	If Isnull(opcao) Then retornaopcao="N√£o Respondido" End If
 End Function
 
 Function retornaopcao1(opcao)
@@ -673,7 +673,7 @@ Function retornacomentario(comenta)
 	if Isnull(comenta) or comenta="" then
 		retornacomentario = "Sem Coment."
 	else
-		retornacomentario = "Coment·rio: "&comenta 
+		retornacomentario = "Coment√°rio: "&comenta 
 	end if
 End Function
 '-----------------------------------------------------

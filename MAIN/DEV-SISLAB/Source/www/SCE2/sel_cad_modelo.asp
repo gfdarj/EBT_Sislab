@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -22,7 +22,7 @@ If Env.UsuarioSCE() Then
 <%  if request("msg") <> "" Then %>
 	<div class="texto1">
 <%		if cint(request("msg")) =1 then response.write "<br>Modelo atualizado com sucesso!<br><br>"
-		if cint(request("msg")) =2 then response.write "<br>Modelo excluído com sucesso!<br><br>" %>
+		if cint(request("msg")) =2 then response.write "<br>Modelo excluÃ­do com sucesso!<br><br>" %>
 	</div>
 <%	end if %>
 <table>
@@ -54,7 +54,7 @@ If Env.UsuarioSCE() Then
 		<tr><td class="texto1">&nbsp;</td></tr>
 		<tr class="texto1">
 			<td>
-			Busque por Descrição<br /><input type="text" name="descricao" class="texto1" size="50">
+			Busque por DescriÃ§Ã£o<br /><input type="text" name="descricao" class="texto1" size="50">
 			</td>
 		</tr>
 		<tr><td class="texto1">&nbsp;</td></tr>

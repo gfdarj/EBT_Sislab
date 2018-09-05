@@ -1,4 +1,4 @@
-<%Option explicit%>
+﻿<%Option explicit%>
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->

@@ -1,4 +1,4 @@
-<%
+ï»¿<%
 Server.ScriptTimeout = 3500
 %>
 <!--#include file="includes/Sislab_Lib.asp"-->
@@ -28,12 +28,12 @@ Dim tempesquisa
 '		"				from DIAGRAMAS d inner join arquivos arq1 on arq1.arq_codarq = d.arq_codarq " & VbCrLf & _
 '		"				WHERE (arq_codarqtipo = 33) " & VbCrLf & _
 '		"				and d.AG_NUMERO = CG.num_AG_M) >= 1" & VbCrLf & _
-'		"			THEN 'RELATÓRIO ELABORADO' " & VbCrLf & _
-'		"			ELSE 'RELATÓRIO NÃO ELABORADO' " & VbCrLf & _
+'		"			THEN 'RELATÃ“RIO ELABORADO' " & VbCrLf & _
+'		"			ELSE 'RELATÃ“RIO NÃƒO ELABORADO' " & VbCrLf & _
 '		"			END" & VbCrLf & _
 '		"		END" & VbCrLf & _
 '		"	ELSE 'N/A'" & VbCrLf & _
-'		"END AS 'Relatório_de_Ensaio_M'" & VbCrLf & _
+'		"END AS 'RelatÃ³rio_de_Ensaio_M'" & VbCrLf & _
 '		"from vw_ConsultaGerencial CG where CG.num_AG_M = CG.num_AG_M  "
 
 
@@ -45,10 +45,10 @@ sSQL = sSQL & "SET @id_situacao = (SELECT id_situacao  FROM Situacoes WHERE S_OS
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "select * from (SELECT" & VbCrLf
 sSQL = sSQL & "	a.AG_NUMERO AS Num_AG_M, " & VbCrLf
-sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
-sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
-sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
-sSQL = sSQL & "	a.AG_DATATERMINO as 'Data_de_Término_Solicitada_pelo_Cliente_M'," & VbCrLf
+sSQL = sSQL & "	Tot_OS.Total AS 'NÂº_OS_Geradas_M'," & VbCrLf
+sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_SolicitaÃ§Ã£o_pelo_Cliente_M'," & VbCrLf
+sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_InÃ­cio_Solicitada_pelo_Cliente_M', " & VbCrLf
+sSQL = sSQL & "	a.AG_DATATERMINO as 'Data_de_TÃ©rmino_Solicitada_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.TEC_NOME as 'Tecnologia_M'," & VbCrLf
 sSQL = sSQL & "	a.TA_ID," & VbCrLf
 sSQL = sSQL & "	a.TA_DESCRICAO AS 'Tipo_Teste_M'," & VbCrLf
@@ -57,15 +57,15 @@ sSQL = sSQL & "	a.TS_DESCRICAO as 'Tipo_de_Sigilo_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_RAT as 'RAT_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_NECESSITA_OS," & VbCrLf
 sSQL = sSQL & "	a.ID_SITUACAO," & VbCrLf
-sSQL = sSQL & "	a.S_DESCRICAO AS Situação_M," & VbCrLf
-sSQL = sSQL & "	a.AG_RESPONSAVEL AS 'Responsável_Técnico_M'," & VbCrLf
+sSQL = sSQL & "	a.S_DESCRICAO AS SituaÃ§Ã£o_M," & VbCrLf
+sSQL = sSQL & "	a.AG_RESPONSAVEL AS 'ResponsÃ¡vel_TÃ©cnico_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
-sSQL = sSQL & "	Hist_Min.Data_Min AS 'Data_de_Início_Real_M'," & VbCrLf
-sSQL = sSQL & "	Hist_Max.Data_Max AS 'Data_Término_Real_M'," & VbCrLf
+sSQL = sSQL & "	Hist_Min.Data_Min AS 'Data_de_InÃ­cio_Real_M'," & VbCrLf
+sSQL = sSQL & "	Hist_Max.Data_Max AS 'Data_TÃ©rmino_Real_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "	a.AG_USERNAME as 'Solicitante_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_CLIENTEEXTERNO as 'Cliente_Externo_M'," & VbCrLf
-sSQL = sSQL & "	a.AG_ORGAO as 'Órgão_M'," & VbCrLf
+sSQL = sSQL & "	a.AG_ORGAO as 'Ã“rgÃ£o_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "	CASE a.AG_NECESSITA_OS" & VbCrLf
 sSQL = sSQL & "	WHEN 1 THEN " & VbCrLf
@@ -84,7 +84,7 @@ sSQL = sSQL & "		ELSE" & VbCrLf
 sSQL = sSQL & "			CASE" & VbCrLf
 sSQL = sSQL & "			WHEN (D7.Diagramas) >= 1" & VbCrLf
 sSQL = sSQL & "			THEN 'LAUDO ELABORADO' " & VbCrLf
-sSQL = sSQL & "			ELSE 'LAUDO NÃO ELABORADO' " & VbCrLf
+sSQL = sSQL & "			ELSE 'LAUDO NÃƒO ELABORADO' " & VbCrLf
 sSQL = sSQL & "			END" & VbCrLf
 sSQL = sSQL & "		END" & VbCrLf
 sSQL = sSQL & "	ELSE 'N/A'" & VbCrLf
@@ -107,7 +107,7 @@ sSQL = sSQL & "		ELSE" & VbCrLf
 sSQL = sSQL & "			CASE" & VbCrLf
 sSQL = sSQL & "			WHEN (D20.Diagramas) >= 1" & VbCrLf
 sSQL = sSQL & "			THEN 'ROTEIRO ELABORADO' " & VbCrLf
-sSQL = sSQL & "			ELSE 'ROTEIRO NÃO ELABORADO'" & VbCrLf
+sSQL = sSQL & "			ELSE 'ROTEIRO NÃƒO ELABORADO'" & VbCrLf
 sSQL = sSQL & "			END" & VbCrLf
 sSQL = sSQL & "		END" & VbCrLf
 sSQL = sSQL & "	ELSE 'N/A'" & VbCrLf
@@ -129,19 +129,19 @@ sSQL = sSQL & "	THEN 'TESTE PADRONIZADO'" & VbCrLf
 sSQL = sSQL & "	ELSE" & VbCrLf
 sSQL = sSQL & "		CASE" & VbCrLf
 sSQL = sSQL & "		WHEN (D33.Diagramas) >= 1" & VbCrLf
-sSQL = sSQL & "		THEN 'RELATÓRIO ELABORADO' " & VbCrLf
-sSQL = sSQL & "		ELSE 'RELATÓRIO NÃO ELABORADO' " & VbCrLf
+sSQL = sSQL & "		THEN 'RELATÃ“RIO ELABORADO' " & VbCrLf
+sSQL = sSQL & "		ELSE 'RELATÃ“RIO NÃƒO ELABORADO' " & VbCrLf
 sSQL = sSQL & "		END" & VbCrLf
 sSQL = sSQL & "	END" & VbCrLf
 sSQL = sSQL & "	ELSE 'N/A'" & VbCrLf
-sSQL = sSQL & "	END AS 'Relatório_de_Ensaio_M'," & VbCrLf
+sSQL = sSQL & "	END AS 'RelatÃ³rio_de_Ensaio_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "	CASE " & VbCrLf
 sSQL = sSQL & "	WHEN a.ID_SITUACAO = id_situacao AND Pesq.Total > 0 THEN" & VbCrLf
 sSQL = sSQL & "		'Sim'" & VbCrLf
 sSQL = sSQL & "	ELSE " & VbCrLf
-sSQL = sSQL & "		'Não'" & VbCrLf
-sSQL = sSQL & "	END AS 'Pesquisa_de_Satisfação_M'" & VbCrLf
+sSQL = sSQL & "		'NÃ£o'" & VbCrLf
+sSQL = sSQL & "	END AS 'Pesquisa_de_SatisfaÃ§Ã£o_M'" & VbCrLf
 sSQL = sSQL & "FROM" & VbCrLf
 sSQL = sSQL & "	vw_Agendamento a" & VbCrLf
 sSQL = sSQL & "" & VbCrLf
@@ -235,12 +235,12 @@ tip_te = request.form("tip_te")
 Participante = UCase(Trim(request("Participante")))
 
 if soldias <> "" then
-	sSQL = sSQL & " AND DATEDIFF(day, Data_da_Solicitação_pelo_Cliente_M, getDate()-" & soldias & ")<0 "
+	sSQL = sSQL & " AND DATEDIFF(day, Data_da_SolicitaÃ§Ã£o_pelo_Cliente_M, getDate()-" & soldias & ")<0 "
 	'sSQL = sSQL & " AND DATEDIFF(day, AG_DATASOLICITACAO, getDate()-" & soldias & ")<0 "
 end if
 
 if ini_dias <> "" then
-	sSQL = sSQL & " AND DATEDIFF(day, Data_de_Início_Real_M,getDate()-" & ini_dias & ")<0 "
+	sSQL = sSQL & " AND DATEDIFF(day, Data_de_InÃ­cio_Real_M,getDate()-" & ini_dias & ")<0 "
 	'sSQL = sSQL & " AND DATEDIFF(day, Data_Min, getDate()-" & ini_dias & ")<0 "
 end if
 
@@ -249,7 +249,7 @@ if auxSituacaoteste<>"" And auxSituacaoteste<>"NC" then
 end if
 
 If tempesquisa <> "" Then
-    sSQL = sSQL & " AND Pesquisa_de_Satisfação_M = '" & tempesquisa & "'"
+    sSQL = sSQL & " AND Pesquisa_de_SatisfaÃ§Ã£o_M = '" & tempesquisa & "'"
 End IF
 
 if auxSituacaoteste="NC" then
@@ -257,25 +257,25 @@ if auxSituacaoteste="NC" then
 end if
 
 if auxRT <> "" then
-    sSQL = sSQL & " AND Responsável_Técnico_M='" & auxRT & "' "
+    sSQL = sSQL & " AND ResponsÃ¡vel_TÃ©cnico_M='" & auxRT & "' "
     'sSQL = sSQL & " AND AG_RESPONSAVEL='" & auxRT & "' "
 end if
 
-'-- necessidade de roteiro/laudo se da pela necessidade de criacao de OS já que
+'-- necessidade de roteiro/laudo se da pela necessidade de criacao de OS jÃ¡ que
 '-- agendamentos com OS SEMPRE possuem roteiro/laudo
 if auxEquipSis then
 	'sSQL = sSQL & " AND TIPO_TESTE IN (1,2,3,5,10,11)"
 	sSQL = sSQL & " AND AG_NECESSITA_OS = 1"
 end if
 IF auxLaudo THEN
-    sSQL = sSQL & " AND LAUDO_M = 'LAUDO NÃO ELABORADO' AND AG_NECESSITA_OS = 1"
+    sSQL = sSQL & " AND LAUDO_M = 'LAUDO NÃƒO ELABORADO' AND AG_NECESSITA_OS = 1"
 END IF
 IF auxRoteiro THEN
-    sSQL = sSQL & " AND (ROTEIRO_M = 'ROTEIRO NÃO ELABORADO' AND AG_NECESSITA_OS = 1)"
+    sSQL = sSQL & " AND (ROTEIRO_M = 'ROTEIRO NÃƒO ELABORADO' AND AG_NECESSITA_OS = 1)"
 END IF
 If chkRelEnsaio Then
-    sSQL = sSQL & " AND [Relatório_de_Ensaio_M] = 'RELATÓRIO NÃO ELABORADO' AND AG_NECESSITA_OS = 1"
-    'sSQL = sSQL & " AND [Relatório_de_Ensaio_M] = 'RELATÓRIO NÃO ELABORADO' AND AG_NECESSITA_OS = 1"
+    sSQL = sSQL & " AND [RelatÃ³rio_de_Ensaio_M] = 'RELATÃ“RIO NÃƒO ELABORADO' AND AG_NECESSITA_OS = 1"
+    'sSQL = sSQL & " AND [RelatÃ³rio_de_Ensaio_M] = 'RELATÃ“RIO NÃƒO ELABORADO' AND AG_NECESSITA_OS = 1"
 End If
 
 if tip_te <> "" then
@@ -300,11 +300,11 @@ dataIniCad = Trim(request("diadataIniCad") & "/" & request("mesdataIniCad") & "/
 dataFimCad = Trim(request("diadataFimCad") & "/" & request("mesdataFimCad") & "/" & request("anodataFimCad"))
 
 if dataIniCad <> "//" then
-	sSQL = sSQL & " and Data_da_Solicitação_pelo_Cliente_M >= CONVERT(SMALLDATETIME,'" & dataIniCad & "',103) "
+	sSQL = sSQL & " and Data_da_SolicitaÃ§Ã£o_pelo_Cliente_M >= CONVERT(SMALLDATETIME,'" & dataIniCad & "',103) "
 	'sSQL = sSQL & " and AG_DATASOLICITACAO >= CONVERT(SMALLDATETIME,'" & dataIniCad & "',103) "
 end if
 if dataFimCad <> "//" then
-	sSQL = sSQL & " and Data_da_Solicitação_pelo_Cliente_M < (CONVERT(SMALLDATETIME,'" & dataFimCad & "',103)+1) "
+	sSQL = sSQL & " and Data_da_SolicitaÃ§Ã£o_pelo_Cliente_M < (CONVERT(SMALLDATETIME,'" & dataFimCad & "',103)+1) "
 	'sSQL = sSQL & " and AG_DATASOLICITACAO < (CONVERT(SMALLDATETIME,'" & dataFimCad & "',103)+1) "
 end if
 
@@ -312,11 +312,11 @@ dataIniCadSol = Trim("'" & request("diadataIniCadSol") & "/" & request("mesdataI
 dataFimCadSol = Trim("'" & request("diadataFimCadSol") & "/" & request("mesdataFimCadSol") & "/" & request("anodataFimCadSol") & "'")
 
 if dataIniCadSol <> "'//'" then
-	sSQL = sSQL & " and Data_de_Início_Solicitada_pelo_Cliente_M >= CONVERT(SMALLDATETIME," & dataIniCadSol & ",103) "
+	sSQL = sSQL & " and Data_de_InÃ­cio_Solicitada_pelo_Cliente_M >= CONVERT(SMALLDATETIME," & dataIniCadSol & ",103) "
 	'sSQL = sSQL & " and AG_DATAINICIO >= CONVERT(SMALLDATETIME," & dataIniCadSol & ",103) "
 end if
 if dataFimCadSol <> "'//'" then
-	'SQL = sSQL & " and Data_de_Término_Solicitada_pelo_Cliente_M < CONVERT(SMALLDATETIME," & dataFimCadSol & ",103)+1 "
+	'SQL = sSQL & " and Data_de_TÃ©rmino_Solicitada_pelo_Cliente_M < CONVERT(SMALLDATETIME," & dataFimCadSol & ",103)+1 "
 	'sSQL = sSQL & " and AG_DATATERMINO < CONVERT(SMALLDATETIME," & dataFimCadSol & ",103)+1 "
 end if
 
@@ -327,10 +327,10 @@ sSQL = sSQL & " ORDER BY Num_AG_M"
 'RESPONSE.END
 
 'call Env.RecordSet(true, objSiteRS, sSQL)
-'call criaExcel("Relatório", objSiteRS, null)
+'call criaExcel("RelatÃ³rio", objSiteRS, null)
 
 Session("XLS_EXPORTA_SQL") = sSQL
-Response.Redirect "excel.asp?titulo=Relatório de Acompanhamento&sql="
+Response.Redirect "excel.asp?titulo=RelatÃ³rio de Acompanhamento&sql="
 
 
 
@@ -344,7 +344,7 @@ Public Sub criaExcel(Titulo, objRS, ordenacao)
 	str = "<HTML><HEAD><META HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel""><title>teste</title></HEAD><BODY>" & str & "</BODY></HTML>"
 	Response.ContentType = "application/excel"
 	Response.Clear
-	'Se tirarmos o attachment da linha baixo, ele não vai pedir 2 vezes pra abrir, mas vai abrir na própria janela...
+	'Se tirarmos o attachment da linha baixo, ele nÃ£o vai pedir 2 vezes pra abrir, mas vai abrir na prÃ³pria janela...
 	Response.AddHeader "Content-Disposition", "filename=" & chr(34) & "Relatorio.xls" & chr(34)
 	Response.Write (str)
 	'Response.end
@@ -368,7 +368,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 	End If
 
 	If( NOT( objRecordSet.EOF ) )Then
-		'<!-- Cabeçalho da tabela -->
+		'<!-- CabeÃ§alho da tabela -->
 		str = str & "<TR>"
 		For each tmp in objRecordSet.Fields
 			If(tmp.Name <> "ID" and Right(tmp.Name, 2) = "_M")Then
@@ -391,11 +391,11 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 					str = str & "<td>"
 					If(isNull(Link) AND isNull(Acao) AND NOT(isNull(tmp.Value)))Then
 						If tmp.Type = adCurrency Then
-							str = str & FormatCurrency(Replace(trim(tmp.Value), "_¿", ""))
+							str = str & FormatCurrency(Replace(trim(tmp.Value), "_Â¿", ""))
 						ElseIf tmp.Type = adNumeric Then
-							str = str & FormatNumber(Replace(trim(tmp.Value), "_¿", ""), 2)
+							str = str & FormatNumber(Replace(trim(tmp.Value), "_Â¿", ""), 2)
 						Else
-							str = str & Replace(trim(tmp.Value), "_¿", "")
+							str = str & Replace(trim(tmp.Value), "_Â¿", "")
 						End If
 					End If
 					str = str & "&nbsp;</td>"
@@ -408,7 +408,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 	Wend
 Else
 	str = str & "<tr>"
-	str = str & "<td>Sua consulta não retornou nenhum registro!</td>"
+	str = str & "<td>Sua consulta nÃ£o retornou nenhum registro!</td>"
 	str = str & "</tr>"
 End If
 str = str & "</table>"

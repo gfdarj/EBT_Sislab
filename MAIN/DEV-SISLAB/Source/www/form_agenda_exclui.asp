@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/ControlesHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -8,18 +8,19 @@ Dim agnumero : agnumero = ""
 
 agnumero = request("cmbAS")
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AdministraÁ„o do SISLAB - Excluir um Agendamento", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administra√ß√£o do SISLAB - Excluir um Agendamento", "location.href='sislab.asp'", "")
 %>
 <script language="JavaScript">
-function selecionarAS(eu) {
-	if(eu.value == "")
-		alert("Selecione um agendamento");
-	else {
-		document.formulario.action = "form_agenda_exclui.asp";
-		document.formulario.submit();
-	}
-}
+    function selecionarAS(eu) {
+	    if(eu.value == "")
+		    alert("Selecione um agendamento");
+	    else {
+		    document.formulario.action = "form_agenda_exclui.asp";
+		    document.formulario.submit();
+	    }
+    }
 </script>
+
 <form name="formulario" method="post" action="form_agenda_exclui.asp">
 <input type="Hidden" name="ag_numero" value="<%=agnumero%>">
 <input type="Hidden" name="os_id" value="">
@@ -64,7 +65,7 @@ if agnumero <> "" then
 		<script language="JavaScript">
 			function excluirAS(agnumero) {
 				var ok = false;
-				var msg = "Confirma a exclus„o do agendamento " + agnumero + " ?";
+				var msg = "Confirma a exclus√£o do agendamento " + agnumero + " ?";
 				if(confirm(msg)) {
 					document.forms[0].action = "form_agenda_excluiA.asp";
 					document.forms[0].os_id.value = "";
@@ -74,7 +75,7 @@ if agnumero <> "" then
 			}
 		</script>
 
-<%		'-- pego as OS¥s
+<%		'-- pego as OS¬¥s
 		call Env.RecordSet(false, objRS, null)
 		s = _
 			"SELECT os.OS_ID, t.T_TITULO " & _
@@ -87,7 +88,7 @@ if agnumero <> "" then
 	<td>
 		<table width="100%" cellpadding="2" cellspacing="0" class="tabela1" border="1">
 		<tr><td class="realce1" colspan="3">Dados da Ordem de Servi&ccedil;o</td></tr>
-		<tr style="font-weight: bold;"><td width="70px">N∫ OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
+		<tr style="font-weight: bold;"><td width="70px">N¬∫ OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
 <%			while not objRS.Eof%>
 		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="Button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
 <%				objRS.MoveNext
@@ -99,7 +100,7 @@ if agnumero <> "" then
 		<script language="JavaScript">
 			function excluirOS(agnumero, os) {
 				var ok = false;
-				var msg = (os < 0) ? "Confirma a exclus„o de todas as OS¥s do agendamento " + agnumero + " ?" : "Confirma a exclus„o da OS n˙mero " + os + " do agendamento " + agnumero + " ?";
+				var msg = (os < 0) ? "Confirma a exclus√£o de todas as OS¬¥s do agendamento " + agnumero + " ?" : "Confirma a exclus√£o da OS n√∫mero " + os + " do agendamento " + agnumero + " ?";
 				if(confirm(msg)) {
 					document.forms[0].action = "form_agenda_excluiA.asp";
 					document.forms[0].exclui = "OS";
@@ -154,7 +155,7 @@ Set objSiteRS = Env.oConn.Execute(sSQL)
 <td  bgcolor="#000030">
 <font face="arial" class="Fonttit1Cad"  color="#FFFFFF"><B>
 <center>
-Escolha o Agendamento a ser excluÌdo</B></Font>
+Escolha o Agendamento a ser exclu√≠do</B></Font>
 <br></center>
 </td></tr>
 </table>
@@ -180,14 +181,14 @@ SOLICITANTE
 <td  bgcolor="#666666" align="center" width="15%">
 <font face="verdana" class="FontMenu1" color="#FFFFFF">
 <B>
-RESPONS¡VEL</B>
+RESPONS√ÅVEL</B>
 </font>
 </td>
 
 <td  bgcolor="#666666" align="center" width="22%">
 <font face="verdana" class="FontMenu1" color="#FFFFFF">
 <B>
-INÕCIO - T…RMINO
+IN√çCIO - T√âRMINO
 </font>
 </td>
 </tr>
@@ -225,7 +226,7 @@ Do while Not(objSiteRS.EOF)
 <div align="justify">
 <font face="verdana" color="#000050" Style="font-size=12pt">
 <br>
-N„o existem atividades agendadas no momento.
+N√£o existem atividades agendadas no momento.
 <br>
 </font>
 </div>
@@ -248,7 +249,7 @@ N„o existem atividades agendadas no momento.
 <td  bgcolor="#000030">
 <font face="arial" class="Fonttit1Cad" color="#FFFFFF"><B>
 <center>
-⁄ltimas Atividades Realizadas</B></Font>
+√öltimas Atividades Realizadas</B></Font>
 <br></center>
 </td></tr>
 </table>
@@ -276,14 +277,14 @@ SOLICITANTE
 <td  bgcolor="#666666" align="center" width="15%">
 <font face="verdana" color="#FFFFFF" class="FontMenu1">
 <B>
-RESPONS¡VEL</B>
+RESPONS√ÅVEL</B>
 </font>
 </td>
 
 <td  bgcolor="#666666" align="center" width="22%">
 <font face="verdana"  color="#FFFFFF" class="FontMenu1">
 <B>
-INÕCIO - T…RMINO
+IN√çCIO - T√âRMINO
 </font>
 </td>
 </tr>
@@ -322,7 +323,7 @@ INÕCIO - T…RMINO
 <div align="justify">
 <font face="verdana" color="#000050" Style="font-size=12pt">
 <br>
-N„o existem atividades realizadas no momento.
+N√£o existem atividades realizadas no momento.
 <br>
 </font>
 </div>

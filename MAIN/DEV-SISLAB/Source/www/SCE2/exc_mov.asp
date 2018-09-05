@@ -1,4 +1,4 @@
-<!--#include file="../includes/conexao.inc"-->
+﻿<!--#include file="../includes/conexao.inc"-->
 <!--#include file="includes/bib_str.asp"-->
 <!--#include file="includes/bib_bd.asp"-->
 <!--#include file="includes/abre.asp"-->

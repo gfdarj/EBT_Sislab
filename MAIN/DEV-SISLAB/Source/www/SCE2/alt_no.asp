@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > Editar Natureza de OperaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > Editar Natureza de Opera√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -44,7 +44,7 @@ set rec = Env.oconn.execute(ssql)
 <form method=post action="alt_no2.asp" name="formulario">
 <input type="hidden" name="no_id" value="<%=request("no_id")%>">
 <table width="790px">
-  	<tr><td class="destaque">Editar / Excluir Natureza de OperaÁ„o:</td></tr>
+  	<tr><td class="destaque">Editar / Excluir Natureza de Opera√ß√£o:</td></tr>
 	<tr class="texto1"><td>&nbsp;</td></tr>
 	<tr> 
     	<td>
@@ -53,13 +53,13 @@ set rec = Env.oconn.execute(ssql)
 		      <td bgcolor="#FFFFFF" class="texto1" valign="top">Tipo<br>
 					<select name="no_tipo" class="texto1" style="width:170px" multiple>
 					 <option value="<%=MOV_ENTRADA%>" <%if rec("NO_TIPO") = MOV_ENTRADA then response.write " selected"%>>Entrada </option>
-					 <option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>LogÌstica Entrada</option>
-					 <option value="<%=MOV_LOGISTICA_SAIDA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_SAIDA then response.write " selected"%>>LogÌstica SaÌda</option>
-					 <option value="<%=MOV_EXPEDICAO%>" <%if rec("NO_TIPO") = MOV_EXPEDICAO then response.write " selected"%>>ExpediÁ„o</option>
-					 <option value="<%=MOV_EXPEDICAO_SUBST%>" <%if rec("NO_TIPO") = MOV_EXPEDICAO_SUBST then response.write " selected"%>>SubstituiÁ„o</option>
+					 <option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>Log√≠stica Entrada</option>
+					 <option value="<%=MOV_LOGISTICA_SAIDA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_SAIDA then response.write " selected"%>>Log√≠stica Sa√≠da</option>
+					 <option value="<%=MOV_EXPEDICAO%>" <%if rec("NO_TIPO") = MOV_EXPEDICAO then response.write " selected"%>>Expedi√ß√£o</option>
+					 <option value="<%=MOV_EXPEDICAO_SUBST%>" <%if rec("NO_TIPO") = MOV_EXPEDICAO_SUBST then response.write " selected"%>>Substitui√ß√£o</option>
 					</select>
 		      </td>
-		      <td bgcolor="#FFFFFF" class="texto1" valign="top">DescriÁ„o da Natureza de OperaÁ„o<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50" value="<%=rec("no_descricao")%>"></td>
+		      <td bgcolor="#FFFFFF" class="texto1" valign="top">Descri√ß√£o da Natureza de Opera√ß√£o<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50" value="<%=rec("no_descricao")%>"></td>
 		    </tr>
 			</table>
 	  </td>

@@ -1,7 +1,7 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+Ôªø<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%
 '	On Error Resume Next
-'Chama funÁ„o em config.inc que faz a conex„o com o Banco de dados
+'Chama fun√ß√£o em config.inc que faz a conex√£o com o Banco de dados
 
 Conecta True
 
@@ -14,13 +14,16 @@ Dim auxDescricao,auxobservacao,auxprovidencias, AuxAgNumero
 
 Auxselecao=Request.form("selecao")
 %>
+<!DOCTYPE html>
 
 <html>
 <head>
-<title>Site do Centro de ReferÍncia TecnolÛgica</title>
-<meta http-equiv="Pragma" content="no-cache">
+    <title>Site do Centro de Refer√™ncia Tecnol√≥gica</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
-<link rel="stylesheet" href="estilos/style.css">
+
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
 
 <% 
@@ -169,7 +172,7 @@ Dados da Mensagem - N<sup>o</sup> MSG: <%=auxselecao%> </B></Font>
 <td  bgcolor="#666666" align="center" colspan="6">
 <font face="verdana" class="FontMenu1" color="#FFFFFF" >
 <B>
-TÕTULO DA MENSAGEM
+T√çTULO DA MENSAGEM
 </B>
 </font>
 </td>
@@ -200,7 +203,7 @@ DATA DA MENSAGEM
 <td  bgcolor="#666666" align="left" colspan="10">
 <font face="verdana" class="FontMenu1" color="#FFFFFF" >
 <B>
-&nbsp;&nbsp;N⁄MERO DO AGENDAMENTO
+&nbsp;&nbsp;N√öMERO DO AGENDAMENTO
 </B>
 </font>
 </td>
@@ -239,7 +242,7 @@ DATA DA MENSAGEM
 <td  bgcolor="#666666" align="left" colspan="6">
 <font face="verdana" class="FontMenu1" color="#FFFFFF" >
 <B>
-&nbsp;&nbsp;RESPONS¡VEL PELO CADASTRO (USERNAME - MATRÕCULA)
+&nbsp;&nbsp;RESPONS√ÅVEL PELO CADASTRO (USERNAME - MATR√çCULA)
 </B>
 </font>
 </td>
@@ -255,7 +258,7 @@ RAMAL
 <td  bgcolor="#666666" align="center" colspan="2">
 <font face="verdana" class="FontMenu1" color="#FFFFFF">
 <B>
-”RG√O
+√ìRG√ÉO
 </B>
 </font>
 </td>

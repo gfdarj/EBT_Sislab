@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controleshtml.asp" -->
@@ -71,7 +71,7 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
 				<th style="font-size: xx-small;" align="left">Nome</th>
 				<th style="font-size: xx-small;">Situa&ccedil;&atilde;o</th>
 				<th style="font-size: xx-small;">Vers&atilde;o</th>
-				<th style="font-size: xx-small;">AÁ„o</th>
+				<th style="font-size: xx-small;">A√ß√£o</th>
 			</tr>
 <%
 	sSQL = "Select *, arq_nomearq collate SQL_Latin1_General_CP1_CI_AS as arq_nomearq1 From vw_ArqRes "
@@ -104,14 +104,14 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
             objSiteRS.movenext
 		loop
 	else %>
-			<tr><td colspan="5" align="center"><b><i>N„o existem arquivos cadastrados no Momento</i></b></td></tr>
+			<tr><td colspan="5" align="center"><b><i>N√£o existem arquivos cadastrados no Momento</i></b></td></tr>
 <%	end if%>
 		</table>
 		<!--</div>-->
 <%
 ElseIf RQ("Pesquisou") = "S" Then
 %>
-		<p align="center"><b><i>Informe um par‚metro para a pesquisa</i></b></p>
+		<p align="center"><b><i>Informe um par√¢metro para a pesquisa</i></b></p>
 <%
 End If
 %>

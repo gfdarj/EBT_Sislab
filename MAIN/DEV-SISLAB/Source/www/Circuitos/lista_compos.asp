@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+ï»¿<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>

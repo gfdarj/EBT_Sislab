@@ -1,4 +1,4 @@
-<!-- #include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
+ï»¿<!-- #include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
 <!--#include file="includes/padraoHTML.asp"-->
 <!-- #INCLUDE FILE="includes/estado.asp" -->
 <!-- #INCLUDE FILE="includes/abre.asp" -->
@@ -23,7 +23,7 @@ set rec = conn.execute(ssql)%>
 					<input type="text" class="form" name="enf_nome" style="width:600px" maxlength="100" value="<%=rec("enf_nome")%>"></td>
     		</tr>
     		<tr> 
-      			<td  class="texto">Endereço<br>
+      			<td  class="texto">EndereÃ§o<br>
 					<input type="text" class="form" name="enf_endereco" style="width:600px" maxlength="150" value="<%=rec("enf_endereco")%>"></td>
     		</tr>
     		<tr>
@@ -168,7 +168,7 @@ function FormataCpf(campo,tammax,teclapres) {
 			</TR>
 			<tr> 
       			<td class="texto"> 
-					<br>Observação<br>
+					<br>ObservaÃ§Ã£o<br>
 					<textarea class="form" name="enf_observacao" rows="2" style="width:600px"><%=rec("enf_observacao")%></textarea></td>
     		</tr>
 			<script>

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp"-->
 <!--#include file="includes/global.asp"-->
 <!--#include file="includes/emailHTML.asp"-->
@@ -24,7 +24,7 @@ Call Arquivo.Upload()
 
 int_Conta = Arquivo.TotalArquivos
 
-'-- Excluir um arquivo anexo da ação
+'-- Excluir um arquivo anexo da aÃ§Ã£o
 If Arquivo.Campo("id_ArquivoExclusao") <> "" Then
 
 '	rw "AQUI 1"
@@ -54,7 +54,7 @@ Else
 		EhnovaAcao = true
 	end if
 
-	'-- Apaga uma ação tomada
+	'-- Apaga uma aÃ§Ã£o tomada
 	if Arquivo.Campo("remover") = "1" then
 
 	'rw "AQUI 2"
@@ -146,7 +146,7 @@ Else
 		'-- Usuario selecionou para responder por email ao Responsavel pela acao
 		If Arquivo.Campo("resposta") = "S" Then
 
-			assunto = "Gerenciamento do LogBook - Elaboração de Ações Tomadas"
+			assunto = "Gerenciamento do LogBook - ElaboraÃ§Ã£o de AÃ§Ãµes Tomadas"
 
 			If EhnovaAcao Then msg = "criada." Else msg = "alterada."
 
@@ -159,19 +159,19 @@ Else
 			End If
 
 			msg = _
-				"Uma ação do logbook tipo " & msg & "<br><br>" & _
-				"Nº da Ocorrência : " & Arquivo.Campo("ocorrencia") &  "<br>" & _
-				"Prazo de conclusão: " & conclusao & "<br>" & _
-				"Responsável pela Ação: " & responsavel &  "<br>" & _
+				"Uma aÃ§Ã£o do logbook tipo " & msg & "<br><br>" & _
+				"NÂº da OcorrÃªncia : " & Arquivo.Campo("ocorrencia") &  "<br>" & _
+				"Prazo de conclusÃ£o: " & conclusao & "<br>" & _
+				"ResponsÃ¡vel pela AÃ§Ã£o: " & responsavel &  "<br>" & _
 				"Executor: " & executante & "<br>" & _
-				"Descrição da ação: " & descricao &  "<br>"
+				"DescriÃ§Ã£o da aÃ§Ã£o: " & descricao &  "<br>"
 
 'response.write "AQUI: " & msg
 'response.end
 
 			'###
 			'### houve uma reclamacao de que o email nao estava sendo enviado, entao comentei
-			'### a linha que verifica o usuário
+			'### a linha que verifica o usuÃ¡rio
 			'###									Gilberto (06/09/2010)
 			If Env.Ebt.ExisteUsuario(responsavel) then
 'response.Write responsavel & "<BR>" & assunto & "<BR>" & msgv & "<BR>"
@@ -188,14 +188,14 @@ Else
 End If
 
 
-call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfação - CRT", linkVoltar, "")
+call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de SatisfaÃ§Ã£o - CRT", linkVoltar, "")
 
 If idacao <= 0 Then
-	Response.Write "<br><p class='texto1' style='font-size: 12px;'>&nbsp;&nbsp;<b>Ocorreu um erro na execução desta ação</b></p>" & VbCrLf
+	Response.Write "<br><p class='texto1' style='font-size: 12px;'>&nbsp;&nbsp;<b>Ocorreu um erro na execuÃ§Ã£o desta aÃ§Ã£o</b></p>" & VbCrLf
 else
 	Response.Write "<scr" & "ipt lang" & "uage='JavaSc" & "ript'>" & VbCrLf
 
-	'-- Excluiu um arquivo anexo à ação
+	'-- Excluiu um arquivo anexo Ã  aÃ§Ã£o
 	If Arquivo.Campo("id_ArquivoExclusao") <> "" Then
 		Response.Write "opener.location.href = 'cad_evLogBookAcoes.asp?ocorrencia=" & Arquivo.Campo("ocorrencia") & "';" & VbCrLf
 		Response.Write "location.href = 'cad_acLogBook.asp?idacao=" & Arquivo.Campo("idacao") & "&ocorrencia=" & Arquivo.Campo("ocorrencia") & "';" & VbCrLf

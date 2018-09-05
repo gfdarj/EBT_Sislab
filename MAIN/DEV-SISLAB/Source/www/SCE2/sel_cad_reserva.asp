@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -10,7 +10,7 @@
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <%
 if UCase(request("abrir_como")) = "REL" then _
-	Tela.SetNomeTela = "SCE > RelatÛrio > Reserva de Equipamento" _
+	Tela.SetNomeTela = "SCE > Relat√≥rio > Reserva de Equipamento" _
 else _
 	Tela.SetNomeTela = "SCE > Consulta > Reserva de Equipamento"
 
@@ -34,10 +34,10 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td colspan="2">
 <%		if request("msg") <> "" then
-			if request("msg") = 1 then response.write " Reserva incluÌda com sucesso!"
-			if request("msg") = 2 then response.write " Õtem alterada com sucesso!"
-			if request("msg") = 3 then response.write " Reserva excluÌda com sucesso!"
-			if request("msg") = 4 then response.write " … necess·rio selecionar algum campo de busca!"
+			if request("msg") = 1 then response.write " Reserva inclu√≠da com sucesso!"
+			if request("msg") = 2 then response.write " √çtem alterada com sucesso!"
+			if request("msg") = 3 then response.write " Reserva exclu√≠da com sucesso!"
+			if request("msg") = 4 then response.write " √â necess√°rio selecionar algum campo de busca!"
 			response.write "<BR><BR>"
 		end if%>
 	</td>
@@ -53,7 +53,7 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2">Respons·vel TÈcnico:&nbsp;
+	<td colspan="2">Respons√°vel T√©cnico:&nbsp;
 		<%RW Combo.PadraoSql("ag_responsavel", "select upper(USERID) as VALOR, CAST(NOME as VARCHAR(40)) as DESCRICAO from USERCRT where EXIBIR = 1 order by Nome", responsavel, "N")%>
 	</td>
 </tr>
@@ -72,7 +72,7 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td>CÛdigo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25" maxlength="20"></td>
+	<td>C√≥digo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25" maxlength="20"></td>
 	<td class="texto1">Fabricantes:&nbsp;
 	<%RW Combo.PadraoSql( "fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 	</td>
@@ -103,13 +103,13 @@ If Env.UsuarioSCE() Then
 
 <tr>
 	<td>
-		N˙mero de SÈrie:&nbsp;
+		N√∫mero de S√©rie:&nbsp;
 		<input type="text" class="texto1" name="numeroserie" maxlength="50">
 	</td>
 	<td align="center">
 		<%RW Combo.PropriedadeEquipamento("propriedade", True)%>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name="buscar" value="prÛximo &gt;&gt;" class="texto1">
+		<input type="submit" name="buscar" value="pr√≥ximo &gt;&gt;" class="texto1">
 	</td>
 </tr>
 </table>

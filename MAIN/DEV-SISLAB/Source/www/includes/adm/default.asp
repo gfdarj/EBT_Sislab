@@ -1,4 +1,4 @@
-<%
+Ôªø<%
 Dim senha 'guardam os valores provenientes da tentativa de login
 Dim strMsg 'variavel com a mensagem de erro gerada pela SP
 Dim objConn, tmp
@@ -23,7 +23,7 @@ If(senha <> "")Then
 '		Response.Redirect "admin_bd_remoto.asp"
 '	End If
 	If(senha <> "dbdadmin2000")Then
-		strMsg = "Senha inv·lida"
+		strMsg = "Senha inv√°lida"
 	Else
 		Response.Cookies("ADMPass").Expires = DateAdd("n", 20, Now())
 		Response.Cookies("ADMPass") = "ok"
@@ -33,7 +33,7 @@ End If%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-	<title>Login - AdministraÁ„o Remota de Banco de Dados SQL Server</title>
+	<title>Login - Administra√ß√£o Remota de Banco de Dados SQL Server</title>
 	<link rel="stylesheet" href="../../css/cirap_adm.css">
 </head>
 
@@ -49,7 +49,7 @@ End If%>
 		<td align="center" colspan="2" nowrap><p class="erro"><font size="2"><%=strMsg%></font></p></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2" nowrap><button type="Button" onclick="validaCampos()">Entrar no Sistema de AdministraÁ„o</button></td>
+		<td align="center" colspan="2" nowrap><button type="Button" onclick="validaCampos()">Entrar no Sistema de Administra√ß√£o</button></td>
 	</tr>
 </table>
 </form>
@@ -57,7 +57,7 @@ End If%>
 function validaCampos(){
 	var formulario = document.LOGIN;
 	if(formulario.senha.value == ""){
-		alert("O campo com o senha do usu·rio n„o pode ser deixado em branco!\nPor favor, preencha-o e tente novamente");
+		alert("O campo com o senha do usu√°rio n√£o pode ser deixado em branco!\nPor favor, preencha-o e tente novamente");
 		formulario.senha.focus();
 	}
 	else

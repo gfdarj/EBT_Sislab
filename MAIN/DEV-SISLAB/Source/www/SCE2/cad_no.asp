@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > Natureza de OperaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > Natureza de Opera√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -37,7 +37,7 @@ function ValidaCampos()
 <table width="100%">
 	<tr>
 		<td class="texto1">
-		<%if request("msg") <> "" then response.write "<strong>Natureza de OperaÁ„o cadastrada com sucesso!</strong><br><br>"%></td>
+		<%if request("msg") <> "" then response.write "<strong>Natureza de Opera√ß√£o cadastrada com sucesso!</strong><br><br>"%></td>
 	</tr>
 	<tr> 
     	<td>
@@ -46,13 +46,13 @@ function ValidaCampos()
 			      <td class="texto1">Tipo<br>
 						<select name="no_tipo" class="texto1" style="width:170px" multiple>
 							<option value="<%=MOV_ENTRADA%>">Entrada</option>
-							<option value="<%=MOV_LOGISTICA_ENTRADA%>">LogÌstica Entrada</option>
-							<option value="<%=MOV_LOGISTICA_SAIDA%>">LogÌstica SaÌda</option>
-							<option value="<%=MOV_EXPEDICAO%>">ExpediÁ„o</option>
-							<option value="<%=MOV_EXPEDICAO_SUBST%>">SubstituiÁ„o</option>
+							<option value="<%=MOV_LOGISTICA_ENTRADA%>">Log√≠stica Entrada</option>
+							<option value="<%=MOV_LOGISTICA_SAIDA%>">Log√≠stica Sa√≠da</option>
+							<option value="<%=MOV_EXPEDICAO%>">Expedi√ß√£o</option>
+							<option value="<%=MOV_EXPEDICAO_SUBST%>">Substitui√ß√£o</option>
 						</select>
 			      </td>
-			      <td class="texto1">DescriÁ„o da Natureza de OperaÁ„o<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50"></td>
+			      <td class="texto1">Descri√ß√£o da Natureza de Opera√ß√£o<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50"></td>
 			    </tr>
 			</table>
 	  </td>

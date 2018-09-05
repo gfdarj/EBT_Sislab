@@ -1,4 +1,4 @@
-<%
+﻿<%
 '** Retorna uma string data. Formatada para o formado dd/mm/aaaa
 Function Data(d)
 	dim dd, mm, aa

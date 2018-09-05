@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+Ôªø<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <% 
   Dim tp_id
@@ -30,9 +30,9 @@
   frm.target = "inferior";
   parent.frames[0].gravacookie("flag_2=1");
 	frm.submit();
-	alert("A alocaÁ„o foi removida com sucesso!");
+	alert("A aloca√ß√£o foi removida com sucesso!");
 <%else%>
-	alert("Houve um erro imprevisÌvel no Banco de Dados.\nA alocaÁ„o n„o pode ser removida.<%=erroBD%>");
+	alert("Houve um erro imprevis√≠vel no Banco de Dados.\nA aloca√ß√£o n√£o pode ser removida.<%=erroBD%>");
 <%end if%>
 </script>
 </head>

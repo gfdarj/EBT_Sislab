@@ -1,4 +1,4 @@
-<!--#include file="includes/padraoHTML.asp"-->
+﻿<!--#include file="includes/padraoHTML.asp"-->
 <!--#include file="includes/bib_mensagem.asp"-->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -57,7 +57,7 @@ else%>
 			<tr class="texto1" bgcolor="#C0E0EF">
 				<th>Modelo</th>
 				<th>Fabricante</th>
-				<th>Descrição</th>
+				<th>DescriÃ§Ã£o</th>
 				<th>Part Number</th>
 			</tr>
 <%			while not rec.eof%>

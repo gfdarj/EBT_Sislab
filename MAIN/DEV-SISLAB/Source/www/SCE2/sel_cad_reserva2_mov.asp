@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -10,11 +10,11 @@
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <%
 '-- RECEBE OS EQUIPAMENTOS ESCOLHIDOS (ACEITO/NAO ACEITO) DA LISTA DE RESERVAS E MOSTRA
-'-- AO USUARIO A LISTA DOS MESMOS. PODENDO O USU¡RIO MOVIMENTAR OU ENTAO VOLTAR ¿ TELA DE CONSULTA
+'-- AO USUARIO A LISTA DOS MESMOS. PODENDO O USU√ÅRIO MOVIMENTAR OU ENTAO VOLTAR √Ä TELA DE CONSULTA
 
 Dim lista_itens, item
 
-Tela.SetNomeTela = "SCE > Consulta > MovimentaÁ„o de Itens Reservados - AS: " & request("ag_numero") : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Consulta > Movimenta√ß√£o de Itens Reservados - AS: " & request("ag_numero") : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -34,19 +34,19 @@ If Env.UsuarioSCE() Then
 <input type="hidden" name="ehReserva" value="SIM">
 
 <table width="100%" class="texto1">
-<tr><th class="destaque">Lista de itens selecionados para movimentaÁ„o pela Reserva/AG <%=request("ag_numero")%></th></tr>
+<tr><th class="destaque">Lista de itens selecionados para movimenta√ß√£o pela Reserva/AG <%=request("ag_numero")%></th></tr>
 <tr><td>&nbsp;</td></tr>
-<tr id="tr_data_movimento"><td>Data da MovimentaÁ„o:&nbsp;<%RW Combo.Data("Mov")%></td></tr>
+<tr id="tr_data_movimento"><td>Data da Movimenta√ß√£o:&nbsp;<%RW Combo.Data("Mov")%></td></tr>
 <tr id="tr_data_movimento_branco"><td>&nbsp;</td></tr>
 <tr>
 	<td>
 		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="texto1">
 		<tr>
-			<th width="120px">CÛd Barras</th>
+			<th width="120px">C√≥d Barras</th>
 			<th>Modelo</th>
-			<th>DescriÁ„o</th>
+			<th>Descri√ß√£o</th>
 			<th>Fabricante</th>
-			<th width="100px">LocalizaÁ„o</th>
+			<th width="100px">Localiza√ß√£o</th>
 			<th>Ambiente</th>
 		</tr>
 <%

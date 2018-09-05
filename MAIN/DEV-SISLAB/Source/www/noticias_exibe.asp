@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controleshtml.asp" -->
@@ -40,9 +40,9 @@ If Not VVVNZ(id_Noticia) Then
 				"</table>" & VbCrLf & _
 				"<br><br>" & VbCrLf		
 	Else
-		chr_Noticia = "Nenhuma notÌcia encontrada."
+		chr_Noticia = "Nenhuma not√≠cia encontrada."
 
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "NotÌcias CRT", "window.close();", "")
+		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Not√≠cias CRT", "window.close();", "")
 
 		chr_Buf = VbCrLf & _
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _
@@ -59,10 +59,10 @@ If Not VVVNZ(id_Noticia) Then
 	Call Env.RecordSet(False, RS, Null)
 
 Else
-	chr_Noticia = "CÛdigo da NotÌcia inv·lido."
+	chr_Noticia = "C√≥digo da Not√≠cia inv√°lido."
 	chr_Link = ""
 
-	Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "NotÌcias CRT", "window.close();", "")
+	Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Not√≠cias CRT", "window.close();", "")
 
 		chr_Buf = VbCrLf & _
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _

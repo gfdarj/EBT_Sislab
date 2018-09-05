@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <%
@@ -7,7 +7,7 @@ dim auxidagenda, auxdescricao, auxtitulo, auxdatainicio, auxdatafim
 dim auxhorario, auxcontato,auxaltera, auxlocalizacao
 dim auxmesant,auxanoant,auxmesatual,auxanoatual, auxAS, auxResponsavel
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "OcupaÁ„o de Ambientes do CRT", "location.href='sel_cad_agenda.asp'", "../")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Ocupa√ß√£o de Ambientes do CRT", "location.href='sel_cad_agenda.asp'", "../")
 
 if (IsEmpty(request.form("sel"))) Then
 	auxselecao = 0
@@ -18,7 +18,7 @@ End if
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de OcupaÁ„o dos Ambientes (Atual e Futura)</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupa√ß√£o dos Ambientes (Atual e Futura)</span>
 	</td>
 </tr>
 <tr>
@@ -94,14 +94,14 @@ If Not objRS.EOF Then
 						<b>AS:</b> <%=auxas%><br>
 <%			end if%>
 <%			if Not(Isnull(auxresponsavel) Or auxresponsavel="") then%>
-						<b>Respons·vel:</b> <%=auxresponsavel%>
+						<b>Respons√°vel:</b> <%=auxresponsavel%>
 <%			end if%>
 					</td>
 				</tr>
 				</table>
 				<br>
 <%		else%>
-				&nbsp;Ambiente DisponÌvel (sem previs„o de utilizaÁ„o)	 
+				&nbsp;Ambiente Dispon√≠vel (sem previs√£o de utiliza√ß√£o)	 
 <%		end if
 
 		auxmesant=auxmesatual

@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Alteração das mensagens de e-mails automáticas", "location.href='sislab.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AlteraÃ§Ã£o das mensagens de e-mails automÃ¡ticas", "location.href='sislab.asp'", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
@@ -26,7 +26,7 @@ EH_CRT = Env.UsuarioCRT
 		<td width=14%></td>
 	</tr>
 	<tr><td colspan=3 align=left valign=top>
-			<B>&nbsp;Situação : </B>&nbsp;
+			<B>&nbsp;SituaÃ§Ã£o : </B>&nbsp;
 		<select name="s_descricao"  class="combo" onchange="mudamsg()">
 		<option value="">--</option>
 			<%call comboBD(Env.oConn,"Select distinct S_DESCRICAO as valor,S_DESCRICAO as descricao from situacoes WHERE S_OS = 0 order by S_DESCRICAO asc;")%>

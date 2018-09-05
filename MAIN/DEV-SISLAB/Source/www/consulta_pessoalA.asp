@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
@@ -13,8 +13,8 @@ if exibeTodos <> "1" then exibeTodos = "0"
 if username = "" or username = null then username="-1"
 
 link = "location.href='consulta_pessoal.asp?tp_datainicial=" & tp_datainicial & "&tp_datafinal=" & tp_datafinal & "&username=" & username & "&exibeTodos=" & exibeTodos & "'"
-titulo = "Quadro de AlocaÁ„o de Pessoal - PerÌodo de " & tp_datainicial & " atÈ " & tp_datafinal
-if username <> "-1" then titulo = titulo & " - Usu·rio " & username
+titulo = "Quadro de Aloca√ß√£o de Pessoal - Per√≠odo de " & tp_datainicial & " at√© " & tp_datafinal
+if username <> "-1" then titulo = titulo & " - Usu√°rio " & username
 
 call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", titulo, link, "")
 
@@ -44,10 +44,10 @@ if tp_datainicial <> "" then%>
 			<b><%=ucase(objRS("PES_USERNAME"))%><br><i><%=objRS("NOME")%></i></b>
 		</td>
 		<td width="100">
-			<b>&nbsp;InÌcio</b>
+			<b>&nbsp;In√≠cio</b>
 		</td>
 		<td width="100">
-			<b>&nbsp;TÈrmino</b>
+			<b>&nbsp;T√©rmino</b>
 		</td>
 		<td width="80">
 			<font class="fonte2"><b>&nbsp;Situa&ccedil;&atilde;o</b></font>
@@ -79,7 +79,7 @@ if tp_datainicial <> "" then%>
 	else%>
 	<tr>
 		<td colspan="4" align="center">
-			<i><b>Nenhum resultado foi encontrado neste perÌodo.</b></i>
+			<i><b>Nenhum resultado foi encontrado neste per√≠odo.</b></i>
 		</td>
 	</tr>
 <%	end if

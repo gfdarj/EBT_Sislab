@@ -1,11 +1,11 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
+Call ImprimeCabecalho2("AlteraÃ§Ã£o de Arquivo", MENU_OFF, false, "100%", "AlteraÃ§Ã£o de Arquivo", "NENHUM", "")
 %>
 	<form method="post" action="muda_arq_salva.asp" name="formulario" enctype="multipart/form-data">
-	<input type="Hidden" name="proc" value="É hora de processar!">
+	<input type="Hidden" name="proc" value="Ã‰ hora de processar!">
 	<input type="Hidden" name="codarq" value="<%=request("codarq")%>">
 	<input type="Hidden" name="arq_ant" value="<%=request("ant")%>">
 	<input type="Hidden" name="ag_numero" value="<%=request("ag_numero")%>">
@@ -17,7 +17,7 @@ Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteraç
 		if( f.arq.value == '' )
 			alert( 'Por favor, escolha um arquivo' );
 		else if (!validaNomeArquivo(extractFileName(f.arq.value)))
-			alert('O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.');
+			alert('O nome do arquivo estÃ¡ invÃ¡lido. Retire acentuaÃ§Ã£o e espaÃ§os antes de prosseguir.');
 		else {
 			f.submit();
 		}

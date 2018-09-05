@@ -1,11 +1,11 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > MovimentaÁ„o > RecepÁ„o de Carga" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Recep√ß√£o de Carga" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -76,7 +76,7 @@ function validaRecepcao() {
 		d.ag_numero_destino.focus();
 	}
 	else if(d.eq_destino.length==0) {
-		alert("N„o existe nenhum equipamento para ser recebido");
+		alert("N√£o existe nenhum equipamento para ser recebido");
 		d.ag_numero_destino.focus();
 	}
 	else {

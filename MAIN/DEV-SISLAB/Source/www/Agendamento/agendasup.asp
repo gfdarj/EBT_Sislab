@@ -1,4 +1,4 @@
-<!--#include file="includes/cabecalho.inc"-->
+Ôªø<!--#include file="includes/cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <!--#include file="includes/montatela.inc"-->
 <%
@@ -16,7 +16,7 @@
   else
     data = date()
   end if
-  semana = array("","Dom","Seg","Ter","Qua","Qui","Sex","S·b")
+  semana = array("","Dom","Seg","Ter","Qua","Qui","Sex","S√°b")
   nrodia = weekday(data)
 %>
 
@@ -148,7 +148,7 @@ function inicial()
     <font class="fonte2">Nome:</font>
     <font  class="fonte2">
     <SELECT NAME="nome" size="1" class="select5" ONCHANGE="mudouNome();">
-	  <OPTION VALUE="-1">- Escolha o Respons·vel -</OPTION>
+	  <OPTION VALUE="-1">- Escolha o Respons√°vel -</OPTION>
 <%	Dim objConn, objRS
 		Call Connection(True, objConn)
 		Call RecordSet(True, objRS, "select USERID, NOME from userCRT order by userid", objConn)
@@ -165,12 +165,12 @@ function inicial()
 		</font>
   </td>
 	<td align="center">
-	  <INPUT TYPE="button" VALUE=" < MÍs " ONCLICK="mudaData('m-1')" class="botao1">
+	  <INPUT TYPE="button" VALUE=" < M√™s " ONCLICK="mudaData('m-1')" class="botao1">
 	  <INPUT TYPE="button" VALUE=" < Sem " ONCLICK="mudaData('d-7')" class="botao1">
 	  <INPUT TYPE="button" VALUE=" < Dia " ONCLICK="mudaData('d-1')" class="botao1">
 	  <INPUT TYPE="button" VALUE=" Dia > " ONCLICK="mudaData('d+1')" class="botao1">
 	  <INPUT TYPE="button" VALUE=" Sem > " ONCLICK="mudaData('d+7')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" MÍs > " ONCLICK="mudaData('m+1')" class="botao1">
+	  <INPUT TYPE="button" VALUE=" M√™s > " ONCLICK="mudaData('m+1')" class="botao1">
 	</td>
 	<td align="right">
 		<font class="fonte2">Data:</font>

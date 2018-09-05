@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -7,9 +7,9 @@
 Dim areaTec, descricao, rsRET, ssql
 
 '-- ATENCAO: Se ocorre um erro no SQL (constraint por ex.), o RECORDSET 
-'-- nao é preenchido, ficando assim como NOTHING. Para isso verifico na conexao
+'-- nao Ã© preenchido, ficando assim como NOTHING. Para isso verifico na conexao
 '-- o acontecimento de algum erro. Caso positivo, chamo uma rotina para processar
-'-- e pegar o erro através de um RAISERROR (T-SQL)
+'-- e pegar o erro atravÃ©s de um RAISERROR (T-SQL)
 
 if request("excluir") = "1" then
 	areatec = request("areatec")

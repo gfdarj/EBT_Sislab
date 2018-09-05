@@ -1,20 +1,23 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+ï»¿<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%
 '	On Error Resume Next
-'Chama função em config.inc que faz a conexão com o Banco de dados
+'Chama funÃ§Ã£o em config.inc que faz a conexÃ£o com o Banco de dados
 
 '	Conecta True
 
-' Inicializo variavel de conexão 
+' Inicializo variavel de conexÃ£o 
 
 Dim objSiteRS, cont, sSQL, tot
 %>
 <html>
+
 <head>
-<title>Site do Centro de Referência Tecnológica</title>
-<meta http-equiv="Pragma" content="no-cache">
+    <title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
-<link rel="stylesheet" href="estilos/style.css">
+
 <script language="javascript">
 function chama_as(cod_as)
 {
@@ -75,14 +78,14 @@ function chama_as(cod_as)
 <tr>
 <td>
 <font class="faqask">
-&nbsp;1) Porque a Embratel pensou em ter um laboratório?
+&nbsp;1) Porque a Embratel pensou em ter um laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-No conceito original o LAB destinava-se à qualificação e Certificação de Produtos dentro das Normas Telebrás. <br>
-Na visão atual o CRT tem como função prover ambientes para testes de Produtos e Integração de Sistemas da Planta Ativa.
+No conceito original o LAB destinava-se Ã  qualificaÃ§Ã£o e CertificaÃ§Ã£o de Produtos dentro das Normas TelebrÃ¡s. <br>
+Na visÃ£o atual o CRT tem como funÃ§Ã£o prover ambientes para testes de Produtos e IntegraÃ§Ã£o de Sistemas da Planta Ativa.
  <br><br>
 </div>
 </font>
@@ -92,13 +95,13 @@ Na visão atual o CRT tem como função prover ambientes para testes de Produtos e 
 <tr>
 <td>
 <font class="faqask">
-&nbsp;2) Quem são os clientes do laboratório?
+&nbsp;2) Quem sÃ£o os clientes do laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
 <font class="faqans">
-&nbsp;&nbsp;&nbsp;- Os Clientes Internos do CRT são:<br>
-Área de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, Satélite, Telefonia e Transporte), Diretorias Regionais, Diretoria de Serviços, Operações Centralizadas e Planejamento.
+&nbsp;&nbsp;&nbsp;- Os Clientes Internos do CRT sÃ£o:<br>
+Ãrea de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, SatÃ©lite, Telefonia e Transporte), Diretorias Regionais, Diretoria de ServiÃ§os, OperaÃ§Ãµes Centralizadas e Planejamento.
  <br><br>
 </div>
 </font>
@@ -108,18 +111,18 @@ Na visão atual o CRT tem como função prover ambientes para testes de Produtos e 
 <tr>
 <td>
 <font class="faqask">
-&nbsp;3) O que é feito neste laboratório?
+&nbsp;3) O que Ã© feito neste laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
 <font class="faqans">
-&nbsp;&nbsp;&nbsp;- O CRT está estruturado em 3 Gerências cujas atividades são:<br>
+&nbsp;&nbsp;&nbsp;- O CRT estÃ¡ estruturado em 3 GerÃªncias cujas atividades sÃ£o:<br>
 <u>Projetos Especiais</u><br>	
-Assegurar o cumprimento das metas e cronogramas relativos à Consultorias Técnicas para o Cliente, através do planejamento e gestão dos recursos necessários à elaboração dos respectivos Projetos Especiais, bem como da disponibilização de estrutura para demonstrações de produtos e soluções customizadas.<br>
-<u>Automação de Ensaios</u><br>
-Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta Embratel e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.<br>
-<u>Integração de Sistemas</u><br>
-Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviços prestados, provendo e mantendo estrutura voltada a testes e simulações de desempenho, integração de  produtos e sistemas de telecomunicações.
+Assegurar o cumprimento das metas e cronogramas relativos Ã  Consultorias TÃ©cnicas para o Cliente, atravÃ©s do planejamento e gestÃ£o dos recursos necessÃ¡rios Ã  elaboraÃ§Ã£o dos respectivos Projetos Especiais, bem como da disponibilizaÃ§Ã£o de estrutura para demonstraÃ§Ãµes de produtos e soluÃ§Ãµes customizadas.<br>
+<u>AutomaÃ§Ã£o de Ensaios</u><br>
+Implantar e desenvolver de forma contÃ­nua, estrutura para automaÃ§Ã£o de ensaios e testes,  capacitada a ofertar soluÃ§Ãµes tecnolÃ³gicas para a planta Embratel e de seus Clientes dentro dos padrÃµes de qualidade, aos menores custos possÃ­veis e nos prazos exigidos.<br>
+<u>IntegraÃ§Ã£o de Sistemas</u><br>
+Suportar as Ã¡reas de Engenharia, OperaÃ§Ãµes e Vendas no propÃ³sito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviÃ§os prestados, provendo e mantendo estrutura voltada a testes e simulaÃ§Ãµes de desempenho, integraÃ§Ã£o de  produtos e sistemas de telecomunicaÃ§Ãµes.
  <br><br>
 </div>
 </font>
@@ -135,7 +138,7 @@ Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegurar ju
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-Provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para Embratel e comprometendo-se na garantia da qualidade de serviços oferecidos pela Embratel.
+Provendo meios para o desenvolvimento de novos produtos e ou ServiÃ§os de TelecomunicaÃ§Ãµes para Embratel e comprometendo-se na garantia da qualidade de serviÃ§os oferecidos pela Embratel.
  <br><br>
 </div>
 </font>
@@ -145,7 +148,7 @@ Provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecom
 <tr>
 <td>
 <font class="faqask">
-&nbsp;5)  Quais os equipamentos que existem neste laboratório?
+&nbsp;5)  Quais os equipamentos que existem neste laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
@@ -160,13 +163,13 @@ Provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecom
 <tr>
 <td>
 <font class="faqask">
-&nbsp;6)  Como chegar a este laboratório?
+&nbsp;6)  Como chegar a este laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-Veja neste Site o <a href="loc_area.asp">mapa de acesso</a> ao CRT ou ainda os <a href="transpor.asp">horários do transporte</a> que sai do prédio sede (RJ) para o CRT.<br><br>
+Veja neste Site o <a href="loc_area.asp">mapa de acesso</a> ao CRT ou ainda os <a href="transpor.asp">horÃ¡rios do transporte</a> que sai do prÃ©dio sede (RJ) para o CRT.<br><br>
 </div>
 </font>
 </td>
@@ -175,13 +178,13 @@ Veja neste Site o <a href="loc_area.asp">mapa de acesso</a> ao CRT ou ainda os <
 <tr>
 <td>
 <font class="faqask">
-&nbsp;7)  Como utilizar o laboratório?
+&nbsp;7)  Como utilizar o laboratÃ³rio?
  <br>
 </font>
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-Você deve solicitar um agendamento de testes / serviços do laboratório através de um dos <a href="forms.asp">formulários disponível neste site</a> ou caso seja uma solicitação específica que tenha a necessidade da utilização dos recursos do CRT entre em contato conosco pelo endereço <a href="mailto: ilab@embratel.com.br">ilab@embratel.com.br</a>.<br><br>
+VocÃª deve solicitar um agendamento de testes / serviÃ§os do laboratÃ³rio atravÃ©s de um dos <a href="forms.asp">formulÃ¡rios disponÃ­vel neste site</a> ou caso seja uma solicitaÃ§Ã£o especÃ­fica que tenha a necessidade da utilizaÃ§Ã£o dos recursos do CRT entre em contato conosco pelo endereÃ§o <a href="mailto: ilab@embratel.com.br">ilab@embratel.com.br</a>.<br><br>
 </div>
 </font>
 </td>

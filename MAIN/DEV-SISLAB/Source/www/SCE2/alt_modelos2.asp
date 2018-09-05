@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+Ôªø<!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <% 
 mod_codnome	= trim(ucase(request.form("mod_codnome")))
@@ -38,7 +38,7 @@ if request("au_id") <> "" then
 	end if
 end if
 
-acao = "O usu·rio "& Env.Usuario &" atualizou o modelo "& request("mod_codnome") &" de cÛdigo "& request("mod_id")
+acao = "O usu√°rio "& Env.Usuario &" atualizou o modelo "& request("mod_codnome") &" de c√≥digo "& request("mod_id")
 Call Env.LogSce(acao)
 
 response.redirect "sel_cad_modelo.asp?msg=1"

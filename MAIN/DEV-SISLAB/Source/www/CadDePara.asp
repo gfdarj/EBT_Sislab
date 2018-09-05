@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -8,7 +8,7 @@ Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate" 
 Response.Addheader "Pragma","no-cache" 
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Manutenção de dados: De - Para", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "ManutenÃ§Ã£o de dados: De - Para", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
@@ -96,7 +96,7 @@ function ValidaCampos(){
   <table border="0" width="100%">
   <tr> 
 		<td bordercolor="#cccccc">
-		  <font class="Fonttit3Cad"><b>&nbsp;<font color=#FF0000>*</font>&nbsp; Indica um Campo Obrigatório</td>
+		  <font class="Fonttit3Cad"><b>&nbsp;<font color=#FF0000>*</font>&nbsp; Indica um Campo ObrigatÃ³rio</td>
   </tr>
   </table>
 	<table border="0" width="100%%" cellspacing="0">
@@ -118,7 +118,7 @@ function ValidaCampos(){
 </tr>
 
 	<tr height="34"> 
-    	<td colspan="2"><font class="item"><b>&nbsp;&nbsp;</b>De - Para Disponíveis :
+    	<td colspan="2"><font class="item"><b>&nbsp;&nbsp;</b>De - Para DisponÃ­veis :
 		</td>
 		<td colspan="8">
 		<%call comboDePara("depara", objConn,"N")%>&nbsp;&nbsp;
@@ -126,7 +126,7 @@ function ValidaCampos(){
 		</td>
 	</tr>
 	<tr> 
-		<%CALL ControleComboMultiplo2("DE","Valores a substituir","Disponíveis para substituição",sSQLDEPARA1,"2",TIPOCAMPO)%>
+		<%CALL ControleComboMultiplo2("DE","Valores a substituir","DisponÃ­veis para substituiÃ§Ã£o",sSQLDEPARA1,"2",TIPOCAMPO)%>
 	</TR>
 	<tr>
     	<td colspan="1"><font class="item"><b>&nbsp;&nbsp;</b>Para :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -1,4 +1,4 @@
-<!--#include file="includes/PadraoHTML.asp" -->
+Ôªø<!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="Global.asa"-->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -37,7 +37,7 @@ Dim bln_EmJanela : bln_EmJanela = (Request("janela") = "1")
 	                    <br /><br /><br />
 
 	                    <font face="verdana" color=#CC7777 size=5 style="font-size:18pt;">
-	                        USU¡RIO <u><%=UCase(Env.NomeReduzido())%></u> N√O  EST¡ AUTORIZADO A ACESSAR ESTA ¡REA OU A SUA SESS√O EST¡ EXPIRADA.<BR><BR>
+	                        USU√ÅRIO <u><%=UCase(Env.NomeReduzido())%></u> N√ÉO  EST√Å AUTORIZADO A ACESSAR ESTA √ÅREA OU A SUA SESS√ÉO EST√Å EXPIRADA.<BR><BR>
 <%
 If bln_EmJanela Then
 	Response.Write "CLIQUE <a href='javascript:window.close();'>AQUI</a> PARA FECHAR ESTA JANELA"

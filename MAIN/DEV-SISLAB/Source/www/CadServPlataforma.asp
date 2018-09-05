@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/controlesHTML.asp" -->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
@@ -9,11 +9,11 @@ if not Env.ehRat then RESPONSE.REDIRECT "INDEX.ASP"
 <script language="javascript" src="includes/anexo.js"></script>
 <script>
 <%if request("ServicoRepetido") <> "" then%>
-	alert('N„o foi possÌvel incluir o ServiÁo <%=request("ServicoRepetido")%>, pois este j· est· cadastrado.')
+	alert('N√£o foi poss√≠vel incluir o Servi√ßo <%=request("ServicoRepetido")%>, pois este j√° est√° cadastrado.')
 <%end if%>
 
 <%if request("Acao") <> "S" and request("Acao") <> "P" then%>
-	alert('Esta aÁ„o È inv·lida !')
+	alert('Esta a√ß√£o √© inv√°lida !')
 	location.href = 'sislab.asp';
 <%end if%>
 
@@ -38,7 +38,7 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false;
 	}
@@ -61,7 +61,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.serv.value == '') {
-		alert('Nenhum serviÁo ou sistema selecionado para exclus„o !');
+		alert('Nenhum servi√ßo ou sistema selecionado para exclus√£o !');
 		frm.serv.focus();
 	}
 	else {
@@ -77,7 +77,7 @@ if request("Acao") <> "S" and request("Acao") <> "P" then
 	response.end
 else
 	Dim titulo
-	if request("Acao") = "S" then Titulo = "ServiÁos"
+	if request("Acao") = "S" then Titulo = "Servi√ßos"
 	if request("Acao") = "P" then Titulo = "Plataformas"
 end if
 
@@ -90,7 +90,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, 
 <input type="Hidden" name="acao" value="<%=Request("Acao")%>">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td>&nbsp;</td></tr>
@@ -113,7 +113,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, 
 	<td>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabela1">
 		<tr>
-			<td width="110px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o:</b></td>
+			<td width="110px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o:</b></td>
 			<td width="*"><input type="Text" name="desc" size="60" class="texto1"></td>
 		</tr>
 		</table>

@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+ï»¿<!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 tipo_supertipo		= request.form("super_tipo")
@@ -9,7 +9,7 @@ ssql = "update sce_tipos set tipo_descricao = '"& tipo_descricao &"', tipo_super
 ssql = ssql &" where tipo_id = "& request("tipo_id")
 Env.oconn.execute(ssql)
 
-acao = "O usuário "& Env.Usuario &" atualizou a família tipo "& request("tipo_descricao") &" de código "& request("tipo_id")
+acao = "O usuÃ¡rio "& Env.Usuario &" atualizou a famÃ­lia tipo "& request("tipo_descricao") &" de cÃ³digo "& request("tipo_id")
 Call Env.LogSce(acao)
 
 response.redirect "sel_cad_tipo.asp?msg=1"

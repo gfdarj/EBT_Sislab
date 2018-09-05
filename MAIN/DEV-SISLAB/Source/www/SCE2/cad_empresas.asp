@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!--#include file="includes/Estado.asp"-->
 <!------- SISLAB ---->
@@ -57,7 +57,7 @@ function Mascara2 (keypress, objeto){
 					<input type="text" class="texto1" name="nome" style="width:600px" maxlength="100"></td>
     		</tr>
     		<tr> 
-      			<td bgcolor="#FFFFFF" class="texto1">Endereço<br>
+      			<td bgcolor="#FFFFFF" class="texto1">EndereÃ§o<br>
 					<input type="text" class="texto1" name="endereco" style="width:600px" maxlength="150"></td>
     		</tr>
     		<tr>
@@ -184,7 +184,7 @@ function FormataCpf(campo,tammax,teclapres) {
 			</tr>-->
 			<tr> 
       			<td class="texto1"> 
-					<br>Observação<br>
+					<br>ObservaÃ§Ã£o<br>
 					<textarea class="texto1" name="observacao" rows="2" style="width:600px"></textarea><br><br><br></td>
     		</tr>
 

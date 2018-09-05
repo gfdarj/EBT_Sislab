@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -76,7 +76,7 @@ if retorno < 0 then
 	end if
 else
 	if request("excluir") = "1" then
-		response.redirect "form_atualiza_teste_sel.asp"	'-- a exclusao est� na lista de testes
+		response.redirect "form_atualiza_teste_sel.asp"	'-- a exclusao está na lista de testes
 	else
 		response.redirect "form_especifica_teste.asp?cod_teste=" & retorno
 	end if

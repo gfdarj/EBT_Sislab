@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/emailHTML.ASP" -->
 <!--#include file="includes/PadraoHTML.asp" -->
@@ -38,33 +38,33 @@ else
 end if
 
 If Err.number <> 0 then
-	Call MsgGravacaoDados(True, False, "<span class='vermelho2'><b>Erro ao gravar remarcação !</b></span>", "form_valida_remarca_sel.asp", "")
+	Call MsgGravacaoDados(True, False, "<span class='vermelho2'><b>Erro ao gravar remarcaÃ§Ã£o !</b></span>", "form_valida_remarca_sel.asp", "")
 else
 	'=====================================================================================
-	vTexto = "Número da AS: " & vNum_agendamento & "<BR><BR>"
+	vTexto = "NÃºmero da AS: " & vNum_agendamento & "<BR><BR>"
 
 	if vCancelou then
 		If Request("cmbRemarca") = "0" Then
-			vTexto = vTexto & "Solicitação do usuário para cancelamento do agendamento foi cancelada."
+			vTexto = vTexto & "SolicitaÃ§Ã£o do usuÃ¡rio para cancelamento do agendamento foi cancelada."
 		Else
 			vTexto = vTexto & "Agendamento cancelado"
 		End If
 	else
 		vTexto = vTexto & "Remarcado:"
-		if vRemarca then vTexto = vTexto & "Sim" else vTexto = vTexto & "Não"
+		if vRemarca then vTexto = vTexto & "Sim" else vTexto = vTexto & "NÃ£o"
 	end if
 	
 	vTexto = vTexto & "<BR>"
 	vTexto = replace(vTexto, VbCrLf, "<BR>")
 
-	'call enviaEmailsAS(Env.oConn,vNum_agendamento,"Validação de Cancelamento/Remarcação de Testes/Ensaios",vTexto)
-	call enviaEmailsAS(Env.oConn,vNum_agendamento,"Validação de Remarcação de Agendamento",vTexto)
+	'call enviaEmailsAS(Env.oConn,vNum_agendamento,"ValidaÃ§Ã£o de Cancelamento/RemarcaÃ§Ã£o de Testes/Ensaios",vTexto)
+	call enviaEmailsAS(Env.oConn,vNum_agendamento,"ValidaÃ§Ã£o de RemarcaÃ§Ã£o de Agendamento",vTexto)
 
 	'-- solicitacao de cancelamento foi suspensa pelo RAT
 	If vCancelou And Request("cmbRemarca") = "0" Then
 		Call MsgGravacaoDados(True, False, "<span class='texto1'><b>" & vTexto & "</b></span>", "form_valida_remarca_sel.asp", "")
 	Else
-		Call MsgGravacaoDados(True, False, "<span class='texto1'><b>A remarcação do Agendamento foi validada com sucesso.</b></span>", "form_valida_remarca_sel.asp", "")
+		Call MsgGravacaoDados(True, False, "<span class='texto1'><b>A remarcaÃ§Ã£o do Agendamento foi validada com sucesso.</b></span>", "form_valida_remarca_sel.asp", "")
 	End If
 end if
 %>

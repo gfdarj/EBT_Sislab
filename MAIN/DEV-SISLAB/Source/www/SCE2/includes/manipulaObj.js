@@ -1,4 +1,4 @@
-function reload(init) 
+﻿function reload(init) 
 { //reloads the window if Nav4 resized
 	if (init==true) with (navigator) 
 	{

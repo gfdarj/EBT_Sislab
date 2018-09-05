@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <%
@@ -33,7 +33,7 @@ function navselecao(id_res)
 				<th style="font-size: xx-small;">Data Inicial</th>
 				<th style="font-size: xx-small;">Data Final</th>
 				<th style="font-size: xx-small;">Ambiente</th>
-				<th style="font-size: xx-small;">Título do Evento</th>
+				<th style="font-size: xx-small;">TÃ­tulo do Evento</th>
 				<th style="font-size: xx-small;">AS</th>
 				<th style="font-size: xx-small;">&nbsp;</th>
 			</tr>
@@ -59,7 +59,7 @@ if Not objRS.EOF then
 <%		objRS.movenext
 	loop
 else%>
-			<tr><td colspan="5" align="center"><b><i>Não existem reservas cadastradas no momento</i></b></td></tr>
+			<tr><td colspan="5" align="center"><b><i>NÃ£o existem reservas cadastradas no momento</i></b></td></tr>
 <%
 end if%>
 		</table>

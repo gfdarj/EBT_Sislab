@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -8,7 +8,7 @@ Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate" 
 Response.Addheader "Pragma","no-cache" 
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de ¡rea TecnolÛgica", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de √Årea Tecnol√≥gica", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -16,7 +16,7 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 <script language="javascript" src="includes/anexo.js"></script>
 <script>
 <%if request("Repetido") <> "" then%>
-	alert('N„o foi possÌvel incluir a ¡rea TecnolÛgica <%=request("Repetido")%>, pois esta j· est· cadastrado.')
+	alert('N√£o foi poss√≠vel incluir a √Årea Tecnol√≥gica <%=request("Repetido")%>, pois esta j√° est√° cadastrado.')
 <%end if%>
 function BuscarUsuario(){
 	var frm = document.forms[0];
@@ -42,7 +42,7 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false
 	}
@@ -65,7 +65,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.areatec.value == '') {
-		alert('Nenhuma ·rea tecnolÛgica selecionada para exclus„o !');
+		alert('Nenhuma √°rea tecnol√≥gica selecionada para exclus√£o !');
 		frm.areatec.focus();
 	}
 	else {
@@ -81,15 +81,15 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;¡reas TecnolÛgicas</td></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;√Åreas Tecnol√≥gicas</td></tr>
 
 <tr>
-	<td width="130px">&nbsp;&nbsp;<b>¡rea TecnolÛgica :</b></td>
+	<td width="130px">&nbsp;&nbsp;<b>√Årea Tecnol√≥gica :</b></td>
 	<td>
 		<%call comboAreaTecnologica("areatec", objConn,"N")%>
 		&nbsp;&nbsp;
@@ -99,10 +99,10 @@ function Excluir() {
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da ¡rea TecnolÛgica</th></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da √Årea Tecnol√≥gica</th></tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o :</b></td>
+	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o :</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 

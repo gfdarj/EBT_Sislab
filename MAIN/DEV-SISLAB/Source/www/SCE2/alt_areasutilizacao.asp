@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Altera ¡rea de UtilizaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Consulta > Altera √Årea de Utiliza√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -37,7 +37,7 @@ set rec = Env.oconn.execute(ssql)%>
   
     <tr> 
       <td class="texto1" colspan="10" bgcolor="#FFFFFF" align="left"> 
-			DescriÁ„o da ¡rea de UtilizaÁ„o<br>
+			Descri√ß√£o da √Årea de Utiliza√ß√£o<br>
 			<input type="text" class="texto1" name="au_descricao" style="width:600" maxlength="100" value="<%=rec("au_descricao")%>">&nbsp;&nbsp;
 			</b>
       </td>

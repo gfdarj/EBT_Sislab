@@ -1,8 +1,8 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+ï»¿<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%
 'On Error Resume Next
 
-'Chama função em config.inc que faz a conexão com o Banco de dados
+'Chama funÃ§Ã£o em config.inc que faz a conexÃ£o com o Banco de dados
 Conecta True
 
 Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT" 
@@ -11,7 +11,7 @@ Response.Addheader "Pragma","no-cache"
 %>
 <html>
 <head>
-    <title>Retificação de Agendamento</title>
+    <title>RetificaÃ§Ã£o de Agendamento</title>
     <link rel="stylesheet" href="estilos/style.css">
 </head>
 <%
@@ -34,7 +34,7 @@ function validaCampos(form)
 {
   if (form.txtAgenda.value == "") 
   {
-    alert("O campo 'Nº do Agendamento' deve ser preenchido.");
+    alert("O campo 'NÂº do Agendamento' deve ser preenchido.");
     form.txtDescricao.focus();
     return(false);
   }
@@ -46,7 +46,7 @@ function validaCampos(form)
   }
   else if (form.txtData.value == "") 
   {
-    alert("O campo 'Data da retificação' deve ser preenchido.");
+    alert("O campo 'Data da retificaÃ§Ã£o' deve ser preenchido.");
     form.txtData.focus();
     return(false);
   }
@@ -63,7 +63,7 @@ function validaCampos(form)
 
   <tr>
     <td bgColor=#000000 valign=center>
-      <B><FONT class=submenu>&nbsp;Retificação de agendamentos</FONT></B>
+      <B><FONT class=submenu>&nbsp;RetificaÃ§Ã£o de agendamentos</FONT></B>
     </td>
   </tr>
 
@@ -73,12 +73,12 @@ function validaCampos(form)
     <td>
       <table border="0" width="540" align="left" cellSpacing=1>
         <tr>
-          <td valign="top" align="right" colspan="2"><font class="item"><b>Nº do Agendamento:</b></td> 
+          <td valign="top" align="right" colspan="2"><font class="item"><b>NÂº do Agendamento:</b></td> 
           <td valign="center" align="left"><input class="cxtexto" name="txtAgenda" type="text" maxlength="10" size="11"></td>
         </tr>
 
         <tr>
-          <td valign="top" align="right" colspan="2"><font class="item"><b>Nome do usuário:</b></td> 
+          <td valign="top" align="right" colspan="2"><font class="item"><b>Nome do usuÃ¡rio:</b></td> 
 	      <td valign="top" align="left">
             <select name="cmbUserID" class="combo">
             <% 
@@ -101,14 +101,14 @@ function validaCampos(form)
           <td valign="top" align="right" colspan="2"><font class="item"><b>Tipo:</b></td> 
           <td valign="top" align="left">
             <select name="cmbRetifica" class="combo">
-              <option value="I" selected>Identificação da Amostra</option>
-              <option value="R">Retificação</option>
+              <option value="I" selected>IdentificaÃ§Ã£o da Amostra</option>
+              <option value="R">RetificaÃ§Ã£o</option>
             </select>
           </td>
         </tr>
 
         <tr>
-          <td valign="top" align="right" colspan="2"><font class="item"><b>Data da retificação (dd/mm/aaaa):</b></td> 
+          <td valign="top" align="right" colspan="2"><font class="item"><b>Data da retificaÃ§Ã£o (dd/mm/aaaa):</b></td> 
           <td valign="center" align="left"><input class="cxtexto" name="txtData" type="text" maxlength="10" size="11"></td>
         </tr>
 
@@ -133,7 +133,7 @@ function validaCampos(form)
   <tr><td>&nbsp;</td></tr>
 
   <tr>
-    <td><font class="item"><b>Ocorrências de retificação:</b></td>
+    <td><font class="item"><b>OcorrÃªncias de retificaÃ§Ã£o:</b></td>
   </tr>
 
   <tr>

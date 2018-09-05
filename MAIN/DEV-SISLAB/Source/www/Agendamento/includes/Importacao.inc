@@ -1,4 +1,4 @@
-<%
+﻿<%
 Response.Expires=0
 Response.Buffer = TRUE
 Response.Clear

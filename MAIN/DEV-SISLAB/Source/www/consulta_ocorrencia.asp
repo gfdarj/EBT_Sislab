@@ -1,12 +1,12 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+ï»¿<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%'	On Error Resume Next
 	
 	
-'Chama função em config.inc que faz a conexão com o Banco de dados
+'Chama funÃ§Ã£o em config.inc que faz a conexÃ£o com o Banco de dados
 
 	Conecta True
 
-' Inicializo variavel de conexão 
+' Inicializo variavel de conexÃ£o 
 %>
 <script>
 function chama_oc(cod_oc)
@@ -21,16 +21,24 @@ function chama_oc(cod_oc)
 	BORDER-TOP: black thin inset; 
 }
 </style> 
-<HTML>
-<HEAD>
-  <TITLE>Consulta de Resolução das Ocorrências</TITLE>
-</HEAD>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>SISLAB - Consulta de ResoluÃ§Ã£o das OcorrÃªncias</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
+</head>
+
+
 <BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="3" link="#FFFFFF" vlink="#FFFFFD" alink="#FFFFF6">
 <%call MostraHeader%>
 <table width="750" cellspacing="0">
 	<tr>
 		<td colspan="5" align="center" bgcolor="#05527A" valign="top">
-			<font face="arial" class="Fonttit1Cad"  color="#FFFFFF"><B>Quadro de Registros (OPM, RAC e RAP) em Ocorrências</b></font>
+			<font face="arial" class="Fonttit1Cad"  color="#FFFFFF"><B>Quadro de Registros (OPM, RAC e RAP) em OcorrÃªncias</b></font>
 		</td>
 	</tr>		
 <%
@@ -75,10 +83,10 @@ Set objsiteRS = obterRecordset(sSQL)
 		<font class="fonte2">N&deg; OC</font>
 	</td>
 	<td class="celula" width="175" valign="baseline" align="center">
-		<font class="fonte2">Ocorrência</font>
+		<font class="fonte2">OcorrÃªncia</font>
 	</td>
 	<td class="celula" width="175" valign="baseline" align="center">
-		<font class="fonte2">Análise GQ</font>
+		<font class="fonte2">AnÃ¡lise GQ</font>
 	</td>
 	<td class="celula" width="70" valign="baseline" align="center">
 		<font class="fonte2">Data</font>
@@ -108,7 +116,7 @@ Set objsiteRS = obterRecordset(sSQL)
 		else%>
 	<tr>
 		<td colspan="4" align="center">
-			<font class="fonte3"><i><b>Nenhum resultado foi encontrado neste período.</b></i></font>
+			<font class="fonte3"><i><b>Nenhum resultado foi encontrado neste perÃ­odo.</b></i></font>
 		</td>
 	</tr>		
 <%	end if

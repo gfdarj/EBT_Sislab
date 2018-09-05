@@ -1,4 +1,4 @@
-/***
+﻿/***
 	Biblioteca de funcoes de OJBETOS
 
 	Gilberto Almeida - COPPETEC
@@ -21,7 +21,7 @@ function comboSimNao(escreve, id_combo, padrao) {
 	var str = '';
 	str += '<select name="' + id_combo + '" class="texto1">';
 	str += '<option value="1"' + (padrao == '1'? ' selected ' : '') + '>Sim</option>';
-	str += '<option value="0"' + (padrao == '0'? ' selected ' : '') + '>N�o</option>';
+	str += '<option value="0"' + (padrao == '0'? ' selected ' : '') + '>Não</option>';
 	str += '</select>';
 	if(escreve) document.write(str);
 	return str;

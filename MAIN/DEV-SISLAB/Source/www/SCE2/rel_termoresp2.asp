@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > RelatÛrio > Termo de Responsabilidade" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Relat√≥rio > Termo de Responsabilidade" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -39,7 +39,7 @@ If Env.UsuarioSCE() Then
 			<td width="180px"><img src="../img/logoebt.bmp" border="0"></td>
 			<td align="right">
 				<table class="titulo" cellpadding="4" cellspacing="0">
-				<tr><td align="right" style="font-size: 15pt;"><b>N∫&nbsp;<%=request("doc_id") & ano_doc%></b></td></tr>
+				<tr><td align="right" style="font-size: 15pt;"><b>N¬∫&nbsp;<%=request("doc_id") & ano_doc%></b></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr><td align="right"><b>Rio de Janeiro, <%=data%></b></td></tr>
 				</table>
@@ -76,7 +76,7 @@ If Env.UsuarioSCE() Then
 		<tr>
 			<th>DESCRI&Ccedil;&Atilde;O</th>
 			<th>MODELO/PART NUMBER</th>
-			<th>N∫ DE S&Eacute;RIE</th>
+			<th>N¬∫ DE S&Eacute;RIE</th>
 		</tr>
 <%	    while not recEq.eof%>
 		<tr>
@@ -104,7 +104,7 @@ If Env.UsuarioSCE() Then
 %>
 <tr><td>&nbsp;</td></tr>
 
-<tr><td colspan="2" class="titulo">ObservaÁ„o:</td></tr>
+<tr><td colspan="2" class="titulo">Observa√ß√£o:</td></tr>
 <tr><td colspan="2"><%=rec("DOC_OBSERVACAO")%></td></tr>
 <%
 	    End If
@@ -112,27 +112,27 @@ If Env.UsuarioSCE() Then
 %>
 <tr><td>&nbsp;</td></tr>
 
-<tr><td colspan="2" class="titulo">Vinculado ‡ AS: <%=listaAS%></td></tr>
+<tr><td colspan="2" class="titulo">Vinculado √† AS: <%=listaAS%></td></tr>
 
 <tr><td>&nbsp;</td></tr>
 
-<tr><td colspan="2" class="titulo" bgcolor="#c0c0c0">DADOS DO CLIENTE - RESPONS¡VEL</td></tr>
+<tr><td colspan="2" class="titulo" bgcolor="#c0c0c0">DADOS DO CLIENTE - RESPONS√ÅVEL</td></tr>
 
 <tr>
 	<td><% '-- pego os dados da empresa e do responsavel
     if rec.eof and rec.bof then
-	    response.write "<b><i>Nenhum respons·vel encontrado para este documento</i></b>"
+	    response.write "<b><i>Nenhum respons√°vel encontrado para este documento</i></b>"
     else
 	    endereco = ""
 %>		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
 		<tr><th align="left" width="120px">Nome:</th><td><%=rec("DOC_NOME")%>&nbsp;</td></tr>
-		<tr><th align="left" width="120px">IdentificaÁ„o:</th><td><%=rec("DOC_IDE")%>&nbsp;</td></tr>
+		<tr><th align="left" width="120px">Identifica√ß√£o:</th><td><%=rec("DOC_IDE")%>&nbsp;</td></tr>
 		<tr>
 			<th align="left" width="120px">Empresa:</th>
 			<td><%if IsNull(rec("ENF_NOME")) then response.write rec("DOC_EMPRESA") else response.write rec("ENF_NOME")%>&nbsp;</td>
 		</tr>
 		<tr>
-			<th align="left" width="120px">EndereÁo:</th>
+			<th align="left" width="120px">Endere√ßo:</th>
 			<td><%
 	    if not IsNull(rec("ENF_ENDERECO")) then
 		    if endereco <> "" then endereco = endereco & " - "
@@ -156,7 +156,7 @@ If Env.UsuarioSCE() Then
 		</tr>
 		<tr><th align="left" width="120px">Telefone p/ contato:</th><td><%=rec("DOC_FONE")%>&nbsp;</td></tr>
 		<tr><th align="left" width="120px">Email:</th><td><%=rec("DOC_MAIL")%>&nbsp;</td></tr>
-		<tr><th align="left" width="120px">Resp. TÈcnico:</th><td><%=rec("DOC_RESPONSAVEL")%>&nbsp;</td></tr>
+		<tr><th align="left" width="120px">Resp. T√©cnico:</th><td><%=rec("DOC_RESPONSAVEL")%>&nbsp;</td></tr>
 		</tr>
 		</table><%
     End If
@@ -165,7 +165,7 @@ If Env.UsuarioSCE() Then
 
 <tr><td>&nbsp;</td></tr>
 
-<tr><td class="titulo">De acÙrdo: _________________________________________________</td></tr>
+<tr><td class="titulo">De ac√¥rdo: _________________________________________________</td></tr>
 
 <tr><td>&nbsp;</td></tr>
 
@@ -174,9 +174,9 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>
 		<table width="100%" cellpadding="2" cellspacing="0" class="titulo">
-		<tr><td width="145px">Agente de LogÌstica:</td><td width="*">_________________________________________________</td></tr>
+		<tr><td width="145px">Agente de Log√≠stica:</td><td width="*">_________________________________________________</td></tr>
 		<tr><td>&nbsp;</td></tr>
-		<tr><td width="145px">Respons·vel TÈcnico:</td><td width="*">_________________________________________________</td></tr>
+		<tr><td width="145px">Respons√°vel T√©cnico:</td><td width="*">_________________________________________________</td></tr>
 		</table>
 	</td>
 </tr>

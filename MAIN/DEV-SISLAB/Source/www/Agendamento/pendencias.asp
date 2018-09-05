@@ -1,4 +1,4 @@
-Pendencias
+﻿Pendencias
 
 * cadastro de tarefas
 * botao voltar

@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" --><%
+Ôªø<!-- #INCLUDE FILE="includes/inicializacao.inc" --><%
 '	On Error Resume Next
 
 Conecta true
@@ -31,7 +31,7 @@ if opcao=2 then retornaopcao="Insatisfeito" end if
 if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 if opcao=4 then retornaopcao="Satisfeito" end if
 if opcao=5 then retornaopcao="Muito Satisfeito" end if
-if Isnull(opcao) then retornaopcao="N„o Respondido" end if
+if Isnull(opcao) then retornaopcao="N√£o Respondido" end if
 
 
 end function
@@ -48,7 +48,7 @@ end function
 
 <html>
 <head>
-<title>Coment·rios</title>
+<title>Coment√°rios</title>
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 <link rel="stylesheet" href="estilos/style.css">
@@ -100,7 +100,7 @@ IsNulo(objSiteRS("PSQ_C9")) and IsNulo(objSiteRS("PSQ_C10")) and IsNulo(objSiteR
 <td width=20>
 </td>
 <td><font face="tahoma" style="font-size=9pt" color="#FFFFBD"><br>
-<b>Coment·rios sobre o Agendamento <%=objSiteRS("PSQ_NAg")%>:</b></font>
+<b>Coment√°rios sobre o Agendamento <%=objSiteRS("PSQ_NAg")%>:</b></font>
 </td>
 <td width=20>
 </td>
@@ -113,7 +113,7 @@ IsNulo(objSiteRS("PSQ_C9")) and IsNulo(objSiteRS("PSQ_C10")) and IsNulo(objSiteR
 <B>
 <div align="justify">
 <%if not IsNulo(objSiteRS("PSQ_C1")) then 
-cont=0 %><font color="#ff0000">ComunicaÁ„o:</font> <%=retornaopcao1(objSiteRS("PSQ_R1"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R1"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C1")%><br> <%end if %>
+cont=0 %><font color="#ff0000">Comunica√ß√£o:</font> <%=retornaopcao1(objSiteRS("PSQ_R1"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R1"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C1")%><br> <%end if %>
 <%if not IsNulo(objSiteRS("PSQ_C2")) then 
 cont=0 %><font color="#ff0000">Cortesia:</font> <%=retornaopcao1(objSiteRS("PSQ_R2"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R2"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C2")%><br> <%end if %>
 <%if not IsNulo(objSiteRS("PSQ_C3")) then 
@@ -133,8 +133,8 @@ cont=0 %><font color="#ff0000">Ambiente:</font> <%=retornaopcao1(objSiteRS("PSQ_
 <%if not IsNulo(objSiteRS("PSQ_C10")) then 
 cont=0 %><font color="#ff0000">Acesso:</font> <%=retornaopcao1(objSiteRS("PSQ_R10"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R10"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C10")%><br> <%end if %>
 <%if not IsNulo(objSiteRS("PSQ_C11")) then 
-cont=0 %><font color="#ff0000">SatisfaÁ„o Geral:</font> <%=retornaopcao1(objSiteRS("PSQ_R11"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R11"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C11")%><br> <%end if %>
-<%if cont=1 then %> SEM COMENT¡RIOS <%end if %>
+cont=0 %><font color="#ff0000">Satisfa√ß√£o Geral:</font> <%=retornaopcao1(objSiteRS("PSQ_R11"))%>&nbsp;(<%=retornaopcao(objSiteRS("PSQ_R11"))%>)&nbsp;&nbsp;<br><%=objSiteRS("PSQ_C11")%><br> <%end if %>
+<%if cont=1 then %> SEM COMENT√ÅRIOS <%end if %>
 </div>
 </B><br>
 </font>
@@ -146,7 +146,7 @@ cont=0 %><font color="#ff0000">SatisfaÁ„o Geral:</font> <%=retornaopcao1(objSite
 <td bgcolor="#EEEEEE">
 </td>
 <td bgcolor="#EEEEEE" align="left"><font face="tahoma" style="font-size=9pt" color="#222222">
-<b>nome: <%=objSiteRS("PSQ_nome")%><br>Tel/Ramal: <%=objSiteRS("PSQ_Telefone")%><br>”rg„o/Empresa: <%=objSiteRS("PSQ_orgaoEmpresa")%><br>Atividade: <%=objSiteRS("TA_DESCRICAO")%></b></font>
+<b>nome: <%=objSiteRS("PSQ_nome")%><br>Tel/Ramal: <%=objSiteRS("PSQ_Telefone")%><br>√ìrg√£o/Empresa: <%=objSiteRS("PSQ_orgaoEmpresa")%><br>Atividade: <%=objSiteRS("TA_DESCRICAO")%></b></font>
 </td>
 <td bgcolor="#EEEEEE">
 </td>

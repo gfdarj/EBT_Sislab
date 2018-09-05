@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controleshtml.asp" -->
@@ -10,16 +10,16 @@ dim objRS, s, tecnologia
 
 '-- indica se foi chamado a partir do index
 if request("index") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Relatório de Tecnologias por Fabricante", "SO_IMPRESSORA", "")
+	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "RelatÃ³rio de Tecnologias por Fabricante", "SO_IMPRESSORA", "")
 else
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Tecnologias por Fabricante", "", "")
+	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de Tecnologias por Fabricante", "", "")
 end if
 %>
 <table class="texto1" border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">
 <tr class="realce">
 	<th>TECNOLOGIA</th>
 	<th>FABRICANTE</th>
-	<th>SITUAÇÂO</th>
+	<th>SITUAÃ‡Ã‚O</th>
 	<th>TOTAL</th>
 </tr>
 <%

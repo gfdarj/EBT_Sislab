@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -36,7 +36,7 @@ Call Env.RecordSet(True, RS, sSQL)
 
 total_registros = RS.RecordCount
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "location.href='rel_inv_equip.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio para InventÃ¡rio de Equipamentos", "location.href='rel_inv_equip.asp'", "")
 %>
 <script language="javascript" src="includes/manipulaObj.js"></script>
 <script language="javascript">
@@ -81,12 +81,12 @@ If Not(RS.EOF) Then
 		<%end if%>
 	</td>
 	<td align="center">
-		<B>&nbsp;&nbsp;Página atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
+		<B>&nbsp;&nbsp;PÃ¡gina atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 		<B>&nbsp;&nbsp;Total de Registros: <%=total_registros%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 	<td align="right" width="150px">
 		<%if Not RS.Eof then%>
-			<a href="javascript:proximaPagina()" class="menu">Avançar <span class="cinza1">&raquo;</span></a>
+			<a href="javascript:proximaPagina()" class="menu">AvanÃ§ar <span class="cinza1">&raquo;</span></a>
 		<%end if%>
 	</td>
 </tr>
@@ -94,18 +94,18 @@ If Not(RS.EOF) Then
 
 <table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1" style="border: solid thin;">
 <tr>
-	<th width="35px" style="font-size: xx-small;">Cód Barras</th>
-	<th style="font-size: xx-small;">Localização</th>
-	<th style="font-size: xx-small;">Num. Série</th>
+	<th width="35px" style="font-size: xx-small;">CÃ³d Barras</th>
+	<th style="font-size: xx-small;">LocalizaÃ§Ã£o</th>
+	<th style="font-size: xx-small;">Num. SÃ©rie</th>
 	<th style="font-size: xx-small;">Propriedade</th>
 	<th style="font-size: xx-small;">Status</th>
 	<th style="font-size: xx-small;">Modelo</th>
-	<th style="font-size: xx-small;">Descrição</th>
+	<th style="font-size: xx-small;">DescriÃ§Ã£o</th>
 	<th style="font-size: xx-small;">Fabricante</th>
 	<th style="font-size: xx-small;">Nota Fiscal</th>
-	<th style="font-size: xx-small;">Emissão</th>
+	<th style="font-size: xx-small;">EmissÃ£o</th>
 	<th style="font-size: xx-small;">N.OP</th>
-	<th style="font-size: xx-small;">Último Movimento</th>
+	<th style="font-size: xx-small;">Ãšltimo Movimento</th>
 	<th style="font-size: xx-small;">Qtd. Mov.</th>
 </tr>
 <%
@@ -144,12 +144,12 @@ If Not(RS.EOF) Then
 		<%end if%>
 	</td>
 	<td align="center">
-		<B>&nbsp;&nbsp;Página atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
+		<B>&nbsp;&nbsp;PÃ¡gina atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 		<B>&nbsp;&nbsp;Total de Registros: <%=total_registros%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 	<td align="right" width="150px">
 		<%if Not RS.Eof then%>
-			<a href="javascript:proximaPagina()" class="menu">Avançar <span class="cinza1">&raquo;</span></a>
+			<a href="javascript:proximaPagina()" class="menu">AvanÃ§ar <span class="cinza1">&raquo;</span></a>
 		<%end if%>
 	</td>
 </tr>

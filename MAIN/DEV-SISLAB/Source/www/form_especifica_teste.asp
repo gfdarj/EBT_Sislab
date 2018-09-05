@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/ControlesHTML.asp" -->
@@ -37,10 +37,10 @@ end if
 %>
 <script language="JavaScript">
 function validaCampos(frm)
-{	//Valida os campos quando o formulário é submetido
+{	//Valida os campos quando o formulÃ¡rio Ã© submetido
 	if (frm.txtTitulo.value == "") 
 	{
-		alert("Título do teste deve ser preenchido.");
+		alert("TÃ­tulo do teste deve ser preenchido.");
 		frm.txtTitulo.focus();
 		return false;
 	}
@@ -70,7 +70,7 @@ function validaCampos(frm)
 <table border="0" width="100%" cellspacing="2" cellpadding="0" class="tabela1">
 <tr>
 	<td width="550px">
-		&nbsp;&nbsp;Título:<BR>
+		&nbsp;&nbsp;TÃ­tulo:<BR>
 		&nbsp;&nbsp;<input type="text" class="texto1" value="<%=titulo%>" name="txtTitulo" size="100" maxlength="200">
 	</td>
 	<td>
@@ -78,26 +78,26 @@ function validaCampos(frm)
 		<%call comboTipoTeste("rdoTipo", Env.oConn, auxTipoTeste, "N")%>
 	</td>
 	<td align="center">
-		Disponível:<BR>
+		DisponÃ­vel:<BR>
 		<input type="checkbox" name="chkDisponivel" <%if disponivel then Response.Write "checked"%>>
 	</td>
 </tr>
 <tr><td height="5px"></td></tr>
 <tr>
 	<td>
-		&nbsp;&nbsp;Descrição:<br>
+		&nbsp;&nbsp;DescriÃ§Ã£o:<br>
 		&nbsp;&nbsp;<TEXTAREA class="texto1" cols=100 name="txaDescricao" rows="6"><%= descricao%></TEXTAREA>
 	</td>
 	<td colspan="2" valign="top">
-		Período de Repetição do Teste<br>
-		<input class="texto1" size="3" maxlength="2" type="Text" name="periodoRepeticao" value="<%=int_Repeticao%>"> mês(es)<BR>
-		<i>(Zero ou Vazio indicam a <u>Não</u> repetição)</i>
+		PerÃ­odo de RepetiÃ§Ã£o do Teste<br>
+		<input class="texto1" size="3" maxlength="2" type="Text" name="periodoRepeticao" value="<%=int_Repeticao%>"> mÃªs(es)<BR>
+		<i>(Zero ou Vazio indicam a <u>NÃ£o</u> repetiÃ§Ã£o)</i>
 	</td>
 </tr>
 <tr><td height="5px"></td></tr>
 <tr>
 	<td colspan="3">
-		&nbsp;&nbsp;Observação:<br>
+		&nbsp;&nbsp;ObservaÃ§Ã£o:<br>
 		&nbsp;&nbsp;<TEXTAREA class="texto1" cols=100 name="txaObservacao" rows="6"><%= observacao%></TEXTAREA>
 	</td>
 </tr>

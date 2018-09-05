@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -8,7 +8,7 @@ Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate" 
 Response.Addheader "Pragma","no-cache" 
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Ocorrência do LogBook", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de OcorrÃªncia do LogBook", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -37,7 +37,7 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.desc.value == ""){
-		alert('É necessário informar a Descrição.');
+		alert('Ã‰ necessÃ¡rio informar a DescriÃ§Ã£o.');
 		frm.desc.focus();
 		return false
 	}
@@ -60,7 +60,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.tipoocorrencia.value == '') {
-		alert('Nenhum tipo de ocorrência selecionado para exclusão !');
+		alert('Nenhum tipo de ocorrÃªncia selecionado para exclusÃ£o !');
 		frm.tipoocorrencia.focus();
 	}
 	else {
@@ -76,15 +76,15 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÃ³rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Tipos de Ocorrência no LogBook</td></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;Tipos de OcorrÃªncia no LogBook</td></tr>
 
 <tr>
-	<td width="130px">&nbsp;&nbsp;<b>Tipo de Ocorrência:</b></td>
+	<td width="130px">&nbsp;&nbsp;<b>Tipo de OcorrÃªncia:</b></td>
 	<td>
 		<%call comboBDSQL("tipoocorrencia", Env.oConn, "SELECT LBTO_ID as valor, LBTO_DESCRICAO as descricao FROM LB_TipoOcorrencia ORDER BY LBTO_DESCRICAO", "N", true)%>
 		&nbsp;&nbsp;
@@ -94,10 +94,10 @@ function Excluir() {
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados do Tipo de Ocorrência</th></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados do Tipo de OcorrÃªncia</th></tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descrição :</b></td>
+	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÃ§Ã£o :</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 

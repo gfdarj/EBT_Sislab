@@ -1,8 +1,8 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#INCLUDE FILE="includes/PadraoHTML.asp" -->
 <!--#INCLUDE FILE="includes/global.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "LocalizaÁ„o / ¡rea", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Localiza√ß√£o / √Årea", "", "")
 %>
 <script language="JavaScript">
 function AbreJanela(str, nomejan)
@@ -14,10 +14,10 @@ function AbreJanela(str, nomejan)
 <table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<td>
-	<p align="justify">O Centro de Refer&ecirc;ncia Tecnol&oacute;gica ocupa uma &aacute;rea de 1200m<sup>2</sup> no Parque Tecnol&oacute;gico da Ilha do Fund&atilde;o, onde foram construÌdos os prÈdios do LaboratÛrio e o de apoio.</p>
+	<p align="justify">O Centro de Refer&ecirc;ncia Tecnol&oacute;gica ocupa uma &aacute;rea de 1200m<sup>2</sup> no Parque Tecnol&oacute;gico da Ilha do Fund&atilde;o, onde foram constru√≠dos os pr√©dios do Laborat√≥rio e o de apoio.</p>
 	<p align="center">
-		<b>Mapa de LocalizaÁ„o / Acesso ao CRT:</b><br>
-		<i>(Clique no mapa para ampli·-lo)</i><br><br>
+		<b>Mapa de Localiza√ß√£o / Acesso ao CRT:</b><br>
+		<i>(Clique no mapa para ampli√°-lo)</i><br><br>
 		<!--<img src="img/mapaufrj.jpg" width=550>-->
 		<a href="#" onclick="javascript:AbreJanela('img/mapa_fundao.gif', 'mapaufrj');"><img src="img/mapa_fundao.gif" width=650 border="0"></a>
 	</p>
@@ -26,7 +26,7 @@ function AbreJanela(str, nomejan)
 
 	<p align="center">
 		<b>A seguir vemos a planta baixa do pr&eacute;dio do Laborat&oacute;rio:</b><br>
-		<i>(Clique no mapa para ampli·-lo)</i><br><br>
+		<i>(Clique no mapa para ampli√°-lo)</i><br><br>
 		<!--<img width="400" src="img/labp2.jpg">-->
 		<a href="#" onclick="javascript:AbreJanela('img/labp2.jpg', 'mapaplantabaixa');"><img src="img/labp2.jpg" width=650 border="0"></a>
 	</p>
@@ -35,7 +35,7 @@ function AbreJanela(str, nomejan)
 
 	<p align="center">
 		<b>A seguir vemos a planta baixa do pr&eacute;dio de apoio:</b><br>
-		<i>(Clique no mapa para ampli·-lo)</i><br><br>
+		<i>(Clique no mapa para ampli√°-lo)</i><br><br>
 		<!--<img width="400" src="img/labp1.jpg">-->
 		<a href="#" onclick="javascript:AbreJanela('img/labp1.jpg', 'mapaplantabaixa1');"><img src="img/labp1.jpg" width=650 border="0"></a>
 	</p>

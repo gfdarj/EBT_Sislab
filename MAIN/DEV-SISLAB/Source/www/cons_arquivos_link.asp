@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <script language="javascript" src="includes/anexo.js"></script>
 <% 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, False, "2000px", "ValidaÁ„o dos Arquivos", "location.href='sislab.asp'", "")
+Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, False, "2000px", "Valida√ß√£o dos Arquivos", "location.href='sislab.asp'", "")
 
 Dim RS
 Dim chr_SQL
@@ -23,7 +23,7 @@ If Not VVVN(RQ("Excel")) Then
 	'RW "<META HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel"">"
 	Response.ContentType = "application/excel"
 	Response.Clear
-	'Se tirarmos o attachment da linha baixo, ele n„o vai pedir 2 vezes pra abrir, mas vai abrir na prÛpria janela...
+	'Se tirarmos o attachment da linha baixo, ele n√£o vai pedir 2 vezes pra abrir, mas vai abrir na pr√≥pria janela...
 	Response.AddHeader "Content-Disposition", "filename=" & chr(34) & "validacao_arquivos.xls" & chr(34)
 End If
 
@@ -43,7 +43,7 @@ chr_SQL = "" & _
 
 Set RS = Env.oConn.Execute(chr_SQL)
 
-'chr_arquivo = "arquivo de maÁ„ doce.pdf"
+'chr_arquivo = "arquivo de ma√ß√£ doce.pdf"
 'RW chr_arquivo & "<BR>"
 'RW ValidaNomeArquivo(chr_arquivo, true) & "<BR>"
 'RW chr_arquivo & "<BR>"
@@ -54,7 +54,7 @@ int_ContaErro = 0
 <form action="" method="post">
 <input type="Hidden" name="Excel" value="">
 <span class="texto1">
-SituaÁ„o:
+Situa√ß√£o:
 	<select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" class="texto1">
 		<option value="" <%If VVVN(chr_Situacao) Then RW "selected" End If%>>Todos</option>
 		<option value="OK" <%If chr_Situacao = "OK" Then RW "selected" End If%>>Apenas OK</option>
@@ -70,7 +70,7 @@ SituaÁ„o:
 	<th align="center">ID</th>
 	<th>Tipo</th>
 	<th>Arquivo</th>
-	<th align="center">Respons·vel</th>
+	<th align="center">Respons√°vel</th>
 	<th align="center">AS</th>
 </tr>
 <%

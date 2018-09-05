@@ -1,4 +1,4 @@
-<span id="CAIXOTE" style="position:absolute; top: 0px; left: 0px;">
+﻿<span id="CAIXOTE" style="position:absolute; top: 0px; left: 0px;">
 	<div id="AJUDATEXTO" style="background-color : #BDE5D8;font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;height : 200px;width : 230px;left : 0px;top: -5000px;position: absolute;overflow : auto;scrollbar-arrow-color : Black;scrollbar-base-color : #BDE5D8;cursor: help;">
 		<div align="justify" style="width: 210px;">
 		</div>

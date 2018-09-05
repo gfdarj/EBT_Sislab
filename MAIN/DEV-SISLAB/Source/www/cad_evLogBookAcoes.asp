@@ -24,18 +24,18 @@ call Env.RecordSet(true, objRS, s)
 if objRS.Eof and objRS.Bof then
 %>
 <tr>
-	<td colspan="1"><b><i>Nenhuma ação tomada</i></b></td>
+	<td colspan="1"><b><i>Nenhuma aï¿½ï¿½o tomada</i></b></td>
 </tr>
 <%
 else
 %>
 <tr>
-	<th style="font-size: xx-small;" align="center">Ação</th>
-	<th style="font-size: xx-small;" align="left">Descrição</th>
+	<th style="font-size: xx-small;" align="center">AÃ§Ã£o</th>
+	<th style="font-size: xx-small;" align="left">DescriÃ§Ã£o</th>
 	<th style="font-size: xx-small;">Executante</th>
 	<th style="font-size: xx-small;">Prazo</th>
-	<th style="font-size: xx-small;">Conclusão</th>
-	<th style="font-size: xx-small;">Eficácia</th>
+	<th style="font-size: xx-small;">ConclusÃ£o</th>
+	<th style="font-size: xx-small;">EficÃ¡cia</th>
 	<th>&nbsp;</th>
 <%	if Env.ehRAT then%>
 	<th>&nbsp;</th>
@@ -48,7 +48,7 @@ else
 	<td valign="top">
 <%
 		If objRS("tem_arquivo") = "T" Then
-			Response.Write "<img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)'>&nbsp;&nbsp;"
+			Response.Write "<img src='img/icnote.gif' title='Esta ocorrÃªncia possui arquivo(s) anexo(s)'>&nbsp;&nbsp;"
 		End If
 %>
 		<%=objRS("ACT_DESCRICAO")%>&nbsp;
@@ -56,7 +56,7 @@ else
 	<td><%=objRS("ACT_EXECUTANTE")%>&nbsp;</td>
 	<td align="center"><%=objRS("ACT_PRAZO")%>&nbsp;</td>
 	<td align="center"><%=objRS("ACT_DATACONCLUSAO")%>&nbsp;</td>
-	<td align="center"><%if objRS("ACT_EFICACIA") = "1" then response.write "Sim" else if objRS("ACT_EFICACIA") = "0" then response.write "Não" else response.write "--" %></td>
+	<td align="center"><%if objRS("ACT_EFICACIA") = "1" then response.write "Sim" else if objRS("ACT_EFICACIA") = "0" then response.write "NÃ£o" else response.write "--" %></td>
 <%		if Env.ehRAT then%>
 	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'editar');"><b>Alterar</b></a></td>
 	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:remover(<%=objRS("ACT_ID")%>);"><b>Remover</b></a></td>

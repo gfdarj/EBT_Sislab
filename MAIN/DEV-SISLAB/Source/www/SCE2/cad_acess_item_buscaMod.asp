@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%
 Dim s

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -14,7 +14,7 @@ Dim mes
 Dim conta
 Dim dtt_Criacao
 
-Tela.SetNomeTela = "SCE > Relatório > Consolidado de Total por Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Consolidado de Total por Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -23,7 +23,7 @@ If Env.UsuarioSCE() Then
 %>
 <table width="100%" class="texto1" border="0">
 
-<%If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posição em <i>" & Request("ano") & "</i></td></tr>" End If %>
+<%If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>PosiÃ§Ã£o em <i>" & Request("ano") & "</i></td></tr>" End If %>
 
 <tr><td>&nbsp;</td></tr>
 
@@ -42,7 +42,7 @@ If Env.UsuarioSCE() Then
 </tr>
 <!--
 <tr>
-	<td>&nbsp;&nbsp;<b>(*)</b> <i>Este procedimento poderá levar algum tempo caso haja necessidade de reconstrução a tabela de consultas</i></td>
+	<td>&nbsp;&nbsp;<b>(*)</b> <i>Este procedimento poderÃ¡ levar algum tempo caso haja necessidade de reconstruÃ§Ã£o a tabela de consultas</i></td>
 </tr>
 -->
 <%  Else %>
@@ -78,7 +78,7 @@ If Env.UsuarioSCE() Then
 				    "	FROM" & VbCrLf & _
 				    "		sce_nota_fiscal nf" & VbCrLf & _
 				    "	WHERE" & VbCrLf & _
-				    "		nf.nf_tipo = 2 --saída" & VbCrLf & _
+				    "		nf.nf_tipo = 2 --saÃ­da" & VbCrLf & _
 				    "	AND" & VbCrLf & _
 				    "		YEAR(nf.nf_dataemissao) = @int_Ano" & VbCrLf & _
 				    "	GROUP BY" & VbCrLf & _
@@ -102,7 +102,7 @@ If Env.UsuarioSCE() Then
 				    "	FROM" & VbCrLf & _
 				    "		sce_nota_fiscal nf" & VbCrLf & _
 				    "	WHERE" & VbCrLf & _
-				    "		nf.nf_tipo = 2 --saída" & VbCrLf & _
+				    "		nf.nf_tipo = 2 --saÃ­da" & VbCrLf & _
 				    "	AND" & VbCrLf & _
 				    "		YEAR(nf.nf_dataemissao) = @int_Ano" & VbCrLf & _
 				    ")" & VbCrLf
@@ -112,15 +112,15 @@ If Env.UsuarioSCE() Then
     	'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     	If RS.Eof And RS.Bof Then %>
-		<center><b><i>Nenhuma informação encontrada !</i></b></center>
+		<center><b><i>Nenhuma informaÃ§Ã£o encontrada !</i></b></center>
 <%	    ElseIf RS("MES") > 12 Then %>
-		<center><b><i>Nenhuma informação encontrada !</i></b><center>
+		<center><b><i>Nenhuma informaÃ§Ã£o encontrada !</i></b><center>
 <%	    Else %>
 		<table align="center" cellpadding="2" cellspacing="0" class="texto1" border="1">
 		<tr style="font-weight: bold;">
-			<td align="center">Mês</td>
+			<td align="center">MÃªs</td>
 			<td align="center">Total Entrada</td>
-			<td align="center">Total Saída</td>
+			<td align="center">Total SaÃ­da</td>
 		</tr>
 <%
 		    conta = 0

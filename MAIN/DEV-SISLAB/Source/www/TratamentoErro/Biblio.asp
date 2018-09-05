@@ -1,8 +1,8 @@
-<!--#include file="adovbs.inc"-->
+ï»¿<!--#include file="adovbs.inc"-->
 <%
 Response.Expires =0
 
-'Declaração de Variáveis Globais
+'DeclaraÃ§Ã£o de VariÃ¡veis Globais
 Dim ObjConn
 Dim ObjRS
 Dim ObjConn1
@@ -20,7 +20,7 @@ Sub Conecta_Base()
 	ObjRS.CursorType = adOpenKeySet
 	ObjRS.LockType = adLockBatchOptimistic
 	
-	'Abre a conecção
+	'Abre a conecÃ§Ã£o
 	ObjConn.ConnectionString = "file name=d:\inetpub\ConexaoSQL\GerenciaWeb.udl"
 	ObjConn.Open StrConn
 	
@@ -28,13 +28,13 @@ End Sub
 
 
 '------------------------------------------------------------------------------------
-' PerguntasRespostas -  ListarPergunta - Lista uma pergunta a partir do seu código
+' PerguntasRespostas -  ListarPergunta - Lista uma pergunta a partir do seu cÃ³digo
 Sub x()
 	Set ObjCmd = Server.CreateObject ("ADODB.Command")
 	
 	ObjCmd.CommandText = "WEB_ListarErros"		' Nome procedimento no servidor
 	ObjCmd.CommandType  = adCmdStoredProc		        ' Tipo comando
-	Set ObjCmd.ActiveConnection = ObjConn		        ' Associa o cammand com a conecção corrente
+	Set ObjCmd.ActiveConnection = ObjConn		        ' Associa o cammand com a conecÃ§Ã£o corrente
 	
 	Set ObjParam = ObjCmd.CreateParameter("ReturnCode", adInteger, adParamReturnValue)
 	ObjCmd.Parameters.Append ObjParam

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -21,7 +21,7 @@ abrir_como = UCase(request("abrir_como"))
 '-- parametro que define se o form veio de uma consulta ou relatorio
 if abrir_como = "REL" then
 	ehRelatorio = True 
-	Tela.SetNomeTela = "SCE > Relatório > Reserva de Equipamento"
+	Tela.SetNomeTela = "SCE > RelatÃ³rio > Reserva de Equipamento"
 else
 	ehRelatorio = False
 	Tela.SetNomeTela = "SCE > Consulta > Reserva de Equipamento"
@@ -238,7 +238,7 @@ While Not rec.eof
 				    <select name="aceite_<%=agnumero%>_<%=contaAS%>" class="combo">
 					    <option value="__<%=rec("EQ_ID")%>">--</option>
 					    <option value="1_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 1 then response.write "selected"%>>Sim</option>
-					    <option value="0_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 0 then response.write "selected"%>>Não</option>
+					    <option value="0_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 0 then response.write "selected"%>>NÃ£o</option>
 				    </select>
 <%		    End If
 			contaAS = contaAS + 1    %>
@@ -277,7 +277,7 @@ While Not rec.eof
 				<td colspan="9">
 					<table class="texto1" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
-						<td width="60px" valign="top"><i>Observação:</i></td>
+						<td width="60px" valign="top"><i>ObservaÃ§Ã£o:</i></td>
 						<td><i><%=Replace(obs, VbCrLf, "<br>")%></i></td>
 					</tr>
 					</table>
@@ -327,10 +327,10 @@ function movimentarAS(ag_numero, total_itens) {
 	document.all.ag_numero.value = ag_numero;
 	for(i=1; i<= total_itens; i++)
 	{	// CONCATENO O SELECT COM O ACEITE + O ID DO EQUIPAMENTO, APENAS SE TODOS OS EQUIPAMENTOS
-		// ESTIVEREM MARCADOS COMO ACEITO É CHAMADA A TELA DE MOVIMENTACAO
+		// ESTIVEREM MARCADOS COMO ACEITO Ã‰ CHAMADA A TELA DE MOVIMENTACAO
 		// "1_" para ACEITO, "0_" para NAO ACEITO e "__" para nao escolhido
 		if(document.all["aceite_" + ag_numero + "_"+i].value.substr(0,1) != "1") {
-			itemOK = false;  // algum item esta como Não ou sem aceite
+			itemOK = false;  // algum item esta como NÃ£o ou sem aceite
 		}
 		oOption = document.createElement("OPTION");
 		document.all.lista_itens.options.add(oOption);
@@ -342,7 +342,7 @@ function movimentarAS(ag_numero, total_itens) {
 
 	if( !itemOK ) {
 		document.all.tudoAceitoOK.value = "NAO";
-		if(!confirm("ATENÇÂO !\n\nExistem itens não aceitos ou não verificados.\n\nDeseja mesmo assim gravar a aceitação ?")) {
+		if(!confirm("ATENÃ‡Ã‚O !\n\nExistem itens nÃ£o aceitos ou nÃ£o verificados.\n\nDeseja mesmo assim gravar a aceitaÃ§Ã£o ?")) {
 			return false;
 		}
 	}
@@ -354,7 +354,7 @@ function movimentarAS(ag_numero, total_itens) {
 		document.formulario.submit();
 	}
 	else
-		alert("ERRO !\n\nNenhum item foi incluído na lista");
+		alert("ERRO !\n\nNenhum item foi incluÃ­do na lista");
 }
 </script>
 <%

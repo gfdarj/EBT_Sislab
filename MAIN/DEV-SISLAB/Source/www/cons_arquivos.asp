@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -19,7 +19,7 @@ EHrt =  Env.ehRT()
 'EHRat = false
 'EHrt = false
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de GestÃ£o - Consulta de Arquivos", "", "")
 
 auxsitarq = RQ("sitarquivo")
 auxidorgao = RQ("orgao")
@@ -111,7 +111,7 @@ If Not(objSiteRS.EOF) Then%>
 <tr>
 	<th>Arquivo</th>
 	<th width="12%">Tipo</th>
-	<th width="8%">Situação</th>
+	<th width="8%">SituaÃ§Ã£o</th>
 	<th width="10%">Data</td>
 	<th width="10%">Respons&aacute;vel</th>
 	<th width="10%">Expira em</td>
@@ -139,7 +139,7 @@ If Not(objSiteRS.EOF) Then%>
 <font face="verdana" color="#000000" class="FontMenu1">
 <B>
 <!--
-Parte do código que define se arquivos devem ou não ser exibidos de acordo com o usuario logado
+Parte do cÃ³digo que define se arquivos devem ou nÃ£o ser exibidos de acordo com o usuario logado
 -->
 <%		if objSiteRS("ARQ_Ocultar") = TRUE then
 			if EH_CRT = TRUE or objSiteRS("AG_RESPONSAVEL") = Env.usuario then%>
@@ -202,7 +202,7 @@ Else
 %>
 <br>
 <p class="texto1" align="center">
-<b>Nenhum arquivo foi encontrado com estes critérios de consulta.</b>
+<b>Nenhum arquivo foi encontrado com estes critÃ©rios de consulta.</b>
 <br><br>
 <input type="Button" value="Voltar" class="texto1" onclick="javascript:history.go(-1);">
 </p>
@@ -220,8 +220,8 @@ End If
 <td>
 <center>
 <font size=5 color=#000050>
-Ocorreu algum erro no carregamento desta página.<br><br>
-Qualquer dúvida entre em contato com o CRT no Ramal 8297.
+Ocorreu algum erro no carregamento desta pÃ¡gina.<br><br>
+Qualquer dÃºvida entre em contato com o CRT no Ramal 8297.
 </font>
 </center>
 </td>

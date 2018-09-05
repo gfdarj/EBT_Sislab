@@ -1,4 +1,4 @@
-<%
+﻿<%
 '== Monta a tela do sistema =====================================================
 Sub MostraHeader()
 

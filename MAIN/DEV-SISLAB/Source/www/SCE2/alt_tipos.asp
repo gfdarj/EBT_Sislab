@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Altera FamÌlia Tipo" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Consulta > Altera Fam√≠lia Tipo" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -19,7 +19,7 @@ function ValidaCampos()
 	var frm = document.formulario;
 	if (frm.tipo_descricao.value.length == 0)
 	{
-		alert('Defina a DescriÁ„o da FamÌlia Tipo!')
+		alert('Defina a Descri√ß√£o da Fam√≠lia Tipo!')
 		frm.tipo_descricao.focus();
 		return false;
 	}

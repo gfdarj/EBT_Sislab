@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -15,7 +15,7 @@ exibeTodos = request("exibeTodos")
 if exibeTodos <> "1" then exibeTodos = "0"
 if username = "" or username = null then username="-1"
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Pessoal Alocado por Período", "location.href='sislab.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Pessoal Alocado por PerÃ­odo", "location.href='sislab.asp'", "")
 %>
 
 <!-- Funcao isDate (data), onde data = dd/mm/aaaa -->
@@ -46,19 +46,19 @@ function validaForm()
 	else	frm.tp_datafinal.value = frm.diaFim.value+"/"+frm.mesFim.value+"/"+frm.anoFim.value;
 	if (!isDate(frm.tp_datainicial.value))
 	{
-		alert("Data Inicial Inválida!");
+		alert("Data Inicial InvÃ¡lida!");
 		frm.diaInicio.focus();
 		return;
 	}
 	if (!isDate(frm.tp_datafinal.value))
 	{
-		alert("Data Final Inválida!");
+		alert("Data Final InvÃ¡lida!");
 		frm.diaFim.focus();
 		return;
 	}
 	if (comparaData(frm.tp_datainicial.value, frm.tp_datafinal.value) < 0)
 	{
-		alert("Data Inicial superior à data de Término!");
+		alert("Data Inicial superior Ã  data de TÃ©rmino!");
 		frm.diaFim.focus();
 		return;
 	}
@@ -77,11 +77,11 @@ function submeter()
 <table class="texto1" width="100%" border="0" cellpadding="2" cellspacing="0">
 <tr>
   <td>
-		<font class="fonte2">Início:</font>
+		<font class="fonte2">InÃ­cio:</font>
 		<INPUT TYPE="text" NAME="diaInicio" size="3" MAXLENGTH="2" class="combo"> /
 		<font class="fonte2">
 		<SELECT NAME="mesInicio" class="combo">
-	    <OPTION VALUE="-1"> -Mês-
+	    <OPTION VALUE="-1"> -MÃªs-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
 	    <OPTION VALUE="03"> Mar
@@ -98,11 +98,11 @@ function submeter()
 	  <INPUT TYPE="text" size="4" NAME="anoInicio" MAXLENGTH="4" class="combo">
 	</td>
   <td>
-		<font class="fonte2">Término:</font>
+		<font class="fonte2">TÃ©rmino:</font>
 	  <INPUT TYPE="text" NAME="diaFim" MAXLENGTH="2" size="3" class="combo"> /
 		<font class="fonte2">
 	  <SELECT NAME="mesFim" class="combo">
-	    <OPTION VALUE="-1"> -Mês-
+	    <OPTION VALUE="-1"> -MÃªs-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
 	    <OPTION VALUE="03"> Mar

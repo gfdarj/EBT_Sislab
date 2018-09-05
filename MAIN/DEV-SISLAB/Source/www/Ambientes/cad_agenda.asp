@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <!--#include file="../includes/controlesHTML.asp" -->
@@ -18,7 +18,7 @@ function AtualizaData() {
 	datainicio  = dataas.substring(0,10);
 	datatermino = dataas.substring(11,21);
 	
-	if (confirm("VocÍ quer atualizar as datas da reserva com as datas do agendamento?")) {
+	if (confirm("Voc√™ quer atualizar as datas da reserva com as datas do agendamento?")) {
 		document.formulario.datainicio.value=datainicio
 		document.formulario.datafim.value=datatermino
 	}
@@ -30,27 +30,27 @@ function ValidaCampos()	{
 	var dF = d.anoFim.value + '' + d.mesFim.value + '' + d.diaFim.value;
 
 	if (document.formulario.titulo.value=="")	{
-		alert("TÌtulo do Evento em Branco.\nComplete o Campo TÌtulo do evento.");
+		alert("T√≠tulo do Evento em Branco.\nComplete o Campo T√≠tulo do evento.");
 		return false;
 	}
 	if((d.diaInicio.value == '') || (d.mesInicio.value == '') || (d.anoInicio.value == '') || (d.diaFim.value == '') || (d.mesFim.value == '') || (d.anoFim.value == '')) {
-		alert('O perÌodo informado È inv·lido');
+		alert('O per√≠odo informado √© inv√°lido');
 		return false;
 	}
 	if(dI > dF)	{
-		alert('Data inicial È maior que a data final');
+		alert('Data inicial √© maior que a data final');
 		return false;
 	}
 	if (document.formulario.descricao.value=="")	{
-		alert("DescriÁ„o do Evento em Branco.\nComplete o Campo DescriÁ„o.");
+		alert("Descri√ß√£o do Evento em Branco.\nComplete o Campo Descri√ß√£o.");
 		return false;
 	}
 	if (document.formulario.responsavel.value=="")	{
-		alert("Respons·vel pela marcaÁ„o do Evento em Branco.\nSelecione um Respons·vel pelo evento.");
+		alert("Respons√°vel pela marca√ß√£o do Evento em Branco.\nSelecione um Respons√°vel pelo evento.");
 			return false;
 	}
 	if (document.formulario.localizacao.value==0)	{
-		alert("Ambiente do Evento em Branco.\nComplete o Campo LocalizaÁ„o.");
+		alert("Ambiente do Evento em Branco.\nComplete o Campo Localiza√ß√£o.");
 		return false;
 	}			
 	document.formulario.submit();
@@ -102,7 +102,7 @@ call Env.RecordSet( false, objRS, null)
 <input type=hidden name=acao value="-1">
 <table width="100%" cellspacing="0" cellpadding="3" class="tabela1">
 <tr>
-	<td width="75px">&nbsp;TÌtulo:</td>
+	<td width="75px">&nbsp;T√≠tulo:</td>
 	<td>
 		<input type="text" value="<%=auxtitulo%>" name="titulo" size="80" class="texto1">
 		&nbsp;&nbsp;&nbsp;
@@ -135,14 +135,14 @@ call Env.RecordSet( false, objRS, null)
 </tr>
 
 <tr>
-	<td>&nbsp;Hor·rio:</td>
+	<td>&nbsp;Hor√°rio:</td>
 	<td>
 		<input type="text" name="horario" class="texto1" size="50" value="<%=auxhorario%>">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;Respons·vel:</td>
+	<td>&nbsp;Respons√°vel:</td>
 	<td>	
 <%
 s = "Select * From UserCRT  where  Exibir=1 order by Nome asc; "
@@ -151,7 +151,7 @@ call Env.RecordSet( true, objRS, s)
 If Not objRS.EOF Then
 	objRS.MoveFirst%>
 		<select name="responsavel" class="combo">
-		<option value="">Selecione o Respons·vel</option>
+		<option value="">Selecione o Respons√°vel</option>
 <%	do while not objRS.EOF%>
 		<option value=<%=Ucase(objRS("userid"))%>><%=Ucase(objRS("userid"))%> - <%=left(objRS("Nome"),40)%></option> 
 <%		objRS.movenext
@@ -161,15 +161,15 @@ end if%>
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;DescriÁ„o:</td>
+	<td>&nbsp;Descri√ß√£o:</td>
 	<td><textarea name=descricao cols="100" rows="6" class="texto1"><%=auxdescricao%></textarea></td>
 </tr>
 <tr>
-	<td>&nbsp;LocalizaÁ„o:</td>
+	<td>&nbsp;Localiza√ß√£o:</td>
 	<td>
 <%
-'-- pego os ambientes que n„o s„o reservados por AS, nestes, a reserva È feita pelo
-'-- cadastro de agendamento / ·rea do RAT
+'-- pego os ambientes que n√£o s√£o reservados por AS, nestes, a reserva √© feita pelo
+'-- cadastro de agendamento / √°rea do RAT
 s = "Select * From Ambientes WHERE AMB_USADOPORAG = 0 order by AMB_Nome asc;"
 call Env.RecordSet( true, objRS, s)
 If Not objRS.EOF Then

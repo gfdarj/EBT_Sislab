@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/montatela.inc" -->
+ï»¿<!-- #INCLUDE FILE="includes/montatela.inc" -->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
@@ -11,7 +11,7 @@ Response.Addheader "Pragma","no-cache"
 %>
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>

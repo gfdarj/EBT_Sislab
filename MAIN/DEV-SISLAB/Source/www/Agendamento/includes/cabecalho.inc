@@ -1,4 +1,4 @@
-<%@Language = vbscript%>
+﻿<%@Language = vbscript%>
 <%
 Option Explicit
 Response.Expires = 0

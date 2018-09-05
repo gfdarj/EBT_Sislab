@@ -1,4 +1,4 @@
-<style type="text/css">
+Ôªø<style type="text/css">
 <!-- 
 .font5 { color: black; text-decoration: bold; font-size: 9pt; font-family: Arial; }
 -->
@@ -33,7 +33,7 @@ end function %>
 <script language="JavaScript1.2">
 	function verifica()
 	{
-		if( document.bug.desc.value.length > 1022 && !confirm( "O campo descriÁ„o È excessivamente longo e ser· cortado. Deseja continuar?" ) )
+		if( document.bug.desc.value.length > 1022 && !confirm( "O campo descri√ß√£o √© excessivamente longo e ser√° cortado. Deseja continuar?" ) )
 			return;
 		else
 			document.bug.submit();
@@ -52,15 +52,15 @@ end if
 		<table width="600" class="font5" ID="Table2" align=center cellpadding=6 cellspacing=2 bgcolor=lightblue>
 			<tr><td class=font5 bgcolor=White width=599>
 				<p align=center>
-				<strong>Problemas com a P·gina Solicitada</strong></p>
+				<strong>Problemas com a P√°gina Solicitada</strong></p>
 				
 			
 				<p align="justify">
-				A p·gina solicitada est· com problemas tÈcnicos que est„o impedindo sua exibiÁ„o normal.<br><br>
-				Estamos recolhendo as informaÁıes correspondentes aos problemas e encaminhando-as aos
-				respons·veis pelo Site para que possam ser regularizadas no menor tempo possÌvel.<br><br>
+				A p√°gina solicitada est√° com problemas t√©cnicos que est√£o impedindo sua exibi√ß√£o normal.<br><br>
+				Estamos recolhendo as informa√ß√µes correspondentes aos problemas e encaminhando-as aos
+				respons√°veis pelo Site para que possam ser regularizadas no menor tempo poss√≠vel.<br><br>
 				Pedimos desculpas pelo transtorno.<br><br>
-				CoordenaÁ„o da Intranet</p>
+				Coordena√ß√£o da Intranet</p>
 			</td></tr>
 		</table>
 	</td></tr>
@@ -71,27 +71,27 @@ end if
 		<table class=font5 align="center" ID="Table19" width="600" cellpadding=2 cellspacing=2 >
 			<tr><td class=font5>
 				<p align=center>
-				<strong>InformaÁıes complementares sobre o problema</strong></p>
+				<strong>Informa√ß√µes complementares sobre o problema</strong></p>
 			</td></tr>
 			<tr><td  class=font5 align=left>
 				<table cellpadding=2 cellspacing=2 width=600 bgcolor=#ffffdd align=center>
 					<tr><td class=font5 colspan=2>
-						Usu·rio: 
+						Usu√°rio: 
 						<b><%= buscaNome( right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) ) %> 
 						<i>(<%= right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) %>)</i>
 						</b></td>
 					</tr>
 					<tr><td class=font5>ASP Code: <b><%= objErro.ASPCode %></b></td>
-					<td class=font5>N˙mero Erro: <b><%= objErro.Number %></b></td>
+					<td class=font5>N√∫mero Erro: <b><%= objErro.Number %></b></td>
 					</tr>
-					<tr><td class=font5>P·gina: <b><%= objErro.Source %></b></td>
+					<tr><td class=font5>P√°gina: <b><%= objErro.Source %></b></td>
 					<td class=font5>Categoria: <b><%= objErro.Category %></b></td>
 					</tr>
 					<tr><td class=font5>Arquivo: <b><%= objErro.File %></b></td>
 					<td class=font5>Linha / Coluna: <b><%= objErro.Line %> / <%= objErro.Column %></b></td>
 					</tr>
-					<tr><td class=font5 colspan=2>DescriÁ„o:  <b><%= objErro.Description %></b></td></tr>
-					<tr><td class=font5 colspan=2>ASP DescriÁ„o: <b><%= objErro.ASPDescription %></b></td></tr>
+					<tr><td class=font5 colspan=2>Descri√ß√£o:  <b><%= objErro.Description %></b></td></tr>
+					<tr><td class=font5 colspan=2>ASP Descri√ß√£o: <b><%= objErro.ASPDescription %></b></td></tr>
 				</table>
 			</td></tr>
 		</table>

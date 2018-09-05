@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -9,7 +9,7 @@
 <%
 Dim s_orig, s_dest, w, rec, s
 
-Tela.SetNomeTela = "SCE > Relat�rio > Passagem de Carga"
+Tela.SetNomeTela = "SCE > Relatório > Passagem de Carga"
 Tela.SetCaminhoRelativo = "../"
 
 Call Tela.MostraCabecalho()

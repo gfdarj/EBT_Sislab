@@ -1,4 +1,4 @@
-<%
+﻿<%
 Option Explicit
 response.buffer = true
 

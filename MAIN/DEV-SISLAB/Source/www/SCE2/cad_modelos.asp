@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -46,7 +46,7 @@ function ValidaCampos()
 		if msg = 1 then
 		response.write "Modelo inserido com sucesso!<br><br>"
 		elseif msg = 2 then
-		response.write "Este Part Number j· existe<br><br>"
+		response.write "Este Part Number j√° existe<br><br>"
 		end if%></td>
 	</tr>
 	<tr>
@@ -71,7 +71,7 @@ function ValidaCampos()
 	      		   <td bgcolor="#FFFFFF" class="texto1">SaP:&nbsp;
 					<input type="text" class="texto1" name="mod_net" style="width:100" maxlength="100">
 					</td>
-				  <td bgcolor="#FFFFFF" class="texto1">¡rea de UtilizaÁ„o:
+				  <td bgcolor="#FFFFFF" class="texto1">√Årea de Utiliza√ß√£o:
 				  <%ssql = "select * from sce_areautilizacao order by au_descricao"
 				  set rec = Env.oconn.execute(ssql)
 				  if not rec.eof then%>
@@ -97,10 +97,10 @@ function ValidaCampos()
   			<table width="600" cellpadding=0 cellspacing=0>
 	  			<tr> 
     			<!--  <td bgcolor="#FFFFFF" class="texto1">
-				  	CÛdigo do SGP:&nbsp;
+				  	C√≥digo do SGP:&nbsp;
 					<input type="text" class="form" name="cod_sgp" size="20" maxlength="100"><br><br>
 				</td>-->
-				<td bgcolor="#FFFFFF" class="texto1">FamÌlia Tipo:&nbsp;
+				<td bgcolor="#FFFFFF" class="texto1">Fam√≠lia Tipo:&nbsp;
 					<%ssql = "select * from sce_tipos order by tipo_descricao"
 					set rec = Env.oconn.execute(ssql)
 					if not rec.eof then%>
@@ -121,10 +121,10 @@ function ValidaCampos()
 		</td>
 	</tr>
 	<tr> 
-      <td bgcolor="#FFFFFF" class="texto1">DescriÁ„o do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="form"></textarea><br><br></td>
+      <td bgcolor="#FFFFFF" class="texto1">Descri√ß√£o do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="form"></textarea><br><br></td>
 	 </tr>
 	<tr> 
-      	<td bgcolor="#FFFFFF" class="texto1">ObservaÁıes<br>
+      	<td bgcolor="#FFFFFF" class="texto1">Observa√ß√µes<br>
 		<textarea class="texto1" name="mod_obs" style="width:550" cols="80" rows="5"></textarea></td>
 	</tr>
 	<tr> 

@@ -1,4 +1,4 @@
-<%
+ï»¿<%
 Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate"
 Response.Addheader "Pragma","no-cache"
@@ -7,9 +7,9 @@ Response.Addheader "Pragma","no-cache"
 function Valida()	{
 	var f = document.formulario;
 	if ( f.novacarac.value == "" )
-		alert( "Característica inválida" );
+		alert( "CaracterÃ­stica invÃ¡lida" );
 	else if ( f.definicao.value.length > 5000 )
-		alert( "Tamanho inválido para a Definição (5000 caracteres)." );
+		alert( "Tamanho invÃ¡lido para a DefiniÃ§Ã£o (5000 caracteres)." );
 	else	{
 		f.target = "escondido";
 		f.method = "post";
@@ -20,7 +20,7 @@ function Valida()	{
 </script>
 <html>
 <head>
-	<title>Nova Caracter&iacute;stica - Site do Centro de Referência Tecnológica</title>
+	<title>Nova Caracter&iacute;stica - Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>

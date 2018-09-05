@@ -1,6 +1,6 @@
-<!--#include file="adovbs.inc"-->
+ï»¿<!--#include file="adovbs.inc"-->
 <%Sub Connection(opcao, conexao)
-	On Error Resume Next 'necessário novamente devido à forma como este comando foi implementado
+	On Error Resume Next 'necessÃ¡rio novamente devido Ã  forma como este comando foi implementado
 	If(opcao)Then
 		Set conexao = Server.CreateObject("ADODB.Connection")
 		conexao.Open "Provider=sqloledb;User ID=sislab1;Password=sislab1001; Initial Catalog=SISLAB; Data Source=ntspo006"
@@ -43,7 +43,7 @@ Sub ImprimeErrosConexao( objErro )
 
 <html>
 <head>
-	<title>Erro de conexão</title>
+	<title>Erro de conexÃ£o</title>
 	<link rel="stylesheet" type="text/css" href="../css/cirap.css"/>
 </head>
 
@@ -51,19 +51,19 @@ Sub ImprimeErrosConexao( objErro )
 <br/>
 <table width="70%" align="center" bordercolor="#000099" border="1">
 	<tr class="tlabel">
-		<td align="center" colspan="2">Ocorreu algum erro ao tentar se conectar ao banco de dados.<br/>Se o erro persistir, contacte o webmaster deste site, fornecendo as seguintes informações:</td>
+		<td align="center" colspan="2">Ocorreu algum erro ao tentar se conectar ao banco de dados.<br/>Se o erro persistir, contacte o webmaster deste site, fornecendo as seguintes informaÃ§Ãµes:</td>
 	</tr>
 <%	For Each objTmp in objErro%>
 	<tr>
-		<td><br/>Código do Erro:</td>
+		<td><br/>CÃ³digo do Erro:</td>
 		<td><br/><%=objTmp.Number%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Código ADO do Erro:</td>
+		<td>CÃ³digo ADO do Erro:</td>
 		<td><%=objTmp.NativeError%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Descrição:</td>
+		<td>DescriÃ§Ã£o:</td>
 		<td><%=objTmp.Description%>&nbsp;</td>
 	</tr>
 	<tr>
@@ -79,7 +79,7 @@ Sub ImprimeErrosConexao( objErro )
 		<td><%=objTmp.HelpFile%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Tópico de ajuda associado:</td>
+		<td>TÃ³pico de ajuda associado:</td>
 		<td><%=objTmp.HelpContext%>&nbsp;</td>
 	</tr>
 <%	Next%>

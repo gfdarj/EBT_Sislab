@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/emailHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -47,7 +47,7 @@ auxag = Request("num_ag")
 ''''ehRat = False : ehRT = False : EhGQ = False : ehCrt = False : auxusername = "ANIEXP"
 
 if request("emjanela") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Pesquisa de SatisfaÁ„o do CRT", "SO_IMPRESSORA", "")
+	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Pesquisa de Satisfa√ß√£o do CRT", "SO_IMPRESSORA", "")
 else
 	If EhRAT Then
 		If Request.form("num_ag") <> "" Then
@@ -59,7 +59,7 @@ else
 		linkVoltar = "location.href='index.asp'"
 	End If
 
-	call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de SatisfaÁ„o - CRT", linkVoltar, "")
+	call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfa√ß√£o - CRT", linkVoltar, "")
 end if
 
 
@@ -72,7 +72,7 @@ If VVVNZ(auxag) Then
 		"LEFT JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & _
 		"WHERE ID_SITUACAO = " & AS_Finalizado & " "
 
-	'### Filtros de quem È o usuario entrando na pagina
+	'### Filtros de quem √© o usuario entrando na pagina
 	If Not ehCRT Then
 		sSQL = sSQL & "and AG_USERNAME = '" & auxusername & "' "
         solicitante_procurado = auxusername
@@ -152,7 +152,7 @@ If VVVNZ(auxag) Then
 	<input type="hidden" name="solicitante" value="<%=auxusername%>">
 <%	End If '### EhCRT %>
 </p>
-<p><input type="button" class="texto1" value="Ver Formul·rio" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
+<p><input type="button" class="texto1" value="Ver Formul√°rio" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
 </form>
 <script language="JavaScript">
 	function trocaAS()
@@ -191,7 +191,7 @@ Else
 	Dim ta_descricao : ta_descricao = ""
 	Dim ag_solicitante : ag_solicitante = ""
 
-	'### Pega os dados do(s) agendamento(s) e verifica se sao AS¥s do mesmo solicitante ###
+	'### Pega os dados do(s) agendamento(s) e verifica se sao AS¬¥s do mesmo solicitante ###
 	sSQL = _
 		"SELECT AG_NUMERO, TA_DESCRICAO, TEC_NOME, AG_USERNAME " & _
 		"FROM vw_Agendamento a " & _
@@ -202,7 +202,7 @@ Else
 
 	ta_descricao = "<table border='0' class='texto1' width='100%'>"
 	ta_descricao = ta_descricao & _
-		"<td colspan='2'><span class='texto1b' style='font-size:12px;'>1.1 ServiÁo Utilizado</span></td>" & _
+		"<td colspan='2'><span class='texto1b' style='font-size:12px;'>1.1 Servi√ßo Utilizado</span></td>" & _
 		"<td><span class='texto1b' style='font-size:12px;'>1.2 Tecnologia Empregada</span></td>"
 
 	While Not RS.Eof
@@ -258,7 +258,7 @@ Else
 
 	Else
 
-		'### Se N√O existe a pesquisa, entao busco os dados do usuario solicitante do AS
+		'### Se N√ÉO existe a pesquisa, entao busco os dados do usuario solicitante do AS
 		If UCase(Application("SISLAB_AMBIENTE")) <> "LOC_MEU_NOTE" Then
 
             Call Ebt.LoginUsuario(ag_solicitante)
@@ -305,7 +305,7 @@ Else
 <input type="hidden" name="pesqID" value="">
 
 <p align="left" class="texto1b" style="font-size: 12px;">
-	Pesquisa do Grau de SatisfaÁ„o com o ServiÁo do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
+	Pesquisa do Grau de Satisfa√ß√£o com o Servi√ßo do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
 </p>
 
 <table border="0" width="100%" cellpadding="2" class="tabela1">
@@ -329,12 +329,12 @@ Else
 </table>
 
 <p align="center" class="vermelho2" style="font-size: 12px;" id="p_aviso">
-	<b>Lembre-se: </b>Sua opini„o È fundamental para promover a melhoria dos Nossos Processos.
+	<b>Lembre-se: </b>Sua opini√£o √© fundamental para promover a melhoria dos Nossos Processos.
 </p>
 
 <table border="0" cellpadding="2" width="100%" class="tabela1">
 <tr>
-	<th align="left" colspan="2">1. Perfil de UtilizaÁ„o</th>
+	<th align="left" colspan="2">1. Perfil de Utiliza√ß√£o</th>
 </tr>
 <tr>
 	<td valign="top" width="100%" colspan="2">
@@ -345,13 +345,13 @@ Else
 
 <table border="0" width="100%" cellspacing="3" cellpadding="3" class="tabela1">
 <tr>
-	<th colspan="2" align="left">2. Por Favor, assinale a opÁ„o que melhor representa seu grau de satisfaÁ„o/insatisfaÁ„o em relaÁ„o aos
-		aspectos relacionados ao serviÁo pesquisado, indicando, se desejar coment·rios
+	<th colspan="2" align="left">2. Por Favor, assinale a op√ß√£o que melhor representa seu grau de satisfa√ß√£o/insatisfa√ß√£o em rela√ß√£o aos
+		aspectos relacionados ao servi√ßo pesquisado, indicando, se desejar coment√°rios
 	</th>
 </tr>
 <tr>
 	<td width="100%" valign="middle" colspan="2" class="texto1b" style="font-size:12px;">
-		2.1 Facilidade de ComunicaÁ„o (meios de acesso) com a ·rea respons·vel pela atividade
+		2.1 Facilidade de Comunica√ß√£o (meios de acesso) com a √°rea respons√°vel pela atividade
 	</td>
 </tr>
 	<%Call TR_Opcoes("comunica", "com_comunica", com_comunica)%>
@@ -359,21 +359,21 @@ Else
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.2 AtenÁ„o e cortesia das pessoas</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.2 Aten√ß√£o e cortesia das pessoas</td>
 </tr>
 	<%Call TR_Opcoes("cortesia", "com_cortesia", com_cortesia)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.3 Interesse em atender a sua solicitaÁ„o</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.3 Interesse em atender a sua solicita√ß√£o</td>
 </tr>
 	<%Call TR_Opcoes("presteza", "com_presteza", com_presteza)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.4 Flexibilidade no atendimento e execuÁ„o</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.4 Flexibilidade no atendimento e execu√ß√£o</td>
 </tr>
 	<%Call TR_Opcoes("flexibilidade", "com_flexibilidade", com_flexibilidade)%>
 
@@ -387,42 +387,42 @@ Else
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.6 Iniciativa / prÛ-atividade</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.6 Iniciativa / pr√≥-atividade</td>
 </tr>
 	<%Call TR_Opcoes("iniciativa", "com_iniciativa", com_iniciativa)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.7 Exatid„o e confiabilidade no serviÁo</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.7 Exatid√£o e confiabilidade no servi√ßo</td>
 </tr>
 	<%Call TR_Opcoes("confiabilidade", "com_confiabilidade", com_confiabilidade)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.8 Infra-estrutura do LaboratÛrio</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.8 Infra-estrutura do Laborat√≥rio</td>
 </tr>
 	<%Call TR_Opcoes("infraestrutura", "com_infraestrutura", com_infraestrutura)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.9 Ambiente do Centro de ReferÍncia TecnolÛgica (Salas de Apoio, RefeiÁ„o, NÌvel de RuÌdo, Bem-estar no ambiente...)</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.9 Ambiente do Centro de Refer√™ncia Tecnol√≥gica (Salas de Apoio, Refei√ß√£o, N√≠vel de Ru√≠do, Bem-estar no ambiente...)</td>
 </tr>
 	<%Call TR_Opcoes("ambiente", "com_ambiente", com_ambiente)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.10 Facilidade de Acesso ao Centro de ReferÍncia TecnolÛgica</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.10 Facilidade de Acesso ao Centro de Refer√™ncia Tecnol√≥gica</td>
 </tr>
 	<%Call TR_Opcoes("acesso", "com_acesso", com_acesso)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.11 Seu grau de satisfaÁ„o geral com os serviÁos do Centro de ReferÍncia TecnolÛgica</td>
+	<td colspan="2" class="texto1b" style="font-size:12px;">2.11 Seu grau de satisfa√ß√£o geral com os servi√ßos do Centro de Refer√™ncia Tecnol√≥gica</td>
 </tr>
 	<%Call TR_Opcoes("geral", "com_geral", com_geral)%>
 </table>
@@ -431,7 +431,7 @@ Else
 
 <table border="0" cellpadding="2" width="100%" class="tabela1">
 <tr>
-	<th align="left">3. ObservaÁıes e sugestıes adicionais relativas aos Ìtens/serviÁo acima</th>
+	<th align="left">3. Observa√ß√µes e sugest√µes adicionais relativas aos √≠tens/servi√ßo acima</th>
 </tr>
 <tr>
 	<td valign="top">
@@ -442,7 +442,7 @@ Else
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<th align="left">4. ObservaÁıes e sugestıes sobre outros aspectos de nossa ·rea/nossos serviÁos que n„o foram abordados acima</th>
+	<th align="left">4. Observa√ß√µes e sugest√µes sobre outros aspectos de nossa √°rea/nossos servi√ßos que n√£o foram abordados acima</th>
 </tr>
 <tr>
 	<td valign="top">
@@ -458,7 +458,7 @@ Else
 <tr>
 	<td valign="top">
 		<blockquote><p>
-			<input type=radio name="opttipousu" value="E">Empregado da Embratel ou Unidade de NegÛcios<br>
+			<input type=radio name="opttipousu" value="E">Empregado da Embratel ou Unidade de Neg√≥cios<br>
 			<input type=radio name="opttipousu" value="V">Visitante Externo<br>
 		</blockquote>
 	</td>
@@ -474,7 +474,7 @@ Else
 		<table  border="0" width="100%" cellpadding="2" class="tabela1">
 		<tr>
 			<td>
-				Respons·vel<br>
+				Respons√°vel<br>
 				<input class="texto1" type="text" name="fNome" size="35">
 			</td>
 			<td>
@@ -490,7 +490,7 @@ Else
 				<input class="texto1" type="text" name="fEMail" size="30">
 			</td>
 			<td>
-				”rg„o ou Empresa<br>
+				√ìrg√£o ou Empresa<br>
 				<input class="texto1" type="text" name="fOrgao" size="15">
 			</td>
 		</tr>
@@ -502,7 +502,7 @@ Else
 <p align="center" id="p_conifrmaResposta">
 <%
 If bln_ExistePesquisa And (Not ehRAT) Then%>
-	<input type="Button" class='texto1' value="Voltar ao inÌcio" name="btnConfirma" onclick="javascript:location.href='index.asp';">
+	<input type="Button" class='texto1' value="Voltar ao in√≠cio" name="btnConfirma" onclick="javascript:location.href='index.asp';">
 <%
 Else%>
 	<input type="Button" class='texto1' value="Confirmar Respostas" name="btnConfirma" onclick="javascript:Confirma();">
@@ -526,35 +526,35 @@ function Confirma()
 	selec=0;
 
 	if (!(formulario.opttipousu(0).checked)&!(formulario.opttipousu(1).checked)) {
-		alert('Campo "Respondido por" n„o preenchido (opÁıes: Empregado EBT, visitante externo....)');
+		alert('Campo "Respondido por" n√£o preenchido (op√ß√µes: Empregado EBT, visitante externo....)');
 		formulario.opttipousu(0).focus();
 	}
 	else if (!taPreenchido(formulario.comunica)) {
-		alert('ComunicaÁ„o n„o foi indicada');
+		alert('Comunica√ß√£o n√£o foi indicada');
 		formulario.comunica(0).focus();
 	}
 	else if (!taPreenchido(formulario.cortesia)) {
-		alert('Cortezia n„o fo indicada');
+		alert('Cortezia n√£o fo indicada');
 		formulario.cortesia(0).focus();
 	}
 	else if (!taPreenchido(formulario.presteza)) {
-		alert('Presteza n„o foi indicada');
+		alert('Presteza n√£o foi indicada');
 		formulario.presteza(0).focus();
 	}
 	else if (!taPreenchido(formulario.flexibilidade)) {
-		alert('Flexibilidade n„o foi indicada');
+		alert('Flexibilidade n√£o foi indicada');
 		formulario.flexibilidade(0).focus();
 	}
 	else if (!taPreenchido(formulario.iniciativa)) {
-		alert('Iniciativa n„o foi indicada');
+		alert('Iniciativa n√£o foi indicada');
 		formulario.iniciativa(0).focus();
 	}
 	else if (!taPreenchido(formulario.confiabilidade)) {
-		alert('Confiabilidade n„o foi indicada');
+		alert('Confiabilidade n√£o foi indicada');
 		formulario.confiabilidade(0).focus();
 	}
 	else if (!taPreenchido(formulario.infraestrutura)) {
-		alert('Infraestrutura n„o foi indicado');
+		alert('Infraestrutura n√£o foi indicado');
 		formulario.infraestrutura(0).focus();
 	}
 	else if (!taPreenchido(formulario.ambiente)) {
@@ -562,11 +562,11 @@ function Confirma()
 		formulario.ambiente(0).focus();
 	}
 	else if (!taPreenchido(formulario.acesso)) {
-		alert('Acesso n„o foi indicado');
+		alert('Acesso n√£o foi indicado');
 		formulario.acesso(0).focus();
 	}
 	else if (!taPreenchido(formulario.geral)) {
-		alert('AvaliaÁ„o geral nao foi indicada');
+		alert('Avalia√ß√£o geral nao foi indicada');
 		formulario.geral(0).focus();
 	}
 	else { 
@@ -597,7 +597,7 @@ function Confirma()
 
 <%		If Not (ehRAT Or ehGQ) Then%>
 	document.all.p_conifrmaResposta.innerHTML = '';
-	document.all.p_aviso.innerHTML = '<b>Obrigado! Para alguma alteraÁ„o entre em contato com o CRT.</b>';
+	document.all.p_aviso.innerHTML = '<b>Obrigado! Para alguma altera√ß√£o entre em contato com o CRT.</b>';
 <%		end if
 
 	end if
@@ -649,7 +649,7 @@ Sub TR_Opcoes(nomeRadio, nomeComent, valor)
 		<input type="radio" value="2" name="<%=nomeRadio%>"> - Insatisfeito<br>
 		<input type="radio" value="1" name="<%=nomeRadio%>"> - Muito InSatisfeito
 	</td>
-	<td width="50%" valign="bottom"><em>Coment·rios:</em><textarea class="texto1" rows="8" name="<%=nomeComent%>" cols="45"><%=valor%></textarea></td>
+	<td width="50%" valign="bottom"><em>Coment√°rios:</em><textarea class="texto1" rows="8" name="<%=nomeComent%>" cols="45"><%=valor%></textarea></td>
 </tr>
 <%
 End Sub
@@ -661,8 +661,8 @@ Function MensagemSolicitantesInvalidos
 <div style="width:400px" align="justify">
 <p>&nbsp;</p>
 <p class="texto1" align="center"><font color="red"><b>AVISO !</b></font></p>
-<p class="texto1">VocÍ selecionou 2 ou mais solicitantes diferentes.</p>
-<p class="texto1">Para usar a funcionalidade de resposta v·rios agendamentos È necess·rio que todos os agendamentos sejam do mesmo solicitante.</p>
+<p class="texto1">Voc√™ selecionou 2 ou mais solicitantes diferentes.</p>
+<p class="texto1">Para usar a funcionalidade de resposta v√°rios agendamentos √© necess√°rio que todos os agendamentos sejam do mesmo solicitante.</p>
 <p align="center"><input type="Button" class='texto1' value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
 </div>
 </center>

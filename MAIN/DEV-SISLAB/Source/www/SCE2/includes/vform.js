@@ -1,33 +1,33 @@
-function vdform() {
+Ôªøfunction vdform() {
 //############################################################################################
 //Por Bernardo Heynemann
-//Para usar basta chamar a funÁ„o da seguinte maneira:
-//vdform('nomedoform','nomedocampo','Texto a aparecer na mensagem de erro','Tipo de ValidaÁ„o',...)
+//Para usar basta chamar a fun√ß√£o da seguinte maneira:
+//vdform('nomedoform','nomedocampo','Texto a aparecer na mensagem de erro','Tipo de Valida√ß√£o',...)
 //
-//O Primeiro Argumento a ser passado deve ser o nome do form em que est„o os objetos.
+//O Primeiro Argumento a ser passado deve ser o nome do form em que est√£o os objetos.
 //
 //
-//Os tipos v·lidos para Tipo de ValidaÁ„o s„o:
+//Os tipos v√°lidos para Tipo de Valida√ß√£o s√£o:
 //NEmail - Valida campos para e-mail somente se alguma coisa foi digitada.
-//NNumber - Valida campos para valor numÈrico somente se alguma coisa foi digitada.
-//NRangeX:Y - Valida campos para valor numÈrico entre X e Y se alguma coisa foi digitada.
+//NNumber - Valida campos para valor num√©rico somente se alguma coisa foi digitada.
+//NRangeX:Y - Valida campos para valor num√©rico entre X e Y se alguma coisa foi digitada.
 //NCpf - Valida campos para valor com CPF se algum valor foi digitado.
 //REmail - Valida campos para e-mail requeridos.
-//RNumber - Valida campos para valor numÈrico requeridos.
-//RRangeX:Y - Valida campos para valor numÈrico entre X e Y requeridos.
+//RNumber - Valida campos para valor num√©rico requeridos.
+//RRangeX:Y - Valida campos para valor num√©rico entre X e Y requeridos.
 //RCpf - Valida campos para valor com CPF requeridos.
 //############################################################################################
  
   var i=0;     //Contador de Loops do FOR
-  var erro='';    //Vari·vel com a String de Erro
-  var args=vdform.arguments;  //Vari·vel com os argumentos passados ‡ funÁ„o
-  var teste='';    //Vari·vel usada para indicar o tipo de teste a ser executado no campo atual.
-  var nome='';    //Vari·vel contendo a string a ser usada na mensagem de erro.
-  var temp=0;    //Vari·vel usada para testes das posiÁıes de @ e :
-  var min=0;    //Vari·vel contendo o mÌnimo do range de n˙mero
-  var max=0    //Vari·vel contendo o m·ximo do range de n˙mero
-  var nomeform=args[0];   //Vari·vel contendo o nome do form
-  var num=0;    //Vari·vel contendo o n˙mero para testar range
+  var erro='';    //Vari√°vel com a String de Erro
+  var args=vdform.arguments;  //Vari√°vel com os argumentos passados √† fun√ß√£o
+  var teste='';    //Vari√°vel usada para indicar o tipo de teste a ser executado no campo atual.
+  var nome='';    //Vari√°vel contendo a string a ser usada na mensagem de erro.
+  var temp=0;    //Vari√°vel usada para testes das posi√ß√µes de @ e :
+  var min=0;    //Vari√°vel contendo o m√≠nimo do range de n√∫mero
+  var max=0    //Vari√°vel contendo o m√°ximo do range de n√∫mero
+  var nomeform=args[0];   //Vari√°vel contendo o nome do form
+  var num=0;    //Vari√°vel contendo o n√∫mero para testar range
   var campoatual;
  
   campoatual="";
@@ -38,15 +38,15 @@ function vdform() {
  
     if (objeto){
       if (objeto.value!=''){
-        //TESTANDO E-MAIL N√O REQUERIDO
+        //TESTANDO E-MAIL N√ÉO REQUERIDO
         if (teste.indexOf('Email')!=-1) {
           temp=objeto.value.indexOf('@');
           if (temp<1 || temp==(objeto.value.length-1)) {
 		  	campoatual=objeto;
-            erro+='- O Campo '+nome+' deve conter um endereÁo de e-mail v·lido.\n';
+            erro+='- O Campo '+nome+' deve conter um endere√ßo de e-mail v√°lido.\n';
           }
         }
- 		//Testando CPF N„o Requerido
+ 		//Testando CPF N√£o Requerido
         if (teste.indexOf('CPF')!=-1) {
 		  mystr=objeto.value;
 		  mystr=mystr.replace(".","");
@@ -57,10 +57,10 @@ function vdform() {
 		  	if (campoatual==""){
 				campoatual=objeto;
 			}
-            erro+='- O Campo '+nome+' deve conter um cpf v·lido.\n';
+            erro+='- O Campo '+nome+' deve conter um cpf v√°lido.\n';
           }
         }
-		//Testando CNPJ N„o Requerido
+		//Testando CNPJ N√£o Requerido
         if (teste.indexOf('CNPJ')!=-1) {
 		  mystr=objeto.value;
           temp=VerifyCNPJ(mystr);
@@ -68,29 +68,29 @@ function vdform() {
 		  	if (campoatual==""){
 				campoatual=objeto;
 			}
-            erro+='- O Campo '+nome+' deve conter um cnpj v·lido.\n';
+            erro+='- O Campo '+nome+' deve conter um cnpj v√°lido.\n';
           }
         }
  
-        //TESTANDO N⁄MEROS N√O REQUERIDO
+        //TESTANDO N√öMEROS N√ÉO REQUERIDO
         if (teste.indexOf('Number')!=-1) {
 		  num = parseFloat(objeto.value);
           if (isNaN(num)) {
 		  	if (campoatual==""){
 				campoatual=objeto;
 			}		  
-            erro+='- O Campo '+nome+' deve conter um n˙mero.\n';
+            erro+='- O Campo '+nome+' deve conter um n√∫mero.\n';
           }
         }
  
-        //TESTANDO N⁄MEROS ENTRE X E Y N√O REQUERIDO
+        //TESTANDO N√öMEROS ENTRE X E Y N√ÉO REQUERIDO
         if (teste.indexOf('Range')!=-1) {
    num = parseFloat(objeto.value);
           if (isNaN(num)) {
 		  	if (campoatual==""){
 				campoatual=objeto;
 			}		  
-            erro+='- O Campo '+nome+' deve conter um n˙mero.\n';
+            erro+='- O Campo '+nome+' deve conter um n√∫mero.\n';
           }
           else{
             temp=teste.indexOf(':');
@@ -100,7 +100,7 @@ function vdform() {
 			  	if (campoatual==""){
 					campoatual=objeto;
 				}			
-              erro+='- O Campo '+nome+' deve conter um n˙mero entre '+min+' e '+max+' .\n';
+              erro+='- O Campo '+nome+' deve conter um n√∫mero entre '+min+' e '+max+' .\n';
             }
           }
         }
@@ -118,7 +118,7 @@ function vdform() {
     }
   }
   if (erro) {
- 	alert('O(s) seguinte(s) erro(s) ocorreu(ram):\n'+erro); //VocÍ pode editar a frase do erro aqui.
+ 	alert('O(s) seguinte(s) erro(s) ocorreu(ram):\n'+erro); //Voc√™ pode editar a frase do erro aqui.
 	campoatual.focus();
   }
   document.ValorPassou = (erro=='');
@@ -147,13 +147,13 @@ function isNum(str)
       }
 }
 
-//FunÁ„o de validaÁ„o de CPF
+//Fun√ß√£o de valida√ß√£o de CPF
 function isCPF(st) {
 if (st == "")
   return (false);
 l = st.length;
 
-//aleterado para se usu·rio n„o digitar os zeros na frente do CPF, completar sozinho
+//aleterado para se usu√°rio n√£o digitar os zeros na frente do CPF, completar sozinho
 if ((l == 9) || (l == 8))
 {
             for (i = l ; i < 10; i++)

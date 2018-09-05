@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -22,11 +22,11 @@ If Env.UsuarioSCE() Then
 		<td class="texto">
 		<%if request("msg")<>"" then 
 			if cint(request("msg")) = 1 then response.write "<br><strong>Documento alterado com sucesso!</strong><br><br>"
-			if cint(request("msg")) = 2 then response.write "<br><strong>Documento excluído com sucesso!</strong><br><br>"
+			if cint(request("msg")) = 2 then response.write "<br><strong>Documento excluÃ­do com sucesso!</strong><br><br>"
 		end if%></td>
 	</tr>
     <tr>
-	    <td class="destaque">Edição de Documentos</td>
+	    <td class="destaque">EdiÃ§Ã£o de Documentos</td>
     </tr>
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr>
@@ -41,7 +41,7 @@ If Env.UsuarioSCE() Then
 			wend%>
 			</select>
 		<%else
-			response.write "Não Existe Documentação Cadastradas No Momento."
+			response.write "NÃ£o Existe DocumentaÃ§Ã£o Cadastradas No Momento."
 		end if%>
 		</td>
     </tr>

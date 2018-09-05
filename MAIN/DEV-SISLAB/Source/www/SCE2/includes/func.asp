@@ -1,4 +1,4 @@
-<script language="JavaScript1.1">
+﻿<script language="JavaScript1.1">
 function FormataCNPJ(Campo, teclapres){
 
 	var tecla = teclapres.keyCode;

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!-- #include file="includes/controlesXLS.asp" -->
@@ -59,7 +59,7 @@ function exportaParaExcel()
 
 		If Not (RS.Eof And RS.Bof) Then
 
-			RW "<table border='1' width='100%' class='tabela1' cellpadding='2' cellspacing='0' title='Clique no �cone do excel para exportar os dados'>" & VbCrLf
+			RW "<table border='1' width='100%' class='tabela1' cellpadding='2' cellspacing='0' title='Clique no ícone do excel para exportar os dados'>" & VbCrLf
 			RW "<tr>" & VbCrLf
 
 			RW "<th><a href='#' onclick='javascript:exportaParaExcel();'><img src='img/excel_logo.jpg' width='24' border='0' alt='Exportar para Excel'></a></th>" & VbCrLf

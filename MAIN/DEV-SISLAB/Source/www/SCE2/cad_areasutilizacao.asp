@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > ¡rea de utilizaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > √Årea de utiliza√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -32,11 +32,11 @@ function ValidaCampos()
 <table width="100%">
 	<tr>
 		<td class="texto1">
-		<%if request("msg") <> "" then response.write "¡rea cadastrada com sucesso!<br><br>"%></td>
+		<%if request("msg") <> "" then response.write "√Årea cadastrada com sucesso!<br><br>"%></td>
 	</tr>
 	<tr> 
 		<td class="texto1">
-			DescriÁ„o da ¡rea de UtilizaÁ„o<br>
+			Descri√ß√£o da √Årea de Utiliza√ß√£o<br>
 			<input type="text" class="texto1" name="au_descricao" style="width:600" maxlength="50">
 		</td>
 	</tr> 

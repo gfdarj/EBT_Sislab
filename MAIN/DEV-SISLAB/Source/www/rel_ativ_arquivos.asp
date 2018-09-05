@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
@@ -13,7 +13,7 @@ else
 	Dim bln_ehLogBook
 
 	If request("oc") <> "" Then	'-- ocorrencia do logbook
-		call ImprimeCabecalho2("Ocorrência " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma ação", "NENHUM", "")
+		call ImprimeCabecalho2("OcorrÃªncia " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma aÃ§Ã£o", "NENHUM", "")
 		bln_ehLogBook = True
 
 		sSQL = "Select 'LogBook' AS TIPOARQUIVO, '" & Replace(Application("SISLAB_FolderArquivosLB"),"\","") & "/' + REPLACE(ACA_LINK, '\', '/') AS NOMEARQUIVO, ACA_LINK AS LINK From LB_ACOESTOMADAS_ARQUIVOS WHERE ACT_ID = " & Request("selecao")

@@ -1,4 +1,4 @@
-<!--#INCLUDE FILE="includes/emailHtml.ASP" -->
+ï»¿<!--#INCLUDE FILE="includes/emailHtml.ASP" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
@@ -38,11 +38,11 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Fale Conosco - Email env
 	<td class="menu" valign="middle" align="center" height="100%" width="100%">
 	A sua mensagem foi encaminhada para a Equipe do CRT.<br><br>
 	Em breve retornaremos o seu contato.<br><br>
-	Frequente nosso Site e participe do Centro de Referência Tecnológica contribuindo com suas críticas e sugestões.<br>
+	Frequente nosso Site e participe do Centro de ReferÃªncia TecnolÃ³gica contribuindo com suas crÃ­ticas e sugestÃµes.<br>
 	</td>
 </tr>
 <tr><td height="30px"></td></tr>
-<tr><td align="center"><input type="Button" class="texto1" value="Voltar para a página inicial" onclick="javascript:location.href='index.asp';"></td></tr>
+<tr><td align="center"><input type="Button" class="texto1" value="Voltar para a pÃ¡gina inicial" onclick="javascript:location.href='index.asp';"></td></tr>
 </table>
 <%
 Call ImprimeRodape(RODAPE_OFF)

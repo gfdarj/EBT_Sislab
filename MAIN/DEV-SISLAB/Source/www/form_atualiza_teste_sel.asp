@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -7,33 +7,35 @@
 Dim rs_teste, strSQL
 Dim num_erro, desc_erro
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes", "location.href='sislab.asp'", "")
+Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AtualizaÃ§Ã£o de Testes", "location.href='sislab.asp'", "")
 %>
 <script language="javascript">
-function abre(codigo, excluir)
-{
-	document.formulario.cod_teste.value = codigo;
-	if(excluir) {
-		document.formulario.action = "form_especifica_testeA.asp";
-		document.formulario.excluir.value= '1';
-	}
-	else
-		document.formulario.action = "form_especifica_teste.asp";
+    function abre(codigo, excluir)
+    {
+	    document.formulario.cod_teste.value = codigo;
+	    if(excluir) {
+		    document.formulario.action = "form_especifica_testeA.asp";
+		    document.formulario.excluir.value= '1';
+	    }
+	    else
+		    document.formulario.action = "form_especifica_teste.asp";
 
-	document.formulario.submit();
-}
+	    document.formulario.submit();
+    }
 </script>
+
 <form name="formulario" action="form_especifica_teste.asp" method="post">
-<input type="hidden" name="cod_teste">
-<input type="hidden" name="excluir" value="">
+    <input type="hidden" name="cod_teste">
+    <input type="hidden" name="excluir" value="">
 </form>
+
 <p class="texto1">
-	&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Testes Disponíveis</span>
+	&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Testes DisponÃ­veis</span>
 </p>
 <table border="1" cellSpacing="0" cellpadding="2" width="100%" class="tabela1">
 <tr>
-	<th>Título</th>
-	<th>Disponível</th>
+	<th>TÃ­tulo</th>
+	<th>DisponÃ­vel</th>
 	<th>Tipo</th>
 	<th>&nbsp;</th>
 	<th>&nbsp;</th>
@@ -69,7 +71,7 @@ function abre(codigo, excluir)
 				<%if rs_teste("T_DISPONIVEL") then
 					response.write "Sim"
 				else
-					response.write "Não"
+					response.write "NÃ£o"
 				end if%>
 			</TD>
 			<TD align="center" width="100px">

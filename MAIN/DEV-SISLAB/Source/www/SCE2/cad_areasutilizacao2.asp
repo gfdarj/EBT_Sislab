@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <% 
@@ -15,7 +15,7 @@ if not rec.eof then
 	<html>
 		<body>
 			<script>
-				alert('¡rea de UtilizaÁ„o j· existente!');
+				alert('√Årea de Utiliza√ß√£o j√° existente!');
 				history.back();
 			</script>
 		</body>
@@ -27,7 +27,7 @@ ssql = "insert into sce_areautilizacao (au_descricao,au_codareautil,cod_sgp) val
 ssql = ssql &"('"& au_descricao &"','"& au_codareautil &"','"& sgp &"')"
 Env.oconn.execute(Ssql)
 
-acao = "O usu·rio "& Env.Usuario &" cadastrou a area de utilizaÁ„o "& trim(replace(request("au_descricao"),  "'","&#39;"))
+acao = "O usu√°rio "& Env.Usuario &" cadastrou a area de utiliza√ß√£o "& trim(replace(request("au_descricao"),  "'","&#39;"))
 Call Env.LogSCE(acao)
 
 response.redirect "cad_areasutilizacao.asp?msg=1"

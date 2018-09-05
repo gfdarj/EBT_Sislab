@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+﻿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <!--#include file="../includes/controlesHTML.asp" -->
@@ -26,7 +26,7 @@ if familia <> "" then
 		window.parent.opener.location = "novotipo.asp?familia=<%=ret%>&fabricante=<%=fabricante%>";
 		window.parent.close();
 <%else%>
-		alert("Ocorreu um erro ao gravar esta fam�lia. (<%=ret%>)");	
+		alert("Ocorreu um erro ao gravar esta família. (<%=ret%>)");	
 		window.close();	<%
 	end if
 %></script></html><%

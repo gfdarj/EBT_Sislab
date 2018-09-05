@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -9,7 +9,7 @@
 <!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > RelatÛrio > Passagem de Carga"
+Tela.SetNomeTela = "SCE > Relat√≥rio > Passagem de Carga"
 Tela.SetCaminhoRelativo = "../"
 
 Call Tela.MostraCabecalho()
@@ -30,7 +30,7 @@ If Env.UsuarioSCE() Then
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td>Respons·vel<br>
+	<td>Respons√°vel<br>
 	<%=Combo.UserCRT("ag_responsavel", "N")%>
 	</td>
 </tr>

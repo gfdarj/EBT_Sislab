@@ -583,11 +583,11 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			<%if ehValidacao then%>
 				<tr> 
 					<td colspan="5">
-						<b>Data Valida��o :</b><br>
+						<b>Data Validação :</b><br>
 						<%call comboData("validacao")%>
 					</td>
 					<td colspan="5">
-						<b>Respons�vel Valida��o :</b><br>
+						<b>Responsável Validação :</b><br>
 						<%call comboUSERCRTcDefault("validador", Env.oConn, Env.usuario(),false)%>
 					</td>
 				</tr>
@@ -639,7 +639,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 			</tr>
 			<tr> 
 				<td colspan="5">
-					<b> Data de Aprova��o do arquivo:</b><br>
+					<b> Data de Aprovação do arquivo:</b><br>
 					<select name="diaatualiz" class="combo"  onchange="montaAtualiza()">
 						<option value="">Dia</option><%
 								for i = 1 to 31
@@ -668,7 +668,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - "
 					</select>
 					<select name="anoatualiz" class="combo" onchange="montaAtualiza()">
 						<option value="">Ano</option><%
-							for i = -1 to 5 '-- pego o ano seguinte e 5 anos para tr�s
+							for i = -1 to 5 '-- pego o ano seguinte e 5 anos para trás
 								cbano = year( now ) - i %>
 						<option value="<%=cbano%>"><%=cbano%></option><%
 							next%>

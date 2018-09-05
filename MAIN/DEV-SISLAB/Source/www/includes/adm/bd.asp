@@ -1,7 +1,7 @@
-<!--#include file="../Sislab_Lib.asp"-->
+ï»¿<!--#include file="../Sislab_Lib.asp"-->
 <html>
 <head>
-	<title>Administração Remota de Banco de Dados SQL Server</title>
+	<title>AdministraÃ§Ã£o Remota de Banco de Dados SQL Server</title>
 	<link rel="stylesheet" href="../../css/cirap_adm.css">
 </head>
 <body>
@@ -18,7 +18,7 @@ Sub ImprimeErros( objErro, cmd )
 <br/>
 <table align="center" border="1">
 	<tr>
-		<td colspan="2"><strong>Ocorreu algum erro ao processar seu comando. Seguem maiores informações abaixo</strong></td>
+		<td colspan="2"><strong>Ocorreu algum erro ao processar seu comando. Seguem maiores informaÃ§Ãµes abaixo</strong></td>
 	</tr>
 	<tr>
 		<td>Comando recebido:</td>
@@ -26,15 +26,15 @@ Sub ImprimeErros( objErro, cmd )
 	</tr>
 <%	For Each objTmp in objErro%>
 	<tr>
-		<td>Código do Erro:</td>
+		<td>CÃ³digo do Erro:</td>
 		<td><%=objTmp.Number%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Código ADO do Erro:</td>
+		<td>CÃ³digo ADO do Erro:</td>
 		<td><%=objTmp.NativeError%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Descrição:</td>
+		<td>DescriÃ§Ã£o:</td>
 		<td><%=objTmp.Description%>&nbsp;</td>
 	</tr>
 	<tr>
@@ -50,7 +50,7 @@ Sub ImprimeErros( objErro, cmd )
 		<td><%=objTmp.HelpFile%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Tópico de ajuda associado:</td>
+		<td>TÃ³pico de ajuda associado:</td>
 		<td><%=objTmp.HelpContext%>&nbsp;</td>
 	</tr>
 </table>
@@ -77,7 +77,7 @@ If Comando <> "" Then
 	Else%>
 <table align="center">
 	<tr>
-		<td align="justify">O seguinte comando foi executado com êxito no banco de dados:</td>
+		<td align="justify">O seguinte comando foi executado com Ãªxito no banco de dados:</td>
 	</tr>
 	<tr>
 		<td align="justify" width="80%"><em><%=Replace(Comando, VbCrLf, "<br/>")%></em></td>
@@ -119,7 +119,7 @@ If Comando <> "" Then
 <script language="JavaScript">
 function vai(){
 	if(document.admin_remoto.sql.value == ""){
-		alert("Digite alguma coisa!!!\nComo você vai executar um comando em branco no Banco de Dados??? ");
+		alert("Digite alguma coisa!!!\nComo vocÃª vai executar um comando em branco no Banco de Dados??? ");
 		document.admin_remoto.sql.focus();
 	}
 	else

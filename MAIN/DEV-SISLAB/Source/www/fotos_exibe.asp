@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -22,7 +22,7 @@ If Not (RS.Eof And RS.Bof) Then
 	id_Arq = RS(2)
 	chr_Desc = RS(3)
 Else
-	chr_Desc = "Arquivo n�o encontrado"
+	chr_Desc = "Arquivo não encontrado"
 End If
 
 call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Fotos", "javascript:window.close();", "")

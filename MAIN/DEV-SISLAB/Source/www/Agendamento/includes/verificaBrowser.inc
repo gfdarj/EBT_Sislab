@@ -1,4 +1,4 @@
-<%
+﻿<%
 Dim browser, i
 browser = Request.ServerVariables("HTTP_USER_AGENT")
 If InSTR(browser, "MSIE") Then

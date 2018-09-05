@@ -1,4 +1,4 @@
-<%
+﻿<%
 '***************************************
 ' File:	  Upload.asp
 ' Author: Jacob "Beezle" Gilley

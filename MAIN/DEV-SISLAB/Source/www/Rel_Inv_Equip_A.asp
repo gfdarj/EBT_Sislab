@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
@@ -45,7 +45,7 @@ sSQL = _
 	"WHERE " & _
 	"	1 = 1 "
 
-'# configura os parametros do relat�rio
+'# configura os parametros do relatório
 If Not VVVN(RQ("propriedade")) Then
 	sSQL = sSQL & " AND E.EQ_PROPRIEDADE = '" & RQ("propriedade") & "'"
 End If

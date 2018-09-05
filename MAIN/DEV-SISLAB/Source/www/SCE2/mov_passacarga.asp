@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -6,7 +6,7 @@
 <!--#include file="../Lib/Classe_Combo.asp"-->
 
 <%
-Tela.SetNomeTela = "SCE > MovimentaÁ„o > Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -22,7 +22,7 @@ If Env.UsuarioSCE() Then
 if request("msg") = "1" then %>
 <tr>
 	<th>
-		Passagem de carga solicitada com sucesso. <br>Aguarde a confirmaÁ„o
+		Passagem de carga solicitada com sucesso. <br>Aguarde a confirma√ß√£o
 		pelo RT do agendamento destino !
 	</th>
 </tr>
@@ -54,7 +54,7 @@ end if
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<b>*&nbsp;</b>Equipamentos em condiÁıes de carga (sem reservas no perÌodo do agendamento)<br>
+		<b>*&nbsp;</b>Equipamentos em condi√ß√µes de carga (sem reservas no per√≠odo do agendamento)<br>
 		<select multiple name="eq_origem" style="width: 640px;" class="texto1" size="6"></select>
 	</td>
 </tr>
@@ -128,7 +128,7 @@ function validaAgendamentos() {
 		d.ag_numero_destino.focus();
 	}
 	else if(d.ag_numero_origem.value == d.ag_numero_destino.value) {
-		alert("Os agendamentos s„o iguais. Selecione outro agendamento.");
+		alert("Os agendamentos s√£o iguais. Selecione outro agendamento.");
 		d.ag_numero_origem.focus();
 	}
 	else { ret = true; }
@@ -156,7 +156,7 @@ function passarEqDestino() {
 		if( d.eq_destino.options.length > 1 ) {
 			Quicksort(d.eq_destino, 0, d.eq_destino.options.length-1);
 		}
-		if(jaExiste) alert("Alguns itens n„o foram inseridos na lista destino\npois j· se encontram selecionados.");
+		if(jaExiste) alert("Alguns itens n√£o foram inseridos na lista destino\npois j√° se encontram selecionados.");
 	}
 }
 

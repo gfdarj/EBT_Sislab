@@ -1,10 +1,10 @@
-<!------- SISLAB ---->
+ï»¿<!------- SISLAB ---->
 <!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Controle de Equipamento e Instrumental"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Controle de Equipamento e Instrumental"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -17,11 +17,11 @@ If Env.UsuarioSCE() Then
 <input type="hidden" value="" name="exportaExcel">
 
 <table width="750px" class="texto1">
-<tr><td colspan="2" valign="middle" class="destaque">Selecione as opções de filtro</td></tr>
+<tr><td colspan="2" valign="middle" class="destaque">Selecione as opÃ§Ãµes de filtro</td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
+		CÃ³digo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
 	</td>
 	<td>
 		Fabricantes:&nbsp;
@@ -39,29 +39,29 @@ If Env.UsuarioSCE() Then
 <tr class="texto1"><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50"></td>
+	<td>NÃºmero de SÃ©rie:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50"></td>
 	<td>
 		Instrumental:&nbsp;
 		<select name="instrumental" class="texto1">
 			<option value="">Todos</option>
 			<option value="1" selected>Sim</option>
-			<option value="0">Não</option>
+			<option value="0">NÃ£o</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Conforme:&nbsp;
 		<select name="conforme" class="texto1">
 			<option value="">Todos</option>
 			<option value="1">Sim</option>
-			<option value="0">Não</option>
+			<option value="0">NÃ£o</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Situação:&nbsp;
+		SituaÃ§Ã£o:&nbsp;
 		<select name="status" class="texto1">
 			<option value="">Todos</option>
 			<option value="<%=STATUS_EM_ESTOQUE%>">Em estoque</option>
 			<option value="<%=STATUS_EM_USO%>">Em uso</option>
 			<option value="<%=STATUS_EXPEDIDO%>">Expedido</option>
-			<option value="<%=STATUS_EXPEDIDO_SUBST%>">Substituído</option>
+			<option value="<%=STATUS_EXPEDIDO_SUBST%>">SubstituÃ­do</option>
 		</select>
 	</td>	
 </tr>
@@ -81,9 +81,9 @@ If Env.UsuarioSCE() Then
 		Controle do Instrumental:&nbsp;
 		<select name="controle" class="texto1">
 			<option value="">--</option>
-			<option value="<%=CONTROLE_CALIBRACAO%>">Calibração</option>
-			<option value="<%=CONTROLE_MANUTENCAO%>">Manutenção</option>
-			<option value="<%=CONTROLE_QUALIFICACAO%>">Qualificação</option>
+			<option value="<%=CONTROLE_CALIBRACAO%>">CalibraÃ§Ã£o</option>
+			<option value="<%=CONTROLE_MANUTENCAO%>">ManutenÃ§Ã£o</option>
+			<option value="<%=CONTROLE_QUALIFICACAO%>">QualificaÃ§Ã£o</option>
 		</select>
 	</td>
 	<td>A vencer em at&eacute; <input type="Text" class="texto1" name="vencimento" size="5"> dias</td>
@@ -92,8 +92,8 @@ If Env.UsuarioSCE() Then
 <tr class="texto1"><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-		Período:&nbsp;
-		<%=Combo.Data("Ini")%>&nbsp;&nbsp;até&nbsp;&nbsp;<%=Combo.Data("Fim")%>
+		PerÃ­odo:&nbsp;
+		<%=Combo.Data("Ini")%>&nbsp;&nbsp;atÃ©&nbsp;&nbsp;<%=Combo.Data("Fim")%>
 	</td>
 </tr>
 
@@ -118,7 +118,7 @@ If Env.UsuarioSCE() Then
 	}
 	</script>
 
-		<input type="button" name="buscar" value="próximo &gt;&gt;" class="texto1" onclick='javascript: envia();'>
+		<input type="button" name="buscar" value="prÃ³ximo &gt;&gt;" class="texto1" onclick='javascript: envia();'>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" name="buscar" value="Exportar para Excel" class="texto1" onclick="javascript:exportaParaExcel();">
 	</td>

@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+Ôªø<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <% 
 	on error resume next
@@ -45,12 +45,12 @@
   frm.target = "inferior";
 	parent.frames[0].gravacookie("flag_2=1");
   frm.submit();
-	alert("RelocaÁ„o efetivada com sucesso!");
+	alert("Reloca√ß√£o efetivada com sucesso!");
 <%else
 		if erroBD = -2 then%>
-		alert("PerÌodo de AlocaÁ„o Inv·lido!");
+		alert("Per√≠odo de Aloca√ß√£o Inv√°lido!");
 <%	else%>
-		alert("Houve um erro imprevisÌvel no Banco de Dados.\nA alocaÁ„o n„o foi efetivada.<%=erroBD%>");
+		alert("Houve um erro imprevis√≠vel no Banco de Dados.\nA aloca√ß√£o n√£o foi efetivada.<%=erroBD%>");
 <%	end if
 	end if%>
 </script>

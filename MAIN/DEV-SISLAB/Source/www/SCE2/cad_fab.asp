@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!--#include file="includes/Estado.asp"-->
 <!--#include file="includes/Func.asp"-->

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -70,7 +70,7 @@ If Not Upload.TemErro Then
 		Set UpLoad = Nothing
 		Response.Redirect "fotos.asp"
 	Else
-		Call MensagemErro("Não foi possível carregar o arquivo selecionado.")
+		Call MensagemErro("NÃ£o foi possÃ­vel carregar o arquivo selecionado.")
 	End If
 Else
 	Upload.Excluir(chr_URL)

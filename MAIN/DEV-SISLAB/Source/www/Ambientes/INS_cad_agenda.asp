@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 Dim  objRS, s
 Dim auxcadastradopor, auxtipocomando,auxselecao
@@ -23,7 +23,7 @@ auxtipocomando=request.form("tipocomando")
 'auxcadastradopor=request.form("cadastradopor")
 
 If auxtipocomando="Alterar" Then
-	strDesc = "A Alteração"
+	strDesc = "A AlteraÃ§Ã£o"
 	s = "Update reserva_ambientes "
 	s = s & "Set RAM_descricao='" & auxdescricao & "', "
 	s = s & "RAM_titulo='" & auxtitulo & "', "
@@ -40,7 +40,7 @@ elseif auxtipocomando="apagar" then
 	s = "delete from reserva_ambientes "
 	s = s & "Where RAM_id=" & auxselecao & "; "
 else
-	strDesc = "A Inserção"
+	strDesc = "A InserÃ§Ã£o"
 	s = "Insert into reserva_ambientes "
 	s = s & "(RAM_descricao, RAM_titulo, RAM_responsavel,"
 	s = s & "RAM_horario,AMB_ID,RAM_contato, RAM_as, "
@@ -73,9 +73,9 @@ call Env.RecordSet( true, objRS, s)
 
 If Err Then %>
     <font style="font-size=10pt;" color="#000000"> 
-	<b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%>- <%=s%><br>
-	<b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
-	<b>Houve um erro na inclusão das informações digitadas.<br>
+	<b>&nbsp;&nbsp;Erro NÂº:</b> <%=Err.Number%>- <%=s%><br>
+	<b>&nbsp;&nbsp;DescriÃ§Ã£o:</b> <%=Err.Description%><br>
+	<b>Houve um erro na inclusÃ£o das informaÃ§Ãµes digitadas.<br>
 	Por favor, tente mais tarde.</b>
  	 </font>
 <% else %>

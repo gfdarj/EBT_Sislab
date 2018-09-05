@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/conexao.inc" -->
+﻿<!-- #INCLUDE FILE="includes/conexao.inc" -->
 <%
 Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate"

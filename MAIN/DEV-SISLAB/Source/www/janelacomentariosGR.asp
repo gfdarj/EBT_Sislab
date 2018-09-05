@@ -1,8 +1,8 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
-call ImprimeCabecalho2("SISLAB - Coment·rios - Pesquisa de SatisfaÁ„o", MENU_OFF, false, "100%", "", "", "window.close()")
+call ImprimeCabecalho2("SISLAB - Coment√°rios - Pesquisa de Satisfa√ß√£o", MENU_OFF, false, "100%", "", "", "window.close()")
 
 Dim objSiteRS, cont, sSQL,tot, auxselag,auxselit,auxnitem,auxselativ
 Dim auxnRitem, auxseltipo, dataIni, dataFim
@@ -32,7 +32,7 @@ function retornaopcao(opcao)
 	if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 	if opcao=4 then retornaopcao="Satisfeito" end if
 	if opcao=5 then retornaopcao="Muito Satisfeito" end if
-	if Isnull(opcao) then retornaopcao="N„o Respondido" end if
+	if Isnull(opcao) then retornaopcao="N√£o Respondido" end if
 end function
 
 function retornaopcao1(opcao)
@@ -48,10 +48,10 @@ end function
 </td>
 <td>
 <font face="tahoma" style="font-size=11pt" color="#FFFFFF"><br>
-<b>Coment·rios da Atividade: <%=auxselativ%><br>
+<b>Coment√°rios da Atividade: <%=auxselativ%><br>
 Item&nbsp;
 <%if auxselit=1 then%>
-ComunicaÁ„o
+Comunica√ß√£o
 <%end if%>
 <%if auxselit=2 then%>
 Cortesia
@@ -81,7 +81,7 @@ Ambiente
 Acesso
 <%end if%>
 <%if auxselit=11 then%>
-SatisfaÁ„o Geral
+Satisfa√ß√£o Geral
 <%end if%>
 
 </b></font>
@@ -129,7 +129,7 @@ if Not ObjSiteRS.EOF Then
 <td width=20>
 </td>
 <td><font face="tahoma" style="font-size=9pt" color="#FFFFBD"><br>
-<b>Coment·rio <%=cont%>:</b></font>
+<b>Coment√°rio <%=cont%>:</b></font>
 </td>
 <td width=20>
 </td>
@@ -185,7 +185,7 @@ if Not ObjSiteRS.EOF Then
 <td bgcolor="#EEEEEE">
 </td>
 <td bgcolor="#EEEEEE" align="left"><font face="tahoma" style="font-size=9pt" color="#222222">
-<b>nome: <%=objSiteRS("PSQ_nome")%><br>Tel/Ramal: <%=objSiteRS("PSQ_Telefone")%><br>”rg„o/Empresa: <%=objSiteRS("PSQ_orgaoEmpresa")%><br>No AS: <%=objSiteRS("PSQ_NAg")%></b></font>
+<b>nome: <%=objSiteRS("PSQ_nome")%><br>Tel/Ramal: <%=objSiteRS("PSQ_Telefone")%><br>√ìrg√£o/Empresa: <%=objSiteRS("PSQ_orgaoEmpresa")%><br>No AS: <%=objSiteRS("PSQ_NAg")%></b></font>
 </td>
 <td bgcolor="#EEEEEE">
 </td>

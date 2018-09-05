@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <html>
 <head>
 	<title>SISLAB</title>
@@ -52,7 +52,7 @@ pausecontent[<%=conta-1%>]=  '&raquo;&nbsp;<font class="texto"><%=Reticencias(ob
 pausecontent[<%=conta%>]=  '';
 <%
 Else%>
-pausecontent[0]=  '<center><i>Nenhuma notícia cadastrada</i></center>';
+pausecontent[0]=  '<center><i>Nenhuma notÃ­cia cadastrada</i></center>';
 <%
 End If
 Call Env.RecordSet(false, objRS, null)
@@ -61,7 +61,7 @@ Call Env.RecordSet(false, objRS, null)
 
 <script type="text/javascript">
 /***********************************************
-* Pausing up-down scroller- © Dynamic Drive (www.dynamicdrive.com)
+* Pausing up-down scroller- Â© Dynamic Drive (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
 * Visit http://www.dynamicdrive.com/ for this script and 100s more.
 ***********************************************/

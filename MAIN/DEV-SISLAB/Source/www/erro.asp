@@ -1,7 +1,12 @@
+ï»¿<!DOCTYPE html>
+
 <html>
 
 <head>
-<link rel="stylesheet" href="estilos/style.css">
+    <title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
 
 <body>
@@ -13,15 +18,15 @@
   </tr>
   <tr>
     <td width="100%"><font class="item"><br>
-      Ocorreu um erro no processamento da página que você está
+      Ocorreu um erro no processamento da pÃ¡gina que vocÃª estÃ¡
       tentando acessar. <br>
       Entre em contato com o webmaster do site reportando os seguintes erros:</font>
  </td>
   </tr>
   <tr>
     <td width="100%">
-	<font class="item">Número: <%= Request("perro")%><BR>
-	Descrição: <%= Request("pdescricao")%>
+	<font class="item">NÃºmero: <%= Request("perro")%><BR>
+	DescriÃ§Ã£o: <%= Request("pdescricao")%>
 	</font>
 	</td>
   </tr>

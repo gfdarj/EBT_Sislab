@@ -1,7 +1,7 @@
-/*** COMBO BOX ***/
+ï»¿/*** COMBO BOX ***/
 
 /***
-	A função aceita o valor quando vier formatado de acordo com o seguinte exemplo:
+	A funÃ§Ã£o aceita o valor quando vier formatado de acordo com o seguinte exemplo:
 
 	VALOR[val]DESSCRICAO[fim]
 

@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -29,11 +29,11 @@ If Env.UsuarioSCE() Then
 	<tr>
 		<td>
 <%		if request("msg") <> "" then
-			if request("msg") = 1 then response.write " Õtem incluÌdo com sucesso!"
-			if request("msg") = 2 then response.write " Õtem alterado com sucesso!"
-			if request("msg") = 3 then response.write " Õtem excluÌdo com sucesso!"
-			if request("msg") = 4 then response.write " … necess·rio selecionar algum campo de busca!"
-			if request("msg") = 5 then response.write " J· existe equipamento cadastrado com este cÛdigo de barras!"
+			if request("msg") = 1 then response.write " √çtem inclu√≠do com sucesso!"
+			if request("msg") = 2 then response.write " √çtem alterado com sucesso!"
+			if request("msg") = 3 then response.write " √çtem exclu√≠do com sucesso!"
+			if request("msg") = 4 then response.write " √â necess√°rio selecionar algum campo de busca!"
+			if request("msg") = 5 then response.write " J√° existe equipamento cadastrado com este c√≥digo de barras!"
 			response.write "<BR><BR>"
 		end if%>
 		</td>
@@ -42,9 +42,9 @@ If Env.UsuarioSCE() Then
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			CÛdigo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
+			C√≥digo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			LocalizaÁ„o:&nbsp;<input type="text" class="texto1" name="localizacao" size="25">
+			Localiza√ß√£o:&nbsp;<input type="text" class="texto1" name="localizacao" size="25">
 		</td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
@@ -67,7 +67,7 @@ If Env.UsuarioSCE() Then
 			<tr>
 				<td>Modelo:&nbsp;<input type="text" name="modelo" class="texto1"></td>
 				<td width="40px">&nbsp;</td>
-				<td>DescriÁ„o:&nbsp;<input type="text" name="desc_modelo" class="texto1" size="30"></td>
+				<td>Descri√ß√£o:&nbsp;<input type="text" name="desc_modelo" class="texto1" size="30"></td>
 			</tr>
 			</table>
 		</td>
@@ -75,7 +75,7 @@ If Env.UsuarioSCE() Then
 	<tr class="texto1"><td>&nbsp;</td></tr>
 
 	<tr class="texto1">
-		<td>FamÌlia Tipo:&nbsp;<%RW Combo.PadraoSql("idtipo", "select TIPO_ID as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
+		<td>Fam√≠lia Tipo:&nbsp;<%RW Combo.PadraoSql("idtipo", "select TIPO_ID as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
 	</td>
 
 	<tr class="texto1"><td>&nbsp;</td></tr>
@@ -96,7 +96,7 @@ If Env.UsuarioSCE() Then
 				<td width="10px">&nbsp;</td>
 				<td>Registro/Certificado/CDE/RMA:&nbsp;<input type="text" class="texto1" name="cde_equip" size="7"></td>
 				<td width="10px">&nbsp;</td>
-				<td>N˙mero de SÈrie:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="100"></td>
+				<td>N√∫mero de S√©rie:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="100"></td>
 			</tr>
 			</table>
 		</td>
@@ -123,7 +123,7 @@ If Env.UsuarioSCE() Then
 	<tr class="texto1"><td>&nbsp;</td></tr>
 	<tr>
 		<td class="texto1" align="right">
-			<input type="submit" name="buscar" value="prÛximo &gt;&gt;" class="texto1">
+			<input type="submit" name="buscar" value="pr√≥ximo &gt;&gt;" class="texto1">
 		</td>
 	</tr>
   </table>

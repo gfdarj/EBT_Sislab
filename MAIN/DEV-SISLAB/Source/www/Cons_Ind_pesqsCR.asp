@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -6,7 +6,7 @@
 <%
 'On Error Resume Next
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de SatisfaÁ„o", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfa√ß√£o", "", "")
 
 Dim objSiteRS, sSQL,objSiteRS1
 Dim auxusernameCadastro,auxIPCadastro,auxNAg,auxDataHoraCadastro
@@ -73,7 +73,7 @@ function contC(parag,paritem)
 <BR></font>
 <table width="100%" class="tabela1">
 <tr>
-	<th>An·lise Global dos Formul·rios de SatisfaÁ„o</th>
+	<th>An√°lise Global dos Formul√°rios de Satisfa√ß√£o</th>
 </tr>
 <tr>
 	<td>
@@ -157,7 +157,7 @@ call Env.RecordSet(true, objSiteRS, sSQL)
 if objSiteRS.eof and objSiteRS.Bof then%>
 <tr class="texto1">
 	<td colspan="11" align="center">
-		<b>N„o existe pesquisa que satisfaÁa os requisitos da consulta.</b>
+		<b>N√£o existe pesquisa que satisfa√ßa os requisitos da consulta.</b>
 	</td>
 </tr>
 <%
@@ -180,13 +180,13 @@ else
 <tr>
 	<td colspan=11>
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>N˙mero Agendamento:</b> <a href="ficha_as.asp?selecao=<%=numag%>"><%=numag%></a> - <b>total de respostas:</b> <%=totresp%> - <b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b> - <b>Coment·rio Adicional</b> - <b>Outros Coment·rios</b><br>
-	<b>ServiÁo:</b> <%=objSiteRS("ta_descricao")%><%'If Not IsNull(objSiteRS("T_TITULO")) Then Response.Write " - " & objSiteRS("T_TITULO")%></font>
+	<b>N√∫mero Agendamento:</b> <a href="ficha_as.asp?selecao=<%=numag%>"><%=numag%></a> - <b>total de respostas:</b> <%=totresp%> - <b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b> - <b>Coment√°rio Adicional</b> - <b>Outros Coment√°rios</b><br>
+	<b>Servi√ßo:</b> <%=objSiteRS("ta_descricao")%><%'If Not IsNull(objSiteRS("T_TITULO")) Then Response.Write " - " & objSiteRS("T_TITULO")%></font>
 	</td>
 </tr>
 <tr><td colspan="11" height="5px"></td></tr>
 <tr class="realce1" style="font-size:7pt">
-	<td align="center">ComunicaÁ„o</td>
+	<td align="center">Comunica√ß√£o</td>
 	<td align="center">Cortesia</td>
 	<td align="center">Presteza</td>
 	<td align="center">Flexibilidade</td>

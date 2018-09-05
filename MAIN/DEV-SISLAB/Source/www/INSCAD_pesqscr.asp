@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_mensagem.asp" -->
@@ -31,7 +31,7 @@ End If
 
 auxNAg = request("ag_numero")
 
-arrAG = Split(auxNAg, ",")		'### Array de AS´s
+arrAG = Split(auxNAg, ",")		'### Array de ASÂ´s
 
 auxNome =  trocaPlic2Aspas(request("fNome"))
 if auxNome = "" then auxNome = null
@@ -150,7 +150,7 @@ For i=0 To UBound(arrAG)
 	Set objSP = Nothing
 
 	If pesqid <= 0 Then
-		Call MsgGravacaoDados(true, false, "<br><p class='texto1' style='font-size: 12px;'>&nbsp;&nbsp;<b>Erro na gravação desta pesquisa</b>", "pesqsCR.asp?num_ag=" & arrAG(i), "")
+		Call MsgGravacaoDados(true, false, "<br><p class='texto1' style='font-size: 12px;'>&nbsp;&nbsp;<b>Erro na gravaÃ§Ã£o desta pesquisa</b>", "pesqsCR.asp?num_ag=" & arrAG(i), "")
 		Response.End
 	else
 		'-- Se foi a primeira resposta a pesquisa de satisfacao entao envio email para  RT/GQ

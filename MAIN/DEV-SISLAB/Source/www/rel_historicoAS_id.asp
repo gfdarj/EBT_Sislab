@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
@@ -6,7 +6,7 @@ Dim s, objRS
 Dim anterior : anterior = 0
 Dim dt_ini_anterior, dt_fim_anterior, data_invalida, conta_data_invalida
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÛrico de Agendamentos - Listagem de AS por ordem de cadastro", "location.href='sislab.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Hist√≥rico de Agendamentos - Listagem de AS por ordem de cadastro", "location.href='sislab.asp'", "")
 
 Server.ScriptTimeout = 1000
 Response.buffer = True
@@ -48,8 +48,8 @@ if not (objRS.Eof and objRS.Bof) then
 <tr>
 	<th width="15px">&nbsp;</th>
 	<th width="130px">Data Inicial</th>
-	<th width="130px">Data TÈrmino</th>
-	<th width="110px">SituaÁ„o</th>
+	<th width="130px">Data T√©rmino</th>
+	<th width="110px">Situa√ß√£o</th>
 	<th width="*" align="left">Motivo</th>
 </tr>
 <%		end if
@@ -82,8 +82,8 @@ end if
 <%
 if conta_data_invalida > 0 then
 	response.write "<span class='texto1' style='font-size: 12px; font-style: italic;'>"
-	response.write "&nbsp;&nbsp;Foram encontradas " & conta_data_invalida & " datas inv·lidas<br><br>"
-	response.write "&nbsp;&nbsp;ObservaÁ„o: As datas marcadas (&raquo;) est„o inv·lidas em relaÁ„o ao histÛrico do seu respectivo agendamento<br><br>"
+	response.write "&nbsp;&nbsp;Foram encontradas " & conta_data_invalida & " datas inv√°lidas<br><br>"
+	response.write "&nbsp;&nbsp;Observa√ß√£o: As datas marcadas (&raquo;) est√£o inv√°lidas em rela√ß√£o ao hist√≥rico do seu respectivo agendamento<br><br>"
 	response.write "</span>"
 end if
 

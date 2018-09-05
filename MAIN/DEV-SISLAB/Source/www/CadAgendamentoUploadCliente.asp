@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -22,7 +22,7 @@ end if
 function validaArquivos()
 {
 	var f = document.forms[0];
-	var msg = "O nome do arquivo est· inv·lido. Retire acentuaÁ„o e espaÁos antes de prosseguir.";
+	var msg = "O nome do arquivo est√° inv√°lido. Retire acentua√ß√£o e espa√ßos antes de prosseguir.";
 
 	if((f.FILE1.value == '') && (f.FILE2.value == '') && (f.FILE3.value == ''))
 	{
@@ -66,7 +66,7 @@ function validaArquivos()
     <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
     <tr>
 	    <td>
-		    &nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione atÈ 3 diagramas associados ao teste</span>
+		    &nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione at√© 3 diagramas associados ao teste</span>
 	    </td>
     </tr>
     <tr>
@@ -86,7 +86,7 @@ function validaArquivos()
 
 <p align="justify" class="texto1">
 <span class="vermelho2">
-O Upload de arquivo pode demorar alguns minutos.  N„o recomendamos o upload de arquivos maiores de 2MBytes.  Neste caso, por favor envie o arquivo compactado.
+O Upload de arquivo pode demorar alguns minutos.  N√£o recomendamos o upload de arquivos maiores de 2MBytes.  Neste caso, por favor envie o arquivo compactado.
 </span>
 </p>
 <%

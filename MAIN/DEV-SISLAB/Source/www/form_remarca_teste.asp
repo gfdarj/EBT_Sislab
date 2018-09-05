@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
@@ -6,8 +6,8 @@ Dim Ebt
 
 Set Ebt = New TEbt
 
-'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou RemarcaÁ„o de Testes/Ensaios", "", "")
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RemarcaÁ„o de Agendamento", "", "")
+'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarca√ß√£o de Testes/Ensaios", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Remarca√ß√£o de Agendamento", "", "")
 
 Env.ArmazenaCaminhoAnterior()
 
@@ -37,7 +37,7 @@ End function
 
 mes(1) = "janeiro"
 mes(2) = "fevereiro"
-mes(3) = Server.HTMLEncode("marÁo")
+mes(3) = Server.HTMLEncode("mar√ßo")
 mes(4) = "abril"
 mes(5) = "maio"
 mes(6) = "junho"
@@ -155,36 +155,36 @@ function validaDataInicio()
 }
 //=========================================================================================
 function validaCampos(form)
-//Valida os campos quando o formul·rio È submetido
+//Valida os campos quando o formul√°rio √© submetido
 {
 	if (form.txtInicio.value == "" &&  remarca == 1) 
 	{
-		alert("O campo 'PerÌodo previsto para teste/InÌcio' deve ser preenchido.");
+		alert("O campo 'Per√≠odo previsto para teste/In√≠cio' deve ser preenchido.");
 		form.cmbInicio_dia.focus();
 		return(false);
 	}
 	else if (!isDate(form.txtInicio.value) &&  remarca == 1) 
 	{
-		alert("O campo 'PerÌodo previsto para teste/InÌcio' deve ser preenchido com uma data v·lida.");
+		alert("O campo 'Per√≠odo previsto para teste/In√≠cio' deve ser preenchido com uma data v√°lida.");
 		form.cmbInicio_dia.focus();
 		return(false);
 	}
 	else if (form.txtFim.value == "" && remarca == 1) 
 	{
-		alert("O campo 'PerÌodo previsto para teste/Fim' deve ser preenchido.");
+		alert("O campo 'Per√≠odo previsto para teste/Fim' deve ser preenchido.");
 		form.cmbFim_dia.focus();
 		return(false);
 	}
 
 	else if (!isDate(form.txtFim.value) && remarca == 1) 
 	{
-		alert("O campo 'PerÌodo previsto para teste/Fim' deve ser preenchido com uma data v·lida.");
+		alert("O campo 'Per√≠odo previsto para teste/Fim' deve ser preenchido com uma data v√°lida.");
 		form.cmbFim_dia.focus();
 		return(false);
 	}
 	else if (InicioMaiorFim() && remarca == 1) 
 	{
-		alert("O campo 'PerÌodo previsto para teste/Inicio' deve ser preenchido com a data de 'Inicio' anterior a data de 'Fim'.");
+		alert("O campo 'Per√≠odo previsto para teste/Inicio' deve ser preenchido com a data de 'Inicio' anterior a data de 'Fim'.");
 		form.cmbInicio_dia.focus();
 		return(false);
 	}
@@ -212,8 +212,8 @@ function PreparaCampos(f)
 {
 	frm1 = document.forms[0];
 	//frm1.tabAgendamento.style.display = 'block';
-	//frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da RemarcaÁ„o:&nbsp;";
-	msgMotivo = "O campo 'Motivo da RemarcaÁ„o' deve ser preenchido.";
+	//frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da Remarca√ß√£o:&nbsp;";
+	msgMotivo = "O campo 'Motivo da Remarca√ß√£o' deve ser preenchido.";
 	remarca = 1;
 }
 //=========================================================================================
@@ -230,18 +230,18 @@ function PreparaCampos(f)
 
     <p style="margin-left: 10px;">
         <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="1" tabindex="13" checked /><font class="opcao">Cancelamento&nbsp;-->
-        <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="0" tabindex="14" checked/><font class="opcao">RemarcaÁ„o&nbsp;-->
-        <input type="radio" name="cmbCancelar" value="0" tabindex="13" checked/><font class="opcao">RemarcaÁ„o</fonte>
+        <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="0" tabindex="14" checked/><font class="opcao">Remarca√ß√£o&nbsp;-->
+        <input type="radio" name="cmbCancelar" value="0" tabindex="13" checked/><font class="opcao">Remarca√ß√£o</fonte>
     </p>
 
 <%If remarcado Then%>
-    <p>&nbsp;&nbsp;<b>Este teste est· aguardando validaÁ„o de remarcaÁ„o</b></p>
+    <p>&nbsp;&nbsp;<b>Este teste est√° aguardando valida√ß√£o de remarca√ß√£o</b></p>
 <%End If%>
 
     <p style="margin-left: 10px;">
         <div id="tabAgendamento">
-			    &nbsp;&nbsp;PerÌodo previsto para teste:&nbsp;
-			    &nbsp;&nbsp;InÌcio:&nbsp;
+			    &nbsp;&nbsp;Per√≠odo previsto para teste:&nbsp;
+			    &nbsp;&nbsp;In√≠cio:&nbsp;
 			    <input type="hidden" name="txtInicio" size="10" value="<%=formataData(data_inicio)%>">
 			    <select name="cmbInicio_dia" class="combo" tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
 				    <option value="0" selected></option>
@@ -302,18 +302,18 @@ function PreparaCampos(f)
     </p>
 
     <p>
-        <div style="width: 400px; display:inline-block; margin-left: 10px;"><b>N∫ do Agendamento:&nbsp;<%= num_agendamento%></b></div>
+        <div style="width: 400px; display:inline-block; margin-left: 10px;"><b>N¬∫ do Agendamento:&nbsp;<%= num_agendamento%></b></div>
 	    <div style="display:inline-block; margin-left: 10px;">Tecnologia:&nbsp;<%=tecnologia%></div>
     </p>
 
     <p>
-        <div style="width: 400px; display:inline-block; margin-left: 10px;">Nome do Respons·vel: &nbsp; <%= nome_responsavel%></div>
-	    <div style="display:inline-block; margin-left: 10px;">MatrÌcula:&nbsp; <%=matricula%></div>
+        <div style="width: 400px; display:inline-block; margin-left: 10px;">Nome do Respons√°vel: &nbsp; <%= nome_responsavel%></div>
+	    <div style="display:inline-block; margin-left: 10px;">Matr√≠cula:&nbsp; <%=matricula%></div>
     </p>
 
     <p>
         <div style="width: 400px; display:inline-block; margin-left: 10px;">E-mail:&nbsp; <%= email%></div>
-	    <div style="width: 200px; display:inline-block; margin-left: 10px;">”rg„o:&nbsp; <%= orgao%></div>
+	    <div style="width: 200px; display:inline-block; margin-left: 10px;">√ìrg√£o:&nbsp; <%= orgao%></div>
 	    <div style="width: 200px; display:inline-block; margin-left: 10px;">Ramal:&nbsp; <%= ramal%></div>
     </p>
 

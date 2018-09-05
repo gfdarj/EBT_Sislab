@@ -1,11 +1,11 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
 Dim s, objRS
 Dim anterior : anterior = 0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Agendamentos - Listagem de AS por ordem de datas", "location.href='sislab.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÃ³rico de Agendamentos - Listagem de AS por ordem de datas", "location.href='sislab.asp'", "")
 
 Server.ScriptTimeout = 1000
 Response.buffer = True
@@ -40,8 +40,8 @@ if not (objRS.Eof and objRS.Bof) then
 <table width="100%" cellpadding="2" cellspacing="0" border="0" class="tabela1" style="border-top: solid thin;">
 <tr>
 	<th width="120px">Data Inicial</th>
-	<th width="120px">Data Término</th>
-	<th width="120px">Situação</th>
+	<th width="120px">Data TÃ©rmino</th>
+	<th width="120px">SituaÃ§Ã£o</th>
 	<th align="left">Motivo</th>
 </tr>
 <%		end if%>

@@ -1,9 +1,9 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-'Dados B�sico - Cliente -----------------------------------------------------------
+'Dados Básico - Cliente -----------------------------------------------------------
 TABELA = REQUEST("depara")
 DE  = REQUEST("strDE")
 PARA = REQUEST("PARA")

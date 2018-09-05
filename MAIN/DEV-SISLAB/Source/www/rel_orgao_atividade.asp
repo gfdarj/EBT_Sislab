@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controleshtml.asp" -->
@@ -16,9 +16,9 @@ dim objRS, s, orgao
 
 '-- chamado pelo index.asp
 if request("index") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Relatório de Órgão por Atividade", "SO_IMPRESSORA", "")
+	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "RelatÃ³rio de Ã“rgÃ£o por Atividade", "SO_IMPRESSORA", "")
 else
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Órgão por Atividade", "", "")
+	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de Ã“rgÃ£o por Atividade", "", "")
 end if
 %>
 <table class="texto1" border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">

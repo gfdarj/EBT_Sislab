@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <%
 '-- Usado pelo cadastro de reservas (cad_Reserva.asp)--
 '--
-'-- Pesquisa por um codigo de barras v·lido, retornando no form o ID do mesmo
+'-- Pesquisa por um codigo de barras v√°lido, retornando no form o ID do mesmo
 '--
 Dim reservado
 Dim EmUso
@@ -15,7 +15,7 @@ Dim Sce
 
 Set Sce = New TSce
 
-EmUso = "N„o"
+EmUso = "N√£o"
 
 If Request("cod_barras") = "" Or Request("linhaTabela") = "" Then Response.End
 
@@ -46,7 +46,7 @@ else  '-- ITEM NAO EXISTE --%>
 <script language="JavaScript">
 	var f = window.parent;
 	f.document.all["item_<%=request("linhaTabela")%>"].eq_id = ""; // equip ID
-	f.document.all["linha_<%=request("linhaTabela")%>_col_2"].innerHTML = '<span style="color:red; font-weight:bold;"><i>Item n„o encontrado</i></span>';
+	f.document.all["linha_<%=request("linhaTabela")%>_col_2"].innerHTML = '<span style="color:red; font-weight:bold;"><i>Item n√£o encontrado</i></span>';
 	f.document.all["linha_<%=request("linhaTabela")%>_col_8"].innerText = '<%=EmUso%>';
 </script>
 <%	Call Sce.MarcaItemReservado(false, request("linhaTabela"))

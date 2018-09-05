@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -28,7 +28,7 @@ function navselecao()
 		<td class="texto1">
 		<%if request("msg") <> "" then
 			if cint(request("msg")) = 1 then response.write "Fabricante alterado com sucesso<br><br>"
-			if cint(request("msg")) = 2 then response.write "Fabricante excluído com sucesso<br><br>"
+			if cint(request("msg")) = 2 then response.write "Fabricante excluÃ­do com sucesso<br><br>"
 		end if%></td>
 	</tr>
    <tr>
@@ -51,7 +51,7 @@ function navselecao()
 							</select>
 						<%else
 							a = 1
-							response.write "Não existem Fabricantes cadastradas no momento."
+							response.write "NÃ£o existem Fabricantes cadastradas no momento."
 						end if%>
 					</td>
 				</tr>

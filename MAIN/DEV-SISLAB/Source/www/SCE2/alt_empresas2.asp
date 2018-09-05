@@ -1,4 +1,4 @@
-<!--#include file="includes/abre.asp"-->
+﻿<!--#include file="includes/abre.asp"-->
 <%
 Dim uf, enf_cnpj
 uf = trim(replace(request("enf_uf"), "'", "&#39;"))
@@ -16,7 +16,7 @@ ssql = ssql &"enf_email = '"& trim(replace(request("email"), "'", "&#39;")) &"',
 ssql = ssql &"where enf_id = "& trim(replace(request("enf_id"), "'", "&#39;"))
 conn.execute(ssql)
 
-acao = "O usu�rio "& session("user_id")&" atualizou a empresa "& trim(replace(request("enf_nome"), "'", "&#39;")) &" de cnpj "& trim(replace(request("enf_cnpj"), "'", "&#39;"))&"."
+acao = "O usuário "& session("user_id")&" atualizou a empresa "& trim(replace(request("enf_nome"), "'", "&#39;")) &" de cnpj "& trim(replace(request("enf_cnpj"), "'", "&#39;"))&"."
 data = year(now)&"/"&right(month(now)+100,2)&"/"&right(day(now)+100,2)&" "&right(hour(now)+100,2)&":"&right(minute(now)+100,2)&":"&right(second(now)+100,2)
 ssql = "insert into sce_historico (id_usuario,acao,data) values "
 ssql = ssql &"("& session("user_id")&",'"& acao &"','"& data&"')"

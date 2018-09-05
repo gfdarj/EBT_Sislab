@@ -1,4 +1,4 @@
-<%
+﻿<%
 Response.Clear
 %>
 <!--#include file="includes/Sislab_Lib.asp"-->

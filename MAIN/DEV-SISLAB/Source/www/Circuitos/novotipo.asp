@@ -1,4 +1,4 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <!--#include file="../includes/controlesHTML.asp" -->
@@ -12,9 +12,9 @@ Response.Addheader "Pragma","no-cache"
 function Valida()	{
 	var f = document.formulario;
 	if (f.novotipo.value == "")
-		alert( "Tipo do componente inválido" );
+		alert( "Tipo do componente invÃ¡lido" );
 	else if (f.familia.value == "")
-		alert( "Nenhuma família selecionada" );
+		alert( "Nenhuma famÃ­lia selecionada" );
 	else if (f.fabricante.value == "")
 		alert( "Nenhum fabricante selecionado" );
 	else	{
@@ -27,7 +27,7 @@ function Valida()	{
 </script>
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>

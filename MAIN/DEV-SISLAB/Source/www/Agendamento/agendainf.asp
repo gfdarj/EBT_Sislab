@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+ï»¿<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <% 
 Dim data, dI, mI, aI, dF, mF, aF
@@ -88,7 +88,7 @@ function relocar()
 function remover()
 {
   var frm = document.frmInicioTermino;
-	if (confirm("Deseja realmente remover esta Alocação?"))
+	if (confirm("Deseja realmente remover esta AlocaÃ§Ã£o?"))
 	{
 		frm.action = "remover.asp";
 		frm.method = "post";
@@ -127,7 +127,7 @@ function validaForm()
 	else	frm.tp_datafinal.value = frm.diaFim.value+"/"+frm.mesFim.value+"/"+frm.anoFim.value;
 	if (frm.pes_username.value == -1)
 	{
-		alert("Escolha o Responsável!");
+		alert("Escolha o ResponsÃ¡vel!");
 		frm1.nome.focus();
 		return;
 	}
@@ -139,19 +139,19 @@ function validaForm()
 	}
 	if (!isDate(frm.tp_datainicial.value))
 	{
-		alert("Data Inicial Inválida!");
+		alert("Data Inicial InvÃ¡lida!");
 		frm.diaInicio.focus();
 		return;
 	}
 	if (!isDate(frm.tp_datafinal.value))
 	{
-		alert("Data Final Inválida!");
+		alert("Data Final InvÃ¡lida!");
 		frm.diaFim.focus();
 		return;
 	}
 	if (comparaData(frm.tp_datainicial.value, frm.tp_datafinal.value) < 0)
 	{
-		alert("Data Inicial superior à data de Término!");
+		alert("Data Inicial superior Ã  data de TÃ©rmino!");
 		frm.diaFim.focus();
 		return;
 	}
@@ -235,13 +235,13 @@ function verificaVoltar()
 	</td></tr></table>
 	</td>
   <td>
-		<font class="fonte2">Início:</font>
+		<font class="fonte2">InÃ­cio:</font>
 	</td>
 	<td>
 		<INPUT TYPE="text" NAME="diaInicio" MAXLENGTH="2" class="texto05" VALUE="<%=dI%>"> /
 		<font class="fonte2">
 		<SELECT NAME="mesInicio" class="select1">
-	    <OPTION VALUE="-1"> -Mês-
+	    <OPTION VALUE="-1"> -MÃªs-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
 	    <OPTION VALUE="03"> Mar
@@ -259,7 +259,7 @@ function verificaVoltar()
 	</td>
 <tr>
   <td>
-    <font class="fonte2">Observação:</font>
+    <font class="fonte2">ObservaÃ§Ã£o:</font>
 	</td>
 	<td>
     <font class="fonte2">
@@ -267,13 +267,13 @@ function verificaVoltar()
 		</font>
 	</td>
   <td>
-		<font class="fonte2">Término:</font>
+		<font class="fonte2">TÃ©rmino:</font>
 	</td>
 	<td>
 	  <INPUT TYPE="text" NAME="diaFim" VALUE="<%=dF%>" MAXLENGTH="2" class="texto05"> /
 		<font class="fonte2">
 	  <SELECT NAME="mesFim" class="select1">
-	    <OPTION VALUE="-1"> -Mês-
+	    <OPTION VALUE="-1"> -MÃªs-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
 	    <OPTION VALUE="03"> Mar

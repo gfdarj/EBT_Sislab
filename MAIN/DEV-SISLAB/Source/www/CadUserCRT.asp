@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="./Lib/Classe_Combo.asp"-->
 <!------- SISLAB ---->
 <!--#include file="includes/Sislab_Lib.asp"-->
@@ -11,7 +11,7 @@ Dim Combo
 
 Set Combo = New TCombo
 
-Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Usu·rios CRT", "location.href='sislab.asp'", "")
+Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Usu√°rios CRT", "location.href='sislab.asp'", "")
 
 If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 %>
@@ -39,32 +39,32 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.username.value == ""){
-		alert('… necess·rio informar o UserName.');
+		alert('√â necess√°rio informar o UserName.');
 		frm.username.focus();
 		return false
 	}
 	if (frm.matricula.value == ""){
-		alert('… necess·rio informar a matrÌcula.');
+		alert('√â necess√°rio informar a matr√≠cula.');
 		frm.matricula.focus();
 		return false
 	}
 	if (isNaN(frm.matricula.value)){
-		alert('O Campo matrÌcula deve ser numÈrico.');
+		alert('O Campo matr√≠cula deve ser num√©rico.');
 		frm.matricula.focus();
 		return false
 	}
 	if (frm.Nome.value == ""){
-		alert('… necess·rio informar o Nome.');
+		alert('√â necess√°rio informar o Nome.');
 		frm.Nome.focus();
 		return false
 	}
 	if (isNaN(frm.Ramal.value)){
-		alert('O Campo ramal deve ser numÈrico.');
+		alert('O Campo ramal deve ser num√©rico.');
 		frm.Ramal.focus();
 		return false
 	}
 	if (frm.orgao.value == ""){
-		alert('… necess·rio informar o Ûrg„o.');
+		alert('√â necess√°rio informar o √≥rg√£o.');
 		frm.orgao.focus();
 		return false
 	}
@@ -99,7 +99,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.user.value == '') {
-		alert('Nenhum usu·rio selecionado para exclus„o !');
+		alert('Nenhum usu√°rio selecionado para exclus√£o !');
 		frm.user.focus();
 	}
 	else {
@@ -117,25 +117,25 @@ function Excluir() {
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr><td></td><td></td></tr>
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><th align="left" colspan="2">Usu·rios do CRT</td></tr>
+<tr><th align="left" colspan="2">Usu√°rios do CRT</td></tr>
 <tr>
-	<td>&nbsp;&nbsp;<b>Usu·rios CRT:</b></td>
+	<td>&nbsp;&nbsp;<b>Usu√°rios CRT:</b></td>
 	<td>
 		<%call comboUSERCRTVIVOEMORTOS("user", Env.oConn,"N")%>&nbsp;&nbsp;
 		<input  class="texto1" type="Button" value="Buscar" onclick="BuscarUsuario();">
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><th align="left" colspan="2">Dados do Usu·rio</th></tr>
+<tr><th align="left" colspan="2">Dados do Usu√°rio</th></tr>
 <tr>
 	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username:</b></td>
 	<td>
 		<input type="Text" name="username" size="30" maxlength="20" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="vermelho2"><b>*</span>&nbsp;MatrÌcula:</b>&nbsp;
+		<span class="vermelho2"><b>*</span>&nbsp;Matr√≠cula:</b>&nbsp;
 		<input type="Text" name="matricula" class="texto1" size="15">
 	</td>
 <tr>
@@ -155,7 +155,7 @@ function Excluir() {
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Org„o:</b></td>
+	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Org√£o:</b></td>
 	<td>
 		<%call comboOrgao("orgao",Env.oConn,"N")%>
 	</td>
@@ -168,7 +168,7 @@ function Excluir() {
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		GQ:&nbsp;<input type="Checkbox" name="chkGQ" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		VisÌvel:&nbsp;<input type="Checkbox" name="chkexibir" class="texto1">
+		Vis√≠vel:&nbsp;<input type="Checkbox" name="chkexibir" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Perfil SCE:&nbsp;<%=Combo.PadraoSql("perfilSce", "SELECT ID_PERFIL AS VALOR, NM_PERFIL AS DESCRICAO FROM Perfil_SCE ORDER BY ID_PERFIL", "", "N")%>
 	</td>
@@ -179,7 +179,7 @@ function Excluir() {
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
 		<input type="Button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		<input type="Button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usu·rio &nbsp;&nbsp;" name="btnIncluir"/>
+		<input type="Button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usu√°rio &nbsp;&nbsp;" name="btnIncluir"/>
 		<input type="Button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
 		<input type="Button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	</td>

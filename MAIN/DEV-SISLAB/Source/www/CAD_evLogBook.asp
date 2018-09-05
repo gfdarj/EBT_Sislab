@@ -88,21 +88,21 @@ function volta(){
 <tr> 
 	<td colspan="10">
 		<strong>
-			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp; Indica um Campo Obrigatório
+			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp; Indica um Campo ObrigatÃ³rio
 		</strong></font>
 	</td>
 </tr>
 <tr> 
 	<td colspan="3">
 		<strong>
-			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp; Data da Ocorrência:
+			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp; Data da OcorrÃªncia:
 		</strong></font><br>
 		&nbsp;&nbsp;
 		<%call comboData("ocorrencia")%>
 	</td>
 	<td colspan="3">
 		<strong>
-			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;Hora da Ocorrência:
+			&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;Hora da OcorrÃªncia:
 		</strong><br>
 		<%call comboHorario("ocorrencia")%>
 	</td>
@@ -118,7 +118,7 @@ function volta(){
 	</td>
 		<%if ocorrencia <> "" then%>
 		<td colspan="2" >
-			&nbsp;&nbsp;<strong>Número da Ocorrência :</strong><br>
+			&nbsp;&nbsp;<strong>NÃºmero da OcorrÃªncia :</strong><br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ocorrencia%>
 		</td>
 		<%end if%>
@@ -126,22 +126,22 @@ function volta(){
 
 <tr valign="middle"> 
 	<td colspan="10" class="nome_cp">
-		&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;Descrição de ocorrência:<br>
+		&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;DescriÃ§Ã£o de ocorrÃªncia:<br>
 		&nbsp;&nbsp;<textarea class="texto1" name="descricao" cols="140" rows="4"></textarea>
 	</td>
 </tr>
 <tr valign="middle"> 
 	<td colspan="10" class="nome_cp">
-		&nbsp;&nbsp;observações:<br>
+		&nbsp;&nbsp;observaÃ§Ãµes:<br>
 		&nbsp;&nbsp;<textarea class="texto1" name="observacoes" cols="140" rows="4"></textarea>
 	</td>
 </tr>
 <tr valign="middle"> 
 	<td colspan="10" class="nome_cp">
-		&nbsp;&nbsp;Ação imediata já tomada:<br>
+		&nbsp;&nbsp;AÃ§Ã£o imediata jÃ¡ tomada:<br>
 		&nbsp;&nbsp;<textarea class="texto1" name="providencias" cols="140" rows="4"></textarea>
 		<br>
-		<font color=#FF0000>&nbsp;&nbsp;</font><b>Colaboradoes Associados à Ocorrência:&nbsp;<br>
+		<font color=#FF0000>&nbsp;&nbsp;</font><b>Colaboradoes Associados / OcorrÃªncia:&nbsp;<br>
 		&nbsp;&nbsp;<textarea class="texto1" name="executor" cols="140" rows="4"></textarea>
 		
 	</td>
@@ -149,7 +149,7 @@ function volta(){
 <% if ehRAT or ocorrencia <> "" then%>
 <tr valign="middle"><td colspan="10">
 		<strong>
-			&nbsp;&nbsp; Área de Controle do RAT
+			&nbsp;&nbsp; Ãrea de Controle do RAT
 		</strong></td></tr>
 <tr valign="middle"> 
 	<td colspan="10" >
@@ -166,18 +166,18 @@ function volta(){
 </tr>
 <tr valign="middle">
 	<td colspan="6">
-		&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;<b>Tipo da ocorrência:</b>
+		&nbsp;&nbsp;<font color=#FF0000>*</font>&nbsp;<b>Tipo da ocorrÃªncia:</b>
 		&nbsp;
 		<%call comboBDSQL( "tipoOcorrencia", Env.oConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", "", "N")%>
 	</td>
 	<td colspan="4">
-		<strong><font color=#FF0000>*</font>&nbsp;Prazo Solicitado p/ Resolução:</strong>
+		<strong><font color=#FF0000>*</font>&nbsp;Prazo Solicitado p/ ResoluÃ§Ã£o:</strong>
 		<input name="prazo" class="texto1" size="4" onKeyPRess="onlynum(this)"> (em dias)</font>
 	</td>
 </tr>
 <tr valign="middle">
 	<td colspan="8">
-		&nbsp;&nbsp;<b>Responsável pela Ocorrência:&nbsp;
+		&nbsp;&nbsp;<b>ResponsÃ¡vel pela OcorrÃªncia:&nbsp;
 		<%
 		'>> Nova ocorrencia
 		If VVVNZ(Ocorrencia) Then
@@ -195,7 +195,7 @@ function volta(){
 </tr>
 <tr>
 	<td colspan="10">
-		&nbsp;&nbsp;<b>Análise das Causas:<br></b>
+		&nbsp;&nbsp;<b>AnÃ¡lise das Causas:<br></b>
 		&nbsp;&nbsp;<textarea class="texto1" name="analisegq" cols="140" rows="4"></textarea>
 	</td>
 </tr>
@@ -206,22 +206,22 @@ function volta(){
 	</td></tr>
 <tr valign="middle"> 
 	<td colspan="10">
-		&nbsp;&nbsp;<b>observações :<br></b>
+		&nbsp;&nbsp;<b>observaÃ§Ãµes :<br></b>
 		&nbsp;&nbsp;<textarea class="texto1" name="observacoesgq" cols="140" rows="4"></textarea>
 	</td>
 </tr>
 <tr valign="middle"> 
 	<td colspan="10">
-		&nbsp;&nbsp;<b>É uma Oportunidade de Melhoria: <input type="Checkbox" name="chkOPM"></b>
+		&nbsp;&nbsp;<b>Ã‰ uma Oportunidade de Melhoria: <input type="Checkbox" name="chkOPM"></b>
 		&nbsp;&nbsp;
 	</td></tr>
 
 <tr valign="middle"> 
 	<td colspan="5">
-		&nbsp;&nbsp;<b>Ações Tomadas:<br></b>
+		&nbsp;&nbsp;<b>AÃ§Ãµes Tomadas:<br></b>
 	<td colspan="5" align="right">
 		<%if ehRat then%>
-			<input type="button" class="fontmenu1" name="btAcao" value="Tomar Nova Ação" onClick="NovaAcao()">
+			<input type="button" class="fontmenu1" name="btAcao" value="Tomar Nova Aï¿½ï¿½o" onClick="NovaAcao()">
 		<%end if%>
 		&nbsp;&nbsp;
 	</td>
@@ -244,8 +244,8 @@ function volta(){
 
 <tr valign="middle"> 
 	<td colspan="10" >
-		&nbsp;&nbsp;<b>Ocorrência Finalizada : <input type="Checkbox" name="chkConcGQ" onclick="mudaDataFim()"></b>
-		<br>&nbsp;&nbsp;<b>Data e Hora da Finalização :	</b><%call comboData("dtFim")%>&nbsp;&nbsp;&nbsp;<%call comboHorario("dtFim")%>
+		&nbsp;&nbsp;<b>OcorrÃªncia Finalizada : <input type="Checkbox" name="chkConcGQ" onclick="mudaDataFim()"></b>
+		<br>&nbsp;&nbsp;<b>Data e Hora da FinalizaÃ§Ã£o :	</b><%call comboData("dtFim")%>&nbsp;&nbsp;&nbsp;<%call comboHorario("dtFim")%>
 	</td>
 </tr>
 <%end if%>
@@ -257,7 +257,7 @@ function volta(){
 			<%elseif ocorrencia <> "" and not ehRat then%>
 				<input class="texto1" type="button" onClick="volta()" name="bt" value="&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;" />
 			<%elseif ehRat then%>
-				<input class="texto1" type="button" onClick="document.forms[0].concluidoGQ.value='1';ValidaCampos()" name="bt" value="Salvar Ocorrência" />
+				<input class="texto1" type="button" onClick="document.forms[0].concluidoGQ.value='1';ValidaCampos()" name="bt" value="Salvar Ocorrï¿½ncia" />
 			<%end if%>
 		</td>
 	</tr>
@@ -272,50 +272,50 @@ function ValidaCampos(){
 	var frm = document.forms[0]
 
 	if (!(isDate(frm.diaocorrencia.value+"/"+frm.mesocorrencia.value+"/"+frm.anoocorrencia.value))){
-		alert("A data de ocorrência deve ser uma uma data válida.");
+		alert("A data de ocorrÃªncia deve ser uma uma data vÃ¡lida.");
 		formulario.diaocorrencia.focus();
 		return false;
 	}
 
 	if ((frm.horaocorrencia.value=="")||(frm.minutoocorrencia.value=="")){
-		alert("Hora e/ou minuto da ocorrência não informada.\nInforme a Hora/minuto da ocorrência.");
+		alert("Hora e/ou minuto da ocorrÃªncia nÃ£o informada.\nInforme a Hora/minuto da ocorrÃªncia.");
 	    frm.horaocorrencia.focus();
 		return false;
 	}
 
 	if (AchaAspas(frm.descricao.value))	{
-		alert("Descrição da ocorrência não pode conter Aspas ou apóstrofes.\nCorrija a descrição da ocorrência.");
+		alert("DescriÃ§Ã£o da ocorrÃªncia nÃ£o pode conter Aspas ou apÃ³strofes.\nCorrija a descriÃ§Ã£o da ocorrÃªncia.");
 	    frm.descricao.focus();
 		return false;
 	}
 
 	if (frm.descricao.value==""){
-		alert("Descrição da ocorrência não informada.\nInforme a descrição da ocorrência.");
+		alert("DescriÃ§Ã£o da ocorrÃªncia nÃ£o informada.\nInforme a descriÃ§Ã£o da ocorrÃªncia.");
 	    frm.descricao.focus();
 		return false;
 	}
 
 	if (AchaAspas(frm.observacoes.value)){
-		alert("Observações não podem conter Aspas ou apóstrofes.\nCorrija as Observações da ocorrência.");
+		alert("ObservaÃ§Ãµes nÃ£o podem conter Aspas ou apÃ³strofes.\nCorrija as ObservaÃ§Ãµes da ocorrÃªncia.");
 	    frm.observacoes.focus();
 		return false;
 	}
 
 	if (AchaAspas(frm.providencias.value)){
-		alert("Providências não podem conter Aspas ou apóstrofes.\nCorrija as Providências da ocorrência.");
+		alert("ProvidÃªncias nÃ£o podem conter Aspas ou apÃ³strofes.\nCorrija as ProvidÃªncias da ocorrÃªncia.");
 	    frm.providencias.focus();
 		return false;
 	}
 
  	<%if ehRat then%>
 	if (frm.tipoOcorrencia.value==""){
-		alert("Tipo da ocorrência não informada.\nInforme o tipo da ocorrência.");
+		alert("Tipo da ocorrÃªncia nÃ£o informada.\nInforme o tipo da ocorrÃªncia.");
 	    frm.tipoOcorrencia.focus();
 		return false;
 	}
 
 	if (frm.prazo.value==""){
-		alert("Prazo não informado.\nInforme o prazo da ocorrência.");
+		alert("Prazo nÃ£o informado.\nInforme o prazo da ocorrÃªncia.");
 	    frm.prazo.focus();
 		return false;
 	}
@@ -324,13 +324,13 @@ function ValidaCampos(){
 	if(frm.chkOPM.checked == false){	
 		if(frm.chkConcGQ.checked == true){
 			if (!(isDate(frm.diadtFim.value+"/"+frm.mesdtFim.value+"/"+frm.anodtFim.value))){
-				alert("A data da finalização da ocorrência deve ser uma uma data válida.");
+				alert("A data da finalizaÃ§Ã£o da ocorrÃªncia deve ser uma uma data vÃ¡lida.");
 				formulario.diadtFim.focus();
 				return false;
 			}
 	
 			if ((frm.horadtFim.value=="")||(frm.minutodtFim.value=="")){
-				alert("Hora e/ou minuto da finalização da ocorrência não informada.");
+				alert("Hora e/ou minuto da finalizaÃ§Ã£o da ocorrÃªncia nÃ£o informada.");
 	    		frm.horadtFim.focus();
 				return false;
 			}
@@ -338,7 +338,7 @@ function ValidaCampos(){
 	}
 	<%end if%>
 
-	resposta = confirm("Deseja que este cadastro comunique via e-mail os responsáveis pelo logbook?");
+	resposta = confirm("Deseja que este cadastro comunique via e-mail os responsÃ¡veis pelo logbook?");
 	if (resposta) {
 		frm.resp.value = "1";
 	}
@@ -370,7 +370,7 @@ function mudaDataFim(){
 
 function NovaAcao(){
 	if('<%=ocorrencia%>' == '') {
-		alert('ATENÇÃO !\n\nPara criar uma nova ação é necessário salvar os dados\ndesta nova ocorrência.');
+		alert('ATENï¿½ï¿½O !\n\nPara criar uma nova aÃ§Ã£o Ã© necessÃ¡rio salvar os dados\ndesta nova ocorrÃªncia.');
 	}
 	else {
 		var janela;

@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -25,7 +25,7 @@ If Env.UsuarioSCE() Then
 <script>
 	<!--#include file="includes/vform.js"-->
 </script>
-<form method=post action="alt_doc3.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','Responsável','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','Número do Documento','R'); return document.ValorPassou;">
+<form method=post action="alt_doc3.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','ResponsÃ¡vel','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','NÃºmero do Documento','R'); return document.ValorPassou;">
 <input type=hidden name=doc_id value="<%=request("doc_id")%>">
 <div align="left">
 <table width="810px">	
@@ -36,9 +36,9 @@ If Env.UsuarioSCE() Then
 				<td>
 					<TABLE WIDTH="600">
 							<TR>
-								<TD CLASS="texto1">Responsável Técnico:&nbsp;
+								<TD CLASS="texto1">ResponsÃ¡vel TÃ©cnico:&nbsp;
 								<input type="text" class="texto1" name="doc_responsavel" size="30" maxlength="50" value="<%=rec("doc_responsavel")%>"></td>
-								<TD CLASS="texto1">Data de Emissão:&nbsp;
+								<TD CLASS="texto1">Data de EmissÃ£o:&nbsp;
 								<input type="text" class="texto1" disabled name="dia" size="3" maxlength="2" value="<%=right(rec("doc_datadocumento"),2)%>">&nbsp;/&nbsp;<input type="text" disabled class="texto1" name="mes" size="3" maxlength="2" value="<%=mid(rec("doc_datadocumento"),6,2)%>">&nbsp;/&nbsp;<input type="text" class="texto1" name="ano" size="4" maxlength="4" value="<%=left(rec("doc_datadocumento"),4)%>" disabled></td>
 							</tr>
 						</table>
@@ -48,7 +48,7 @@ If Env.UsuarioSCE() Then
 				<td>
 					<TABLE WIDTH="600">
 							<TR>
-								<TD CLASS="texto1">Número de Documento:&nbsp;
+								<TD CLASS="texto1">NÃºmero de Documento:&nbsp;
 								<input type="text" class="texto1" name="doc_numero" size="10" maxlength="50" value="<%=Zeros(rec("doc_id"),4)%>" disabled></td>
 								<TD CLASS="texto1">Nome do Cliente:&nbsp;
 								<input type="text" class="texto1" name="doc_nome" size="50" maxlength="50" value="<%=rec("doc_nome")%>"></td>
@@ -95,7 +95,7 @@ If Env.UsuarioSCE() Then
 				<td>
 					<TABLE WIDTH="600">
 							<TR>
-								<TD CLASS="texto1">Observação:<br>
+								<TD CLASS="texto1">ObservaÃ§Ã£o:<br>
 								<textarea name="doc_observacao" class="texto1" cols="80" rows="5"><%=rec("doc_observacao")%></textarea>
 								</td>
 							</tr>

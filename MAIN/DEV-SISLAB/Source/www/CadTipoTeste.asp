@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/controlesHTML.asp" -->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
@@ -31,7 +31,7 @@ function Cancela(){
 function ValidaCampos(){
 	var frm = document.forms[0];
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false
 	}
@@ -55,7 +55,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.tipoteste.value == '') {
-		alert('Nenhum tipo de teste para exclus„o !');
+		alert('Nenhum tipo de teste para exclus√£o !');
 		frm.tipoteste.focus();
 	}
 	else {
@@ -72,9 +72,9 @@ function Excluir() {
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
 	<td colspan="2">
-		&nbsp;<span class="vermelho2"><b>AtenÁ„o na exclus„o de uma especificaÁıes pois alguns relatÛrios podem ser prejudicados !</b></span>
+		&nbsp;<span class="vermelho2"><b>Aten√ß√£o na exclus√£o de uma especifica√ß√µes pois alguns relat√≥rios podem ser prejudicados !</b></span>
 		<br><br>
-		&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b>
+		&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b>
 	</td>
 </tr>
 
@@ -95,7 +95,7 @@ function Excluir() {
 <tr><th align="left" colspan="2">&nbsp;&nbsp;Dados do Tipo de Teste</th></tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o :</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o :</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 

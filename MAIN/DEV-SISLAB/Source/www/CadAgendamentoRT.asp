@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -52,8 +52,8 @@ function ValidaCampos(){
 <table border="0" width="100%" class="tabela1">
 <tr> 
 	<td>
-		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
-		<td align="right"><b><span class="menu">Agendamento Nº &nbsp;<%=num_ag%></span></b></td>
+		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo ObrigatÃ³rio</b></td>
+		<td align="right"><b><span class="menu">Agendamento NÂº &nbsp;<%=num_ag%></span></b></td>
 </tr>
 </table>
 
@@ -71,11 +71,11 @@ function ValidaCampos(){
 	<td width="10%"></td>
 </tr>
 <tr>
-	<th align="left" colspan="10">&nbsp;&nbsp;Criação de Ordens de Serviço</td>
+	<th align="left" colspan="10">&nbsp;&nbsp;CriaÃ§Ã£o de Ordens de ServiÃ§o</td>
 </tr>
 <tr valign="top"> 
 	<td colspan="9" valign="top">
-		&nbsp;&nbsp;&nbsp;Ordem de Serviços Associadadas:<br>
+		&nbsp;&nbsp;&nbsp;Ordem de ServiÃ§os Associadadas:<br>
 		&nbsp;&nbsp;
 		<select name="lstdisposicao" size="5" class="combo"
             style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 600px"
@@ -95,7 +95,7 @@ function ValidaCampos(){
 </tr>
 <!--
 <tr>
-	<th align="left" colspan="10">&nbsp;&nbsp;Acessórios Reservados&nbsp;&nbsp;&nbsp;<input type="button" class="fontmenu1" name="btNovoConsumivel" value="Novo consumível" onClick="NovoConsumivel();" style="width:90px;"/></th>
+	<th align="left" colspan="10">&nbsp;&nbsp;AcessÃ³rios Reservados&nbsp;&nbsp;&nbsp;<input type="button" class="fontmenu1" name="btNovoConsumivel" value="Novo consumÃ­vel" onClick="NovoConsumivel();" style="width:90px;"/></th>
 </tr>
 <tr>
 	<td colspan="10">
@@ -118,9 +118,9 @@ function ValidaCampos(){
 '			"<table border='0' align='center' width='100%' class='tabela1' cellpadding='2' cellspacing='0' style='border: none;'>" & VbCrLf & _
 '			"<tr>" & VbCrLf & _
 '			"	<th  align='left'>Tipo</th>" & VbCrLf & _
-'			"	<th  align='left'>Aplicação</th>" & VbCrLf & _
-'			"	<th  align='left'>Descrição</th>" & VbCrLf & _
-'			"	<th  align='left'>Cód.SAP</th>" & VbCrLf & _'
+'			"	<th  align='left'>AplicaÃ§Ã£o</th>" & VbCrLf & _
+'			"	<th  align='left'>DescriÃ§Ã£o</th>" & VbCrLf & _
+'			"	<th  align='left'>CÃ³d.SAP</th>" & VbCrLf & _'
 '			"	<th >Qtd.Min.</th>" & VbCrLf & _
 ' 			"	<th >Qtd Estoque</th>" & VbCrLf & _
 ' 			"	<th >Reserva</th>" & VbCrLf & _
@@ -147,7 +147,7 @@ function ValidaCampos(){
 '
 '		RW chr_Buf
 '	Else
-'		RW "<center><p class='texto1'>Não foi encontrado nenhum consumível.</p></center>"
+'		RW "<center><p class='texto1'>NÃ£o foi encontrado nenhum consumÃ­vel.</p></center>"
 '	End If
 %>
 	</td>
@@ -169,18 +169,18 @@ function ValidaCampos(){
 	CALL ControleComboMultiplo("Sistema","&nbsp;&nbsp;Plataformas ou Sistemas utilizados","Plataforma ou<br>&nbsp;Sistema",sql,"9")%>
 	</td>
 </tr>
-<!--XXXXXXXXXXXXXXXXXXXXXXX  SERVIÇO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--XXXXXXXXXXXXXXXXXXXXXXX  SERVIÃ‡O XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
 <tr style="font-weight: lighter;">
 	<td style="font-weight: lighter;" colspan="10">
 <%	sql = "Select convert(varchar,S_ID) + ' - ' + S_Descricao as valor , S_Descricao as descricao from Servicos_Plataformas where S_SERVICO = 1 ORDER BY S_Descricao"
-	CALL ControleComboMultiplo("Servico","&nbsp;&nbsp;Serviço ou Solução utilizadas","Serviço ou<br>&nbsp;Solução",sql,"9")%>
+	CALL ControleComboMultiplo("Servico","&nbsp;&nbsp;ServiÃ§o ou SoluÃ§Ã£o utilizadas","ServiÃ§o ou<br>&nbsp;SoluÃ§Ã£o",sql,"9")%>
 	</td>
 </tr>
 <tr>
-	<th align="left" colspan="10">&nbsp;&nbsp;Relatório de andamento de agendamentos (interno CRT)</th>
+	<th align="left" colspan="10">&nbsp;&nbsp;RelatÃ³rio de andamento de agendamentos (interno CRT)</th>
 </tr>
 <tr>
-	<td colspan="10">&nbsp;&nbsp;Relatório de Agendamento:<br>
+	<td colspan="10">&nbsp;&nbsp;RelatÃ³rio de Agendamento:<br>
 		&nbsp;&nbsp;<textarea name="relatAS" class="texto1" cols="145" rows="12"></textarea>
 	</td>
 </tr>
@@ -191,8 +191,8 @@ function ValidaCampos(){
 		<%else%>
 			<input type="Button" class="texto1" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
-		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="Button" class="texto1" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;"/>
+		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Ãrea do Cliente &nbsp;&nbsp;"/>
+		<input type="Button" class="texto1" onclick="areaRAT()" value=" &nbsp;&nbsp;Ãrea do RAT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>
@@ -217,16 +217,16 @@ if not (objSiteRS.EOF and objSiteRS.BOF) then
 		if not (objSiteRS2.EOF and objSiteRS2.BOF) then
 			s_descricao = objSiteRS2("s_descricao")
 		Else
-			s_descricao = "(sem descrição no histórico)"
+			s_descricao = "(sem descriÃ§Ã£o no histÃ³rico)"
 		End If%>
-	lista.options[lista.options.length] = new Option('Ordem de Serviço Nº <%=objSiteRS("os_ID")%> - <%=s_descricao%>',<%=objSiteRS("os_ID")%>);
+	lista.options[lista.options.length] = new Option('Ordem de ServiÃ§o NÂº <%=objSiteRS("os_ID")%> - <%=s_descricao%>',<%=objSiteRS("os_ID")%>);
 <%		ultima0S = objSiteRS("os_ID")
 		objSiteRS.MOVENEXT
 	WEND
 end if
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-'Preenchendo os combos de sistema e serviços
+'Preenchendo os combos de sistema e serviÃ§os
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 SSQL = "Select convert(varchar,s.S_ID) + ' - ' + S_Descricao as valor , S_Descricao as descricao  from Servicos_Plataformas s "
@@ -298,7 +298,7 @@ function NovaOS(){
 	janela = window.open("CadAgendamentoOS.asp?num_ag=<%=num_ag%>&num_os=<%=ultima0S+1%>&novaOS=1", "cad_contato", "width=690, height=550, toolbar=no, status=yes, menubar=no, scrollbars=yes");
 	janela.focus();
 <%else%>
-	alert("ATENÇÃO !\n\nEste agendamento não necessita de OS. Veja com o seu RAT a necessidade de criação de OS´s.");
+	alert("ATENÃ‡ÃƒO !\n\nEste agendamento nÃ£o necessita de OS. Veja com o seu RAT a necessidade de criaÃ§Ã£o de OSÂ´s.");
 <%end if%>
 }
 function Recarrega(){
@@ -312,11 +312,11 @@ function RemoveOS(){
 	cta_id = lista.selectedIndex;
 
 	if (cta_id == -1){
-		alert("Não há OS Selecionada!");
+		alert("NÃ£o hÃ¡ OS Selecionada!");
 		return;
 	}
 	else{
-		resp = confirm('Tem certeza de que deseja remover a Ordem de Serviço nº ' + lista[cta_id].value + ' ?')
+		resp = confirm('Tem certeza de que deseja remover a Ordem de ServiÃ§o nÂº ' + lista[cta_id].value + ' ?')
 		if (resp == true){
 			var frm = document.forms[0];
 			frm.action = "eventosinternos.asp?hdnevento=11&num_ag=<%=num_ag%>&num_os=" + lista[cta_id].value;
@@ -335,7 +335,7 @@ var cta_id;
 cta_id = lista.selectedIndex;
 
 if (cta_id == -1){
-	alert("Não há OS Selecionada!");
+	alert("NÃ£o hÃ¡ OS Selecionada!");
 	return;
 }
 else{

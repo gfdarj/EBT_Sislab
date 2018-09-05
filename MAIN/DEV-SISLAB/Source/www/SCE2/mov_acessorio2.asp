@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_SCE.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -12,7 +12,7 @@
 Dim tipousuario : tipousuario = ""
 if Env.PerfilSce = PERFIL_ADM then tipousuario = " <span style='color:#800000;'>(Administrador)</span>"
 
-Tela.SetNomeTela = "SCE > MovimentaÁ„o > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -106,7 +106,7 @@ If Env.UsuarioSCE() Then
 	<td><%
     'if request("eq_id") = "" or a <> "" or isnull(a) then 
     if a <> "" or isnull(a) then 
-	    response.write "<p align='center'>Nenhum item encontrado com estes par‚metros.</p><br>"
+	    response.write "<p align='center'>Nenhum item encontrado com estes par√¢metros.</p><br>"
 	    response.end
     else
 %>	</td>
@@ -121,9 +121,9 @@ If Env.UsuarioSCE() Then
   			<tr bgcolor="#C0E0EF">
 			  <th align="center">&nbsp;</th>
 		      <th align="center">Itens</th>
-			  <th>DescriÁ„o</th>
+			  <th>Descri√ß√£o</th>
 			  <th align="center">Modelo</th>
-			  <th align="center">N˙mero <br>de<br> SÈrie</th>
+			  <th align="center">N√∫mero <br>de<br> S√©rie</th>
 			  <th align="center">Fabricante</th>
 			  <th align="center">Status Item</th>
 			 </tr>
@@ -153,7 +153,7 @@ If Env.UsuarioSCE() Then
 </tr>
 <tr>
       	<td class="texto1" align="center">
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo Õtem</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo √çtem</a>
 	</td>
 </tr>
 </table>

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -10,7 +10,7 @@
 '-- RELATORIO CONSOLIDADO DA POSICAO DO ESTOQUE
 Dim rec, s
 
-Tela.SetNomeTela = "SCE > Relatório > Consolidado do Estoque" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Consolidado do Estoque" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -39,7 +39,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalItens(-1, "", "")%></b></td>
@@ -62,7 +62,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "S", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "S", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "S", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalItens(-1, "S", "")%></b></td>
@@ -85,7 +85,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "N", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "N", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "N", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalItens(-1, "N", "")%></b></td>
@@ -114,7 +114,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "", "")%></b></td>
@@ -137,7 +137,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "S", "", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "S", "", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "S", "", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</b></td><td><%=TotalControlesVencidos(-1, "S", "", "")%></td>
@@ -160,7 +160,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "N", "", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "N", "", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "N", "", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "N", "", "")%></b></td>
@@ -188,7 +188,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "", CONTROLE_CALIBRACAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_CALIBRACAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_CALIBRACAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "", CONTROLE_CALIBRACAO)%></b></td>
@@ -211,7 +211,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "", CONTROLE_MANUTENCAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_MANUTENCAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_MANUTENCAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "", CONTROLE_MANUTENCAO)%></b></td>
@@ -234,7 +234,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "", CONTROLE_QUALIFICACAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_QUALIFICACAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "", CONTROLE_QUALIFICACAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "", CONTROLE_QUALIFICACAO)%></b></td>
@@ -263,7 +263,7 @@ If Env.UsuarioSCE() Then
 			<td width="20%">Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "", "S")%></td>
 		</tr>
 		<tr valign="top">
-			<td width="20%">Substituídos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "", "S")%></td>
+			<td width="20%">SubstituÃ­dos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "", "S")%></td>
 		</tr>
 		<tr valign="top">
 			<td width="20%"><b>Total:</b></td><td><%=TotalItens(-1, "", "S")%></td>
@@ -286,7 +286,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "S", "S")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "S", "S")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "S", "S")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</b></td><td><%=TotalItens(-1, "S", "S")%></td>
@@ -309,7 +309,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalItens(STATUS_EXPEDIDO, "N", "S")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituído:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "N", "S")%></td>
+			<td>SubstituÃ­do:</td><td><%=TotalItens(STATUS_EXPEDIDO_SUBST, "N", "S")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</b></td><td><%=TotalItens(-1, "N", "S")%></td>
@@ -338,7 +338,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "S", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "S", "")%></b></td>
@@ -361,7 +361,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "S", "S", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "S", "S", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "S", "S", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</b></td><td><%=TotalControlesVencidos(-1, "S", "S", "")%></td>
@@ -384,7 +384,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "N", "S", "")%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "N", "S", "")%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "N", "S", "")%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "N", "S", "")%></b></td>
@@ -412,7 +412,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "S", CONTROLE_CALIBRACAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_CALIBRACAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_CALIBRACAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "S", CONTROLE_CALIBRACAO)%></b></td>
@@ -435,7 +435,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "S", CONTROLE_MANUTENCAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_MANUTENCAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_MANUTENCAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "S", CONTROLE_MANUTENCAO)%></b></td>
@@ -458,7 +458,7 @@ If Env.UsuarioSCE() Then
 			<td>Expedidos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO, "", "S", CONTROLE_QUALIFICACAO)%></td>
 		</tr>
 		<tr valign="top">
-			<td>Substituídos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_QUALIFICACAO)%></td>
+			<td>SubstituÃ­dos:</td><td><%=TotalControlesVencidos(STATUS_EXPEDIDO_SUBST, "", "S", CONTROLE_QUALIFICACAO)%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Total:</td><td><%=TotalControlesVencidos(-1, "", "S", CONTROLE_QUALIFICACAO)%></b></td>

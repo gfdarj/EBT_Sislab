@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controlesHTML.asp" -->
@@ -13,7 +13,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores"
 function ValidaCampos() {
 	var d = document.forms[0];
 	if((d.diaIni.value == '') || (d.mesIni.value == '') || (d.anoIni.value == '') || (d.diaFim.value == '') || (d.mesFim.value == '') || (d.anoFim.value == '')) {
-		alert('O período informado é inválido');
+		alert('O perÃ­odo informado Ã© invÃ¡lido');
 		return false;
 	}
 	else {
@@ -21,7 +21,7 @@ function ValidaCampos() {
 		var dF = d.anoFim.value + '' + d.mesFim.value + '' + d.diaFim.value;
 
 		if(dI > dF) {
-			alert('Data inicial é maior que a data final');
+			alert('Data inicial Ã© maior que a data final');
 			return false;
 		}
 	}
@@ -40,15 +40,15 @@ function ValidaCampos() {
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<input type="radio" name="cmbIndicador" value="1" checked>Eventos por Atividade (por nº de dias)
+		<input type="radio" name="cmbIndicador" value="1" checked>Eventos por Atividade (por nÂº de dias)
 		&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="cmbIndicador" value="0">Eventos por Responsável (por nº de dias)
+		<input type="radio" name="cmbIndicador" value="0">Eventos por ResponsÃ¡vel (por nÂº de dias)
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		&nbsp;Período :&nbsp;<%call comboData("Ini")%>&nbsp;até&nbsp;<%call comboData("Fim")%>
+		&nbsp;PerÃ­odo :&nbsp;<%call comboData("Ini")%>&nbsp;atÃ©&nbsp;<%call comboData("Fim")%>
 		&nbsp;&nbsp;&nbsp;
 		<input type="submit" class="texto1" value="Pesquisar">
 	</td>

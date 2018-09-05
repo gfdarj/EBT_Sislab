@@ -1,13 +1,13 @@
-<!--#Include File=Biblio.asp-->
+ï»¿<!--#Include File=Biblio.asp-->
 <%
 
 'Erro=request.QueryString ("Erro") ' nr do erro
-Pagina=request.QueryString ("Pagina") ' página com erro
+Pagina=request.QueryString ("Pagina") ' pÃ¡gina com erro
 
 Erro="404" ' nr do erro
 
 vUsername = right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) )
-vDescricao = "Pagina não encontrada"
+vDescricao = "Pagina nÃ£o encontrada"
 
 Conecta_Base
 

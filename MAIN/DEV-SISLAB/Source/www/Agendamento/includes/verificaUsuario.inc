@@ -1,4 +1,4 @@
-<%If( Request.Cookies("login")("usrlogin") = "" )Then%>
+﻿<%If( Request.Cookies("login")("usrlogin") = "" )Then%>
 <html>
 <body>
 <script language="JavaScript">

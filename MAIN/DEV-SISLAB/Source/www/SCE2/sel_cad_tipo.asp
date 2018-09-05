@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > FamÌlia Tipo" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Consulta > Fam√≠lia Tipo" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -24,12 +24,12 @@ function navselecao()
 	<tr>
 		<td class=texto>
 		<%if request("msg") <> "" then
-			if cint(request("msg")) = 1 then response.write "FamÌlia Tipo alterada com sucesso!<br><br>"
-			if cint(request("msg")) = 2 then response.write "FamÌlia Tipo excluÌda com sucesso!<br><br>"
+			if cint(request("msg")) = 1 then response.write "Fam√≠lia Tipo alterada com sucesso!<br><br>"
+			if cint(request("msg")) = 2 then response.write "Fam√≠lia Tipo exclu√≠da com sucesso!<br><br>"
 		end if%></td>
 	</tr> 
    <tr>
-	    <td  valign="middle" class="destaque">Editar / Excluir FamÌlia Tipo :</td>
+	    <td  valign="middle" class="destaque">Editar / Excluir Fam√≠lia Tipo :</td>
 	</tr>
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr>
@@ -44,7 +44,7 @@ function navselecao()
 				wend%>
 				</select>
 			<%else%>
-				N„o Existem Familia Tipo Cadastrada No Momento.
+				N√£o Existem Familia Tipo Cadastrada No Momento.
 			<%end if%>
 		</td>		
     </tr>

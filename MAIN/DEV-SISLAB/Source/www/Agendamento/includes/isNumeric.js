@@ -1,4 +1,4 @@
-// recebe uma string e verifica se eh um numero
+﻿// recebe uma string e verifica se eh um numero
 function isNumeric(str)
 {
 	var k;

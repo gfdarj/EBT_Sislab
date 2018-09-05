@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!--#include file="includes/estado.asp"-->
 <!------- SISLAB ---->
@@ -8,7 +8,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Empresa" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Empresa" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -42,7 +42,7 @@ function navselecao()
 					</td>
 					<td width="40px"></td>
 					<td valign="top" class="texto1">
-					Inscrição Estadual:&nbsp;<input type=text name=enf_ie class="texto1">
+					InscriÃ§Ã£o Estadual:&nbsp;<input type=text name=enf_ie class="texto1">
 					</td>
 				<tr>
 				<tr><td class="texto1">&nbsp;</td></tr>

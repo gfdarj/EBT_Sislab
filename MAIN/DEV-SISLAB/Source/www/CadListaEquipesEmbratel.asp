@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -33,7 +33,7 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.lista.length == 0) {
-		alert('… necess·rio informar um usu·rio membro da equipe.');
+		alert('√â necess√°rio informar um usu√°rio membro da equipe.');
 		frm.novo_participante.focus();
 		return false
 	}
@@ -64,7 +64,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.gerente.value == '') {
-		alert('Nenhum Gerente selecionado para exclus„o !');
+		alert('Nenhum Gerente selecionado para exclus√£o !');
 		frm.gerente.focus();
 	}
 	else {
@@ -84,12 +84,12 @@ function Excluir() {
 	<td width="*"></td>
 </tr>
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><td colspan="2"><p><b><font color="#ff0000">Cadastro de equipes da embratel para que o gerente possa ter acesso ‡ dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</font></b></p></td></tr>
+<tr><td colspan="2"><p><b><font color="#ff0000">Cadastro de equipes da embratel para que o gerente possa ter acesso √† dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</font></b></p></td></tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
@@ -128,7 +128,7 @@ function Excluir() {
 				<input type="Button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
 			</td>
 			<td>
-				<b>Usu·rios adicionados</b><BR>
+				<b>Usu√°rios adicionados</b><BR>
 				<select name="lista" style="width: 150px; HEIGHT: 100px;" class="texto1" multiple>
 <%
 if Not VVVN(gerente) Then

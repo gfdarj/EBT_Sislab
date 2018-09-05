@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -12,7 +12,7 @@ If Not (Env.EhRat Or Env.EhRT) Then
 	RR "index.asp"
 End If
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de autom·ticas de email", "location.href='sislab.asp'", "")
+Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de autom√°ticas de email", "location.href='sislab.asp'", "")
 
 'EH_CRT = Env.UsuarioCRT
 %>
@@ -81,8 +81,8 @@ Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de autom·ticas
 </table>
 
 <p class="texto"><i><b>Legenda:</b></i></p>
-<p class="texto"><i><u>%PARAMETRO_n%</u>: indica a sequencia dos par‚metros utilizados em um endereÁo da intranet/internet.</i></p>
-<p class="texto"><i><u>n</u>: È o n˙mero do par‚metro.</i></p>
+<p class="texto"><i><u>%PARAMETRO_n%</u>: indica a sequencia dos par√¢metros utilizados em um endere√ßo da intranet/internet.</i></p>
+<p class="texto"><i><u>n</u>: √© o n√∫mero do par√¢metro.</i></p>
 
 <input type="Hidden" name="hdnevento" value="3">
 

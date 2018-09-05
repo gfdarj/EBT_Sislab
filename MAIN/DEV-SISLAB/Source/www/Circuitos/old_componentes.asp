@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+Ôªø<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de ReferÍncia TecnolÛgica</title>
+	<title>Site do Centro de Refer√™ncia Tecnol√≥gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -32,7 +32,7 @@ if( isnumeric( cstr( request.querystring( "cpt_id" ) ) ) ) then
 '	response.end
 	call Env.RecordSet( true, objRS, strSQL)
 	if( objRS.BOF and objRS.EOF ) then
-		call ErroBD( "Identificador de componente inv·lido" )
+		call ErroBD( "Identificador de componente inv√°lido" )
 	end if
 	cpt_nome = objRS( "cpt_nome" )
 	tpc_id = objRS( "tpc_id" )
@@ -90,7 +90,7 @@ function verifica()
 	{
 		d = d.lge_id;
 		l = l.l_local;
-		msg = "O local do componente n„o È v·lido";
+		msg = "O local do componente n√£o √© v√°lido";
 	}
 
 	if( msg != "" )

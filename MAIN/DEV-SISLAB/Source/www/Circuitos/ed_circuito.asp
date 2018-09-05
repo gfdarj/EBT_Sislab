@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+ï»¿<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -171,7 +171,7 @@ function verifica_carac()
 	{
 		if( !isNaN( document.dados_fac.elements[ i ].name ) && document.dados_fac.elements[ i ].value.length <= 0 )
 		{
-			alert( "Existem características em branco. Por favor, corrija este erro e tente novamente." );
+			alert( "Existem caracterÃ­sticas em branco. Por favor, corrija este erro e tente novamente." );
 			document.dados_fac.elements[ i ].focus();
 			return;
 		}
@@ -198,7 +198,7 @@ function muda_tipo( val )
 <input type="Hidden" name="cto_id" value="<%= request.querystring( "cto_id" ) %>" />
 <table class="tipo1">
 	<tr>
-		<th>Posição:</th>
+		<th>PosiÃ§Ã£o:</th>
 		<td><input type="Text" size="2" maxlength="1" name="pos_nova_fac" value="" readonly /></td>
 	</tr>
 	<tr>

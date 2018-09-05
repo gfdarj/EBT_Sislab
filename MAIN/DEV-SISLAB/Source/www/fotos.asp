@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -66,7 +66,7 @@ Sub ApagaImagem(id_Arq)
 		If int_Retorno <> -1 Then 'Ok
 			RR "fotos.asp"
 		Else
-			Call MensagemErro("N„o foi possÌvel excluir o arquivo selecionado.")
+			Call MensagemErro("N√£o foi poss√≠vel excluir o arquivo selecionado.")
 		End If
 	Else
 		Call MensagemErro("Ocorreu um erro ao tentar excluir o arquivo selecionado.")
@@ -115,10 +115,10 @@ Sub ListaImagens()
 			"<input type='hidden' name='arquivo' value=''>" & VbCrLf
 
 	chr_Buf1 = _
-			"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>VisualizaÁ„o</span><br><br>" & VbCrLf & _
+			"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Visualiza√ß√£o</span><br><br>" & VbCrLf & _
 			"<table align='center' class='tabela1' border='1' cellpadding='3' cellspacing='0'>" & VbCrLf & _
 			"<tr>" & VbCrLf & _
-			"	<td align='center'><b>VisualizaÁ„o</b></td><td><b>Arquivo</b></td><td><b>DescriÁ„o</b></td></td><td><b>Tamanho</b><td>&nbsp;&nbsp;&nbsp;</td>" & VbCrLf & _
+			"	<td align='center'><b>Visualiza√ß√£o</b></td><td><b>Arquivo</b></td><td><b>Descri√ß√£o</b></td></td><td><b>Tamanho</b><td>&nbsp;&nbsp;&nbsp;</td>" & VbCrLf & _
 			"</tr>" & VbCrLf
 
 	If Not (RS.Eof And RS.Bof) Then
@@ -176,17 +176,17 @@ Sub ListaImagens()
 			"		return false;" & VbCrLf & _
 			"	}" & VbCrLf & _
 			"	if (!validaNomeArquivo(extractFileName(document.all.FILE1.value))) {" & VbCrLf & _
-			"		alert('O nome do arquivo est· inv·lido. Retire acentuaÁ„o e espaÁos antes de prosseguir.');" & VbCrLf & _
+			"		alert('O nome do arquivo est√° inv√°lido. Retire acentua√ß√£o e espa√ßos antes de prosseguir.');" & VbCrLf & _
 			"		document.all.FILE1.focus();" & VbCrLf & _
 			"		return false;" & VbCrLf & _
 			"	}" & VbCrLf & _
 			"	if (document.all.titulo.value == '') {" & VbCrLf & _
-			"		alert('Informe o tÌtulo da foto.');" & VbCrLf & _
+			"		alert('Informe o t√≠tulo da foto.');" & VbCrLf & _
 			"		document.all.titulo.focus();" & VbCrLf & _
 			"		return false;" & VbCrLf & _
 			"	}" & VbCrLf & _
 			"	if (document.all.descricao.value == '') {" & VbCrLf & _
-			"		alert('Informe a descriÁ„o da foto.');" & VbCrLf & _
+			"		alert('Informe a descri√ß√£o da foto.');" & VbCrLf & _
 			"		document.all.descricao.focus();" & VbCrLf & _
 			"		return false;" & VbCrLf & _
 			"	}" & VbCrLf & _
@@ -215,12 +215,12 @@ Sub ListaImagens()
 			"			<span class='texto1'><input id='id_arquivo' type='File' size='65' name='FILE1' class='texto1'></span>" & VbCrLf & _
 			"		</td>" & VbCrLf & _
 			"	</tr>" & VbCrLf & _
-			"	<tr><td>TÌtulo da Imagem:</td></tr>" & VbCrLf & _
+			"	<tr><td>T√≠tulo da Imagem:</td></tr>" & VbCrLf & _
 			"		<td>" & VbCrLf & _
 			"			<input type='text' class='texto1' value='' name='titulo' size='80' maxlength='100'>" & VbCrLf & _
 			"		</td>" & VbCrLf & _
 			"	</tr>" & VbCrLf & _
-			"	<tr><td>DescriÁ„o da Imagem:</td></tr>" & VbCrLf & _
+			"	<tr><td>Descri√ß√£o da Imagem:</td></tr>" & VbCrLf & _
 			"		<td>" & VbCrLf & _
 			"			<textarea name='descricao' cols='80' rows='3' class='texto1'></textarea>" & VbCrLf & _
 			"		</td>" & VbCrLf & _

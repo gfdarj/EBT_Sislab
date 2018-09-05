@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!--#include file="includes/estado.asp"-->
 <!--#include file="includes/montacnpj.inc" -->
@@ -9,7 +9,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > RelatÛrio > Empresa" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Relat√≥rio > Empresa" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -67,7 +67,7 @@ If Env.UsuarioSCE() Then
 					<th width="2" align="left"></th>
 					<th width="100" align="left">Cidade</th>
 					<th width="2" align="left"></th>
-					<th width="250" align="left">EndereÁo</th>
+					<th width="250" align="left">Endere√ßo</th>
 			    </tr>
 			<%while (not rec.eof) and (cont <= rec.pagesize)
 				cont = cont+1
@@ -93,7 +93,7 @@ If Env.UsuarioSCE() Then
 			wend
 			else%>
 				<tr>
-					<td class="texto1" align="center"><strong>Nenhuma Empresa cadastrada com esses par‚metros</strong></td>
+					<td class="texto1" align="center"><strong>Nenhuma Empresa cadastrada com esses par√¢metros</strong></td>
 				</tr>
 			<%end if%>
 			</table>
@@ -105,7 +105,7 @@ If Env.UsuarioSCE() Then
 					<a href="imp_emp2.asp?inicio=<%=i%>&enf_nome=<%=request("enf_nome")%>&enf_cnpj=<%=request("enf_cnpj")%>&enf_ie=<%=request("enf_ie")%>&enf_cidade=<%=request("enf_cidade")%>&enf_uf=<%=request("enf_uf")%>"><%=i%>&nbsp;</a>
 				<%end if
 			next%><div align=right class=texto>
-				Para Impress„o, clique no bot„o "Imprimir" e configure a p·gina para ser impressa no formato de Paisagem.&nbsp;&nbsp;&nbsp;&nbsp;
+				Para Impress√£o, clique no bot√£o "Imprimir" e configure a p√°gina para ser impressa no formato de Paisagem.&nbsp;&nbsp;&nbsp;&nbsp;
 					<button onclick="window.print();" class="texto1">Imprimir</button></div>
 		</td>
 	</tr>

@@ -1,4 +1,4 @@
-<%
+ï»¿<%
 Public Sub criaExcel( Titulo, objRS, ordenacao)
 	Dim str
 	if not(isNull(ordenacao) or ordenacao = "") then _
@@ -7,7 +7,7 @@ Public Sub criaExcel( Titulo, objRS, ordenacao)
 	str = "<HTML><HEAD><META HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel""><title>teste</title></HEAD><BODY>" & str & "</BODY></HTML>"
 	Response.ContentType = "application/excel"
 	Response.Clear
-	'Se tirarmos o attachment da linha baixo, ele não vai pedir 2 vezes pra abrir, mas vai abrir na própria janela...
+	'Se tirarmos o attachment da linha baixo, ele nÃ£o vai pedir 2 vezes pra abrir, mas vai abrir na prÃ³pria janela...
 	Response.AddHeader "Content-Disposition", "filename=" & chr(34) & "Relatorio.xls" & chr(34)
 	Response.Write (str)
 	'Response.end
@@ -25,7 +25,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 	cont = 0
 	str = str & "<TABLE cellspacing=1 cellpadding=1 border=1>"
 
-	'-- conto o numero de campos visíveis
+	'-- conto o numero de campos visÃ­veis
 	colspan = 0
 	For i = 0 to objRecordSet.Fields.Count - 1
 		If objRecordSet.Fields(i).Name <> "ID" and Right(objRecordSet.Fields(i).Name, 2) = "_M" Then
@@ -39,7 +39,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 	End If
 
 	If( NOT( objRecordSet.EOF ) )Then
-		'<!-- Cabeçalho da tabela -->
+		'<!-- CabeÃ§alho da tabela -->
 		str = str & "<TR>"
 		For each tmp in objRecordSet.Fields
 			If(tmp.Name <> "ID" and Right(tmp.Name, 2) = "_M")Then
@@ -62,11 +62,11 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 					str = str & "<td>"
 					If(isNull(Link) AND isNull(Acao) AND NOT(isNull(tmp.Value)))Then
 						If tmp.Type = adCurrency Then
-							str = str & FormatCurrency(Replace(trim(tmp.Value), "_¿", ""))
+							str = str & FormatCurrency(Replace(trim(tmp.Value), "_Â¿", ""))
 						ElseIf tmp.Type = adNumeric Then
-							str = str & FormatNumber(Replace(trim(tmp.Value), "_¿", ""), 2)
+							str = str & FormatNumber(Replace(trim(tmp.Value), "_Â¿", ""), 2)
 						Else
-							str = str & Replace(trim(tmp.Value), "_¿", "")
+							str = str & Replace(trim(tmp.Value), "_Â¿", "")
 						End If
 					End If
 					str = str & "</td>"
@@ -79,7 +79,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 		Wend
 	Else
 		str = str & "<tr>"
-		str = str & "<td>   Sua consulta não retornou nenhum registro!</td>"
+		str = str & "<td>   Sua consulta nÃ£o retornou nenhum registro!</td>"
 		str = str & "</tr>"
 	End If
 	str = str & "</table>"

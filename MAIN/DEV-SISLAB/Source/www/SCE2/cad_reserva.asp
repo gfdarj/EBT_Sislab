@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -21,7 +21,7 @@ If Env.UsuarioSCE() Then
 <script language="JavaScript" src="includes/bib_obj.js"></script>
 <script language="JavaScript" src="includes/bib_str.js"></script>
 <%
-    '-- CADASTRO / ALTERA«√O DE RESERVAS DE EQUIPAMENTOS PARA UMA AS --
+    '-- CADASTRO / ALTERA√á√ÉO DE RESERVAS DE EQUIPAMENTOS PARA UMA AS --
     Dim rec, s, ag_numero, ambiente, linha, ehNovo, amb
     Dim responsavel, dt_inicio, dt_termino, dt_reserva, reservado, dt_hoje, obs
     Dim ehAgValido : ehAgValido = true
@@ -268,7 +268,7 @@ function InsereItem(qtde) {
 		return false
 	}
 	if(qtde > 30) {
-		alert("SÛ È permitido incluir atÈ 30 itens de uma ˙nica vez");
+		alert("S√≥ √© permitido incluir at√© 30 itens de uma √∫nica vez");
 		return false;
 	}
 
@@ -286,12 +286,12 @@ function InsereItem(qtde) {
 		newtd.setAttribute("eq_id","");
 		newrow.appendChild(newtd);
 
-//		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descriÁ„o do item --</i></span>";
+//		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descri√ß√£o do item --</i></span>";
 		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"');
 		newtd.vAlign = "top";
 
 		newtd=document.createElement("td");
-		newtxt=document.createTextNode("-- descriÁ„o do item --");
+		newtxt=document.createTextNode("-- descri√ß√£o do item --");
 		newtd.appendChild(newtxt);
 		newtd.setAttribute("id", "linha_" + linha + "_col_2");
 		newtd.setAttribute("class", "texto1");
@@ -382,7 +382,7 @@ function InsereItem(qtde) {
 
 		newrow.setAttribute("id","linha_" + linha);
 
-		// troca o conte˙do da ultima coluna colocando
+		// troca o conte√∫do da ultima coluna colocando
 		newtd.innerHTML = '<span onclick="javascript:RemoveItem('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
 		newtd.vAlign = "top";
 
@@ -408,7 +408,7 @@ function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barra
 //	else {
 		//if( (codbarras.value.length != 0) && (document.all["item_" + linhaTabela].eq_id != "") ) {
 //		if( document.all["item_" + linhaTabela].eq_id != "" ) {
-//			document.all["linha_" + linhaTabela + "_col_2"].innerText = "-- descriÁ„o do item --";
+//			document.all["linha_" + linhaTabela + "_col_2"].innerText = "-- descri√ß√£o do item --";
 //			document.all["item_" + linhaTabela].eq_id = "";
 //		}
 //	}
@@ -427,13 +427,13 @@ function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barra
 		<table width="100%" cellpadding="0" cellspacing="0" class="texto1" border="1" id="tb_reserva" style="border: thin solid silver;">
 		<tr>
 			<th align="left" width="150px">Item</th>
-			<th width="*" align="left">DescriÁ„o</th>
+			<th width="*" align="left">Descri√ß√£o</th>
 			<th width="85px">Data ini</th>
 			<th width="85px">Data fim</th>
 			<th width="110px">Eq. Setup</th>
 			<th width="110px">Ambiente</th>
 			<th width="55px" align="center">Aceito</th>
-			<th width="20px" align="center" title="Item est· movimentado para esta AS">&nbsp;Uso&nbsp;</th>
+			<th width="20px" align="center" title="Item est√° movimentado para esta AS">&nbsp;Uso&nbsp;</th>
 			<th width="20px"><img src="img/btn_branco.gif"></th>
 		</tr>
 		<tbody id="tb_reserva_body">
@@ -456,7 +456,7 @@ if ag_numero <> "" then
 		Dim EmUso
 		while not rec.eof
 
-			EmUso = "N„o"
+			EmUso = "N√£o"
 			If Not IsNull(rec("ASA")) Then 
 				If CStr(rec("ASA")) = Request("ag_numero") Then
 					EmUso = "Sim"
@@ -477,7 +477,7 @@ if ag_numero <> "" then
 			<td id="linha_<%=linha%>_col_5" class="texto1" align="center" valign="top"><script language="JavaScript">comboAmostraEq(true, 'cmb_setup_<%=linha%>', '<%=rec("REQ_EQSETUP")%>');</script></td>
 			<td id="linha_<%=linha%>_col_6" class="texto1" align="center" valign="top"><script language="JavaScript">comboAmbiente(true, 'cmb_amb_<%=linha%>', '<%=rec("AMB_ID")%>');</script></td>
 			<td id="linha_<%=linha%>_col_7" class="texto1" align="center" valign="top"><%if isNull(rec("REQ_ACEITO")) then response.write "&nbsp;" else response.write SimNao(rec("REQ_ACEITO"))%></td>
-			<td id="linha_<%=linha%>_col_8" class="texto1" valign="top" align="center" title="Item est· movimentado para esta AS"><%=EmUso%></td>
+			<td id="linha_<%=linha%>_col_8" class="texto1" valign="top" align="center" title="Item est√° movimentado para esta AS"><%=EmUso%></td>
 			<td id="linha_<%=linha%>_col_9" class="texto1" valign="top">
 <%			if (rec("REQ_ACEITO")) and (Env.PerfilSCE = PERFIL_RAT) or rec("REQ_MOVIMENTOU") or (not ehAgValido)then%>
 				<img src="img/btn_branco.gif">
@@ -513,7 +513,7 @@ end if
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-	    <p class="destaque">ObservaÁıes:</p>
+	    <p class="destaque">Observa√ß√µes:</p>
 		<textarea name="obs" class="texto1" rows="10" cols="110"><%=obs%></textarea>
 	</td>
 </tr>
@@ -549,38 +549,38 @@ function validaListaItens() {
 			if(document.all["dt_ini_"+i].disabled == false)
 			{
 				if((document.all["item_"+i].eq_id == "")) {
-					alert("Item n„o preenchido ou incorreto");
+					alert("Item n√£o preenchido ou incorreto");
 					document.all["item_"+i].focus();
 					return false;
 				}
 				else if(document.all["dt_ini_"+i].value == "") {
-					alert("Data de inicio n„o preenchida");
+					alert("Data de inicio n√£o preenchida");
 					document.all["dt_ini_"+i].focus();
 					return false;
 				}
 				else if( (concatenaData(document.all["dt_ini_"+i].value) < concatenaData(document.all.ag_datainicio.value) ) || (concatenaData(document.all["dt_ini_"+i].value) > concatenaData(document.all.ag_datatermino.value)) ) {
-					alert("Data de inicio n„o est· de acordo com o perÌodo do agendamento");
+					alert("Data de inicio n√£o est√° de acordo com o per√≠odo do agendamento");
 					document.all["dt_ini_"+i].focus();
 					return false;
 				}
 				else if( (concatenaData(document.all["dt_fim_"+i].value) < concatenaData(document.all["dt_ini_"+i].value) ) || (concatenaData(document.all["dt_fim_"+i].value) < concatenaData(document.all.ag_datainicio.value) ) || (concatenaData(document.all["dt_fim_"+i].value) > concatenaData(document.all.ag_datatermino.value)) ) {
-					alert("Data de tÈrmino n„o est· de acordo com o perÌodo do agendamento");
+					alert("Data de t√©rmino n√£o est√° de acordo com o per√≠odo do agendamento");
 					document.all["dt_fim_"+i].focus();
 					return false;
 				}
 				else if(document.all["dt_fim_"+i].value == "") {
-					alert("Data de tÈrmino n„o preenchida");
+					alert("Data de t√©rmino n√£o preenchida");
 					document.all["dt_fim_"+i].focus();
 					return false;
 				}
 				else if(!isDate(document.all["dt_ini_"+i].value)) {
-					alert("Data de inicio inv·lida");
+					alert("Data de inicio inv√°lida");
 					document.all["dt_ini_"+i].focus();
 					document.all["dt_ini_"+i].select();
 					return false;
 				}
 				else if(!isDate(document.all["dt_fim_"+i].value)) {
-					alert("Data de tÈrmino inv·lida");
+					alert("Data de t√©rmino inv√°lida");
 					document.all["dt_fim_"+i].focus();
 					document.all["dt_fim_"+i].select();
 					return false;
@@ -589,7 +589,7 @@ function validaListaItens() {
 				for(j=i+1; j<=linha; j++) {
 					if(document.all["item_"+j] != null) {
 						if(document.all["item_"+i].eq_id == document.all["item_"+j].eq_id) {
-							alert("Item j· existe na lista");
+							alert("Item j√° existe na lista");
 							document.all["item_"+j].focus();
 							document.all["item_"+j].select();
 							return false;
@@ -613,7 +613,7 @@ function validaReserva(frm) {
 		frm.ag_numero.focus();
 	}
 	else if(frm.ag_responsavel.value == '') {
-		alert('Nenhum respons·vel selecionado.');
+		alert('Nenhum respons√°vel selecionado.');
 		frm.ag_responsavel.focus();
 	}
 //	else if(frm.amb_id.value == '') {
@@ -634,13 +634,13 @@ function cadastraReserva() {
 <%
 if (not ehAgValido) and (Env.PerfilSCE = PERFIL_RAT) then
 %>
-	alert("ATEN«¬O !\n\nEste agendamento n„o pode mais ser alterado por um RT em raz„o\nda proximidade do seu inÌcio.");
+	alert("ATEN√á√ÇO !\n\nEste agendamento n√£o pode mais ser alterado por um RT em raz√£o\nda proximidade do seu in√≠cio.");
 <%
 else
 %>
 	var frm = document.forms[0];
 	var oOption, i, tb;
-	//var separa_campo = "ø?ø";		//mudei o separador para ","
+	//var separa_campo = "¬ø?¬ø";		//mudei o separador para ","
 	var separa_campo = ",";
 
 	if(validaReserva(frm)) {
@@ -685,7 +685,7 @@ end if
 function aceitoSimNao(valor) {
 	if( (valor == "Sim") || (valor == "SIM"))
 		return 1;
-	else if((valor == "N„o") || (valor == "N&atilde;o"))
+	else if((valor == "N√£o") || (valor == "N&atilde;o"))
 		return 0;
 	else 
 		return 9; // no banco de dados este valor sera transformado em NULL

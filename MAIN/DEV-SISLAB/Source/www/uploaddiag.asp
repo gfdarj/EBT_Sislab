@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
@@ -55,9 +55,9 @@ For cont = 1 To Arquivo.TotalArquivos
 	Call Env.oConn.Execute(sSQL)
 
 
-    '***** ATENÇÃO !!!
-    '   COLOQUEI ESSE CÓDIGO PORQUE ESTAVA MULTIPLICANDO POR 6 TODOS OS INSERT´S NA TABELA DE ARQUIVOS
-    '   NÃO ENCONTREI TRIGGER, NEM CONSTRAINT, NEM OUTRO MOTIVO PARA OCORRER TAL PROBLEMA !!!
+    '***** ATENÃ‡ÃƒO !!!
+    '   COLOQUEI ESSE CÃ“DIGO PORQUE ESTAVA MULTIPLICANDO POR 6 TODOS OS INSERTÂ´S NA TABELA DE ARQUIVOS
+    '   NÃƒO ENCONTREI TRIGGER, NEM CONSTRAINT, NEM OUTRO MOTIVO PARA OCORRER TAL PROBLEMA !!!
     '
     '   GILBERTO - 08/SET/2017
     '*

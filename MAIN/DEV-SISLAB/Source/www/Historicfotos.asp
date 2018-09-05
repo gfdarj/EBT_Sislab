@@ -1,8 +1,8 @@
-<!--#include file="includes/Sislab_Lib.asp" -->
+Ôªø<!--#include file="includes/Sislab_Lib.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÛrico do CRT - Fotos", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Hist√≥rico do CRT - Fotos", "", "")
 %>
 <table border=0>
 <tr>
@@ -10,132 +10,107 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÛrico do CRT - Fotos
 
 <table width=620>
 <tr>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-<td width="9%">
-</td>
-<td width="2%">
-</td>
-<td width="9%">
-</td>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-<td width="10%">
-</td>
-</tr>
-<tr>
-
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto1.jpg"><br>
-&nbsp;&nbsp;&nbsp;Local onde seria construÌdo o CRT
-</font>
-</td>
-
-<td bgcolor=#FFFFFF>
-</td>
-
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto2.jpg"><br>
-&nbsp;&nbsp;&nbsp;¡rea do futuro laboratÛrio
-</font>
-</td>
-
+    <td width="10%"></td>
+    <td width="10%"></td>
+    <td width="10%"></td>
+    <td width="10%"></td>
+    <td width="9%"></td>
+    <td width="2%"></td>
+    <td width="9%"></td>
+    <td width="10%"></td>
+    <td width="10%"></td>
+    <td width="10%"></td>
+    <td width="10%"></td>
 </tr>
 
 <tr>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto1.jpg"><br>
+    &nbsp;&nbsp;&nbsp;Local onde seria constru√≠do o CRT
+    </font>
+    </td>
 
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto3.jpg"><br>
-&nbsp;&nbsp;&nbsp;Primeiras fundaÁıes prÈdio do laboratÛrio-dez/98
-</font>
-</td>
+    <td bgcolor=#FFFFFF></td>
 
-<td bgcolor=#FFFFFF>
-</td>
-
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto4.jpg"><br>
-&nbsp;PrÈdio de apoio e caixa d'·gua-dez/98
-</font>
-</td>
-
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto2.jpg"><br>
+    &nbsp;&nbsp;&nbsp;√Årea do futuro laborat√≥rio
+    </font>
+    </td>
 </tr>
 
 <tr>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto3.jpg"><br>
+    &nbsp;&nbsp;&nbsp;Primeiras funda√ß√µes pr√©dio do laborat√≥rio-dez/98
+    </font>
+    </td>
 
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto5.jpg"><br>
-&nbsp;&nbsp;&nbsp;Levantamento das paredes do laboratÛrio-mar/99
-</font>
-</td>
+    <td bgcolor=#FFFFFF></td>
 
-<td bgcolor=#FFFFFF>
-</td>
-
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto6.jpg"><br>
-&nbsp;Entrada do prÈdio de apoio-mar/99
-</font>
-</td>
-
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto4.jpg"><br>
+    &nbsp;Pr√©dio de apoio e caixa d'√°gua-dez/98
+    </font>
+    </td>
 </tr>
 
 <tr>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto5.jpg"><br>
+    &nbsp;&nbsp;&nbsp;Levantamento das paredes do laborat√≥rio-mar/99
+    </font>
+    </td>
 
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto9.jpg"><br>
-&nbsp;&nbsp;&nbsp;PrÈdio da apoio (acabamento interno)-jun/99
-</font>
-</td>
+    <td bgcolor=#FFFFFF></td>
 
-<td bgcolor=#FFFFFF>
-</td>
-
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto10.jpg"><br>
-&nbsp;Vista superior da construÁ„o do laboratÛrio-jun/99
-</font>
-</td>
-
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto6.jpg"><br>
+    &nbsp;Entrada do pr√©dio de apoio-mar/99
+    </font>
+    </td>
 </tr>
 
 <tr>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto9.jpg"><br>
+    &nbsp;&nbsp;&nbsp;Pr√©dio da apoio (acabamento interno)-jun/99
+    </font>
+    </td>
 
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto7.jpg"><br>
-&nbsp;&nbsp;&nbsp;Sala de Pessoal-ago/99
-</font>
-</td>
+    <td bgcolor=#FFFFFF></td>
 
-<td bgcolor=#FFFFFF>
-</td>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto10.jpg"><br>
+    &nbsp;Vista superior da constru√ß√£o do laborat√≥rio-jun/99
+    </font>
+    </td>
+</tr>
 
-<td colspan=5 bgcolor="#C0E0EF">
-<font class="legenda">
-<img width="300"  height="200" src="img/obra/foto8.jpg"><br>
-&nbsp;Um dos corredores do CRT-ago/99
-</font>
-</td>
+<tr>
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto7.jpg"><br>
+    &nbsp;&nbsp;&nbsp;Sala de Pessoal-ago/99
+    </font>
+    </td>
 
+    <td bgcolor=#FFFFFF></td>
+
+    <td colspan=5 bgcolor="#C0E0EF">
+    <font class="legenda">
+    <img width="300"  height="200" src="img/obra/foto8.jpg"><br>
+    &nbsp;Um dos corredores do CRT-ago/99
+    </font>
+    </td>
 </tr>
 
 </font>

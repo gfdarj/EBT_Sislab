@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->

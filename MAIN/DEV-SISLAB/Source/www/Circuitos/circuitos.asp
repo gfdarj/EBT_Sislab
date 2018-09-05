@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+ï»¿<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -41,7 +41,7 @@ function verifica()
 /*
 	else if( l.d_datas.style.display == "block" && ( d.dataini_d.value.length <= 0 || d.dataini_m.value.length <= 0 || d.dataini_a.value.length <= 3 ) )
 	{
-		msg = d.dataini_d.value+"/"+d.dataini_d.value+"/"+d.dataini_a.value+"A data inicial nao possui um valor válido";
+		msg = d.dataini_d.value+"/"+d.dataini_d.value+"/"+d.dataini_a.value+"A data inicial nao possui um valor vÃ¡lido";
 
 		d = d.dataini_d;
 		l = l.l_dataini;
@@ -50,7 +50,7 @@ function verifica()
 	{
 		d = d.datafim_d;
 		l = l.l_datafim;
-		msg = "A data de término nao possui um valor válido";
+		msg = "A data de tÃ©rmino nao possui um valor vÃ¡lido";
 	}
 */
 	
@@ -117,7 +117,7 @@ if( objRS.BOF and objRS.EOF ) then %>
   <td bgcolor="#000030" align="right"><font face="tahoma" style="font-size=10pt" color="#FFFFFF">&nbsp;<B><a href="index.asp" class="Menu">Voltar</a></B>&nbsp;&nbsp;&nbsp;<br></font></td>
 </tr>
 <tr><td class="titulo">Circuitos Cadastrados</td></tr>
-<tr><td>Ainda não existem circuitos cadastrados!</td></tr>
+<tr><td>Ainda nÃ£o existem circuitos cadastrados!</td></tr>
 </table>
 <br /><%
 else %>

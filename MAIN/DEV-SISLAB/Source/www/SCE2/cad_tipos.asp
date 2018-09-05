@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -9,7 +9,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > FamÌlia / Tipo" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > Fam√≠lia / Tipo" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -24,7 +24,7 @@ function ValidaCampos()
 	var frm = document.formulario;
 	if (frm.tipo_descricao.value.length == 0)
 	{
-		alert('Defina a DescriÁ„o da FamÌlia Tipo!')
+		alert('Defina a Descri√ß√£o da Fam√≠lia Tipo!')
 		frm.tipo_descricao.focus();
 		return false;
 	}
@@ -39,7 +39,7 @@ function ValidaCampos()
 		if msg  = 1 then
 		response.write "Tipo cadastrado com sucesso!<br><br>"
 		elseif msg = 2 then
-		response.write "Tipo j· existente!<br><br>"
+		response.write "Tipo j√° existente!<br><br>"
 		end if%></td>
 	</tr> 
 	<tr class="texto1">

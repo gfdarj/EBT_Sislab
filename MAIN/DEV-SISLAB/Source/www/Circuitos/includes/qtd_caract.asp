@@ -1,4 +1,4 @@
-// Funcoes utilizadas na listagem de quantidades das caracteristicas
+﻿// Funcoes utilizadas na listagem de quantidades das caracteristicas
 function ExtraiQtde(eu)
 {	var i = eu.lastIndexOf( "(" );
 	if (i <= 0) return eu; else return eu.substring( i, eu.length );

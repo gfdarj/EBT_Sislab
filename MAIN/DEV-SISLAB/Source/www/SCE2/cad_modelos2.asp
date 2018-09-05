@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <% 
@@ -39,7 +39,7 @@ if rsPartnumber.eof then
 		Env.oconn.execute(ssql)
 	end if
 
-	acao = "O usu�rio "& Env.Usuario &" cadastrou o modelo "& mod_codnome
+	acao = "O usuário "& Env.Usuario &" cadastrou o modelo "& mod_codnome
     Call Env.LogSce(acao)
 
 	response.redirect "cad_modelos.asp?msg=1"	

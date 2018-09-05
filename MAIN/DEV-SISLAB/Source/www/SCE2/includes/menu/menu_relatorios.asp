@@ -1,4 +1,4 @@
-<!--#include file="../global_SCE.asp" -->
+ï»¿<!--#include file="../global_SCE.asp" -->
 <%
 Dim perfil
 
@@ -19,7 +19,7 @@ perfil = CInt(Request("Perfil"))
 <%
 if perfil = PERFIL_ADM then%>
     <tr><td><a href="../../rel_consolidado_total_nf.asp" target="_parent">Consolidado - Total por Nota Fiscal</a></td></tr>
-    <tr><td><a href="../../rel_consolidado_mov.asp" target="_parent">Consolidado - Movimentações</a></td></tr>
+    <tr><td><a href="../../rel_consolidado_mov.asp" target="_parent">Consolidado - MovimentaÃ§Ãµes</a></td></tr>
     <tr><td><a href="../../rel_consolidado.asp" target="_parent">Consolidado - Posi&ccedil;&atilde;o do Estoque</a></td></tr><%
 end if
 

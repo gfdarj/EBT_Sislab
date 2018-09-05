@@ -1,15 +1,15 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/global.asp"-->
 <%
 '###
-'###	AJAX DA COMBO DE NATUREZA DE OPERAÇÃO NA TELA DE MOVIMENTAÇÃO DO SCE
+'###	AJAX DA COMBO DE NATUREZA DE OPERAÃ‡ÃƒO NA TELA DE MOVIMENTAÃ‡ÃƒO DO SCE
 '###
 
-'# Evitar problemas com acentuação no ajax
+'# Evitar problemas com acentuaÃ§Ã£o no ajax
 Response.Charset="ISO-8859-1"
 
 '#####
-'#	Atualiza o inventário do equipamento com a data de hoje
+'#	Atualiza o inventÃ¡rio do equipamento com a data de hoje
 '###
 If Not VVVNZ(Request("no_id")) Then
 	Dim RS

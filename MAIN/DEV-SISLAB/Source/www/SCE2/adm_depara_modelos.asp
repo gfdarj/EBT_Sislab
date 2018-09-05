@@ -1,11 +1,11 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Movimentação > Administração de Dados > De/Para de Modelos" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > MovimentaÃ§Ã£o > AdministraÃ§Ã£o de Dados > De/Para de Modelos" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then

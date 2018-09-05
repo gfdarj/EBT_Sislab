@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -9,7 +9,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Movimentação de Item" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > MovimentaÃ§Ã£o de Item" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -33,16 +33,16 @@ If Env.UsuarioSCE() Then
       		<table border="0" class="texto1">
 			<tr>
 				<td valign="top" CLASS="texto1">
-				Tipo de Movimentação:&nbsp;
+				Tipo de MovimentaÃ§Ã£o:&nbsp;
 <%			Dim notipo : notipo = request("notipo")
 			if notipo = "" then notipo = 0 else notipo = CInt(request("notipo"))%>
 				<select name="notipo" class="texto1" onchange="func2();">
 					<option value=""> -- Tipo de Movimento --</option>
 					<option value="<%=MOV_ENTRADA%>" <%if notipo = MOV_ENTRADA then response.write " selected"%>>Entrada</option>
-					<option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if notipo = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>Logística Entrada</option>
-					<option value="<%=MOV_LOGISTICA_SAIDA%>" <%if notipo = MOV_LOGISTICA_SAIDA then response.write " selected"%>>Logística Saída</option>
-					<option value="<%=MOV_EXPEDICAO%>" <%if notipo = MOV_EXPEDICAO then response.write " selected"%>>Expedição</option>
-					<option value="<%=MOV_EXPEDICAO_SUBST%>" <%if notipo = MOV_EXPEDICAO_SUBST then response.write " selected"%>>Substituição</option>
+					<option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if notipo = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>LogÃ­stica Entrada</option>
+					<option value="<%=MOV_LOGISTICA_SAIDA%>" <%if notipo = MOV_LOGISTICA_SAIDA then response.write " selected"%>>LogÃ­stica SaÃ­da</option>
+					<option value="<%=MOV_EXPEDICAO%>" <%if notipo = MOV_EXPEDICAO then response.write " selected"%>>ExpediÃ§Ã£o</option>
+					<option value="<%=MOV_EXPEDICAO_SUBST%>" <%if notipo = MOV_EXPEDICAO_SUBST then response.write " selected"%>>SubstituiÃ§Ã£o</option>
 	 			</select>
 				</td>
 	<SCRIPT>
@@ -56,9 +56,9 @@ If Env.UsuarioSCE() Then
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr>
 		<td valign="top" CLASS="texto1" colspan="2">
-			Natureza de Operação:&nbsp;		
+			Natureza de OperaÃ§Ã£o:&nbsp;		
 				<select name="noid" class="texto1">
-				<option value="">-- Natureza da Operação --</option>
+				<option value="">-- Natureza da OperaÃ§Ã£o --</option>
 <%					ssql = "select * from sce_natureza_operacao "
 					if request("notipo") <> "" then ssql = ssql & "where no_tipo = " & request("notipo") & " "
 					ssql = ssql & "order by no_descricao"
@@ -77,7 +77,7 @@ If Env.UsuarioSCE() Then
 	</tr>
 	  			<tr>
 	    			<td class="texto1">
-Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
+CÃ³digo Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
 						<td class="texto1">
 Localizacao:&nbsp;<input type="text" class="texto1" name="localizacao" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
 				</tr>
@@ -149,9 +149,9 @@ Modelo:&nbsp;<input type="text" name="modelo" class="texto1" style="width:200px"
 
 	  			<tr>
 					<td class="texto1">
-					Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" style="width:200px" maxlength="50"></td>
+					NÃºmero de SÃ©rie:&nbsp;<input type="text" class="texto1" name="numeroserie" style="width:200px" maxlength="50"></td>
 					<td class="texto1">
-					Data da Movimentação:&nbsp;<input type="text" class="texto1" name="dia" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="mes" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="ano" size=4 maxlength="4"></td>
+					Data da MovimentaÃ§Ã£o:&nbsp;<input type="text" class="texto1" name="dia" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="mes" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="ano" size=4 maxlength="4"></td>
 				</tr>
 
 	  			<tr><td class="texto1" colspan="2"><br></td></tr>

@@ -1,4 +1,4 @@
-<%If Err.Number <> 0 Then
+ï»¿<%If Err.Number <> 0 Then
 	Response.Clear%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
@@ -11,18 +11,18 @@
 <table border="1" bgcolor="#ff0000" bordercolor="#ffffff" width="70%" align="center">
 	<tr>
 		<td align="center">
-			<font color="#ffffff"><strong>Ocorreu um erro inesperado!<BR>Se o erro persistir, entre em contato com o webmaster deste site.<BR>Segue abaixo uma descrição mais detalhada do erro.</strong></font>
+			<font color="#ffffff"><strong>Ocorreu um erro inesperado!<BR>Se o erro persistir, entre em contato com o webmaster deste site.<BR>Segue abaixo uma descriÃ§Ã£o mais detalhada do erro.</strong></font>
 		</td>
 	</tr>
 </table>
 <BR>
 <table border="1" bordercolor="#0000ff" width="70%" align="center">
 	<tr>
-		<td width="50%" align="left"><strong>Número do erro:</strong></td>
+		<td width="50%" align="left"><strong>NÃºmero do erro:</strong></td>
 		<td width="50%" align="right">&nbsp;<%=Err.Number%></td>
 	</tr>
 	<tr>
-		<td width="50%" align="left"><strong>Descrição do erro:</strong></td>
+		<td width="50%" align="left"><strong>DescriÃ§Ã£o do erro:</strong></td>
 		<td width="50%" align="right">&nbsp;<%=Err.Description%></td>
 	</tr>
 	<tr>

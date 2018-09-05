@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+﻿<!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 enf_id = trim(replace(request("enf_id"), "'", "&#39;"))
@@ -17,7 +17,7 @@ ssql =	_
 response.write ssql
 Env.oconn.execute(ssql)
 
-acao = "O usu�rio " & Env.Usuario & " atualizou o documento " & request("doc_id")
+acao = "O usuário " & Env.Usuario & " atualizou o documento " & request("doc_id")
 Call Env.LogSce(acao)
 
 response.redirect "alt_doc.asp?msg=1"

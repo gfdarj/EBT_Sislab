@@ -1,9 +1,9 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
 
-call ImprimeCabecalho2("SISLAB - Pesquisa de SatisfaÁ„o", MENU_OFF, false, "", "Consulta Pesquisa de SatisfaÁ„o", "window.close()", "")
+call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfa√ß√£o", MENU_OFF, false, "", "Consulta Pesquisa de Satisfa√ß√£o", "window.close()", "")
 
 Dim objSiteRS, sSQL, objSiteRS1
 Dim auxusernameCadastro,auxIPCadastro,auxNAg,auxDataHoraCadastro
@@ -55,11 +55,11 @@ function retornaopcao(opcao)
 	if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 	if opcao=4 then retornaopcao="Satisfeito" end if
 	if opcao=5 then retornaopcao="Muito Satisfeito" end if
-	if Isnull(opcao) then retornaopcao="N„o Respondido" end if
+	if Isnull(opcao) then retornaopcao="N√£o Respondido" end if
 end function
 
 function retornacomentario(comenta)
-	if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment·rio" else retornacomentario="Coment·rio: "&comenta end if
+	if Isnull(comenta) or comenta="" then retornacomentario="Sem Coment√°rio" else retornacomentario="Coment√°rio: "&comenta end if
 end function
 
 function retornaopcao1(opcao)
@@ -89,7 +89,7 @@ function paratras()
 <table width="580" border="1" cellpadding="2" cellspacing="2" class="tabela1" style="border: solid thin;">
 <tr>
 	<td class="azul3bg" style="color:#FFFFFF; font-size: 12px;">
-	<b>&nbsp;&nbsp;An·lise Individual dos Formul·rios de SatisfaÁ„o</b><br>
+	<b>&nbsp;&nbsp;An√°lise Individual dos Formul√°rios de Satisfa√ß√£o</b><br>
 	&nbsp;&nbsp;Tipo de Atividade: <%=partadesc%>
 	</td>
 </tr>
@@ -134,15 +134,15 @@ do while not(objSiteRS.eof)
 	auxEmail=objSiteRS("PSQ_Email")
 
 	If trim(auxnome)="" then 
-		auxnome="anÙnimo"
+		auxnome="an√¥nimo"
 	end if
 
 	If trim(auxTelefone)="" then 
-		auxTelefone="n„o informado"
+		auxTelefone="n√£o informado"
 	end if
 
 	If trim(auxEmail)="" or IsNull(auxEmail) then 
-		auxEmail="n„o informado"
+		auxEmail="n√£o informado"
 	end if
 
 	auxOrgaoEmpresa=objSiteRS("PSQ_OrgaoEmpresa")
@@ -196,7 +196,7 @@ do while not(objSiteRS.eof)
 			<td><%=auxemail%></td>
 		</tr>
 		<tr valign="top">
-			<td><b>ComunicaÁ„o:</b></td>
+			<td><b>Comunica√ß√£o:</b></td>
 			<td><%=retornaopcao(auxR1) & "<br>" & retornacomentario(auxC1)%></td>
 		</tr>
 		<tr valign="top">
@@ -240,18 +240,18 @@ do while not(objSiteRS.eof)
 			<td><%=retornaopcao(auxR11) & "<br>" & retornacomentario(auxC11) %></td>
 		</tr>
 		<tr valign="top">
-			<td><b>Sugestıes adicionais <br>nos itens Citados:</b></td>
+			<td><b>Sugest√µes adicionais <br>nos itens Citados:</b></td>
 			<td><%=retornacomentario(auxC_3) %></td>
 		</tr>
 		<tr valign="top">
-			<td><b>Outras sugestıes:</b></td>
+			<td><b>Outras sugest√µes:</b></td>
 			<td><%=retornacomentario(auxC_4) %></td>
 		</tr>
 		</table>
 		<!--
 		<span style="font-size:10pt">
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Nome:</b>&nbsp;<%=auxnome%><b>, Telefone:</b><%=auxtelefone%> <b>, Email </b><%=auxemail%><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;ComunicaÁ„o: </b><%=retornaopcao(auxR1) &" - " & retornacomentario(auxC1)  %><br>
+		<b>&nbsp;&nbsp;&nbsp;&nbsp;Comunica√ß√£o: </b><%=retornaopcao(auxR1) &" - " & retornacomentario(auxC1)  %><br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Cortesia: </b><%=retornaopcao(auxR2) &" - " & retornacomentario(auxC2) %><br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Presteza: </b><%=retornaopcao(auxR3) &" - " & retornacomentario(auxC3) %><br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Flexibilidade: </b><%=retornaopcao(auxR4) &" - " & retornacomentario(auxC4) %><br>
@@ -262,8 +262,8 @@ do while not(objSiteRS.eof)
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Ambiente: </b><%=retornaopcao(auxR9) &" - " & retornacomentario(auxC9) %><br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Acesso: </b><%=retornaopcao(auxR10) &" - " & retornacomentario(auxC10) %><br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;Geral: </b><%=retornaopcao(auxR11) &" - " & retornacomentario(auxC11) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Sugestıes adicionais nos itens Citados: </b><%=retornacomentario(auxC_3) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Outras sugestıes: </b><%=retornacomentario(auxC_4) %><br>
+		<b>&nbsp;&nbsp;&nbsp;&nbsp;Sugest√µes adicionais nos itens Citados: </b><%=retornacomentario(auxC_3) %><br>
+		<b>&nbsp;&nbsp;&nbsp;&nbsp;Outras sugest√µes: </b><%=retornacomentario(auxC_4) %><br>
 		</span>
 		-->
 <%

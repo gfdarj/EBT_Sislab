@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%
 Dim s, rec
@@ -14,12 +14,12 @@ if request("numeroserie") <> "" then
 	If rec(0) > 0 Then
 %>
 <script language="JavaScript">
-	alert('Este número de série já está cadastrado.');
+	alert('Este nÃºmero de sÃ©rie jÃ¡ estÃ¡ cadastrado.');
 </script>
 <%			'--Nao tem prazo
 	else%>
 <script language="JavaScript">
-	alert('Número de série OK.');
+	alert('NÃºmero de sÃ©rie OK.');
 </script>
 <%
 	end if

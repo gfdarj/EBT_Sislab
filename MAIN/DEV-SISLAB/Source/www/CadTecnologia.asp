@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/controlesHTML.asp" -->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
@@ -32,7 +32,7 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false
 	}
@@ -56,7 +56,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.tecnologia.value == '') {
-		alert('Nenhuma tecnologia selecionada para exclus„o !');
+		alert('Nenhuma tecnologia selecionada para exclus√£o !');
 		frm.tecnologia.focus();
 	}
 	else {
@@ -72,7 +72,7 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -89,15 +89,15 @@ function Excluir() {
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da ¡rea TecnolÛgica</th></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da √Årea Tecnol√≥gica</th></tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o :</b></td>
+	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o :</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 
 <tr>
-	<td width="130px">&nbsp;&nbsp;<b>¡rea TecnolÛgica :</b></td>
+	<td width="130px">&nbsp;&nbsp;<b>√Årea Tecnol√≥gica :</b></td>
 	<td><%call comboAreaTecnologica("at_id", Env.oConn, "N")%></td>
 <tr>
 

@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_SCE.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -35,7 +35,7 @@ If Env.UsuarioSCE() Then
 		    ssql =	"SELECT distinct a.status, a.eq_id, a.eq_codigobarras AS [EQ_CODIGOBARRAS_M], mod_descricao AS [MOD_DESCRICAO_M], " & _
 				    "   a.eq_numeroserie AS [EQ_NUMEROSERIE_M], a.mod_id, e.mod_codnome AS [MOD_CODNOME_M], " & _
 				    "   ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, a.EQ_LOCALIZACAO, " & _
-				    "   CASE WHEN (SELECT count(*) FROM SCE_Acessorios where EQ_ID = a.EQ_ID) > 0 THEN 'Sim' ELSE 'Não' END AS [EQ_TEMACESSORIO_M], fab_nome AS [FAB_NOME_M], " & _
+				    "   CASE WHEN (SELECT count(*) FROM SCE_Acessorios where EQ_ID = a.EQ_ID) > 0 THEN 'Sim' ELSE 'NÃ£o' END AS [EQ_TEMACESSORIO_M], fab_nome AS [FAB_NOME_M], " & _
 				    "   CASE WHEN A.STATUS = 2 THEN 'Em Uso' " & _
 				    "   WHEN A.STATUS = 1 THEN 'Estoque' " & _
 				    "   WHEN A.STATUS = 3 THEN 'Expedido' " & _
@@ -138,10 +138,10 @@ If Env.UsuarioSCE() Then
 		    "		<table width='100%' cellpadding='2' cellspacing='0' bgcolor='#008080' border='1'>" & VbCRLf & _
 		    "			<tr bgcolor='#c0c0c0'>" & VbCRLf & _
 		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Item</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Núm. de Série</th>" & VbCRLf & _
+		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>NÃºm. de SÃ©rie</th>" & VbCRLf & _
 		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Modelo / Fab.</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Descrição</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Situação Item</th>" & VbCRLf & _
+		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>DescriÃ§Ã£o</th>" & VbCRLf & _
+		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>SituaÃ§Ã£o Item</th>" & VbCRLf & _
 		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Acess.</th>" & VbCRLf & _
 		    "			</tr>" & VbCRLf
 
@@ -178,7 +178,7 @@ If Env.UsuarioSCE() Then
 		 	    rec.movenext
 		    wend
 	    else
-		    Response.Write "<td bgcolor='#C0E0EF' class='texto1' align='center' colspan='8'>Não existem equipamentos cadastrados com esses parâmetros.</td>"
+		    Response.Write "<td bgcolor='#C0E0EF' class='texto1' align='center' colspan='8'>NÃ£o existem equipamentos cadastrados com esses parÃ¢metros.</td>"
 	    end if
 
 	    chr_Buf = _

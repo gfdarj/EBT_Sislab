@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -21,14 +21,14 @@ If Env.UsuarioSCE() Then
 <script>
 	<!--#include file="includes/vform.js"-->
 </script>
-<form method=post action="cad_doc2.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','Respons·vel','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','N˙mero do Documento','R'); return document.ValorPassou;">
+<form method=post action="cad_doc2.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','Respons√°vel','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','N√∫mero do Documento','R'); return document.ValorPassou;">
 <table width="100%">
 	<tr>
 		<td class=texto1>
 		<%if request("msg")<>"" then response.write "<strong>Documento cadastrado com sucesso!</strong><br><br>"%></td>
 	</tr>
 	<TR>
-		<TD CLASS="texto1">Respons·vel TÈcnico:&nbsp;
+		<TD CLASS="texto1">Respons√°vel T√©cnico:&nbsp;
 			<input type="texto1" class="form" name="doc_responsavel" size="30" maxlength="50">
 		</td>
 	</tr>
@@ -82,7 +82,7 @@ If Env.UsuarioSCE() Then
 	</tr>
 	<tr class="texto1"><td>&nbsp;</td></tr>
 	<tr CLASS="texto1">
-		<TD>ObservaÁ„o:<br>
+		<TD>Observa√ß√£o:<br>
 			<textarea name="doc_observacao" class="texto1" cols="80" rows="5"></textarea>
 		</td>
 	</tr>

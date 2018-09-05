@@ -1,9 +1,9 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+﻿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Mensagens de autom�ticas de email - Preview", "window.close();", "")
+Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Mensagens de automáticas de email - Preview", "window.close();", "")
 
 If Not (VVVNZ(Request("ID")) And VVVNZ(Request("Email"))) Then
 	Dim RS

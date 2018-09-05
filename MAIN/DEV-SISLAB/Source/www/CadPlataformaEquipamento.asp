@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -125,7 +125,7 @@ function salvaPlataforma(frm)
 
 <tr>
 	<td>
-		<b>Modelos disponíveis</b><br>
+		<b>Modelos disponÃ­veis</b><br>
 		<%call comboBDSQL("mod_id", Env.oConn, "SELECT MOD_ID as valor, MOD_CODNOME as descricao FROM SCE_Modelos ORDER BY MOD_CODNOME", mod_id, true)%>
 		<script language="JavaScript">
 		function mudaModelo()
@@ -144,7 +144,7 @@ function salvaPlataforma(frm)
 
 <tr>
 	<td>
-				<b>Equipamentos disponíveis</b><br>
+				<b>Equipamentos disponÃ­veis</b><br>
 				<select class="texto1" name="eq_disp" multiple size="7" style="width: 630px;">
 				</select>
 	</td>

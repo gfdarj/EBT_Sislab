@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+ï»¿<!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 cde = request("cde")
@@ -16,7 +16,7 @@ ssql = ssql &"no_tipo = " & request("no_tipo") & " "
 ssql = ssql &"where no_id = "& request("no_id")
 Env.oconn.execute(ssql)
 
-acao = "O usuário "& Env.Usuario &" atualizou a natureza de operação "& trim(replace(request("no_descricao"), "'", "&#39;")) &" de código "& request("no_id")
+acao = "O usuÃ¡rio "& Env.Usuario &" atualizou a natureza de operaÃ§Ã£o "& trim(replace(request("no_descricao"), "'", "&#39;")) &" de cÃ³digo "& request("no_id")
 
 Call Env.LogSce(acao)
 

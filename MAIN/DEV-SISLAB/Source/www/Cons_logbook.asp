@@ -1,11 +1,11 @@
-<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
+ï»¿<!-- #INCLUDE FILE="includes/inicializacao.inc" -->
 <%
 '	On Error Resume Next
-'Chama função em config.inc que faz a conexão com o Banco de dados
+'Chama funÃ§Ã£o em config.inc que faz a conexÃ£o com o Banco de dados
 
 Conecta True
 
-' Inicializo variavel de conexão 
+' Inicializo variavel de conexÃ£o 
 
 Dim objSiteRS, cont, sSQL, tot
 Dim auxcadastradopor,auxtipooco,auxsituacao,auxdias
@@ -26,7 +26,7 @@ end if
 
 <html>
 <head>
-<title>Site do Centro de Referência Tecnológica</title>
+<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 
@@ -36,25 +36,25 @@ function ValidaCampos()
 {
 if (document.formulario.tipoocorrencia.value=="")
 	{
-	alert("Tipo de ocorrência não informado.\nInforme o Tipo de ocorrência.");
+	alert("Tipo de ocorrÃªncia nÃ£o informado.\nInforme o Tipo de ocorrÃªncia.");
 		return false;
 		formulario.tipoocorrencia.focus();	
 	}
 if (document.formulario.situacao.value=="")
 	{
-	alert("Situação da ocorrência não informada.\nInforme a Situação da ocorrência.");
+	alert("SituaÃ§Ã£o da ocorrÃªncia nÃ£o informada.\nInforme a SituaÃ§Ã£o da ocorrÃªncia.");
 		return false;
 		formulario.situacao.focus();	
 	}
 if (document.formulario.cadastradopor.value=="")
 	{
-	alert("Username do Responsável pelo cadastro não informado.\nInforme o Responsável pelo Cadastro (Cadastrado por).");
+	alert("Username do ResponsÃ¡vel pelo cadastro nÃ£o informado.\nInforme o ResponsÃ¡vel pelo Cadastro (Cadastrado por).");
 		return false;
 		formulario.cadastradopor.focus();	
 	}
 if (document.formulario.dias.value=="")
 	{
-	alert("Período (em dias) para seleção das últimas ocorrências informadas.\nInforme o Período desejado em dias.");
+	alert("PerÃ­odo (em dias) para seleÃ§Ã£o das Ãºltimas ocorrÃªncias informadas.\nInforme o PerÃ­odo desejado em dias.");
 		return false;
 		formulario.dias.focus();	
 	}
@@ -93,7 +93,7 @@ function chama_oc(cod_oc)
 </td>
 <td bgcolor="#000030" align="center">
 <font face="tahoma" style="font-size=9pt" color="#B1D2FF">
-<B>Relat&oacute;rio de Ocorrências</B><br>
+<B>Relat&oacute;rio de OcorrÃªncias</B><br>
 </font>
 </td>
 <td bgcolor="#000030" align="right">
@@ -145,16 +145,16 @@ function chama_oc(cod_oc)
 <td colspan=10 bgcolor="#000050">
 <font face="tahoma" class="Fonttit1Cad"  color="#FFFFFF"><B>
 <center>
-Filtros para Acompanhamento de Ocorrências (Log Book):</B></Font>
+Filtros para Acompanhamento de OcorrÃªncias (Log Book):</B></Font>
 </td>
 </tr>
 <tr>
 <td colspan=3 bgcolor="#AACDEF" align=left valign=top>
 <font face="tahoma" class="fontmenu1"><B>
-&nbsp;Tipo Ocorrência:</B><br>
+&nbsp;Tipo OcorrÃªncia:</B><br>
 &nbsp;
 <select name="tipoocorrencia"  class="combo">
-<option value="Todos">Todos os Tipos de Ocorrência</option>
+<option value="Todos">Todos os Tipos de OcorrÃªncia</option>
 
 <%
 sSQL="Select * from LB_TipoOcorrencia "
@@ -188,12 +188,12 @@ end if
 </td>
 <td colspan=2 bgcolor="#AACDEF" align=left valign=top>
 <font face="tahoma" class="fontmenu1"><B>
-&nbsp;Situação:</B><br>
+&nbsp;SituaÃ§Ã£o:</B><br>
 &nbsp;
 <select name="situacao"  class="combo">
-<option value="Todos">Todos as Situações</option>
+<option value="Todos">Todos as SituaÃ§Ãµes</option>
 <option value="P">Pendentes</option>
-<option value="C">Concluídas</option>
+<option value="C">ConcluÃ­das</option>
 </select>
 </Font>
 </td>
@@ -233,7 +233,7 @@ end if
 </td>
 <td colspan=2 bgcolor="#AACDEF" align=left valign=top>
 <font face="tahoma" class="fontmenu1"><B>
-&nbsp;Ocorrências últimos <br>&nbsp;<input class="cxtexto" name=dias size=2 value=30 maxlength=3> dias</B></Font>
+&nbsp;OcorrÃªncias Ãºltimos <br>&nbsp;<input class="cxtexto" name=dias size=2 value=30 maxlength=3> dias</B></Font>
 </td>
 <td colspan=1 bgcolor="#AACDEF" align=center valign=center>
 <input type=submit name="Filtro" class="fontmenu1" Value="Aplicar filtro"></td>
@@ -289,7 +289,7 @@ sSQL = sSQL & " ORDER BY LB_ID DESC; "
 <td  bgcolor="#000030">
 <font face="arial" class="Fonttit1Cad"  color="#FFFFFF"><B>
 <center>
-Ocorrências - Log Book</B></Font>
+OcorrÃªncias - Log Book</B></Font>
 <br></center>
 </td></tr>
 </table>
@@ -308,7 +308,7 @@ N&deg; OC - DATA
 <td  bgcolor="#666666" align="center" width="30%">
 <font face="verdana" class="FontMenu1" color="#FFFFFF" >
 <B>
-TIPO DE OCORRÊNCIA
+TIPO DE OCORRÃŠNCIA
 </B>
 </font>
 </td>
@@ -331,7 +331,7 @@ PRAZO (Em Dias)
 <td  bgcolor="#666666" align="center" width="10%">
 <font face="verdana" color="#FFFFFF" class="FontMenu1">
 <B>
-SITUAÇÃO
+SITUAÃ‡ÃƒO
 </B>
 </font>
 </td>
@@ -339,7 +339,7 @@ SITUAÇÃO
 <td  bgcolor="#666666" align="center" width="15%">
 <font face="verdana" class="FontMenu1" color="#FFFFFF">
 <B>
-RESPONSÁVEL
+RESPONSÃVEL
 </B>
 </font>
 </td>
@@ -376,7 +376,7 @@ RESPONSÁVEL
 <td bgcolor="#888888" align="center">
 <font face="verdana" class="FontMenu1" color="#FFFFFF">
 <%if objSiteRS("LB_Concluido") then%>
-concluído
+concluÃ­do
 <%else%>
 pendente
 <%end if%>
@@ -395,7 +395,7 @@ pendente
 <div align="justify">
 <font face="verdana" color="#000050" Style="font-size=12pt">
 <br>
-Não existem ocorrências para estes critérios de consulta.<br>
+NÃ£o existem ocorrÃªncias para estes critÃ©rios de consulta.<br>
 <br>
 </font>
 </div>

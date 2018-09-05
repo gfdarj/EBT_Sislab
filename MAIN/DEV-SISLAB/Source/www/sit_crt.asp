@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_data.inc" -->
@@ -63,11 +63,11 @@ Dim objRS, s, objSiteRS, sSQL, indice, cont
 			<td class="fonteTitulo1"><span style="color: red">&raquo;</span>&nbsp;Agendamentos do CRT</td>
 			<td align="right" class="texto1" style="color: gray;">Ordenar por:&nbsp;
 				<select name="ordem" class="texto1" onChange="javascript:document.formulario.submit();" style="color: gray;">
-					<option value=""<%=IIf(chr_Ordem = "", " selected", "")%>>SituaÁ„o</option>
+					<option value=""<%=IIf(chr_Ordem = "", " selected", "")%>>Situa√ß√£o</option>
 					<option value="S"<%=IIf(chr_Ordem = "S", "selected", "")%>>Salas</option>
-					<option value="D"<%=IIf(chr_Ordem = "D", "selected", "")%>>Data TÈrmino</option>
+					<option value="D"<%=IIf(chr_Ordem = "D", "selected", "")%>>Data T√©rmino</option>
 					<option value="P"<%=IIf(chr_Ordem = "P", "selected", "")%>>Prioridade</option>
-					<option value="R"<%=IIf(chr_Ordem = "R", "selected", "")%>>Resp. TÈcnico</option>
+					<option value="R"<%=IIf(chr_Ordem = "R", "selected", "")%>>Resp. T√©cnico</option>
 				</select>
 			</td>
 		</tr>
@@ -107,7 +107,7 @@ Call Env.RecordSet(True, objSiteRS, sSQL)
 if not(objSiteRS.EOF) Then
 	objSiteRS.MoveFirst
 %>
-			&nbsp;<b>Pesquisa SatisfaÁ„o</b>: Total de <%=objSiteRS("TIPO")%>: <%=objSiteRS("Indice")%><br>
+			&nbsp;<b>Pesquisa Satisfa√ß√£o</b>: Total de <%=objSiteRS("TIPO")%>: <%=objSiteRS("Indice")%><br>
 <%
 	indice = objSiteRS("Indice")
 	objSiteRS.MoveNext %><div align="right"><%
@@ -126,7 +126,7 @@ End If%>
 <tr>
 	<td>
 <%
-'### Imprime o corpo da lista de acordo com a ordenaÁ„o escolhida
+'### Imprime o corpo da lista de acordo com a ordena√ß√£o escolhida
 If chr_Ordem = "S" Then
 	Call MontaVisaoPorSalas
 ElseIf chr_Ordem = "D" Then
@@ -144,7 +144,7 @@ End If
 </table>
 </form>
 <%
-'### RodapÈ
+'### Rodap√©
 if request("emjanela") = "1" then
 	call ImprimeRodape(RODAPE_OFF)
 else
@@ -172,7 +172,7 @@ function chama_as(cod_as, oquefazer)
 
 <%
 '#########################################################################################################
-'# Rotinas para montar a tela de acordo com a ordenaÁ„o
+'# Rotinas para montar a tela de acordo com a ordena√ß√£o
 '#########################################################################################################
 
 Sub MontaVisaoPorSituacao
@@ -264,7 +264,7 @@ Sub MontaVisaoPorSituacao
 
 		<tr bgcolor="#ffffff"> 
 			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
-			<B>Agendamentos SituaÁ„o: <%=AUXSITUACAO%></B>
+			<B>Agendamentos Situa√ß√£o: <%=AUXSITUACAO%></B>
 			</td>
 		</tr>
 <%
@@ -809,7 +809,7 @@ Sub MontaVisaoPorDataTermino
 
 		<tr bgcolor="#ffffff"> 
 			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
-			<B>TÈrmino: <%=IIf(IsNull(auxAG_DATATERMINO), "", Right("0"&Month(auxAG_DATATERMINO),2) & "/" & Year(auxAG_DATATERMINO))%></B>
+			<B>T√©rmino: <%=IIf(IsNull(auxAG_DATATERMINO), "", Right("0"&Month(auxAG_DATATERMINO),2) & "/" & Year(auxAG_DATATERMINO))%></B>
 			</td>
 		</tr>
 <%
@@ -985,7 +985,7 @@ Sub MontaVisaoPorRT
 
 		<tr bgcolor="#ffffff"> 
 			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
-			<B>Respons·vel TÈcnico: <%=auxRespTec%></B>
+			<B>Respons√°vel T√©cnico: <%=auxRespTec%></B>
 			</td>
 		</tr>
 <%
@@ -1081,7 +1081,7 @@ Function MostraPrioridade(valor, agnumero)
 		MostraPrioridade = _
 			"<select name='idPrioridade' class='texto' style='width: 60px;' onChange='javascript:return trocaPrioridade(" & agnumero& ", this.value);'>" & VbCrLf & _
 			"<option value='1'" & IIf(Val = "1", "selected", "") & ">Alta</option>" & VbCrLf & _
-			"<option value='2'" & IIf(Val = "2", "selected", "") & ">MÈdia</option>" & VbCrLf & _
+			"<option value='2'" & IIf(Val = "2", "selected", "") & ">M√©dia</option>" & VbCrLf & _
 			"<option value='3'" & IIf(Val = "3", "selected", "") & ">Baixa</option>" & VbCrLf & _
 			"<option value=''" & IIf(Val = "", "selected", "") & ">N/A</option>" & VbCrLf & _
 			"</select>" & VbCrLf
@@ -1090,7 +1090,7 @@ Function MostraPrioridade(valor, agnumero)
 		Case "1"
 			MostraPrioridade = "Alta"
 		Case "2"
-			MostraPrioridade = "MÈdia"
+			MostraPrioridade = "M√©dia"
 		Case "3"
 			MostraPrioridade = "Baixa"
 		Case Else

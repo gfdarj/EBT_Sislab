@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -31,7 +31,7 @@ dim msg
 'response.end
 
 if remarcacao then
-	msg = "Remarcação do período de teste"
+	msg = "RemarcaÃ§Ã£o do perÃ­odo de teste"
 	if vMotivo = "" then vMotivo = "null" Else vMotivo = "'" & vMotivo & "'"
 
 	chr_SQL = "EXECUTE sp_RemarcaTeste " & vNum_agendamento & ", '" & vInicio & "', '" & vFim & "', " & vMotivo
@@ -60,16 +60,16 @@ if remarcacao then
 	End If
 
 	'=====================================================================================
-	vTexto = "Número da AS: " & vNum_agendamento & "<BR>" & "<BR>"
-	vTexto = vTexto & "Período anterior" & "<BR>"
+	vTexto = "NÃºmero da AS: " & vNum_agendamento & "<BR>" & "<BR>"
+	vTexto = vTexto & "PerÃ­odo anterior" & "<BR>"
 	vTexto = vTexto & "Data Inicio: " & vInicioAnt & "<BR>"
 	vTexto = vTexto & "Data Fim: " & vFimAnt & "<BR>" & "<BR>"
-	vTexto = vTexto & "Período solicitado" & "<BR>"
+	vTexto = vTexto & "PerÃ­odo solicitado" & "<BR>"
 	vTexto = vTexto & "Data Inicio: " & vInicio & "<BR>"
 	vTexto = vTexto & "Data Fim: " & vFim & "<BR>"
 	vTexto = replace(vTexto, VbCrLf, "<BR>")
 
-	call enviaEmailsAS(Env.oConn,vNum_agendamento,"Solicitação de Remarcação de Teste",vTexto)
+	call enviaEmailsAS(Env.oConn,vNum_agendamento,"SolicitaÃ§Ã£o de RemarcaÃ§Ã£o de Teste",vTexto)
 else
 	if vMotivo = "" then vMotivo = "null" Else vMotivo = "'" & vMotivo & "'"
 
@@ -94,17 +94,17 @@ else
 		Response.Redirect "erro.asp?perro=" & num_erro & "&pdescricao=" & desc_erro 
 	End If
 
-	msg = "Cancelamento do teste nº " & vNum_agendamento & " "
-	vTexto = "Número da AS: " & vNum_agendamento & "<BR>" & "<BR>"
-	vTexto = vTexto & "Período anterior" & "<BR>"
+	msg = "Cancelamento do teste nÂº " & vNum_agendamento & " "
+	vTexto = "NÃºmero da AS: " & vNum_agendamento & "<BR>" & "<BR>"
+	vTexto = vTexto & "PerÃ­odo anterior" & "<BR>"
 	vTexto = vTexto & "Data Inicio: " & vInicioAnt & "<BR>"
 	vTexto = vTexto & "Data Fim: " & vFimAnt & "<BR>" & "<BR>"
-	vTexto = vTexto & "Período solicitado" & "<BR>"
+	vTexto = vTexto & "PerÃ­odo solicitado" & "<BR>"
 	vTexto = vTexto & "Data Inicio: " & vInicio & "<BR>"
 	vTexto = vTexto & "Data Fim: " & vFim & "<BR>"
 	vTexto = replace(vTexto, VbCrLf, "<BR>")
 
-	call enviaEmailsAS(Env.oConn,vNum_agendamento,"Solicitação de Cancelamento de Teste",vTexto)
+	call enviaEmailsAS(Env.oConn,vNum_agendamento,"SolicitaÃ§Ã£o de Cancelamento de Teste",vTexto)
 end if
 
 chr_Buf = _

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
@@ -8,7 +8,7 @@ if not rec.eof then%>
 	<html>
 		<body>
 			<script>
-				alert('Empresa j· existente!');
+				alert('Empresa j√° existente!');
 				history.back();
 			</script>
 		</body>
@@ -24,7 +24,7 @@ if cnpj <> "" then
 		<html>
 			<body>
 				<script>
-					alert('CNPJ j· cadastrado!');
+					alert('CNPJ j√° cadastrado!');
 					history.back();
 				</script>
 			</body>
@@ -42,7 +42,7 @@ if cpf <> "" then
 		<html>
 			<body>
 				<script>
-					alert('CPF j· cadastrado!');
+					alert('CPF j√° cadastrado!');
 					history.back();
 				</script>
 			</body>
@@ -63,7 +63,7 @@ ssql = ssql &"'"& trim(replace(request("ie"), "'", "&#39;")) &"','"& trim(replac
 'response.end
 Env.oconn.execute(ssql)
 
-acao = "O usu·rio "& Env.Usuario &" cadastrou a empresa "& trim(replace(request("nome"), "'", "&#39;")) &"."
+acao = "O usu√°rio "& Env.Usuario &" cadastrou a empresa "& trim(replace(request("nome"), "'", "&#39;")) &"."
 data = year(now)&"/"&right(month(now)+100,2)&"/"&right(day(now)+100,2)&" "&right(hour(now)+100,2)&":"&right(minute(now)+100,2)&":"&right(second(now)+100,2)
 ssql = "insert into sce_historico (id_usuario,acao,data) values ('" & Env.Usuario & "','"& acao &"','"& data&"')"
 Env.oconn.execute(ssql)

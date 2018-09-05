@@ -1,4 +1,4 @@
-<%
+﻿<%
 '### BIBLIOTECA GENERICA COM FUNCOES DE DATA E HORA ###
 
 Function FormataDataDisplay(dDataaformatar)

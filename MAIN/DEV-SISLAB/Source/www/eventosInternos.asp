@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -41,7 +41,7 @@ dim auxas,AUXrs,msSQL,combo
 	End Select
 
 
-'XXXXXXXXXXXXXXXXXXX   FUN«’ES   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+'XXXXXXXXXXXXXXXXXXX   FUN√á√ïES   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 '-- preenche a lista de equipamentos da tela Cadastro de Equipamentos em Plataformas
 Function MontaListaPlataformaEquipamento(mod_id)
@@ -99,7 +99,7 @@ function apagaOrdemdeServico()
 	<script>
 <%	if not (rs.Eof and rs.Bof) then
 		if rs(0) < 0 then%>
-		alert("N„o foi possÌvel excluir a OS solicitada");
+		alert("N√£o foi poss√≠vel excluir a OS solicitada");
 <%		end if
 	end if%>
 		parent.Recarrega();
@@ -115,15 +115,15 @@ function MostraHistoricoArquivo()
 
 	sSQL = "select * from arquivos where arq_codarq = " & arquivo & ";"
 	call Env.RecordSet( true, AUXrsar, sSQL)
-	response.write "<title>HistÛrico Arquivos</title><font size='-1' face='Verdana'>"
+	response.write "<title>Hist√≥rico Arquivos</title><font size='-1' face='Verdana'>"
 	if AUXrsar.eof = false then
 		str = "<B>Documento Aprovado em :</B> " & AUXrsar("arq_dataaprovacao") & "<br>" & _
-			  "Respons·vel pela AprovaÁ„o : " & AUXrsar("arq_responsavel")  & "<br><br>"
+			  "Respons√°vel pela Aprova√ß√£o : " & AUXrsar("arq_responsavel")  & "<br><br>"
 	end if
 
 	while  AUXrsha.eof = false 
 		str = str & "<B>Documento Validado em : </B>" & AUXrsha("ha_dataatualizacao") & "<br>" & _
-	  			    "Respons·vel pela ValidaÁ„o : " & AUXrsha("ha_usuario")  & "<br><br>"
+	  			    "Respons√°vel pela Valida√ß√£o : " & AUXrsha("ha_usuario")  & "<br><br>"
 		AUXrsha.movenext
 	wend
 	response.write str
@@ -135,12 +135,12 @@ function MostraHistoricoOS()
 
 	ssql = "select * from historico_eventosos h inner join situacoes s on h.id_situacao = s.id_situacao where OS_ID = " & num_os &  " and ag_numero = " & NUM_AG & ""
 	call Env.RecordSet( true, objrs, sSQL)
-	response.write "<title>HistÛrico Ordem de ServiÁo</title><font size='-1' face='Verdana'>"
+	response.write "<title>Hist√≥rico Ordem de Servi√ßo</title><font size='-1' face='Verdana'>"
 	while objrs.eof = false 
-		str = str & "<B>SituaÁ„o : </B>" & objrs("s_descricao") & "<br>" & _
+		str = str & "<B>Situa√ß√£o : </B>" & objrs("s_descricao") & "<br>" & _
 	  			    "Data Inicio : " & objrs("HEOS_DATAINICIO")  & "<br>"
 					if objrs("HEOS_DATATERMINO") <> "" then
-	  			    		str = str & "Data TÈrmino : " & objrs("HEOS_DATATERMINO")  & "<br>"
+	  			    		str = str & "Data T√©rmino : " & objrs("HEOS_DATATERMINO")  & "<br>"
 					end if
 		str = str & "Motivo : " & objrs("HEOS_Motivo") & "<br><br>"
 		objrs.movenext
@@ -153,12 +153,12 @@ function MostraHistoricoAS()
 
 	ssql = "select * from historico_eventos h inner join situacoes s on h.id_situacao = s.id_situacao where ag_numero = " & NUM_AG & ""
 	call Env.RecordSet( true, objrs, sSQL)
-	response.write "<title>HistÛrico Ordem de ServiÁo</title><font size='-1' face='Verdana'>"
+	response.write "<title>Hist√≥rico Ordem de Servi√ßo</title><font size='-1' face='Verdana'>"
 	while objrs.eof = false 
-		str = str & "<B>SituaÁ„o : </B>" & objrs("s_descricao") & "<br>" & _
+		str = str & "<B>Situa√ß√£o : </B>" & objrs("s_descricao") & "<br>" & _
 	  			    "Data Inicio : " & objrs("HE_DATAINICIO")  & "<br>"
 					if objrs("HE_DATATERMINO") <> "" then
-	  			    		str = str & "Data TÈrmino : " & objrs("HE_DATATERMINO")  & "<br>"
+	  			    		str = str & "Data T√©rmino : " & objrs("HE_DATATERMINO")  & "<br>"
 					end if
 		str = str & "Motivo : " & objrs("HE_Motivo") & "<br><br>"
 		objrs.movenext
@@ -175,7 +175,7 @@ function BuscaUserNameEBT()
 	username = trim(request("nome"))
 	nomeControle = trim(request("nomeControle"))
 	ag_numero = Trim(request("ag_numero"))	'-- preciso do agendamento para comparar com a base de dados
-											'-- caso esteja vazio È um novo agendamento
+											'-- caso esteja vazio √© um novo agendamento
 
 	if not isnumeric(username) then
 		Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
@@ -200,7 +200,7 @@ function BuscaUserNameEBT()
 	Set obj1  = nothing
 	if not ehFuncionario then%>
 		<script>
-			alert('Funcion·rio inexistente na Embratel.');
+			alert('Funcion√°rio inexistente na Embratel.');
 		</script>
 <%	else
 		if ag_numero <> "" then
@@ -215,12 +215,12 @@ function BuscaUserNameEBT()
 				elseif objRS("PE_QUEMINCLUIU") = "CLI" then
 					qualLista = "Cliente"
 				elseif objRS("PE_QUEMINCLUIU") = "RTE" then
-					qualLista = "Respons·vel TÈcnico"
+					qualLista = "Respons√°vel T√©cnico"
 				elseif objRS("PE_QUEMINCLUIU") = "RAT" then
 					qualLista = "RAT"
 				end if%>
 			<script language="JavaScript">
-				alert('Este usu·rio j· est· incluÌdo na lista de <%=qualLista%>');
+				alert('Este usu√°rio j√° est√° inclu√≠do na lista de <%=qualLista%>');
 			</script>
 <%			end if
 			call Env.RecordSet(false, objRS, null)
@@ -345,7 +345,7 @@ function recuperaMensagemsEmail()
 
 		<%else%>
 			var frm = parent.document.forms[0];
-			frm.mensagem.value = '-- SituaÁ„o Inexistente --';
+			frm.mensagem.value = '-- Situa√ß√£o Inexistente --';
 			frm.mensagem.disabled = true;
 			frm.botao.disabled = true;
 		<%end if%>
@@ -439,7 +439,7 @@ Function RecuperaMensagem()
 			frm.botao.disabled = false;
 		<%else%>
 			var frm = parent.document.forms[0];
-			frm.mensagem.value = ''; // -- Mensagem n„o existe --';
+			frm.mensagem.value = ''; // -- Mensagem n√£o existe --';
 			frm.mensagem.disabled = true;
 			frm.botao.disabled = true;
 		<%end if%>

@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -9,7 +9,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -32,7 +32,7 @@ function navselecao()
 			<table cellpadding="0" cellspacing="0" class="texto1">
 				<tr>
 					<td>
-						Número da Nota:&nbsp;<input type="text" name="nf_numeronota" class="texto1" size="10">
+						NÃºmero da Nota:&nbsp;<input type="text" name="nf_numeronota" class="texto1" size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--						CFOP:&nbsp;<input type="text" name="nf_cfop" class="form" size="7"> -->
 						Tipo:&nbsp;
@@ -48,22 +48,22 @@ function navselecao()
 				<tr><td>&nbsp;</td></tr>
 				<tr class="3">
 					<td>
-						Período de Emissão:&nbsp;<%=Combo.Data("e_ini")%>&nbsp;&nbsp;
-						até&nbsp;&nbsp;<%=Combo.Data("e_fim")%>
+						PerÃ­odo de EmissÃ£o:&nbsp;<%=Combo.Data("e_ini")%>&nbsp;&nbsp;
+						atÃ©&nbsp;&nbsp;<%=Combo.Data("e_fim")%>
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr class="3">
 					<td>
-						Período de Entrada:&nbsp;<%=Combo.Data("ent_ini")%>&nbsp;&nbsp;
-						até&nbsp;&nbsp;<%=Combo.Data("ent_fim")%>
+						PerÃ­odo de Entrada:&nbsp;<%=Combo.Data("ent_ini")%>&nbsp;&nbsp;
+						atÃ©&nbsp;&nbsp;<%=Combo.Data("ent_fim")%>
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr class="3">
 					<td>
-						Período de Recebimento:&nbsp;<%=Combo.Data("r_ini")%>&nbsp;&nbsp;
-						até;&nbsp;&nbsp;<%=Combo.Data("r_fim")%>
+						PerÃ­odo de Recebimento:&nbsp;<%=Combo.Data("r_ini")%>&nbsp;&nbsp;
+						atÃ©;&nbsp;&nbsp;<%=Combo.Data("r_fim")%>
 					</td>
 				</tr>
 			</table>
@@ -79,7 +79,7 @@ function navselecao()
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td colspan="2">
-		Natureza da Operação:&nbsp;
+		Natureza da OperaÃ§Ã£o:&nbsp;
 		<%=Combo.PadraoSql("no_id", "select no_id as VALOR, no_descricao as DESCRICAO from sce_natureza_operacao order by no_descricao", "", "N")%>
 		</td>
 	</tr>

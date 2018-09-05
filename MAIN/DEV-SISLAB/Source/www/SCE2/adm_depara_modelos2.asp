@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -20,7 +20,7 @@ End With
 Call Env.StoredProcedure(False, objSP, "sp_SCE_DEPARA_MODELOS")
 
 If Env.oConn.Errors.Count > 0 Then
-    Tela.SetNomeTela = "SCE > MovimentaÁ„o > RecepÁ„o de Carga" : Tela.SetCaminhoRelativo = "../"
+    Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Recep√ß√£o de Carga" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
 	Call Tela.Mensagem.ErroSql()

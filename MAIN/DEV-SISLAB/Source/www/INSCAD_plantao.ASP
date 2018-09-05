@@ -1,6 +1,6 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <%
-' Se Sessão expirou enviar para novo logon
+' Se SessÃ£o expirou enviar para novo logon
 
 If IsEmpty(Env.usuario) Then
 	response.redirect "msgAcessoNA.asp"
@@ -60,7 +60,7 @@ On Error Goto 0
 %>
 <html>
 <head>
-<title>CRT - Cadastro de Notícias</title>
+<title>CRT - Cadastro de NotÃ­cias</title>
 <meta http-equiv="refresh" content="4; url=sel_cad_plantao.asp">
 </head>
 <body bgcolor="#FFFFFF">
@@ -101,8 +101,8 @@ On Error Goto 0
 <td>
 <div align="left">
   <font style="font-size=10pt;" color="#000000"> 
-<b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%><br>
-<b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
+<b>&nbsp;&nbsp;Erro NÂº:</b> <%=Err.Number%><br>
+<b>&nbsp;&nbsp;DescriÃ§Ã£o:</b> <%=Err.Description%><br>
   </font>
 <% else %>
   <font style="font-size=10pt;" color="#600000">

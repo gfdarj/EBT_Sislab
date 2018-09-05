@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -75,7 +75,7 @@ function paginaAnterior()
 <tr>
 	<th width="35px" style="font-size: xx-small;">N&deg; AS</th>
 	<th style="font-size: xx-small;">Atividade</th>
-	<th style="font-size: xx-small;">Situação</th>
+	<th style="font-size: xx-small;">SituaÃ§Ã£o</th>
 	<th style="font-size: xx-small;">
 		<%if auxClientes = true then%>
 		Cliente
@@ -84,8 +84,8 @@ function paginaAnterior()
 		<%end if%>
 	</th>
 	<th style="font-size: xx-small;">Solicitante</th>
-	<th style="font-size: xx-small;">Resp. Técnico<br>Coordenação (CRT)</th>
-	<th style="font-size: xx-small;">Dt. Solicitada<br>Início - Término</th>
+	<th style="font-size: xx-small;">Resp. TÃ©cnico<br>CoordenaÃ§Ã£o (CRT)</th>
+	<th style="font-size: xx-small;">Dt. Solicitada<br>InÃ­cio - TÃ©rmino</th>
 	<th width="20">&nbsp;</th>
 </tr>
 <%
@@ -149,11 +149,11 @@ If Not(objSiteRS.EOF) Then
 			'call Env.RecordSet( true, objSiteMail, sSQL, objConn)
 			if ( (not IsNull(objSiteRS("AG_RELAT_RT"))) or _
 				(not IsNull(objSiteRS("AG_RELAT_RT"))) ) and EH_CRT = true then%>
-		<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">
+		<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui RelatÃ³rio de RAT/RT">
 <%			end if
 
 			if auxRepetido = true then%>
-		<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">
+		<img align="absmiddle" src="img/icon3.gif" border="0" title="RepetiÃ§Ã£o">
 <%			end if%>
 
 <%
@@ -208,12 +208,12 @@ If Not(objSiteRS.EOF) Then
 		<%end if%>
 	</td>
 	<td align="center">
-		<B>&nbsp;&nbsp;Página atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
+		<B>&nbsp;&nbsp;PÃ¡gina atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 		<B>&nbsp;&nbsp;Total de Registros: <%=total_registros%></B>&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 	<td align="right" width="150px">
 		<%if objsiteRS.eof = false then%>
-			<a href="javascript:proximaPagina()" class="menu">Avançar <span class="cinza1">&raquo;</span></a>
+			<a href="javascript:proximaPagina()" class="menu">AvanÃ§ar <span class="cinza1">&raquo;</span></a>
 		<%end if%>
 	</td>
 </tr>
@@ -222,7 +222,7 @@ else
 %>
 <tr>
 	<td colspan="8" align="center">
-		<b><i>Não existem testes agendados com estes critérios de seleção.
+		<b><i>NÃ£o existem testes agendados com estes critÃ©rios de seleÃ§Ã£o.
 		<%=auxrt%></i></b>
 	</td>
 </tr>

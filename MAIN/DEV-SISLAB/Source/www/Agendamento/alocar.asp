@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+Ôªø<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <% 
   Dim tp_id, tarefa_id, tp_datainicial, tp_datafinal, _
@@ -64,19 +64,19 @@ if retorno >= 0 then
 		frm.method = "post";
 	  frm.submit();
 <%	end if%>
-	alert("AlocaÁ„o efetivada com sucesso!");
+	alert("Aloca√ß√£o efetivada com sucesso!");
 <%else
 		if erroBD = -2 then%>
-		alert("PerÌodo de AlocaÁ„o Inv·lido!");
+		alert("Per√≠odo de Aloca√ß√£o Inv√°lido!");
 <%	else%>
-		alert("Houve um erro imprevisÌvel no Banco de Dados.\nA alocaÁ„o n„o foi efetivada.");
+		alert("Houve um erro imprevis√≠vel no Banco de Dados.\nA aloca√ß√£o n√£o foi efetivada.");
 <%	end if
 	end if
 else
 	if retorno = -1 then%>
-		alert("Houve um erro imprevisÌvel no Banco de Dados.\nA tarefa n„o foi cadastrada e a alocaÁ„o n„o foi efetivada.");
+		alert("Houve um erro imprevis√≠vel no Banco de Dados.\nA tarefa n√£o foi cadastrada e a aloca√ß√£o n√£o foi efetivada.");
 <%else%>
-		alert("A descriÁ„o desta Tarefa j· consta no Banco de Dados!");
+		alert("A descri√ß√£o desta Tarefa j√° consta no Banco de Dados!");
 <%end if
 end if
 %>

@@ -1,8 +1,8 @@
-<!--#include file="includes/Sislab_Lib.asp" -->
+ï»¿<!--#include file="includes/Sislab_Lib.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÃ³rico do CRT", "", "")
 %>
 <table border="0">
 <tr>
@@ -13,25 +13,25 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT", "", "
 <font color=#444444 face=tahoma style="font-size=12pt;">
 <br>
 <div align=justify>
-<p>O Centro de Referência Tecnológica foi idealizado em meados de 1996, através da então Divisão de Processos de Qualificação da Diretoria de Desenvolvimento(DPD-DD). Em seguida, o órgão passou a ser da Diretoria de Engenharia, como Qualificação e Tecnologia. Posteriormente, o órgão foi transformado no Departamento de Qualificação e Tecnologia e finalmente Centro de Referência Tecnológica.</p>
-<a href="historicfotos.asp"><font color=#444444 face=tahoma style="font-size=12pt;"><b>Veja algumas fotos da Construção do CRT</b></font></a>
+<p>O Centro de ReferÃªncia TecnolÃ³gica foi idealizado em meados de 1996, atravÃ©s da entÃ£o DivisÃ£o de Processos de QualificaÃ§Ã£o da Diretoria de Desenvolvimento(DPD-DD). Em seguida, o Ã³rgÃ£o passou a ser da Diretoria de Engenharia, como QualificaÃ§Ã£o e Tecnologia. Posteriormente, o Ã³rgÃ£o foi transformado no Departamento de QualificaÃ§Ã£o e Tecnologia e finalmente Centro de ReferÃªncia TecnolÃ³gica.</p>
+<a href="historicfotos.asp"><font color=#444444 face=tahoma style="font-size=12pt;"><b>Veja algumas fotos da ConstruÃ§Ã£o do CRT</b></font></a>
 
-<p>O Centro de Referência Tecnológica  foi construído em duas fases:  Na primeira fase, antes da privatização, a ênfase do CRT era a homologação e a certificação de produtos de telecomunicações, conforme orientação da Telebrás e teve início em 14/08/1998 e término em 28/08/1999. Na segunda fase, após a privatização, a ênfase do CRT passou a ser, Integração de Sistemas de Telecomunicações, conforme orientação da WORLDCOM e teve início com a remodelagem do prédio de Equipamentos em Março de 2000 e término em Agosto de 2000.</p>
+<p>O Centro de ReferÃªncia TecnolÃ³gica  foi construÃ­do em duas fases:  Na primeira fase, antes da privatizaÃ§Ã£o, a Ãªnfase do CRT era a homologaÃ§Ã£o e a certificaÃ§Ã£o de produtos de telecomunicaÃ§Ãµes, conforme orientaÃ§Ã£o da TelebrÃ¡s e teve inÃ­cio em 14/08/1998 e tÃ©rmino em 28/08/1999. Na segunda fase, apÃ³s a privatizaÃ§Ã£o, a Ãªnfase do CRT passou a ser, IntegraÃ§Ã£o de Sistemas de TelecomunicaÃ§Ãµes, conforme orientaÃ§Ã£o da WORLDCOM e teve inÃ­cio com a remodelagem do prÃ©dio de Equipamentos em MarÃ§o de 2000 e tÃ©rmino em Agosto de 2000.</p>
 
-<p>No conceito original o LAB destinava-se à qualificação e Certificação de Produtos dentro das Normas Telebrás.  Na visão atual o CRT tem como função prover ambientes para testes de Produtos e Integração de Sistemas da Planta Ativa.</p>
+<p>No conceito original o LAB destinava-se Ã  qualificaÃ§Ã£o e CertificaÃ§Ã£o de Produtos dentro das Normas TelebrÃ¡s.  Na visÃ£o atual o CRT tem como funÃ§Ã£o prover ambientes para testes de Produtos e IntegraÃ§Ã£o de Sistemas da Planta Ativa.</p>
 
-<p>O CRT tem como clientes internos a área de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, Telefonia e Transporte), Diretorias Regionais, Diretoria de Serviços, Operações Centralizadas e Planejamento, provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para Embratel e comprometendo-se na garantia da qualidade de serviços oferecidos pela Embratel.</p>
+<p>O CRT tem como clientes internos a Ã¡rea de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, Telefonia e Transporte), Diretorias Regionais, Diretoria de ServiÃ§os, OperaÃ§Ãµes Centralizadas e Planejamento, provendo meios para o desenvolvimento de novos produtos e ou ServiÃ§os de TelecomunicaÃ§Ãµes para Embratel e comprometendo-se na garantia da qualidade de serviÃ§os oferecidos pela Embratel.</p>
 
 <p>A Estrutura interna do CRT possui 3 ger&ecirc;ncias:</p>
 
-<b>Automação de Ensaios</b><br>
-Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta Embratel e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.
+<b>AutomaÃ§Ã£o de Ensaios</b><br>
+Implantar e desenvolver de forma contÃ­nua, estrutura para automaÃ§Ã£o de ensaios e testes,  capacitada a ofertar soluÃ§Ãµes tecnolÃ³gicas para a planta Embratel e de seus Clientes dentro dos padrÃµes de qualidade, aos menores custos possÃ­veis e nos prazos exigidos.
 <br><br>
-<b>Integração de Sistemas</b><br>
-Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviços prestados, provendo e mantendo estrutura voltada a testes e simulações de desempenho, integração de  produtos e sistemas de telecomunicações.
+<b>IntegraÃ§Ã£o de Sistemas</b><br>
+Suportar as Ã¡reas de Engenharia, OperaÃ§Ãµes e Vendas no propÃ³sito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviÃ§os prestados, provendo e mantendo estrutura voltada a testes e simulaÃ§Ãµes de desempenho, integraÃ§Ã£o de  produtos e sistemas de telecomunicaÃ§Ãµes.
 <br><br>
 <b>Projetos Especiais</b><br>	
-Assegurar o cumprimento das metas e cronogramas relativos à Consultorias Técnicas para o Cliente, através do planejamento e gestão dos recursos necessários à elaboração dos respectivos Projetos Especiais, bem como da disponibilização de estrutura para demonstrações de produtos e soluções customizadas.
+Assegurar o cumprimento das metas e cronogramas relativos Ã  Consultorias TÃ©cnicas para o Cliente, atravÃ©s do planejamento e gestÃ£o dos recursos necessÃ¡rios Ã  elaboraÃ§Ã£o dos respectivos Projetos Especiais, bem como da disponibilizaÃ§Ã£o de estrutura para demonstraÃ§Ãµes de produtos e soluÃ§Ãµes customizadas.
 <br><br>
 </div>
 </font>

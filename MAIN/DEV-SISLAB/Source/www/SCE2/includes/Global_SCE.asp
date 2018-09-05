@@ -1,4 +1,4 @@
-<%
+ï»¿<%
 '--------------------------------------------------------------------------------------------
 '-- Arquivos de constantes globais do sistema
 '--
@@ -6,14 +6,14 @@
 '-- Gilberto F. Almeida (13/08/2003)
 '--------------------------------------------------------------------------------------------
 
-'-- Status de equipamentos e acessórios
+'-- Status de equipamentos e acessÃ³rios
 Const STATUS_CADASTRADO = 0
 Const STATUS_EM_USO = 2
 Const STATUS_EM_ESTOQUE = 1
 Const STATUS_EXPEDIDO = 3
-Const STATUS_EXPEDIDO_SUBST = 4		'Expedido com substituição
+Const STATUS_EXPEDIDO_SUBST = 4		'Expedido com substituiÃ§Ã£o
 
-'-- Tipos de Movimentação
+'-- Tipos de MovimentaÃ§Ã£o
 Const MOV_ENTRADA = 1
 Const MOV_LOGISTICA_ENTRADA = 2
 Const MOV_LOGISTICA_SAIDA = 4
@@ -31,19 +31,19 @@ Const CONTROLE_QUALIFICACAO = "Q"
 Const CONTROLE_MANUTENCAO_PREVENTIVA = "P"
 
 
-'-- Propriedade dos equipamentos (não consumíveis)
+'-- Propriedade dos equipamentos (nÃ£o consumÃ­veis)
 Const EQ_PROPRIEDADE_CRT = "C"  ' embratel crt
 Const EQ_PROPRIEDADE_EBT = "O"  ' embratel outros
 Const EQ_PROPRIEDADE_TER = "T"  ' terceiros
 Const EQ_PROPRIEDADE_COM = "M"	' embratel comodato
 
 Const PERFIL_ADM = 1	'-- Perfil de administrador do sistema
-Const PERFIL_LOG = 2	'-- Perfil de usuário da logistica
-Const PERFIL_RAT = 3	'-- Perfil de usuário SISLAB - RAT ou RT
+Const PERFIL_LOG = 2	'-- Perfil de usuÃ¡rio da logistica
+Const PERFIL_RAT = 3	'-- Perfil de usuÃ¡rio SISLAB - RAT ou RT
 
-Const EQSETUP_AMOSTRA = "A"			'-- Equipamento é tido como Amostra
+Const EQSETUP_AMOSTRA = "A"			'-- Equipamento Ã© tido como Amostra
 Const EQSETUP_EQUIPAMENTO = "E"		'-- Equipamento
 
 Const NF_ENTRADA = 1	'-- Nota fiscal de entrada
-Const NF_SAIDA = 2		'-- Nota fiscal de saída
+Const NF_SAIDA = 2		'-- Nota fiscal de saÃ­da
 %>

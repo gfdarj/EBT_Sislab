@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
@@ -26,7 +26,7 @@ Env.oconn.execute(ssql)
 'response.write ssql
 'response.end
 
-acao = "O usu�rio " & Env.Usuario & " cadastrou o documento "& rec("doc_id")
+acao = "O usuário " & Env.Usuario & " cadastrou o documento "& rec("doc_id")
 Call Env.LogSCE(acao)
 
 response.redirect "cad_doc.asp?msg=1"

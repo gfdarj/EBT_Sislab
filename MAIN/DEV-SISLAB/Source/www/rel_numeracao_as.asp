@@ -1,11 +1,11 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
 Dim objConn, objRS, i, max
 Dim tot_geral : tot_geral = 0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Verifica Numeração dos Agendamentos", "location.href='sislab.asp'", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Verifica NumeraÃ§Ã£o dos Agendamentos", "location.href='sislab.asp'", "")
 
 call Env.RecordSet(true, objRS, "SELECT MAX(AG_NUMERO) FROM Agendamento")
 max = objRS(0)
@@ -20,7 +20,7 @@ response.flush
 <br>
 <table width="100%" cellpadding="2" cellspacing="0" border="1" class="tabela1">
 <tr>
-	<th width="50px">Nº AS</th>
+	<th width="50px">NÂº AS</th>
 	<th>Objetivo</th>
 </tr>
 <%
@@ -41,7 +41,7 @@ call Env.RecordSet(false, objRS, null)
 if tot_geral > 0 then%>
 <tr>
 	<td colspan="2" align="right">
-	<b>Números vagos: <%=max - tot_geral%>&nbsp;&nbsp;&nbsp;&nbsp;Total de Agendamentos: <%=tot_geral%></b>
+	<b>NÃºmeros vagos: <%=max - tot_geral%>&nbsp;&nbsp;&nbsp;&nbsp;Total de Agendamentos: <%=tot_geral%></b>
 	</td>
 </tr>
 <%

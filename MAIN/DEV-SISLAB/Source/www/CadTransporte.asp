@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
@@ -73,9 +73,9 @@ function Verifica_Hora(eu){
 		if( (eval('document.all.ida' + hora + '.value') == '') && (eval('document.all.volta' + hora + '.value') == '') )
 			alert('Preencha os campos corretamente !');
 		else if ( !Mascara_Hora(h1) )
-			alert('Hora "Sede > Ilha do Fund„o" inv·lida.');
+			alert('Hora "Sede > Ilha do Fund√£o" inv√°lida.');
 		else if ( !Mascara_Hora(h2) )
-			alert('Hora "Ilha do Fund„o > Sede" inv·lida.');
+			alert('Hora "Ilha do Fund√£o > Sede" inv√°lida.');
 		else
 		{
 			f.action = 'CadTransporteA.asp?Horario=' + hora + '&ida=' + eval('document.all.ida' + hora + '.value') + '&volta=' + eval('document.all.volta' + hora + '.value') + '&altera=<%=RQ("altera")%>';
@@ -95,9 +95,9 @@ function Verifica_Hora(eu){
 		if( (f.ida.value == '') && (f.volta.value == '') )
 			alert('Preencha os campos corretamente !');
 		else if ( !Mascara_Hora(f.ida) )
-			alert('Hora "Sede > Ilha do Fund„o" inv·lida.');
+			alert('Hora "Sede > Ilha do Fund√£o" inv√°lida.');
 		else if ( !Mascara_Hora(f.volta) )
-			alert('Hora "Ilha do Fund„o > Sede" inv·lida.');
+			alert('Hora "Ilha do Fund√£o > Sede" inv√°lida.');
 		else
 		{
 			f.action = 'CadTransporteA.asp?Horario=0&ida=' + f.ida.value + '&volta=' + f.volta.value + '&altera=<%=RQ("altera")%>';
@@ -117,10 +117,10 @@ End If
 
 <table border="1" width="500px" class="tabela1" align="center" id="tb_horarios">
 <tr>
-	<th>Sede > Ilha do Fund„o (CRT)</th>
-	<th>Ilha do Fund„o (CRT) > Sede</th>
+	<th>Sede > Ilha do Fund√£o (CRT)</th>
+	<th>Ilha do Fund√£o (CRT) > Sede</th>
 <%If bln_EhRat And bln_Alteracao And (Not bln_Imprime) Then%>
-	<th width="120px">AÁ„o</th>
+	<th width="120px">A√ß√£o</th>
 <%End If%>
 </tr>
 <%
@@ -174,9 +174,9 @@ If bln_EhRat And bln_Alteracao And (Not bln_Imprime) Then
 <BR><BR>
 <table border="1" width="500px" class="tabela1" align="center" id="tb_novo">
 <tr>
-	<th>Sede > Ilha do Fund„o (CRT)</th>
-	<th>Ilha do Fund„o (CRT) > Sede</th>
-	<th width="120px">AÁ„o</th>
+	<th>Sede > Ilha do Fund√£o (CRT)</th>
+	<th>Ilha do Fund√£o (CRT) > Sede</th>
+	<th width="120px">A√ß√£o</th>
 </tr>
 <tr>
 	<td align='center'>

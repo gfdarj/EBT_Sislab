@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -14,7 +14,7 @@ Dim mes
 Dim conta
 Dim dtt_Criacao
 
-Tela.SetNomeTela = "SCE > RelatÛrio > Consolidado de MovimentaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Relat√≥rio > Consolidado de Movimenta√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -22,7 +22,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <table width="100%" class="texto1" border="0">
-<%  If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>PosiÁ„o consolidada de MovimentaÁıes " & Request("ano") & "</td></tr>" End If %>
+<%  If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posi√ß√£o consolidada de Movimenta√ß√µes " & Request("ano") & "</td></tr>" End If %>
 <tr><td>&nbsp;</td></tr>
 
 <%      If request("ano") = "" Then %>
@@ -39,7 +39,7 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;&nbsp;<b>(*)</b> <i>Este procedimento poder· levar algum tempo caso haja necessidade de reconstruÁ„o a tabela de consultas</i></td>
+	<td>&nbsp;&nbsp;<b>(*)</b> <i>Este procedimento poder√° levar algum tempo caso haja necessidade de reconstru√ß√£o a tabela de consultas</i></td>
 </tr>
 <%
 Else
@@ -71,7 +71,7 @@ Else
 				    "	@anoAtual INT" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "CREATE TABLE #tb_relat (" & VbCrLf & _
-				    "	CHAVE SMALLINT, --identificador sequencial utilizado para ordenaÁ„o pela interface" & VbCrLf & _
+				    "	CHAVE SMALLINT, --identificador sequencial utilizado para ordena√ß√£o pela interface" & VbCrLf & _
 				    "	ANO SMALLINT," & VbCrLf & _
 				    "	MES SMALLINT," & VbCrLf & _
 				    "	RELATORIO VARCHAR(200)," & VbCrLf & _
@@ -85,8 +85,8 @@ Else
 				    "SET @anoAtual = (SELECT MIN(YEAR(GETDATE())))" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "-->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" & VbCrLf & _
-				    "-- Coleta os dados necess·rios para a composiÁ„o da tabela" & VbCrLf & _
-				    "-- usada pela interface de relatÛrios" & VbCrLf & _
+				    "-- Coleta os dados necess√°rios para a composi√ß√£o da tabela" & VbCrLf & _
+				    "-- usada pela interface de relat√≥rios" & VbCrLf & _
 				    "-->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" & VbCrLf & _
 				    "WHILE @ano <= @anoAtual" & VbCrLf & _
 				    "BEGIN" & VbCrLf & _
@@ -124,7 +124,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 1" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (3, @ano, @mes, 'ITENS COM ASSOCIA«√O ¿ NOTA FISCAL ENTRADA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (3, @ano, @mes, 'ITENS COM ASSOCIA√á√ÉO √Ä NOTA FISCAL ENTRADA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- ACESSORIO EM NOTA DE ENTRADA" & VbCrLf & _
@@ -139,7 +139,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 1" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (4, @ano, @mes, 'ACESSORIOS COM ASSOCIA«√O ¿ NOTA FISCAL ENTRADA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (4, @ano, @mes, 'ACESSORIOS COM ASSOCIA√á√ÉO √Ä NOTA FISCAL ENTRADA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- NOTA FISCAL SAIDA" & VbCrLf & _
@@ -148,7 +148,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 2" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (5, @ano, @mes, 'NOTA FISCAL SAÕDA CADASTRADA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (5, @ano, @mes, 'NOTA FISCAL SA√çDA CADASTRADA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTACAO NOTAS SAIDA" & VbCrLf & _
@@ -159,7 +159,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 2" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (6, @ano, @mes, 'NOTA FISCAL SAÕDA COM ITEM ASSOCIADO', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (6, @ano, @mes, 'NOTA FISCAL SA√çDA COM ITEM ASSOCIADO', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- EQUIPAMENTOS EM NOTAS DE SAIDA" & VbCrLf & _
@@ -172,7 +172,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 2" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (7, @ano, @mes, 'ITENS COM ASSOCIA«√O ¿ NOTA FISCAL SAÕDA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (7, @ano, @mes, 'ITENS COM ASSOCIA√á√ÉO √Ä NOTA FISCAL SA√çDA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- ACESSORIO EM NOTA DE SAIDA" & VbCrLf & _
@@ -187,7 +187,7 @@ Else
 				    "		WHERE nf.NF_TIPO = 2" & VbCrLf & _
 				    "		AND YEAR(nf_recebimento) = @ano AND (MONTH(nf_recebimento) = @mes)" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (8, @ano, @mes, 'ACESSORIOS COM ASSOCIA«√O ¿ NOTA FISCAL SAÕDA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (8, @ano, @mes, 'ACESSORIOS COM ASSOCIA√á√ÉO √Ä NOTA FISCAL SA√çDA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTACAO DE SAIDA DO LOG - INFRA-ESTRUTURA" & VbCrLf & _
@@ -196,11 +196,11 @@ Else
 				    "		FROM SCE_Movimentacao m " & VbCrLf & _
 				    "		INNER JOIN SCE_Natureza_Operacao n" & VbCrLf & _
 				    "		ON m.NO_ID = n.NO_ID" & VbCrLf & _
-				    "		WHERE n.NO_TIPO = 4 -- LogÌstica saÌda" & VbCrLf & _
+				    "		WHERE n.NO_TIPO = 4 -- Log√≠stica sa√≠da" & VbCrLf & _
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
-				    "		AND n.NO_ID = 527  -- LAB - SaÌda para infraestrutura do laboratÛrio" & VbCrLf & _
+				    "		AND n.NO_ID = 527  -- LAB - Sa√≠da para infraestrutura do laborat√≥rio" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (9, @ano, @mes, 'ALOCA«√O DE ITENS PARA INFRA-ESTRUTURA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (9, @ano, @mes, 'ALOCA√á√ÉO DE ITENS PARA INFRA-ESTRUTURA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- ACESSORIOS SAIDA LOG - INFRA-ESTRUTURA" & VbCrLf & _
@@ -212,11 +212,11 @@ Else
 				    "		ON e.EQ_ID = m.EQ_ID" & VbCrLf & _
 				    "		INNER JOIN SCE_Acessorios a" & VbCrLf & _
 				    "		ON a.EQ_ID = e.EQ_ID" & VbCrLf & _
-				    "		WHERE n.NO_TIPO = 4 -- LogÌstica saÌda" & VbCrLf & _
+				    "		WHERE n.NO_TIPO = 4 -- Log√≠stica sa√≠da" & VbCrLf & _
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
-				    "		AND n.NO_ID = 527  -- LAB - SaÌda para infraestrutura do laboratÛrio" & VbCrLf & _
+				    "		AND n.NO_ID = 527  -- LAB - Sa√≠da para infraestrutura do laborat√≥rio" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (10, @ano, @mes, 'ALOCA«√O DE ACESS”RIOS PARA INFRA-ESTRUTURA', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (10, @ano, @mes, 'ALOCA√á√ÉO DE ACESS√ìRIOS PARA INFRA-ESTRUTURA', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTO COM AGENDAMENTO DE SAIDA LOG" & VbCrLf & _
@@ -228,7 +228,7 @@ Else
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (11, @ano, @mes, 'ALOCA«√O DE RESERVAS PARA O LAB', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (11, @ano, @mes, 'ALOCA√á√ÉO DE RESERVAS PARA O LAB', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTACAO DE SAIDA DO LOG" & VbCrLf & _
@@ -240,7 +240,7 @@ Else
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (12, @ano, @mes, 'ALOCA«√O DE ITENS RESERVADOS', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (12, @ano, @mes, 'ALOCA√á√ÉO DE ITENS RESERVADOS', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- ACESSORIOS SAIDA LOG" & VbCrLf & _
@@ -256,7 +256,7 @@ Else
 				    "		AND YEAR(mov_data) = @ano AND (MONTH(mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (13, @ano, @mes, 'ALOCA«√O DE ACESS”RIOS RESERVADOS', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (13, @ano, @mes, 'ALOCA√á√ÉO DE ACESS√ìRIOS RESERVADOS', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTO COM AGENDAMENTO DE ENTRADA LOG" & VbCrLf & _
@@ -268,7 +268,7 @@ Else
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (14, @ano, @mes, 'DESALOCA«√O DE RESERVAS DO LAB', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (14, @ano, @mes, 'DESALOCA√á√ÉO DE RESERVAS DO LAB', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- MOVIMENTACAO DE ENTRADA NO LOG" & VbCrLf & _
@@ -280,7 +280,7 @@ Else
 				    "		AND YEAR(m.mov_data) = @ano AND (MONTH(m.mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (15, @ano, @mes, 'DESALOCA«√O DE ITENS RESERVADOS', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (15, @ano, @mes, 'DESALOCA√á√ÉO DE ITENS RESERVADOS', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		-- ACESSORIOS ENTRADA LOG" & VbCrLf & _
@@ -296,7 +296,7 @@ Else
 				    "		AND YEAR(mov_data) = @ano AND (MONTH(mov_data) = @mes)" & VbCrLf & _
 				    "		AND ((m.ASA is not null) OR (m.ASA <> ''))" & VbCrLf & _
 				    "" & VbCrLf & _
-				    "		INSERT INTO #tb_relat VALUES (16, @ano, @mes, 'DESALOCA«√O DE ACESS”RIOS RESERVADOS', @total)" & VbCrLf & _
+				    "		INSERT INTO #tb_relat VALUES (16, @ano, @mes, 'DESALOCA√á√ÉO DE ACESS√ìRIOS RESERVADOS', @total)" & VbCrLf & _
 				    "" & VbCrLf & _
 				    "		------------------------------------------------------------------------------------------" & VbCrLf & _
 				    "" & VbCrLf & _
@@ -373,7 +373,7 @@ Else
     	'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     	If RS.Eof And RS.Bof Then %>
-		<tr><td align='center'><b><i>Nenhuma informaÁ„o encontrada !</i></b></td></tr>
+		<tr><td align='center'><b><i>Nenhuma informa√ß√£o encontrada !</i></b></td></tr>
 <%	    Else %>
 		<tr style="font-weight: bold;">
 			<td>Movimento</td>

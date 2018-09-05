@@ -1,4 +1,4 @@
-<!--#include file="includes/abre.asp"-->
+Ôªø<!--#include file="includes/abre.asp"-->
 <!--#include file="includes/controlesXLS.asp"-->
 <%
 Dim where, recIN, recEQ, linha, ssql
@@ -6,15 +6,15 @@ Dim where, recIN, recEQ, linha, ssql
 where = trim(request("sql"))	'-- recebe o filtro SQL usado na tela anterior (clausula WHERE)
 
 if where = "" then%>
-<script language="JavaScript">alert("N„o foi possÌvel gerar planilha Excel."); window.close();</script><%
+<script language="JavaScript">alert("N√£o foi poss√≠vel gerar planilha Excel."); window.close();</script><%
 else
 	'-- concateno o campo do codigo de barras com uma funcao do EXCEL pois o proprio "acha"
-	'-- que o codigo de barras È um valor numÈrico e apresenta o mesmo em notacao cientifica
-	ssql =	"select '=texto(""' + EQ_CODIGOBARRAS + '""; ""0000000000000000"")' as [CÛdigo de Barras_M], (MOD_CODNOME + ' / ' + MOD_DESCRICAO) as [DescriÁ„o_M], " & _
+	'-- que o codigo de barras √© um valor num√©rico e apresenta o mesmo em notacao cientifica
+	ssql =	"select '=texto(""' + EQ_CODIGOBARRAS + '""; ""0000000000000000"")' as [C√≥digo de Barras_M], (MOD_CODNOME + ' / ' + MOD_DESCRICAO) as [Descri√ß√£o_M], " & _
 			"FAB_NOME as [Fabricante_M] from vw_SCE_Reserva_Equipamentos " & where & " AND EQ_INSTRUMENTAL = 0 order by EQ_CODIGOBARRAS"
 	set recEQ = conn.execute(ssql)
 
-	ssql =	"select '=texto(""' + EQ_CODIGOBARRAS + '""; ""0000000000000000"")' as [CÛdigo de Barras_M], (MOD_CODNOME + ' / ' + MOD_DESCRICAO) as [DescriÁ„o_M], " & _
+	ssql =	"select '=texto(""' + EQ_CODIGOBARRAS + '""; ""0000000000000000"")' as [C√≥digo de Barras_M], (MOD_CODNOME + ' / ' + MOD_DESCRICAO) as [Descri√ß√£o_M], " & _
 			"FAB_NOME as [Fabricante_M] from vw_SCE_Reserva_Equipamentos " & where & " AND EQ_INSTRUMENTAL = 1 order by EQ_CODIGOBARRAS"
 	set recIN = conn.execute(ssql)
 
@@ -33,7 +33,7 @@ else
 		str = "<HTML><HEAD><META HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel""><title>teste</title></HEAD><BODY>" & str_in & "<BR>" & str_eq & "</BODY></HTML>"
 		Response.ContentType = "application/excel"
 		Response.Clear
-		'Se tirarmos o attachment da linha baixo, ele n„o vai pedir 2 vezes pra abrir, mas vai abrir na prÛpria janela...
+		'Se tirarmos o attachment da linha baixo, ele n√£o vai pedir 2 vezes pra abrir, mas vai abrir na pr√≥pria janela...
 		Response.AddHeader "Content-Disposition", "filename=" & chr(34) & "Relatorio.xls" & chr(34)
 		Response.Write (str)
 		'Response.end

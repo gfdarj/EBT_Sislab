@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+﻿<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->

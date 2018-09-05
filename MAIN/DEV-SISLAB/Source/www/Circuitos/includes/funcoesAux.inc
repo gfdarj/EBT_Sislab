@@ -1,4 +1,4 @@
-<%
+﻿<%
 	Function trocaAspas(str)
 		if (isNull(str)=false) then	str = Replace(str,"\","\\")
 		if (isNull(str)=false) then	str = Replace(str,"'","\'")

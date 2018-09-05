@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_mensagem.asp" -->
@@ -7,8 +7,8 @@ Dim Ebt
 
 Set Ebt = New TEbt
 
-'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Cancelamento/Remarcação de Testes/Ensaios", "", "")
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Remarcação de Agendamento", "", "")
+'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "ValidaÃ§Ã£o de Cancelamento/RemarcaÃ§Ã£o de Testes/Ensaios", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "ValidaÃ§Ã£o de RemarcaÃ§Ã£o de Agendamento", "", "")
 
 Response.Buffer = true
 
@@ -43,7 +43,7 @@ if (rs_agendamento.bof and rs_agendamento.eof) then
 	rs_agendamento.Close
 	set rs_agendamento = nothing
 
-	Call MsgGravacaoDados(True, False, "<span class='vermelho2'><b>Inconsistência na base de dados !</b><BR><BR>Este registro não possui data de remarcação.</span>", "javascript: history.go(-1)", "")
+	Call MsgGravacaoDados(True, False, "<span class='vermelho2'><b>InconsistÃªncia na base de dados !</b><BR><BR>Este registro nÃ£o possui data de remarcaÃ§Ã£o.</span>", "javascript: history.go(-1)", "")
 else
 	data_inicio = rs_agendamento("AG_DATAINICIO")
 	data_termino = rs_agendamento("AG_DATATERMINO")
@@ -86,7 +86,7 @@ function anyChecked(radioSet)
 //=========================================================================================
 
 function validaCampos(form)
-//Valida os campos quando o formulário é submetido
+//Valida os campos quando o formulÃ¡rio Ã© submetido
 {
 	if (!anyChecked(form.cmbRemarca)) 
 	{
@@ -135,39 +135,39 @@ function Cancelar()
 	</TR>
 	<TR height="34">
 		<TD colSpan=3>&nbsp;&nbsp;Tecnologia:&nbsp;<%=tecnologia%></TD>
-		<TD colSpan=3><b>Número do Agendamento:&nbsp;<%= num_agendamento%></b></TD>
-		<TD colSpan=4><b>&nbsp;&nbsp;Situação:&nbsp;<%= situacao%></b></TD>
+		<TD colSpan=3><b>NÃºmero do Agendamento:&nbsp;<%= num_agendamento%></b></TD>
+		<TD colSpan=4><b>&nbsp;&nbsp;SituaÃ§Ã£o:&nbsp;<%= situacao%></b></TD>
 	</TR>
 	<TR height="34"> 
 		<td colspan="7">
-			&nbsp;&nbsp;Nome do Responsável: &nbsp; <%= nome_responsavel%>
+			&nbsp;&nbsp;Nome do ResponsÃ¡vel: &nbsp; <%= nome_responsavel%>
 	    </td>
 	    <td colspan="3">
-			&nbsp;&nbsp;Matrícula:&nbsp; <%=matricula%>
+			&nbsp;&nbsp;MatrÃ­cula:&nbsp; <%=matricula%>
 		</td>
 	</tr>
 	<tr height="34">	
-		<td  colspan="3">&nbsp;&nbsp;Órgão:&nbsp; <%= orgao%></td>
+		<td  colspan="3">&nbsp;&nbsp;Ã“rgÃ£o:&nbsp; <%= orgao%></td>
 		<td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp; <%= email%></td>
 		<td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp; <%= ramal%></td>
 	</tr>
 	<tr height="34"> 
 		<td  colspan="10">
-			&nbsp;&nbsp;Período previsto para teste:&nbsp;
-			&nbsp;&nbsp;Início:&nbsp;<%=data_inicio%>
+			&nbsp;&nbsp;PerÃ­odo previsto para teste:&nbsp;
+			&nbsp;&nbsp;InÃ­cio:&nbsp;<%=data_inicio%>
 			&nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino%>
 		</td>
 	</tr>
 	<tr height="34"> 
 		<td  colspan="10">
-			&nbsp;&nbsp;Novo período pedido para teste:&nbsp;
-			&nbsp;&nbsp;Início:&nbsp;<%=data_inicio_ped%>
+			&nbsp;&nbsp;Novo perÃ­odo pedido para teste:&nbsp;
+			&nbsp;&nbsp;InÃ­cio:&nbsp;<%=data_inicio_ped%>
 			&nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino_ped%>
 		</td>
 	</tr>
     <tr height="34"> 
         <td valign="top" colspan="10">
-			&nbsp;&nbsp;Motivo da Mudança:&nbsp;<BR>
+			&nbsp;&nbsp;Motivo da MudanÃ§a:&nbsp;<BR>
 			<table cellpadding="0" cellspacing="0" class="tabela1">
 			<tr>
 				<td>&nbsp;&nbsp;</td>
@@ -188,14 +188,14 @@ function Cancelar()
               <input type="radio" name="cmbRemarca" value="1" tabindex="13">
 				Sim&nbsp;
               <input type="radio" name="cmbRemarca" value="0" tabindex="14">
-				Não&nbsp;
+				NÃ£o&nbsp;
 		</td>
     </tr>
 </TABLE>
 <br>
 <p align="center"> 
-    <input class="texto1" type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
-    <input class="texto1" type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
+    <input class="texto1" type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitaÃ§Ã£o do usuÃ¡rio">&nbsp;
+    <input class="texto1" type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitaÃ§Ãµes">&nbsp;
 </p>
 <input type="Hidden" name="solicitouCancelamento" value="<%=cancelou%>">
 </form>

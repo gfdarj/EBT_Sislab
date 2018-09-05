@@ -1,4 +1,4 @@
-<!------- LIB ------->
+ï»¿<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -30,7 +30,7 @@ set recnf = Env.oconn.execute(ssql)
 		<td class=texto>
 		<%if request("msg")<>"" then 
 			if cint(request("msg")) =1 then response.write "<br><strong>Nota Fiscal alterada com sucesso!</strong><br><br>"
-			if cint(request("msg")) =2 then response.write "<br><strong>Nota Fiscal excluída com sucesso!</strong><br><br>"
+			if cint(request("msg")) =2 then response.write "<br><strong>Nota Fiscal excluÃ­da com sucesso!</strong><br><br>"
 		end if%>
 		</td>
 	</tr>
@@ -68,7 +68,7 @@ function func(){
 			var oOption = document.createElement("OPTION");
 			
 			objmod.options.add(oOption);
-			oOption.innerText = "nº NF:"+ numero[i]; //+" - id_forn: "+ idfornecedor[i]+" - id Nota:"+ idnota[i];
+			oOption.innerText = "nÂº NF:"+ numero[i]; //+" - id_forn: "+ idfornecedor[i]+" - id Nota:"+ idnota[i];
 			oOption.value = idnota[i];
 		}
 	}
@@ -80,7 +80,7 @@ function f(){
 </script>
 	<tr>
 		<td valign="top"  valign="middle" class="texto1">
-		    Busque por número da nota:&nbsp;<input type=text name=numeronota class="texto1" size="10">&nbsp;
+		    Busque por nÃºmero da nota:&nbsp;<input type=text name=numeronota class="texto1" size="10">&nbsp;
 		    <input type=submit value="buscar" class="texto1" onclick="f();"><br><br>Busque por Empresa:<br>
 
 <%              RW Combo.Fornecedor("enf_id", "", false, "", true)%>
@@ -96,14 +96,14 @@ function f(){
 			<select name="nf_id" size="5" class="texto1" style="width:600">
 			</select>
 		<%else
-			response.write "Não Existem Notas Fiscais Cadastradas No Momento."
+			response.write "NÃ£o Existem Notas Fiscais Cadastradas No Momento."
 		end if%>
 		</td>
     </tr>
 	<script>
 		function f1(){
 			if (document.formulario.nf_id.value == ""){
-				alert('Você deve escolher a nota fiscal');
+				alert('VocÃª deve escolher a nota fiscal');
 				a = '';
 				document.vp = false;
 			}else{

@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!------- SISLAB ---->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
@@ -17,7 +17,7 @@ if rsTipo.eof then
 	ssql = ssql&"("& tipo_supertipo &",'"& tipo_descricao &"')"
 	Env.oconn.execute(ssql)
 
-	acao = "O usuário "& Env.Usuario &" cadastrou a família tipo "& tipo_descricao
+	acao = "O usuÃ¡rio "& Env.Usuario &" cadastrou a famÃ­lia tipo "& tipo_descricao
     Call Env.LogSCE(acao)
 
 	response.redirect "cad_tipos.asp?msg=1"

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp" -->
+ï»¿<!--#include file="includes/Sislab_Lib.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/emailHTML.asp" -->
@@ -29,7 +29,7 @@ function chama_oc(cod_oc)
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr> 
 	<td width="2px">&nbsp;</td>
-	<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Informações de Log Book</td>
+	<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; InformaÃ§Ãµes de Log Book</td>
 </tr>
 <tr>
 	<td height="1"></td>
@@ -53,7 +53,7 @@ sSQL = sSQL & "(LB_CONCLUIDOGQ = 0) AND LB_RATRESPONSAVEL IS NULL"
 Call Env.RecordSet(true, objRS, sSQL)
 If Not (objRS.EOF and objRS.BOF) Then
 	objRS.Movefirst%>
-<tr><td class="texto"> Novas Ocorrências...</td></tr>
+<tr><td class="texto"> Novas OcorrÃªncias...</td></tr>
 <tr>
 <td class="texto" align="justify">
       OC's:
@@ -77,7 +77,7 @@ Call Env.RecordSet(true, objRS, sSQL)
 If Not (objRS.EOF and objRS.BOF) Then
 	objRS.Movefirst%>
 <tr>
-<td class="texto"><br> Em Análise... <br>
+<td class="texto"><br> Em AnÃ¡lise... <br>
       OC's:
 <%while not objRS.EOF%>
 			<a href="javascript:chama_oc(<%=objRS("LB_ID")%>);" class="link_ocs"><%=objRS("LB_ID")%></a>
@@ -130,7 +130,7 @@ Call Env.RecordSet(false, objRS, null)
 		If Not (objRS.EOF and objRS.BOF) Then
 			objRS.Movefirst%>
 			<tr> 
-    		<td class="texto">Suas Ocorrências Cadastradas... <br>
+    		<td class="texto">Suas OcorrÃªncias Cadastradas... <br>
 		    OC's:
 			<%while not objRS.EOF%>
 		      <a href="javascript:chama_oc(<%=objRS("LB_ID")%>);" class="link_ocs"><%=objRS("LB_ID")%></a>

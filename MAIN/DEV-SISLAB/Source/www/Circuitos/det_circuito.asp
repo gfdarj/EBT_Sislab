@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+ï»¿<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -8,7 +8,7 @@
 
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -111,7 +111,7 @@ strSQL = "Select distinct AG_Numero, TA_DESCRICAO "
 strSQL = strSQL & "from Agendamento "
 strSQL = strSQL & "inner join Tipo_Atividade on Agendamento.TA_ID = Tipo_Atividade.TA_ID "
 strSQL = strSQL & "Order by AG_Numero desc"
-  ' trazer os números dos agendamentos
+  ' trazer os nÃºmeros dos agendamentos
 
 call Env.RecordSet( true, objRS, strSQL)
 if not objRS.EOF then objRS.MoveFirst

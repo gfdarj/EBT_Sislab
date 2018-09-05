@@ -1,8 +1,8 @@
-<!--#include file="../controlesXLS.asp" -->
+ï»¿<!--#include file="../controlesXLS.asp" -->
 <!--#include file="../Sislab_Lib.asp"-->
 <html>
 <head>
-	<title>[XLS] Administração Remota de Banco de Dados SQL Server</title>
+	<title>[XLS] AdministraÃ§Ã£o Remota de Banco de Dados SQL Server</title>
 	<link rel="stylesheet" href="../../css/cirap_adm.css">
 </head>
 <body>
@@ -19,7 +19,7 @@ Sub ImprimeErros( objErro, cmd )
 <br/>
 <table align="center" border="1">
 	<tr>
-		<td colspan="2"><strong>Ocorreu algum erro ao processar seu comando. Seguem maiores informações abaixo</strong></td>
+		<td colspan="2"><strong>Ocorreu algum erro ao processar seu comando. Seguem maiores informaÃ§Ãµes abaixo</strong></td>
 	</tr>
 	<tr>
 		<td>Comando recebido:</td>
@@ -27,15 +27,15 @@ Sub ImprimeErros( objErro, cmd )
 	</tr>
 <%	For Each objTmp in objErro%>
 	<tr>
-		<td>Código do Erro:</td>
+		<td>CÃ³digo do Erro:</td>
 		<td><%=objTmp.Number%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Código ADO do Erro:</td>
+		<td>CÃ³digo ADO do Erro:</td>
 		<td><%=objTmp.NativeError%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Descrição:</td>
+		<td>DescriÃ§Ã£o:</td>
 		<td><%=objTmp.Description%>&nbsp;</td>
 	</tr>
 	<tr>
@@ -51,7 +51,7 @@ Sub ImprimeErros( objErro, cmd )
 		<td><%=objTmp.HelpFile%>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>Tópico de ajuda associado:</td>
+		<td>TÃ³pico de ajuda associado:</td>
 		<td><%=objTmp.HelpContext%>&nbsp;</td>
 	</tr>
 </table>
@@ -66,7 +66,7 @@ If Comando <> "" Then
 %>
 <table align="center">
 	<tr>
-		<td align="justify">O seguinte comando não pode ser executado pois não é um comando de consulta (Select) ou existem comandos inválidos de consulta</td>
+		<td align="justify">O seguinte comando nÃ£o pode ser executado pois nÃ£o Ã© um comando de consulta (Select) ou existem comandos invÃ¡lidos de consulta</td>
 	</tr>
 	<tr>
 		<td align="justify" width="80%"><em><%=Replace(Comando, VbCrLf, "<br/>")%></em></td>
@@ -86,7 +86,7 @@ If Comando <> "" Then
 			Call ImprimeErrosConexao(Env.oConn.Errors)
 		Else
 			If UCase(TypeName(objRS)) = "RECORDSET" Then
-				call criaExcelGeral("Exportação Geral", objRS, null)
+				call criaExcelGeral("ExportaÃ§Ã£o Geral", objRS, null)
 			End If
 		End If
 	End If
@@ -96,7 +96,7 @@ If Comando <> "" Then
 <script language="JavaScript">
 function vai(){
 	if(document.admin_remoto.sql.value == ""){
-		alert("Digite alguma coisa!!!\nComo você vai executar um comando em branco no Banco de Dados??? ");
+		alert("Digite alguma coisa!!!\nComo vocÃª vai executar um comando em branco no Banco de Dados??? ");
 		document.admin_remoto.sql.focus();
 	}
 	else
@@ -106,7 +106,7 @@ function vai(){
 <form name="admin_remoto" action="bdxls.asp" method="post">
 <table align="center">
 	<tr>
-		<td align="center" colspan="2"><b>Exportação de Consultas para Excel</b><br><br></td>
+		<td align="center" colspan="2"><b>ExportaÃ§Ã£o de Consultas para Excel</b><br><br></td>
 	</tr>
 	<tr>
 		<td align="center">Comando SQL:</td>

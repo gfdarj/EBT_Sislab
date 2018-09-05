@@ -1,9 +1,9 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios - Agendamentos disponíveis", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou RemarcaÃ§Ã£o de Testes/Ensaios - Agendamentos disponÃ­veis", "", "")
 
 Dim Ebt
 Dim rs_numteste, strSQL
@@ -24,10 +24,10 @@ function abre(codigo)
 <TABLE border=1 cellpadding="2" cellspacing="0" width="100%" class="tabela1">
 	<TR>
 		<Th colSpan=3 style="font-size: 10px;">N<sup>o</sup> Agendamento - Tipo de Teste</Th>
-		<Th style="font-size: 10px;">Situação</Th>
+		<Th style="font-size: 10px;">SituaÃ§Ã£o</Th>
 		<Th colSpan=2 style="font-size: 10px;">Tecnologia</Th>
 		<Th colSpan=3 style="font-size: 10px;">Solicitante</Th>
-		<Th style="font-size: 10px;">Início - Término</Th>
+		<Th style="font-size: 10px;">InÃ­cio - TÃ©rmino</Th>
 	</TR>
 	<TR>
 <%

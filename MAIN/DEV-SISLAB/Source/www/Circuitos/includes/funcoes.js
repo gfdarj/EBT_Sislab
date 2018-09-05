@@ -1,4 +1,4 @@
-// Adiciona 1 zero a um numero entre 0 e 9
+﻿// Adiciona 1 zero a um numero entre 0 e 9
 function Zeros(num) {
   if (num<10) 
     return ('0' + num);

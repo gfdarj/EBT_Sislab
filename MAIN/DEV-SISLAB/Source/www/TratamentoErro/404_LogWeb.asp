@@ -1,4 +1,4 @@
-<%
+Ôªø<%
 
 function buscaNome( login )
 	dim objMat, objDados, Dados
@@ -39,17 +39,17 @@ end function
 		<table width="600" class="font5" ID="Table2" align=center cellpadding=6 cellspacing=2 bgcolor=lightblue>
 			<tr><td class=font5 bgcolor=White width=599>
 				<p align=center>
-				<strong>Problemas com a P·gina Solicitada</strong></p>
+				<strong>Problemas com a P√°gina Solicitada</strong></p>
 				
 			   <b>Sr(a) : <%= buscaNome( right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) ) %> 
 				<i>(<%= right( Request.ServerVariables("REMOTE_USER"), len( Request.ServerVariables("REMOTE_USER") ) - instrrev( Request.ServerVariables("REMOTE_USER"), "\" ) ) %>)</i>
 				</b>
 				<p align="justify">
-				N„o foi possÌvel encontrar a p·gina solicitada no endereÁo correspondente.<br><br>
-				Estamos recolhendo as informaÁıes correspondentes aos problemas e encaminhando-as aos
-				respons·veis pelo Site para que possam ser regularizadas no menor tempo possÌvel.<br><br>
+				N√£o foi poss√≠vel encontrar a p√°gina solicitada no endere√ßo correspondente.<br><br>
+				Estamos recolhendo as informa√ß√µes correspondentes aos problemas e encaminhando-as aos
+				respons√°veis pelo Site para que possam ser regularizadas no menor tempo poss√≠vel.<br><br>
 				Pedimos desculpas pelo transtorno.<br><br>
-				CoordenaÁ„o da Intranet</p>
+				Coordena√ß√£o da Intranet</p>
 			    </td>
 			    </tr>
 		</table>

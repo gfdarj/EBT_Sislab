@@ -1,4 +1,4 @@
-function mostraMenuCadastros(show) {
+﻿function mostraMenuCadastros(show) {
 	if (show) {
 		mostraMenuConsultas(false);
 		mostraMenuRelatorios(false);

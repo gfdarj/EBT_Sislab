@@ -1,4 +1,4 @@
-<%@ Language = "VBScript" %>
+﻿<%@ Language = "VBScript" %>
 <%
 Option Explicit
 Response.Buffer = True

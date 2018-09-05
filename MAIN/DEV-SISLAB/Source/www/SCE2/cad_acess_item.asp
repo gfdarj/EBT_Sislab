@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -199,7 +199,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 				<table bgcolor="#CCCCCC"  class="texto1" cellpadding="2" cellspacing="2" border="0">
 				<tr>
 					<td>
-						Último Inventário:<br>&nbsp;&nbsp;&nbsp;<input type="text" id="dtUltInventario" name="dtUltInventario" size="19" class="texto1" value="<%=DtUltInventario%>">
+						Ãšltimo InventÃ¡rio:<br>&nbsp;&nbsp;&nbsp;<input type="text" id="dtUltInventario" name="dtUltInventario" size="19" class="texto1" value="<%=DtUltInventario%>">
 <%				    'If session("status") = PERFIL_RAT Then %>
 <%				    If session("status") = PERFIL_ADM Then %>
 						&nbsp;&nbsp;<input type="button" value=" Marcar " class="texto1" onClick="javascript:atualizarInventario(<%=eq_id%>, false);">
@@ -257,18 +257,18 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1"><br></td></tr>
 		<tr> 
 			<td bgcolor="#FFFFFF" align="left" class="texto1">
-				Número de Série:<br>
+				NÃºmero de SÃ©rie:<br>
 				<input type="text" class="texto1" name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
-				<input type="Button" name="btn_ChecaNS" value="Verificar" class="texto1" title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
+				<input type="Button" name="btn_ChecaNS" value="Verificar" class="texto1" title="Verifica se o nÃºmero de sÃ©rie jÃ¡ estÃ¡ cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
 			</td>
 
 			<td class="texto1" colspan="1">
-				Código de Barras<br>
+				CÃ³digo de Barras<br>
 				<input type="text" class="texto1" name="codbarras" style="width:200" maxlength="16" value="<%=codbarras%>">
 			</td>
 
 			<td class="texto1" colspan="2">
-				Código de Barras Anterior<br>
+				CÃ³digo de Barras Anterior<br>
 				<input type="text" class="texto1" name="codbarrasanterior" style="width:200" maxlength="16" value="<%=codbarrasanterior%>">
 			</td>
 		</tr>
@@ -277,13 +277,13 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 
 		<tr class="texto1">
 			<td>
-				Localização<br>
+				LocalizaÃ§Ã£o<br>
 				<input type="text" name="localizacao" class="texto1" size="50" maxlength="255" value="<%=localizacao%>">
 				</td>
 				<td colspan="2">
 				Conforme<br>
 <%				If bln_AcessoRAT Then %>
-				<%if conforme or eq_id = "" then response.write "Sim" Else  response.write "Não" end if%>
+				<%if conforme or eq_id = "" then response.write "Sim" Else  response.write "NÃ£o" end if%>
 				<input type="hidden" name="conforme" value="<%if conforme or eq_id = "" then response.write 1 Else  response.write 0 end if%>">
 <%				Else %>
 				<input type="Radio" name="conforme" value="1" <%if conforme or eq_id = "" then response.write "checked" end if%>>Sim&nbsp;&nbsp;&nbsp;
@@ -295,16 +295,16 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1"><br></td></tr>
 
 		<tr>
-      			<td bgcolor="#FFFFFF" colspan="3" class="texto1">Observações<br>
+      			<td bgcolor="#FFFFFF" colspan="3" class="texto1">ObservaÃ§Ãµes<br>
 				<textarea class="texto1" name="obs" cols="140" rows="9"><%=obs%></textarea>
 			</td>
 		</tr>
 
 		<tr><td colspan="3">&nbsp;</td></tr>
-		<tr><td class="destaque" colspan="3">Dados de Manutenção</td></tr>
+		<tr><td class="destaque" colspan="3">Dados de ManutenÃ§Ã£o</td></tr>
 		<tr><td colspan="3">&nbsp;</td></tr>
 		<tr>
-      			<td colspan="3" class="texto1">Observações<br>
+      			<td colspan="3" class="texto1">ObservaÃ§Ãµes<br>
 				<textarea class="texto1" name="manutencaopreventiva" cols="140" rows="9"><%=manutencaopreventiva%></textarea>
 			</td>
 		</tr>
@@ -340,7 +340,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 				<tr>
 					<td class="texto1" width="40%">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Frequencia de Calibração: <input type="text" class="texto1" name="freq_calibracao" maxlength="7" size="5" value="<%=freq_calibracao%>">
+						Frequencia de CalibraÃ§Ã£o: <input type="text" class="texto1" name="freq_calibracao" maxlength="7" size="5" value="<%=freq_calibracao%>">
 					</td>
 				</tr>
 
@@ -354,11 +354,11 @@ var frm = document.all.formulario;
 					<td class="texto1" width="40%">Controle<br>
 						<select name="controle" class="texto1" onChange="javascript:proxCampo(this, document.formulario.diascontrole);">
 						<option value="">-- Selecione o controle --</option>
-						<option value="<%'=CONTROLE_MANUTENCAO_PREVENTIVA%>">Manutenção Preventiva</option>
+						<option value="<%'=CONTROLE_MANUTENCAO_PREVENTIVA%>">ManutenÃ§Ã£o Preventiva</option>
 <%'If not bln_AcessoRAT Then%>
 						<option value="">--------</option>
 						<option value="<%'=CONTROLE_CALIBRACAO%>">Calibra&ccedil;&atilde;o</option>
-						<option value="<%'=CONTROLE_MANUTENCAO%>">Manutenção Corretiva</option>
+						<option value="<%'=CONTROLE_MANUTENCAO%>">ManutenÃ§Ã£o Corretiva</option>
 						<option value="<%'=CONTROLE_QUALIFICACAO%>">Qualifica&ccedil;&atilde;o</option>
 <%'End If%>
 						</select>
@@ -394,11 +394,11 @@ function ValidaControle() {
 		frm.controle.focus();
 	}
 	else if( (frm.diascontrole.value == '') && (frm.controle.value == '<%'=CONTROLE_CALIBRACAO%>') ) {
-		alert('Número de dias deve ser preenchido para uma calibração');
+		alert('NÃºmero de dias deve ser preenchido para uma calibraÃ§Ã£o');
 		frm.diascontrole.focus();
 	}
 	else if((frm.diacontrole.value == '') || (frm.mescontrole.value == '') || (frm.anocontrole.value == '')) {
-		alert('Data inválida');
+		alert('Data invÃ¡lida');
 		frm.diacontrole.focus();
 	}
 	else if(frm.registrocontrole.value == '') {
@@ -406,7 +406,7 @@ function ValidaControle() {
 		frm.registrocontrole.focus();
 	}
 	else if(frm.responsavelcontrole.value == '') {
-		alert('Responsável pelo controle deve ser preenchido');
+		alert('ResponsÃ¡vel pelo controle deve ser preenchido');
 		frm.responsavelcontrole.focus();
 	}
 	else
@@ -427,13 +427,13 @@ function InsereControle() {
 
 	newtd=document.createElement("td");
 	if(frm.controle.value == "<%'=CONTROLE_CALIBRACAO%>")
-		newtxt=document.createTextNode("Calibração");
+		newtxt=document.createTextNode("CalibraÃ§Ã£o");
 	else if(frm.controle.value == "<%'=CONTROLE_MANUTENCAO%>")
-		newtxt=document.createTextNode("Manutenção Corretiva");
+		newtxt=document.createTextNode("ManutenÃ§Ã£o Corretiva");
 	else if(frm.controle.value == "<%'=CONTROLE_MANUTENCAO_PREVENTIVA%>")
-		newtxt=document.createTextNode("Manutenção Preventiva");
+		newtxt=document.createTextNode("ManutenÃ§Ã£o Preventiva");
 	else
-		newtxt=document.createTextNode("Qualificação");
+		newtxt=document.createTextNode("QualificaÃ§Ã£o");
 
 	newtd.appendChild(newtxt);
 	newtd.setAttribute("id","linha_"+linha+"_col_1");
@@ -476,7 +476,7 @@ function InsereControle() {
 	newrow.setAttribute("id","linha_" + linha);
 	newrow.setAttribute("eqc_id", "0");   // ID do registro na tabela, caso exista
 
-	// troca o conteúdo da ultima coluna colocando
+	// troca o conteÃºdo da ultima coluna colocando
 	newtd.innerHTML = '<span onclick="javascript:RemoveControle('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
 
 	// vou inserir a linha na ordem correta
@@ -509,7 +509,7 @@ function InsereControle() {
 						}
 						else {
 							// Enquanto a data a ser inserida for maior que as datas cadastradas
-							// a tabela é percorrida
+							// a tabela Ã© percorrida
 							i++;
 							if(i < total_linhas - 1) {
 								col3 = document.getElementById(tb.childNodes.item(i).id + "_col_3").innerText;
@@ -572,13 +572,13 @@ function RemoveControle(l) {
 							<td id="linha_<%'=linha%>_col_1">
 <%'					Select Case rec("EQC_TIPO")
 '							Case CONTROLE_CALIBRACAO
-'								Response.write "Calibração"
+'								Response.write "CalibraÃ§Ã£o"
 '							Case CONTROLE_MANUTENCAO
-'								Response.write "Manutenção Corretiva"
+'								Response.write "ManutenÃ§Ã£o Corretiva"
 '							Case CONTROLE_MANUTENCAO_PREVENTIVA
-'								Response.write "Manutenção Preventiva"
+'								Response.write "ManutenÃ§Ã£o Preventiva"
 '							Case CONTROLE_QUALIFICACAO
-'								Response.write "Qualificação"
+'								Response.write "QualificaÃ§Ã£o"
 '						End Select%>
 							</td>
 							<td id="linha_<%'=linha%>_col_2" align="center"><%'if IsNull(rec("EQC_DIAS")) then response.write "&nbsp;" else response.write rec("EQC_DIAS")%></td>
@@ -619,7 +619,7 @@ function RemoveControle(l) {
 
 	<tr><td colspan="3">&nbsp;</td></TR>
 
-	<tr><td class="texto1" colspan="3">Acessórios do Equipamento</td></tr>
+	<tr><td class="texto1" colspan="3">AcessÃ³rios do Equipamento</td></tr>
 	<tr>
 		<td colspan="3">
   			<table width="100%" cellspacing="2" cellpadding="2" border="0">
@@ -630,7 +630,7 @@ function RemoveControle(l) {
 					</td>
 
 <script language="JavaScript">
-var separa_campo = "¿?¿";
+var separa_campo = "Â¿?Â¿";
 var linha_acess = 0;
 var total_linhas_acess = 0;
 var seq_acess = 0;
@@ -640,7 +640,7 @@ function ComboConformeAcessorio(escreve, id_combo) {
 	var str = '';
 	str += '<select name="' + id_combo + '" class="texto1">';
 	str += '<option value="1">Sim</option>';
-	str += '<option value="0">Não</option>';
+	str += '<option value="0">NÃ£o</option>';
 	str += '</select>';
 	if(escreve) document.write(str);
 	return str;
@@ -653,20 +653,20 @@ function ComboSituacaoAcessorio(escreve, id_combo) {
 	str += '<option value="<%=STATUS_EM_ESTOQUE%>">Em Estoque</option>';
 	str += '<option value="<%=STATUS_EM_USO%>">Em Uso</option>';
 	str += '<option value="<%=STATUS_EXPEDIDO%>">Expedido</option>';
-	str += '<option value="<%=STATUS_EXPEDIDO_SUBST%>">Substituído</option>';
+	str += '<option value="<%=STATUS_EXPEDIDO_SUBST%>">SubstituÃ­do</option>';
 	str += '</select>';
 	if(escreve) document.write(str);
 	return str;
 }
 
-/* varre todas as linhas criadas validando os acessórios */
+/* varre todas as linhas criadas validando os acessÃ³rios */
 function ValidaAcessorios() {
 	var i;
 	if(total_linhas_acess > 0) {
 		for(i=1; i<=linha_acess; i++)
 			if(document.getElementById("desc_acess_"+i) != null) {
 				if(document.getElementById("desc_acess_"+i).value == '') {
-					alert('Acessório inválido (sequencial ' + document.getElementById("linha_acess_" + i + "_col_1").innerText + ')');
+					alert('AcessÃ³rio invÃ¡lido (sequencial ' + document.getElementById("linha_acess_" + i + "_col_1").innerText + ')');
 					document.getElementById("desc_acess_"+i).focus();
 					return false;
 				}
@@ -682,7 +682,7 @@ function NovoAcessorio() {
 
 	// valido a quantidade de novos acessorios
 	if(isNaN(document.all.qtde_acessorios.value) || (document.all.qtde_acessorios.value == '') ) {
-		alert('Quantidade de acessórios não é válida');
+		alert('Quantidade de acessÃ³rios nÃ£o Ã© vÃ¡lida');
 		document.all.qtde_acessorios.focus();
 		return;
 	}
@@ -739,7 +739,7 @@ function NovoAcessorio() {
 		newtd.setAttribute("align","center");
 		newrow.appendChild(newtd);
 	
-		// troca o conteúdo da ultima coluna colocando
+		// troca o conteÃºdo da ultima coluna colocando
 		newtd.innerHTML = '<span onclick="javascript:RemoveAcessorio('+linha_acess+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
 	
 		newrow.setAttribute("id","linha_acess_" + linha_acess);
@@ -873,7 +873,7 @@ end if%>
 <iframe name="escondido" style="display: none;"></iframe>
 
 <script>
-var MSG_SEM_ACESSO = "ATENÇÂO !!!\n\nUsuário sem privilégios para executar esta operação";
+var MSG_SEM_ACESSO = "ATENÃ‡Ã‚O !!!\n\nUsuÃ¡rio sem privilÃ©gios para executar esta operaÃ§Ã£o";
 
 function NovoEquipamento() {
 <%
@@ -903,25 +903,25 @@ function CadastraItem() {
 		frm.mod_id.focus();
 	}
 //	else if(frm.localizacao.value == '') {
-//		alert('Localização do equipamento não foi informada');
+//		alert('LocalizaÃ§Ã£o do equipamento nÃ£o foi informada');
 //		frm.localizacao.focus();
 //	}
 	else if(frm.codbarras.value == '') {
-		alert('Código de barras deve ser preenchido');
+		alert('CÃ³digo de barras deve ser preenchido');
 		frm.codbarras.focus();
 	}
 	else if(isNaN(frm.codbarras.value)) {
-		alert('Código de barras inválido');
+		alert('CÃ³digo de barras invÃ¡lido');
 		frm.codbarras.focus();
 		frm.codbarras.select();
 	}
 	else if(frm.codbarras.value.length < 16) {
-		alert('Código de barras incompleto');
+		alert('CÃ³digo de barras incompleto');
 		frm.codbarras.focus();
 		frm.codbarras.select();
 	}
 	else if(isNaN(frm.freq_calibracao.value)) {
-		alert('Frequencia de calibração inválida');
+		alert('Frequencia de calibraÃ§Ã£o invÃ¡lida');
 		frm.freq_calibracao.focus();
 		frm.freq_calibracao.select();
 	}
@@ -963,7 +963,7 @@ function CadastraItem() {
 
 //return false;
 
-		// se contém ACESSORIOS, concatena a lista
+		// se contÃ©m ACESSORIOS, concatena a lista
 		if(total_linhas_acess > 0) {
 			frm.lista_acessorios.length = 0;  // limpa o select
 

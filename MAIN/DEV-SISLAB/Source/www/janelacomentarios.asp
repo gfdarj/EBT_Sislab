@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <%
 Dim objSiteRS, cont, sSQL,tot, auxselag,auxselit,auxnitem
 Dim auxnRitem	
@@ -24,7 +24,7 @@ function retornaopcao(opcao)
 	if opcao=3 then retornaopcao="Nem Satisfeito, Nem Insatisfeito" end if
 	if opcao=4 then retornaopcao="Satisfeito" end if
 	if opcao=5 then retornaopcao="Muito Satisfeito" end if
-	if Isnull(opcao) then retornaopcao="N„o Respondido" end if
+	if Isnull(opcao) then retornaopcao="N√£o Respondido" end if
 end function
 
 function retornaopcao1(opcao)
@@ -35,7 +35,7 @@ end function
 %>
 <html>
 <head>
-<title>Coment·rios</title>
+<title>Coment√°rios</title>
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 <link rel="stylesheet" href="estilos/style.css">
@@ -47,10 +47,10 @@ end function
 </td>
 <td>
 <font face="tahoma" style="font-size=11pt" color="#FFFFFF"><br>
-<b>Coment·rios do Agendamento <%=auxselag%><br>
+<b>Coment√°rios do Agendamento <%=auxselag%><br>
 Item&nbsp;
 <%if auxselit=1 then%>
-ComunicaÁ„o
+Comunica√ß√£o
 <%end if%>
 <%if auxselit=2 then%>
 Cortesia
@@ -80,7 +80,7 @@ Ambiente
 Acesso
 <%end if%>
 <%if auxselit=11 then%>
-SatisfaÁ„o Geral
+Satisfa√ß√£o Geral
 <%end if%>
 </b></font>
 </td>
@@ -129,7 +129,7 @@ cont=cont+1
 <td width=20>
 </td>
 <td><font face="tahoma" style="font-size=9pt" color="#FFFFBD"><br>
-<b>Coment·rio <%=cont%>:</b></font>
+<b>Coment√°rio <%=cont%>:</b></font>
 </td>
 <td width=20>
 </td>

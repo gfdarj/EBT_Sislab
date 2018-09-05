@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <script>
@@ -20,7 +20,7 @@ function abreArquivo(oc, selecao){
 }
 </style> 
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Quadro de Registros (OPM / AM, AC e AP) em Ocorrências", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de LOGBOOK - Quadro de Registros (OPM / AM, AC e AP) em OcorrÃªncias", "", "")
 
 	Dim sSQL, objSiteRS, TipoRes, objConn
 
@@ -98,7 +98,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 		</td>
 
 		<td class="celula"  valign="baseline" align="center">
-			<font face="verdana" color="#000000" class="FontMenu1">Ocorrência</font>
+			<font face="verdana" color="#000000" class="FontMenu1">OcorrÃªncia</font>
 		</td>
 		<td class="celula" valign="baseline" align="center">
 			<font face="verdana" color="#000000" class="FontMenu1">Rat</font>
@@ -113,10 +113,10 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 			<font face="verdana" color="#000000" class="FontMenu1">Data<br>Conclus&atilde;o</font>
 		</td>
 		<td class="celula" valign="baseline" align="center">
-			<font face="verdana" color="#000000" class="FontMenu1">Tipo Ocorrência</font>
+			<font face="verdana" color="#000000" class="FontMenu1">Tipo OcorrÃªncia</font>
 		</td>
 		<td class="celula" valign="baseline" align="center">
-			<font face="verdana" color="#000000" class="FontMenu1">Análise</font>
+			<font face="verdana" color="#000000" class="FontMenu1">AnÃ¡lise</font>
 		</td></tr>
 		<%while not objSiteRS.EOF 
 			cor = ""
@@ -126,7 +126,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 				estado = "Concluido"
 
 			if ObjSiteRS("LB_CONCLUIDOGQ") = false and ObjSiteRS("LB_RATRESPONSAVEL") & "" <> "" then _
-				estado = "Em Análise"
+				estado = "Em AnÃ¡lise"
 
 			if ObjSiteRS("LB_CONCLUIDOGQ") = false and ObjSiteRS("LB_RATRESPONSAVEL") & "" = "" then _
 				estado = "Novo"
@@ -180,10 +180,10 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 				<tr>
 				<td class="celula" valign="baseline" align="center" bgcolor="#ffffff"></td>
 				<td class="celula" valign="baseline" align="center" bgcolor="#b1b1b1" width="80px">
-					<font face="verdana" color="#ffffff" class="FontMenu1">Tipo da Ação</font>
+					<font face="verdana" color="#ffffff" class="FontMenu1">Tipo da AÃ§Ã£o</font>
 				</td>
 				<td class="celula" valign="baseline" align="center" bgcolor="#b1b1b1" colspan="2">
-					<font face="verdana" color="#ffffff" class="FontMenu1">Descrição</font>
+					<font face="verdana" color="#ffffff" class="FontMenu1">DescriÃ§Ã£o</font>
 				</td>
 				<td class="celula" valign="baseline" align="center" bgcolor="#b1b1b1" width="100px">
 					<font face="verdana" color="#ffffff" class="FontMenu1">Executante</font>
@@ -208,7 +208,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 						<font face="verdana" color="#000000" class="FontMenu1">
 <%
 					If ObjSiteRS2("tem_arquivo") = "T" Then
-						Response.Write "<a href='#' title='Clique aqui para visualizar os arquivos' onclick='abreArquivo(" & ObjSiteRS("LB_ID") & ", " & ObjSiteRS2("ACT_ID") & ")'><img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)' border='0'></a>&nbsp;&nbsp;"
+						Response.Write "<a href='#' title='Clique aqui para visualizar os arquivos' onclick='abreArquivo(" & ObjSiteRS("LB_ID") & ", " & ObjSiteRS2("ACT_ID") & ")'><img src='img/icnote.gif' title='Esta ocorrÃªncia possui arquivo(s) anexo(s)' border='0'></a>&nbsp;&nbsp;"
 					End If
 					Response.Write ObjSiteRS2("act_descricao")
 %>
@@ -236,7 +236,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Q
 	<table width="100%" cellspacing="0" border="0">
 	<tr>
 		<td colspan="4" align="center">
-			<font class="texto1"><i><b>Nenhum resultado foi encontrado neste período.</b></i></font>
+			<font class="texto1"><i><b>Nenhum resultado foi encontrado neste perÃ­odo.</b></i></font>
 		</td>
 	</tr>		
 <%	end if

@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
@@ -29,7 +29,7 @@ with objSP
 end with
 Call Env.StoredProcedure(false, objSP, nome_sp)
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Exclusão de Agendamento", "location.href='form_agenda_exclui.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "AdministraÃ§Ã£o do SISLAB - ExclusÃ£o de Agendamento", "location.href='form_agenda_exclui.asp'", "")
 
 'return = 1
 
@@ -41,7 +41,7 @@ if return > 0 then '-- ok
 		Dados exclu&iacute;dos com sucesso !! <br><br>
 <%	if Isnull(os_id) or os_id <> "" then
 		if isnull(os_id) then _
-			response.write "- Todas as OS´s do agendamento " & ag_numero _
+			response.write "- Todas as OSÂ´s do agendamento " & ag_numero _
 		else _
 			response.write "AS N<sup>o</sup>: " & ag_numero & "&nbsp;&nbsp;/&nbsp;&nbsp;OS N<sup>o</sup>:&nbsp;" & os_id
 	end if%>
@@ -61,7 +61,7 @@ else '-- ocorreu um erro
 		N&atilde;o foi poss&iacute;vel excluir os dados solicitados !!!<br><br>
 <%	if Isnull(os_id) or os_id <> "" then
 		if isnull(os_id) then _
-			response.write "- Todas as OS´s do agendamento " & ag_numero _
+			response.write "- Todas as OSÂ´s do agendamento " & ag_numero _
 		else _
 			response.write "AS N<sup>o</sup>: " & ag_numero & "&nbsp;&nbsp;/&nbsp;&nbsp;OS N<sup>o</sup>:&nbsp;" & os_id
 	end if%>

@@ -1,4 +1,4 @@
-<%
+﻿<%
 '== Comeco de rotinas genericas em ASP =========================================================
 Function FormataDataHoraDB(dDataaFormatar)
 	' Formats to "m/d/yyyy h:mm:ss AM" format

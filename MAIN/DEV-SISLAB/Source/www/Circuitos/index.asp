@@ -1,4 +1,4 @@
-<!--#include file="../includes/PadraoHTML.asp" -->
+ï»¿<!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/EmailHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -9,14 +9,14 @@ Response.Addheader "Pragma","no-cache"
 %>
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 scroll="auto">
 <% 
 'Call MostraHeader
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão de Facilidades", "location.href='../sislab.asp'", "../")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de GestÃ£o de Facilidades", "location.href='../sislab.asp'", "../")
 %>
 <br>
 <form name="formulario">
@@ -30,7 +30,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão de Fac
 </tr>
 
 <tr valign="middle" class="trcadtit2"> 
-  <td colspan="2" align="left"><font  class="fonttit1cad"><b>&nbsp;&nbsp;&nbsp;Sistema de Gestão de Facilidades - CRT</b></font></td>
+  <td colspan="2" align="left"><font  class="fonttit1cad"><b>&nbsp;&nbsp;&nbsp;Sistema de GestÃ£o de Facilidades - CRT</b></font></td>
 </tr>
 <tr>
 	<td colspan="2" align="center">
@@ -39,7 +39,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão de Fac
 		<input type="button" value="Editar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_compos.asp';"><br>
 <input type="button" value="Consultar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_componentes.asp';"><br>
 		<input type="button" value="Cadastrar/Editar Tipo de Componente (Modelo)" class="botaoMenu" onclick="javascript:location.href='sel_tipocomponentes.asp';"><br>
-		<input type="button" value="Locais Genéricos" class="botaoMenu" onclick="javascript:location.href='sel_localgenerico.asp';"><br>
+		<input type="button" value="Locais GenÃ©ricos" class="botaoMenu" onclick="javascript:location.href='sel_localgenerico.asp';"><br>
 		<input type="button" value="Circuitos" class="botaoMenu" onclick="javascript:location.href='circuitos.asp';"><br>
 		<br>
 	</td>

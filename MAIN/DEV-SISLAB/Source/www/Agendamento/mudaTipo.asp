@@ -1,4 +1,4 @@
-<!--#include file="includes\cabecalho.inc"-->
+﻿<!--#include file="includes\cabecalho.inc"-->
 <!--#include file="../includes/conexao.inc"-->
 <!--#include file="includes\funcoesAux.inc"-->
 <%

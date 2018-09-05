@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -18,18 +18,18 @@ If Not EH_RAT Then
 	RE
 End If
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÛrio para Invent·rio de Equipamentos", "", "")
+Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relat√≥rio para Invent√°rio de Equipamentos", "", "")
 %>
 <script language="javascript">
 function ValidaCampos() {
 	var frm = document.frmFiltro;
 
 	if(isNaN(frm.notafiscal.value)) {
-		alert('Nota fiscal n„o È v·lida.');
+		alert('Nota fiscal n√£o √© v√°lida.');
 		frm.notafiscal.focus(); return false;
 	}
 	else if(isNaN(frm.qtdmov.value)) {
-		alert('Quantidade de movimento n„o È v·lido.');
+		alert('Quantidade de movimento n√£o √© v√°lido.');
 		frm.qtdmov.focus(); return false;
 	}
 	else {
@@ -41,7 +41,7 @@ function ValidaCampos() {
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opÁıes de filtro para consulta</span>
+		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das op√ß√µes de filtro para consulta</span>
 	</td>
 </tr>
 <tr>
@@ -61,8 +61,8 @@ function ValidaCampos() {
 		</tr>
 
 		<tr>
-			<td colspan="2">CÛdigo Barras: <input type="text" name="codigobarras" size="20" maxlength="16" class="texto1"></td>
-			<td colspan="2">LocalizaÁ„o: <input type="text" name="localizacao" size="20" class="texto1"></td>
+			<td colspan="2">C√≥digo Barras: <input type="text" name="codigobarras" size="20" maxlength="16" class="texto1"></td>
+			<td colspan="2">Localiza√ß√£o: <input type="text" name="localizacao" size="20" class="texto1"></td>
 			<td colspan="6">Modelo: <input type="text" name="modelo" size="20" class="texto1"></td>
 		</tr>
 
@@ -97,9 +97,9 @@ function ValidaCampos() {
 		<tr><td>&nbsp;</td></tr>
 
 		<tr>
-			<td colspan="5">OrdenaÁ„o:
+			<td colspan="5">Ordena√ß√£o:
 				<select name="ordenacao" class="combo">
-					<option value="E.EQ_CODIGOBARRAS">CÛdigo de Barras</option>
+					<option value="E.EQ_CODIGOBARRAS">C√≥digo de Barras</option>
 					<option value="QTD_MOV.TOTAL_MOVIMENTOS">Quantidade de Movimentos</option>
 					<option value="E.STATUS">Status do Equipamento</option>
 				</select>
@@ -109,7 +109,7 @@ function ValidaCampos() {
 				</select>
 			</td>
 			<td colspan="5" align="right">
-				Registros por P·gina:
+				Registros por P√°gina:
 				<select name="registroporpagina" class="combo">
 					<option value="10">10</option>
 					<option value="30">30</option>

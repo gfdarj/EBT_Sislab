@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -6,7 +6,7 @@
 <%
 'On Error Resume Next
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de SatisfaÃ§Ã£o", "", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxtipoteste,auxsituacaoteste, auxdiasteste, auxdescricao, auxsolicitante
@@ -38,12 +38,12 @@ auxClientes = (request.form("chkClientes")="on")
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opÃ§Ãµes de filtro para consulta</span>
 	</td>
 </tr>
 <tr>
 	<td>
-		Nº AS:&nbsp;<input type="Text" name="auxAS" size="3" class="texto1">
+		NÂº AS:&nbsp;<input type="Text" name="auxAS" size="3" class="texto1">
 	</td>
 </tr>
 <tr>
@@ -62,12 +62,12 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 <tr>
 	<td>
-		Agendado nos últimos <input class="texto1" name="diasteste" value="<%=auxdiasteste%>" size="2" maxlength="3"> dias
+		Agendado nos Ãºltimos <input class="texto1" name="diasteste" value="<%=auxdiasteste%>" size="2" maxlength="3"> dias
 	</td>
 </tr>
 <tr>
 	<td>
-		Responsável Técnico:&nbsp;<%call comboBDSQL( "rt",Env.oConn, "Select Userid as valor,left(nome,35) as descricao from UserCRT where RT=1 order by nome asc", "", true)%>
+		ResponsÃ¡vel TÃ©cnico:&nbsp;<%call comboBDSQL( "rt",Env.oConn, "Select Userid as valor,left(nome,35) as descricao from UserCRT where RT=1 order by nome asc", "", true)%>
 	</td>
 </tr>
 <tr>
@@ -87,10 +87,10 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 <tr>
 	<td>
-		Órgão Solicitante:
+		Ã“rgÃ£o Solicitante:
 		&nbsp;
 		<select name="orgao" class="combo">
-			<option value="">Todos os Órgãos</option>
+			<option value="">Todos os Ã“rgÃ£os</option>
 			<%call comboBD(Env.oConn,"Select distinct AG_ORGAO, rtrim(ltrim(AG_ORGAO)) as valor,rtrim(ltrim(AG_ORGAO)) as descricao from agendamento where not(AG_ORGAO is null) and ag_orgao <> '' order by AG_ORGAO asc")%>
 		</select>
 	</td>

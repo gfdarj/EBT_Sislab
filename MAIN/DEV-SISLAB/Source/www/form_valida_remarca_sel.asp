@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
@@ -8,7 +8,7 @@ Set Ebt = New TEbt
 
 Response.Buffer = true
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Valida Remarcação - Agendamentos Disponíveis", "", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Valida RemarcaÃ§Ã£o - Agendamentos DisponÃ­veis", "", "")
 
 Dim rs_numteste, strSQL
 Dim num_erro, desc_erro
@@ -28,11 +28,11 @@ function abre(codigo)
 <TABLE border="1" cellpadding="2" cellspacing="0" width="100%" class="tabela1">
 	<TR>
 		<Th colSpan=2 style="font-size: 10px;">N<sup>o</sup> Agendamento - Tipo de Teste</Th>
-		<Th style="font-size: 10px;">Situação</Th>
+		<Th style="font-size: 10px;">SituaÃ§Ã£o</Th>
 		<!--<th style="font-size: 10px;">Tarefa</th>-->
 		<Th colSpan=1 style="font-size: 10px;">Tecnologia</Th>
 		<Th colSpan=3 style="font-size: 10px;">Solicitante</Th>
-		<Th colspan="2" Align=center style="font-size: 10px;">Início - Término</Th>
+		<Th colspan="2" Align=center style="font-size: 10px;">InÃ­cio - TÃ©rmino</Th>
 	</TR>
 	<TR>
 <%
@@ -44,7 +44,7 @@ function abre(codigo)
 	Call Env.RecordSet(true, rs_numteste, strSQL)
 
 	if rs_numteste.BOF and rs_numteste.EOF then%>
-		<tr><td colspan="10" align="center">Nenhum solicitação encontrada !</td></tr>
+		<tr><td colspan="10" align="center">Nenhum solicitaÃ§Ã£o encontrada !</td></tr>
 <%	else
 		while not rs_numteste.EOF%>
 		<TR>

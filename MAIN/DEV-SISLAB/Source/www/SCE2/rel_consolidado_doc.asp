@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -8,7 +8,7 @@
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/ControlesXLS.asp"-->
 <%
-'-- RELATORIO CONSOLIDADO DE GERAÇAO DE DOCUMENTOS/TERMOS DE RESPOSABILIDADE
+'-- RELATORIO CONSOLIDADO DE GERAÃ‡AO DE DOCUMENTOS/TERMOS DE RESPOSABILIDADE
 Dim chr_SQL
 Dim RS
 Dim ano
@@ -18,7 +18,7 @@ Dim bln_exportaExcel
 
 bln_exportaExcel = (Request("ExportarExcel") = "S")
 
-Tela.SetNomeTela = "SCE > Relatório > Consolidado de Documentos Gerados" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > RelatÃ³rio > Consolidado de Documentos Gerados" : Tela.SetCaminhoRelativo = "../"
 
 chr_SQL = 	VbCrLf & _
 	"SELECT     m.Ano, m.Mes, ISNULL(d.Total, 0) as Total" & VbCrLf & _
@@ -40,7 +40,7 @@ Set RS = Env.oConn.Execute(chr_SQL)
 If request("ExportarExcel") = "S" Then
 
     If Env.UsuarioSCE() Then
-    	Call CriaExcelGeral("Relatório Consolidado de Documentos Gerados", RS, null)
+    	Call CriaExcelGeral("RelatÃ³rio Consolidado de Documentos Gerados", RS, null)
     Else
 RW "AQUI 2"
 RE
@@ -72,7 +72,7 @@ Else
 	<td>
 		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
 <%    	If RS.Eof And RS.Bof Then %>
-		<tr><td align='center'><b><i>Nenhuma informação encontrada !</i></b></td></tr>
+		<tr><td align='center'><b><i>Nenhuma informaÃ§Ã£o encontrada !</i></b></td></tr>
 <%	    Else %>
 		<tr style="font-weight: bold;">
 			<td>Ano</td>

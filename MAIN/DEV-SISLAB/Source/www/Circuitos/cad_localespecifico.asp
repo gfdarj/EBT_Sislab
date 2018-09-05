@@ -1,4 +1,4 @@
-<%Option Explicit%>
+ï»¿<%Option Explicit%>
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/PadraoHTML.asp" -->
 <!--#include file="../includes/global.asp" -->
@@ -15,7 +15,7 @@ if localgenerico = "" then localgenerico = -1
 %>
 <html>
 <head>
-	<title>Site do Centro de Referência Tecnológica</title>
+	<title>Site do Centro de ReferÃªncia TecnolÃ³gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -25,7 +25,7 @@ function Adicionar()
 {
 	var f = document.formulario;
 	if(f.local.value == "" )
-		alert( "Não é permitido adicionar um local vazio." );
+		alert( "NÃ£o Ã© permitido adicionar um local vazio." );
 	else
 	{
 		f.target = "escondido";
@@ -54,7 +54,7 @@ function AtualizaLocais(s)
 <table width="100%" height="100%" class="trCadtit1" border="0">
 <tr>
 	<td valign="top" width="400">
-		<font class="Fonttit3Cad"><b>Local Específico:</b></font><br>
+		<font class="Fonttit3Cad"><b>Local EspecÃ­fico:</b></font><br>
 		<input type="Text" name="local" value="" size="40" maxlength="50">&nbsp;&nbsp;&nbsp;
 		<input type="Button" class="botao0" name="btnAdiciona" value="+" onclick="Adicionar();">
 		<input type="Button" class="botao0" name="btnRemove" value="-" onclick="Remover();">

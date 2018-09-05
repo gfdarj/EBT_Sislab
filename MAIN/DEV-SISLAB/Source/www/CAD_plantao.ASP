@@ -6,7 +6,7 @@
 <%
 If IsEmpty(Env.Usuario) Then response.redirect "msgAcessoNA.asp"
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Plantão de Notícias do CRT", "location.href='sel_Cad_plantao.asp';", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar PlantÃ£o de NotÃ­cias do CRT", "location.href='sel_Cad_plantao.asp';", "")
 
 Dim objSiteRS, sSQL,i,auxi
 Dim auxcodnoticia,auxtitnoticia,auxnoticia,auxlink
@@ -54,33 +54,33 @@ function ValidaCampos()
 {
 if (document.formulario.titulo.value=="")
 	{
-	alert("Título da notícia não informada.\nInforme o título da notícia.");
+	alert("TÃ­tulo da notÃ­cia nÃ£o informada.\nInforme o tÃ­tulo da notÃ­cia.");
 	        formulario.titulo.focus();
 		return false;
 	}
 if (AchaAspas(document.formulario.titulo.value))
 	{
-	alert("Título não pode conter Aspas ou apóstrofes.\nCorrija o texto do Título.");
+	alert("TÃ­tulo nÃ£o pode conter Aspas ou apÃ³strofes.\nCorrija o texto do TÃ­tulo.");
 	        formulario.titulo.focus();
 		return false;
 	}
 if (AchaAspas(document.formulario.link.value))
 	{
-	alert("Link não pode conter Aspas ou apóstrofes.\nCorrija o texto do Link.");
+	alert("Link nÃ£o pode conter Aspas ou apÃ³strofes.\nCorrija o texto do Link.");
 	        formulario.link.focus();
 		return false;
 	}
-if(!(ValidaDataMesAno(document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value,"Data Início")))
+if(!(ValidaDataMesAno(document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value,"Data Inï¿½cio")))
 	{
 		return false;
 	}
-if(!(ValidaDataMesAno(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,"Data Expiração")))
+if(!(ValidaDataMesAno(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,"Data Expiraï¿½ï¿½o")))
 	{
 		return false;
 	}
 if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value)))
 	{
-	alert("Data de Expiração não pode ser menor que Data de Início.\nCorrija as Datas.");
+	alert("Data de ExpiraÃ§Ã£o nÃ£o pode ser menor que Data de InÃ­cio.\nCorrija as Datas.");
 		return false;
 	}
 	return true;
@@ -93,7 +93,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 <table width="100%" cellpadding="3" cellspacing="3" class="tabela1">
 <tr> 
 	<td>
-		<b>Título da Notícia:</b><br>
+		<b>TÃ­tulo da NotÃ­cia:</b><br>
 		<input type="text" name="titulo" size="100" maxlength="255" value="<%=auxtitnoticia%>" class="texto1">
     </td>
 </tr>
@@ -102,7 +102,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 		<table class="tabela1" cellpadding="3" cellspacing="0">
 		<tr>
 			<td>
-				<b>Data de Início de Exibição:</b></font><br>
+				<b>Data de InÃ­cio de ExibiÃ§Ã£o:</b></font><br>
 				<select name="diainiexibicao" class="combo">
 				  <option value="">Dia</option>
 				  <% for i=1 to 31 %>
@@ -116,10 +116,10 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <%next%>
 				</select>
 				<select name="mesiniexibicao" class="combo">
-				  <option value="">Mês</option>
+				  <option value="">MÃªs</option>
 				  <option value=01>Janeiro</option>
 				  <option value=02>Fevereiro</option>
-				  <option value=03>Março</option>
+				  <option value=03>MarÃ§o</option>
 				  <option value=04>Abril</option>
 				  <option value=05>Maio</option>
 				  <option value=06>Junho</option>
@@ -140,7 +140,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 			</td>
 			<td width="50px">&nbsp;</td>
 			<td>
-				<b>Data Expiração da Exibição:</b><br>
+				<b>Data ExpiraÃ§Ã£o da ExibiÃ§Ã£o:</b><br>
 				<select name="diafimexibicao" class="combo">
 				  <option value="">Dia</option>
 				  <% for i=1 to 31 %>
@@ -154,10 +154,10 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <%next%>
 				</select>
 				<select name="mesfimexibicao" class="combo">
-				  <option value="">Mês</option>
+				  <option value="">MÃªs</option>
 				  <option value=01>Janeiro</option>
 				  <option value=02>Fevereiro</option>
-				  <option value=03>Março</option>
+				  <option value=03>MarÃ§o</option>
 				  <option value=04>Abril</option>
 				  <option value=05>Maio</option>
 				  <option value=06>Junho</option>
@@ -182,7 +182,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 </tr>
 <tr> 
 	<td>
-		<b>Link (URL para página relacionada):</b><br>
+		<b>Link (URL para pï¿½gina relacionada):</b><br>
 		<input type="text" name="link" size="100" maxlength="255" value="" class="texto1">
     </td>
 </tr>

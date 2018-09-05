@@ -1,4 +1,4 @@
-<!------- SCE ------->
+﻿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -43,7 +43,7 @@ If Env.UsuarioSCE() Then
 <%				If rec("nf_tipo") = 1 Then
 					Response.Write "Entrada"
 				ElseIf rec("nf_tipo") = 2 Then
-					Response.Write "Sa�da"
+					Response.Write "Saída"
 				Else
 					Response.Write "&nbsp;"
 				End If

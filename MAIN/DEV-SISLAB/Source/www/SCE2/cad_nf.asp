@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -126,7 +126,7 @@ end if
 				<td>
 					<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" class="texto1">
 							<TR>
-								<TD>N˙mero da Nota:&nbsp;
+								<TD>N√∫mero da Nota:&nbsp;
 								<input type="text" class="texto1" name="nf_numeronota" size="10" maxlength="30" value="<%=nf_numeronota%>">
 								</td>
 								<td><input type="Checkbox" name="devolucao" value="1" <%if devolucao then response.write "checked"%>>&nbsp;Devolucao Completa</td>
@@ -144,7 +144,7 @@ end if
 					<td>
 						<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" class="texto1">
 							<TR>
-								<TD>Data da Emiss„o:&nbsp;
+								<TD>Data da Emiss√£o:&nbsp;
 								<%RW Combo.Data("emissao")%>
 								<script language="JavaScript">
 									document.all.diaemissao.value = "<%if nf_dataemissao <> "" then response.write Zeros(Day(CDate(nf_dataemissao)),2)%>";
@@ -153,13 +153,13 @@ end if
 								</script>
 								</td>
 
-								<TD>N˙mero do Conhecimento:&nbsp;
+								<TD>N√∫mero do Conhecimento:&nbsp;
 								<input type="text" class="texto1" name="nf_nconhecimento" size="10" maxlength="30" value="<%=nf_nconhecimento%>"></td>
 								<TD>
 									Tipo:&nbsp;
 									<select name="nf_tipo" class="texto1" onChange="javascript:tipoNota(this);">
 									<option value="1" <%if nf_tipo = "1" then response.write "selected"%>>Entrada</option>
-									<option value="2" <%if nf_tipo = "2" then response.write "selected"%>>SaÌda</option>
+									<option value="2" <%if nf_tipo = "2" then response.write "selected"%>>Sa√≠da</option>
 									</select>
 									<script language="JavaScript">
 										function tipoNota(eu) {
@@ -240,7 +240,7 @@ end if
 					<td>
 						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" class="texto1">
 							<tr>
-								<td><br>Natureza de OperaÁ„o:&nbsp;
+								<td><br>Natureza de Opera√ß√£o:&nbsp;
 <%			if no_id = "" then valor = "" else valor = cstr(no_id)
 			RW Combo.PadraoSql("no_id", "select no_id as VALOR, no_descricao as DESCRICAO from sce_natureza_operacao order by no_descricao", valor, "N")%>
 								<script language="JavaScript">
@@ -290,22 +290,22 @@ end if
 						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" class="texto1">
 							<TR>
 								<TD colspan=3>
-								<b>AceitaÁ„o</b><br>
+								<b>Aceita√ß√£o</b><br>
 								Integridade:&nbsp;
 								<input type="radio" name="integridade" value="1" <%if integridade = "1" then response.write "checked"%>>Conforme
-								<input type="radio" name="integridade" value="0" <%if integridade = "0" then response.write "checked"%>>N„o Conforme
+								<input type="radio" name="integridade" value="0" <%if integridade = "0" then response.write "checked"%>>N√£o Conforme
 								<br>
-								N˙meros de Volume:&nbsp;
+								N√∫meros de Volume:&nbsp;
 								<input type="radio" name="volume" value="1" <%if volume = "1" then response.write "checked"%>>Conforme
-								<input type="radio" name="volume" value="0" <%if volume = "0" then response.write "checked"%>>N„o Conforme
+								<input type="radio" name="volume" value="0" <%if volume = "0" then response.write "checked"%>>N√£o Conforme
 								<br>
-								Carta de CorreÁ„o:&nbsp;
+								Carta de Corre√ß√£o:&nbsp;
 								<input type="radio" name="carta" value="P" <%if carta = "P" then response.write "checked"%>>Pendente
 								<input type="radio" name="carta" value="R" <%if carta = "R" then response.write "checked"%>>Recebida
 								<br>
-								InspeÁ„o TÈcnica:&nbsp;
+								Inspe√ß√£o T√©cnica:&nbsp;
 								<input type="radio" name="aceite" value="1" <%if aceite = "1" then response.write "checked"%> value="1"> Conforme
-								<input type="radio" name="aceite" value="0" <%if aceite = "0" then response.write "checked"%> value="1"> N„o Conforme
+								<input type="radio" name="aceite" value="0" <%if aceite = "0" then response.write "checked"%> value="1"> N√£o Conforme
 								</td>
 							</tr>
 						</table>
@@ -313,7 +313,7 @@ end if
 				</tr>
 				<tr id="tr_aceitacao_separador" style="display: block;"><td>&nbsp;</td></tr>
 				<tr>
-					<td>ObservaÁ„o:<br>
+					<td>Observa√ß√£o:<br>
 						<textarea name="descriminacao" cols=80 rows=5 class=form><%=nf_descriminacao%></textarea>
 					</td>
 				</tr>
@@ -367,23 +367,23 @@ function validaNota(frm) {
 	frm.method = "post";
 
 	if( frm.nf_numeronota.value == "" ) {
-		alert("N˙mero da nota n„o informado");
+		alert("N√∫mero da nota n√£o informado");
 		frm.nf_numeronota.focus();
 	}
 	else if( frm.nf_qtdevolumes.value == "" ) {
-		alert("Quantidade de volumes n„o informada");
+		alert("Quantidade de volumes n√£o informada");
 		frm.nf_qtdevolumes.focus();
 	}
 	else if( frm.nf_valortotal.value == "" ) {
-		alert("Valor da nota fiscal n„o informado");
+		alert("Valor da nota fiscal n√£o informado");
 		frm.nf_valortotal.focus();
 	}
 	else if( (frm.diaemissao.value == "") || (frm.mesemissao.value == "") || (frm.anoemissao.value == "") ) {
-		alert("Data de emiss„o inv·lida");
+		alert("Data de emiss√£o inv√°lida");
 		frm.diaemissao.focus();
 	}
 	else if( frm.no_id.value == "" ) {
-		alert("Natureza da operaÁ„o n„o informada");
+		alert("Natureza da opera√ß√£o n√£o informada");
 		frm.no_id.focus();
 	}
 	else if( !checaValidade(frm.nf_validade.value ) ) {
@@ -392,23 +392,23 @@ function validaNota(frm) {
 		frm.nf_validade.focus();
 	}
 	else if( frm.enf_id.value == "" ) {
-		alert("Fornecedor n„o informado");
+		alert("Fornecedor n√£o informado");
 		frm.enf_id.focus();
 	}
 	else if( frm.no_id.value == "" ) {
-		alert("Natureza da operaÁ„o n„o informada");
+		alert("Natureza da opera√ß√£o n√£o informada");
 		frm.no_id.focus();
 	}
 	else if( frm.nf_cfop.value == "" ) {
-		alert("CFOP n„o informado");
+		alert("CFOP n√£o informado");
 		frm.nf_cfop.focus();
 	}
 	else if( (frm.diarecebimento.value == "") || (frm.mesrecebimento.value == "") || (frm.anorecebimento.value == "") ) {
-		alert("Data de recebimento inv·lida");
+		alert("Data de recebimento inv√°lida");
 		frm.diarecebimento.focus();
 	}
 	else if( (frm.diareal.value == "") || (frm.mesreal.value == "") || (frm.anoreal.value == "") ) {
-		alert("Data de entrada real inv·lida");
+		alert("Data de entrada real inv√°lida");
 		frm.diareal.focus();
 	}
 	else {

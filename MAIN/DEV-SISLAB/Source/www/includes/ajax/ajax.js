@@ -1,4 +1,4 @@
-var http_request = false;
+﻿var http_request = false;
 
 function makeRequest(metodo, url) {
 	http_request = false;

@@ -1,4 +1,4 @@
-<!-- #INCLUDE FILE="includes/abre.asp" -->
+﻿<!-- #INCLUDE FILE="includes/abre.asp" -->
 <!-- #INCLUDE FILE="includes/conexao.inc" -->
 <!-- #INCLUDE FILE="includes/bib_bd.asp" -->
 <%

@@ -1,4 +1,4 @@
-<!--#include file="../global_SCE.asp" -->
+ï»¿<!--#include file="../global_SCE.asp" -->
 <%
 Dim perfil
 perfil = CInt(Request("Perfil"))
@@ -12,7 +12,7 @@ perfil = CInt(Request("Perfil"))
 <!-- Conhecendo o CRT -->
 <table width="100%" height="100%"><%
 if perfil = PERFIL_ADM or perfil = PERFIL_LOG then%>
-<tr><td><a href="../../mov_acessorio.asp" target="_parent">Movimentação de Itens</a></td></tr>
+<tr><td><a href="../../mov_acessorio.asp" target="_parent">MovimentaÃ§Ã£o de Itens</a></td></tr>
 <tr><td>---</td></tr><%
 end if%>
 <tr><td><a href="../../mov_passacarga.asp" target="_parent">Passagem de Carga</a></td></tr>

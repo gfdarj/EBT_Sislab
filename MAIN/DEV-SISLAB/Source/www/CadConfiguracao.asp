@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!-- #include file="includes/controlesHTML.asp" -->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "ConfiguraÁ„o de par‚metros do SISLAB", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Configura√ß√£o de par√¢metros do SISLAB", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -32,12 +32,12 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false
 	}
 	if (frm.valor1.value == ""){
-		alert('… necess·rio informar o valor.');
+		alert('√â necess√°rio informar o valor.');
 		frm.valor1.focus();
 		return false
 	}
@@ -62,7 +62,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.configuracao.value == '') {
-		alert('Nenhuma par‚metro selecionado para exclus„o !');
+		alert('Nenhuma par√¢metro selecionado para exclus√£o !');
 		frm.tecnologia.focus();
 	}
 	else {
@@ -78,15 +78,15 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">ConfiguraÁıes</td></tr>
+<tr><th align="left" colspan="2">Configura√ß√µes</td></tr>
 
 <tr>
-	<td width="100px">&nbsp;&nbsp;<b>Par‚metro:</b></td>
+	<td width="100px">&nbsp;&nbsp;<b>Par√¢metro:</b></td>
 	<td>
 		<%call comboConfiguracao("configuracao", Env.oConn,"N")%>&nbsp;&nbsp;
 		<input  class="texto1" type="Button" value="Buscar" onclick="BuscarUsuario();"></input>
@@ -95,15 +95,15 @@ function Excluir() {
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da configuraÁ„o</th></tr>
+<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da configura√ß√£o</th></tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;CÛdigo:</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;C√≥digo:</b></td>
 	<td><input type="Text" name="cfg_id" size="7" class="texto1"></td>
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o :</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o :</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 

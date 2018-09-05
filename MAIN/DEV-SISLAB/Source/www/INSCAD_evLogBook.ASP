@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/emailHTML.asp" -->
@@ -122,7 +122,7 @@ elseif modo = "ALTERAR" then
 	SSQL = SSQL & " WHERE LB_ID = " & ocorrencia & ";"
 end if
 
-'isto era para estar funcionando, não sei por que não está
+'isto era para estar funcionando, nÃ£o sei por que nÃ£o estÃ¡
 'por isso tive de fazer um bacalhau
 'SSQL = SSQL & SQLACOES '& "Select  @identificar as Numero_da_Ocorrencia;"
 
@@ -149,21 +149,21 @@ if request("resp") = "1" then
 		if objSiteRS("LB_CONCLUIDOGQ") = true then _
 			estado = "Concluido"
 		if objSiteRS("LB_CONCLUIDOGQ") = false and objSiteRS("LB_RATRESPONSAVEL") & "" <> "" then _
-			estado = "Em Análise"
+			estado = "Em AnÃ¡lise"
 		if objSiteRS("LB_CONCLUIDOGQ") = false and objSiteRS("LB_RATRESPONSAVEL") & "" = "" then _
 			estado = "Novo"
 
 		Set RS = Nothing
 	End If
 
-	msg = "Ocorrência de logbook " & str1 & ": " & "<br>" & _
-		  "Nº da Ocorrência : " & objSiteRS("Numero_da_Ocorrencia") &  "<br>" & _
-		  "Situação: " & estado &  "<br>" & _
-		  "RAT Responsável : " & ratresp &  "<br>" & _
-		  "Responsável : " & auxrespexecucao &  "<br>" & _
+	msg = "OcorrÃªncia de logbook " & str1 & ": " & "<br>" & _
+		  "NÂº da OcorrÃªncia : " & objSiteRS("Numero_da_Ocorrencia") &  "<br>" & _
+		  "SituaÃ§Ã£o: " & estado &  "<br>" & _
+		  "RAT ResponsÃ¡vel : " & ratresp &  "<br>" & _
+		  "ResponsÃ¡vel : " & auxrespexecucao &  "<br>" & _
 		  "Solicitante : " & auxusername &  "<br>" & _
-		  "Descrição da Ocorrência : " & auxdescricao &  "<br>"
-	assunto = "Gerenciamento do LogBook - Elaboração de LogBook"
+		  "DescriÃ§Ã£o da OcorrÃªncia : " & auxdescricao &  "<br>"
+	assunto = "Gerenciamento do LogBook - ElaboraÃ§Ã£o de LogBook"
 
 	'Call enviar_email("gilberto.rj@ig.com.br", "Gilberto", assunto, msg)
 	Call enviaEmailRATsGQs(Env.oConn, assunto, msg)
@@ -185,8 +185,8 @@ If Err Then %>
 <td>
 <div align="left">
   <font style="font-size=10pt;" color="#000000"> 
-<b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%><br>
-<b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
+<b>&nbsp;&nbsp;Erro NÂº:</b> <%=Err.Number%><br>
+<b>&nbsp;&nbsp;DescriÃ§Ã£o:</b> <%=Err.Description%><br>
   </font>
 <%
 else

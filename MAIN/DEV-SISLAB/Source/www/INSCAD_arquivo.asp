@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -8,7 +8,7 @@
 <%
 ' On Error Resume Next
 
-' Se Sessão expirou enviar para novo logon
+' Se SessÃ£o expirou enviar para novo logon
 
 If not Env.usuarioCRT Then
 	response.redirect "msgAcessoNA.asp"
@@ -67,7 +67,7 @@ End If
 'rw "<BR>" & Arquivo.Campo("eh_validacao")
 're
 
-'-- Endereço nos servidor  onde ira cair o arquivo
+'-- EndereÃ§o nos servidor  onde ira cair o arquivo
 ''Count = Upload.Save("d:\inetpub\wwwroot\Sislab1\arquivos")
 'Count = Upload.Save( Server.MapPath(".") & "\Arquivos" )
 
@@ -165,17 +165,17 @@ RETORNO =  rs("saida")
 
 If RETORNO <> "-1" then
 
-	'-- tenho que apagar o arquivo caso o mesmo tenha sido excluído
+	'-- tenho que apagar o arquivo caso o mesmo tenha sido excluÃ­do
 	if ucase(auxtipocomando) = "EXCLUIR" then
 		Arquivo.Exclui(auxnomearq)
 	end if
 
 	if Arquivo.Campo("resp") = "1" then
-		msg = "Foi executada a seguinte ação ( " & auxtipocomando & " ) sobre o documento " & auxtitulo & "<br><BR>" & _
+		msg = "Foi executada a seguinte aÃ§Ã£o ( " & auxtipocomando & " ) sobre o documento " & auxtitulo & "<br><BR>" & _
 			  "<u>Dados do Documento</u>" & "<BR><br>" & _ 
-			  "Revisão : " & auxversao & "<br>" & _
-  			  "Responsável : " & auxresponsavel & "<br>" & _
-  			  "Descrição : " & auxdescricao & "<br>" & _
+			  "RevisÃ£o : " & auxversao & "<br>" & _
+  			  "ResponsÃ¡vel : " & auxresponsavel & "<br>" & _
+  			  "DescriÃ§Ã£o : " & auxdescricao & "<br>" & _
 			  "Arquivo: " & auxnomearq
 		assunto = "Sislab - Upload de Arquivos"
 		Call enviaEmailUserCRT(Env.oConn,assunto,msg)
@@ -204,7 +204,7 @@ If RETORNO <> "-1" then
     	  <td width="10%" height="0"></td>
 	    </tr>
     	<tr valign="middle" bgcolor="#88BBBB" border="1"> 
-	      <td colspan="10" align="center">Operação Executada com Sucesso</td>
+	      <td colspan="10" align="center">OperaÃ§Ã£o Executada com Sucesso</td>
     	</tr>
 	    <tr valign="middle" bgcolor="#AADDDD"> 
     	  <td colspan="10">&nbsp;&nbsp;&nbsp;Comando SQL Digitado</td>
@@ -224,8 +224,8 @@ If RETORNO <> "-1" then
 <td>
 <div align="left">
   <font style="font-size=10pt;" color="#000000"> 
-<b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%><br>
-<b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
+<b>&nbsp;&nbsp;Erro NÂº:</b> <%=Err.Number%><br>
+<b>&nbsp;&nbsp;DescriÃ§Ã£o:</b> <%=Err.Description%><br>
 <% end if %>
 </div>
 </td>

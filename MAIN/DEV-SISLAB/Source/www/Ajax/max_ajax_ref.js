@@ -1,13 +1,13 @@
-/**
- * @author F·bio Miranda Costa <fabiomcosta@gmail.com> (n„o enviar d˙vidas por favor) - www.meiocodigo.wordpress.com
+Ôªø/**
+ * @author F√°bio Miranda Costa <fabiomcosta@gmail.com> (n√£o enviar d√∫vidas por favor) - www.meiocodigo.wordpress.com
  * @version 0.26
  * Pequena biblioteca para uso geral em Ajax.
- * bugs conhecidos: N„o conversa muito bem com tabelas.
+ * bugs conhecidos: N√£o conversa muito bem com tabelas.
  * Testado com IE 6 e firefox 2.
- * Qualquer d˙vida mande e-mail para meiocodigo@gmail.com ou simplesmente comente.
+ * Qualquer d√∫vida mande e-mail para meiocodigo@gmail.com ou simplesmente comente.
  */
 
-//verifica a existÍncia do objeto max antes de cri·-lo para ser possÌvel acrescentar mais de uma das bibliotecas max
+//verifica a exist√™ncia do objeto max antes de cri√°-lo para ser poss√≠vel acrescentar mais de uma das bibliotecas max
 //irei postando aos poucos as bibliotecas
 if(typeof window.max === "undefined") var max = new Object();
 
@@ -15,50 +15,50 @@ if(typeof window.max === "undefined") var max = new Object();
 /**
  * Construtor da classe max.Ajax
  * 
- * @param {String} url - a url do arquivo que receber· a chamada ajax
- * @param {Object} options - um objeto que conter· as possÌveis opÁıes, entre elas est„o:
- * update (opcional) - um id de um nÛ DOM que receber· a resposta do servidor.
- * onComplete (opcional) - funÁ„o que ser· executada logo apÛs o servidor ter respondido ao pedido.
+ * @param {String} url - a url do arquivo que receber√° a chamada ajax
+ * @param {Object} options - um objeto que conter√° as poss√≠veis op√ß√µes, entre elas est√£o:
+ * update (opcional) - um id de um n√≥ DOM que receber√° a resposta do servidor.
+ * onComplete (opcional) - fun√ß√£o que ser√° executada logo ap√≥s o servidor ter respondido ao pedido.
  * 
  */
 max.Ajax = function(url,options){
-	this.xmlHttp = this.createXMLHttp();//criaÁ„o do objeto que tratar· da nossa requisiÁ„o ao servidor
+	this.xmlHttp = this.createXMLHttp();//cria√ß√£o do objeto que tratar√° da nossa requisi√ß√£o ao servidor
 	this.url = url;
-	this.update = options.update || null;//se n„o for definida um id para fazer o update, this.update = null, caso contr·rio this.update = options.update
-	this.onComplete = options.onComplete || function(){};//se tiver sido definida uma funÁ„o para ser executado ao final da requisiÁ„o ent„o this.onComplete = options.onComplete sen„o this.onComplete = null;
+	this.update = options.update || null;//se n√£o for definida um id para fazer o update, this.update = null, caso contr√°rio this.update = options.update
+	this.onComplete = options.onComplete || function(){};//se tiver sido definida uma fun√ß√£o para ser executado ao final da requisi√ß√£o ent√£o this.onComplete = options.onComplete sen√£o this.onComplete = null;
 };
 
 max.Ajax.prototype = Object({
 	/**
-	 * MÈtodo para enviar pedido get.
+	 * M√©todo para enviar pedido get.
 	 */
 	get:
 		function(){
-			var thisObj = this;//fazendo referÍncia a este objeto
-			this.xmlHttp.onreadystatechange = function(){thisObj.updateFunc();};//esta linha define qual ser· a funÁ„o que ser· executada quando nosso objeto xmlHttp tiver seu estado modificado, noc aso updateFunc()
+			var thisObj = this;//fazendo refer√™ncia a este objeto
+			this.xmlHttp.onreadystatechange = function(){thisObj.updateFunc();};//esta linha define qual ser√° a fun√ß√£o que ser√° executada quando nosso objeto xmlHttp tiver seu estado modificado, noc aso updateFunc()
 			this.url += (this.url.indexOf("?") === -1)?"?":"&";
-			this.url += "ridwes="+Math.random();//adicionando uma vari·vel randomica ao nosso get para que resolva um problema de cache que acredito que sÛ aconteÁa no IE, chamei de ridwes por que acredito que ninguem teria uma variavel com esse nome, mas se for o caso...modifique hehe
-			this.xmlHttp.open("get",this.url,true);//define que o mÈtodo usado para a nossa requisiÁ„o ser· o 'get', a url do arquivo que receber· a requisiÁ„o e o true indica que a chamada ser· assincrona.
+			this.url += "ridwes="+Math.random();//adicionando uma vari√°vel randomica ao nosso get para que resolva um problema de cache que acredito que s√≥ aconte√ßa no IE, chamei de ridwes por que acredito que ninguem teria uma variavel com esse nome, mas se for o caso...modifique hehe
+			this.xmlHttp.open("get",this.url,true);//define que o m√©todo usado para a nossa requisi√ß√£o ser√° o 'get', a url do arquivo que receber√° a requisi√ß√£o e o true indica que a chamada ser√° assincrona.
 			this.xmlHttp.send(null);//finalmente envia nosso pedido
 		},
 	/**
-	 * MÈtodo executado toda vez que o xmlHttp mudar de estado.
+	 * M√©todo executado toda vez que o xmlHttp mudar de estado.
 	 */
 	updateFunc:
 		function(){
-			if (this.xmlHttp.readyState==4 || this.xmlHttp.readyState=="complete"){//verifica se o estado do xmlHttp È de completo, ou seja se a resposta do servidor j· est· "em m„os"
-				if (this.xmlHttp.status == 200){//verifica se o estatus do objeto È de sucesso, caso contrario o ideal seria mostrar um erro, mostrarei isso no futuro
+			if (this.xmlHttp.readyState==4 || this.xmlHttp.readyState=="complete"){//verifica se o estado do xmlHttp √© de completo, ou seja se a resposta do servidor j√° est√° "em m√£os"
+				if (this.xmlHttp.status == 200){//verifica se o estatus do objeto √© de sucesso, caso contrario o ideal seria mostrar um erro, mostrarei isso no futuro
 					if (this.update){
-						document.getElementById(this.update).innerHTML = this.xmlHttp.responseText;//joga o texto de resposta do servidor dentro do nÛ DOM especificado na opÁ„o update, se ela existir
+						document.getElementById(this.update).innerHTML = this.xmlHttp.responseText;//joga o texto de resposta do servidor dentro do n√≥ DOM especificado na op√ß√£o update, se ela existir
 					}
-					this.onComplete(this.xmlHttp.responseText,this.xmlHttp.responseXML);//executa a funÁ„o ao final da chamada ajax, tambÈm chamada de callback
+					this.onComplete(this.xmlHttp.responseText,this.xmlHttp.responseXML);//executa a fun√ß√£o ao final da chamada ajax, tamb√©m chamada de callback
 				}
 			}
 		},
 	/**
 	 * Copiado na cara de pau, peguei de um artigo no Wrox.
-	 * MÈtodo usado para a criaÁ„o do objeto XMLHttp, peÁa chave para o ajax.
-	 * N„o explicarei em detalhes.
+	 * M√©todo usado para a cria√ß√£o do objeto XMLHttp, pe√ßa chave para o ajax.
+	 * N√£o explicarei em detalhes.
 	 */
 	createXMLHttp:
 		function(){
@@ -66,7 +66,7 @@ max.Ajax.prototype = Object({
 		        return new XMLHttpRequest();
 			else if (window.ActiveXObject) {//no caso do IE
 		      var aVersions = [ "MSXML2.XMLHttp.5.0","MSXML2.XMLHttp.4.0","MSXML2.XMLHttp.3.0","MSXML2.XMLHttp","Microsoft.XMLHttp"];
-		      //por cima, o que ela faz È verificar qual a vers„o mais recente do xmlHttp Object suportada pelo navegador e retorna o objeto
+		      //por cima, o que ela faz √© verificar qual a vers√£o mais recente do xmlHttp Object suportada pelo navegador e retorna o objeto
 			  for (var i = 0; i < aVersions.length; i++) {
 		        try{
 		            var oXmlHttp = new ActiveXObject(aVersions[i]);
@@ -74,7 +74,7 @@ max.Ajax.prototype = Object({
 		        }catch (oError){}
 		      }
 		    }
-			throw new Error("Objeto XMLHttp n„o pode ser criado.");
+			throw new Error("Objeto XMLHttp n√£o pode ser criado.");
 		}
 });
 

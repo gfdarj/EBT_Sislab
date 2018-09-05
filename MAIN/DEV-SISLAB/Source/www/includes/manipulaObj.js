@@ -1,4 +1,4 @@
-/* Abre uma janela centralizada na tela */
+﻿/* Abre uma janela centralizada na tela */
 function NewWindow(mypage, myname, w, h, scroll)
 {
 	var winl = (screen.width - w) / 2;

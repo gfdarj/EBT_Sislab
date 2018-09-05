@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -8,7 +8,7 @@
 <%
 Server.ScriptTimeout = 10000
 
-Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos > Filtro de Seleção" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos > Filtro de SeleÃ§Ã£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -16,7 +16,7 @@ If Env.UsuarioSCE() Then
     Dim Sce
     Set Sce = New TSce
 
-    '-- JANELA AUXILIAR DE SELEÇÃO DE ITENS PARA O CADASTRO DE RESERVAS --
+    '-- JANELA AUXILIAR DE SELEÃ‡ÃƒO DE ITENS PARA O CADASTRO DE RESERVAS --
 
     Dim s, w, objRS, reservado, listaNF
 
@@ -24,9 +24,9 @@ If Env.UsuarioSCE() Then
         "e.MOD_CODNOME, e.MOD_DESCRICAO, " & _
 	    "e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_INSTRUMENTAL, e.EQ_CONFORME, e.EQ_NUMEROSERIE "
 
-    '-- nao pego o campo de NF porque podem existir várias notas para o item,
+    '-- nao pego o campo de NF porque podem existir vÃ¡rias notas para o item,
     '-- logo os mesmos aparecerao repetidos. Utilizo uma funcao para pegar a lista de
-    '-- NF´s
+    '-- NFÂ´s
     'if request("notafiscal") <> "" or request("fornecedor") <> "" then
     '	s = s & ", nf.NF_NUMERONOTA "
     'else
@@ -37,7 +37,7 @@ If Env.UsuarioSCE() Then
     w = ""
 
     '-- So faco o join no caso de ter preenchido a NF ou o Fornecedor, caso contrario
-    '-- uso uma funcao para retornar as NF´s do item
+    '-- uso uma funcao para retornar as NFÂ´s do item
     if request("notafiscal") <> "" or request("documento") <> "" or request("fornecedor") <> "" then
 	    s =	s & "INNER JOIN SCE_Movimentacao m ON e.EQ_ID = m.EQ_ID " & _
 		    "LEFT JOIN SCE_Nota_Fiscal nf ON m.NF_ID = nf.NF_ID "
@@ -205,7 +205,7 @@ function IncluiListaItens() {
 		if( f["eq_id_"+i].checked ) {
 			if(ExisteItemLista(f["eq_id_"+i].value) ) 
 			//{
-				alert("O item " + f['linha_' + i + '_col_2'].innerText + ' já existe na lista !');
+				alert("O item " + f['linha_' + i + '_col_2'].innerText + ' jÃ¡ existe na lista !');
 			//}
 			//else {
 				/* insere o item e pega o numero da linha inserida na janela pai */
@@ -221,7 +221,7 @@ function IncluiListaItens() {
 }
 function avisoReserva(reservado, valor) {
 	if( (reservado != "") && (valor) )
-		alert("ATENÇÂO !\n\nEste item já está reservado.\n\nReserva(s): " + reservado);
+		alert("ATENÃ‡Ã‚O !\n\nEste item jÃ¡ estÃ¡ reservado.\n\nReserva(s): " + reservado);
 }
 </script>
 </form>

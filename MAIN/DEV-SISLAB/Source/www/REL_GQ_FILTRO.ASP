@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Acompanhamento de AS", "location.href='rel_gq_filtro.asp';", "")
+call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de Acompanhamento de AS", "location.href='rel_gq_filtro.asp';", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
@@ -51,7 +51,7 @@ function montaExcel()
 	    document.forms[0].submit();
 	}
 	else
-		alert('Selecione ao menos uma condição de filtro !');
+		alert('Selecione ao menos uma condiÃ§Ã£o de filtro !');
 }
 </script>
 <iframe width="770" height="50" name="1111___janelaRelatorioExcel" style="display: none;"></iframe>
@@ -61,7 +61,7 @@ function montaExcel()
 <table width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opÃ§Ãµes de filtro para consulta</span>
 	</td>
 </tr>
 <tr>
@@ -72,24 +72,24 @@ function montaExcel()
 </tr>
 <tr>
 	<td>
-		Situação:&nbsp;
+		SituaÃ§Ã£o:&nbsp;
 		<select name="situacao"  class="combo">
-			<option value="">Todas as Situações</option>
-			<option value="NC">Todas Não Concluídas</option>
+			<option value="">Todas as SituaÃ§Ãµes</option>
+			<option value="NC">Todas NÃ£o ConcluÃ­das</option>
 			<%call comboBD(Env.oConn,"Select ID_Situacao as valor,left(S_DESCRICAO,35) as descricao from Situacoes where S_OS = 0 order by ID_Situacao asc;")%>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Resposta à Pesquisa de Satisfação:
+		Resposta Ã  Pesquisa de SatisfaÃ§Ã£o:
 		<select name="tempesquisa" class="combo">
 			<option value="">Todos os agendamentos</option>
 			<option value="Sim">Apenas agendamentos com resposta</option>
-			<option value="Não">Apenas agendamentos sem resposta</option>
+			<option value="NÃ£o">Apenas agendamentos sem resposta</option>
 		</select>
 	</td>
 </tr>
 <tr>
 	<td>
-		Responsável Técnico:&nbsp;
+		ResponsÃ¡vel TÃ©cnico:&nbsp;
 		<%Call comboRtTodos("rt", Env.oConn, True)%>
 	</td>
 </tr>
@@ -101,12 +101,12 @@ function montaExcel()
 </tr>
 <tr>
 	<td>
-		Solicitado nos últimos <input class="texto1" name="sol_dias" size="3" maxlength="10"> dias
+		Solicitado nos Ãºltimos <input class="texto1" name="sol_dias" size="3" maxlength="10"> dias
 	</td>
 </tr>
 <tr>
 	<td>
-		Iniciado nos últimos <input class="texto1" name="ini_dias" size="3" maxlength="10"> dias
+		Iniciado nos Ãºltimos <input class="texto1" name="ini_dias" size="3" maxlength="10"> dias
 	</td>
 </tr>
 <tr>
@@ -115,12 +115,12 @@ function montaExcel()
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		Checa falta de Laudo&nbsp;<input type="Checkbox" name="chkLaudo">
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		Checa falta de Relatório de Ensaio&nbsp;<input type="Checkbox" name="chkRelEnsaio">
+		Checa falta de RelatÃ³rio de Ensaio&nbsp;<input type="Checkbox" name="chkRelEnsaio">
 	</td>
 </tr>
 <tr>
 	<td>
-		Checa Necessidade de Relatório de Ensaio&nbsp;<input type="Checkbox" name="chkEquipSis">
+		Checa Necessidade de RelatÃ³rio de Ensaio&nbsp;<input type="Checkbox" name="chkEquipSis">
 	</td>
 </tr>
 <tr>
@@ -128,21 +128,21 @@ function montaExcel()
 		Tipo de Teste:&nbsp;
 		<%call comboBDSQL( "tip_te",Env.oConn, "Select TA_DESCRICAO as valor,TA_DESCRICAO as descricao from TIPO_ATIVIDADE ORDER BY TA_DESCRICAO", "", true)%>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<!--Área Tecnológica:&nbsp;
+		<!--Ãrea TecnolÃ³gica:&nbsp;
 		<%'call comboAreaTecnologica("at_id", Env.oConn, "N")%>
 		-->
 	</td>
 </tr>
 <tr>
 	<td>
-		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Solicitado pelo cliente entre </u></a>&nbsp;
+		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco Ã© considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Solicitado pelo cliente entre </u></a>&nbsp;
 		<%call comboData("dataIniCad")%>&nbsp;e&nbsp;<%call comboData("dataFimCad")%>
 	</td>
 </tr>
 <tr>
 	<td>
-		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Período agendado pelo cliente </u></a>&nbsp;
-		<%call comboData("dataIniCadSol")%>&nbsp;até&nbsp;<%call comboData("dataFimCadSol")%>
+		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco Ã© considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>PerÃ­odo agendado pelo cliente </u></a>&nbsp;
+		<%call comboData("dataIniCadSol")%>&nbsp;atÃ©&nbsp;<%call comboData("dataFimCadSol")%>
 	</td>
 </tr>
 <tr>

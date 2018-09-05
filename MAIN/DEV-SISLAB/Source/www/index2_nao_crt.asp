@@ -1,22 +1,22 @@
-<script language="JavaScript">
+Ôªø<script language="JavaScript">
 function verificaNavegador() {
 	var ehIE;
 	var versao;
 	
-	// N„o È um browser IE, pode ser qualquer outro
+	// N√£o √© um browser IE, pode ser qualquer outro
 	ehIE = navigator.userAgent.indexOf("MSIE");
 
 	if(ehIE == -1)
 	{
 		//location.href = 'indexNS.asp';
-		alert('AtenÁ„o !\n\nSeu navegador n„o È o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispoÌveis no seu browser.');
+		alert('Aten√ß√£o !\n\nSeu navegador n√£o √© o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispo√≠veis no seu browser.');
     }
 	else
 	{
 		versao = navigator.userAgent.substring(ehIE);
 		ehIE = versao.indexOf(";");
 		if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			alert('AtenÁ„o !\n\nVocÍ est· usando uma vers„o do Internet Explorer inferior ‡ 5.5. Alguns recursos do sistema SISLAB podem n„o funcionar corretamente nesta vers„o.\n\nPor favor, atualize o seu browser antes de continuar.');
+			alert('Aten√ß√£o !\n\nVoc√™ est√° usando uma vers√£o do Internet Explorer inferior √† 5.5. Alguns recursos do sistema SISLAB podem n√£o funcionar corretamente nesta vers√£o.\n\nPor favor, atualize o seu browser antes de continuar.');
 	}
 }
 
@@ -26,7 +26,7 @@ verificaNavegador();
 <!--#include file="Global.asa"-->
 
 <%
-'-- Inicializa as constantes do tipo Application no caso de n„o serem lidas pelo Global.Asa
+'-- Inicializa as constantes do tipo Application no caso de n√£o serem lidas pelo Global.Asa
 'If Application("SISLAB_AMBIENTE") = "" Then
 	Call Application_OnStart()
 'End If
@@ -56,12 +56,12 @@ indicador = "<img align='middle' src='img/bullet.gif' border='0'>&nbsp;"
 		<table border="0" cellpadding="0" cellspacing="0" height="120px">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">InformaÁıes de Log Book</td>
+			<td class="menu1th" width="170px">Informa√ß√µes de Log Book</td>
 			<td><img src="img/borda/m1te.gif" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3" class="menu1" height="90px">
-				<iframe src="info_logbook.asp" frameborder="0" width="185px" height="90px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="info_logbook.asp" frameborder="0" width="185px" height="90px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -78,12 +78,12 @@ indicador = "<img align='middle' src='img/bullet.gif' border='0'>&nbsp;"
 		<table border="0" cellpadding="0" cellspacing="0" height="120px">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">NotÌcias</td>
+			<td class="menu1th" width="170px">Not√≠cias</td>
 			<td><img src="img/borda/m1te.gif" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3" class="menu1" height="120px">
-				<iframe src="noticias.asp" frameborder="0" width="185px" height="130px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="noticias.asp" frameborder="0" width="185px" height="130px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -98,12 +98,12 @@ indicador = "<img align='middle' src='img/bullet.gif' border='0'>&nbsp;"
 		<table border="0" cellpadding="0" cellspacing="0" height="120px">
 		<tr>
 			<td><img src="img/borda/c1tl.gif" border="0"></td>
-			<td class="menu1th" width="170px">ConheÁa o CRT</td>
+			<td class="menu1th" width="170px">Conhe√ßa o CRT</td>
 			<td><img src="img/borda/m1te.gif" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3" class="menu1" height="110px">
-				<iframe src="fotos_crt.asp" frameborder="0" width="185px" height="155px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n„o consegue visualizar este iframe</iframe>
+				<iframe src="fotos_crt.asp" frameborder="0" width="185px" height="155px" scrolling="auto" name="teste_iframe">Desculpe, mas seu browser n√£o consegue visualizar este iframe</iframe>
 			</td>
 		</tr>
 		<tr valign="bottom">
@@ -122,7 +122,7 @@ indicador = "<img align='middle' src='img/bullet.gif' border='0'>&nbsp;"
 		<table border="0" cellpadding="0" cellspacing="0" height="120px">
 		<tr>
 			<td>&nbsp;<!--<img src="img/borda/c1tl.gif" border="0">--></td>
-			<td class="destaque" width="540px">Acha F·cil</td>
+			<td class="destaque" width="540px">Acha F√°cil</td>
 			<td>&nbsp;<!--<img src="img/borda/m1te.gif" border="0">--></td>
 		</tr>
 		<tr>
@@ -171,7 +171,7 @@ indicador = "<img align='middle' src='img/bullet.gif' border='0'>&nbsp;"
 										<table width="100%" height="100%">
 										<tr valign="top">
 											<td colspan="2" valign="top">
-												<a href="sit_crt.asp?hoje=1" onclick="javascript: showAguarde();" class="menu"><%=indicador%>Em execuÁ„o no CRT</a>
+												<a href="sit_crt.asp?hoje=1" onclick="javascript: showAguarde();" class="menu"><%=indicador%>Em execu√ß√£o no CRT</a>
 											</td>
 										</tr>
 										<tr>

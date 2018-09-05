@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -8,7 +8,7 @@ Dim objRS, s, plataforma
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "HistÃ³rico de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
 
 plataforma = request("plataforma")
 if plataforma = "" then plataforma = "0"
@@ -51,7 +51,7 @@ call Env.RecordSet(true, objRS, s)
 if not objRS.Eof then%>
 		<table class="tabela1" width="100%">
 		<tr>
-			<td width="200px"><b>Cód.Barras</b></td><td><b>Modelo</b></td><td><b>Descrição</b></td>
+			<td width="200px"><b>CÃ³d.Barras</b></td><td><b>Modelo</b></td><td><b>DescriÃ§Ã£o</b></td>
 		</tr>
 <%		while not objRS.Eof%>
 		<tr><td><%=objRS("EQ_CODIGOBARRAS")%></td><td><%=objRS("MOD_CODNOME")%></td><td><%=objRS("MOD_DESCRICAO")%></td></tr>
@@ -72,14 +72,14 @@ call Env.RecordSet(false, objRS, null)
 
 <tr><td>&nbsp;</td></tr>
 
-<tr><th align="left">&nbsp;Histórico das mudanças na Plataforma</th></tr>
+<tr><th align="left">&nbsp;HistÃ³rico das mudanÃ§as na Plataforma</th></tr>
 
 <tr>
 	<td>
 <%
 s =	"SELECT HPE_ID, f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO, " & _
 	"CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 103) + ' ' + LEFT(CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 114), 5) AS HPE_DATAALTERACAO, " & _
-	"CASE WHEN pe.HPE_TIPOMOVIMENTO = 'E' THEN 'Entrada' ELSE 'Saída' END AS HPE_TIPOMOVIMENTO " & _
+	"CASE WHEN pe.HPE_TIPOMOVIMENTO = 'E' THEN 'Entrada' ELSE 'SaÃ­da' END AS HPE_TIPOMOVIMENTO " & _
 	"FROM vw_SCE_Equipamentos_Fabricantes f INNER JOIN Historico_Plataforma_Equipamentos pe " & _
 	"ON f.EQ_ID = pe.EQ_ID " & _
 	"WHERE pe.S_ID = " & plataforma & " " & _
@@ -91,16 +91,16 @@ if not objRS.Eof then%>
 <%		if Env.ehRAT Then %>
 			<td align="center">&nbsp;</td>
 <%		End If %>
-			<td width="200px"><b>Cód.Barras</b></td>
+			<td width="200px"><b>CÃ³d.Barras</b></td>
 			<td><b>Modelo</b></td>
-			<td><b>Descrição</b></td>
+			<td><b>DescriÃ§Ã£o</b></td>
 			<td><b>Data Mov.</b></td>
 			<td align="center"><b>Movimento</b></td>
 		</tr>
 <%		while not objRS.Eof%>
 		<tr>
 <%			if Env.ehRAT Then %>
-			<td align="center"><a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histórico"><img src="img/btn_excluir.gif" border="0"></a></td>
+			<td align="center"><a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histÃ³rico"><img src="img/btn_excluir.gif" border="0"></a></td>
 <%			End If %>
 			<td><%=objRS("EQ_CODIGOBARRAS")%></td>
 			<td><%=objRS("MOD_CODNOME")%></td>

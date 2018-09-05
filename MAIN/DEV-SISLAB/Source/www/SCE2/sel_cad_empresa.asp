@@ -1,4 +1,4 @@
-<!------- SCE ------->
+ï»¿<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!--#include file="includes/estado.asp" -->
 <!------- SISLAB ---->
@@ -26,12 +26,12 @@ function filtrar()
 
 	if((f.txtCNPJ.value == '') && (f.txtDescricao.value == ''))
 	{
-		alert('Preencha um dos critérios da pesquisa.');
+		alert('Preencha um dos critÃ©rios da pesquisa.');
 		f.txtCNPJ.focus();
 	}
 	else if(isNaN(f.txtCNPJ.value))
 	{
-		alert('O filtro CNPJ deve ser numérico e sem pontuação.');
+		alert('O filtro CNPJ deve ser numÃ©rico e sem pontuaÃ§Ã£o.');
 		f.txtCNPJ.focus();
 	}
 	else
@@ -46,7 +46,7 @@ function filtrar()
 		<td class=texto>
 		<%if request("msg") <> "" then
 			if cint(request("msg")) = 1 then response.write "<b>Empresa alterada com sucesso</b><br>"
-			if cint(request("msg")) = 2 then response.write "<b>Empresa excluída com sucesso</b><br>"
+			if cint(request("msg")) = 2 then response.write "<b>Empresa excluÃ­da com sucesso</b><br>"
 			response.write "<br>"
 		end if%>
 		</td>
@@ -66,7 +66,7 @@ function filtrar()
 					<td class="texto1">
 						Cnpj: <input type="Text" name="txtCNPJ" class="texto1" size="15" maxlength="14">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Descrição: <input type="Text" name="txtDescricao" size="40" maxlength="50" class="texto1">
+						DescriÃ§Ã£o: <input type="Text" name="txtDescricao" size="40" maxlength="50" class="texto1">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="Button" value="Filtrar" onclick="javascript:filtrar();" class="texto1">
 					</td>

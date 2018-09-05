@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#inc lude file="includes/conexao.inc" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
@@ -9,7 +9,7 @@ Dim RS
 '-- redireciona caso expirado
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
 
-'Dados Básico - Cliente -----------------------------------------------------------
+'Dados BÃ¡sico - Cliente -----------------------------------------------------------
 equipamento = request.form("cmbEquipamento")
 teste = request.form("cmbTeste")
 obs = trocaPlic2Aspas(request.form("obs"))
@@ -52,7 +52,7 @@ Set RS = Env.oConn.execute(ssql)
 If Not (RS.Eof And RS.Bof) Then
 	If (RS("RepeticaoOS") = 1) Then
 %>
-	alert('Esta OS está marcada para repetição !');
+	alert('Esta OS estÃ¡ marcada para repetiÃ§Ã£o !');
 <%
 	End If
 End If

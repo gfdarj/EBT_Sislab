@@ -1,19 +1,19 @@
-<!--#INCLUDE FILE="../SCE/includes/abre.asp" -->
+ï»¿<!--#INCLUDE FILE="../SCE/includes/abre.asp" -->
 <!--#inc lude file="../includes/Sislab_Lib.asp"-->
 <!--#incl ude file="../includes/global.asp"-->
 <!--#inc lude file="../includes/funcoes.asp"-->
 <!--#include file="../SCE/includes/controlesHTML_SCE.asp" -->
 <%
 '###
-'###	AJAX DA COMBO DE NATUREZA DE OPERAÇÃO NA TELA DE MOVIMENTAÇÃO DO SCE
+'###	AJAX DA COMBO DE NATUREZA DE OPERAÃ‡ÃƒO NA TELA DE MOVIMENTAÃ‡ÃƒO DO SCE
 '###
 Response.Clear()
 
-'# Evitar problemas com acentuação no ajax
+'# Evitar problemas com acentuaÃ§Ã£o no ajax
 Response.Charset="ISO-8859-1"
 
 '#####
-'#	Atualiza o inventário do equipamento com a data de hoje
+'#	Atualiza o inventÃ¡rio do equipamento com a data de hoje
 '###
 If Not VVVNZ(Request("tipo_mov")) Then
 	Dim RS

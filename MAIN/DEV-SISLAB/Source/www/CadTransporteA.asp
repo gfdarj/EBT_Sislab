@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
@@ -35,7 +35,7 @@ On Error Resume Next
 Call Env.oConn.Execute(chr_SQL)
 
 If Env.oConn.Errors.Count > 0 Then
-	RW "<script language='javascript'>alert('ERRO\n\nNúmero: " & Err.Number & "\nDescrição: " & Err.Description & "');</script>"
+	RW "<script language='javascript'>alert('ERRO\n\nNÃºmero: " & Err.Number & "\nDescriÃ§Ã£o: " & Err.Description & "');</script>"
 Else
 	If VVVNZ(id_horario) Or bln_Apaga Then
 		RW "<script language='javascript'>parent.location.href='CadTransporte.asp?altera=" & RQ("altera") & "';</script>"

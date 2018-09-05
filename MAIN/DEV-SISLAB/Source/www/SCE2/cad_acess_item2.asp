@@ -1,4 +1,4 @@
-<%Option Explicit%>
+ï»¿<%Option Explicit%>
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <!------- SISLAB ---->
@@ -61,35 +61,35 @@ conforme = request("conforme")
 if VVVNZ(id) then status = STATUS_CADASTRADO else status = request("status")
 
 '-- CONTROLE DE INSTRUMENTAL
-'-- pega a lista de acessorios (campos separados por "¿!¿" e separa cada registro concatenando
+'-- pega a lista de acessorios (campos separados por "Â¿!Â¿" e separa cada registro concatenando
 '-- em uma string passada ao banco de dados
 if request("lista_controles") = "" then
 	lista_controles = null
 else
 	lista_controles = ""
 	for each controle in request("lista_controles")
-		lista_controles = lista_controles + controle + "»?«"
+		lista_controles = lista_controles + controle + "Â»?Â«"
 	next
 	lista_controles = UCase(Left(lista_controles, Len(lista_controles)-3))
 
-	lista_controles = Replace(lista_controles, "MANUTENÇÃO CORRETIVA", CONTROLE_MANUTENCAO)
-	lista_controles = Replace(lista_controles, "MANUTENÇÃO PREVENTIVA", CONTROLE_MANUTENCAO_PREVENTIVA)
-	lista_controles = Replace(lista_controles, "CALIBRAÇÃO", CONTROLE_CALIBRACAO)
-	lista_controles = Replace(lista_controles, "QUALIFICAÇÃO", CONTROLE_QUALIFICACAO)
+	lista_controles = Replace(lista_controles, "MANUTENÃ‡ÃƒO CORRETIVA", CONTROLE_MANUTENCAO)
+	lista_controles = Replace(lista_controles, "MANUTENÃ‡ÃƒO PREVENTIVA", CONTROLE_MANUTENCAO_PREVENTIVA)
+	lista_controles = Replace(lista_controles, "CALIBRAÃ‡ÃƒO", CONTROLE_CALIBRACAO)
+	lista_controles = Replace(lista_controles, "QUALIFICAÃ‡ÃƒO", CONTROLE_QUALIFICACAO)
 end if
 
 'RESPONSE.WRITE lista_controles
 'RESPONSE.END
 
 '-- ACESSORIOS
-'-- pega a lista de acessorios (campos separados por "¿!¿" e separa cada registro concatenando
+'-- pega a lista de acessorios (campos separados por "Â¿!Â¿" e separa cada registro concatenando
 '-- em uma string passada ao banco de dados
 if request("lista_acessorios") = "" then
 	lista_acessorios = null
 else
 	lista_acessorios = ""
 	for each acessorio in request("lista_acessorios")
-		lista_acessorios = lista_acessorios + acessorio + "»?«"
+		lista_acessorios = lista_acessorios + acessorio + "Â»?Â«"
 	next
 	lista_acessorios = UCase(Left(lista_acessorios, Len(lista_acessorios)-3))
 end if
@@ -158,7 +158,7 @@ If int_Erro <> 0 Then
 End If
 
 'Grava a Plataforma do equipamento - utiliza a estrutura do mesmo cadastro do SISLAB
-'para guardar o histórico das mudanças
+'para guardar o histÃ³rico das mudanÃ§as
 chr_SQL = "" & _
 	"SET NOCOUNT ON " & VbCrLf & _
 	"DECLARE @Hoje DATETIME" & VbCrLf & _

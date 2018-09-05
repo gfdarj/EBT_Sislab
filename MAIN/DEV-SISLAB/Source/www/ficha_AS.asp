@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -95,7 +95,7 @@ AuxTipoTesteint=objSiteRS("TA_ID")
 
 <table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
-	<th align="left">HistÛrico de Eventos</th>
+	<th align="left">Hist√≥rico de Eventos</th>
 </tr>
 </table>
 
@@ -107,10 +107,10 @@ AuxTipoTesteint=objSiteRS("TA_ID")
 	<td width="38%"></td>
 </tr>
 <tr class="realce1">
-	<td align="center">SITUA«√O</td>
-	<td align="center">DATA DE INÕCIO</td>
-	<td align="center">DATA DE T…RNINO</td>
-	<td align="center">OBSERVA«¬O</td>
+	<td align="center">SITUA√á√ÉO</td>
+	<td align="center">DATA DE IN√çCIO</td>
+	<td align="center">DATA DE T√âRNINO</td>
+	<td align="center">OBSERVA√á√ÇO</td>
 </tr>
 <%
 sSQL = _
@@ -151,7 +151,7 @@ if Not objSiteRS.eof then
 
 <table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
-	<th align="left">HistÛrico de Eventos - Ordem de ServiÁo</th>
+	<th align="left">Hist√≥rico de Eventos - Ordem de Servi√ßo</th>
 </tr>
 </table>
 
@@ -164,11 +164,11 @@ if Not objSiteRS.eof then
 	<td width="26%"></td>
 </tr>
 <tr class="realce1">
-	<td align="center">N∫ OS</td>
-	<td align="center">SITUA«√O</td>
-	<td align="center">DATA DE INÕCIO</td>
-	<td align="center">DATA DE T…RMINO</td>
-	<td align="center"><b>OBSERVA«√O</td>
+	<td align="center">N¬∫ OS</td>
+	<td align="center">SITUA√á√ÉO</td>
+	<td align="center">DATA DE IN√çCIO</td>
+	<td align="center">DATA DE T√âRMINO</td>
+	<td align="center"><b>OBSERVA√á√ÉO</td>
 </tr>
 <%	Dim auxOS
 	Do while Not objSiteRS.eof
@@ -200,7 +200,7 @@ if not (objSiteRS.Eof and objSiteRS.Bof) then
 <br>
 <table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
-	<th align="left">HistÛrico de AlteraÁıes de Datas</th>
+	<th align="left">Hist√≥rico de Altera√ß√µes de Datas</th>
 </tr>
 </table>
 <table border="1" width="100%" cellpadding="2" cellspacing="1">
@@ -210,9 +210,9 @@ if not (objSiteRS.Eof and objSiteRS.Bof) then
 	<td width="*"></td>
 </tr>
 <tr class="realce1">
-	<td align="center">DATA DE INÕCIO</td>
-	<td align="center">DATA DE T…RNINO</td>
-	<td align="center">OBSERVA«¬O</td>
+	<td align="center">DATA DE IN√çCIO</td>
+	<td align="center">DATA DE T√âRNINO</td>
+	<td align="center">OBSERVA√á√ÇO</td>
 </tr>
 <%
 objSiteRS.MoveFirst
@@ -293,7 +293,7 @@ End If%>
 </tr>
 <tr class="realce1">
 	<td colspan="10">
-	&nbsp;&nbsp;TÕTULO DO AGENDAMENTO
+	&nbsp;&nbsp;T√çTULO DO AGENDAMENTO
 	</td>
 </tr>
 <tr class="texto1">
@@ -306,10 +306,10 @@ End If%>
 	&nbsp;&nbsp;TIPO DE TESTE
 	</td>
 	<td align="center" colspan="2">
-	<B>DATA DE INÕCIO</B>
+	<B>DATA DE IN√çCIO</B>
 	</td>
 	<td align="center" colspan="2">
-	<B>DATA DE T…RMINO</B>
+	<B>DATA DE T√âRMINO</B>
 	</td>
 </tr>
 <tr class="texto1">
@@ -328,7 +328,7 @@ End If%>
 	&nbsp;&nbsp;TECNOLOGIA UTILIZADA (PRINCIPAL)
 	</td>
 	<td colspan="2" align="center">
-	DATA DA SOLICITA«√O
+	DATA DA SOLICITA√á√ÉO
 	</td>
 	<td align="center" colspan="2">
 	CONFIDENCIALIDADE
@@ -359,7 +359,7 @@ End If%>
 
 <tr class="realce1">
 	<td colspan="10">
-	&nbsp;&nbsp;AMBIENTE NECESS¡RIO
+	&nbsp;&nbsp;AMBIENTE NECESS√ÅRIO
 	</td>
 </tr>
 <tr class="texto1">
@@ -370,7 +370,7 @@ End If%>
 
 <tr class="realce1">
 	<td colspan="10">
-	&nbsp;&nbsp;RECURSOS NECESS¡RIOS
+	&nbsp;&nbsp;RECURSOS NECESS√ÅRIOS
 	</td>
 </tr>
 <tr class="texto1">
@@ -381,7 +381,7 @@ End If%>
 
 <tr class="realce1">
 	<td colspan="10">
-	&nbsp;&nbsp;OBSERVA«’ES
+	&nbsp;&nbsp;OBSERVA√á√ïES
 	</td>
 </tr>
 <tr class="texto1">
@@ -392,13 +392,13 @@ End If%>
 
 <tr class="realce1">
 	<td colspan="6">
-	&nbsp;&nbsp;SOLICITANTE (USERNAME - MATRÕCULA)
+	&nbsp;&nbsp;SOLICITANTE (USERNAME - MATR√çCULA)
 	</td>
 	<td align="center" colspan="2">
 	RAMAL
 	</td>
 	<td align="center" colspan="2">
-	”RG√O
+	√ìRG√ÉO
 	</td>
 </tr>
 <tr class="texto1">
@@ -418,7 +418,7 @@ End If%>
 	&nbsp;&nbsp;CLIENTES EXTERNOS
 	</td>
 	<td colspan="4">
-	&nbsp;&nbsp;RETIFICA«√O
+	&nbsp;&nbsp;RETIFICA√á√ÉO
 	</td>
 	<td colspan="3">
 	&nbsp;&nbsp;RETORNO DO CLIENTE (R$)
@@ -499,13 +499,13 @@ End If
 
 <tr class="realce1">
 	<td colspan="6">
-	&nbsp;&nbsp;RESPONS¡VEL T…CNICO (USERNAME - MATRÕCULA)
+	&nbsp;&nbsp;RESPONS√ÅVEL T√âCNICO (USERNAME - MATR√çCULA)
 	</td>	
 	<td align="center" colspan="2">
 	RAMAL
 	</td>		
 	<td align="center" colspan="2">
-	”RG√O
+	√ìRG√ÉO
 	</td>
 </tr>
 <tr class="texto1">
@@ -561,13 +561,13 @@ End If
 
 <tr class="realce1">
 	<td colspan="6">
-	&nbsp;&nbsp;RAT (USERNAME - MATRÕCULA)
+	&nbsp;&nbsp;RAT (USERNAME - MATR√çCULA)
 	</td>
 	<td align="center" colspan="2">
 	RAMAL
 	</td>	
 	<td align="center" colspan="2">
-	”RG√O
+	√ìRG√ÉO
 	</td>
 </tr>
 
@@ -617,7 +617,7 @@ if objSiteRS(0) > 0 then
 %>
 <tr class="realce1">
 	<td align="center" colspan="5">
-	SERVI«OS EMBRATEL UTILIZADOS
+	SERVI√áOS EMBRATEL UTILIZADOS
 	</td>
 	<td align="center" colspan="5">
 	SISTEMAS UTILIZADOS
@@ -678,10 +678,10 @@ If not (objRes.EOF and objRes.BOF) then
 <table width="100%" border="1" cellpadding="2" cellspacing="2">
 <tr>
 <tr class="realce1">
-	<td align="center">N∫ OS</td>
+	<td align="center">N¬∫ OS</td>
 	<td align="center">TESTE</td>
 <!--	<td align="center">DADOS GERAIS DOS TESTES</td> -->
-	<td align="center">SERVI«O</td>
+	<td align="center">SERVI√áO</td>
 	<td align="center">PLATAFORMA</td>
 	<td align="center">AMOSTRA</td>
 </tr>
@@ -699,11 +699,11 @@ If not (objRes.EOF and objRes.BOF) then
 <!--
 	<td>
 <%		'if not IsNull(objRes("T_DESCRICAO")) then%>
-	DescriÁ„o: <%'=objRes("T_DESCRICAO")%><br>
+	Descri√ß√£o: <%'=objRes("T_DESCRICAO")%><br>
 <%		'end if
 
 		'if not IsNull(objRes("T_OBSERVACAO")) then%>
-	ObservaÁıes: <%'=objRes("T_OBSERVACAO")%><br>
+	Observa√ß√µes: <%'=objRes("T_OBSERVACAO")%><br>
 <%		'end if%>
 		&nbsp;
 	</td>
@@ -734,7 +734,7 @@ if Env.usuarioCRT then
 
 <table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
-	<th align="left">HistÛrico de ComunicaÁıes deste Agendamento</th>
+	<th align="left">Hist√≥rico de Comunica√ß√µes deste Agendamento</th>
 </tr>
 </table>
 

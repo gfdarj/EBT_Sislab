@@ -1,4 +1,4 @@
-<!------- SISLAB ---->
+Ôªø<!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!--#inc lude file="../includes/padraoHTML.asp"-->
 <!------- LIB ------->
@@ -47,7 +47,7 @@ if UCase(request("ehReserva")) = "SIM" then
 	'-- para movimentacao
 
 	no_tipo = MOV_LOGISTICA_SAIDA
-	no_id = 524 ' LAB - SaÌda para teste c/ AS no laboratÛrio
+	no_id = 524 ' LAB - Sa√≠da para teste c/ AS no laborat√≥rio
 	ag_numero = request("ag_numero")
 	solicitante = Sce.ResponsavelAS(ag_numero)
 	reserva = 1
@@ -64,7 +64,7 @@ else
 	reserva = 0
 
 	'-- se for mov. do tipo expedicao entao verifica se existem acessorios do item
-	'-- marcados como "em uso", caso tenha a movimentaÁ„o nao pode ser feita
+	'-- marcados como "em uso", caso tenha a movimenta√ß√£o nao pode ser feita
 	if (no_tipo = MOV_EXPEDICAO) Or (no_tipo = MOV_EXPEDICAO_SUBST) then
 		ssql = "select e.EQ_ID, e.EQ_CODIGOBARRAS, a.SEQUENCIAL, a.DESCRICAO, a.STATUS "
 		ssql = ssql & "from SCE_Acessorios a inner join SCE_Equipamentos e on a.EQ_ID = e.EQ_ID "
@@ -75,12 +75,12 @@ else
 		'-- monto um quadro de aviso, contendo os equips e os acessorios
 		if not (rec.eof and rec.bof) then
 			msg =	"<table width='600px' align='center' class='texto' style='border: thin red solid;'>" + _
-					"<tr><th style='border-bottom: thin red solid;'>Existem acessÛrios do item em uso ou no estoque !</th></tr>" + _
+					"<tr><th style='border-bottom: thin red solid;'>Existem acess√≥rios do item em uso ou no estoque !</th></tr>" + _
 					"<tr><td>&nbsp;</td></tr>" + _
-					"<tr><td>Para realizar a esta movimentaÁ„o, È necess·rio fazer devoluÁ„o do acessÛrio no cadastro do item. Clique nos itens abaixo para alter·-los</td></tr>" + _
+					"<tr><td>Para realizar a esta movimenta√ß√£o, √© necess√°rio fazer devolu√ß√£o do acess√≥rio no cadastro do item. Clique nos itens abaixo para alter√°-los</td></tr>" + _
 					"<tr><td>" + _
 						"<table width='100%' class='texto'>" + _
-						"<tr align='left'><th width='130px'>CÛd. Barras</th><th>Acess&oacute;rio</th><th width='80px'>Status Acess.</th></tr>"
+						"<tr align='left'><th width='130px'>C√≥d. Barras</th><th>Acess&oacute;rio</th><th width='80px'>Status Acess.</th></tr>"
 			eq_id = ""
 			while not rec.eof
 				if rec("STATUS") = STATUS_EM_USO then
@@ -149,7 +149,7 @@ If CStr(fl_calibracao) <> "1" Then fl_calibracao = Null
 'response.write "doc: " & doc_id & "<BR><BR>"
 'response.end
 
-Tela.SetNomeTela = "SCE > MovimentaÁ„o > Item" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Movimenta√ß√£o > Item" : Tela.SetCaminhoRelativo = "../"
 
 On Error Resume Next
 

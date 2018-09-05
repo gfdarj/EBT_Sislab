@@ -16,12 +16,17 @@ Dim auxDescricao,auxobservacao,auxprovidencias, auxdocassociado
 
 Auxselecao=Request.form("selecao")
 %>
+<!DOCTYPE html>
+
 <html>
+
 <head>
-<title>Site do Centro de Referência Tecnológica</title>
-<meta http-equiv="Pragma" content="no-cache">
+    <title>Site do Centro de Referência Tecnológica</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
-<link rel="stylesheet" href="estilos/style.css">
+
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
 
 <% 

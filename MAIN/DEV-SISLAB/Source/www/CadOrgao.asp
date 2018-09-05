@@ -1,10 +1,10 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+Ôªø<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de ”rg„o", "location.href='sislab.asp'", "")
+call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de √ìrg√£o", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -32,22 +32,22 @@ function ValidaCampos(){
 	var frm = document.forms[0];
 
 	if (frm.sigla.value == ""){
-		alert('… necess·rio informar a Sigla do ”rg„o.');
+		alert('√â necess√°rio informar a Sigla do √ìrg√£o.');
 		frm.sigla.focus();
 		return false
 	}
 	if (frm.desc.value == ""){
-		alert('… necess·rio informar a DescriÁ„o.');
+		alert('√â necess√°rio informar a Descri√ß√£o.');
 		frm.desc.focus();
 		return false
 	}
 	if (frm.chefe.value == ""){
-		alert('… necess·rio informar o Username do Chefe do ”rg„o.');
+		alert('√â necess√°rio informar o Username do Chefe do √ìrg√£o.');
 		frm.chefe.focus();
 		return false
 	}
 	if (frm.hierarquia.value == ""){
-		alert('… necess·rio informar a Hierarquia.');
+		alert('√â necess√°rio informar a Hierarquia.');
 		frm.hierarquia.focus();
 		return false
 	}
@@ -77,7 +77,7 @@ function IncluirNovo(){
 function Excluir() {
 	var frm = document.forms[0];
 	if(frm.orga_id.value == '') {
-		alert('Nenhum Ûrg„o selecionado para exclus„o !');
+		alert('Nenhum √≥rg√£o selecionado para exclus√£o !');
 		frm.orga_id.focus();
 	}
 	else {
@@ -93,15 +93,15 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo ObrigatÛrio</b></td>
+	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigat√≥rio</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">”rg„os</td></tr>
+<tr><th align="left" colspan="2">√ìrg√£os</td></tr>
 
 <tr>
-	<td width="100px">&nbsp;&nbsp;<b>”rg„o:</b></td>
+	<td width="100px">&nbsp;&nbsp;<b>√ìrg√£o:</b></td>
 	<td>
 		<%call comboOrgaoHierarquia("orga_id", Env.oConn,"N")%>&nbsp;&nbsp;
 		<input class="texto1" type="Button" value="Buscar" onclick="BuscarOrgao();">
@@ -110,7 +110,7 @@ function Excluir() {
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">Dados do ”rg„o</th></tr>
+<tr><th align="left" colspan="2">Dados do √ìrg√£o</th></tr>
 
 <tr>
 	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Sigla:</b></td>
@@ -118,7 +118,7 @@ function Excluir() {
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;DescriÁ„o:</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descri√ß√£o:</b></td>
 	<td><input type="Text" name="desc" size="60" class="texto1"></td>
 <tr>
 
@@ -133,7 +133,7 @@ function Excluir() {
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="Username do respons·vel pelo Ûrg„o">Chefe</a>:</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="Username do respons√°vel pelo √≥rg√£o">Chefe</a>:</b></td>
 	<td><input type="Text" name="chefe" size="30" class="texto1"></td>
 <tr>
 
@@ -143,7 +143,7 @@ function Excluir() {
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="N˙mero inteiro que Indica a posiÁ„o hier·rquica do Ûrg„o dentro do cadastro">Hierarquia</a>:</b></td>
+	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="N√∫mero inteiro que Indica a posi√ß√£o hier√°rquica do √≥rg√£o dentro do cadastro">Hierarquia</a>:</b></td>
 	<td><input type="Text" name="hierarquia" size="10" class="texto1"></td>
 <tr>
 

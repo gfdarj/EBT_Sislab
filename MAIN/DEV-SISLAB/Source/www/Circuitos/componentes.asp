@@ -1,4 +1,4 @@
-<!--#include file="includes/montatela.inc"-->
+Ôªø<!--#include file="includes/montatela.inc"-->
 <!--#include file="includes/funcoesAux.inc"-->
 
 <!--#include file="../includes/Sislab_Lib.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/controlesHTML.asp" -->
 <html>
 <head>
-	<title>Site do Centro de ReferÍncia TecnolÛgica</title>
+	<title>Site do Centro de Refer√™ncia Tecnol√≥gica</title>
 	<meta http-equiv="Pragma" content="no-cache">
 	<link rel="stylesheet" href="includes/style.css">
 </head>
@@ -40,7 +40,7 @@ function adicionaInt()
 	}
 	else if (verificaLista1(chave, lista))
 	{
-		alert("Esta Interface j· se encontra na lista.");
+		alert("Esta Interface j√° se encontra na lista.");
 		combo.focus();		
 	}
 	else
@@ -73,7 +73,7 @@ function selecionaItens(lista)
 }
 
 function verificaLista(valor, lista)
-//Verifica se um valor j· se encontra na lista
+//Verifica se um valor j√° se encontra na lista
 {
 	var i;
 	for(i=0; i<lista.length; i++)
@@ -83,7 +83,7 @@ function verificaLista(valor, lista)
 }
 
 function verificaLista1(valor, lista)
-//Verifica se um valor j· se encontra na lista
+//Verifica se um valor j√° se encontra na lista
 {
 	var i;
 	for(i=0; i<lista.length; i++)
@@ -117,7 +117,7 @@ if( isnumeric( cstr( request.querystring( "cpt_id" ) ) ) ) then
 '	response.end
 	call Env.RecordSet( true, objRS, strSQL)
 	if( objRS.BOF and objRS.EOF ) then
-		call ErroBD( "Identificador de componente inv·lido" )
+		call ErroBD( "Identificador de componente inv√°lido" )
 	end if
 	vsw_atu = objRS( "vsw_atu" )
 	vsw_std = objRS( "vsw_std" )
@@ -178,7 +178,7 @@ function verifica()
 	{
 		d = d.lge_id;
 		l = l.l_local;
-		msg = "O local do componente n„o È v·lido";
+		msg = "O local do componente n√£o √© v√°lido";
 	}
 
 	if( msg != "" )
@@ -385,7 +385,7 @@ end if
 <tr>
 	<th>Vers&atilde;o de SW:</th>
 	<td><font class="Fonttit3Cad"><b>atual: <input type="Text" name="vsw_atu" size="20" maxlength="255" value="<%= vsw_atu %>" />&nbsp;&nbsp;&nbsp;
-padr„o: <input type="Text" name="vsw_std" size="20" maxlength="255" value="<%= vsw_std %>" /></b></font></td>
+padr√£o: <input type="Text" name="vsw_std" size="20" maxlength="255" value="<%= vsw_std %>" /></b></font></td>
 </tr>
 
 <tr valign="top">

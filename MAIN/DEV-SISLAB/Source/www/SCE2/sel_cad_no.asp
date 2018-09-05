@@ -1,4 +1,4 @@
-<!------- SCE ------->
+Ôªø<!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Natureza de OperaÁ„o" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Consulta > Natureza de Opera√ß√£o" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -27,13 +27,13 @@ function navselecao()
 	<tr>
 		<div class="texto1">
 		<%if request("msg") <> "" then
-			if cint(request("msg")) = 1 then response.write "Natureza de OperaÁ„o alterada com sucesso.<br><br>"
-			if cint(request("msg")) = 2 then response.write "Natureza de OperaÁ„o excluÌda com sucesso.<br><br>"
+			if cint(request("msg")) = 1 then response.write "Natureza de Opera√ß√£o alterada com sucesso.<br><br>"
+			if cint(request("msg")) = 2 then response.write "Natureza de Opera√ß√£o exclu√≠da com sucesso.<br><br>"
 		end if
 		%></div></td>
 	</tr> 
     <tr> 
-		<td class="destaque">Editar / Excluir Natureza de OperaÁ„o</td>
+		<td class="destaque">Editar / Excluir Natureza de Opera√ß√£o</td>
 	</tr>
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr>
@@ -48,7 +48,7 @@ function navselecao()
 				wend%>
 				</select>
 			<%else
-				response.write "N„o existem Naturezas de OperaÁ„o cadastradas no momento."
+				response.write "N√£o existem Naturezas de Opera√ß√£o cadastradas no momento."
 			end if%>
 		</td>
 	</tr>

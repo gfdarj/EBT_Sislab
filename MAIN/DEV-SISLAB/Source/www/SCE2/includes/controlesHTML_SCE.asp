@@ -1,15 +1,15 @@
-<%
+ï»¿<%
 '-----------------------------------------------------------------------------
 '-- Funcoes de banco de dados - SCE --
 '
-' Requer a inclusão dos arquivos
+' Requer a inclusÃ£o dos arquivos
 '
 '<!--#include file="../../includes/Sislab_Lib.asp" -->
 '<!--#include file="../../includes/controlesHTML.asp" -->
 '-----------------------------------------------------------------------------
 
 Function Bool2Str(valor)
-	if valor then Bool2Str = "Sim" else Bool2Str = "Não"
+	if valor then Bool2Str = "Sim" else Bool2Str = "NÃ£o"
 End Function
 
 '-- UTILIZADA PELAS TELAS DE CADASTRO DE RESERVA DE ITENS --

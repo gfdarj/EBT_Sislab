@@ -1,4 +1,4 @@
-<!------- LIB ------->
+Ôªø<!------- LIB ------->
 <!--#include file="../Lib/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
@@ -67,7 +67,7 @@ function ValidaCampos()
 				<td class="texto1">SaP:&nbsp;
 					<input type="text" class="texto1" name="mod_net" maxlength="100" value="<%=recm("mod_net")%>">
 				</td>
-				<td class="texto1">¡rea de UtilizaÁ„o:
+				<td class="texto1">√Årea de Utiliza√ß√£o:
 				  <%ssql = "select * from sce_areautilizacao order by au_descricao"
 				  set rec = Env.oconn.execute(ssql)
 				  if not rec.eof then%>
@@ -89,7 +89,7 @@ function ValidaCampos()
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr> 
 		<td class="texto1">
-			FamÌlia Tipo:&nbsp;
+			Fam√≠lia Tipo:&nbsp;
 					<%ssql = "select * from sce_tipos order by tipo_descricao"
 					set rec = Env.oconn.execute(ssql)
 					if not rec.eof then%>
@@ -105,11 +105,11 @@ function ValidaCampos()
 	</tr>
 	<tr><td class="texto1">&nbsp;</td></tr>
 	<tr> 
-		<td bgcolor="#FFFFFF" class="texto1">DescriÁ„o do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="texto1"><%=recm("mod_descricao")%></textarea></td>
+		<td bgcolor="#FFFFFF" class="texto1">Descri√ß√£o do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="texto1"><%=recm("mod_descricao")%></textarea></td>
 	</tr>
 	<tr><td class="texto">&nbsp;</td></tr>
 	<tr> 
-      	<td bgcolor="#FFFFFF" class="texto1">ObservaÁıes<br>
+      	<td bgcolor="#FFFFFF" class="texto1">Observa√ß√µes<br>
 		<textarea class="texto1" name="mod_obs" style="width:550" cols="80" rows="5"><%=recm("mod_obs")%></textarea></td>
 	</tr>
 	<%ssql = "select * from sce_partnumbermodelo where mod_id = "& recm("mod_id")

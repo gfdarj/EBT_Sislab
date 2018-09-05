@@ -1,4 +1,4 @@
-<!--#include file="includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
@@ -15,9 +15,9 @@ Dim nome_coluna(), total_por_coluna()		'-- arrays com os nomes e totais por colu
 Dim objRS, s, cliente
 
 if request("index") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Relatório de Clientes Externos por Atividade", "SO_IMPRESSORA", "")
+	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "RelatÃ³rio de Clientes Externos por Atividade", "SO_IMPRESSORA", "")
 else
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Clientes Externos por Atividade", "", "")
+	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "RelatÃ³rio de Clientes Externos por Atividade", "", "")
 end if
 %>
 <table class="texto1" border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">

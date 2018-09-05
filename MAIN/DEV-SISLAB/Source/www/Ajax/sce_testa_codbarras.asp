@@ -1,15 +1,15 @@
-<!--#include file="../includes/Sislab_Lib.asp"-->
+ï»¿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../includes/global.asp"-->
 <%
 '###
-'###	AJAX DE TESTE DO CÓDIGO DE BARRAS - RETORNA O ID DO CÓDIGO, SE NÃO EXISTE ZERO
+'###	AJAX DE TESTE DO CÃ“DIGO DE BARRAS - RETORNA O ID DO CÃ“DIGO, SE NÃƒO EXISTE ZERO
 '###
 
-'# Evitar problemas com acentuação no ajax
+'# Evitar problemas com acentuaÃ§Ã£o no ajax
 Response.Charset="ISO-8859-1"
 
 '#####
-'#	Atualiza o inventário do equipamento com a data de hoje
+'#	Atualiza o inventÃ¡rio do equipamento com a data de hoje
 '###
 If Not VVVNZ(Request("codbarras")) Then
 	Dim RS

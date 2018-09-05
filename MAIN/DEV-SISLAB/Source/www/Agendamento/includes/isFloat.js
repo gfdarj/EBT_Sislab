@@ -1,4 +1,4 @@
-// recebe uma string e verifica se eh um numero ponto flutuante 
+﻿// recebe uma string e verifica se eh um numero ponto flutuante 
 // O SEPARADOR PARA CASAS DECIMAIS EH O PONTO (.)
 function isFloat(str)
 {
