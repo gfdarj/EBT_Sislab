@@ -7,6 +7,7 @@
 
 Class TEbt
 
+    Private chr_Descricao
     Private bln_TemErro
     Private chr_MsgErro
     Private chr_Login
@@ -48,6 +49,10 @@ Class TEbt
 
     Public Property Get MensagemErro()
         MensagemErro = chr_MsgErro
+    End Property
+
+    Public Property Get Descricao()
+        Descricao = chr_Descricao
     End Property
 
     Public Property Get ehRT()
@@ -107,6 +112,7 @@ Class TEbt
     Private Sub Class_Initialize()
         Set oSql = New TSql
 
+        chr_Descricao = ""
         chr_Login = ""
         bln_TemErro = False
         chr_MsgErro = ""
@@ -165,6 +171,7 @@ Class TEbt
             chr_Ramal = ""
             chr_Celular = ""
             chr_Matricula = ""
+            chr_Descricao = ""
 	    Else
 		    bln_usuarioCRT = True
 		    bln_ehRT = CBool(objRS("RT"))
@@ -201,13 +208,20 @@ Class TEbt
         dc = ""
         str_dc = ""
 
+'chr_login =    Request.ServerVariables("AUTH_USER")
+'exit sub
+
         'VAZIO: Pega o usuario logado no sistema
         If VVVNZ(chr_Usuario) Then
             strNTUser = Request.ServerVariables("AUTH_USER")
+
+            If strNTUser = "" Then Exit Sub
+
             email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
 
             str_cn = "CN=" & email(1)
 
+            'Verifica o domínio do usuário logado
             If UCase(Trim(email(0))) = "EMBRATEL" Then
                 str_dc = "DC=nt,DC=embratel,DC=com,DC=br"
             ElseIf UCase(Trim(email(0))) = "CLARO" Then
@@ -272,7 +286,7 @@ Class TEbt
         'objCmd.Properties("Page Size") = 100 ' bulk operation
         objCmd.CommandText = strQueryDL
 
-        On Error Resume Next
+'        On Error Resume Next
         Set objRs = objCmd.Execute
 
         chr_login = strUser
@@ -287,6 +301,7 @@ Class TEbt
                 chr_Nome_Reduzido = objRs.Fields("displayName")
                 chr_Ramal = objRs.Fields("telephoneNumber")
                 chr_Celular = objRs.Fields("mobile")
+                chr_Descricao = objRs.Fields("description")
             End If
             bln_TemErro = False
         Else

@@ -24,11 +24,12 @@ Set ebt1 = new TEbt
 response.Write "AQUI1 : " & now
 response.Write "<BR>" 'AQUI2 : " & now
 'response.End
-Call Ebt1.LoginUsuario("")
+Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
 'Call Ebt1.BuscaDadosEmbratel("")
 
 Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
 Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
 Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
 Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
 Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
