@@ -111,9 +111,9 @@ else	'-- novo agendamento
 		"	</td>" & _
 		"</tr>" & _
 		"</table>"
-	response.write chr_Buf
+	Response.Write chr_Buf
 
-	call imprimeRodape(RODAPE_OFF)
+	Call imprimeRodape(RODAPE_OFF)
 
 	Set objrs1 = Nothing
 	Set objrs2 = Nothing

@@ -167,7 +167,7 @@ function MostraHistoricoAS()
 end function
 
 function BuscaUserNameEBT()
-	dim username,obj1,matricula,rst,ehFuncionario
+	dim username,ebt1
 	dim ag_numero, objRS, sSQL, qualLista, ExisteNaBase
 
 	ExisteNaBase = False
@@ -177,38 +177,24 @@ function BuscaUserNameEBT()
 	ag_numero = Trim(request("ag_numero"))	'-- preciso do agendamento para comparar com a base de dados
 											'-- caso esteja vazio é um novo agendamento
 
-	if not isnumeric(username) then
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-		matricula = trim(obj1.GetMatricula(username))
-		set obj1 = nothing
-	else
-		matricula = username
-	end if
+	Set ebt1 = New TEbt
 
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-	Set rst = obj1.GetDados(matricula)
-	ehFuncionario = true
+    Call ebt1.LoginUsuario(username)
+	nomeReduzido = Ebt1.NomeReduzido
+	username = Ebt1.Usuario()
 
- 	if rst IS nothing then
-		ehFuncionario = false
- 	else
-		nomeReduzido = trim(rst("Nome_Reduzido"))
-		username = trim(rst("USER_ID"))
-		ehFuncionario = true
-	end if
-
-	Set obj1  = nothing
-	if not ehFuncionario then%>
-		<script>
-			alert('Funcionário inexistente na Embratel.');
+	If Not Ebt1.ehFuncionario() Then%>
+		<script type="text/javascript">
+			alert("Funcionário inexistente na Embratel.");
 		</script>
-<%	else
+<%	Else
 		if ag_numero <> "" then
 			sSQL = _
 				"SELECT * FROM PARTICIPANTES_EXTERNOS WHERE PE_EMPRESA = 'EBT' AND " & _
 				"PE_USERNAME = '" & ucase(username) & "' AND AG_NUMERO = " & ag_numero
-			call Env.RecordSet(true, objRS, sSQL)
-			if not (objRS.Eof and objRS.Bof) then
+			Call Env.RecordSet(true, objRS, sSQL)
+
+			If not (objRS.Eof and objRS.Bof) then
 				ExisteNaBase = True
 				if IsNull(objRS("PE_QUEMINCLUIU")) then
 					qualLista = "Cliente"
@@ -219,15 +205,16 @@ function BuscaUserNameEBT()
 				elseif objRS("PE_QUEMINCLUIU") = "RAT" then
 					qualLista = "RAT"
 				end if%>
-			<script language="JavaScript">
-				alert('Este usuário já está incluído na lista de <%=qualLista%>');
+			<script type="text/javascript">
+				alert("Este usuário já está incluído na lista de <%=qualLista%>");
 			</script>
-<%			end if
-			call Env.RecordSet(false, objRS, null)
-		end if
+<%			End If
 
-		if not ExisteNaBase then%>
-			<script>
+			Call Env.RecordSet(false, objRS, null)
+		End If
+
+		If Not ExisteNaBase Then%>
+			<script type="text/javascript">
 				var frm = parent.document.forms[0];
 				var nome = frm.txtNome<%=nomeControle%>;
 				var motivo = frm.txtMotivo<%=nomeControle%>;
@@ -241,11 +228,14 @@ function BuscaUserNameEBT()
 				motivo.value = "";
 				nome.focus();
 			</script>
-<%		end if
-	end if
-end function
+<%	    End If
+	End If
 
-function SalvaMensagemEmail()
+	Set ebt1  = Nothing
+End Function
+
+
+Function SalvaMensagemEmail()
 	dim mensagem
 	s_descricao = request("s_descricao")
 	s_os = 0

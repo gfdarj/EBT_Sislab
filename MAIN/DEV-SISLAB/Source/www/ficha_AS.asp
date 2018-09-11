@@ -48,11 +48,11 @@ AuxUsername = objSiteRS("AG_USERNAME")
 'Call Ebt.BuscaDadosEmbratel("wsaddi@alerj.gov.br")
 Call Ebt.BuscaDadosEmbratel(objSiteRS("AG_USERNAME"))
 
-response.Write Now & "<BR>"
-response.Write ebt.EhFuncionario & "<BR>"
-response.Write ebt.NomeReduzido  & "<BR>"
-response.Write ebt.Usuario & "<BR>"
-response.end 
+'response.Write Now & "<BR>"
+'response.Write ebt.EhFuncionario & "<BR>"
+'response.Write ebt.NomeReduzido  & "<BR>"
+'response.Write ebt.Usuario & "<BR>"
+'response.end 
 
 
 If Ebt.EhFuncionario Then
@@ -453,47 +453,31 @@ end if
 %>
 
 <%'=============================================================================
-Dim Matricula, obj1, rst, vIndicEmpregado
-Dim vNome, vSiglaOrgao, vDataNascimento
-Dim vUFComercual, vCidade,vRIT
+Dim Matricula, ebt1, vIndicEmpregado
+Dim vNome, vSiglaOrgao
+Dim vRIT
 
 vIndicEmpregado = "N" ' nao exite funcionario com esta matricula
 vNome = ""
 vSiglaOrgao = ""
-vDataNascimento = ""
-vUFComercual = ""
-vCidade = ""
 vRIT =  ""
 
-if AuxAGRT<>"" then
-	AuxUsername=AuxAGRT
+if AuxAGRT <> "" then
+	AuxUsername = AuxAGRT
 else
-	AuxUsername=""
+	AuxUsername = ""
 end if
 
+Set ebt1 = New TEbt
 
-If Application("SISLAB_AMBIENTE") <> "LOC" Then
+Call ebt1.LoginUsuario(AuxUsername)
 
-	'-- Pega os dados 
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-	Matricula = obj1.GetMatricula(AuxUsername)
-	set obj1=nothing
+Matricula = Ebt1.Matricula()
+vNome = Ebt1.NomeReduzido")
+vSiglaOrgao = Ebt1.SiglaOrgao
+vRIT =  ebt1.Ramal
 
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-	Set rst = obj1.GetDados(matricula)
-
-	if rst IS nothing then
-		'-- nao faz nada
-	else
-		vNome = rst("Nome_Reduzido")
-		vSiglaOrgao = rst("SiglaOrgao")
-		vDataNascimento = rst("DN")
-		vUFComercual = rst("UF_Com")
-		vCidade = rst("CID_COM")
-		vRIT =  rst("TEL1_COM") ' caso nulo usuario nao atualizou no CTE
-	end if
-	Set obj1  = nothing
-End If
+Set ebt1  = nothing
 
 '=============================================================================%>
 
@@ -521,7 +505,6 @@ End If
 </tr>
 
 <%'=============================================================================
-
 if AuxAGRAT<>"" then
 	AuxUsername=AuxAGRAT
 else
@@ -531,31 +514,17 @@ end if
 vIndicEmpregado = "N" ' nao exite funcionario com esta matricula
 vNome = ""
 vSiglaOrgao = ""
-vDataNascimento = ""
-vUFComercual = ""
-vCidade = ""
 vRIT =  ""
 
-If Application("SISLAB_AMBIENTE") <> "LOC" Then
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-	Matricula = obj1.GetMatricula(AuxUsername)
-	set obj1=nothing
+Set ebt1 = New TEbt
 
-	Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-	Set rst = obj1.GetDados(matricula)
+Call ebt1.LoginUsuario(AuxUsername)
 
-	if rst IS nothing then
-		'--
-	else
-		vNome = rst("Nome_Reduzido")
-		vSiglaOrgao = rst("SiglaOrgao")
-		vDataNascimento = rst("DN")
-		vUFComercual = rst("UF_Com")
-		vCidade = rst("CID_COM")
-		vRIT =  rst("TEL1_COM") ' caso nulo usuario nao atualizou no CTE
-	end if
-	Set obj1  = nothing
-End If
+vNome = ebt1.NomeReduzido()
+vSiglaOrgao = ebt1.SiglaOrgao()
+vRIT =  ebt1.Ramal()
+
+Set ebt1 = Nothing
 
 '=============================================================================%>
 

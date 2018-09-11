@@ -20,31 +20,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
-Set ebt1 = new TEbt
-response.Write "AQUI1 : " & now
-response.Write "<BR>" 'AQUI2 : " & now
-'response.End
-Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
-'Call Ebt1.BuscaDadosEmbratel("")
-
-Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
-Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
-Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
-Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
-Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
-Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
-Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
-Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
-Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
-Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
-Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
-Response.Write "Celular: " & Ebt1.Celular & "<BR>"
-Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
-Response.Write "NOW: " & now & "<BR>"
-Response.End
-
-
-dim usuarioCRT
+Dim usuarioCRT
 usuarioCRT = Env.UsuarioCRT
 
 'O SISTEMA VERIFICA SE EXISTEM DOCUMENTOS FORA DA VIGENCIA E ENVIA E-MAIL PARA RAT'S GQ'S PARA QUE POSSAM VALIDAR
@@ -370,21 +346,45 @@ end if%>
 	    if(ehIE == -1)
 	    {
 	        //location.href = 'indexNS.asp';
-	        alert('Aten��o !\n\nSeu navegador n�o � o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indispo�veis no seu browser.');
+	        alert('Atenção !\n\nSeu navegador não é o Internet Explorer. \n\nTalvez alguns recursos do sistema possam estar indisponíveis no seu browser.');
 	    }
 	    else
 	    {
 		    versao = navigator.userAgent.substring(ehIE);
 		    ehIE = versao.indexOf(";");
 		    if(parseFloat(versao.substring(0, ehIE).replace("MSIE", "")) < 5.5)
-			    alert('Aten��o !\n\nVoc� est� usando uma vers�o do Internet Explorer inferior � 5.5. Alguns recursos do sistema SISLAB podem n�o funcionar corretamente nesta vers�o.\n\nPor favor, atualize o seu browser antes de continuar.');
+			    alert('Atenção !\n\nVocê está usando uma versão do Internet Explorer inferior à 5.5. Alguns recursos do sistema SISLAB podem não funcionar corretamente nesta versão.\n\nPor favor, atualize o seu browser antes de continuar.');
 	    }
     }
     verificaNavegador();
 */
 </script>
 
-
 <%
+
+Set ebt1 = new TEbt
+'response.Write "AQUI1 : " & now
+'response.Write "<BR>" 'AQUI2 : " & now
+'response.End
+Call Ebt1.LoginUsuario("")
+'Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
+'Call Ebt1.BuscaDadosEmbratel("")
+
+Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
+Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+'Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
+Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
+Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
+Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
+Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
+Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
+Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
+Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
+Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
+Response.Write "Celular: " & Ebt1.Celular & "<BR>"
+Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
+Response.Write "NOW: " & now & "<BR>"
+'Response.End
+
 Call Tela.MostraRodape()
 %>

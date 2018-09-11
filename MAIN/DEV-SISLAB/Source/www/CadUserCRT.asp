@@ -133,7 +133,7 @@ function Excluir() {
 <tr>
 	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username:</b></td>
 	<td>
-		<input type="Text" name="username" size="30" maxlength="20" class="texto1">
+		<input type="Text" name="username" size="50" maxlength="80" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span class="vermelho2"><b>*</span>&nbsp;Matrícula:</b>&nbsp;
 		<input type="Text" name="matricula" class="texto1" size="15">
@@ -148,10 +148,10 @@ function Excluir() {
 <tr>
 	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Celular:</b></td>
 	<td>
-		<input type="Text" name="celular" size="10" class="texto1">
+		<input type="Text" name="celular" size="20" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span class="vermelho2"><b>*</span>&nbsp;Ramal:</b>&nbsp;
-		<input type="Text" name="Ramal" size="10" class="texto1">
+		<input type="Text" name="Ramal" size="20" class="texto1">
 	</td>
 </tr>
 <tr>

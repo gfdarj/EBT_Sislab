@@ -2,19 +2,12 @@
 Class TEnvironment
 
     Private chr_Nome
-    Private bln_usuarioCRT
-    Private bln_ehRT
-    Private bln_ehRAT
-    Private bln_ehGQ
     Private chr_Usuario
     Private chr_Matricula
-    Private bln_usuarioCRT_Cadastrado
     Private chr_PaginaInicial
-    Private bln_ehFuncionario
     Private chr_CaminhoAnt
     Private chr_MeuIP
     Private int_PerfilSCE
-    Private bln_usuarioSCE
     Private p_moduloLog
 
     Public siglaApp
@@ -155,12 +148,6 @@ Class TEnvironment
 
 	    Set Ebt = New TEbt
 
-	    bln_ehRT = False
-	    bln_ehRAT = False
-	    bln_ehGQ = False
-	    bln_UsuarioCRT = False
-	    bln_UsuarioCRT_Cadastrado = False
-	    bln_UsuarioSCE = False
         p_moduloLog = "SISLAB"
 	    chr_PaginaInicial = "index.asp"
         chr_Nome = "" :  chr_Usuario = "" :  chr_Sigla_Orgao = "" :  chr_DN = "" :  chr_UF_Com = "" :  chr_CID_COM = ""

@@ -121,7 +121,7 @@ Class TEbt
 		bln_ehRAT = False
 		bln_ehGQ = False
 		bln_usuarioCRT_Cadastrado = False
-		bln_UsuarioSCE = 0
+		bln_UsuarioSCE = False
 		int_PerfilSCE = 0
 		chr_Sigla_Orgao = ""
         chr_Ramal = ""
@@ -145,7 +145,7 @@ Class TEbt
 
         chr_Login = ""
 
-        Call BuscaDadosEmbratel(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
+        Call BuscaDadosEmbratelAD(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
 
         '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
         If Application("SISLAB_AMBIENTE") = "LOC_CASA" And chr_Login = "" Then
@@ -156,13 +156,13 @@ Class TEbt
 	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
                   "     o.ORGA_SIGLA, o.ORGA_DESCRICAO, o.ORGA_USERIDCHEFE " & _
                   "FROM UserCRT u LEFT JOIN Orgao o ON u.ORGA_ID = o.ORGA_ID " & _
-                  "WHERE UPPER(USERID) = '" & chr_Login & "'"
+                  "WHERE LOWER(USERID) = '" & chr_Login & "'"
 	    Set objRS = oSQL.Executar(chr_SQL)
 
 	    If objRS.BOF And objRS.EOF Then 
 		    bln_usuarioCRT = False
 		    bln_ehRT = False
-		    bln_ehRAT = False
+		    bln_ehRAT = true
 		    bln_ehGQ = False
 		    bln_usuarioCRT_Cadastrado = False
 		    bln_UsuarioSCE = False
@@ -177,6 +177,9 @@ Class TEbt
 		    bln_ehRT = CBool(objRS("RT"))
 		    bln_ehRAT = CBool(objRS("RAT"))
 		    bln_ehGQ = CBool(objRS("GQ"))
+		    'bln_ehRT = IIf(objRS("RT") = 1, True, False)
+		    'bln_ehRAT = IIf(objRS("RAT") = 1, True, False)
+		    'bln_ehGQ = IIf(objRS("GQ") = 1, True, False)
 		    bln_usuarioCRT_Cadastrado = True
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
@@ -199,6 +202,11 @@ Class TEbt
     '---------------------------------------------------------------------------------'
 
     Public Sub BuscaDadosEmbratel(chr_Usuario)
+        This.LoginUsuario(chr_Usuario)
+    End Sub
+
+    'Busca os dados do AD
+    Public Sub BuscaDadosEmbratelAD(chr_Usuario)
         Dim objSysInfo
 	    Dim objUser
         Dim strNTUser, strUser

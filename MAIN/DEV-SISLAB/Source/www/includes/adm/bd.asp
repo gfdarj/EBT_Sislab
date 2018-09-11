@@ -1,9 +1,14 @@
 ﻿<!--#include file="../Sislab_Lib.asp"-->
+<!doctype html>
+
 <html>
+
 <head>
+    <meta charset="<%=Application("SISLAB_CHARSET")%>" />
 	<title>Administração Remota de Banco de Dados SQL Server</title>
 	<link rel="stylesheet" href="../../css/cirap_adm.css">
 </head>
+
 <body>
 <%
 'Server.ScriptTimeout = 10000000000000
@@ -139,4 +144,5 @@ function vai(){
 </form>
 <%End If%>
 </body>
+
 </html>

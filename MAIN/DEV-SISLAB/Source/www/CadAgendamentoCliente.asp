@@ -56,29 +56,29 @@ If num_ag <> "" Then
 	End If
 End If
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 
-function areaRAT(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoRAT.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
-function areaRT(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoRT.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
+<script type="text/javascript">
+    function areaRAT(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoRAT.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
+    function areaRT(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoRT.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
 
-function usarReferencia(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoCliente.asp?as_referencia=" + frm.asRef.value;
-	frm.submit();
-}
+    function usarReferencia(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoCliente.asp?as_referencia=" + frm.asRef.value;
+	    frm.submit();
+    }
 
 <%if Env.EhRat() then%>
 	function BuscarSolicitante(){
@@ -93,450 +93,442 @@ function usarReferencia(){
 	}
 <%end if%>
 
-function ValidaCampos(){
-	var frm = document.forms[0];
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
-	if (frm.txtTitulo.value==""){
-		alert("Informe o título deste agendamento.");
-	    frm.txtTitulo.focus();
-		return false;
-	}
-	if (AchaAspas(frm.txtTitulo.value)){
-		alert("O título deste agendamento não pode conter aspas ou apóstrofes.");
-	    frm.txtTitulo.focus();
-		return false;	
-	}
+	    if (frm.txtTitulo.value==""){
+		    alert("Informe o título deste agendamento.");
+	        frm.txtTitulo.focus();
+		    return false;
+	    }
+	    if (AchaAspas(frm.txtTitulo.value)){
+		    alert("O título deste agendamento não pode conter aspas ou apóstrofes.");
+	        frm.txtTitulo.focus();
+		    return false;	
+	    }
 
-	if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
-		alert("A data de inicio do agendamento deve ser uma uma data válida.");
-		frm.diaINICIO.focus();
-		return false;
-	}
+	    if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
+		    alert("A data de inicio do agendamento deve ser uma uma data válida.");
+		    frm.diaINICIO.focus();
+		    return false;
+	    }
 
-	if (!(isDate(frm.diaFIM.value+"/"+frm.mesFIM.value+"/"+frm.anoFIM.value))){
-		alert("A data de fim do agendamento deve ser uma uma data válida.");
-		frm.diaFIM.focus();
-		return false;
-	}
-
-
-	/* valido data inicial maior que data final */
-	var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
-	var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;
-
-	if(dI > dF) {
-		alert('Data inicial é maior que a data final');
-		frm.diaINICIO.focus();
-		return false;
-	}
+	    if (!(isDate(frm.diaFIM.value+"/"+frm.mesFIM.value+"/"+frm.anoFIM.value))){
+		    alert("A data de fim do agendamento deve ser uma uma data válida.");
+		    frm.diaFIM.focus();
+		    return false;
+	    }
 
 
-	if (frm.cmbTec.value==""){
-		alert("Informe a tecnologia usada no agendamento.");
-	    frm.cmbTec.focus();
-		return false;
-	}
+	    /* valido data inicial maior que data final */
+	    var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
+	    var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;
 
-	//Optei por participantes externos
-	if (frmAgendaTeste.cmbPartExternos(0).checked){
-		if (frm.lstParticipantes.options.length == 0){
-			alert("Você optou por presenca de participantes externos mas não cadastrou nenhum.")
-			return false;
-		}
-	}
-
-	//Optei por participantes EBT
-	if (frmAgendaTeste.cmbPartEBT(0).checked){
-		if (frm.lstParticipantesEBT.options.length == 0){
-			alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
-			return false;
-		}
-	}
-
-	if (frm.objetivos.value==""){
-		alert("Objetivos do agendamento não foram informados.");
-	    frm.objetivos.focus();
-		return false;
-	}
-
-	if (AchaAspas(frm.objetivos.value)){
-		alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
-	    frm.objetivos.focus();
-		return false;
-	}
+	    if(dI > dF) {
+		    alert('Data inicial é maior que a data final');
+		    frm.diaINICIO.focus();
+		    return false;
+	    }
 
 
-	if (frm.objetivos.value==""){
-		alert("Objetivos do agendamento não foram informados.");
-	    frm.objetivos.focus();
-		return false;
-	}
+	    if (frm.cmbTec.value=="") {
+		    alert("Informe a tecnologia usada no agendamento.");
+	        frm.cmbTec.focus();
+		    return false;
+	    }
 
-	if (AchaAspas(frm.objetivos.value)){
-		alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
-	    frm.objetivos.focus();
-		return false;	
-	}
+	    //Optei por participantes externos
+	    if (frmAgendaTeste.cmbPartExternos(0).checked) {
+		    if (frm.lstParticipantes.options.length == 0){
+			    alert("Você optou por presenca de participantes externos mas não cadastrou nenhum.")
+			    return false;
+		    }
+	    }
 
-	if (!(frm.cmbCliExternos(0).checked || frm.cmbCliExternos(1).checked)){
-		alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
-	    frm.cmbCliExternos(0).focus();
-		return false;	
-	}
+	    //Optei por participantes EBT
+	    if (frmAgendaTeste.cmbPartEBT(0).checked) {
+		    if (frm.lstParticipantesEBT.options.length == 0) {
+			    alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
+			    return false;
+		    }
+	    }
 
-	//Cliente externo
-	if (frm.cmbCliExternos(0).checked){
-		//Nome Cliente
-		if (frm.txtNomeCliente.value == ""){
-			alert("Em Dados do Cliente não foi especificada o Nome do Cliente.")
-		    frm.txtNomeCliente.focus();
-			return false;	
-		}
-		if (AchaAspas(frm.txtNomeCliente.value)){
-			alert("Em Dados do Cliente o Nome do Cliente não pode conter Aspas ou apóstrofes.");
-	    	frm.txtNomeCliente.focus();
-			return false;	
-		}
-		//Retorno
-		//if (frm.txtRetornoCliente.value == "0" || frm.txtRetornoCliente.value == "0,00"){
-		//	alert("Em Dados do Cliente não foi especificado o Retorno.")
-		//	frm.txtRetornoCliente.focus();
-		//	return false;	
-		//}
+	    if (frm.objetivos.value==""){
+		    alert("Objetivos do agendamento não foram informados.");
+	        frm.objetivos.focus();
+		    return false;
+	    }
+	    if (AchaAspas(frm.objetivos.value)){
+		    alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
+	        frm.objetivos.focus();
+		    return false;
+	    }
 
-	}
-	//Cliente EBT
-	if (frm.cmbCliExternos(1).checked){
-		//Plano de metas
-//		if (frm.cmbItemCliente.value == ""){
-//			alert("Em Dados do Cliente não foi especificada o Item associado ao plano de metas.")
-//		    frm.cmbItemCliente.focus();
-//			return false;	
-//		}
-	}
+	    if (!(frm.cmbCliExternos(0).checked || frm.cmbCliExternos(1).checked)){
+		    alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
+	        frm.cmbCliExternos(0).focus();
+		    return false;	
+	    }
 
-	if (frm.ambiente.value==""){
-		alert("Ambiente Necessário não foram informado.");
-	    frm.ambiente.focus();
-		return false;
-	}
+	    //Cliente externo
+	    if (frm.cmbCliExternos(0).checked){
+		    //Nome Cliente
+		    if (frm.txtNomeCliente.value == ""){
+			    alert("Em Dados do Cliente não foi especificada o Nome do Cliente.")
+		        frm.txtNomeCliente.focus();
+			    return false;	
+		    }
+		    if (AchaAspas(frm.txtNomeCliente.value)){
+			    alert("Em Dados do Cliente o Nome do Cliente não pode conter Aspas ou apóstrofes.");
+	    	    frm.txtNomeCliente.focus();
+			    return false;	
+		    }
+		    //Retorno
+		    //if (frm.txtRetornoCliente.value == "0" || frm.txtRetornoCliente.value == "0,00"){
+		    //	alert("Em Dados do Cliente não foi especificado o Retorno.")
+		    //	frm.txtRetornoCliente.focus();
+		    //	return false;	
+		    //}
 
-	if (AchaAspas(frm.ambiente.value)){
-		alert("Ambiente Necessário não podem conter Aspas ou apóstrofes.");
-	    frm.ambiente.focus();
-		return false;
-	}
+	    }
+	    //Cliente EBT
+	    if (frm.cmbCliExternos(1).checked){
+		    //Plano de metas
+    //		if (frm.cmbItemCliente.value == ""){
+    //			alert("Em Dados do Cliente não foi especificada o Item associado ao plano de metas.")
+    //		    frm.cmbItemCliente.focus();
+    //			return false;	
+    //		}
+	    }
 
-	if (frm.recursos.value==""){
-		alert("Recursos Necessários não foram informado.");
-	    frm.recursos.focus();
-		return false;
-	}
+	    if (frm.ambiente.value==""){
+		    alert("Ambiente Necessário não foram informado.");
+	        frm.ambiente.focus();
+		    return false;
+	    }
+	    if (AchaAspas(frm.ambiente.value)){
+		    alert("Ambiente Necessário não podem conter Aspas ou apóstrofes.");
+	        frm.ambiente.focus();
+		    return false;
+	    }
 
-	if (AchaAspas(frm.recursos.value)){
-		alert("Recursos Necessários não podem conter Aspas ou apóstrofes.");
-	    frm.recursos.focus();
-		return false;
-	}
+	    if (frm.recursos.value==""){
+		    alert("Recursos Necessários não foram informado.");
+	        frm.recursos.focus();
+		    return false;
+	    }
+	    if (AchaAspas(frm.recursos.value)){
+		    alert("Recursos Necessários não podem conter Aspas ou apóstrofes.");
+	        frm.recursos.focus();
+		    return false;
+	    }
 
-	/* --- preencho a lista de participantes */
-	var strExt = frm.strParticipantesExternos;
-	var strEBT = frm.strParticipantesEBT;
-	var i;
-	var separador = '<%=SEPARADOR_REGISTRO%>';
-	var listaExt = frm.lstParticipantes;
+	    /* --- preencho a lista de participantes */
+	    var strExt = frm.strParticipantesExternos;
+	    var strEBT = frm.strParticipantesEBT;
+	    var i;
+	    var separador = '<%=SEPARADOR_REGISTRO%>';
+	    var listaExt = frm.lstParticipantes;
 
-	strExt.value = '';
-	for(i=0; i<listaExt.options.length; i++) {
-		strExt.value += listaExt.options[i].value + separador;
-	}
+	    strExt.value = '';
+	    for(i=0; i<listaExt.options.length; i++) {
+		    strExt.value += listaExt.options[i].value + separador;
+	    }
 
-	var listaEBT = frm.lstParticipantesEBT;
-	strEBT.value = '';
-	for(i=0; i<listaEBT.options.length; i++) {
-		strEBT.value += listaEBT.options[i].value + separador;
-	}
-	/* --- fim do preenchimento das lista */
+	    var listaEBT = frm.lstParticipantesEBT;
+	    strEBT.value = '';
+	    for(i=0; i<listaEBT.options.length; i++) {
+		    strEBT.value += listaEBT.options[i].value + separador;
+	    }
+	    /* --- fim do preenchimento das lista */
 
-	frm.action = "CadAgendamentoClienteA.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.btn_Salvar.disabled = true;
-	frm.submit();
-}
-function PreparaCamposPART() {
-	if (frmAgendaTeste.cmbPartEBT(0).checked)
-		tabParticipantesEBT.style.display = 'block';
-	else
-		tabParticipantesEBT.style.display = 'none';
-}
-function PreparaCamposCLI(){
-	if (frmAgendaTeste.cmbCliExternos(0).checked){
-		tabClienteEBT.style.display = 'block';
-		tabCliente.style.display = 'none';
-		//frm.txtNomeCliente.value = '';
-		//frm.txtRetornoCliente.value = '0';
-	}else{
-		tabClienteEBT.style.display = 'none';
-		tabCliente.style.display = 'block';
-		//frm.txtNomeCliente.value = 'EBT';
-	}
-}
+	    frm.action = "CadAgendamentoClienteA.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.btn_Salvar.disabled = true;
+	    frm.submit();
+    }
 
-function PreparaCamposPARTEXT()
-{
-	if (frmAgendaTeste.cmbPartExternos(0).checked)
-		tabParticipantes.style.display = 'block';
-	else
-		tabParticipantes.style.display = 'none';
-}
+    function PreparaCamposPART() 
+    {
+	    if (frmAgendaTeste.cmbPartEBT(0).checked)
+		    tabParticipantesEBT.style.display = 'block';
+	    else
+		    tabParticipantesEBT.style.display = 'none';
+    }
+
+    function PreparaCamposCLI()
+    {
+        if (frmAgendaTeste.cmbCliExternos(0).checked){
+            alert('oi');
+		    tabClienteEBT.style.display = 'block';
+		    tabCliente.style.display = 'none';
+        }
+        else
+        {
+            alert('oi 2');
+            tabClienteEBT.style.display = 'none';
+		    tabCliente.style.display = 'block';
+	    }
+    }
+
+    function PreparaCamposPARTEXT()
+    {
+	    if (frmAgendaTeste.cmbPartExternos(0).checked)
+		    tabParticipantes.style.display = 'block';
+	    else
+		    tabParticipantes.style.display = 'none';
+    }
 </script>
-<form method="post" action="CadAgendamentoClienteA.asp" name="frmAgendaTeste">
-<input type="Hidden" name="hdAG">
-<input type="Hidden" name="strParticipantesExternos">
-<input type="Hidden" name="strParticipantesEBT">
-<table border="0" width="100%" class="tabela1">
-<tr valign="middle">
-	<td>
-		&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
-	</td>
-	<td align="right">
-		<b>
-		<%if num_ag <> "" then%>
-		Agendamento Nº &nbsp;<%=num_ag%> (<%=situacao_ag_desc%>)
-		<%else%>
-		<a href="javascript:;" title="Utiliza os dados de agendamentos anteriores como referência para um novo">
-		Novo Agendamento&nbsp;&nbsp;-&nbsp;&nbsp;Usar uma AS como modelo</a>
-		</b>
-		<select name="asRef" class="combo">
-		<option value="">--</option>
-		<%
-		if bln_usuarioCRT then
-			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento order by ag_numero desc"
-		else
-			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento where ag_username = '" & Env.Usuario & "' order by ag_numero desc"
-		end if
-		call comboBD(objConn,ssql)%>
-		</select>
-		<input class="combo" type="Button" value="Ok" onclick="usarReferencia();">
-	<%end if%>
-	</td>
-</tr>
-</table>
 
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
-<tr>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-</tr>
+<form method="post" action="CadAgendamentoClienteA.asp" name="frmAgendaTeste">
+
+    <input type="Hidden" name="hdAG">
+    <input type="Hidden" name="strParticipantesExternos">
+    <input type="Hidden" name="strParticipantesEBT">
+
+    <table border="0" width="100%" class="tabela1">
+    <tr valign="middle">
+	    <td>
+		    &nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
+	    </td>
+	    <td align="right">
+		    <b>
+		    <%if num_ag <> "" then%>
+		    Agendamento Nº &nbsp;<%=num_ag%> (<%=situacao_ag_desc%>)
+		    <%else%>
+		    <a href="javascript:;" title="Utiliza os dados de agendamentos anteriores como referência para um novo">
+		    Novo Agendamento&nbsp;&nbsp;-&nbsp;&nbsp;Usar uma AS como modelo</a>
+		    </b>
+		    <select name="asRef" class="combo">
+		    <option value="">--</option>
+		    <%
+		    if bln_usuarioCRT then
+			    ssql = "select ag_numero as valor,ag_numero as descricao from agendamento order by ag_numero desc"
+		    else
+			    ssql = "select ag_numero as valor,ag_numero as descricao from agendamento where ag_username = '" & Env.Usuario & "' order by ag_numero desc"
+		    end if
+		    call comboBD(objConn,ssql)%>
+		    </select>
+		    <input class="combo" type="Button" value="Ok" onclick="usarReferencia();">
+	    <%end if%>
+	    </td>
+    </tr>
+    </table>
+
+    <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+    <tr>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+	    <td width="10%"></td>
+    </tr>
 <%
 if num_ag <> "" then
 	sSQL = "Select VW.* From vw_ArquivosTeste VW "
 	sSQL = sSQL & " WHERE VW.AG_NUMERO=" & num_ag
 	call Env.RecordSet( true, rsArquivos, sSQL)
 	if Not rsArquivos.eof then%>
-<tr>
-	<th align="left" colspan="10">Arquivos Associados</th>
-</tr>
-<tr>
-	<td colspan="10">
+    <tr>
+	    <th align="left" colspan="10">Arquivos Associados</th>
+    </tr>
+    <tr>
+	    <td colspan="10">
 <%		If MostraDadoSigiloso(int_Sigilo, chr_Username) Then %>
-		<table border="0" width="100%" cellpadding="2" cellspacing="1" class="tabela1">
+    		<table border="0" width="100%" cellpadding="2" cellspacing="1" class="tabela1">
 <%			rsArquivos.MoveFirst
 			Do while Not rsArquivos.eof%>
-		<tr class="texto1">
-			<td>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></td>
-		</tr>
+		    <tr class="texto1">
+			    <td>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></td>
+		    </tr>
 <%			rsArquivos.MoveNext
 			Loop%>
-		</table>
+    		</table>
 <%		Else
 			Response.Write ExibeMensagemSigiloAS(0)
 		End If%>
-	</td>
-</tr>
+	    </td>
+    </tr>
 <%	End if
 End if
 %>
-<tr height="5px">
-	<td colspan="10" bgcolor="#FFFFFF" valign="middle"></td>
-</tr>
+    <tr height="5px">
+	    <td colspan="10" bgcolor="#FFFFFF" valign="middle"></td>
+    </tr>
 <%
 if Env.EhRat() then
 %>
-<tr>
-	<th align="left" colspan="10">&nbsp;Solicitar Agendamento pelo Cliente</th>
-</tr>
-<tr height="34"> 
-	<td colspan="10">&nbsp;&nbsp;Nome do Solicitante: &nbsp;
-		<input type="text" class="combo" name="txtSolicitante" size="15"  maxlength="20">
-		<input  class="combo" type="Button" value="Buscar" onclick="BuscarSolicitante();">
-	</td>
-</tr>
+    <tr>
+	    <th align="left" colspan="10">&nbsp;Solicitar Agendamento pelo Cliente</th>
+    </tr>
+    <tr height="34"> 
+	    <td colspan="10">&nbsp;&nbsp;Nome do Solicitante: &nbsp;
+		    <input type="text" class="combo" name="txtSolicitante" size="15"  maxlength="20">
+		    <input  class="combo" type="Button" value="Buscar" onclick="BuscarSolicitante();">
+	    </td>
+    </tr>
 <%
 end if
 %>
-<tr>
-	<th align="left" colspan="10">&nbsp;Dados do Solicitante</th>
-</tr>
-<tr height="34"> 
-	<td colspan="6">&nbsp;&nbsp;Nome do Responsável: &nbsp;
-		<input type="text" class="texto1" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
-	</td>
-	<td colspan="4">&nbsp;&nbsp;Matrícula:&nbsp;
-		<input class="texto1" READONLY  name="txtMatricula" size="7" tabindex="3">
-	</td>
-</tr>
-<tr height="34">
-	<td  colspan="3">&nbsp;&nbsp;Órgão:&nbsp;
-		<input class="texto1" READONLY name="txtOrgao" size="12" tabindex="4" maxlength="50">
-	</td>
-	<td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp;
-		<input type=hidden name="Username">
-		<input class="texto1"  READONLY  name="txtEMail" size="50" tabindex="5" maxlength="80">
-	</td>
-	<td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp;
-		<input class="texto1"  name="txtRamal" size="20" tabindex="6" maxlength="10" >
-	</td>
-</tr>
-<tr>
-	<th align="left" colspan="10">&nbsp;Dados do Agendamento</th>
-</tr>
-<tr height="34">
-    <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;
-		<a href="javascript:;" title="Nome de referência associada a atividade.">Título do agendamento:</a>&nbsp;
-		<input class="texto1"  name="txtTitulo" size="70" tabindex="7" maxlength="50">
-	</td>
-</tr>
-<tr height="34">
-    <td colspan="10">&nbsp;&nbsp;Período previsto para a atividade:&nbsp;
-		&nbsp;&nbsp;
-		<span class="vermelho2"><b>*</b></span>Início:&nbsp;
-		<%call comboData("INICIO")%>
-		&nbsp;&nbsp;&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>Fim:&nbsp;
-		<%call comboData("FIM")%>
-	</td>
-</tr>
-<tr height="34"> 
-	<td colspan="10">
-			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;
-			<a href="javascript:;" title="Selecionar a principal tecnologia associada a atividade.">Tecnologia:</a>
-			<%call comboTecnologia("cmbTec",objConn,"N")%>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Tipo de Sigilo:
-        <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">
-        Sigilo de Resultado&nbsp;
-        <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">
-        Sigilo de Ambiente e Resultado&nbsp;
-		<input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>
-		Sem Sigilo&nbsp;
-	</td>
-</tr>
-<!--
-<tr>
-	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Receber e-mail de acompanhamento da situação da AS: &nbsp;
-        <input type="radio" name="cmbEmail" value="1" id="cmbEmail1">
-        Sim&nbsp;
-        <input type="radio" name="cmbEmail"  value="0" checked id="cmbEmail0">
-	    Não&nbsp;
-	</td>
-</tr>
--->
-        <input type="hidden" name="cmbEmail" value="1" id="cmbEmail1">
+    <tr>
+	    <th align="left" colspan="10">&nbsp;Dados do Solicitante</th>
+    </tr>
+    <tr height="34"> 
+	    <td colspan="6">&nbsp;&nbsp;Nome do Responsável: &nbsp;
+		    <input type="text" class="texto1" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
+	    </td>
+	    <td colspan="4">&nbsp;&nbsp;Matrícula:&nbsp;
+		    <input class="texto1" READONLY  name="txtMatricula" size="7" tabindex="3">
+	    </td>
+    </tr>
+    <tr height="34">
+	    <td  colspan="3">&nbsp;&nbsp;Órgão:&nbsp;
+		    <input class="texto1" READONLY name="txtOrgao" size="12" tabindex="4" maxlength="50">
+	    </td>
+	    <td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp;
+		    <input type=hidden name="Username">
+		    <input class="texto1"  READONLY  name="txtEMail" size="50" tabindex="5" maxlength="80">
+	    </td>
+	    <td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp;
+		    <input class="texto1"  name="txtRamal" size="20" tabindex="6" maxlength="10" >
+	    </td>
+    </tr>
+    <tr>
+	    <th align="left" colspan="10">&nbsp;Dados do Agendamento</th>
+    </tr>
+    <tr height="34">
+        <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;
+		    <a href="javascript:;" title="Nome de referência associada a atividade.">Título do agendamento:</a>&nbsp;
+		    <input class="texto1"  name="txtTitulo" size="70" tabindex="7" maxlength="50">
+	    </td>
+    </tr>
+    <tr height="34">
+        <td colspan="10">&nbsp;&nbsp;Período previsto para a atividade:&nbsp;
+		    &nbsp;&nbsp;
+		    <span class="vermelho2"><b>*</b></span>Início:&nbsp;
+		    <%call comboData("INICIO")%>
+		    &nbsp;&nbsp;&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>Fim:&nbsp;
+		    <%call comboData("FIM")%>
+	    </td>
+    </tr>
+    <tr height="34"> 
+	    <td colspan="10">
+			    &nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;
+			    <a href="javascript:;" title="Selecionar a principal tecnologia associada a atividade.">Tecnologia:</a>
+			    <%call comboTecnologia("cmbTec",objConn,"N")%>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Tipo de Sigilo:
+            <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">
+            Sigilo de Resultado&nbsp;
+            <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">
+            Sigilo de Ambiente e Resultado&nbsp;
+		    <input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>
+		    Sem Sigilo&nbsp;
+	    </td>
+    </tr>
+    <!--
+    <tr>
+	    <td colspan="10"> 
+            <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Receber e-mail de acompanhamento da situação da AS: &nbsp;
+            <input type="radio" name="cmbEmail" value="1" id="cmbEmail1">
+            Sim&nbsp;
+            <input type="radio" name="cmbEmail"  value="0" checked id="cmbEmail0">
+	        Não&nbsp;
+	    </td>
+    </tr>
+    -->
+    <input type="hidden" name="cmbEmail" value="1" id="cmbEmail1">
 
-<tr>
-	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Participantes externos a Embratel: &nbsp;
-        <input type="radio" name="cmbPartExternos" onClick="PreparaCamposPARTEXT()" value="1" tabindex="13" ID="cmbPartExternos1">
-        Sim&nbsp;
-        <input type="radio" name="cmbPartExternos"  onClick="PreparaCamposPARTEXT()" value="0" tabindex="14" ID="cmbPartExternos0" checked>
-	    Não&nbsp;
-	</td>
-</tr>
-<tr>
-	<td colspan="10">
-		<%call ControleParticipantesExternos("Participantes",14)%>
-	</td>
-</tr>
-<tr>
-	<td colspan="10"> 
-        &nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Participantes Embratel: &nbsp;
-        <input type="radio" name="cmbPartEBT" onClick="PreparaCamposPART(this.form)" value="1" tabindex="21" ID="cmbPartEBT1">
-        Sim&nbsp;
-        <input type="radio" name="cmbPartEBT"  onClick="PreparaCamposPART(this.form)" value="0" tabindex="22" checked ID="cmbPartEBT0">
-	    Não&nbsp;
-	</td>
-</tr>
-<tr>
-	<td colspan="10"> 
-		<%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;<a href="javascript:;" title="Informar uma breve descrição e seu objetivo.">Breve descrição do objetivo principal da atividade:</font></a><br>
-		&nbsp;&nbsp;<textarea name="objetivos" class="texto1" cols="120" rows="4"></textarea>
-	</td>
-</tr>
-<tr>
-	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a Embratel: &nbsp;
-        <input type="radio" name="cmbCliExternos" onClick="PreparaCamposCLI()" id ="cmbCliExternos1" value="1" tabindex="27">
-        Sim&nbsp;
-        <input type="radio" name="cmbCliExternos"  onClick="PreparaCamposCLI()" id ="cmbCliExternos0" value="0" tabindex="28">
-	    Não&nbsp;
-	</td>
-</tr>
-<tr>
-	<td colspan="10">
-		<%call ControleClientes("Cliente",28,objConn)%>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;</b><a href="javascript:;" title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais.">Ambiente Necessário:</a><br>
-		&nbsp;&nbsp;<textarea name="ambiente" class="texto1" cols="120" rows="4"></textarea>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;</b><a href="javascript:;" title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW).">Recursos Necessários:</a></font><br>
-		&nbsp;&nbsp;<textarea name="recursos" class="texto1" cols="120" rows="4"></textarea>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</a><br>
-		&nbsp;&nbsp;<textarea name="obs" class="texto1" cols="120" rows="4"></textarea>
-	</td>
-</tr>
-<tr>
-	<td colspan="10">&nbsp;</td>
-</tr>
-<tr height="34">
-	<td colspan="10" align="left">&nbsp;&nbsp;
+    <tr>
+	    <td colspan="10"> 
+            <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Participantes externos a Embratel: &nbsp;
+            <input type="radio" name="cmbPartExternos" onClick="PreparaCamposPARTEXT()" value="1" tabindex="13" ID="cmbPartExternos1">
+            Sim&nbsp;
+            <input type="radio" name="cmbPartExternos"  onClick="PreparaCamposPARTEXT()" value="0" tabindex="14" ID="cmbPartExternos0" checked>
+	        Não&nbsp;
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">
+		    <%call ControleParticipantesExternos("Participantes",14)%>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10"> 
+            &nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Participantes Embratel: &nbsp;
+            <input type="radio" name="cmbPartEBT" onClick="PreparaCamposPART(this.form)" value="1" tabindex="21" ID="cmbPartEBT1">
+            Sim&nbsp;
+            <input type="radio" name="cmbPartEBT"  onClick="PreparaCamposPART(this.form)" value="0" tabindex="22" checked ID="cmbPartEBT0">
+	        Não&nbsp;
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10"> 
+		    <%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;<a href="javascript:;" title="Informar uma breve descrição e seu objetivo.">Breve descrição do objetivo principal da atividade:</font></a><br>
+		    &nbsp;&nbsp;<textarea name="objetivos" class="texto1" cols="120" rows="4"></textarea>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10"> 
+            <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a Embratel: &nbsp;
+            <input type="radio" name="cmbCliExternos" onClick="PreparaCamposCLI()" id ="cmbCliExternos1" value="1" tabindex="27">
+            Sim&nbsp;
+            <input type="radio" name="cmbCliExternos"  onClick="PreparaCamposCLI()" id ="cmbCliExternos0" value="0" tabindex="28">
+	        Não&nbsp;
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">
+		    <%call ControleClientes("Cliente",28,objConn)%>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;</b><a href="javascript:;" title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais.">Ambiente Necessário:</a><br>
+		    &nbsp;&nbsp;<textarea name="ambiente" class="texto1" cols="120" rows="4"></textarea>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;</b><a href="javascript:;" title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW).">Recursos Necessários:</a></font><br>
+		    &nbsp;&nbsp;<textarea name="recursos" class="texto1" cols="120" rows="4"></textarea>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</a><br>
+		    &nbsp;&nbsp;<textarea name="obs" class="texto1" cols="120" rows="4"></textarea>
+	    </td>
+    </tr>
+    <tr>
+	    <td colspan="10">&nbsp;</td>
+    </tr>
+    <tr height="34">
+	    <td colspan="10" align="left">&nbsp;&nbsp;
 <%		if num_ag = "" then %>
-		<input class="texto1" type="Button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
+    		<input class="texto1" type="Button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
 <%		else
 			if bln_ehRAT then 'or bln_ehRT then%>
-		<input class="texto1" type="Button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
+    		<input class="texto1" type="Button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
 <%			else %>
-		<input type="Button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled>
+	    	<input type="Button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled>
 <%			end if
 			if bln_usuarioCRT then %>
-		<input class="texto1" type="Button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;">
-		<input class="texto1" type="Button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;">
+		    <input class="texto1" type="Button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;">
+    		<input class="texto1" type="Button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;">
 <%			end if %>
 <%		end if %>
 <%		If Env.Usuario = chr_Username Or bln_usuarioCRT Then %>
-		<input class="texto1" type="Button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento">
+	    	<input class="texto1" type="Button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento">
 <%		End If %>
 
 <%'if not SolicitouCancela then%>
@@ -549,12 +541,14 @@ end if
 		</script>
 -->
 <%'end if%>
-	</td>
-</tr>
-</table>
+	    </td>
+    </tr>
+    </table>
 </form>
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-<script>
+
+<iframe width="770" height="200" name="escondido" style="display: 1none;"></iframe>
+
+<script type="text/javascript">
 	function uploadArquivo() {
 <%if num_ag = "" then%>
 		alert('ATENÇÃO !\n\nPara fazer upload este agendamento deve ser salvo');
@@ -570,7 +564,6 @@ end if
 <%end if%>
 	}
 
-
 	var frm = document.forms[0];
 	var frmAll = document.all;
 	var ultimo_da_lista;
@@ -580,6 +573,7 @@ end if
 	frm.txtOrgao.style.backgroundColor = '#EEEEEE';
 	frm.txtEMail.style.backgroundColor = '#EEEEEE';
 	frm.txtRamal.style.backgroundColor = '#EEEEEE';
+
 <%
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 'Pego dados do agendamento jah existente
@@ -612,6 +606,7 @@ if num_ag <> "" then
 		frm.txtOrgao.value = '<%=chr_OrgaoSQL%>';
 		frm.txtRamal.value='--';
 	<%end if%>
+
 	frm.txtTitulo.value='<%=objSiteRS("ag_titulo")%>';
 	frm.Username.value='<%=objSiteRS("ag_username")%>';
     frm.txtEMail.value='<%=objSiteRS("ag_username")%>';
@@ -751,6 +746,8 @@ if as_referencia <> "" then
 <%		End If
 	End If%>
 <%End If%>
+
+alert("oi 1");
 </script>
 <%
 Set Ebt = Nothing

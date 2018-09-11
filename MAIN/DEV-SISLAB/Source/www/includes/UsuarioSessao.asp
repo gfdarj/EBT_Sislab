@@ -50,7 +50,7 @@ end function
 
 function LogaUsuario(user)
 	Dim usuarioCRT : usuarioCRT = false
-	Dim rst, objConn, sSQL,obj1,objRS
+	Dim objConn, sSQL,obj1,objRS
 
 	On Error Resume Next
 
@@ -114,7 +114,7 @@ function LogaUsuario(user)
 end function
 
 '-- pega os dados basicos do usuario
-function BuscaDadosEmbratel(armazenaSessao,usuario)
+Function BuscaDadosEmbratel(armazenaSessao, usuario)
 	dim musuario, sql, objConn, objRS
 
 	If Application("AMBIENTE") = "LOC" Then
@@ -133,43 +133,31 @@ function BuscaDadosEmbratel(armazenaSessao,usuario)
 		Response.cookies("SISLAB")("ehGerente") = false
 		Response.cookies("SISLAB")("Sigla_Orgao_Gerente") = ""
 
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
+
 		musuario = Request.cookies("SISLAB")("usuario")
 		if usuario <> "" then musuario = usuario
-		Response.cookies("SISLAB")("matricula") = trim(obj1.GetMatricula(musuario))
-		set	obj1 = nothing
 
-		Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-		Set rst = obj1.GetDados(Request.cookies("SISLAB")("matricula"))
+        Set ebt1 = New TEbt
 
-		if armazenaSessao then
-		 	if rst IS nothing then
-				Response.cookies("SISLAB")("ehFuncionario") = false
-		 	else
-				Response.cookies("SISLAB")("ehFuncionario") = true
-				Response.cookies("SISLAB")("Nome_Reduzido") = trim(rst("Nome_Reduzido"))
-	 			Response.cookies("SISLAB")("Sigla_Orgao") = trim(rst("SiglaOrgao"))
-				Response.cookies("SISLAB")("DN") = trim(rst("DN"))
-				Response.cookies("SISLAB")("UF_Com") = trim(rst("UF_Com"))
-	 			Response.cookies("SISLAB")("CID_COM") = trim(rst("CID_COM"))
-				Response.cookies("SISLAB")("TEL1_COM") =  trim(rst("TEL1_COM")) ' caso nulo usuario nao atualizou no CTE
+        Call ebt1.LoginUsuario(musuario)
 
-				'-- verifico se o usuário é do órgão de gerencia do CRT
-				sql = "SELECT ORGA_SIGLA FROM ORGAO WHERE ORGA_USERIDCHEFE = '" & Request.cookies("SISLAB")("usuario") & "'"
-				call Connection( true, objConn )
-				call RecordSet( true, objRS, sql, objConn )
-				if not (objRS.Eof and objRS.Bof) then
-					Response.cookies("SISLAB")("ehGerente") = true
-					Response.cookies("SISLAB")("Sigla_Orgao_Gerente") = objRS("ORGA_SIGLA")
-				end if
-				call RecordSet( false, objRS, null, objConn )
-				call Connection( false, objConn )
-			end if
-		else
-			set	BuscaDadosEmbratel = rst
-		end if
+		Response.cookies("SISLAB")("matricula") = ebt1.Matricula()
 
-		Set obj1  = nothing
+		'if armazenaSessao then
+			Response.cookies("SISLAB")("ehFuncionario") = ebt1.EhFuncionario()
+			Response.cookies("SISLAB")("Nome_Reduzido") = ebt1.NomeReduzido()
+	 		Response.cookies("SISLAB")("Sigla_Orgao") = ebt1.SiglaOrgao
+			Response.cookies("SISLAB")("DN") = ""
+			Response.cookies("SISLAB")("UF_Com") = ""
+	 		Response.cookies("SISLAB")("CID_COM") = ""
+			Response.cookies("SISLAB")("TEL1_COM") = ebt1.Ramal()
+		    Response.cookies("SISLAB")("ehGerente") = ebt1.EhGerente()
+			Response.cookies("SISLAB")("Sigla_Orgao_Gerente") = ebt1.SiglaOrgaoGerente()
+		'else
+		'	set	BuscaDadosEmbratel = ""
+		'end if
+
+		Set ebt1  = nothing
 
 	End If
 

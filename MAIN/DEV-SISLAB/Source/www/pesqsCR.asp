@@ -257,41 +257,14 @@ Else
 		bln_ExistePesquisa = True
 
 	Else
+        Call Ebt.LoginUsuario(ag_solicitante)
 
-		'### Se NÃO existe a pesquisa, entao busco os dados do usuario solicitante do AS
-		If UCase(Application("SISLAB_AMBIENTE")) <> "LOC_MEU_NOTE" Then
-
-            Call Ebt.LoginUsuario(ag_solicitante)
-
-
-			Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-
-			'Se o array so tiver 1 dimensao entao selecionou apenas 1 AS e o solicitante do Agendamento
-			'If UBound(arrAG) = 0 Then
-				auxusername = ag_solicitante
-				auxEmail = ag_solicitante
-				Matricula = obj1.GetMatricula(ag_solicitante)
-			'Else
-			'	Matricula = obj1.GetMatricula(auxusername)
-			'End If
-
-			Set obj1 = nothing
-			Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-			Set rst = obj1.GetDados(matricula)
-			if not rst IS nothing then
-				auxnome = rst("Nome_Reduzido")
-				auxOrgao = rst("SiglaOrgao")
-				auxRamal = rst("TEL1_COM")
-				Set obj1 = nothing
-			end if
-		Else
-			auxusername = Env.usuario
-			auxEmail = LCase(auxusername)
-			Matricula = "123456"
-			auxnome = "[LOCAL] JOSE PAULA SILVA JUNIOR"
-			auxOrgao = "VPO-28"
-			auxRamal = "521-6539"
-		End If
+		auxusername = ag_solicitante
+		auxEmail = ag_solicitante
+		Matricula = Ebt.Matricula()
+		auxnome = Ebt.NomeReduzido
+		auxOrgao = Ebt.SiglaOrgao()
+		auxRamal = Ebt.Ramal()
 	End If
 %>
 <script language="javascript" src="includes/anexo.js"></script>

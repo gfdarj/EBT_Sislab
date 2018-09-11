@@ -7,9 +7,9 @@ Conecta True
 
 ' Declaro variaveis 
 
-Dim objSiteRS, cont, sSQL, tot, auxtitulo,Auxselecao,obj1
+Dim objSiteRS, cont, sSQL, tot, auxtitulo,Auxselecao, ebt1
 Dim AuxRamal,AuxOrgao,AuxDataHoraMsg,AuxIP,AuxUsername
-Dim AuxMatricula, AUxResponsavel,Matricula,rst,AuxDataCadastro
+Dim AuxMatricula, AUxResponsavel,AuxDataCadastro
 Dim auxDescricao,auxobservacao,auxprovidencias, AuxAgNumero
 
 Auxselecao=Request.form("selecao")
@@ -101,29 +101,15 @@ AuxTitulo=objSiteRS("ME_Titulo")
 AuxIP=objSiteRS("ME_IPCad")
 AuxAgNumero=objSiteRS("ME_AGNUMERO")
 
-Set obj1 = Server.CreateObject("WebEmbratel.ClsUsername")
-	Matricula = obj1.GetMatricula(AuxUsername)
-	
-	set obj1=nothing
+Set ebt1 = New TEbt
+Call ebt1.LoginUsuario(AuxUsername)
 
+AuxMatricula = ebt1.Matricula()
+AuxResponsavel = ebt1.NomeReduzido
+AuxOrgao = ebt1.SiglaOrgao()
+AuxRamal =  ebt1.Ramal()
 
-Set obj1 = Server.CreateObject("WebEmbratel.ClsCadastro")
-	Set rst = obj1.GetDados(matricula)
-
-	if rst IS nothing then
-		AuxResponsavel = ""
-		AuxOrgao = ""
-		AuxRamal =  ""
-	else
-		AuxResponsavel = rst("Nome_Reduzido")
-		AuxOrgao = rst("SiglaOrgao")
-		AuxRamal =  rst("TEL1_COM") ' caso nulo usuario nao atualizou no CTE
-        end if
-
-               Set obj1  = nothing
-
-AuxMatricula=matricula
-
+Set ebt1 = Nothing
 %>
 
 <CENTER>
