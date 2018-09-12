@@ -6,7 +6,7 @@ Sub Application_OnStart()
 	Application("SISLAB_ID_APLICACAO_SISLAB")	= 1
 	Application("SISLAB_ID_APLICACAO_SCE") 	= 2
 
-	Application("SISLAB_AMBIENTE") = "DES"
+	Application("SISLAB_AMBIENTE") = "DV2"
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
 
