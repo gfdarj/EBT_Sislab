@@ -37,15 +37,14 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento 
 
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
-if Env.ehRAT then solicitante = request("solicitante") else solicitante = "" end if
-solicitante = request("solicitante")
-if num_ag = "" then num_ag = request("hdAG")
 
+If Env.ehRAT Then solicitante = request("solicitante") else solicitante = "" End If
+If num_ag = "" Then num_ag = request("hdAG")
 
-if num_ag <> "" then
+If num_ag <> "" Then
 	sSQL = "Select * from vw_Agendamento where ag_numero=" & num_ag & ";"
-	call Env.RecordSet( true, objSiteRS, sSQL)
-	if not (objSiteRS.Eof and objSiteRS.Bof) then
+	Call Env.RecordSet( true, objSiteRS, sSQL)
+	If Not (objSiteRS.Eof and objSiteRS.Bof) Then
 		SolicitouCancela = objSiteRS("AG_SOLICITOUCANCELAMENTO")
 		situacao_ag = objSiteRS("ID_SITUACAO")
 		situacao_ag_desc = objSiteRS("S_DESCRICAO")
@@ -53,32 +52,32 @@ if num_ag <> "" then
 		chr_Username = objSiteRS("AG_USERNAME")
 		chr_OrgaoSQL = objSiteRS("AG_ORGAO")
 		If IsNull(chr_OrgaoSQL) Then chr_OrgaoSQL = "--" Else chr_OrgaoSQL = Trim(chr_OrgaoSQL)
-	end if
-end if
+	End If
+End If
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script>
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
+    function areaRAT(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoRAT.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
 
-function areaRAT(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoRAT.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
-function areaRT(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoRT.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
+    function areaRT(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoRT.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
 
-function usarReferencia(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoCliente.asp?as_referencia=" + frm.asRef.value;
-	frm.submit();
-}
+    function usarReferencia(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoCliente.asp?as_referencia=" + frm.asRef.value;
+	    frm.submit();
+    }
 
 <%if Env.EhRat() then%>
 	function BuscarSolicitante(){
@@ -93,212 +92,212 @@ function usarReferencia(){
 	}
 <%end if%>
 
-function ValidaCampos(){
-	var frm = document.forms[0];
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
-	if (frm.txtTitulo.value==""){
-		alert("Informe o título deste agendamento.");
-	    frm.txtTitulo.focus();
-		return false;
-	}
-	if (AchaAspas(frm.txtTitulo.value)){
-		alert("O título deste agendamento não pode conter aspas ou apóstrofes.");
-	    frm.txtTitulo.focus();
-		return false;	
-	}
+	    if (frm.txtTitulo.value==""){
+		    alert("Informe o título deste agendamento.");
+	        frm.txtTitulo.focus();
+		    return false;
+	    }
+	    if (AchaAspas(frm.txtTitulo.value)){
+		    alert("O título deste agendamento não pode conter aspas ou apóstrofes.");
+	        frm.txtTitulo.focus();
+		    return false;	
+	    }
 
-	if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
-		alert("A data de inicio do agendamento deve ser uma uma data válida.");
-		frm.diaINICIO.focus();
-		return false;
-	}
+	    if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
+		    alert("A data de inicio do agendamento deve ser uma uma data válida.");
+		    frm.diaINICIO.focus();
+		    return false;
+	    }
 
-	if (!(isDate(frm.diaFIM.value+"/"+frm.mesFIM.value+"/"+frm.anoFIM.value))){
-		alert("A data de fim do agendamento deve ser uma uma data válida.");
-		frm.diaFIM.focus();
-		return false;
-	}
-
-
-	/* valido data inicial maior que data final */
-	var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
-	var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;
-
-	if(dI > dF) {
-		alert('Data inicial é maior que a data final');
-		frm.diaINICIO.focus();
-		return false;
-	}
+	    if (!(isDate(frm.diaFIM.value+"/"+frm.mesFIM.value+"/"+frm.anoFIM.value))){
+		    alert("A data de fim do agendamento deve ser uma uma data válida.");
+		    frm.diaFIM.focus();
+		    return false;
+	    }
 
 
-	if (frm.cmbTec.value==""){
-		alert("Informe a tecnologia usada no agendamento.");
-	    frm.cmbTec.focus();
-		return false;
-	}
+	    /* valido data inicial maior que data final */
+	    var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
+	    var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;
 
-	//Optei por participantes externos
-	if (frmAgendaTeste.cmbPartExternos(0).checked){
-		if (frm.lstParticipantes.options.length == 0){
-			alert("Você optou por presenca de participantes externos mas não cadastrou nenhum.")
-			return false;
-		}
-	}
-
-	//Optei por participantes EBT
-	if (frmAgendaTeste.cmbPartEBT(0).checked){
-		if (frm.lstParticipantesEBT.options.length == 0){
-			alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
-			return false;
-		}
-	}
-
-	if (frm.objetivos.value==""){
-		alert("Objetivos do agendamento não foram informados.");
-	    frm.objetivos.focus();
-		return false;
-	}
-
-	if (AchaAspas(frm.objetivos.value)){
-		alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
-	    frm.objetivos.focus();
-		return false;
-	}
+	    if(dI > dF) {
+		    alert('Data inicial é maior que a data final');
+		    frm.diaINICIO.focus();
+		    return false;
+	    }
 
 
-	if (frm.objetivos.value==""){
-		alert("Objetivos do agendamento não foram informados.");
-	    frm.objetivos.focus();
-		return false;
-	}
+	    if (frm.cmbTec.value==""){
+		    alert("Informe a tecnologia usada no agendamento.");
+	        frm.cmbTec.focus();
+		    return false;
+	    }
 
-	if (AchaAspas(frm.objetivos.value)){
-		alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
-	    frm.objetivos.focus();
-		return false;	
-	}
+	    //Optei por participantes externos
+	    if (frmAgendaTeste.cmbPartExternos(0).checked){
+		    if (frm.lstParticipantes.options.length == 0){
+			    alert("Você optou por presenca de participantes externos mas não cadastrou nenhum.")
+			    return false;
+		    }
+	    }
 
-	if (!(frm.cmbCliExternos(0).checked || frm.cmbCliExternos(1).checked)){
-		alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
-	    frm.cmbCliExternos(0).focus();
-		return false;	
-	}
+	    //Optei por participantes EBT
+	    if (frmAgendaTeste.cmbPartEBT(0).checked){
+		    if (frm.lstParticipantesEBT.options.length == 0){
+			    alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
+			    return false;
+		    }
+	    }
 
-	//Cliente externo
-	if (frm.cmbCliExternos(0).checked){
-		//Nome Cliente
-		if (frm.txtNomeCliente.value == ""){
-			alert("Em Dados do Cliente não foi especificada o Nome do Cliente.")
-		    frm.txtNomeCliente.focus();
-			return false;	
-		}
-		if (AchaAspas(frm.txtNomeCliente.value)){
-			alert("Em Dados do Cliente o Nome do Cliente não pode conter Aspas ou apóstrofes.");
-	    	frm.txtNomeCliente.focus();
-			return false;	
-		}
-		//Retorno
-		//if (frm.txtRetornoCliente.value == "0" || frm.txtRetornoCliente.value == "0,00"){
-		//	alert("Em Dados do Cliente não foi especificado o Retorno.")
-		//	frm.txtRetornoCliente.focus();
-		//	return false;	
-		//}
+	    if (frm.objetivos.value==""){
+		    alert("Objetivos do agendamento não foram informados.");
+	        frm.objetivos.focus();
+		    return false;
+	    }
 
-	}
-	//Cliente EBT
-	if (frm.cmbCliExternos(1).checked){
-		//Plano de metas
-//		if (frm.cmbItemCliente.value == ""){
-//			alert("Em Dados do Cliente não foi especificada o Item associado ao plano de metas.")
-//		    frm.cmbItemCliente.focus();
-//			return false;	
-//		}
-	}
+	    if (AchaAspas(frm.objetivos.value)){
+		    alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
+	        frm.objetivos.focus();
+		    return false;
+	    }
 
-	if (frm.ambiente.value==""){
-		alert("Ambiente Necessário não foram informado.");
-	    frm.ambiente.focus();
-		return false;
-	}
 
-	if (AchaAspas(frm.ambiente.value)){
-		alert("Ambiente Necessário não podem conter Aspas ou apóstrofes.");
-	    frm.ambiente.focus();
-		return false;
-	}
+	    if (frm.objetivos.value==""){
+		    alert("Objetivos do agendamento não foram informados.");
+	        frm.objetivos.focus();
+		    return false;
+	    }
 
-	if (frm.recursos.value==""){
-		alert("Recursos Necessários não foram informado.");
-	    frm.recursos.focus();
-		return false;
-	}
+	    if (AchaAspas(frm.objetivos.value)){
+		    alert("Objetivos do agendamento não podem conter Aspas ou apóstrofes.");
+	        frm.objetivos.focus();
+		    return false;	
+	    }
 
-	if (AchaAspas(frm.recursos.value)){
-		alert("Recursos Necessários não podem conter Aspas ou apóstrofes.");
-	    frm.recursos.focus();
-		return false;
-	}
+	    if (!(frm.cmbCliExternos(0).checked || frm.cmbCliExternos(1).checked)){
+		    alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
+	        frm.cmbCliExternos(0).focus();
+		    return false;	
+	    }
 
-	/* --- preencho a lista de participantes */
-	var strExt = frm.strParticipantesExternos;
-	var strEBT = frm.strParticipantesEBT;
-	var i;
-	var separador = '<%=SEPARADOR_REGISTRO%>';
-	var listaExt = frm.lstParticipantes;
+	    //Cliente externo
+	    if (frm.cmbCliExternos(0).checked){
+		    //Nome Cliente
+		    if (frm.txtNomeCliente.value == ""){
+			    alert("Em Dados do Cliente não foi especificada o Nome do Cliente.")
+		        frm.txtNomeCliente.focus();
+			    return false;	
+		    }
+		    if (AchaAspas(frm.txtNomeCliente.value)){
+			    alert("Em Dados do Cliente o Nome do Cliente não pode conter Aspas ou apóstrofes.");
+	    	    frm.txtNomeCliente.focus();
+			    return false;	
+		    }
+		    //Retorno
+		    //if (frm.txtRetornoCliente.value == "0" || frm.txtRetornoCliente.value == "0,00"){
+		    //	alert("Em Dados do Cliente não foi especificado o Retorno.")
+		    //	frm.txtRetornoCliente.focus();
+		    //	return false;	
+		    //}
 
-	strExt.value = '';
-	for(i=0; i<listaExt.options.length; i++) {
-		strExt.value += listaExt.options[i].value + separador;
-	}
+	    }
+	    //Cliente EBT
+	    if (frm.cmbCliExternos(1).checked){
+		    //Plano de metas
+    //		if (frm.cmbItemCliente.value == ""){
+    //			alert("Em Dados do Cliente não foi especificada o Item associado ao plano de metas.")
+    //		    frm.cmbItemCliente.focus();
+    //			return false;	
+    //		}
+	    }
 
-	var listaEBT = frm.lstParticipantesEBT;
-	strEBT.value = '';
-	for(i=0; i<listaEBT.options.length; i++) {
-		strEBT.value += listaEBT.options[i].value + separador;
-	}
-	/* --- fim do preenchimento das lista */
+	    if (frm.ambiente.value==""){
+		    alert("Ambiente Necessário não foram informado.");
+	        frm.ambiente.focus();
+		    return false;
+	    }
 
-	frm.action = "CadAgendamentoClienteA.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.btn_Salvar.disabled = true;
-	frm.submit();
-}
-function PreparaCamposPART() {
-	if (frmAgendaTeste.cmbPartEBT(0).checked)
-		tabParticipantesEBT.style.display = 'block';
-	else
-		tabParticipantesEBT.style.display = 'none';
-}
+	    if (AchaAspas(frm.ambiente.value)){
+		    alert("Ambiente Necessário não podem conter Aspas ou apóstrofes.");
+	        frm.ambiente.focus();
+		    return false;
+	    }
 
-function PreparaCamposCLI(){
+	    if (frm.recursos.value==""){
+		    alert("Recursos Necessários não foram informado.");
+	        frm.recursos.focus();
+		    return false;
+	    }
 
-/* Não achei esse tabCliente e tabClienteEBT !!! 
-    Gilberto - 12/09/2018
-*/
+	    if (AchaAspas(frm.recursos.value)){
+		    alert("Recursos Necessários não podem conter Aspas ou apóstrofes.");
+	        frm.recursos.focus();
+		    return false;
+	    }
 
-//	if (frmAgendaTeste.cmbCliExternos(0).checked)
-//    {
-//		tabClienteEBT.style.display = 'block';
-//		tabCliente.style.display = 'none';
-		//frm.txtNomeCliente.value = '';
-		//frm.txtRetornoCliente.value = '0';
-//	}
-//    else
-//    {
-//		tabClienteEBT.style.display = 'none';
-//		tabCliente.style.display = 'block';
-		//frm.txtNomeCliente.value = 'EBT';
-//	}
-}
+	    /* --- preencho a lista de participantes */
+	    var strExt = frm.strParticipantesExternos;
+	    var strEBT = frm.strParticipantesEBT;
+	    var i;
+	    var separador = '<%=SEPARADOR_REGISTRO%>';
+	    var listaExt = frm.lstParticipantes;
 
-function PreparaCamposPARTEXT()
-{
-	if (frmAgendaTeste.cmbPartExternos(0).checked)
-		tabParticipantes.style.display = 'block';
-	else
-		tabParticipantes.style.display = 'none';
-}
+	    strExt.value = '';
+	    for(i=0; i<listaExt.options.length; i++) {
+		    strExt.value += listaExt.options[i].value + separador;
+	    }
+
+	    var listaEBT = frm.lstParticipantesEBT;
+	    strEBT.value = '';
+	    for(i=0; i<listaEBT.options.length; i++) {
+		    strEBT.value += listaEBT.options[i].value + separador;
+	    }
+	    /* --- fim do preenchimento das lista */
+
+	    frm.action = "CadAgendamentoClienteA.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.btn_Salvar.disabled = true;
+	    frm.submit();
+    }
+    function PreparaCamposPART() {
+	    if (frmAgendaTeste.cmbPartEBT(0).checked)
+		    tabParticipantesEBT.style.display = 'block';
+	    else
+		    tabParticipantesEBT.style.display = 'none';
+    }
+
+    function PreparaCamposCLI(){
+
+    /* Não achei esse tabCliente e tabClienteEBT !!! 
+        Gilberto - 12/09/2018
+    */
+
+    //	if (frmAgendaTeste.cmbCliExternos(0).checked)
+    //    {
+    //		tabClienteEBT.style.display = 'block';
+    //		tabCliente.style.display = 'none';
+		    //frm.txtNomeCliente.value = '';
+		    //frm.txtRetornoCliente.value = '0';
+    //	}
+    //    else
+    //    {
+    //		tabClienteEBT.style.display = 'none';
+    //		tabCliente.style.display = 'block';
+		    //frm.txtNomeCliente.value = 'EBT';
+    //	}
+    }
+
+    function PreparaCamposPARTEXT()
+    {
+	    if (frmAgendaTeste.cmbPartExternos(0).checked)
+		    tabParticipantes.style.display = 'block';
+	    else
+		    tabParticipantes.style.display = 'none';
+    }
 </script>
 <form method="post" action="CadAgendamentoClienteA.asp" name="frmAgendaTeste">
 <input type="Hidden" name="hdAG">
@@ -386,7 +385,7 @@ if Env.EhRat() then
 </tr>
 <tr height="34"> 
 	<td colspan="10">&nbsp;&nbsp;Nome do Solicitante: &nbsp;
-		<input type="text" class="combo" name="txtSolicitante" size="15"  maxlength="20">
+		<input type="text" class="combo" name="txtSolicitante" size="25"  maxlength="80">
 		<input  class="combo" type="Button" value="Buscar" onclick="BuscarSolicitante();">
 	</td>
 </tr>

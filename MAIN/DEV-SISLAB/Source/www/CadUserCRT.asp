@@ -15,100 +15,107 @@ Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Usuários CR
 
 If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script>
-function BuscarUsuario(){
-	var frm = document.forms[0];
-	frm.action = "CadUserCRT.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.ehNovoUsuario.value = 0;
-	frm.submit();
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
+<script type="text/javascript" src="includes/ValidacaoEmail.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
+    function BuscarUsuario(){
+	    var frm = document.forms[0];
+	    frm.action = "CadUserCRT.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.ehNovoUsuario.value = 0;
+	    frm.submit();
+	    frm.btnSalvar.disabled = false;
+	    frm.btnCancelar.disabled = false;	
 
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-function ValidaCampos(){
-	var frm = document.forms[0];
+    }
+    function Cancela(){
+	    var frm = document.forms[0];
+	    frm.action = "sislab.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
-	if (frm.username.value == ""){
-		alert('É necessário informar o UserName.');
-		frm.username.focus();
-		return false
-	}
-	if (frm.matricula.value == ""){
-		alert('É necessário informar a matrícula.');
-		frm.matricula.focus();
-		return false
-	}
-	if (isNaN(frm.matricula.value)){
-		alert('O Campo matrícula deve ser numérico.');
-		frm.matricula.focus();
-		return false
-	}
-	if (frm.Nome.value == ""){
-		alert('É necessário informar o Nome.');
-		frm.Nome.focus();
-		return false
-	}
-	if (isNaN(frm.Ramal.value)){
-		alert('O Campo ramal deve ser numérico.');
-		frm.Ramal.focus();
-		return false
-	}
-	if (frm.orgao.value == ""){
-		alert('É necessário informar o órgão.');
-		frm.orgao.focus();
-		return false
-	}
-	frm.username.disabled = false
-	frm.action = "CadUserCRTA.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-function IncluirNovo(){
-	var frm = document.forms[0];
-	frm.ehNovoUsuario.value = 1;
-	frm.username.disabled = false;
-	frm.username.style.backgroundColor = "#FFFFFF";	
-	frm.user.value  = ''
-	frm.username.value = ''
-	frm.matricula.value = ''
-	frm.Nome.value = ''
-	frm.celular.value = ''
-	frm.Ramal.value = ''
-	frm.orgao.value = ''		
-	frm.chkRAT.checked = false;
-	frm.chkRT.checked = false;
-	frm.chkGQ.checked = false;
-	frm.chkexibir.checked = false;
-	frm.username.focus();
-	frm.btnIncluir.disabled = true;
-	frm.btnExcluir.disabled = true;
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Excluir() {
-	var frm = document.forms[0];
-	if(frm.user.value == '') {
-		alert('Nenhum usuário selecionado para exclusão !');
-		frm.user.focus();
-	}
-	else {
-		frm.excluir.value = '1';
-		frm.action = "CadUserCRTA.asp";
-		frm.target = "_parent";
-		frm.submit();
-	}
-}
+	    if (frm.username.value == ""){
+		    alert('É necessário informar o UserName.');
+		    frm.username.focus();
+		    return false
+	    }
+	    if (!validacaoEmail(frm.username.value))
+	    {
+	        alert('UserName inválido.');
+	        frm.username.focus();
+	        return false
+	    }
+	    if (frm.matricula.value == ""){
+		    alert('É necessário informar a matrícula.');
+		    frm.matricula.focus();
+		    return false
+	    }
+	    if (isNaN(frm.matricula.value)){
+		    alert('O Campo matrícula deve ser numérico.');
+		    frm.matricula.focus();
+		    return false
+	    }
+	    if (frm.Nome.value == ""){
+		    alert('É necessário informar o Nome.');
+		    frm.Nome.focus();
+		    return false
+	    }
+	    if (isNaN(frm.Ramal.value)){
+		    alert('O Campo ramal deve ser numérico.');
+		    frm.Ramal.focus();
+		    return false
+	    }
+	    if (frm.orgao.value == ""){
+		    alert('É necessário informar o órgão.');
+		    frm.orgao.focus();
+		    return false
+	    }
+	    frm.username.disabled = false
+	    frm.action = "CadUserCRTA.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
+    function IncluirNovo(){
+	    var frm = document.forms[0];
+	    frm.ehNovoUsuario.value = 1;
+	    frm.username.disabled = false;
+	    frm.username.style.backgroundColor = "#FFFFFF";	
+	    frm.user.value  = ''
+	    frm.username.value = ''
+	    frm.matricula.value = ''
+	    frm.Nome.value = ''
+	    frm.celular.value = ''
+	    frm.Ramal.value = ''
+	    frm.orgao.value = ''		
+	    frm.chkRAT.checked = false;
+	    frm.chkRT.checked = false;
+	    frm.chkGQ.checked = false;
+	    frm.chkexibir.checked = false;
+	    frm.username.focus();
+	    frm.btnIncluir.disabled = true;
+	    frm.btnExcluir.disabled = true;
+	    frm.btnSalvar.disabled = false;
+	    frm.btnCancelar.disabled = false;	
+    }
+    function Excluir() {
+	    var frm = document.forms[0];
+	    if(frm.user.value == '') {
+		    alert('Nenhum usuário selecionado para exclusão !');
+		    frm.user.focus();
+	    }
+	    else {
+		    frm.excluir.value = '1';
+		    frm.action = "CadUserCRTA.asp";
+		    frm.target = "_parent";
+		    frm.submit();
+	    }
+    }
 </script>
 <form method="post" action="CadUserCRTA.asp" name="frm">
 <input type="Hidden" name="ehNovoUsuario" value="0">

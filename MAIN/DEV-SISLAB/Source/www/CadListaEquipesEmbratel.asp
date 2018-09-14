@@ -13,67 +13,70 @@ gerente = Request("gerente")
 lista = ""
 bEof = True
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script language="javascript">
-function BuscarGerente(){
-	var frm = document.forms[0];
-	frm.action = "CadListaEquipesEmbratel.asp";
-	frm.target = "_parent";
-	frm.submit();
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.target = "_parent";
-	frm.submit();
-}
-function ValidaCampos(){
-	var frm = document.forms[0];
+<script type="text/javascript" src="includes/ValidacaoEmail.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
+    function BuscarGerente(){
+	    var frm = document.forms[0];
+	    frm.action = "CadListaEquipesEmbratel.asp";
+	    frm.target = "_parent";
+	    frm.submit();
+	    frm.btnSalvar.disabled = false;
+	    frm.btnCancelar.disabled = false;	
+    }
+    function Cancela(){
+	    var frm = document.forms[0];
+	    frm.action = "sislab.asp";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
-	if (frm.lista.length == 0) {
-		alert('É necessário informar um usuário membro da equipe.');
-		frm.novo_participante.focus();
-		return false
-	}
+	    if (frm.lista.length == 0) {
+		    alert('É necessário informar um usuário membro da equipe.');
+		    frm.novo_participante.focus();
+		    return false
+	    }
 
-	/* CONTATENA A LISTA */
-	frm.lista_participante.value = '';
-	for(i=0; i < frm.lista.length; i++)
-	{
-		frm.lista_participante.value += frm.lista[i].value;
-		if(i != frm.lista.length-1) frm.lista_participante.value += ','; 
-	}
+	    /* CONTATENA A LISTA */
+	    frm.lista_participante.value = '';
+	    for(i=0; i < frm.lista.length; i++)
+	    {
+		    frm.lista_participante.value += frm.lista[i].value;
+		    if(i != frm.lista.length-1) frm.lista_participante.value += ','; 
+	    }
 
-	frm.action = "CadListaEquipesEmbratelA.asp";
-	//frm.target = "_parent";
-	frm.submit();
-}
-function IncluirNovo(){
-	var frm = document.forms[0];
-	frm.novo_gerente.value = "";
-	frm.novo_gerente.focus();
-	frm.lista.length = 0;
-	frm.gerente.value = "";
-	frm.btnIncluir.disabled = true;
-	frm.btnExcluir.disabled = true;
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Excluir() {
-	var frm = document.forms[0];
-	if(frm.gerente.value == '') {
-		alert('Nenhum Gerente selecionado para exclusão !');
-		frm.gerente.focus();
-	}
-	else {
-		frm.excluir.value = '1';
-		frm.action = "CadListaEquipesEmbratelA.asp";
-		frm.target = "_parent";
-		frm.submit();
-	}
-}
+	    frm.action = "CadListaEquipesEmbratelA.asp";
+	    //frm.target = "_parent";
+	    frm.submit();
+    }
+
+    function IncluirNovo() {
+	    var frm = document.forms[0];
+	    frm.novo_gerente.value = "";
+	    frm.novo_gerente.focus();
+	    frm.lista.length = 0;
+	    frm.gerente.value = "";
+	    frm.btnIncluir.disabled = true;
+	    frm.btnExcluir.disabled = true;
+	    frm.btnSalvar.disabled = false;
+	    frm.btnCancelar.disabled = false;	
+    }
+
+    function Excluir() {
+	    var frm = document.forms[0];
+	    if(frm.gerente.value == '') {
+		    alert('Nenhum Gerente selecionado para exclusão !');
+		    frm.gerente.focus();
+	    }
+	    else {
+		    frm.excluir.value = '1';
+		    frm.action = "CadListaEquipesEmbratelA.asp";
+		    frm.target = "_parent";
+		    frm.submit();
+	    }
+    }
 </script>
 <form method="post" action="CadListaEquipesEmbratelA.asp" name="frm">
 <input type="Hidden" name="excluir" value="0">
@@ -110,7 +113,7 @@ function Excluir() {
 
 <tr>
 	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username do Gerente:</b></td>
-	<td><input type="Text" name="novo_gerente" size="20" maxlength="20" class="texto1"></td>
+	<td><input type="Text" name="novo_gerente" size="50" maxlength="80" class="texto1"></td>
 <tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -121,7 +124,7 @@ function Excluir() {
 		<table class="texto1">
 		<tr valign="top">
 			<td><b>Participante</b><BR>
-				<input type="Text" name="novo_participante" size="20" maxlength="20" class="texto1">
+				<input type="Text" name="novo_participante" size="50" maxlength="80" class="texto1">
 			</td>
 			<td valign="middle">
 				<input type="Button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
@@ -129,7 +132,7 @@ function Excluir() {
 			</td>
 			<td>
 				<b>Usuários adicionados</b><BR>
-				<select name="lista" style="width: 150px; HEIGHT: 100px;" class="texto1" multiple>
+				<select name="lista" style="width: 250px; HEIGHT: 100px;" class="texto1" multiple>
 <%
 if Not VVVN(gerente) Then
 	ssql = "select * from EquipeEmbratel where UserId_Gerente = '" & gerente & "'"
@@ -148,33 +151,38 @@ End If
 	</td>
 <tr>
 
-<script language="JavaScript">
-function adiciona_retira_participantes(tipo)
-{
-	var frm = document.forms[0]
-	var nome = frm.novo_participante;
-	var lista = frm.lista;
-	var ultimo;
+<script type="text/javascript">
+    function adiciona_retira_participantes(tipo)
+    {
+	    var frm = document.forms[0]
+	    var nome = frm.novo_participante;
+	    var lista = frm.lista;
+	    var ultimo;
 
-	if (tipo == 0){
-		if (lista.selectedIndex != -1){
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (nome.value == ""){
-			alert("O campo 'Participante' deve ser preenchido.");
-			nome.focus();		
-		}
-		else{
-			ultimo = lista.options.length;
-			lista.options[ultimo] = new Option(nome.value, nome.value);
-			lista.options[ultimo].value = nome.value;
-			nome.value = "";
-			nome.focus();
-		}
-	}
-}
+	    if (tipo == 0){
+		    if (lista.selectedIndex != -1){
+			    lista.options[lista.selectedIndex]=null;
+		    }
+	    }
+	    else
+	    {
+		    if (nome.value == ""){
+			    alert("O campo 'Participante' deve ser preenchido.");
+			    nome.focus();
+		    }
+		    else if (!validacaoEmail(nome.value)) {
+		        alert("E-mail inválido!");
+		        nome.focus();
+            }
+		    else {
+		        ultimo = lista.options.length;
+		        lista.options[ultimo] = new Option(nome.value, nome.value);
+		        lista.options[ultimo].value = nome.value;
+		        nome.value = "";
+		        nome.focus();
+		    }
+	    }
+    }
 </script>
 
 <tr><td colspan="2">&nbsp;</td></tr>
