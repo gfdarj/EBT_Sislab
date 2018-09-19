@@ -21,11 +21,20 @@ namespace www_TesteAD
             //string name = Environment.UserName;
             string name = TextBox1.Text;
 
-            // Get the currently connected LDAP context 
-            DirectoryEntry entry1 = new DirectoryEntry("LDAP://RootDSE");
-            string domainContext = entry1.Properties["defaultNamingContext"].Value as string;
-            // Use the default naming context as the connected context may not work for searches
-            DirectoryEntry entry = new DirectoryEntry("LDAP://" + domainContext);
+            if (txtLDAP.text == "")
+            {
+                // Get the currently connected LDAP context 
+                DirectoryEntry entry1 = new DirectoryEntry("LDAP://RootDSE");
+                // Use the default naming context as the connected context may not work for searches
+                string domainContext = entry1.Properties["defaultNamingContext"].Value as string;
+                DirectoryEntry entry = new DirectoryEntry("LDAP://" + domainContext);
+            }
+            else
+            {
+                string domainContext = txtLDAP.text;
+                DirectoryEntry entry = new DirectoryEntry("LDAP://" + domainContext);
+            }
+
             DirectorySearcher adSearch = new DirectorySearcher(entry);
 
             adSearch.Filter = "(&(objectClass=user)(anr=" + name + "))";
