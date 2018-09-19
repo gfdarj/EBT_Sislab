@@ -34,11 +34,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLDAP = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDC = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(351, 32);
+            this.btnPesquisar.Location = new System.Drawing.Point(531, 32);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisar.TabIndex = 0;
@@ -51,15 +53,15 @@
             this.txtResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResultado.Location = new System.Drawing.Point(12, 72);
+            this.txtResultado.Location = new System.Drawing.Point(12, 74);
             this.txtResultado.Multiline = true;
             this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(547, 347);
+            this.txtResultado.Size = new System.Drawing.Size(594, 340);
             this.txtResultado.TabIndex = 1;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(189, 35);
+            this.txtUsuario.Location = new System.Drawing.Point(369, 35);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(156, 20);
             this.txtUsuario.TabIndex = 2;
@@ -67,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(189, 14);
+            this.label1.Location = new System.Drawing.Point(369, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 3;
@@ -78,9 +80,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "LDAP:";
+            this.label2.Text = "Url do LDAP:";
             // 
             // txtLDAP
             // 
@@ -89,11 +91,29 @@
             this.txtLDAP.Size = new System.Drawing.Size(156, 20);
             this.txtLDAP.TabIndex = 4;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(190, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "DC:";
+            // 
+            // txtDC
+            // 
+            this.txtDC.Location = new System.Drawing.Point(190, 35);
+            this.txtDC.Name = "txtDC";
+            this.txtDC.Size = new System.Drawing.Size(156, 20);
+            this.txtDC.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 429);
+            this.ClientSize = new System.Drawing.Size(618, 429);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtDC);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtLDAP);
             this.Controls.Add(this.label1);
@@ -115,6 +135,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLDAP;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtDC;
     }
 }
 
