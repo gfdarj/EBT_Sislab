@@ -31,6 +31,19 @@ Class TEbt
 
     '-Property------------------------------------------------------------------------'
 
+                chr_CodigoLotacao = objRs.Fields("embratellotacao")
+                chr_Departamento = objRs.Fields("department")
+                chr_Direcao = objRs.Fields("embrateldescdsmdlotacao")
+                chr_Empresa = objRs.Fields("embratelsexo")
+                chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
+                chr_DataAdmissao = objRs.Fields("embrateladmissao")
+                chr_AreaLotacao = objRs.Fields("embratelarealotacao")
+                chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
+                chr_Lotacao = objRs.Fields("embrateldesclotacao")
+                chr_Matricula = objRs.Fields("employeeid")
+                chr_DataNascimento = objRs.Fields("embrateldatanasc")
+                chr_Empresa = objRs.Fields("company")
+
     Public Property Get ehFuncionario()
 	    ehFuncionario = bln_ehFuncionario
     End Property
@@ -274,11 +287,14 @@ Class TEbt
         conn.Provider = "ADsDSOObject"
         conn.Open "Active Directory Provider"   '"ADs Provider"
 
-        strAttrs = "sAMAccountName, distinguishedName, givenName, displayName, description, telephoneNumber, mail, streetAddress, " & _ 
-                   "title, department, otherHomePhone, mobile, otherMobile, " & _
-                   "ipPhone, otherIpPhone, info, manager " ' get attributes
-        'strQueryDL = "<LDAP:/ /" & str_dc & ">;(& (sAMAccountName=" & strUser & "*) );" & strAttrs & ";SubTree"
-        'strQueryDL = "<LDAP:/ /DC=alerj,DC=gov,DC=br>;(& (sAMAccountName=galmeida*) );sAMAccountName,displayName,distinguishedName,mail;SubTree"
+        'strAttrs = "sAMAccountName, distinguishedName, givenName, displayName, description, telephoneNumber, mail, streetAddress, " & _ 
+        '           "title, department, otherHomePhone, mobile, otherMobile, " & _
+        '           "ipPhone, otherIpPhone, info, manager "
+        strAttrs = _
+            "distinguishedName, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, embratelcatempregado, " & _
+            "embrateladmissao, embratelarealotacao, embratelcatcargo, embrateldesclotacao, employeeid, " & _
+            "embrateldatanasc, company, telephonenumber, mobile "
+
 
         Set objRootDSE = GetObject("LDAP://rootDSE")
         strRootTDSE = objRootDSE.Get("defaultNamingContext")
@@ -310,7 +326,20 @@ Class TEbt
                 chr_Ramal = objRs.Fields("telephoneNumber")
                 chr_Celular = objRs.Fields("mobile")
                 chr_Descricao = objRs.Fields("description")
+                chr_CodigoLotacao = objRs.Fields("embratellotacao")
+                chr_Departamento = objRs.Fields("department")
+                chr_Direcao = objRs.Fields("embrateldescdsmdlotacao")
+                chr_Empresa = objRs.Fields("embratelsexo")
+                chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
+                chr_DataAdmissao = objRs.Fields("embrateladmissao")
+                chr_AreaLotacao = objRs.Fields("embratelarealotacao")
+                chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
+                chr_Lotacao = objRs.Fields("embrateldesclotacao")
+                chr_Matricula = objRs.Fields("employeeid")
+                chr_DataNascimento = objRs.Fields("embrateldatanasc")
+                chr_Empresa = objRs.Fields("company")
             End If
+
             bln_TemErro = False
         Else
             bln_TemErro = True
