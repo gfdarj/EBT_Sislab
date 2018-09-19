@@ -1,5 +1,4 @@
 ﻿<!--#include file="includes/PadraoHTML.asp" -->
-<!--#include file="Global.asa"-->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->

@@ -1,4 +1,3 @@
-<!--#include file="../../global.asa" -->
 <!--#include file="../../includes/Sislab_Lib.asp"-->
 <%
 Dim RS

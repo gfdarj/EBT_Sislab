@@ -29,6 +29,9 @@ objCommand.Properties("Searchscope") = 2 'ADS_SCOPE_SUBTREE
 
 Set objRootDSE = GetObject("LDAP://rootDSE")
 'Set objRootDSE = GetObject("LDAP://alerj.rj.gov.br")
+'Set objRootDSE = GetObject("LDAP://ldapebt.embratel.com.br")
+'Set objRootDSE = GetObject("LDAP://10.53.22.129")
+
 strRootTDSE = objRootDSE.Get("defaultNamingContext")
 
 IF txtUsuario = "" Then

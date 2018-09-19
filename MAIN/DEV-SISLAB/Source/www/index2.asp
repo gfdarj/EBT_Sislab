@@ -22,17 +22,8 @@ function verificaNavegador() {
 verificaNavegador();
 </script>
 
-<!--#include file="Global.asa"-->
-
-<%
-'-- Inicializa as constantes do tipo Application no caso de não serem lidas pelo Global.Asa
-'If Application("SISLAB_AMBIENTE") = "" Then
-	Call Application_OnStart()
-'End If
-%>
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/EmailHTML.asp" -->
-<!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/Funcoes.asp"-->
 <%
