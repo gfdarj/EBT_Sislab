@@ -3,7 +3,7 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Sce.asp"-->
+<!--#include file="../Classes/Classe_Sce.asp"-->
 <%
 Dim chr_User
 Dim int_nfid

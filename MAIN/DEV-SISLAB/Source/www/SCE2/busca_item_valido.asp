@@ -3,7 +3,7 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_SCE.asp"-->
+<!--#include file="../Classes/Classe_SCE.asp"-->
 <%
 '-- Usado pelo cadastro de reservas (cad_Reserva.asp)--
 '--

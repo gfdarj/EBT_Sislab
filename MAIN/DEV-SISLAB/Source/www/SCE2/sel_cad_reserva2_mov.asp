@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_Combo.asp"-->
 <%
 '-- RECEBE OS EQUIPAMENTOS ESCOLHIDOS (ACEITO/NAO ACEITO) DA LISTA DE RESERVAS E MOSTRA
 '-- AO USUARIO A LISTA DOS MESMOS. PODENDO O USUÁRIO MOVIMENTAR OU ENTAO VOLTAR À TELA DE CONSULTA

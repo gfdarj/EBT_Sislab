@@ -26,23 +26,66 @@ Class TEbt
     Private chr_Matricula
 	Private bln_ehGerente
 	Private chr_Sigla_Orgao_Gerente
+    Private chr_CodigoLotacao
+    Private chr_Departamento
+    Private chr_Diretoria
+    Private chr_Sexo
+    Private chr_CategoriaEmpregado
+    Private chr_DataAdmissao
+    Private chr_AreaLotacao
+    Private chr_CategoriaCargo
+    Private chr_Lotacao
+    Private chr_DataNascimento
+    Private chr_Empresa
 
     Private oSql
 
+
     '-Property------------------------------------------------------------------------'
 
-                chr_CodigoLotacao = objRs.Fields("embratellotacao")
-                chr_Departamento = objRs.Fields("department")
-                chr_Direcao = objRs.Fields("embrateldescdsmdlotacao")
-                chr_Empresa = objRs.Fields("embratelsexo")
-                chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
-                chr_DataAdmissao = objRs.Fields("embrateladmissao")
-                chr_AreaLotacao = objRs.Fields("embratelarealotacao")
-                chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
-                chr_Lotacao = objRs.Fields("embrateldesclotacao")
-                chr_Matricula = objRs.Fields("employeeid")
-                chr_DataNascimento = objRs.Fields("embrateldatanasc")
-                chr_Empresa = objRs.Fields("company")
+    Public Property Get CodigoLotacao()
+        CodigoLotacao = chr_CodigoLotacao
+    End Property
+
+    Public Property Get Departamento()
+        Departamento = chr_Departamento
+    End Property
+
+    Public Property Get Diretoria()
+        Diretoria = chr_Diretoria
+    End Property
+
+    Public Property Get Sexo()
+        Sexo = chr_Sexo
+    End Property
+
+    Public Property Get CategoriaEmpregado()
+        CategoriaEmpregado = chr_CategoriaEmpregado
+    End Property
+
+    Public Property Get DataAdmissao()
+        DataAdmissao = chr_DataAdmissao
+    End Property
+
+    Public Property Get AreaLotacao()
+        AreaLotacao = chr_AreaLotacao
+    End Property
+
+    Public Property Get CategoriaCargo()
+        CategoriaCargo = chr_CategoriaCargo
+    End Property
+
+    Public Property Get Lotacao()
+        Lotacao = chr_Lotacao
+    End Property
+
+    Public Property Get DataNascimento()
+        DataNascimento = chr_DataNascimento
+    End Property
+
+    Public Property Get Empresa()
+        Empresa = chr_Empresa
+    End Property
 
     Public Property Get ehFuncionario()
 	    ehFuncionario = bln_ehFuncionario
@@ -138,11 +181,13 @@ Class TEbt
 		int_PerfilSCE = 0
 		chr_Sigla_Orgao = ""
         chr_Ramal = ""
-        chr_Matricula = ""
 		bln_ehGerente = False
 		chr_Sigla_Orgao_Gerente = ""
         chr_Nome_Reduzido = ""
         bln_ehFuncionario = False
+        chr_CodigoLotacao = ""      :         chr_Departamento = "" :        chr_Diretoria = ""         :         chr_Sexo = ""
+        chr_CategoriaEmpregado = "" :         chr_DataAdmissao = "" :        chr_AreaLotacao = ""       :         chr_CategoriaCargo = ""
+        chr_Lotacao = ""            :         chr_Matricula = ""    :        chr_DataNascimento = ""    :         chr_Empresa = ""
     End Sub
 
 
@@ -161,7 +206,7 @@ Class TEbt
         Call BuscaDadosEmbratelAD(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
 
         '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
-        If Application("SISLAB_AMBIENTE") = "LOC_CASA" And chr_Login = "" Then
+        If chr_Login = "" Then
             chr_Login = "josesp@embratel.com.br"
         End If
 
@@ -190,9 +235,6 @@ Class TEbt
 		    bln_ehRT = CBool(objRS("RT"))
 		    bln_ehRAT = CBool(objRS("RAT"))
 		    bln_ehGQ = CBool(objRS("GQ"))
-		    'bln_ehRT = IIf(objRS("RT") = 1, True, False)
-		    'bln_ehRAT = IIf(objRS("RAT") = 1, True, False)
-		    'bln_ehGQ = IIf(objRS("GQ") = 1, True, False)
 		    bln_usuarioCRT_Cadastrado = True
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
@@ -224,10 +266,12 @@ Class TEbt
 	    Dim objUser
         Dim strNTUser, strUser
         Dim email, adress, dc, str_dc, str_cn
+        Dim ldap_testeAL
 
         'monta o DC
         dc = ""
         str_dc = ""
+        ldap_testeAL = False
 
 'chr_login =    Request.ServerVariables("AUTH_USER")
 'exit sub
@@ -249,6 +293,7 @@ Class TEbt
                 str_dc = "DC=claro,DC=com,DC=br"
             ElseIf UCase(Trim(email(0))) = "AL" Then
                 str_dc = "DC=alerj,DC=gov,DC=br"
+                ldap_testeAL = True
             Else
                 str_dc = "DC=net,DC=com,DC=br"
             End If
@@ -287,20 +332,21 @@ Class TEbt
         conn.Provider = "ADsDSOObject"
         conn.Open "Active Directory Provider"   '"ADs Provider"
 
-        'strAttrs = "sAMAccountName, distinguishedName, givenName, displayName, description, telephoneNumber, mail, streetAddress, " & _ 
-        '           "title, department, otherHomePhone, mobile, otherMobile, " & _
-        '           "ipPhone, otherIpPhone, info, manager "
-        strAttrs = _
-            "distinguishedName, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, embratelcatempregado, " & _
-            "embrateladmissao, embratelarealotacao, embratelcatcargo, embrateldesclotacao, employeeid, " & _
-            "embrateldatanasc, company, telephonenumber, mobile "
-
+        If ldap_testeAL Then
+            strAttrs = _
+                "distinguishedName, displayname, mail, description"
+        Else
+            strAttrs = _
+                "distinguishedName, description, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, " & _
+                "embratelcatempregado, embrateladmissao, embratelarealotacao, embratelcatcargo, embrateldesclotacao, employeeid, " & _
+                "embrateldatanasc, company, telephonenumber, mobile"
+        End If
 
         Set objRootDSE = GetObject("LDAP://rootDSE")
         strRootTDSE = objRootDSE.Get("defaultNamingContext")
 
         strQueryDL = _
-            "SELECT " & strAttrs & _
+            "SELECT " & strAttrs & " " & _
                 "FROM 'LDAP://" & strRootTDSE & "' " & _
                 "WHERE objectCategory='user' AND sAMAccountName = '" & strUser & "'" 
 
@@ -310,7 +356,7 @@ Class TEbt
         'objCmd.Properties("Page Size") = 100 ' bulk operation
         objCmd.CommandText = strQueryDL
 
-'        On Error Resume Next
+        'On Error Resume Next
         Set objRs = objCmd.Execute
 
         chr_login = strUser
@@ -323,21 +369,24 @@ Class TEbt
                     chr_Login = objRs.Fields("mail")
                 End If
                 chr_Nome_Reduzido = objRs.Fields("displayName")
-                chr_Ramal = objRs.Fields("telephoneNumber")
-                chr_Celular = objRs.Fields("mobile")
                 chr_Descricao = objRs.Fields("description")
-                chr_CodigoLotacao = objRs.Fields("embratellotacao")
-                chr_Departamento = objRs.Fields("department")
-                chr_Direcao = objRs.Fields("embrateldescdsmdlotacao")
-                chr_Empresa = objRs.Fields("embratelsexo")
-                chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
-                chr_DataAdmissao = objRs.Fields("embrateladmissao")
-                chr_AreaLotacao = objRs.Fields("embratelarealotacao")
-                chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
-                chr_Lotacao = objRs.Fields("embrateldesclotacao")
-                chr_Matricula = objRs.Fields("employeeid")
-                chr_DataNascimento = objRs.Fields("embrateldatanasc")
-                chr_Empresa = objRs.Fields("company")
+
+                If Not ldap_testeAL Then
+                    chr_Ramal = objRs.Fields("telephoneNumber")
+                    chr_Celular = objRs.Fields("mobile")
+                    chr_Matricula = objRs.Fields("employeeid")
+                    chr_Empresa = objRs.Fields("company")
+                    chr_CodigoLotacao = objRs.Fields("embratellotacao")
+                    chr_Departamento = objRs.Fields("department")
+                    chr_Diretoria = objRs.Fields("embrateldescdsmdlotacao")
+                    chr_Sexo = objRs.Fields("embratelsexo")
+                    chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
+                    chr_DataAdmissao = objRs.Fields("embrateladmissao")
+                    chr_AreaLotacao = objRs.Fields("embratelarealotacao")
+                    chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
+                    chr_Lotacao = objRs.Fields("embrateldesclotacao")
+                    chr_DataNascimento = objRs.Fields("embrateldatanasc")
+                End If
             End If
 
             bln_TemErro = False

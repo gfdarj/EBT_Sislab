@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Sce.asp"-->
+<!--#include file="../Classes/Classe_Sce.asp"-->
 <%
 '-- GERA UMA LISTAGEM DE EQUIPAMENTOS
 '-- RELATORIO DE EQUIPAMENTOS/INSTRUMENTAIS

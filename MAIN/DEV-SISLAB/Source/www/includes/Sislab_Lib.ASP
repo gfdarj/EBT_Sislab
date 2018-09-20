@@ -1,10 +1,10 @@
 <!--#include file="../includes/AdoVbs.inc"-->
 <!--#include file="../includes/Geral_Lib.asp"-->
-<!--#include file="../lib/Classe_SQL.asp"-->
-<!--#include file="../lib/Classe_Ebt.asp"-->
-<!--#include file="../lib/Classe_Mensagem.asp"-->
-<!--#include file="../lib/Classe_Tela.asp"-->
-<!--#include file="../lib/Classe_Environment.asp"-->
+<!--#include file="../Classes/Classe_SQL.asp"-->
+<!--#include file="../Classes/Classe_Ebt.asp"-->
+<!--#include file="../Classes/Classe_Mensagem.asp"-->
+<!--#include file="../Classes/Classe_Tela.asp"-->
+<!--#include file="../Classes/Classe_Environment.asp"-->
 <%
 '-- Inicializacao padrao do sistema
 Dim Env

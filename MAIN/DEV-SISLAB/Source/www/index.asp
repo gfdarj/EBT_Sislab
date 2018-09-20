@@ -14,30 +14,29 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
-
-Set ebt1 = new TEbt
-response.Write "AQUI1 : " & now
-response.Write "<BR>AQUI2 : " & now
+'Set ebt1 = new TEbt
+'response.Write "AQUI1 : " & now
+'response.Write "<BR>AQUI2 : " & now
 ''response.End
-Call Ebt1.LoginUsuario("")
+'Call Ebt1.LoginUsuario("")
 ''Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
 'Call Ebt1.BuscaDadosEmbratel("")
 
-Response.Write "Usuario: " & Ebt1.Usuario() & "<BR>"
-Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
-'Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
-Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
-Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
-Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
-Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
-Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
-Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
-Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
-Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
-Response.Write "Celular: " & Ebt1.Celular & "<BR>"
-Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
-Response.Write "NOW: " & now & "<BR>"
-Response.End
+'Response.Write "<BR>Usuario: " & Ebt1.Usuario() & "<BR><BR>"
+'Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+''Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
+'Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
+'Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"
+'Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
+'Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
+'Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
+'Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
+'Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
+'Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
+'Response.Write "Celular: " & Ebt1.Celular & "<BR>"
+'Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
+'Response.Write "NOW: " & now & "<BR>"
+'Response.End
 
 Dim usuarioCRT
 usuarioCRT = Env.UsuarioCRT
@@ -359,7 +358,7 @@ end if%>
 	    var ehIE;
 	    var versao;
 	
-	    // N�o � um browser IE, pode ser qualquer outro
+	    // Não é um browser IE, pode ser qualquer outro
 	    ehIE = navigator.userAgent.indexOf("MSIE");
 
 	    if(ehIE == -1)

@@ -4,7 +4,7 @@
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/bib_str.asp" -->
-<!--#include file="Lib/Classe_Arquivo.asp" -->
+<!--#include file="Classes/Classe_Arquivo.asp" -->
 <%
 ' On Error Resume Next
 

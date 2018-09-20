@@ -1,6 +1,6 @@
 ﻿<!------- SISLAB ---->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Sce.asp"-->
+<!--#include file="../Classes/Classe_Sce.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%

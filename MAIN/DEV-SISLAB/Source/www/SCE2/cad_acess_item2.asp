@@ -5,7 +5,7 @@
 <!--#inc lude file="../includes/Sislab_Lib.asp"-->
 <!--#inc lude file="../includes/Geral_Lib.asp"-->
 <!------- LIB ------->
-<!--#incl ude file="../Lib/Classe_Mensagem.asp"-->
+<!--#incl ude file="../Classes/Classe_Mensagem.asp"-->
 <%
 Dim objSP, erroBD, int_Erro
 Dim codbarrasanterior

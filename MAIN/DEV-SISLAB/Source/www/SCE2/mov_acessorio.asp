@@ -3,7 +3,7 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_Combo.asp"-->
 <%
 
 Dim tipousuario : tipousuario = ""

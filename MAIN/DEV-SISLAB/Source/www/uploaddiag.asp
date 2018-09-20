@@ -2,7 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
-<!--#include file="Lib/Classe_Arquivo.asp" -->
+<!--#include file="Classes/Classe_Arquivo.asp" -->
 <%
 Dim objSiteRS
 Dim cont, sSQL, Upload

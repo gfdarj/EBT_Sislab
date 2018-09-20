@@ -7,7 +7,7 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_Combo.asp"-->
 <%
 if UCase(request("abrir_como")) = "REL" then _
 	Tela.SetNomeTela = "SCE > Relatório > Reserva de Equipamento" _

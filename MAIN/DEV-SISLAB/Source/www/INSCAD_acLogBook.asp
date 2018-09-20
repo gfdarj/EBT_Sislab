@@ -3,7 +3,7 @@
 <!--#include file="includes/global.asp"-->
 <!--#include file="includes/emailHTML.asp"-->
 <!--#include file="includes/bib_str.asp" -->
-<!--#include file="Lib/Classe_Arquivo.asp"-->
+<!--#include file="Classes/Classe_Arquivo.asp"-->
 <%
 Dim objSP, RS
 Dim idacao, descricao, executante, prazo, conclusao, eficacia, obs, tipoacao, responsavel

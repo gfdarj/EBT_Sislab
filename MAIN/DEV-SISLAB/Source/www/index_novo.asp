@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<!--#include file="includes/PadraoHTML.asp" -->
+<!--#include file="includes/EmailHTML.asp" -->
+<!--#include file="includes/global.asp" -->
+<!--#include file="includes/Sislab_Lib.asp"-->
+
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -22,7 +27,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 linha_fundo">
                     <h4>Serviços e Agendamentos</h4>
-	                <h6><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de servi&ccedil;o</a></h6>
+	                <h6><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h6>
                     <h6><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h6>
                     <h6><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h6>
                     <h6><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h6>
@@ -39,7 +44,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <iframe id="datamain" src="noticias.asp" frameborder="0" width="150" height="90" scrolling="no" name="datamain">
+                            <iframe id="datamain" src="noticias.asp" frameborder="0" width="200" height="90" scrolling="no" name="datamain">
                                 <font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
                             </iframe>
 							<span class="texto1" style="font-size: 9px;"><i>Clique na notícia para abrir</i></span>

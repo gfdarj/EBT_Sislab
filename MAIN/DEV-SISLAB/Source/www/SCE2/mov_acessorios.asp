@@ -2,7 +2,7 @@
 <!--#include file="../includes/bib_str.asp"-->
 <!--#inc lude file="../includes/padraoHTML.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_Sce.asp"-->
+<!--#include file="../Classes/Classe_Sce.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%

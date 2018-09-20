@@ -1,5 +1,5 @@
 ﻿<!------- LIB ------->
-<!--#include file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_Combo.asp"-->
 <!------- SCE ------->
 <!--#include file="includes/global_SCE.asp"-->
 <!------- SISLAB ---->

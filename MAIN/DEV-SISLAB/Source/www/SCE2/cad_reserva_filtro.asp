@@ -3,8 +3,8 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_SCE.asp"-->
-<!--#incl ude file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_SCE.asp"-->
+<!--#incl ude file="../Classes/Classe_Combo.asp"-->
 <%
 Server.ScriptTimeout = 10000
 

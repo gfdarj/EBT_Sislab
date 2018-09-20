@@ -3,8 +3,8 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
-<!--#include file="../Lib/Classe_SCE.asp"-->
-<!--#include file="../Lib/Classe_Combo.asp"-->
+<!--#include file="../Classes/Classe_SCE.asp"-->
+<!--#include file="../Classes/Classe_Combo.asp"-->
 <%
 Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()

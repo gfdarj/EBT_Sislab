@@ -1,5 +1,5 @@
 ﻿<!------- LIB ------->
-<!--#include file="./Lib/Classe_Combo.asp"-->
+<!--#include file="./Classes/Classe_Combo.asp"-->
 <!------- SISLAB ---->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/controlesHTML.asp" -->
