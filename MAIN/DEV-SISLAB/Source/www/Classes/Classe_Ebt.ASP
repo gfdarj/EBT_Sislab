@@ -334,10 +334,10 @@ Class TEbt
 
         If ldap_testeAL Then
             strAttrs = _
-                "distinguishedName, displayname, mail, description"
+                "sAMAccountName, distinguishedName, displayname, mail, description"
         Else
             strAttrs = _
-                "distinguishedName, description, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, " & _
+                "sAMAccountName, distinguishedName, description, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, " & _
                 "embratelcatempregado, embrateladmissao, embratelarealotacao, embratelcatcargo, embrateldesclotacao, employeeid, " & _
                 "embrateldatanasc, company, telephonenumber, mobile"
         End If
