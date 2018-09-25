@@ -1,70 +1,61 @@
-﻿<%@ Language=VBScript %>
-<html>
-<head>
-<title>Phone and Email List</title>
-</head>
-<body bgcolor="#FFFFFF">
+﻿<!--#include file="Classes/Classe_WebService.asp"-->
+<!--#inc    lude file="Classes/Classe_EbtWS.asp"-->
+
 <%
-'=========Account and connection string information for LDAP=======
-Set objDomain = GetObject ("LDAP://RootDSE")
-objADsPath = objDomain.Get("defaultNamingContext")
-Set objDomain = Nothing
-Set objConn = Server.CreateObject("ADODB.Connection")
-objConn.provider ="ADsDSOObject"
-objConn.Properties("User ID") = "al\galmeida" 'domain account with read access to LDAP
-objConn.Properties("Password") = "230175" 'domain account password
-objConn.Properties("Encrypt Password") = True
-objConn.open "Active Directory Provider"
-Set objCom = CreateObject("ADODB.Command")
-Set objCom.ActiveConnection = objConn
-objCom.CommandText ="select name,telephonenumber,mobile,mail,company,title,department,sAMAccountName,sn,userAccountControl,msexchhidefromaddresslists FROM 'GC://"+objADsPath+"' where sAMAccountname='*' ORDER by sAMAccountname"
+dim ws, usuario
 
-'=======Executre queury on LDAP for all accounts=========
-Set objRS = objCom.Execute
+usuario = "galmeida"
 
-'Loop through records and write out all information using ASP
-Response.Write "<center><table>"
 
-Do While Not objRS.EOF Or objRS.BOF
-Response.Write "<tr>"
-Response.Write "<td>"
-Response.Write objRS("name")
-Response.Write "</td><td>"
-Response.Write objRS("mail")
-Response.Write "</td><td>"
-Response.Write objRS("telephonenumber")
-Response.Write "</td><td>"
-Response.Write objRS("mobile")
-Response.Write "</td><td>"
-Response.Write objRS("company")
-Response.Write "</td><td>"
-Response.Write objRS("department")
-Response.Write "</td><td>"
-Response.Write objRS("title")
-Response.Write "</td><td>"
-Response.Write objRS("userAccountControl")
-Response.Write "</td><td>"
-Response.Write objRS("sAMAccountName")
-Response.Write "</td><td>"
-Response.Write objRS("msexchhidefromaddresslists")
-Response.Write "</td><td>"
-Response.Write FormatDateTime(Date,2)
-Response.Write "</td>"
-Response.Write "</tr>"
-objRS.MoveNext
-Response.Flush
-Loop
+Dim SoapRequest, SoapUrl
+Set SoapRequest = Server.CreateObject("MSXML2.XMLHTTP")
+SoapUrl = Application("SISLAB_HTTP_WEBSERVICE") & "/HelloWorld"
+SoapRequest.open "GET", SoapUrl, False
+SoapRequest.send (SoapUrl)
 
-Response.Write "</table>"
 
-'Close objects and remove from memory
-objRS.Close
-objConn.Close
-Set objRS = Nothing
-Set objConn = Nothing
-Set objCom = Nothing
-Set objADsPath = Nothing
-Set objDomain = Nothing
+'Set ws = New TWebservice
+'ws.url = Application("SISLAB_HTTP_WEBSERVICE")
+''ws.method = "HelloWorld"
+'ws.method = "ObtemUsuario"
+'ws.parameters.Add "login", usuario
+'ws.Invoke
+
+
+Dim myXML
+Set myXML = Server.CreateObject("MSXML.DOMDocument")
+myXML.Async = False
+
+response.write "WS: " & Application("SISLAB_HTTP_WEBSERVICE") & "/ObtemUsuario?login=galmeida"
+response.write "<BR><BR>"
+'response.write "Response: " & ws.Response
+'response.write "Response: " & SoapRequest.responseXML
+
+
+'If Not myXML.Load(ws.Response) Then
+If Not myXML.Load(SoapRequest.responseXML) Then
+    response.write "<BR><BR>"
+    response.write "** ERRO LEITURA  "
+Else
+    Dim nodesURL
+    Dim ret
+
+    Response.ContentType = "text/xml"
+    Set nodesURL = myXML.documentElement.selectNodes("Usuario")
+    ret = myXML.documentElement.childNodes(0).nodeValue
+
+    response.write "<BR><BR>"
+    response.write "Email: " & ret
+
+End If
+
+
+
+
+
+
+response.write "<BR><BR>** FIM **"
+
+
+Set ws = Nothing
 %>
-</body>
-</html> 

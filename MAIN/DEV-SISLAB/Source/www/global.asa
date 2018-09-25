@@ -14,7 +14,7 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "DV2"
+	Application("SISLAB_AMBIENTE") = "LOC"
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
 
@@ -31,7 +31,9 @@ Sub Application_OnStart()
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
-	ElseIf Application("SISLAB_AMBIENTE") = "DV2" Then '-- RJOJURISDEV01
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabws/Usuarios.asmx"
+
+    ElseIf Application("SISLAB_AMBIENTE") = "DV2" Then '-- RJOJURISDEV01
 
 		Application("SISLAB_SERVER") = "RJOJURISDEV01"
 		Application("SISLAB_PROTOCS") = "http://"
@@ -44,6 +46,7 @@ Sub Application_OnStart()
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://RJOJURISDEV01/sislabws/Usuarios.asmx"
 
 	ElseIf Application("SISLAB_AMBIENTE") = "PRO" Then '-- Producao
 
@@ -60,6 +63,8 @@ Sub Application_OnStart()
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
+        Application("SISLAB_HTTP_WEBSERVICE") = ""
+
 	ElseIf Application("SISLAB_AMBIENTE") = "LOC" Then	'--Local
 
 		Application("SISLAB_SERVER") = "localhost"
@@ -74,6 +79,8 @@ Sub Application_OnStart()
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
+
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabws/Usuarios.asmx"
 
 	End If
 
