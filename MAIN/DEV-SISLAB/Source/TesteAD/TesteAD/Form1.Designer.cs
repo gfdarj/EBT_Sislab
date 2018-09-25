@@ -36,6 +36,7 @@
             this.txtLDAP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDC = new System.Windows.Forms.TextBox();
+            this.btnXML = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPesquisar
@@ -107,11 +108,22 @@
             this.txtDC.Size = new System.Drawing.Size(156, 20);
             this.txtDC.TabIndex = 6;
             // 
+            // btnXML
+            // 
+            this.btnXML.Location = new System.Drawing.Point(246, 6);
+            this.btnXML.Name = "btnXML";
+            this.btnXML.Size = new System.Drawing.Size(75, 23);
+            this.btnXML.TabIndex = 8;
+            this.btnXML.Text = "XML";
+            this.btnXML.UseVisualStyleBackColor = true;
+            this.btnXML.Click += new System.EventHandler(this.btnXML_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(618, 429);
+            this.Controls.Add(this.btnXML);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtDC);
             this.Controls.Add(this.label2);
@@ -137,6 +149,7 @@
         private System.Windows.Forms.TextBox txtLDAP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDC;
+        private System.Windows.Forms.Button btnXML;
     }
 }
 

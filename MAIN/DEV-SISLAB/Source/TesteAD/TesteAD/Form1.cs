@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.DirectoryServices;
@@ -68,6 +70,40 @@ namespace TesteAD
                 MessageBox.Show(ex.Message, "Erro no acesso ao AD");
             }
 
+        }
+
+        private void btnXML_Click(object sender, EventArgs e)
+        {
+            XmlDocument xmldoc = new XmlDocument();
+            XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            xmldoc.AppendChild(xmlnode);
+
+            //tag Documentos <Documentos>
+            xmlnode = xmldoc.CreateElement("", "Usuario", "");
+
+            string _ano = DateTime.Today.ToString().Substring(0, 4);
+            string _mes = DateTime.Today.ToString().Substring(4, 2);
+            string _dia = DateTime.Today.ToString().Substring(6, 2);
+
+            //Elemento Data
+            XmlNode xmlNodeData = xmldoc.CreateElement("Documentos", "Data", null);
+            xmlNodeData.InnerText = _ano + "-" + _mes + "-" + _dia;
+            xmlnode.AppendChild(xmlNodeData);
+
+            //Elemento Chave
+            XmlNode xmlNodeChave = xmldoc.CreateElement("Documentos", "Chave", null);
+            xmlNodeChave.InnerText = "chave1";
+            xmlnode.AppendChild(xmlNodeChave);
+
+            //Elemento Tipo
+            XmlNode xmlNodeTipo = xmldoc.CreateElement("Documentos", "Tipo", null);
+            xmlNodeTipo.InnerText = "TIPO OPERAÇÃO";
+            xmlnode.AppendChild(xmlNodeTipo);
+
+            //adiciona no xml
+            xmldoc.AppendChild(xmlnode);
+
+            txtResultado.AppendText(xmldoc.OuterXml);
         }
     }
 }
