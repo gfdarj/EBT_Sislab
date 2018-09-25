@@ -67,10 +67,9 @@ namespace Embratel.Sislab.Classes
         private string GeraXML(UsuarioENT ent)
         {
             XmlDocument xmldoc = new XmlDocument();
-            //XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            //XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            //xmldoc.AppendChild(xmlnode);
-            XmlNode xmlnode;
+            XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            xmldoc.AppendChild(xmlnode);
+            //XmlNode xmlnode;   //retira o cabeçalho
 
             //tag Documentos <Documentos>
             xmlnode = xmldoc.CreateElement("", "Usuario", "");
