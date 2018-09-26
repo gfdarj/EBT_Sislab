@@ -25,7 +25,7 @@ namespace Embratel.Sislab.Classes
             // Get the currently connected LDAP context 
             DirectoryEntry entry1 = new DirectoryEntry(ConfigHelper.LDAP);
             // Use the default naming context as the connected context may not work for searches
-            string domainContext = "LDAP://" + entry1.Properties["defaultNamingContext"].Value as string;
+            string domainContext = "LDA P://" + entry1.Properties["defaultNamingContext"].Value as string;
             */
 
             string domainContext = ConfigHelper.LDAP;
@@ -62,6 +62,12 @@ namespace Embratel.Sislab.Classes
                     try { ent.Empresa = (string)singleADUser.Properties["company"][0]; } catch { ent.Empresa = ""; }
                     try { ent.Telefone = (string)singleADUser.Properties["telephonenumber"][0]; } catch { ent.Telefone = ""; }
                     try { ent.Celular = (string)singleADUser.Properties["mobile"][0]; } catch { ent.Celular = ""; }
+                }
+                else
+                {
+                    ent.CodigoLotacao = ""; ent.Diretoria = "";  ent.Sexo = ""; ent.CategoriaEmpregado = ""; 
+                    ent.DataAdmissao = ""; ent.AreaLotacao = ""; ent.CategoriaCargo = ""; ent.Lotacao = ""; 
+                    ent.Matricula = ""; ent.DataNascimento = ""; ent.Empresa = ""; ent.Telefone = ""; ent.Celular = "";
                 }
             }
 
