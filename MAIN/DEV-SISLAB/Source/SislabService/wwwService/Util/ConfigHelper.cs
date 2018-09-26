@@ -11,6 +11,11 @@ namespace Embratel.Sislab.Util
         // Pensado para obter os parametros do WEB.CONFIG por aqui, ao invés de chamar
         // a todo instante o ConfigurationManager
         #region Propriedades
+        public static string Ambiente
+        {
+            get { return Convert.ToString(ConfigurationManager.AppSettings["Ambiente"]); }
+        }
+
         public static string LDAP
         {
             get { return Convert.ToString(ConfigurationManager.AppSettings["LDAP"]); }

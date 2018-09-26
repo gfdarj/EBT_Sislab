@@ -21,44 +21,48 @@ namespace Embratel.Sislab.Classes
         {
             UsuarioENT ent = new UsuarioENT();
 
+            /*
             // Get the currently connected LDAP context 
             DirectoryEntry entry1 = new DirectoryEntry(ConfigHelper.LDAP);
             // Use the default naming context as the connected context may not work for searches
-            string domainContext = entry1.Properties["defaultNamingContext"].Value as string;
+            string domainContext = "LDAP://" + entry1.Properties["defaultNamingContext"].Value as string;
+            */
 
-            DirectoryEntry entry = new DirectoryEntry("LDAP://" + domainContext);
+            string domainContext = ConfigHelper.LDAP;
+
+            DirectoryEntry entry = new DirectoryEntry(domainContext);
             DirectorySearcher adSearch = new DirectorySearcher(entry);
 
-            adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";
+            adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))"; // "(distinguishedname=*OU=Ingegneria*)" +
             //adSearch.PropertiesToLoad.Add("mail");
             //adSearch.PropertiesToLoad.Add("displayname");
 
             SearchResult singleADUser = adSearch.FindOne();
-
 
             // Go through all entries from the active directory.
             if (singleADUser != null)
             {
                 // Go through all the values found in the search
                 ent.DN = (string)singleADUser.Properties["distinguishedName"][0];
-                ent.Email = (string)singleADUser.Properties["mail"][0];
                 ent.Nome = (string)singleADUser.Properties["displayname"][0].ToString();
+                try { ent.Email = (string)singleADUser.Properties["mail"][0]; } catch { ent.Email = (string)singleADUser.Properties["sAMAccountName"][0]; }
 
-                /*                ent.CodigoLotacao = ((ResultPropertyCollection)singleADUser.Properties)["embratellotacao"].ToString();
-                                ent.Departamento = ((ResultPropertyCollection)singleADUser.Properties)["department"].ToString();
-                                ent.Diretoria = ((ResultPropertyCollection)singleADUser.Properties)["embrateldescdsmdlotacao"].ToString();
-                                ent.Sexo = ((ResultPropertyCollection)singleADUser.Properties)["embratelsexo"].ToString();
-                                ent.CategoriaEmpregado = ((ResultPropertyCollection)singleADUser.Properties)["embratelcatempregado"].ToString();
-                                ent.DataAdmissao = ((ResultPropertyCollection)singleADUser.Properties)["embrateladmissao"].ToString();
-                                ent.AreaLotacao = ((ResultPropertyCollection)singleADUser.Properties)["embratelarealotacao"].ToString();
-                                ent.CategoriaCargo = ((ResultPropertyCollection)singleADUser.Properties)["embratelcatcargo"].ToString();
-                                ent.Lotacao = ((ResultPropertyCollection)singleADUser.Properties)["embrateldesclotacao"].ToString();
-                                ent.Matricula = ((ResultPropertyCollection)singleADUser.Properties)["employeeid"].ToString();
-                                ent.DataNascimento = ((ResultPropertyCollection)singleADUser.Properties)["embrateldatanasc"].ToString();
-                                ent.Empresa = ((ResultPropertyCollection)singleADUser.Properties)["company"].ToString();
-                                ent.Telefone = ((ResultPropertyCollection)singleADUser.Properties)["telephonenumber"].ToString();
-                                ent.Celular = ((ResultPropertyCollection)singleADUser.Properties)["mobile"].ToString();
-                */
+                if (ConfigHelper.Ambiente == "EMBRATEL")
+                {
+                    try { ent.CodigoLotacao = (string)singleADUser.Properties["embratellotacao"][0]; } catch { ent.CodigoLotacao = ""; }
+                    try { ent.Diretoria = (string)singleADUser.Properties["embrateldescdsmdlotacao"][0]; } catch { ent.Diretoria = ""; }
+                    try { ent.Sexo = (string)singleADUser.Properties["embratelsexo"][0]; } catch { ent.Sexo = ""; }
+                    try { ent.CategoriaEmpregado = (string)singleADUser.Properties["embratelcatempregado"][0]; } catch { ent.CategoriaEmpregado = ""; }
+                    try { ent.DataAdmissao = (string)singleADUser.Properties["embrateladmissao"][0]; } catch { ent.DataAdmissao = ""; }
+                    try { ent.AreaLotacao = (string)singleADUser.Properties["embratelarealotacao"][0]; } catch { ent.AreaLotacao = ""; }
+                    try { ent.CategoriaCargo = (string)singleADUser.Properties["embratelcatcargo"][0]; } catch { ent.CategoriaCargo = ""; }
+                    try { ent.Lotacao = (string)singleADUser.Properties["embrateldesclotacao"][0]; } catch { ent.Lotacao = ""; }
+                    try { ent.Matricula = (string)singleADUser.Properties["employeeid"][0]; } catch { ent.Matricula = ""; }
+                    try { ent.DataNascimento = (string)singleADUser.Properties["embrateldatanasc"][0]; } catch { ent.DataNascimento = ""; }
+                    try { ent.Empresa = (string)singleADUser.Properties["company"][0]; } catch { ent.Empresa = ""; }
+                    try { ent.Telefone = (string)singleADUser.Properties["telephonenumber"][0]; } catch { ent.Telefone = ""; }
+                    try { ent.Celular = (string)singleADUser.Properties["mobile"][0]; } catch { ent.Celular = ""; }
+                }
             }
 
             return ent;
@@ -67,48 +71,84 @@ namespace Embratel.Sislab.Classes
         private string GeraXML(UsuarioENT ent)
         {
             XmlDocument xmldoc = new XmlDocument();
-            XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);  //coloca o cabeçalho do XML
             xmldoc.AppendChild(xmlnode);
             //XmlNode xmlnode;   //retira o cabeçalho
 
             //tag Documentos <Documentos>
             xmlnode = xmldoc.CreateElement("", "Usuario", "");
 
-            //Elemento Data
-            XmlNode xmlNodeDN = xmldoc.CreateElement("Documentos", "DN", null);
+            //Elemento DN
+            XmlNode xmlNodeDN = xmldoc.CreateElement("Dados", "DN", null);
             xmlNodeDN.InnerText = ent.DN;
             xmlnode.AppendChild(xmlNodeDN);
 
-            //Elemento Chave
-            XmlNode xmlNodeEmail = xmldoc.CreateElement("Documentos", "Email", null);
+            //Elemento Email
+            XmlNode xmlNodeEmail = xmldoc.CreateElement("Dados", "Email", null);
             xmlNodeEmail.InnerText = ent.Email;
             xmlnode.AppendChild(xmlNodeEmail);
 
-            //Elemento Tipo
-            XmlNode xmlNodeNome = xmldoc.CreateElement("Documentos", "Nome", null);
+            //Elemento Nome
+            XmlNode xmlNodeNome = xmldoc.CreateElement("Dados", "Nome", null);
             xmlNodeNome.InnerText = ent.Nome;
             xmlnode.AppendChild(xmlNodeNome);
-/*
-            //Elemento Tipo
-            XmlNode xmlNodeTipo = xmldoc.CreateElement("Documentos", "Nome", null);
-            xmlNodeTipo.InnerText = ent.Nome;
-            xmlnode.AppendChild(xmlNodeTipo);
 
-            //Elemento Tipo
-            XmlNode xmlNodeTipo = xmldoc.CreateElement("Documentos", "Nome", null);
-            xmlNodeTipo.InnerText = ent.Nome;
-            xmlnode.AppendChild(xmlNodeTipo);
+            XmlNode xmlNodeCodigoLotacao = xmldoc.CreateElement("Dados", "CodigoLotacao", null);
+            xmlNodeCodigoLotacao.InnerText = ent.CodigoLotacao;
+            xmlnode.AppendChild(xmlNodeCodigoLotacao);
 
-            //Elemento Tipo
-            XmlNode xmlNodeTipo = xmldoc.CreateElement("Documentos", "Nome", null);
-            xmlNodeTipo.InnerText = ent.Nome;
-            xmlnode.AppendChild(xmlNodeTipo);
+            XmlNode xmlNodeDepartamento = xmldoc.CreateElement("Dados", "Departamento", null);
+            xmlNodeDepartamento.InnerText = ent.Departamento;
+            xmlnode.AppendChild(xmlNodeDepartamento);
 
-            //Elemento Tipo
-            XmlNode xmlNodeTipo = xmldoc.CreateElement("Documentos", "Nome", null);
-            xmlNodeTipo.InnerText = ent.Nome;
-            xmlnode.AppendChild(xmlNodeTipo);
-*/
+            XmlNode xmlNodeDiretoria = xmldoc.CreateElement("Dados", "Diretoria", null);
+            xmlNodeDiretoria.InnerText = ent.Diretoria;
+            xmlnode.AppendChild(xmlNodeDiretoria);
+
+            XmlNode xmlNodeSexo = xmldoc.CreateElement("Dados", "Sexo", null);
+            xmlNodeSexo.InnerText = ent.Sexo;
+            xmlnode.AppendChild(xmlNodeSexo);
+
+            XmlNode xmlNodeCategoriaEmpregado = xmldoc.CreateElement("Dados", "CategoriaEmpregado", null);
+            xmlNodeCategoriaEmpregado.InnerText = ent.CategoriaEmpregado;
+            xmlnode.AppendChild(xmlNodeCategoriaEmpregado);
+
+            XmlNode xmlNodeDataAdmissao = xmldoc.CreateElement("Dados", "DataAdmissao", null);
+            xmlNodeDataAdmissao.InnerText = ent.DataAdmissao;
+            xmlnode.AppendChild(xmlNodeDataAdmissao);
+
+            XmlNode xmlNodeAreaLotacao = xmldoc.CreateElement("Dados", "AreaLotacao", null);
+            xmlNodeAreaLotacao.InnerText = ent.AreaLotacao;
+            xmlnode.AppendChild(xmlNodeAreaLotacao);
+
+            XmlNode xmlNodeCategoriaCargo = xmldoc.CreateElement("Dados", "CategoriaCargo", null);
+            xmlNodeCategoriaCargo.InnerText = ent.CategoriaCargo;
+            xmlnode.AppendChild(xmlNodeCategoriaCargo);
+
+            XmlNode xmlNodeLotacao = xmldoc.CreateElement("Dados", "Lotacao", null);
+            xmlNodeLotacao.InnerText = ent.Lotacao;
+            xmlnode.AppendChild(xmlNodeLotacao);
+
+            XmlNode xmlNodeMatricula = xmldoc.CreateElement("Dados", "Matricula", null);
+            xmlNodeMatricula.InnerText = ent.Matricula;
+            xmlnode.AppendChild(xmlNodeMatricula);
+
+            XmlNode xmlNodeDataNascimento = xmldoc.CreateElement("Dados", "DataNascimento", null);
+            xmlNodeDataNascimento.InnerText = ent.DataNascimento;
+            xmlnode.AppendChild(xmlNodeDataNascimento);
+
+            XmlNode xmlNodeEmpresa = xmldoc.CreateElement("Dados", "Empresa", null);
+            xmlNodeEmpresa.InnerText = ent.Empresa;
+            xmlnode.AppendChild(xmlNodeEmpresa);
+
+            XmlNode xmlNodeTelefone = xmldoc.CreateElement("Dados", "Telefone", null);
+            xmlNodeTelefone.InnerText = ent.Telefone;
+            xmlnode.AppendChild(xmlNodeTelefone);
+
+            XmlNode xmlNodeCelular = xmldoc.CreateElement("Dados", "Celular", null);
+            xmlNodeCelular.InnerText = ent.Celular;
+            xmlnode.AppendChild(xmlNodeCelular);
+
             //adiciona no xml
             xmldoc.AppendChild(xmlnode);
 
