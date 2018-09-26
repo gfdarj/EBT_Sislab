@@ -6,7 +6,7 @@
 '
 '------------------------------------------------------------------------------------------------------
 
-Class TEbtWs
+Class TEmbratelSvc
 
     Private chr_Descricao
     Private bln_TemErro
@@ -195,26 +195,6 @@ Class TEbtWs
     Private Sub Class_Terminate()
         Set oSQL = Nothing
     End Sub
-
-
-    'WebService
-    Private Sub InicializaWebService()
-        Set ws = New Twebservice
-        ws.url = Application("SISLAB_HTTP_WEBSERVICE")
-    End Sub
-
-    Private Sub FinalizaWebService()
-        Set ws = Nothing
-    End Sub
-
-    Public Function WS_ObtemUsuarioAD(usuario)
-        ws.method = "ObtemUsuarioAD"
-        ws.parameters.Add "login", usuario
-        ws.InvokeBinary
-        ObtemUsuarioAD = ws.Response
-        Retorno = "word"
-        Arquivo = ws.method & ".docx"
-    End Function
 
 
 

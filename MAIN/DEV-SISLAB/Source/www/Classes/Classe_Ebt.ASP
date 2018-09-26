@@ -1,3 +1,4 @@
+<!--#include file="Classe_WebService.asp"-->
 <%
 '------------------------------------------------------------------------------------------------------
 '
@@ -7,7 +8,6 @@
 
 Class TEbt
 
-    Private chr_Descricao
     Private bln_TemErro
     Private chr_MsgErro
     Private chr_Login
@@ -107,10 +107,6 @@ Class TEbt
         MensagemErro = chr_MsgErro
     End Property
 
-    Public Property Get Descricao()
-        Descricao = chr_Descricao
-    End Property
-
     Public Property Get ehRT()
 	    ehRT = bln_ehRT
     End Property
@@ -168,7 +164,6 @@ Class TEbt
     Private Sub Class_Initialize()
         Set oSql = New TSql
 
-        chr_Descricao = ""
         chr_Login = ""
         bln_TemErro = False
         chr_MsgErro = ""
@@ -196,6 +191,27 @@ Class TEbt
     End Sub
 
 
+    '-WebService------------------------------------------------------------------------'
+    Private Sub InicializaWebService()
+        Set ws = New Twebservice
+        ws.url = Application("SISLAB_HTTP_WEBSERVICE")
+    End Sub
+
+    Private Sub FinalizaWebService()
+        Set ws = Nothing
+    End Sub
+
+    Public Function WS_ObtemUsuarioAD(usuario)
+        Call InicializaWebService()
+        ws.method = "ObtemUsuarioAD"
+        ws.parameters.Add "login", usuario
+        ws.InvokeBinary
+        WS_ObtemUsuarioAD = ws.Response
+        Call FinalizaWebService()
+    End Function
+
+
+    '-Métodos------------------------------------------------------------------------'
     Public Sub LoginUsuario(chr_Usuario)
 	    Dim chr_SQL
 	    Dim objRS
@@ -229,7 +245,6 @@ Class TEbt
             chr_Ramal = ""
             chr_Celular = ""
             chr_Matricula = ""
-            chr_Descricao = ""
 	    Else
 		    bln_usuarioCRT = True
 		    bln_ehRT = CBool(objRS("RT"))
@@ -260,6 +275,7 @@ Class TEbt
         This.LoginUsuario(chr_Usuario)
     End Sub
 
+
     'Busca os dados do AD
     Public Sub BuscaDadosEmbratelAD(chr_Usuario)
         Dim objSysInfo
@@ -267,6 +283,7 @@ Class TEbt
         Dim strNTUser, strUser
         Dim email, adress, dc, str_dc, str_cn
         Dim ldap_testeAL
+        Dim xmlResult
 
         'monta o DC
         dc = ""
@@ -321,83 +338,30 @@ Class TEbt
             'response.Write "<br><br>str_dc --> " & str_dc & "<BR><BR>"
         End If
 
+        'Faz requisição para o WebService
+        xmlResult = WS_ObtemUsuarioAD(strUser)
+
+        chr_Login = Mid(xmlResult, Instr(1, "<Email>") + 7, InStr(1, "</Email>") + 8)
+        chr_Nome_Reduzido = Mid(xmlResult, Instr(1, "<Nome>") + 6, InStr(1, "</Nome>") + 7)
+        chr_Ramal = Mid(xmlResult, Instr(1, "<Ramal>") + 6, InStr(1, "</Ramal>") + 8)
+        chr_Celular = Mid(xmlResult, Instr(1, "<Celular>") + 9, InStr(1, "</Celular>") + 10)
+        chr_Matricula = Mid(xmlResult, Instr(1, "<Matricula>") + 11, InStr(1, "</Matricula>") + 12)
+        chr_Empresa = Mid(xmlResult, Instr(1, "<Empresa>") + 9, InStr(1, "</Empresa>") + 10)
+        chr_CodigoLotacao = Mid(xmlResult, Instr(1, "<CodigoLotacao>") + 15, InStr(1, "</CodigoLotacao>") + 16)
+        chr_Departamento = Mid(xmlResult, Instr(1, "<Departamento>") + 14, InStr(1, "</Departamento>") + 15)
+        chr_Diretoria = Mid(xmlResult, Instr(1, "<Diretoria>") + 11, InStr(1, "</Diretoria>") + 12)
+        chr_Sexo = Mid(xmlResult, Instr(1, "<Sexo>") + 6, InStr(1, "</Sexo>") + 7)
+        chr_CategoriaEmpregado = Mid(xmlResult, Instr(1, "<CategoriaEmpregado>") + 20, InStr(1, "</CategoriaEmpregado>") + 21)
+        chr_DataAdmissao = Mid(xmlResult, Instr(1, "<DataAdmissao>") + 14, InStr(1, "</DataAdmissao>") + 15)
+        chr_AreaLotacao = Mid(xmlResult, Instr(1, "<AreaLotacao>") + 13, InStr(1, "</AreaLotacao>") + 14)
+        chr_CategoriaCargo = Mid(xmlResult, Instr(1, "<CategoriaCargo>") + 16, InStr(1, "</CategoriaCargo>") + 17)
+        chr_Lotacao = Mid(xmlResult, Instr(1, "<Lotacao>") + 9, InStr(1, "</Lotacao>") + 10)
+        chr_DataNascimento = Mid(xmlResult, Instr(1, "<DataNascimento>") + 16, InStr(1, "</DataNascimento>") + 17)
+
 'chr_login = "AQUI:" & str_cn & "<BR>str_dc:" & str_dc
 'chr_usuario = str_dc
 'exit sub
 
-        'pesquisa no diretorio AD
-        Dim conn, strQueryDL, strAttrs, objCmd, objRs, strRootTDSE
-
-        Set conn = CreateObject("ADODB.Connection")
-        conn.Provider = "ADsDSOObject"
-        conn.Open "Active Directory Provider"   '"ADs Provider"
-
-        If ldap_testeAL Then
-            strAttrs = _
-                "sAMAccountName, distinguishedName, displayname, mail, description"
-        Else
-            strAttrs = _
-                "sAMAccountName, distinguishedName, description, embratellotacao, department, displayname, mail, embrateldescdsmdlotacao, embratelsexo, " & _
-                "embratelcatempregado, embrateladmissao, embratelarealotacao, embratelcatcargo, embrateldesclotacao, employeeid, " & _
-                "embrateldatanasc, company, telephonenumber, mobile"
-        End If
-
-        Set objRootDSE = GetObject("LDAP://rootDSE")
-        strRootTDSE = objRootDSE.Get("defaultNamingContext")
-
-        strQueryDL = _
-            "SELECT " & strAttrs & " " & _
-                "FROM 'LDAP://" & strRootTDSE & "' " & _
-                "WHERE objectCategory='user' AND sAMAccountName = '" & strUser & "'" 
-
-        Set objCmd = CreateObject("ADODB.Command")
-        objCmd.ActiveConnection = Conn
-        'objCmd.Properties("SearchScope") = 2 ' search everything
-        'objCmd.Properties("Page Size") = 100 ' bulk operation
-        objCmd.CommandText = strQueryDL
-
-        'On Error Resume Next
-        Set objRs = objCmd.Execute
-
-        chr_login = strUser
-
-    	If conn.Errors.Count = 0 then
-            If Not objRS.Eof Then
-                If VVVNZ(objRs.Fields("mail")) Then
-                    chr_Login = objRs.Fields("sAMAccountName")
-                Else
-                    chr_Login = objRs.Fields("mail")
-                End If
-                chr_Nome_Reduzido = objRs.Fields("displayName")
-                chr_Descricao = objRs.Fields("description")
-
-                If Not ldap_testeAL Then
-                    chr_Ramal = objRs.Fields("telephoneNumber")
-                    chr_Celular = objRs.Fields("mobile")
-                    chr_Matricula = objRs.Fields("employeeid")
-                    chr_Empresa = objRs.Fields("company")
-                    chr_CodigoLotacao = objRs.Fields("embratellotacao")
-                    chr_Departamento = objRs.Fields("department")
-                    chr_Diretoria = objRs.Fields("embrateldescdsmdlotacao")
-                    chr_Sexo = objRs.Fields("embratelsexo")
-                    chr_CategoriaEmpregado = objRs.Fields("embratelcatempregado")
-                    chr_DataAdmissao = objRs.Fields("embrateladmissao")
-                    chr_AreaLotacao = objRs.Fields("embratelarealotacao")
-                    chr_CategoriaCargo = objRs.Fields("embratelcatcargo")
-                    chr_Lotacao = objRs.Fields("embrateldesclotacao")
-                    chr_DataNascimento = objRs.Fields("embrateldatanasc")
-                End If
-            End If
-
-            bln_TemErro = False
-        Else
-            bln_TemErro = True
-            chr_MsgErro = Err.Description
-        End If
-
-        objRs.Close
-        Conn.close
-        On Error Goto 0
 
 '    chr_login = "AQUI:" & chr_Celular & " ---- " & chr_login
     'chr_login = "AQUI:" & objRs.Fields("mail") & " / " & objRs.Fields("displayName")
