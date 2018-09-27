@@ -28,8 +28,16 @@ namespace Embratel.Sislab.Servico
         public string ObtemUsuario(string login)
         {
             UsuariosAD ad = new UsuariosAD();
-
-            return ad.ObtemUsuario(login);
+            string ret = "";
+            try
+            {
+                ret = ad.ObtemUsuario(login);
+            }
+            catch (Exception ex)
+            {
+                ret = "ERRO: " + ex.Message;
+            }
+            return ret;
         }
     }
 }
