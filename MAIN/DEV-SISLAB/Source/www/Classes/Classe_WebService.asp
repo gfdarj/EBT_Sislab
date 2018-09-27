@@ -30,6 +30,8 @@ Class TWebService
     xmlhttp.setRequestHeader "Content-Type", ContentType
     xmlhttp.Send Parameters.toString
     response = xmlhttp.responseText
+    response = Replace(response, "<string xmlns=""http://tempuri.org/"">", "")
+    response = Replace(response, "</string>", "")
     set xmlhttp = nothing
   End Function
 

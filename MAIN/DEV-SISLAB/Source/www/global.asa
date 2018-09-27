@@ -14,7 +14,7 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "DES"
+	Application("SISLAB_AMBIENTE") = "LOC"
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
 
@@ -81,6 +81,7 @@ Sub Application_OnStart()
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
         Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Usuarios.asmx"
+        '''''Application("SISLAB_HTTP_WEBSERVICE") = "http://intrateste2008/webserviceorcamento/usuarios.asmx"
 
 	End If
 

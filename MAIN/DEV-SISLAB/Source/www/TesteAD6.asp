@@ -1,4 +1,70 @@
 ﻿<%
+
+
+
+dim xmlResult : xmlResult = "<?xml version=""1.0"" encoding=""UTF-8""?>" & _
+    "<Usuario><DN>CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br</DN>" & _
+    "<Email>galmeida@alerj.rj.gov.br</Email><Nome>Gilberto Almeida</Nome><CodigoLotacao>CodigoLotacao 1</CodigoLotacao>" & _
+    "<Departamento>Departamento 1</Departamento>" & _
+    "<Diretoria>Diretoria 1</Diretoria><Sexo>Masc</Sexo><CategoriaEmpregado>CategoriaEmpregado 1</CategoriaEmpregado>" & _
+    "<DataAdmissao>DataAdmissao 1</DataAdmissao><AreaLotacao>AreaLotacao 1</AreaLotacao>" & _
+    "<CategoriaCargo>CategoriaCargo 1</CategoriaCargo><Lotacao>Lotacao 1</Lotacao><Matricula>Matricula 1</Matricula>" & _
+    "<DataNascimento>23/01/1975</DataNascimento><Empresa>Empresa 1</Empresa>" & _
+    "<Telefone>Telefone 1</Telefone><Celular>Celular 12</Celular></Usuario>"
+
+
+
+chr_Login = ValorXML(xmlResult, "Email")
+chr_Nome_Reduzido = ValorXML(xmlResult, "Nome>")
+chr_Ramal = ValorXML(xmlResult, "Ramal")
+chr_Celular = ValorXML(xmlResult, "Celular")
+chr_Matricula = ValorXML(xmlResult, "Matricula")
+chr_Empresa = ValorXML(xmlResult, "Empresa")
+chr_CodigoLotacao = ValorXML(xmlResult, "CodigoLotacao")
+chr_Departamento = ValorXML(xmlResult, "Departamento")
+chr_Diretoria = ValorXML(xmlResult, "Diretoria")
+chr_Sexo = ValorXML(xmlResult, "Sexo")
+chr_CategoriaEmpregado = ValorXML(xmlResult, "CategoriaEmpregado")
+chr_DataAdmissao = ValorXML(xmlResult, "DataAdmissao")
+chr_AreaLotacao = ValorXML(xmlResult, "AreaLotacao")
+chr_CategoriaCargo = ValorXML(xmlResult, "CategoriaCargo")
+chr_Lotacao = ValorXML(xmlResult, "Lotacao")
+chr_DataNascimento = ValorXML(xmlResult, "DataNascimento")
+
+response.write nOW
+response.write "<BR><BR>chr_Login: " & chr_Login
+response.write "<BR><BR>chr_Nome_Reduzido: " & chr_Nome_Reduzido 
+response.write "<BR><BR>chr_Ramal: " & chr_Ramal 
+response.write "<BR><BR>chr_Celular: " & chr_Celular 
+response.write "<BR><BR>chr_Matricula: " & chr_Matricula 
+response.write "<BR><BR>chr_Empresa: " & chr_Empresa 
+response.write "<BR><BR>chr_CodigoLotacao: " & chr_CodigoLotacao 
+response.write "<BR><BR>chr_Departamento: " & chr_Departamento 
+response.write "<BR><BR>chr_Diretoria: " & chr_Diretoria 
+response.write "<BR><BR>chr_Sexo: " & chr_Sexo 
+response.write "<BR><BR>chr_CategoriaEmpregado: " & chr_CategoriaEmpregado 
+response.write "<BR><BR>chr_DataAdmissao: " & chr_DataAdmissao
+response.write "<BR><BR>chr_AreaLotacao: " & chr_AreaLotacao 
+response.write "<BR><BR>chr_CategoriaCargo: " & chr_CategoriaCargo 
+response.write "<BR><BR>chr_Lotacao: " & chr_Lotacao 
+response.write "<BR><BR>chr_DataNascimento: " & chr_DataNascimento 
+
+
+Function ValorXML(str, tag)
+    Dim ini, fim
+    ini = InStr(1, str, "<" & tag & ">")
+    fim = InStr(1, str, "</" & tag & ">")
+    If fim - ini > 0 Then
+        ValorXML = Mid(str, ini, fim - ini)
+    Else
+        ValorXML = ""
+    End If
+End Function
+
+
+response.End
+
+
     chr_Usuario=""
 
         Dim objSysInfo

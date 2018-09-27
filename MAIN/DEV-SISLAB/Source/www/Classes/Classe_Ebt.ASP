@@ -39,6 +39,7 @@ Class TEbt
     Private chr_Empresa
 
     Private oSql
+    Private ws
 
 
     '-Property------------------------------------------------------------------------'
@@ -202,12 +203,17 @@ Class TEbt
     End Sub
 
     Public Function WS_ObtemUsuarioAD(usuario)
+        dim ret
         Call InicializaWebService()
-        ws.method = "ObtemUsuarioAD"
+        ws.method = "ObtemUsuario"
         ws.parameters.Add "login", usuario
-        ws.InvokeBinary
-        WS_ObtemUsuarioAD = ws.Response
+        ws.Invoke
+        ret = ws.Response
+        ret = Replace(ret, "&gt;", ">")
+        ret = Replace(ret, "&lt;", "<")
+'response.write "<BR><BR>" & ws.Response
         Call FinalizaWebService()
+        WS_ObtemUsuarioAD = ret
     End Function
 
 
@@ -272,7 +278,7 @@ Class TEbt
     '---------------------------------------------------------------------------------'
 
     Public Sub BuscaDadosEmbratel(chr_Usuario)
-        This.LoginUsuario(chr_Usuario)
+        Me.LoginUsuario(chr_Usuario)
     End Sub
 
 
@@ -341,22 +347,32 @@ Class TEbt
         'Faz requisição para o WebService
         xmlResult = WS_ObtemUsuarioAD(strUser)
 
-        chr_Login = Mid(xmlResult, Instr(1, "<Email>") + 7, InStr(1, "</Email>") + 8)
-        chr_Nome_Reduzido = Mid(xmlResult, Instr(1, "<Nome>") + 6, InStr(1, "</Nome>") + 7)
-        chr_Ramal = Mid(xmlResult, Instr(1, "<Ramal>") + 6, InStr(1, "</Ramal>") + 8)
-        chr_Celular = Mid(xmlResult, Instr(1, "<Celular>") + 9, InStr(1, "</Celular>") + 10)
-        chr_Matricula = Mid(xmlResult, Instr(1, "<Matricula>") + 11, InStr(1, "</Matricula>") + 12)
-        chr_Empresa = Mid(xmlResult, Instr(1, "<Empresa>") + 9, InStr(1, "</Empresa>") + 10)
-        chr_CodigoLotacao = Mid(xmlResult, Instr(1, "<CodigoLotacao>") + 15, InStr(1, "</CodigoLotacao>") + 16)
-        chr_Departamento = Mid(xmlResult, Instr(1, "<Departamento>") + 14, InStr(1, "</Departamento>") + 15)
-        chr_Diretoria = Mid(xmlResult, Instr(1, "<Diretoria>") + 11, InStr(1, "</Diretoria>") + 12)
-        chr_Sexo = Mid(xmlResult, Instr(1, "<Sexo>") + 6, InStr(1, "</Sexo>") + 7)
-        chr_CategoriaEmpregado = Mid(xmlResult, Instr(1, "<CategoriaEmpregado>") + 20, InStr(1, "</CategoriaEmpregado>") + 21)
-        chr_DataAdmissao = Mid(xmlResult, Instr(1, "<DataAdmissao>") + 14, InStr(1, "</DataAdmissao>") + 15)
-        chr_AreaLotacao = Mid(xmlResult, Instr(1, "<AreaLotacao>") + 13, InStr(1, "</AreaLotacao>") + 14)
-        chr_CategoriaCargo = Mid(xmlResult, Instr(1, "<CategoriaCargo>") + 16, InStr(1, "</CategoriaCargo>") + 17)
-        chr_Lotacao = Mid(xmlResult, Instr(1, "<Lotacao>") + 9, InStr(1, "</Lotacao>") + 10)
-        chr_DataNascimento = Mid(xmlResult, Instr(1, "<DataNascimento>") + 16, InStr(1, "</DataNascimento>") + 17)
+        Dim oXml , nodes
+        Set oXml = Server.CreateObject("MSXML2.DOMDocument.6.0")
+        oxml.async = false
+        oxml.LoadXML xmlResult
+
+        Set nodes = oxml.selectNodes("//Usuario")
+
+        chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
+        chr_Login = oXml.SelectSingleNode("Usuario/Email").text
+        chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text
+        chr_Ramal = oXml.SelectSingleNode("Usuario/Telefone").text
+        chr_Celular = oXml.SelectSingleNode("Usuario/Celular").text
+        chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
+        chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
+        chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+        chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
+        chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
+        chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+        chr_DataAdmissao = oXml.SelectSingleNode("Usuario/DataAdmissao").text
+        chr_AreaLotacao = oXml.SelectSingleNode("Usuario/AreaLotacao").text
+        chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+        chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
+        chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
+
+        Set oXml = Nothing
+        Set nodes = Nothing
 
 'chr_login = "AQUI:" & str_cn & "<BR>str_dc:" & str_dc
 'chr_usuario = str_dc
@@ -382,6 +398,31 @@ Class TEbt
         End If
 
     End Sub
+
+
+    'Retira o valor de um tag XML
+    Public Function ValorXML(str, tag)
+        Dim ini, fim
+        Dim strEnc
+
+'STR = "<Usuario><DN>CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br</DN><Email>galmeida@alerj.rj.gov.br</Email><Nome>Gilberto Almeida</Nome><CodigoLotacao></CodigoLotacao><Departamento></Departamento><Diretoria></Diretoria><Sexo></Sexo><CategoriaEmpregado></CategoriaEmpregado><DataAdmissao></DataAdmissao><AreaLotacao></AreaLotacao><CategoriaCargo></CategoriaCargo><Lotacao></Lotacao><Matricula></Matricula><DataNascimento></DataNascimento><Empresa></Empresa><Telefone></Telefone><Celular></Celular></Usuario>"
+        ini = InStr(1, str, "<" & tag & ">")
+        fim = InStr(1, str, "</" & tag & ">")
+
+'response.Write "<BR><BR>ValorXML / UCase(strEnc): " & UCase(strEnc)
+''response.Write "<BR>ValorXML / TAG: " & UCase("&lt;/" & tag & "&gt;")
+'response.Write "<BR><BR>ValorXML / str: " & str
+'response.Write "<BR><BR>ValorXML / ini: " & ini
+'response.Write "<BR><BR>ValorXML / fim: " & fim
+
+        If fim - ini > 0 Then
+            ValorXML = Mid(strEnc, ini, fim - ini)
+        Else
+            ValorXML = ""
+        End If
+'response.Write "<BR>ValorXML: " & ValorXML
+'response.Write "<BR>----<BR>"
+    End Function
 
 
     Public Function ExisteUsuario(chr_Usuario)

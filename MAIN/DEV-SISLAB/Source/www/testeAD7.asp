@@ -6,8 +6,8 @@ dim ws, usuario, URL
 
 URL = Application("SISLAB_HTTP_WEBSERVICE")
 
-usuario = "t3gfba"
-'usuario = "galmeida"
+'usuario = "t3gfba"
+usuario = "galmeida"
 
 
 Set ws = New TWebservice
