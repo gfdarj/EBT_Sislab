@@ -79,11 +79,11 @@ namespace Embratel.Sislab.Classes
             XmlDocument xmldoc = new XmlDocument();
 
             //COM O CABEÇALHO XML
-            XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);  //coloca o cabeçalho do XML
-            xmldoc.AppendChild(xmlnode);
+            //XmlNode xmlnode = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);  //coloca o cabeçalho do XML
+            //xmldoc.AppendChild(xmlnode);
 
             //SEM O CABEÇALHO XML
-            //XmlNode xmlnode;   //retira o cabeçalho
+            XmlNode xmlnode;   //retira o cabeçalho
 
             //tag Documentos <Documentos>
             xmlnode = xmldoc.CreateElement("", "Usuario", "");
