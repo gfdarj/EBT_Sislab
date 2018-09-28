@@ -65,10 +65,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Usuarios.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Email.cs" />
     <Compile Include="Entidades\UsuarioENT.cs" />
     <Compile Include="Util\ConfigHelper.cs" />
     <Compile Include="Util\EmailHelper.cs" />

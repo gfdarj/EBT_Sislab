@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Embratel.Sislab.Classes;
-using Embratel.Sislab.Entidades;
 
 namespace Embratel.Sislab.Servico
 {
@@ -39,5 +38,22 @@ namespace Embratel.Sislab.Servico
             }
             return ret;
         }
+
+        [WebMethod]
+        public string EnviaEmail(string remetente, string destinatario, string assunto, string mensagem)
+        {
+            string ret = "OK";
+            try
+            {
+                Email email = new Email();
+                email.Enviar(remetente, destinatario, assunto, mensagem);
+            }
+            catch (Exception ex)
+            {
+                ret = "ERRO: " + ex.Message;
+            }
+            return ret;
+        }
+
     }
 }
