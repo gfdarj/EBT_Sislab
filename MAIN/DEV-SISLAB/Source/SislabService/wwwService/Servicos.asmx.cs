@@ -18,23 +18,7 @@ namespace Embratel.Sislab.Servico
     public class Usuarios : System.Web.Services.WebService
     {
         [WebMethod]
-        public string ObtemUsuario(string login)
-        {
-            UsuariosAD ad = new UsuariosAD();
-            string ret = "";
-            try
-            {
-                ret = ad.ObtemUsuario(login);
-            }
-            catch (Exception ex)
-            {
-                ret = "ERRO: " + ex.Message;
-            }
-            return ret;
-        }
-
-        [WebMethod]
-        public string ObtemUsuarioDominio(string login, string dominio)
+        public string ObtemUsuario(string login, string dominio)
         {
             UsuariosAD ad = new UsuariosAD();
             string ret = "";

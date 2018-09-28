@@ -37,11 +37,12 @@ namespace Embratel.Sislab.Classes
             DirectoryEntry entry = new DirectoryEntry(domainContext);
             DirectorySearcher adSearch = new DirectorySearcher(entry);
 
-            if (dominio == "")
-                dominio = "alerj";
+            //if (dominio == "")
+            //    dominio = "alerj";
 
+            adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";
             //adSearch.Filter = "(&(objectClass=user)(anr=" + login + ")(distinguishedname=*DC=alerj*))"; // "(distinguishedname=*OU=Ingegneria*)" +
-            adSearch.Filter = "(&(objectClass=user)(| (cn = *" + dominio + "*)(sAMAccountName = " + login + ")))";
+            //adSearch.Filter = "(&(objectClass=user)(| (cn = *" + dominio + "*)(sAMAccountName = " + login + ")))";
             //adSearch.PropertiesToLoad.Add("mail");
             //adSearch.PropertiesToLoad.Add("displayname");
 

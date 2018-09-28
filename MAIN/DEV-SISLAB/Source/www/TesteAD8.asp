@@ -61,7 +61,7 @@ dim ws
 
         'Faz requisição para o WebService
         'xmlResult = Server.HTMLEncode(WS_ObtemUsuarioAD(strUser))
-        xmlResult = WS_ObtemUsuarioAD(strUser)
+        xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
 
 response.write "<BR><BR>SISLAB_HTTP_WEBSERVICE: " & Application("SISLAB_HTTP_WEBSERVICE")
 response.write "<BR><BR>AUTH_USER: " & Request.ServerVariables("AUTH_USER")
@@ -69,57 +69,61 @@ response.write "<BR><BR>chr_usuario: " & chr_usuario
 response.write "<BR><BR>xmlResult: " & xmlResult
 response.write "<BR><BR>strUser: " & strUser
 
+    If Left(xmlResult, 4) = "ERRO" Then
+        response.write "<BR><BR>strUser: " & xmlResult
+    Else
  
-    Dim oxml, nodes, attributes
-    set oxml = Server.CreateObject("MSXML2.DOMDocument.6.0")
-    oxml.async = false
-    oxml.LoadXML xmlResult
-   'If err.Number <> 0 Then 
-   '  Response.Write(err.Description)
-   'End If
+        Dim oxml, nodes, attributes
+        set oxml = Server.CreateObject("MSXML2.DOMDocument.6.0")
+        oxml.async = false
+        oxml.LoadXML xmlResult
+       'If err.Number <> 0 Then 
+       '  Response.Write(err.Description)
+       'End If
 
-   'nodes = oxml.selectNodes("//book")
-   'Response.Write(nodes.length)
+       'nodes = oxml.selectNodes("//book")
+       'Response.Write(nodes.length)
 
-   'For Each node in nodes
-   '    Response.Write(node.nodeName & ": " & node.Text & "<br />")
-   'Next
-    set nodes = oxml.selectNodes("//Usuario")
-    response.write "<BR>nodes: " & nodes.length
-    response.write "<BR>DN: " & oxml.SelectSingleNode("Usuario/DN").text
-    response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Nome").text
-    response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Email").text
-    response.write "<BR>Diretoria: " & oxml.SelectSingleNode("Usuario/Diretoria").text
-    response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Telefone").text
+       'For Each node in nodes
+       '    Response.Write(node.nodeName & ": " & node.Text & "<br />")
+       'Next
+        set nodes = oxml.selectNodes("//Usuario")
+        response.write "<BR>nodes: " & nodes.length
+        response.write "<BR>DN: " & oxml.SelectSingleNode("Usuario/DN").text
+        response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Nome").text
+        response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Email").text
+        response.write "<BR>Diretoria: " & oxml.SelectSingleNode("Usuario/Diretoria").text
+        response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Telefone").text
 
-    response.write "<BR>---<BR>Nome: " & oxml.SelectSingleNode("Usuario/Nome").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Email").text
-    response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Diretoria").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Telefone").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Celular").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Matricula").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Empresa").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CodigoLotacao").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Departamento").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Sexo").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/DataAdmissao").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/AreaLotacao").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaCargo").text
-    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Lotacao").text
-    response.write "<BR>DataNascimento: " & oXml.SelectSingleNode("Usuario/DataNascimento").text
+        response.write "<BR>---<BR>Nome: " & oxml.SelectSingleNode("Usuario/Nome").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Email").text
+        response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Diretoria").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Telefone").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Celular").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Matricula").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Empresa").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Departamento").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Sexo").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/DataAdmissao").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/AreaLotacao").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Lotacao").text
+        response.write "<BR>DataNascimento: " & oXml.SelectSingleNode("Usuario/DataNascimento").text
 
 
-'    for i = 0 to nodes.length -1
-'        set attributes = nodes.item(i).attributes
-'        for j = 0 to attributes.length - 1
-'            response.write("<BR><BR>TESTE MS: " & attributes.item(j).nodeName & " - " & attributes.item(j).value & "<br />")
-'        next
-'    next
+    '    for i = 0 to nodes.length -1
+    '        set attributes = nodes.item(i).attributes
+    '        for j = 0 to attributes.length - 1
+    '            response.write("<BR><BR>TESTE MS: " & attributes.item(j).nodeName & " - " & attributes.item(j).value & "<br />")
+    '        next
+    '    next
 
-    set oxml = Nothing
-'    response.end
-'Call ParseCDRXML(xmlResult)
+        set oxml = Nothing
+    '    response.end
+    'Call ParseCDRXML(xmlResult)
+    End If
 
 
 '       Set CurrentXML=Server.CreateObject("Microsoft.XMLDOM")
@@ -185,11 +189,12 @@ response.write "<BR><BR>chr_DataNascimento: " & chr_DataNascimento
         Set ws = Nothing
     End Sub
 
-    Public Function WS_ObtemUsuarioAD(usuario)
+    Public Function WS_ObtemUsuarioAD(usuario, dominio)
         dim ret
         Call InicializaWebService()
         ws.method = "ObtemUsuario"
         ws.parameters.Add "login", usuario
+        ws.parameters.Add "dominio", dominio
         ws.Invoke
         ret = ws.Response
         ret = Replace(ret, "&gt;", ">")

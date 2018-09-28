@@ -202,11 +202,12 @@ Class TEbt
         Set ws = Nothing
     End Sub
 
-    Public Function WS_ObtemUsuarioAD(usuario)
+    Public Function WS_ObtemUsuarioAD(usuario, dominio)
         dim ret
         Call InicializaWebService()
         ws.method = "ObtemUsuario"
         ws.parameters.Add "login", usuario
+        ws.parameters.Add "dominio", dominio
         ws.Invoke
         ret = ws.Response
         ret = Replace(ret, "&gt;", ">")
@@ -345,35 +346,41 @@ Class TEbt
         End If
 
         'Faz requisição para o WebService
-        xmlResult = WS_ObtemUsuarioAD(strUser)
+        xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
 
-        Dim oXml ', nodes
-        Set oXml = Server.CreateObject("MSXML2.DOMDocument.6.0")
-        oxml.async = false
-        oxml.LoadXML(xmlResult)
+        If Left(xmlResult, 4) <> "ERRO" Then
+            Dim oXml ', nodes
+            Set oXml = Server.CreateObject("MSXML2.DOMDocument.3.0")
+            oxml.async = false
+            oxml.LoadXML(xmlResult)
+chr_login = xmlResult
+            'Set nodes = oxml.selectNodes("//Usuario")
 
-        'Set nodes = oxml.selectNodes("//Usuario")
+            chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
+            chr_Login = oXml.SelectSingleNode("Usuario/Email").text
+            chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text
+            chr_Ramal = oXml.SelectSingleNode("Usuario/Telefone").text
+            chr_Celular = oXml.SelectSingleNode("Usuario/Celular").text
+            chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
+            chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
+            chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+            chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
+            chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
+            chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+            chr_DataAdmissao = oXml.SelectSingleNode("Usuario/DataAdmissao").text
+            chr_AreaLotacao = oXml.SelectSingleNode("Usuario/AreaLotacao").text
+            chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+            chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
+            chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
 
-        chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
-        chr_Login = oXml.SelectSingleNode("Usuario/Email").text
-        chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text
-        chr_Ramal = oXml.SelectSingleNode("Usuario/Telefone").text
-        chr_Celular = oXml.SelectSingleNode("Usuario/Celular").text
-        chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
-        chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
-        chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
-        chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
-        chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
-        chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
-        chr_DataAdmissao = oXml.SelectSingleNode("Usuario/DataAdmissao").text
-        chr_AreaLotacao = oXml.SelectSingleNode("Usuario/AreaLotacao").text
-        chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
-        chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
-        chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
-
-        Set oXml = Nothing
+            Set oXml = Nothing
         'Set nodes = Nothing
-
+        Else
+            bln_TemErro = True
+            chr_Login = chr_Usuario
+            chr_Nome_Reduzido = "***ERRO AO LER SERVICO SISLAB****"
+            chr_MsgErro = xmlResult
+        End If
 'chr_login = "AQUI:" & str_cn & "<BR>str_dc:" & str_dc
 'chr_usuario = str_dc
 'exit sub
@@ -382,11 +389,6 @@ Class TEbt
 '    chr_login = "AQUI:" & chr_Celular & " ---- " & chr_login
     'chr_login = "AQUI:" & objRs.Fields("mail") & " / " & objRs.Fields("displayName")
 '    exit sub
-
-        If bln_TemErro Then
-            chr_Login = chr_Usuario
-            chr_Nome_Reduzido = "****"
-        End If
 
         If VVVNZ(chr_Login) Or bln_TemErro Then
             bln_ehFuncionario = False
