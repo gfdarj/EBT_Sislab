@@ -14,10 +14,14 @@ namespace Embratel.Sislab.Classes
     {
         public string ObtemUsuario(string login)
         {
-            return GeraXML(BuscaDadosAD(login));
+            return GeraXML(BuscaDadosAD(login, ""));
+        }
+        public string ObtemUsuario(string login, string dominio)
+        {
+            return GeraXML(BuscaDadosAD(login, dominio));
         }
 
-        private UsuarioENT BuscaDadosAD(string login)
+        private UsuarioENT BuscaDadosAD(string login, string dominio)
         {
             UsuarioENT ent = new UsuarioENT();
 
@@ -33,7 +37,11 @@ namespace Embratel.Sislab.Classes
             DirectoryEntry entry = new DirectoryEntry(domainContext);
             DirectorySearcher adSearch = new DirectorySearcher(entry);
 
-            adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))"; // "(distinguishedname=*OU=Ingegneria*)" +
+            if (dominio == "")
+                dominio = "alerj";
+
+            //adSearch.Filter = "(&(objectClass=user)(anr=" + login + ")(distinguishedname=*DC=alerj*))"; // "(distinguishedname=*OU=Ingegneria*)" +
+            adSearch.Filter = "(&(objectClass=user)(| (cn = *" + dominio + "*)(sAMAccountName = " + login + ")))";
             //adSearch.PropertiesToLoad.Add("mail");
             //adSearch.PropertiesToLoad.Add("displayname");
 
