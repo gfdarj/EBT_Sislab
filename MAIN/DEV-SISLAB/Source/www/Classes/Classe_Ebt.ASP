@@ -347,12 +347,12 @@ Class TEbt
         'Faz requisição para o WebService
         xmlResult = WS_ObtemUsuarioAD(strUser)
 
-        Dim oXml , nodes
+        Dim oXml ', nodes
         Set oXml = Server.CreateObject("MSXML2.DOMDocument.6.0")
         oxml.async = false
-        oxml.LoadXML xmlResult
+        oxml.LoadXML(xmlResult)
 
-        Set nodes = oxml.selectNodes("//Usuario")
+        'Set nodes = oxml.selectNodes("//Usuario")
 
         chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
         chr_Login = oXml.SelectSingleNode("Usuario/Email").text
@@ -372,7 +372,7 @@ Class TEbt
         chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
 
         Set oXml = Nothing
-        Set nodes = Nothing
+        'Set nodes = Nothing
 
 'chr_login = "AQUI:" & str_cn & "<BR>str_dc:" & str_dc
 'chr_usuario = str_dc
@@ -387,9 +387,6 @@ Class TEbt
             chr_Login = chr_Usuario
             chr_Nome_Reduzido = "****"
         End If
-
-        Set objRs = Nothing
-        Set conn = Nothing
 
         If VVVNZ(chr_Login) Or bln_TemErro Then
             bln_ehFuncionario = False

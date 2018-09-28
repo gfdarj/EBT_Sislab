@@ -91,12 +91,31 @@ response.write "<BR><BR>strUser: " & strUser
     response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Email").text
     response.write "<BR>Diretoria: " & oxml.SelectSingleNode("Usuario/Diretoria").text
     response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Telefone").text
-    for i = 0 to nodes.length -1
-        set attributes = nodes.item(i).attributes
-        for j = 0 to attributes.length - 1
-            response.write("<BR><BR>TESTE MS: " & attributes.item(j).nodeName & " - " & attributes.item(j).value & "<br />")
-        next
-    next
+
+    response.write "<BR>---<BR>Nome: " & oxml.SelectSingleNode("Usuario/Nome").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Email").text
+    response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Diretoria").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Telefone").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Celular").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Matricula").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Empresa").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Departamento").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Sexo").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/DataAdmissao").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/AreaLotacao").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+    response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Lotacao").text
+    response.write "<BR>DataNascimento: " & oXml.SelectSingleNode("Usuario/DataNascimento").text
+
+
+'    for i = 0 to nodes.length -1
+'        set attributes = nodes.item(i).attributes
+'        for j = 0 to attributes.length - 1
+'            response.write("<BR><BR>TESTE MS: " & attributes.item(j).nodeName & " - " & attributes.item(j).value & "<br />")
+'        next
+'    next
 
     set oxml = Nothing
 '    response.end
