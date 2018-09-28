@@ -18,12 +18,6 @@ namespace Embratel.Sislab.Servico
     public class Usuarios : System.Web.Services.WebService
     {
         [WebMethod]
-        public string HelloWorld()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
         public string ObtemUsuario(string login)
         {
             UsuariosAD ad = new UsuariosAD();

@@ -68,7 +68,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Usuarios.asmx" />
+    <Content Include="Servicos.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Email.cs" />
@@ -78,8 +78,8 @@
     <Compile Include="Classes\UsuariosAD.cs" />
     <Compile Include="Entidades\EmailENT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuarios.asmx.cs">
-      <DependentUpon>Usuarios.asmx</DependentUpon>
+    <Compile Include="Servicos.asmx.cs">
+      <DependentUpon>Servicos.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
