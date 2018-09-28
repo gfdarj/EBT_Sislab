@@ -1,4 +1,21 @@
-﻿<!--#include file="classes/Classe_WebService.asp"-->
+﻿<!--#include file="includes/Global.asp"-->
+<!--#include file="classes/Classe_WebService.asp"-->
+<%
+Response.Clear
+%>
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+    <form method="get" name="form1">
+        <p>Login: <input type="text" name="txtLogin" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" /></p>
+        <p>Domínio: <input type="text" name="txtDominio" /> </p>
+    </form>
 <%
 dim ws
         Dim objSysInfo
@@ -15,6 +32,7 @@ dim ws
 
 'chr_login =    Request.ServerVariables("AUTH_USER")
 'exit sub
+    chr_Usuario = Request("txtLogin")
 
         'VAZIO: Pega o usuario logado no sistema
         If chr_Usuario = "" Then
@@ -63,6 +81,8 @@ dim ws
         'xmlResult = Server.HTMLEncode(WS_ObtemUsuarioAD(strUser))
         xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
 
+response.write "<BR><BR>Parametro Login: " & strUser
+response.write "<BR><BR>Parametro Dominio: " & str_dc
 response.write "<BR><BR>SISLAB_HTTP_WEBSERVICE: " & Application("SISLAB_HTTP_WEBSERVICE")
 response.write "<BR><BR>AUTH_USER: " & Request.ServerVariables("AUTH_USER")
 response.write "<BR><BR>chr_usuario: " & chr_usuario
@@ -89,27 +109,22 @@ response.write "<BR><BR>strUser: " & strUser
        'Next
         set nodes = oxml.selectNodes("//Usuario")
         response.write "<BR>nodes: " & nodes.length
-        response.write "<BR>DN: " & oxml.SelectSingleNode("Usuario/DN").text
-        response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Nome").text
-        response.write "<BR>nodes: " & oxml.SelectSingleNode("Usuario/Email").text
+        response.write "<BR>---<BR>DN: " & oxml.SelectSingleNode("Usuario/DN").text
+        response.write "<BR>Nome: " & oxml.SelectSingleNode("Usuario/Nome").text
+        response.write "<BR>Email: " & oXml.SelectSingleNode("Usuario/Email").text
         response.write "<BR>Diretoria: " & oxml.SelectSingleNode("Usuario/Diretoria").text
-        response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Telefone").text
-
-        response.write "<BR>---<BR>Nome: " & oxml.SelectSingleNode("Usuario/Nome").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Email").text
-        response.write "<BR>Ramal: " & oxml.SelectSingleNode("Usuario/Diretoria").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Telefone").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Celular").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Matricula").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Empresa").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CodigoLotacao").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Departamento").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Sexo").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/DataAdmissao").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/AreaLotacao").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/CategoriaCargo").text
-        response.write "<BR>Ramal: " & oXml.SelectSingleNode("Usuario/Lotacao").text
+        response.write "<BR>Telefone: " & oXml.SelectSingleNode("Usuario/Telefone").text
+        response.write "<BR>Celular: " & oXml.SelectSingleNode("Usuario/Celular").text
+        response.write "<BR>Matricula: " & oXml.SelectSingleNode("Usuario/Matricula").text
+        response.write "<BR>Empresa: " & oXml.SelectSingleNode("Usuario/Empresa").text
+        response.write "<BR>CodigoLotacao: " & oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+        response.write "<BR>Departamento: " & oXml.SelectSingleNode("Usuario/Departamento").text
+        response.write "<BR>Sexo: " & oXml.SelectSingleNode("Usuario/Sexo").text
+        response.write "<BR>CategoriaEmpregado: " & oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+        response.write "<BR>DataAdmissao: " & oXml.SelectSingleNode("Usuario/DataAdmissao").text
+        response.write "<BR>AreaLotacao: " & oXml.SelectSingleNode("Usuario/AreaLotacao").text
+        response.write "<BR>CategoriaCargo: " & oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+        response.write "<BR>Lotacao: " & oXml.SelectSingleNode("Usuario/Lotacao").text
         response.write "<BR>DataNascimento: " & oXml.SelectSingleNode("Usuario/DataNascimento").text
 
 
@@ -136,44 +151,42 @@ response.write "<BR><BR>strUser: " & strUser
 
 
 
-        chr_DN = ValorXML(xmlResult, "DN")
-        chr_Login = ValorXML(xmlResult, "Email")
-        chr_Nome_Reduzido = ValorXML(xmlResult, "Nome>")
-        chr_Ramal = ValorXML(xmlResult, "Ramal")
-        chr_Celular = ValorXML(xmlResult, "Celular")
-        chr_Matricula = ValorXML(xmlResult, "Matricula")
-        chr_Empresa = ValorXML(xmlResult, "Empresa")
-        chr_CodigoLotacao = ValorXML(xmlResult, "CodigoLotacao")
-        chr_Departamento = ValorXML(xmlResult, "Departamento")
-        chr_Diretoria = ValorXML(xmlResult, "Diretoria")
-        chr_Sexo = ValorXML(xmlResult, "Sexo")
-        chr_CategoriaEmpregado = ValorXML(xmlResult, "CategoriaEmpregado")
-        chr_DataAdmissao = ValorXML(xmlResult, "DataAdmissao")
-        chr_AreaLotacao = ValorXML(xmlResult, "AreaLotacao")
-        chr_CategoriaCargo = ValorXML(xmlResult, "CategoriaCargo")
-        chr_Lotacao = ValorXML(xmlResult, "Lotacao")
-        chr_DataNascimento = ValorXML(xmlResult, "DataNascimento")
-    
+'        chr_DN = ValorXML(xmlResult, "DN")
+'        chr_Login = ValorXML(xmlResult, "Email")
+'        chr_Nome_Reduzido = ValorXML(xmlResult, "Nome>")
+'        chr_Ramal = ValorXML(xmlResult, "Ramal")
+'        chr_Celular = ValorXML(xmlResult, "Celular")
+'        chr_Matricula = ValorXML(xmlResult, "Matricula")
+'        chr_Empresa = ValorXML(xmlResult, "Empresa")
+'        chr_CodigoLotacao = ValorXML(xmlResult, "CodigoLotacao")
+'        chr_Departamento = ValorXML(xmlResult, "Departamento")
+'        chr_Diretoria = ValorXML(xmlResult, "Diretoria")
+'        chr_Sexo = ValorXML(xmlResult, "Sexo")
+'        chr_CategoriaEmpregado = ValorXML(xmlResult, "CategoriaEmpregado")
+'        chr_DataAdmissao = ValorXML(xmlResult, "DataAdmissao")
+'        chr_AreaLotacao = ValorXML(xmlResult, "AreaLotacao")
+'        chr_CategoriaCargo = ValorXML(xmlResult, "CategoriaCargo")
+'        chr_Lotacao = ValorXML(xmlResult, "Lotacao")
+'        chr_DataNascimento = ValorXML(xmlResult, "DataNascimento")
 
-
-response.write "<BR><BR>NOW: " & nOW
-response.write "<BR><BR>chr_DN: " & chr_DN
-response.write "<BR><BR>chr_Login: " & chr_Login
-response.write "<BR><BR>chr_Nome_Reduzido: " & chr_Nome_Reduzido 
-response.write "<BR><BR>chr_Ramal: " & chr_Ramal 
-response.write "<BR><BR>chr_Celular: " & chr_Celular 
-response.write "<BR><BR>chr_Matricula: " & chr_Matricula 
-response.write "<BR><BR>chr_Empresa: " & chr_Empresa 
-response.write "<BR><BR>chr_CodigoLotacao: " & chr_CodigoLotacao 
-response.write "<BR><BR>chr_Departamento: " & chr_Departamento 
-response.write "<BR><BR>chr_Diretoria: " & chr_Diretoria 
-response.write "<BR><BR>chr_Sexo: " & chr_Sexo 
-response.write "<BR><BR>chr_CategoriaEmpregado: " & chr_CategoriaEmpregado 
-response.write "<BR><BR>chr_DataAdmissao: " & chr_DataAdmissao
-response.write "<BR><BR>chr_AreaLotacao: " & chr_AreaLotacao 
-response.write "<BR><BR>chr_CategoriaCargo: " & chr_CategoriaCargo 
-response.write "<BR><BR>chr_Lotacao: " & chr_Lotacao 
-response.write "<BR><BR>chr_DataNascimento: " & chr_DataNascimento 
+'response.write "<BR><BR>NOW: " & nOW
+'response.write "<BR><BR>chr_DN: " & chr_DN
+'response.write "<BR><BR>chr_Login: " & chr_Login
+'response.write "<BR><BR>chr_Nome_Reduzido: " & chr_Nome_Reduzido 
+'response.write "<BR><BR>chr_Ramal: " & chr_Ramal 
+'response.write "<BR><BR>chr_Celular: " & chr_Celular 
+'response.write "<BR><BR>chr_Matricula: " & chr_Matricula 
+'response.write "<BR><BR>chr_Empresa: " & chr_Empresa 
+'response.write "<BR><BR>chr_CodigoLotacao: " & chr_CodigoLotacao 
+'response.write "<BR><BR>chr_Departamento: " & chr_Departamento 
+'response.write "<BR><BR>chr_Diretoria: " & chr_Diretoria 
+'response.write "<BR><BR>chr_Sexo: " & chr_Sexo 
+'response.write "<BR><BR>chr_CategoriaEmpregado: " & chr_CategoriaEmpregado 
+'response.write "<BR><BR>chr_DataAdmissao: " & chr_DataAdmissao
+'response.write "<BR><BR>chr_AreaLotacao: " & chr_AreaLotacao 
+'response.write "<BR><BR>chr_CategoriaCargo: " & chr_CategoriaCargo 
+'response.write "<BR><BR>chr_Lotacao: " & chr_Lotacao 
+'response.write "<BR><BR>chr_DataNascimento: " & chr_DataNascimento 
 
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -252,4 +265,6 @@ End Function
 
 %>
 
+</body>
 
+</html>

@@ -30,6 +30,7 @@ Else
 End If
 
 Dim objRS, s, objSiteRS, sSQL, indice, cont
+cont = 0
 %>
 
 <!-- AJAX -->
@@ -259,7 +260,7 @@ Sub MontaVisaoPorSituacao
 			</td>
 		</tr>
 <%
-						cont=0
+						cont = 0
 					end if%>
 
 		<tr bgcolor="#ffffff"> 

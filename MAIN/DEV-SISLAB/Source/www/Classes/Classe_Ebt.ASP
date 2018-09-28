@@ -260,10 +260,14 @@ Class TEbt
 		    bln_usuarioCRT_Cadastrado = True
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
-		    chr_Sigla_Orgao = objRS("ORGA_SIGLA")
-            chr_Ramal = objRS("RAMAL")
-            chr_Celular = objRS("CELULAR")
-            chr_Matricula = objRS("MATRICULA")
+
+            'Se for usuario Terceirizado, pega, se existir, da tabela
+            If UCase(Left(chr_Login, 2)) = "T3" Then
+		        chr_Sigla_Orgao = objRS("ORGA_SIGLA")
+                chr_Ramal = objRS("RAMAL")
+                chr_Celular = objRS("CELULAR")
+                chr_Matricula = objRS("MATRICULA")
+            End If
 	    End If
 	    Set objRS = Nothing
 
@@ -353,7 +357,7 @@ Class TEbt
             Set oXml = Server.CreateObject("MSXML2.DOMDocument.3.0")
             oxml.async = false
             oxml.LoadXML(xmlResult)
-chr_login = xmlResult
+'chr_login = xmlResult
             'Set nodes = oxml.selectNodes("//Usuario")
 
             chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
@@ -364,6 +368,7 @@ chr_login = xmlResult
             chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
             chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
             chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+            chr_Sigla_Orgao = chr_CodigoLotacao
             chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
             chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
             chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text

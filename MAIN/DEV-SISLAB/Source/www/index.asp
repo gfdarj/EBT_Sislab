@@ -15,18 +15,18 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
 'Set ebt1 = new TEbt
-response.Write "AQUI1 : " & now
+'response.Write "AQUI1 : " & now
 'response.Write "<BR>AQUI2 : " & now
 'response.End
 'response.Write ebt1.MensagemErro
-Call Ebt1.LoginUsuario("t3gfba")
+'Call Ebt1.LoginUsuario("")
 ''Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
 'Call Ebt1.BuscaDadosEmbratel("")
 'WS_ObtemUsuarioAD
 'Call ebt1.BuscaDadosEmbratelAD("galmeida")
 
-Response.Write "<BR>Usuario: " & Ebt1.Usuario() & "<BR><BR>"
-Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
+'Response.Write "<BR>Usuario: " & Ebt1.Usuario() & "<BR><BR>"
+'Response.Write "Nome: " & Ebt1.NomeReduzido & "<BR>"
 ''Response.Write "Descricao: " & Ebt1.Descricao & "<BR>"
 'Response.Write "ehFuncionario: " & Ebt1.ehFuncionario & "<BR>"
 'Response.Write "ehRAT: " & Ebt1.ehRAT & "<BR>"

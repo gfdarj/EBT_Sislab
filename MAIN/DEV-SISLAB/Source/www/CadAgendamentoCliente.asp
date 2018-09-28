@@ -400,7 +400,7 @@ end if
 		<input type="text" class="texto1" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
 	</td>
 	<td colspan="4">&nbsp;&nbsp;Matrícula:&nbsp;
-		<input class="texto1" READONLY  name="txtMatricula" size="7" tabindex="3">
+		<input class="texto1" READONLY  name="txtMatricula" size="15" tabindex="3">
 	</td>
 </tr>
 <tr height="34">
@@ -752,8 +752,8 @@ if as_referencia <> "" then
 			frm.txtMatricula.value = '<%=Ebt.Matricula%>';
 			frm.txtOrgao.value = '<%=Ebt.SiglaOrgao()%>';
 			frm.txtRamal.value='<%=Ebt.Ramal%>';
-			frm.Username.value='<%=solicitante%>';
-			frm.txtEMail.value='<%=solicitante%>';
+			frm.Username.value='<%=Ebt.Usuario%>';
+			frm.txtEMail.value='<%=Ebt.Usuario%>';
 		<%else%>
 			alert("Username Inválido!")
 <%		end if
