@@ -41,13 +41,17 @@
 'Response.Write "NOW: " & now & "<BR>"
 'Response.End
 
-Dim usuarioCRT
+Dim usuarioCRT, chr_SQL, RS
+
 usuarioCRT = Env.UsuarioCRT
 
 'O SISTEMA VERIFICA SE EXISTEM DOCUMENTOS FORA DA VIGENCIA E ENVIA E-MAIL PARA RAT'S GQ'S PARA QUE POSSAM VALIDAR
 'call VerificaVigenciaArquivos()
 Call Tela.MostraCabecalho()
 %>
+
+<script type="text/javascript" src="includes/carrossel.js"></script>
+
 <table height="100%" width="765px" border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<!-- Primeira parte da tela - coluna acha facil + logbook + servicos -->
@@ -339,7 +343,33 @@ end if%>
 						</tr>
 						<tr>
 							<td colspan="2" valign="middle" align="center"><br>
-								<iframe src="fotos_crt.asp" frameborder="0" width="140" height="125" scrolling="no" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font></iframe>
+								<!--
+                                <iframe src="fotos_crt.asp" frameborder="0" width="140" height="125" scrolling="no" name="teste_iframe">
+                                    <font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
+								</iframe>
+                                -->
+
+                                <div class="" style="max-width:140px; max-height: 125px;">
+<%
+     	chr_SQL = "SELECT TOP 2 ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ " & _
+		          "FROM Arquivos " & _
+		          "WHERE ARQ_CODARQTIPO = " & Application("SISLAB_id_TipoArquivo_Imagem")
+	    Call Env.RecordSet(True, RS, chr_SQL)
+        While Not RS.Eof %>
+                                    <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:140px; height: 125px;" >
+<%          RS.MoveNext
+        WEnd
+        Call Env.RecordSet(False, RS, "")
+%>
+                                </div>
+
+                                <script type="text/javascript">
+                                    myCarrosselIndex = 0;
+                                    alert(1000);
+                                    carrossel("mySlides", 200);
+                                    alert(2000);
+                                </script>
+
 								<span class="texto1" style="font-size: 9px;"><i>Clique na foto para ampliar</i></span>
 							</td>
 						</tr>

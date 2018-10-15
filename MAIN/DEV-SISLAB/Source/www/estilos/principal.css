@@ -1,4 +1,8 @@
-﻿.texto0 {
+﻿
+/* Usado nos slides de imagens */
+.mySlides { display:none; }
+
+.texto0 {
 	color: #999999; 
 	line-height: normal;
 	text-decoration: none;
