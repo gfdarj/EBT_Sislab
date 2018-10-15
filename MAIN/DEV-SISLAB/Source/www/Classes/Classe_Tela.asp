@@ -426,11 +426,11 @@ Public Sub ImprimeMenuSce()
     <p class='texto1'>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="20">
 		<tr>
-	        <td align="left" width="120px"><a href="index.asp" class="links"><font class="links"><b>> InÃ­cio</b></a></td>
+	        <td align="left" width="120px"><a href="index.asp" class="links"><font class="links"><b>> Início</b></a></td>
 			<td align="left" id="mnuCadastros" width="120px"><a href="#" onMouseOver="javascript:mostraMenuCadastros(true);"><font class="links"><b>> Cadastros</b></a></td>
 			<td align="left" id="mnuConsultas" width="120px"><a href="#" onMouseOver="javascript:mostraMenuConsultas(true);"><font class="links"><b>> Consultas</b></a></td>
-			<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links"><b>> RelatÃ³rios</b></a></td>
-			<td align="left" id="mnuMovimentacao" width="*"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links"><b>> MovimentaÃ§Ã£o</b></a></td>
+			<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links"><b>> Relatórios</b></a></td>
+			<td align="left" id="mnuMovimentacao" width="*"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links"><b>> Movimentação</b></a></td>
 		</tr>
         <tr id="tr_princ_cabecalho_separador2"><td colspan="5" bgcolor="#003366" height="1"></td></tr>
 	    </table>
