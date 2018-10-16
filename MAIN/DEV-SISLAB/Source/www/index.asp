@@ -332,7 +332,7 @@ end if%>
 
                                     .someclass{ //class to apply to your scroller(s) if desired }
                                 </style>
-                                
+
                                 <br />
                                 <div class="" id="datamain" style="max-width:140px; max-height: 70px; text-align: left; word-wrap: break-word;">
                                     <script type="text/javascript">
