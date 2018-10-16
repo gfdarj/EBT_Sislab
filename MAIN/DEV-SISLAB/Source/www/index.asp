@@ -41,7 +41,7 @@
 'Response.Write "NOW: " & now & "<BR>"
 'Response.End
 
-Dim usuarioCRT, chr_SQL, RS
+Dim usuarioCRT, chr_SQL, RS,conta
 
 usuarioCRT = Env.UsuarioCRT
 
@@ -55,6 +55,9 @@ Call Tela.MostraCabecalho()
 <!-- javascript do fancybox -->
 <script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
+
+<!-- Scroller do notícias -->
+<script type="text/javascript" src="includes/pauseScroller.js"></script>
 
 <table height="100%" width="765px" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -315,8 +318,59 @@ end if%>
 						</tr>
 						<tr>
 							<td width="5px">&nbsp;</td>
-							<td align="center"><br>
-								<iframe id="datamain" src="noticias.asp" frameborder="0" width="140" height="70" scrolling="no" name="datamain"><font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font></iframe>
+							<td align="center">
+
+                                <style type="text/css">
+                                    /* Example CSS for the two demo scrollers */
+                                    #pscroller1{
+	                                    width: 135px;
+	                                    height: 70px;
+	                                    border: none;
+	                                    padding: 0px;
+	                                    background-color: none;
+                                    }
+
+                                    .someclass{ //class to apply to your scroller(s) if desired }
+                                </style>
+                                
+                                <br />
+                                <div class="" id="datamain" style="max-width:140px; max-height: 70px; text-align: left; word-wrap: break-word;">
+                                    <script type="text/javascript">
+                                        var pausecontent = new Array();
+<%
+        chr_SQL = "select * From Plantao Where PLA_DATATERMINO >= GETDATE() order by PLA_CODNOTICIA desc"
+        Call Env.RecordSet(True, RS, chr_SQL)
+        conta = 0
+
+        If not (RS.EOF and RS.BOF) Then
+            While Not RS.Eof
+		        conta = conta + 1
+                If Not(IsNull(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
+                                        pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);" class="texto" target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
+<%		        Else%>
+                                        pausecontent[<%=conta-1%>]= '<font class="texto"><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
+<%		        End If
+		        RS.MoveNext
+	        WEnd 
+%>
+                                        pausecontent[<%=conta%>]=  '';
+
+                                        new pausescroller(pausecontent, "pscroller1", "someclass", 3000)
+
+<%      Else %>
+                                        pausecontent[0]=  '<center><i>Nenhuma notícia cadastrada</i></center>';
+                                        document.write(pausecontent[0]);
+<%      End If 
+        Call Env.RecordSet(False, RS, "")
+%>
+                                        function novaJanela(id_noticia)
+                                        {
+                                            var jan = window.open('noticias_exibe.asp?id_noticia=' + id_noticia, 'Noticias_CRT', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=690,height=400,top=5,left=5');
+                                            jan.focus();
+                                        }
+                                    </script>
+                                </div>
+
 							</td>
 						</tr>
 						<tr>
