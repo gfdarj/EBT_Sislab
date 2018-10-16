@@ -49,8 +49,12 @@ usuarioCRT = Env.UsuarioCRT
 'call VerificaVigenciaArquivos()
 Call Tela.MostraCabecalho()
 %>
+<!-- CSS do fancybox -->
+<link rel="stylesheet" href="includes/fancybox-3.5.2-dist/jquery.fancybox.min.css" />
 
-<script type="text/javascript" src="includes/carrossel.js"></script>
+<!-- javascript do fancybox -->
+<script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
 
 <table height="100%" width="765px" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -356,7 +360,9 @@ end if%>
 		          "WHERE ARQ_CODARQTIPO = " & Application("SISLAB_id_TipoArquivo_Imagem")
 	    Call Env.RecordSet(True, RS, chr_SQL)
         While Not RS.Eof %>
-                                    <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:140px; height: 125px;" >
+                                    <a href="arquivos/<%=RS("ARQ_NOMEARQ")%>" data-fancybox="gallery" data-caption="<%=RS("ARQ_LINK")%>" class="fancybox">
+                                        <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:140px; height: 125px;" >
+                                    </a>
 <%          RS.MoveNext
         WEnd
         Call Env.RecordSet(False, RS, "")
@@ -364,10 +370,31 @@ end if%>
                                 </div>
 
                                 <script type="text/javascript">
-                                    myCarrosselIndex = 0;
-                                    alert(1000);
-                                    carrossel("mySlides", 200);
-                                    alert(2000);
+                                    //Faz a troca das imagens em um intervalo pré-definido
+                                    var myIndex = 0;
+                                    carousel();
+
+                                    function carousel() {
+                                        var i;
+                                        var x = document.getElementsByClassName("mySlides");
+                                        for (i = 0; i < x.length; i++) {
+                                            x[i].style.display = "none";
+                                        }
+                                        myIndex++;
+                                        if (myIndex > x.length) { myIndex = 1 }
+                                        x[myIndex - 1].style.display = "block";
+                                        setTimeout(carousel, 5000); // Change image every 5 seconds
+                                    }
+
+                                    //fancybox
+                                    $('[data-fancybox="gallery"]').fancybox({
+                                        // Options will go here
+                                        slideShow : {
+                                            autoStart : true,
+                                            playSpeed: 3000
+                                        }
+                                    });
+
                                 </script>
 
 								<span class="texto1" style="font-size: 9px;"><i>Clique na foto para ampliar</i></span>
