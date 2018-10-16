@@ -39,7 +39,6 @@ function LogaUsuarioNaoCRT()
 	Response.cookies("SISLAB")("ehGQ") = false
 	Response.cookies("SISLAB")("usuario") = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
 '	Response.cookies("SISLAB")("matricula") = ""
-'	Response.cookies("SISLAB")("PaginaInicial") = "index_nao_crt.asp"
 	Response.cookies("SISLAB")("PaginaInicial") = "index.asp"
 	Response.cookies("SISLAB")("usuarioCRT_Cadastrado") = False
 
