@@ -4,11 +4,12 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT" 
-Response.Addheader "Cache-Control","no-cache, must-revalidate" 
-Response.Addheader "Pragma","no-cache" 
-
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Manutenção de dados: De - Para", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Manutenção de dados: De - Para"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+'''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Manutenção de dados: De - Para", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
@@ -112,10 +113,12 @@ function ValidaCampos(){
 		<td width="10%"></td>
 		<td width="10%"></td>
 	</tr>
-	<TR><td bgcolor="#d9d9d9" colspan="10">
-	<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
-	&nbsp;&nbsp;Ferramenta De - Para</font></td>
-</tr>
+	<TR>
+		<td class="azul1Bg" colspan="10">
+			<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
+			&nbsp;&nbsp;Ferramenta De - Para</font>
+		</td>
+	</tr>
 
 	<tr height="34"> 
     	<td colspan="2"><font class="item"><b>&nbsp;&nbsp;</b>De - Para Disponíveis :
@@ -134,13 +137,13 @@ function ValidaCampos(){
 		IF TIPOCAMPO = "COMBO" THEN
 			call comboBDSQL( "para", objConn,sSQLDEPARA2, "", "N")%>&nbsp;&nbsp;<%
 		ELSE%>
-			<input  Type="TEXT" NAME="para" SIZE=93"></input>
+			<input type="text" class="texto1" name="para" SIZE=93"></input>
 		<%END IF%>
 		</td>
 	</tr>
 
 	<tr height="34">
-		<td colspan="10" align="left">&nbsp;<input type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
+		<td colspan="10" align="left">&nbsp;<input class="texto1" type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
 		</td>
 	</tr>
 	</tr>
@@ -153,5 +156,5 @@ var frmAll = document.all
 frm.depara.value = '<%=TABELA%>'
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

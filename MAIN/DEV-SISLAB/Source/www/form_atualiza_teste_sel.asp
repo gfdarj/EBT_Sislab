@@ -7,7 +7,13 @@
 Dim rs_teste, strSQL
 Dim num_erro, desc_erro
 
-Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes", "location.href='sislab.asp'", "")
+
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Atualização de Testes"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+'''''Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes", "location.href='sislab.asp'", "")
 %>
 <script language="javascript">
     function abre(codigo, excluir)
@@ -30,7 +36,9 @@ Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes"
 </form>
 
 <p class="texto1">
-	&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Testes Disponíveis</span>
+	&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		Testes Disponíveis
+	</span>
 </p>
 <table border="1" cellSpacing="0" cellpadding="2" width="100%" class="tabela1">
 <tr>
@@ -90,5 +98,5 @@ Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes"
 </table>
 <br>
 <%
-call imprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

@@ -8,9 +8,16 @@ Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT"
 Response.Addheader "Cache-Control","no-cache, must-revalidate" 
 Response.Addheader "Pragma","no-cache" 
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Ocorrência do LogBook", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Tipo de Ocorrência do LogBook"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Ocorrência do LogBook", "location.href='sislab.asp'", "")
 
-if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
+If not Env.ehRAT Then
+	RESPONSE.REDIRECT "INDEX.ASP"
+End If
 %>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
 <script language="javascript" src="includes/anexo.js"></script>
@@ -139,5 +146,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

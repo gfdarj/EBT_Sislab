@@ -16,7 +16,12 @@ Dim chr_RAT_MsgErro
 num_ag = request("hdAG")
 tem_os = False
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RAT", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Agendamento - RAT"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+'''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RAT", "", "")
 
 If num_ag <> "" Then
 	Dim rsEBT,rsCLI
@@ -433,5 +438,5 @@ End If
 %>
 </script>
 <%
-Call ImprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

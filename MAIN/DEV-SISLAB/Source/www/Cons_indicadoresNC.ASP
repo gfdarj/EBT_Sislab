@@ -7,7 +7,11 @@ If IsEmpty( Env.usuario ) Then response.redirect "msgAcessoNA.asp"
 
 Dim ssql, dataIni, dataFim, objEfi, objConn
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores de Não Conformidade", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Consulta de Indicadores de Não Conformidade"
+Call Tela.MostraCabecalho()
+'''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores de Não Conformidade", "location.href='sislab.asp'", "")
 %>
 <script language="javascript">
 function ValidaCampos() {
@@ -35,7 +39,9 @@ function ValidaCampos() {
 <table width="100%" class="tabela1" border="0">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione o período desejado da consulta</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+			Selecione o período desejado da consulta
+		</span>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
@@ -85,5 +91,5 @@ if request("submited") = "1" then
 <%
 end if
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

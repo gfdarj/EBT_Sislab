@@ -456,98 +456,105 @@ fac.focus();
 
 function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
 <script>
-function adiciona_retira_<%=nome%>(tipo)
-{
-	var frm = document.forms[0]
-	var fac = frm.cmb<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	var str1 = frm.str<%=nome%>;
+	function adiciona_retira_<%=nome%>(tipo)
+	{
+		var frm = document.forms[0]
+		var fac = frm.cmb<%=nome%>;
+		var lista = frm.lst<%=nome%>;
+		var str1 = frm.str<%=nome%>;
 
-	if ( tipo == 0){
-		if (lista.selectedIndex != -1){
-			<%IF TIPOCAMPO = "TEXTO" THEN%>
-				//lista.options[lista.options.length] = new Option(fac.value.substr(0,fac.value.length / 2));
-				strASerRetirada = lista.options[lista.selectedIndex].text + ' - ' + lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>'
-				str1.value = replaceSubstring(str1.value, strASerRetirada, "");
-			<%ELSE%>
-				//lista.options[lista.options.length] = new Option(fac.value);
-				str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>', "");
-			<%END IF%>
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (fac.value == ""){
-			alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
-			fac.focus();		
+		if ( tipo == 0){
+			if (lista.selectedIndex != -1){
+				<%IF TIPOCAMPO = "TEXTO" THEN%>
+					//lista.options[lista.options.length] = new Option(fac.value.substr(0,fac.value.length / 2));
+					strASerRetirada = lista.options[lista.selectedIndex].text + ' - ' + lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>'
+					str1.value = replaceSubstring(str1.value, strASerRetirada, "");
+				<%ELSE%>
+					//lista.options[lista.options.length] = new Option(fac.value);
+					str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>', "");
+				<%END IF%>
+				lista.options[lista.selectedIndex]=null;
+			}
 		}
 		else{
-			adiciona<%=nome%>()
+			if (fac.value == ""){
+				alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
+				fac.focus();		
+			}
+			else{
+				adiciona<%=nome%>()
+			}
 		}
 	}
-}
 
-function adiciona<%=nome%>(){
-var frm = document.forms[0]
+	function adiciona<%=nome%>()
+	{
+		var frm = document.forms[0]
 
-var fac = frm.cmb<%=nome%>;
-var lista = frm.lst<%=nome%>;
-var str1 = frm.str<%=nome%>;
-var rExp = fac.value + '<%=SEPARADOR_REGISTRO%>';
+		var fac = frm.cmb<%=nome%>;
+		var lista = frm.lst<%=nome%>;
+		var str1 = frm.str<%=nome%>;
+		var rExp = fac.value + '<%=SEPARADOR_REGISTRO%>';
 
-resp = str1.value.lastIndexOf(rExp)
-	if (resp == -1){
-		<%IF TIPOCAMPO = "TEXTO" THEN%>
-			lista.options[lista.options.length] = new Option(fac.value.substr(0,(fac.value.length / 2)-1));
-		<%ELSE%>
-			lista.options[lista.options.length] = new Option(fac.value);
-		<%END IF%>
-		str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
-		fac.value = "";
-		fac.focus();
-	}else{
-		alert('Item já consta na lista.');
+		resp = str1.value.lastIndexOf(rExp)
+		if (resp == -1){
+			<%IF TIPOCAMPO = "TEXTO" THEN%>
+				lista.options[lista.options.length] = new Option(fac.value.substr(0,(fac.value.length / 2)-1));
+			<%ELSE%>
+				lista.options[lista.options.length] = new Option(fac.value);
+			<%END IF%>
+			str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
+			fac.value = "";
+			fac.focus();
+		}else{
+			alert('Item já consta na lista.');
+		}
 	}
-}
 </script>
-<input type="Hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0">
-<tr>
-	<td bgcolor="#d9d9d9">
-		<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
-		<%=titulo%>:</font></td>
-</tr>
 
-<tr><td>
-	<table width="100%" border="0">
-     <tr> 
-			<td width="12%"  colspan="3">
-				<font class="item">&nbsp;<%=nomeCampo1%>:</font></td>
-			<td width="33%"  colspan="7 "> 
-			<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>" size="6" ondblclick="javascript:adiciona_retira_<%=nome%>(1)"
-	       style="FONT-FAMILY: serif; FONT-SIZE: 10pt; LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" >
-				<%call comboBD(objConn,sql)%>
-			</SELECT>
-	</TR>
-	<TR>
-		<td colspan="10" align="right">
-			<input class="cxtexto" type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
-			<input class="cxtexto" type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
-		</td>
-	</tr>
-<TR>
-	<td width="12%" colspan="3">
-		<font class="item"><%=titulo%>:</font></TD>
-	<td width="33%" colspan="7"> 
-        <select name="lst<%=nome%>" size=6
-	       style="FONT-FAMILY: serif; FONT-SIZE: 10pt; LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" ondblclick="javascript:adiciona_retira_<%=nome%>(0)"
-           tabindex="<%=index+5%>">
-        </select>
+<input type="Hidden" name="str<%=Nome%>"/>
+
+<table id="tab<%=Nome%>" border="0">
+<tr>
+	<td class="azul1Bg">
+		<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
+		&nbsp;<%=titulo%>:</font>
+	</td>
+</tr>
+<tr>
+	<td>
+		<table width="100%" border="0">
+		<tr> 
+				<td width="12%"  colspan="3">
+					<font class="item">&nbsp;<%=nomeCampo1%>:</font></td>
+				<td width="33%"  colspan="7 "> 
+				<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>" size="6" ondblclick="javascript:adiciona_retira_<%=nome%>(1)" style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" >
+					<%call comboBD(objConn,sql)%>
+				</SELECT>
+		</TR>
+		<TR>
+			<td colspan="10" align="center">
+				<input class="texto1" type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
+				<input class="texto1" type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
+			</td>
+		</tr>
+		<TR>
+			<td width="12%" colspan="3">
+				<font class="item"><%=titulo%>:</font></TD>
+			<td width="33%" colspan="7"> 
+				<select name="lst<%=nome%>" class="combo" size=6
+				style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" ondblclick="javascript:adiciona_retira_<%=nome%>(0)"
+				tabindex="<%=index+5%>">
+				</select>
+			</td>
+		</tr>
+		</table>
 	</td>
 </tr>
 </table>
-</table>
-<%end function
+
+<%
+End Function
 
 
 '-- tive que colocar este pq o paulo fez uma zona complicando uma coisa

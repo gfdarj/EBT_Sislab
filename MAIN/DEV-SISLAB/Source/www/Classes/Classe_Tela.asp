@@ -135,7 +135,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	chr_Buffer = chr_Buffer & _
 		"       </title>" & VbCrLf & _
         "       <meta charset='" & p_CharSet & "'>" & VbCrLf & _
-		"       <link rel='stylesheet' href='" & PathRelativo & "estilos/" & p_estilo & "' type='text/css'>" & VbCrLf & _
+		"       <link rel='stylesheet' type='text/css' href='" & PathRelativo & "estilos/" & p_estilo & "' />" & VbCrLf & _
 		"   </head>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
@@ -311,7 +311,7 @@ Private Sub ImprimeNomeTela()
         <tr>
 			<td class="realce1"> <!-- #d9d9d9 -->
 
-				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" >
+				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="menu" id="tbl_principal_nomeform" >
 				<tr valign="middle">
 					<td valign="middle">
 						<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">&nbsp;<span style="color: red;">&raquo;</span>&nbsp;

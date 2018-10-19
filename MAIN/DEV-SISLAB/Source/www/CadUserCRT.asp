@@ -11,7 +11,12 @@ Dim Combo
 
 Set Combo = New TCombo
 
-Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Usuários CRT", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Usuários CRT"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+'''''Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Usuários CRT", "location.href='sislab.asp'", "")
 
 If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 %>
@@ -238,5 +243,5 @@ if objSiteRS.eof = false then
 <%
 Set Combo = Nothing
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -4,9 +4,16 @@
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Arquivo", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Tipo de Arquivo"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Arquivo", "location.href='sislab.asp'", "")
 
-if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
+If not Env.ehRAT then
+	RESPONSE.REDIRECT "INDEX.ASP"
+End If
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 <script>
@@ -73,7 +80,9 @@ function Excluir() {
 <input type="Hidden" name="excluir" value="0">
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">
+		&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
+	</td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -167,5 +176,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

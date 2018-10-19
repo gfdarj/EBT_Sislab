@@ -7,7 +7,12 @@
 Dim num_ag, necessita_OS
 num_ag = request("hdAG")
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RT", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Agendamento - RT"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RT", "", "")
 %>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
 <script>
@@ -83,13 +88,13 @@ function ValidaCampos(){
 	</td>
 	<td colspan="1" valign="top">
 		<%if Env.ehRAT or Env.ehRT then%>
-			<input type="button" class="fontmenu1" name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:80px;"/><br><br>
-			<input type="button" class="fontmenu1" name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:80px;"/><br><br>
-			<input type="button" class="fontmenu1" name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:80px;"/><br><br>
+			<input type="button" class="texto1" name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:80px;"/><br><br>
+			<input type="button" class="texto1" name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:80px;"/><br><br>
+			<input type="button" class="texto1" name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:80px;"/><br><br>
 		<%else%>
-			<input type="button" class="fontmenu1" name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
-			<input type="button" class="fontmenu1" name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
-			<input type="button" class="fontmenu1" name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
+			<input type="button" class="texto1" name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
+			<input type="button" class="texto1" name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
+			<input type="button" class="texto1" name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
 		<%end if%>			
 	</td>
 </tr>
@@ -345,5 +350,5 @@ else{
 }
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

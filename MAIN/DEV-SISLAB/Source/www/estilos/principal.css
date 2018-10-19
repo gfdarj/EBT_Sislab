@@ -40,7 +40,7 @@
 	color: #000000;
 	line-height: normal;
 	text-decoration: none;
-	font-size: xx-small; 
+	font-size: xx-small;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .texto1B {
@@ -183,64 +183,64 @@ A.menu:hover
 	text-decoration: none;
 	background-color: #D6EBFF;
 }
-.Cinza1 {
+.cinza1 {
 	color: Gray;
 }
-.Cinza2 {
+.cinza2 {
 	color: #d9d9d9;
 }
-.Azul1 {
+.azul1 {
 	color: #D6EBFF;
 }
-.Azul2 {
+.azul2 {
 	color: #84C7EF;
 }
-.Azul3 {
+.azul3 {
 	color: #003073;
 }
-.Azul1B {
+.azul1B {
 	color: #D6EBFF;
 	font-weight: bold;
 }
-.Azul2B {
+.azul2B {
 	color: #84C7EF;
 	font-weight: bold;
 }
-.Azul3B {
+.azul3B {
 	color: #003073;
 	font-weight: bold;
 }
-.Azul1Bg {
+.azul1Bg {
 	background-color: #D6EBFF;
 }
-.Azul2Bg {
+.azul2Bg {
 	background-color: #84C7EF;
 }
-.Azul3Bg {
+.azul3Bg {
 	background-color: #003073;
 }
-.Vermelho1 {
+.vermelho1 {
 	color: #FFECEC;
 }
-.Vermelho2 {
+.vermelho2 {
 	color: Red;
 }
-.Vermelho1Bg {
+.vermelho1Bg {
 	background-color: #FFECEC;
 }
-.Vermelho2Bg {
+.vermelho2Bg {
 	background-color: Red;
 }
-.Cinza1Bg {
+.cinza1Bg {
 	background-color: Gray;
 }
-.Cinza2Bg {
+.cinza2Bg {
 	background-color: #d9d9d9;
 }
-.Cinza3Bg {
+.cinza3Bg {
 	background-color: #EFEFEF;
 }
-.Padrao {
+.padrao {
 	color: #000000;
 	background-color: #FFFFFF;
 }
@@ -851,7 +851,7 @@ A.box
 {
 	font-family: tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 10pt;
-	font-weight: bold;
+	font-weight: normal;
 	width: 370px;
 	background-color:"#C1DDFF";
   color: #000000;

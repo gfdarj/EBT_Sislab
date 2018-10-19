@@ -4,78 +4,86 @@
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Configuração de parâmetros do SISLAB", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Configuração de parâmetros do SISLAB"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Configuração de parâmetros do SISLAB", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 <script>
-function BuscarUsuario(){
-	var frm = document.forms[0];
-	frm.action = "CadConfiguracao.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.ehNovaConfiguracao.value = 0;
-	frm.submit();
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
+	function BuscarUsuario(){
+		var frm = document.forms[0];
+		frm.action = "CadConfiguracao.asp";
+		frm.method = "POST";
+		frm.target = "_parent";
+		frm.ehNovaConfiguracao.value = 0;
+		frm.submit();
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
 
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-function ValidaCampos(){
-	var frm = document.forms[0];
-
-	if (frm.desc.value == ""){
-		alert('É necessário informar a Descrição.');
-		frm.desc.focus();
-		return false
 	}
-	if (frm.valor1.value == ""){
-		alert('É necessário informar o valor.');
-		frm.valor1.focus();
-		return false
-	}
-	frm.action = "CadConfiguracaoA.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-function IncluirNovo(){
-	var frm = document.forms[0];
-	frm.ehNovaConfiguracao.value = 1;
-	frm.cfg_id.value = "";
-	frm.desc.value = "";
-	frm.desc.focus();
-	frm.valor1.value = "";
-	frm.tipovalor1.value = "";
-	frm.btnIncluir.disabled = true;
-	frm.btnExcluir.disabled = true;
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Excluir() {
-	var frm = document.forms[0];
-	if(frm.configuracao.value == '') {
-		alert('Nenhuma parâmetro selecionado para exclusão !');
-		frm.tecnologia.focus();
-	}
-	else {
-		frm.excluir.value = '1';
-		frm.action = "CadConfiguracaoA.asp";
+	function Cancela(){
+		var frm = document.forms[0];
+		frm.action = "sislab.asp";
+		frm.method = "POST";
 		frm.target = "_parent";
 		frm.submit();
 	}
-}
+	function ValidaCampos(){
+		var frm = document.forms[0];
+
+		if (frm.desc.value == ""){
+			alert('É necessário informar a Descrição.');
+			frm.desc.focus();
+			return false
+		}
+		if (frm.valor1.value == ""){
+			alert('É necessário informar o valor.');
+			frm.valor1.focus();
+			return false
+		}
+		frm.action = "CadConfiguracaoA.asp";
+		frm.method = "POST";
+		frm.target = "_parent";
+		frm.submit();
+	}
+	function IncluirNovo(){
+		var frm = document.forms[0];
+		frm.ehNovaConfiguracao.value = 1;
+		frm.cfg_id.value = "";
+		frm.desc.value = "";
+		frm.desc.focus();
+		frm.valor1.value = "";
+		frm.tipovalor1.value = "";
+		frm.btnIncluir.disabled = true;
+		frm.btnExcluir.disabled = true;
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
+	}
+	function Excluir() {
+		var frm = document.forms[0];
+		if(frm.configuracao.value == '') {
+			alert('Nenhuma parâmetro selecionado para exclusão !');
+			frm.tecnologia.focus();
+		}
+		else {
+			frm.excluir.value = '1';
+			frm.action = "CadConfiguracaoA.asp";
+			frm.target = "_parent";
+			frm.submit();
+		}
+	}
 </script>
+
 <form method="post" action="CadConfiguracaoA.asp" name="frm">
+
 <input type="Hidden" name="ehNovaConfiguracao" value="0">
 <input type="Hidden" name="excluir" value="0">
+
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
 	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
@@ -88,7 +96,7 @@ function Excluir() {
 <tr>
 	<td width="100px">&nbsp;&nbsp;<b>Parâmetro:</b></td>
 	<td>
-		<%call comboConfiguracao("configuracao", Env.oConn,"N")%>&nbsp;&nbsp;
+		<%'Call comboConfiguracao("configuracao", Env.oConn,"N")%>&nbsp;&nbsp;
 		<input  class="texto1" type="Button" value="Buscar" onclick="BuscarUsuario();"></input>
 	</td>
 </tr>
@@ -162,5 +170,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

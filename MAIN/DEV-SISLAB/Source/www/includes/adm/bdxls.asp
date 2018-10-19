@@ -1,9 +1,12 @@
-﻿<!--#include file="../controlesXLS.asp" -->
+﻿<!DOCTYPE html>
+
+<!--#include file="../controlesXLS.asp" -->
 <!--#include file="../Sislab_Lib.asp"-->
 <html>
 <head>
 	<title>[XLS] Administração Remota de Banco de Dados SQL Server</title>
-	<link rel="stylesheet" href="../../css/cirap_adm.css">
+	<link rel="stylesheet" href="../../estilos/principal.css">
+	<meta charset="UTF-8">
 </head>
 <body>
 <%

@@ -23,7 +23,12 @@ Dim dataIni, dataFim
 Dim chr_DataIni
 Dim chr_DataFim
 
-call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_ON, true, "", "Pesquisa de Satisfação - Relatório Consolidado", "", "")
+
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Pesquisa de Satisfação - Relatório Consolidado"
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_ON, true, "", "Pesquisa de Satisfação - Relatório Consolidado", "", "")
 
 dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
 dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))
@@ -113,7 +118,9 @@ function contC(parag, paritem, parativ, pardataini, pardatafim) {
 <table width="100%" class="tabela1" cellpadding="2" cellspacing="0">
 <tr>
 	<td colspan="2">
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Análise Periódica dos Formulários de Satisfação</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+			Análise Periódica dos Formulários de Satisfação
+		</span>
 	</td>
 </tr>
 
@@ -678,5 +685,5 @@ Function retornacomentario(comenta)
 End Function
 '-----------------------------------------------------
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

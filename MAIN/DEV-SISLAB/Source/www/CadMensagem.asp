@@ -12,7 +12,12 @@ If Not (Env.EhRat Or Env.EhRT) Then
 	RR "index.asp"
 End If
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de automáticas de email", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Mensagens de automáticas de email"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de automáticas de email", "location.href='sislab.asp'", "")
 
 'EH_CRT = Env.UsuarioCRT
 %>
@@ -128,5 +133,5 @@ function preview(idMensagem, email) {
 'rw "TESTE OK ?!?!"
 'call EnviaEmailRespondaPesquisa(Env.oConn, 3328)
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

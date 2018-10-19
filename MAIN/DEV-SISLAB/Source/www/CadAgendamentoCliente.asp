@@ -33,7 +33,12 @@ chr_OrgaoSQL = "--"
 'bln_usuarioCRT = False
 '--
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Agendamento - Cliente"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
 
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
@@ -763,5 +768,5 @@ if as_referencia <> "" then
 <%
 Set Ebt = Nothing
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

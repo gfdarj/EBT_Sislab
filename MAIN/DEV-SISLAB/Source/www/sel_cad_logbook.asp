@@ -23,7 +23,10 @@ function pesquisar()
 }
 </script>
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Log Book", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Log Book"
+Call Tela.MostraCabecalho()
 
 Dim objSiteRS, cont, sSQL, AuxOrgao
 Dim objSiteRSTipoArquivo
@@ -118,5 +121,5 @@ If Request("enviei") = "SIM" Then
 <%
 End If
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

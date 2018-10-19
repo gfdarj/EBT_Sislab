@@ -6,7 +6,11 @@
 <%
 'On Error Resume Next
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Consulta Pesquisa de Satisfação"
+Call Tela.MostraCabecalho()
+''''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxtipoteste,auxsituacaoteste, auxdiasteste, auxdescricao, auxsolicitante
@@ -38,7 +42,9 @@ auxClientes = (request.form("chkClientes")="on")
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="vermelho2" >&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+			Selecione uma das opções de filtro para consulta
+		</span></b>
 	</td>
 </tr>
 <tr>
@@ -122,5 +128,5 @@ formteste.auxAS.value='<%=request.form("auxAs")%>'
 <%end if%>
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -4,67 +4,75 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Ambientes", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Ambientes"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Ambientes", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then response.redirect "index.asp"
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 <script language="javascript">
-function BuscarAmbiente(){
-	var frm = document.forms[0];
-	frm.action = "CadAmbientes.asp";
-	frm.target = "_parent";
-	frm.ehNovoAmbiente.value = 0;
-	frm.submit();
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.target = "_parent";
-	frm.submit();
-}
-function ValidaCampos(){
-	var frm = document.forms[0];
+	function BuscarAmbiente(){
+		var frm = document.forms[0];
+		frm.action = "CadAmbientes.asp";
+		frm.target = "_parent";
+		frm.ehNovoAmbiente.value = 0;
+		frm.submit();
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
+	}
+	function Cancela(){
+		var frm = document.forms[0];
+		frm.action = "sislab.asp";
+		frm.target = "_parent";
+		frm.submit();
+	}
+	function ValidaCampos(){
+		var frm = document.forms[0];
 
-	if (frm.desc.value == ""){
-		alert('É necessário informar a Descrição.');
-		frm.desc.focus();
-		return false
-	}
-	frm.action = "CadAmbientesA.asp";
-	frm.target = "_parent";
-	frm.submit();
-}
-function IncluirNovo(){
-	var frm = document.forms[0];
-	frm.ehNovoAmbiente.value = 1;
-	frm.desc.value = "";
-	frm.desc.focus();
-	frm.ambiente.value = "";
-	frm.btnIncluir.disabled = true;
-	frm.btnExcluir.disabled = true;
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Excluir() {
-	var frm = document.forms[0];
-	if(frm.ambiente.value == '') {
-		alert('Nenhum ambiente selecionado para exclusão !');
-		frm.ambiente.focus();
-	}
-	else {
-		frm.excluir.value = '1';
+		if (frm.desc.value == ""){
+			alert('É necessário informar a Descrição.');
+			frm.desc.focus();
+			return false
+		}
 		frm.action = "CadAmbientesA.asp";
 		frm.target = "_parent";
 		frm.submit();
 	}
-}
+	function IncluirNovo(){
+		var frm = document.forms[0];
+		frm.ehNovoAmbiente.value = 1;
+		frm.desc.value = "";
+		frm.desc.focus();
+		frm.ambiente.value = "";
+		frm.btnIncluir.disabled = true;
+		frm.btnExcluir.disabled = true;
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
+	}
+	function Excluir() {
+		var frm = document.forms[0];
+		if(frm.ambiente.value == '') {
+			alert('Nenhum ambiente selecionado para exclusão !');
+			frm.ambiente.focus();
+		}
+		else {
+			frm.excluir.value = '1';
+			frm.action = "CadAmbientesA.asp";
+			frm.target = "_parent";
+			frm.submit();
+		}
+	}
 </script>
+
 <form method="post" action="CadAmbientewA.asp" name="frm">
+
 <input type="Hidden" name="ehNovoAmbiente" value="0">
 <input type="Hidden" name="excluir" value="0">
+
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
 	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
@@ -139,5 +147,5 @@ else%>
 <%end if%>
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

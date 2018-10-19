@@ -4,7 +4,12 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes da Embratel ", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Lista das Equipes da Embratel"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''''''Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes da Embratel ", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then response.redirect "index.asp"
 
@@ -218,6 +223,6 @@ else%>
 </script>
 <%
 Set RS = Nothing
-Call ImprimeRodape(RODAPE_OFF)
-%>
 
+Call Tela.MostraRodape()
+%>

@@ -4,11 +4,12 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Response.Addheader "Expires","Mon, 26 Jul 1997 05:00:00 GMT" 
-Response.Addheader "Cache-Control","no-cache, must-revalidate" 
-Response.Addheader "Pragma","no-cache" 
-
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Área Tecnológica", "location.href='sislab.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro de Área Tecnológica"
+Tela.SetLinkVoltar = "location.href='sislab.asp'"
+Call Tela.MostraCabecalho()
+''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Área Tecnológica", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -18,67 +19,69 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 <%if request("Repetido") <> "" then%>
 	alert('Não foi possível incluir a Área Tecnológica <%=request("Repetido")%>, pois esta já está cadastrado.')
 <%end if%>
-function BuscarUsuario(){
-	var frm = document.forms[0];
-	frm.action = "CadAreaTecnologica.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.ehNovaAreaTec.value = 0;
-	frm.submit();
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
+	function BuscarUsuario(){
+		var frm = document.forms[0];
+		frm.action = "CadAreaTecnologica.asp";
+		frm.method = "POST";
+		frm.target = "_parent";
+		frm.ehNovaAreaTec.value = 0;
+		frm.submit();
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
 
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-
-
-function ValidaCampos(){
-	var frm = document.forms[0];
-
-	if (frm.desc.value == ""){
-		alert('É necessário informar a Descrição.');
-		frm.desc.focus();
-		return false
 	}
-
-	frm.action = "CadAreaTecnologicaA.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-function IncluirNovo(){
-	var frm = document.forms[0];
-	frm.ehNovaAreaTec.value = 1;
-	frm.desc.value = "";
-	frm.desc.focus();
-	frm.areatec.value = "";
-	frm.btnIncluir.disabled = true;
-	frm.btnSalvar.disabled = false;
-	frm.btnCancelar.disabled = false;	
-}
-function Excluir() {
-	var frm = document.forms[0];
-	if(frm.areatec.value == '') {
-		alert('Nenhuma área tecnológica selecionada para exclusão !');
-		frm.areatec.focus();
-	}
-	else {
-		frm.excluir.value = '1';
-		frm.action = "CadAreaTecnologicaA.asp";
+	function Cancela(){
+		var frm = document.forms[0];
+		frm.action = "sislab.asp";
+		frm.method = "POST";
 		frm.target = "_parent";
 		frm.submit();
 	}
-}
+
+	function ValidaCampos(){
+		var frm = document.forms[0];
+
+		if (frm.desc.value == ""){
+			alert('É necessário informar a Descrição.');
+			frm.desc.focus();
+			return false
+		}
+
+		frm.action = "CadAreaTecnologicaA.asp";
+		frm.method = "POST";
+		frm.target = "_parent";
+		frm.submit();
+	}
+	function IncluirNovo(){
+		var frm = document.forms[0];
+		frm.ehNovaAreaTec.value = 1;
+		frm.desc.value = "";
+		frm.desc.focus();
+		frm.areatec.value = "";
+		frm.btnIncluir.disabled = true;
+		frm.btnSalvar.disabled = false;
+		frm.btnCancelar.disabled = false;	
+	}
+	function Excluir() {
+		var frm = document.forms[0];
+		if(frm.areatec.value == '') {
+			alert('Nenhuma área tecnológica selecionada para exclusão !');
+			frm.areatec.focus();
+		}
+		else {
+			frm.excluir.value = '1';
+			frm.action = "CadAreaTecnologicaA.asp";
+			frm.target = "_parent";
+			frm.submit();
+		}
+	}
 </script>
+
 <form method="post" action="CadAreaTecnologicaA.asp" name="frm">
+
 <input type="Hidden" name="ehNovaAreaTec" value="0">
 <input type="Hidden" name="excluir" value="0">
+
 <table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr> 
 	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
@@ -144,5 +147,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>
