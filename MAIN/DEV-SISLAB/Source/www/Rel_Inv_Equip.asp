@@ -18,30 +18,37 @@ If Not EH_RAT Then
 	RE
 End If
 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Relatório para Inventário de Equipamentos"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+'''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "", "")
 %>
-<script language="javascript">
-function ValidaCampos() {
-	var frm = document.frmFiltro;
+<script type="text/javascript">
+    function ValidaCampos() {
+	    var frm = document.frmFiltro;
 
-	if(isNaN(frm.notafiscal.value)) {
-		alert('Nota fiscal não é válida.');
-		frm.notafiscal.focus(); return false;
-	}
-	else if(isNaN(frm.qtdmov.value)) {
-		alert('Quantidade de movimento não é válido.');
-		frm.qtdmov.focus(); return false;
-	}
-	else {
-		showAguarde(); return true;
-	}
-}
+	    if(isNaN(frm.notafiscal.value)) {
+		    alert('Nota fiscal não é válida.');
+		    frm.notafiscal.focus(); return false;
+	    }
+	    else if(isNaN(frm.qtdmov.value)) {
+		    alert('Quantidade de movimento não é válido.');
+		    frm.qtdmov.focus(); return false;
+	    }
+	    else {
+		    showAguarde(); return true;
+	    }
+    }
 </script>
+
 <form name="frmFiltro" method="post" action="rel_inv_equip_A.asp" onSubmit="javascript:return ValidaCampos();">
+
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="texto1B" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
 	</td>
 </tr>
 <tr>
@@ -130,5 +137,5 @@ function ValidaCampos() {
 </table>
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

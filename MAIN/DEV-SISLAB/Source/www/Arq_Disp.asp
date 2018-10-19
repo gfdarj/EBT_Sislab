@@ -1,28 +1,33 @@
-<!--#include file="includes/global.asp" -->
+Ôªø<!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
 Dim objSiteRS, objSiteCRT, cont, sSQL, EhGQ, EH_CRT, auxUsername, i,objConn
 
-auxusername = Env.Nome_Reduzido
+auxusername = Env.NomeReduzido
 EH_CRT = Env.usuarioCRT
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gest„o - Arquivos DisponÌveis", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Sistemas de Gest√£o - Arquivos Dispon√≠veis"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gest√£o - Arquivos Dispon√≠veis", "", "")
 %>
 
 <form method=post action="cons_arquivos.asp" name="formulario">
 <table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td class="texto1">
-		<font color="#ff0000" ><b>AVISO :</b></font> <br>Os documentos do SG quando impressos sÛ tem valor com a identificaÁ„o de "CÛpia Controlada" atravÈs de carimbo ou tarja. <br><br>
-		<font color="#ff0000" ><b>IMPORTANTE :</b></font><br>Todo Empregado ao acessar ou manusear qualquer documento do SG possui a responsabilidade de evitar a reproduÁ„o indevida dos documentos e assegurar a utilizaÁ„o da vers„o mais atual.
+		<font color="#ff0000" ><b>AVISO :</b></font> <br>Os documentos do SG quando impressos s√≥ tem valor com a identifica√ß√£o de "C√≥pia Controlada" atrav√©s de carimbo ou tarja. <br><br>
+		<font color="#ff0000" ><b>IMPORTANTE :</b></font><br>Todo Empregado ao acessar ou manusear qualquer documento do SG possui a responsabilidade de evitar a reprodu√ß√£o indevida dos documentos e assegurar a utiliza√ß√£o da vers√£o mais atual.
 	</td>
 </tr>
 <tr><td height="5px"></td></tr>
 <tr>
 	<td>
-		&nbsp;<span class="texto1b" style="font-size: 12px;">Informe os CritÈrios da sua Pesquisa</span>
+		&nbsp;<span class="texto1b" style="font-size: 12px;">Informe os Crit√©rios da sua Pesquisa</span>
 	</td>
 </tr>
 <tr>
@@ -46,7 +51,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gest„o - Arq
 			</td>
 		</tr>
 		<tr>
-			<td colspan="10">Respons·vel pelo Arquivo<br>
+			<td colspan="10">Respons√°vel pelo Arquivo<br>
 				<%CALL comboUSERCRT("responsavel",objConn,TRUE)%>
 			</td>
 		</tr>
@@ -63,7 +68,7 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gest„o - Arq
 					'end if%>
 				</select>
 			</td>
-			<td colspan="7">SituaÁ„o do Arquivo<br>
+			<td colspan="7">Situa√ß√£o do Arquivo<br>
 				<select name="sitarquivo" class="texto1">
 					<option value="">-- Todas --</option>
 <%					if Env.ehGQ then
@@ -87,5 +92,5 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gest„o - Arq
 </tr>
 </table>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

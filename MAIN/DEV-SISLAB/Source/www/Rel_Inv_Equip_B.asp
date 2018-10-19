@@ -36,7 +36,12 @@ Call Env.RecordSet(True, RS, sSQL)
 
 total_registros = RS.RecordCount
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "location.href='rel_inv_equip.asp'", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Relatório para Inventário de Equipamentos"
+Tela.SetLinkVoltar = "location.href='rel_inv_equip.asp'"
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "location.href='rel_inv_equip.asp'", "")
 %>
 <script language="javascript" src="includes/manipulaObj.js"></script>
 <script language="javascript">
@@ -165,5 +170,5 @@ end if
 </table>
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

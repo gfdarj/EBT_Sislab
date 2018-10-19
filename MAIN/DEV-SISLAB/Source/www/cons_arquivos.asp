@@ -19,7 +19,12 @@ EHrt =  Env.ehRT()
 'EHRat = false
 'EHrt = false
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Sistema de Gestão - Consulta de Arquivos"
+Tela.SetLinkVoltar = ""
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
 
 auxsitarq = RQ("sitarquivo")
 auxidorgao = RQ("orgao")
@@ -32,33 +37,32 @@ else
 	auxtipoarq=0
 end if
 %>
-<script>
-function Valida(arquivo)
-{
-	frm = document.forms[0];
-	frm.action = "cad_arquivo.asp?ehValidacao=1&arquivos="+ arquivo;
-	frm.method = "post";
-	frm.submit();
-}
-function Historico(arquivo)
-{
-	strurl = "eventosinternos.asp?hdnEvento=8&arquivo="+ arquivo;
-	window.open(strurl,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=400,height=300,top=0,left=0');
-}
+<script type="text/javascript">
+    function Valida(arquivo)
+    {
+	    frm = document.forms[0];
+	    frm.action = "cad_arquivo.asp?ehValidacao=1&arquivos="+ arquivo;
+	    frm.method = "post";
+	    frm.submit();
+    }
+    function Historico(arquivo)
+    {
+	    strurl = "eventosinternos.asp?hdnEvento=8&arquivo="+ arquivo;
+	    window.open(strurl,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=400,height=300,top=0,left=0');
+    }
 
-function janelalink(link)
-{
-    window.open(link,'','toolbar=no,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
-}
+    function janelalink(link)
+    {
+        window.open(link,'','toolbar=no,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
+    }
 
-function janelaespecial(link1)
-{
-    window.open(link1,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
-}
-
+    function janelaespecial(link1)
+    {
+        window.open(link1,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
+    }
 </script>
-<form method="post" action="cad_arquivo.asp">
 
+<form method="post" action="cad_arquivo.asp">
 <%
 tot=0
 
@@ -233,5 +237,5 @@ Qualquer dúvida entre em contato com o CRT no Ramal 8297.
 <%end if%>
 </center>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

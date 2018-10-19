@@ -6,7 +6,12 @@
 <%
 If IsEmpty(Env.Usuario) Then response.redirect "msgAcessoNA.asp"
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Plantão de Notícias do CRT", "location.href='sel_Cad_plantao.asp';", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastrar Plantão de Notícias do CRT"
+Tela.SetLinkVoltar = "location.href='sel_Cad_plantao.asp';"
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Plantão de Notícias do CRT", "location.href='sel_Cad_plantao.asp';", "")
 
 Dim objSiteRS, sSQL,i,auxi
 Dim auxcodnoticia,auxtitnoticia,auxnoticia,auxlink
@@ -212,5 +217,5 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 <%end if%>
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -12,11 +12,19 @@ bln_EhRat = Env.EhRat
 bln_Imprime = (UCase(RQ("imprime")) = "S")
 bln_Alteracao = (UCase(RQ("altera")) = "S")
 
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Cadastro do Horário do Transporte"
+
 If bln_Imprime Then
-	Call imprimeCabecalho2(TITULO_SITE, MENU_OFF, True, "", "", "window.close()", "")
+    Tela.SetLinkVoltar = "window.close()"
+	'Call imprimeCabecalho2(TITULO_SITE, MENU_OFF, True, "", "", "window.close()", "")
 Else
-	Call imprimeCabecalho2(TITULO_SITE, MENU_ON, True, "", "", "location.href='sislab.asp'", "")
+    Tela.SetLinkVoltar = "location.href='sislab.asp'"
+	'Call imprimeCabecalho2(TITULO_SITE, MENU_ON, True, "", "", "location.href='sislab.asp'", "")
 End If
+
+Call Tela.MostraCabecalho()
 %>
 <script language="javascript">
 function imprime()
@@ -210,5 +218,5 @@ End If
 <iframe src="" width="600px" style="display: none;" name="escondido">
 
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

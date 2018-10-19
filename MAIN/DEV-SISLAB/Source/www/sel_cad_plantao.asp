@@ -7,15 +7,22 @@ If IsEmpty(Env.usuarioCRT) Then response.redirect "msgAcessoNA.asp"
 Dim objRS, cont, sSQL, AuxOrgao
 cont=0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do CRT", "location.href='sislab.asp';", "")
+Tela.SetMostraMenu = MENU_ON
+Tela.SetMostraImagem = True
+Tela.SetNomeTela = "Plantão de Notícias do CRT"
+Tela.SetLinkVoltar = "location.href='sislab.asp';"
+Call Tela.MostraCabecalho()
+'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do CRT", "location.href='sislab.asp';", "")
 %>
-<script language=javascript>
+<script type="text/javascript">
 	function navselecao(noticiaID) {
 		document.all.noticias.value = noticiaID;
 	    document.formulario.submit();
 	}
 </script>
+
 <form name="formulario" method="post" action="cad_plantao.asp">
+
 <input type="hidden" name="tipocomando" value="Alterar">
 <input type="hidden" name="noticias" value="">
 <table width="100%" border="0" class="tabela1">
@@ -63,5 +70,5 @@ end if %>
 </form>
 <br>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>
