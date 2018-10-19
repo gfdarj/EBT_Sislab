@@ -26,9 +26,12 @@ chr_Buf = _
 
 For Each objFile in objFolder.Files
 	int_Conta = int_Conta + 1
-	chr_href = "videos/" & objFile.Name
-	chr_Buf = chr_Buf & _
-		"<tr><td><a href='" & chr_href & "'>" & objFile.Name & "</a></td><td align='right'>" & FormataNumero(int(objFile.Size/1024)) &" Kb</td><td><a href='" & chr_href & "'><img border='0' src='img/download.gif' title='Clique aqui para abrir o vídeo'></a></td></tr>" & VbCrLf
+
+	If UCase(objFile.Name) <> "THUMBS.DB" Then
+		chr_href = "videos/" & objFile.Name
+		chr_Buf = chr_Buf & _
+			"<tr><td><a href='" & chr_href & "'>" & objFile.Name & "</a></td><td align='right'>" & FormataNumero(int(objFile.Size/1024)) &" Kb</td><td><a href='" & chr_href & "'><img border='0' src='img/download.gif' title='Clique aqui para abrir o vídeo'></a></td></tr>" & VbCrLf
+	End If
 Next
 
 chr_Buf = chr_Buf & "</table>" & VbCrLf

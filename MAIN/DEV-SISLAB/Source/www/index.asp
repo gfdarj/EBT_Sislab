@@ -2,7 +2,6 @@
 'dim strNTUser , email 
 'strNTUser = Request.ServerVariables("AUTH_USER")
 'email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-
 'response.Write "AQUI 1<BR>"
 'response.write email(0)
 'response.Write "<BR>AQUI 2<BR>"
@@ -10,6 +9,7 @@
 'response.End
 %>
 <!--#include file="includes/PadraoHTML.asp" -->
+<!--#include file="includes/Geral_Lib.asp" -->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
@@ -41,8 +41,9 @@
 'Response.Write "NOW: " & now & "<BR>"
 'Response.End
 
-Dim usuarioCRT, chr_SQL, RS,conta
+Dim usuarioCRT, chr_SQL, RS,conta, navegador
 
+navegador = MeuNavegador()
 usuarioCRT = Env.UsuarioCRT
 
 'O SISTEMA VERIFICA SE EXISTEM DOCUMENTOS FORA DA VIGENCIA E ENVIA E-MAIL PARA RAT'S GQ'S PARA QUE POSSAM VALIDAR
@@ -51,10 +52,6 @@ Call Tela.MostraCabecalho()
 %>
 <!-- CSS do fancybox -->
 <link rel="stylesheet" href="includes/fancybox-3.5.2-dist/jquery.fancybox.min.css" />
-
-<!-- javascript do fancybox -->
-<script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
 
 <!-- Scroller do notícias -->
 <script type="text/javascript" src="includes/pauseScroller.js"></script>
@@ -280,11 +277,6 @@ end if%>
 						</tr>
 						</table>
 						<!--</div>-->
-<!--
-						<iframe src="index_principal.asp" frameborder="0" width="588" <%if usuarioCRT then response.write "height='225px'" else response.write "height='336'"%> scrolling="auto" name="teste_iframe">
-							<font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
-						</iframe>
--->
 					</td>
 				</tr>
 				</table>
@@ -345,7 +337,7 @@ end if%>
         If not (RS.EOF and RS.BOF) Then
             While Not RS.Eof
 		        conta = conta + 1
-                If Not(IsNull(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
+                If Not(VVVNZ(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
                                         pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);" class="texto" target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
 <%		        Else%>
                                         pausecontent[<%=conta-1%>]= '<font class="texto"><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
@@ -393,7 +385,9 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px"></td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Fotos</td>
+							<td width="*" height="25" class="fonteTitulo1" style="text-align: left;">
+								<span class="Vermelho2">&raquo;</span>&nbsp; Fotos
+							</td>
 						</tr>
 						<tr>
 							<td height="1"></td>
@@ -401,17 +395,21 @@ end if%>
 						</tr>
 						<tr>
 							<td colspan="2" valign="middle" align="center"><br>
-								<!--
+<%
+If navegador = "MSIE" Then
+%>
                                 <iframe src="fotos_crt.asp" frameborder="0" width="140" height="125" scrolling="no" name="teste_iframe">
                                     <font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
 								</iframe>
-                                -->
-
+<%
+Else
+%>
                                 <div class="" style="max-width:140px; max-height: 125px;">
 <%
-     	chr_SQL = "SELECT TOP 2 ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ " & _
+     	chr_SQL = "SELECT TOP 15 ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ " & _
 		          "FROM Arquivos " & _
-		          "WHERE ARQ_CODARQTIPO = " & Application("SISLAB_id_TipoArquivo_Imagem")
+		          "WHERE ARQ_CODARQTIPO = " & Application("SISLAB_id_TipoArquivo_Imagem") & " " & _
+                  "ORDER BY NEWID()"
 	    Call Env.RecordSet(True, RS, chr_SQL)
         While Not RS.Eof %>
                                     <a href="arquivos/<%=RS("ARQ_NOMEARQ")%>" data-fancybox="gallery" data-caption="<%=RS("ARQ_LINK")%>" class="fancybox">
@@ -424,33 +422,34 @@ end if%>
                                 </div>
 
                                 <script type="text/javascript">
-                                    //Faz a troca das imagens em um intervalo pré-definido
-                                    var myIndex = 0;
-                                    carousel();
+									//Faz a troca das imagens em um intervalo pré-definido
+									var myIndex = 0;
+									carousel();
 
-                                    function carousel() {
-                                        var i;
-                                        var x = document.getElementsByClassName("mySlides");
-                                        for (i = 0; i < x.length; i++) {
-                                            x[i].style.display = "none";
-                                        }
-                                        myIndex++;
-                                        if (myIndex > x.length) { myIndex = 1 }
-                                        x[myIndex - 1].style.display = "block";
-                                        setTimeout(carousel, 5000); // Change image every 5 seconds
-                                    }
+									function carousel() {
+										var i;
+										var x = document.getElementsByClassName("mySlides");
+										for (i = 0; i < x.length; i++) {
+											x[i].style.display = "none";
+										}
+										myIndex++;
+										if (myIndex > x.length) { myIndex = 1 }
+										x[myIndex - 1].style.display = "block";
+										setTimeout(carousel, 5000); // Change image every 5 seconds
+									}
 
-                                    //fancybox
-                                    $('[data-fancybox="gallery"]').fancybox({
-                                        // Options will go here
-                                        slideShow : {
-                                            autoStart : true,
-                                            playSpeed: 3000
-                                        }
-                                    });
-
+									//fancybox
+									$('[data-fancybox="gallery"]').fancybox({
+										// Options will go here
+										slideShow : {
+											autoStart : true,
+											playSpeed: 3000
+										}
+									});
                                 </script>
-
+<%
+End If
+%>
 								<span class="texto1" style="font-size: 9px;"><i>Clique na foto para ampliar</i></span>
 							</td>
 						</tr>
@@ -465,6 +464,16 @@ end if%>
 
 </tr>
 </table>
+
+<%
+If navegador <> "MSIE" Then
+%>
+<!-- javascript do fancybox -->
+<script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
+<%
+End If
+%>
 
 <script type="text/javascript">
 /*
@@ -490,6 +499,21 @@ end if%>
     }
     verificaNavegador();
 */
+
+//									function GetBrowserInfo() {
+//										var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+//										var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+//										var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+//										var isChrome = !!window.chrome && !isOpera;              // Chrome 1+
+//										var isIE = /*@cc_on!@*/false || !!document.documentMode;   // At least IE6
+//										if (isOpera) { return 1; }
+//										else if (isFirefox) { return 2; }
+//										else if (isChrome) { return 3; }
+//										else if (isSafari) { return 4; }
+//										else if (isIE) { return 5; }
+//										else { return 0; }
+//									}
+
 </script>
 
 <%

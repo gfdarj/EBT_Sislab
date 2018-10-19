@@ -61,7 +61,9 @@ function montaExcel()
 <table width="100%" class="tabela1" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+			Selecione uma das opções de filtro para consulta
+		</span>
 	</td>
 </tr>
 <tr>

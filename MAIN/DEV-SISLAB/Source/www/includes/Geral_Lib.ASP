@@ -80,4 +80,26 @@ Function Reticencias(chr_Texto, int_Size)
 	End If
 
 End Function
+
+
+Function MeuNavegador()
+	dim navegador
+
+	If InStr(Request.ServerVariables("HTTP_USER_AGENT"),"MSIE") then
+		navegador = "MSIE" '"Microsoft Internet Explorer"
+	ElseIf InStr(Request.ServerVariables("HTTP_USER_AGENT"),"Mozilla") then
+		nav = InStr(valnavegador,"Chrome")
+		if nav > 0 then
+			navegador = "Google Chrome"
+		else 
+			navegador = "Mozilla Firefox"
+		end if 
+	ElseIf InStr(Request.ServerVariables("HTTP_USER_AGENT"),"Opera") then
+		navegador = "Opera"
+	Else
+		navegador = "Não Identificado"
+	End If
+
+	MeuNavegador = navegador
+End Function
 %>

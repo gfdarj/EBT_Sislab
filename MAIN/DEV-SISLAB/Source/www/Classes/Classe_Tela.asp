@@ -111,13 +111,13 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	dim w
 	w = "770px" '-- tamanho da coluna
 
-'        "<!DOCTYPE html>" & VbCrLf & _
-'    	"" & VbCrLf 
 
 	chr_Buffer = VbCrLf & _ 
-		"<html>" & VbCrLf & _
-		"	<head>" & VbCrLf & _
-		"	    <title>" & VbCrLf
+	    	"<!DOCTYPE html>" & VbCrLf & _
+	  		"" & VbCrLf & _
+			"<html>" & VbCrLf & _
+			"	<head>" & VbCrLf & _
+			"	    <title>" & VbCrLf
 
 	'-- Indica em que modo o sistema estÃ¡ sendo executado
 	If Application("SISLAB_AMBIENTE") <> "PRO" Then _
