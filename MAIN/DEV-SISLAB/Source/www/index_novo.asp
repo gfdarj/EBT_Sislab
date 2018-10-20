@@ -26,14 +26,12 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 linha_fundo">
-
                     <h4>Serviços e Agendamentos</h4>
 	                <h6><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h6>
                     <h6><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h6>
                     <h6><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h6>
                     <h6><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h6>
                     <h6><a href="fale.asp" target="_parent">Sugestões (Fale Conosco)</a></h6>
-
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">

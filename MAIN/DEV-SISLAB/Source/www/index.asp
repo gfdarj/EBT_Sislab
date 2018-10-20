@@ -56,24 +56,263 @@ Call Tela.MostraCabecalho()
 <!-- Scroller do notícias -->
 <script type="text/javascript" src="includes/pauseScroller.js"></script>
 
+        <br />
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="linha-destaque">Serviços e Agendamentos</h4>
+	                <h5><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h5>
+                    <h5><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h5>
+                    <h5><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h5>
+                    <h5><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h5>
+                    <h5><a href="fale.asp" target="_parent">Sugestões (Fale Conosco)</a></h5>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+                            <h4 class="linha-destaque">Informações de LogBook</h4>
+                            <p>Aqui entram as informações 1</p>
+                            <p>Aqui entram as informações 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+                            <h4 class="linha-destaque">Notícias</h4>
+
+                                <div class="" id="datamain" style="max-width:300px; max-height: 150px; text-align: justify; word-wrap: break-word;">
+                                    <script type="text/javascript">
+                                        var pausecontent = new Array();
+<%
+        chr_SQL = "select * From Plantao Where PLA_DATATERMINO >= GETDATE() order by PLA_CODNOTICIA desc"
+        Call Env.RecordSet(True, RS, chr_SQL)
+        conta = 0
+
+        If not (RS.EOF and RS.BOF) Then
+            While Not RS.Eof
+		        conta = conta + 1
+                If Not(VVVNZ(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
+                                        pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);" class="texto" target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
+<%		        Else%>
+                                        pausecontent[<%=conta-1%>]= '<font class="texto"><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
+<%		        End If
+		        RS.MoveNext
+	        WEnd 
+%>
+                                        pausecontent[<%=conta%>]=  '';
+
+                                        new pausescroller(pausecontent, "pscroller1", "someclass", 3000)
+
+<%      Else %>
+                                        pausecontent[0]=  '<center><i>Nenhuma notícia cadastrada</i></center>';
+                                        document.write(pausecontent[0]);
+<%      End If 
+        Call Env.RecordSet(False, RS, "")
+%>
+                                        function novaJanela(id_noticia)
+                                        {
+                                            var jan = window.open('noticias_exibe.asp?id_noticia=' + id_noticia, 'Noticias_CRT', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=690,height=400,top=5,left=5');
+                                            jan.focus();
+                                        }
+                                    </script>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <h4 class="linha-destaque">Acha Fácil CRT</h4>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h5><a href="CadAgendamentoCliente.asp">Agende um servi&ccedil;o no CRT</a><br />
+							&nbsp;&nbsp;&nbsp;<small>Cadastre o seu servi&ccedil;o, uma visita ou uma palestra no CRT</small></h5>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
+						    <h5><a href="rel_ativ.asp" class="menu">Acompanhamento e Resultados</a><br />
+						    &nbsp;&nbsp;&nbsp;<small>Informações dos agendamentos no CRT</small></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+							<h5><a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a><br />
+							&nbsp;&nbsp;&nbsp;<small>Veja os agendamentos do dia</small></h5>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
+							<h5><a href="sit_crt.asp" class="menu"><%=indicador%>Lista de Atividades no CRT</a><br />
+							&nbsp;&nbsp;&nbsp;<small>Servi&ccedil;os em andamento no CRT</small></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+							<h5><a href="pesqscr.asp?emjanela=1" class="menu" target="_blank"><%=indicador%>Pesquisa de Satisfa&ccedil;&atilde;o</a><br />
+				    			&nbsp;&nbsp;&nbsp;<small>D&egrave; a sua opini&atilde;o sobre nossos servi&ccedil;os</small></h5>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
+							<h5><a href="form_remarca_teste_sel.asp" class="menu"><%=indicador%>Remarcar Agendamento</a><br />
+			    				&nbsp;&nbsp;&nbsp;<small>Altere a data do seu agendamento no CRT</small></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+							<h5><a href="rel_tecnologia_fabricante.asp?index=1" class="menu" target="_blank"><%=indicador%>Tecnologias empregadas</a><br />
+		    					&nbsp;&nbsp;&nbsp;<small>Tecnologias utilizadas nos agendamentos e seus fabricantes</small></h5>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
+							<h5><a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>&Oacute;rg&atilde;os Clientes</a><br />
+	    						&nbsp;&nbsp;&nbsp;<small>Veja as atividades executadas no CRT pelos &oacute;g&atilde;os Embratel</small></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<h5><a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>Servi&ccedil;os para Clientes</a><br />
+    							&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes Embratel</small></h5>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="linha-destaque">Fotos</h4>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+<%
+If navegador = "MSIE" Then
+%>
+                            <iframe src="fotos_crt.asp" frameborder="0" width="300" style="border: solid;" height="190" scrolling="no" name="teste_iframe">
+                                <font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
+						    </iframe>
+<%
+Else %>
+<%
+     	chr_SQL = "SELECT TOP 15 ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ " & _
+		          "FROM Arquivos " & _
+		          "WHERE ARQ_CODARQTIPO = " & Application("SISLAB_id_TipoArquivo_Imagem") & " " & _
+                  "ORDER BY NEWID()"
+	    Call Env.RecordSet(True, RS, chr_SQL)
+        While Not RS.Eof %>
+                                <a href="arquivos/<%=RS("ARQ_NOMEARQ")%>" data-fancybox="gallery" data-caption="<%=RS("ARQ_LINK")%>" class="fancybox">
+                                    <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:300px; height: 190px; border: solid;" >
+                                </a>
+<%          RS.MoveNext
+        WEnd
+        Call Env.RecordSet(False, RS, "")
+%>
+                            </div>
+
+                            <script type="text/javascript">
+								//Faz a troca das imagens em um intervalo pré-definido
+								var myIndex = 0;
+								carousel();
+
+								function carousel() {
+									var i;
+									var x = document.getElementsByClassName("mySlides");
+									for (i = 0; i < x.length; i++) {
+										x[i].style.display = "none";
+									}
+									myIndex++;
+									if (myIndex > x.length) { myIndex = 1 }
+									x[myIndex - 1].style.display = "block";
+									setTimeout(carousel, 5000); // Change image every 5 seconds
+								}
+
+								//fancybox
+								$('[data-fancybox="gallery"]').fancybox({
+									// Options will go here
+									slideShow : {
+										autoStart : true,
+										playSpeed: 3000
+									}
+								});
+                            </script>
+<%
+End If
+%>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
 <table height="100%" width="765px" border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<!-- Primeira parte da tela - coluna acha facil + logbook + servicos -->
 	<td valign="top" width="*">
 
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+
+
 <%
 if usuarioCRT then%>
 		<tr> 
-			<td bgcolor="#FFFFFF" width="260px" valign="top">
-				<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#003366">
-				<tr> 
-					<td>
-						<iframe src="servicos_agendamento.htm" frameborder="0" width="288" height="100" scrolling="auto" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Seu browser n�o suporta IFRAMES.</font></iframe>
-						<!--<iframe src="o_que_e_crt.htm" frameborder="0" width="284" height="100" scrolling="auto" name="teste_iframe"><font face="Arial, Helvetica, sans-serif" size="1">Immerse your soul in love.</font></iframe>-->
-					</td>
-				</tr>
-				</table>
+			<td valign="top">
+                <div class="containter">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 linha_fundo">
+                    TESTE<br />
+
+                            <h4>Serviços e Agendamentos</h4>
+	                        <h6><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h6>
+                            <h6><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h6>
+                            <h6><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h6>
+                            <h6><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h6>
+                            <h6><a href="fale.asp" target="_parent">Sugestões (Fale Conosco)</a></h6>
+
+                        </div>
+                    </div>
+                </div>
 			</td>
 			<td width="10px" bgcolor="#ffffff"></td>
 			<td bgcolor="#FFFFFF" width="260px" valign="top"> 
@@ -90,6 +329,7 @@ if usuarioCRT then%>
 		<tr><td height="10px" colspan="3" bgcolor="#ffffff"></td></tr>
 <%
 end if%>
+
 		<!-- Acha facil -->
 		<tr>
 			<td width="605px" height="100%" bgcolor="#FFFFFF" colspan="3" valign="top">
@@ -100,7 +340,8 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px">&nbsp;</td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Acha Fácil CRT</td>
+							<td width="*" height="25" class="fonteTitulo1"><span class="vermelho2">&raquo;</span>
+                                &nbsp; Acha Fácil CRT</td>
 						</tr>
 						<tr>
 							<td height="1"></td>
