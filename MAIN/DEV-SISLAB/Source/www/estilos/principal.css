@@ -2,3 +2,26 @@
 /* Usado nos slides de imagens */
 .mySlides { display:none; }
 
+
+/* Example CSS for the two demo scrollers */
+#pscroller1{
+	width: 135px;
+	height: 70px;
+	border: none;
+	padding: 0px;
+	background-color: none;
+}
+
+/* Example CSS for the two demo scrollers */
+.someclass{ //class to apply to your scroller(s) if desired }
+
+
+
+.linha-fundo {
+    background: LightBlue;
+}
+
+.linha-destaque {
+    border-bottom: solid thin;
+    border-bottom-color: red;
+}

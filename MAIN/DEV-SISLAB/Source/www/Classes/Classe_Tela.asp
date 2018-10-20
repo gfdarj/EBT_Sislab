@@ -135,6 +135,9 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	chr_Buffer = chr_Buffer & _
 		"       </title>" & VbCrLf & _
         "       <meta charset='" & p_CharSet & "'>" & VbCrLf & _
+        "       <meta http-equiv='x-ua-compatible' content='ie=edge'>" & VbCrLf & _
+        "       <meta name='viewport' content='width=device-width, initial-scale==1.0'>" & VbCrLf & _
+        "       <link rel='stylesheet' href='includes/bootstrap-3.3.7-dist/css/bootstrap.min.css' media='screen'>" & VbCrLf & _
 		"       <link rel='stylesheet' type='text/css' href='" & PathRelativo & "estilos/" & p_estilo & "' />" & VbCrLf & _
 		"   </head>" & VbCrLf
 
@@ -143,7 +146,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 		"<script language='JavaScript' src='" & PathRelativo & "includes/relogio.js'></script>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
-		"<body bgcolor='#FFFFFF' text='#000000' leftmargin='0' topmargin='0' border='0' id='body_principal' onunload='javascript: hideAguarde();'>"
+		"<body onunload='javascript: hideAguarde();'>"
 
 	chr_Buffer = chr_Buffer & _
 		"<div id='divAguarde' class='tempo' style='display: none;'><table><tr><td><img src='" & PathRelativo & "img/tempo.gif' alt='Aguarde'></td><td>&nbsp;&nbsp;Aguarde...</td></tr></table></div>" & VbCrLf
@@ -182,38 +185,40 @@ Private Sub ImprimeImagemSite()
     w_princ = p_tamanhoTela
     PathRelativo = p_PathRelativo
 %>
-		<table width="<%=w_princ%>" border="0" cellspacing="0" cellpadding="0">
-		<tr>
-			<td background="<%=PathRelativo%>img/titulo_bg.jpg" bgcolor="#FFFFFF" height="70" width="<%=w_princ%>" align="left">
-				<table width="<%=w_princ%>" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-				    <td align="left" width="100px">
-                        <img src="<%=PathRelativo%>img/titulo_esquerda.jpg" height="70" border="0" id="imgTituloEsquerda" style="display: inline;">
-				    </td>
-				    <td>
-                        <img src="<%=PathRelativo%>img/titulo_centro.jpg" height="70" border="0" id="imgTituloCentro" style="display: inline;">
-				    </td>
-				    <td valign="middle" class="texto" align="right">
+		<table width="<%=w_princ%>" class="" border="0" cellspacing="0" cellpadding="0" >
+        <tr>
+            <td background="<%=PathRelativo%>img/titulo_bg.jpg" height="70" style="vertical-align: bottom;">
+                <div>
+                    <div style="float:left;">
+                            <img src="<%=PathRelativo%>img/titulo_esquerda.jpg" border="0" 
+                                id="imgTituloEsquerda"  vertical-align: top;">
+                            <img src="<%=PathRelativo%>img/titulo_centro.jpg" height="70"
+                                border="0" id="imgTituloCentro" style="display: inline; vertical-align: bottom;">
+
+                    </div>
+
+                    <div style="float: right;">
+                            <img src="<%=PathRelativo%>img/titulo_direita.jpg" height="70" border="0" id="imgTituloDireita" 
+                                style="display: inline; vertical-align: bottom;">
+                    </div>
+
 <%  If Env.Usuario <> "" Then %>
-				            <br /><br />
-					        <b><%=Env.nomeAppHtml%></b><br />
-					        <b><%=Env.Ebt.NomeReduzido%></b><br>
-					        <b><%=Env.Usuario%></b><br>
+                    <div style="float: right; text-align:right;">
+                            <p style="line-height: 14px;">&nbsp;</p>
+				            <h6><%=Env.nomeAppHtml%><br />
+					        <%=Env.Ebt.NomeReduzido%><br />
+					        <%=Env.Usuario%></h6>
+                    </div>
 <%  End If %>
-				    </td>
-				    <td align="right">
-                        <img src="<%=PathRelativo%>img/titulo_direita.jpg" height="70" border="0" id="imgTituloDireita" style="display: inline;">
-				    </td>
-				</tr>
-				</table>
+                </div>
+            </td>
+        </tr>
+        </table>
 
 <%			If p_imprimeMenu And Env.Usuario <> "" Then
                 Call ImprimeMenu()
 			end if%>
 
-			</td>
-		</tr>
-		</table>
 <%
 End Sub
 
