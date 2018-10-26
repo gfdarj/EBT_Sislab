@@ -1,1 +1,0 @@
-<%if session("user_id") = "" then response.redirect "index.asp"%> 
