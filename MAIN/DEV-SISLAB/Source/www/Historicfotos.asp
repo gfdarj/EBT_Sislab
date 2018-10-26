@@ -2,13 +2,13 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT - Fotos", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT - Fotos", "", "")
 %>
-<table border=0>
+<table border="0">
 <tr>
 <center>
 
-<table width=620>
+<table width="620">
 <tr>
     <td width="10%"></td>
     <td width="10%"></td>
@@ -119,5 +119,5 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT - Foto
 </table>
 </center>
 <%
-Call ImprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

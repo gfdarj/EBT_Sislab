@@ -40,9 +40,9 @@ sSQL = "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tip
 call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 %>
 <form name="formulario" method="post" action="cad_evLogBook.asp">
-<input type="Hidden" name="enviei" value="SIM">
-<input type="Hidden" name="ocorrencia" value="">
-<table width="100%" class="tabela1">
+<input type="hidden" name="enviei" value="SIM">
+<input type="hidden" name="ocorrencia" value="">
+<table width="100%" class="table-bordered">
 <tr>
 	<td height="40">
 		<a href="cad_evLogBook.asp"><b>&lt;Cadastrar Nova Ocorrência&gt;</b></a>
@@ -52,7 +52,7 @@ call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 </tr>
 <tr>
 	<td>
-		<table class="tabela1">
+		<table class="table-bordered">
 		<tr>
 			<td><b>Tipo de Ocorrência :</b>
 			<td><%call comboBDSQL( "tipoOcorrencia", objConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", tipoOcorrencia, true)%></td>
@@ -60,7 +60,7 @@ call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 		</tr>
 		<tr>
 			<td><b>Descrição :</b></td>
-			<td><input name="descricao" type="Text" value="<%=request("descricao")%>"></td>
+			<td><input name="descricao" type="text" value="<%=request("descricao")%>"></td>
 			<td><input type="button" class="texto1" value="Pesquisar" name="btnPesq" onClick="pesquisar();"></td>
 		</tr>
 		</table>
@@ -73,7 +73,7 @@ call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 If Request("enviei") = "SIM" Then
 %>
 		<b>Pesquisa de Ocorrências</b><br><br>
-			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
+			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
 			<tr>
 				<th style="font-size: xx-small;" align="left">Nº OC</th>
 				<th style="font-size: xx-small;" align="left">Descrição</th>

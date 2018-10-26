@@ -88,7 +88,7 @@ else	'-- novo agendamento
 	call Env.RecordSet(false, objrs1, null)
 
 	'-- imprime tela de confirmação do agendamento
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "location.href='CadAgendamentoCliente.asp?selecao=" & objrs(0) & "'", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "location.href='CadAgendamentoCliente.asp?selecao=" & objrs(0) & "'", "")
 
 	chr_Buf = _
 		"<table border='0' width='100%' class='tabela1'>" & _
@@ -113,7 +113,7 @@ else	'-- novo agendamento
 		"</table>"
 	Response.Write chr_Buf
 
-	Call imprimeRodape(RODAPE_OFF)
+    Call Tela.MostraRodape()
 
 	Set objrs1 = Nothing
 	Set objrs2 = Nothing

@@ -42,7 +42,7 @@ function ver_submit()
 }
 </script>
 <form action="proc_circuito.asp" method="post" name="det_circ">
-<input type="Hidden" name="cto_id" value="<%= request.querystring( "cto_id" ) %>" />
+<input type="hidden" name="cto_id" value="<%= request.querystring( "cto_id" ) %>" />
 <table class="tipo1" align="center">
 	<tr><td></td><td></td></tr>
 <%
@@ -79,7 +79,7 @@ end if %>
 	</tr>
 	<tr>
 		<th>Nome:</th>
-		<td><input type="Text" name="cto_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cto_nome %>" /></td>
+		<td><input type="text" name="cto_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cto_nome %>" /></td>
 	</tr>
 	<tr>
 		<th>Tipo:</th>

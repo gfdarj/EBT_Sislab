@@ -17,7 +17,7 @@ Call Tela.MostraCabecalho()
 %>
 
 <form method=post action="cons_arquivos.asp" name="formulario">
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td class="texto1">
 		<font color="#ff0000" ><b>AVISO :</b></font> <br>Os documentos do SG quando impressos só tem valor com a identificação de "Cópia Controlada" através de carimbo ou tarja. <br><br>
@@ -32,7 +32,7 @@ Call Tela.MostraCabecalho()
 </tr>
 <tr>
 	<td>
-		<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3" style="background: <%=chr_BgColor%>;">
+		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3" style="background: <%=chr_BgColor%>;">
 		<tr>
 			<td></td>
 			<td></td>

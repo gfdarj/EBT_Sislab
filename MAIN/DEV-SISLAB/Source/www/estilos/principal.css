@@ -18,10 +18,31 @@
 
 
 .linha-fundo {
-    background: LightBlue;
+    background-color: #D6EBFF;
+    padding-left: 10px;
 }
 
 .linha-destaque {
     border-bottom: solid thin;
     border-bottom-color: red;
+}
+
+.margem-10 {
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-top: 5px;
+}
+
+.espaco-minimo-35 { min-height: 35px; height: 35px; }
+.espaco-minimo-100 { min-height: 100px; height: 100px; }
+
+/* Textos */
+.texto-vermelho-bold {
+    color: red;
+    font-weight: bold;
+}
+
+/* barra escura do indicador de nome de Tela */
+.realce1 {
+    background-color: #d9d9d9;
 }

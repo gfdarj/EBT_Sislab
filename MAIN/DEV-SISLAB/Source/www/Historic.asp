@@ -2,7 +2,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT", "", "")
 %>
 <table border="0">
 <tr>
@@ -40,5 +40,5 @@ Assegurar o cumprimento das metas e cronogramas relativos à Consultorias Técni
 </table>
 </center>
 <%
-Call imprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

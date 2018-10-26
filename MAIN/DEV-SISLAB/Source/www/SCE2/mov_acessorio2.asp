@@ -99,7 +99,7 @@ If Env.UsuarioSCE() Then
     end if
 %>
 <form name="formulario" action="sel_mov_acessorio.asp" method="post">
-<input type="Hidden" name="status" value="<%=request("status")%>">  <!-- pego o estado dos itens consultados para movimentar -->
+<input type="hidden" name="status" value="<%=request("status")%>">  <!-- pego o estado dos itens consultados para movimentar -->
 
 <table width="100%" cellpadding="2" cellspacing="0" class="texto1">
 <tr>

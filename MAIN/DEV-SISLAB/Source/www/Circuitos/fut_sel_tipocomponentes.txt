@@ -57,8 +57,8 @@ function ApagaTipo()
 Call MostraHeader
 %>
 <form name="formulario" method="post">
-<input type="Hidden" name="lista_car" value="">
-<input type="Hidden" name="lista_qtd" value="">
+<input type="hidden" name="lista_car" value="">
+<input type="hidden" name="lista_qtd" value="">
 <table width="700" class="trcadtit1" border="1" align="center">
 <tr> 
 	<td width="130"></td>
@@ -89,22 +89,22 @@ Call MostraHeader
 			</select><%
 		else%>
 			<font class="Fonttit3Cad"><b><i>Nenhum Tipo foi encontrado !</i></b></font>
-			<input type="Hidden" name="tipocomponente" value=""><%
+			<input type="hidden" name="tipocomponente" value=""><%
 		end if
 		call RecordSet(false, objRS, null, objConn) 
 		call Connection(false, objConn)
 		%>
 		&nbsp;&nbsp;&nbsp;
-		<input type="Button" class="botao0" value="+" onclick="javascript:window.open('novotipo.asp', 'TIPO', 'width=420, height=160, toolbar=no, status=no, menubar=no, scrollbars=no');">&nbsp;
-		<input type="Button" class="botao0" value="..." disabled onclick="ApagaTipo();">&nbsp;
-		<input type="Button" class="botao0" value="-" disabled onclick="ApagaTipo();">
+		<input type="button" class="botao0" value="+" onclick="javascript:window.open('novotipo.asp', 'TIPO', 'width=420, height=160, toolbar=no, status=no, menubar=no, scrollbars=no');">&nbsp;
+		<input type="button" class="botao0" value="..." disabled onclick="ApagaTipo();">&nbsp;
+		<input type="button" class="botao0" value="-" disabled onclick="ApagaTipo();">
 	</td>
 </tr>
 <tr><td width="100%" colspan="2"><iframe name="caracteristica" src="" scrolling="Auto" frameborder="0" style="display: none; width:690; height:160;"></iframe></td></tr>
 <tr id="botaoconfirma" style="display: none;">
 	<td colspan="2" align="center">
-		<input type="Button" class="botao1" value="Cadastrar" onclick="javascript:CadastraTipoCarac();">&nbsp;
-		<input type="Button" class="botao1" value="Cancelar" onclick="javascript:location.href = 'sel_tipocomponentes.asp';">
+		<input type="button" class="botao1" value="Cadastrar" onclick="javascript:CadastraTipoCarac();">&nbsp;
+		<input type="button" class="botao1" value="Cancelar" onclick="javascript:location.href = 'sel_tipocomponentes.asp';">
 	</td>
 </tr>
 </table>

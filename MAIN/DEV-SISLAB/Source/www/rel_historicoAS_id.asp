@@ -44,7 +44,7 @@ if not (objRS.Eof and objRS.Bof) then
 	<b>AS: <%if not primeiro then response.write objRS("AG_NUMERO") else response.write anterior end if%></b>
 </span>
 
-<table width="100%" cellpadding="2" cellspacing="0" border="0" class="tabela1" style="border-top: solid thin;">
+<table width="100%" cellpadding="2" cellspacing="0" border="0" class="table-bordered" style="border-top: solid thin;">
 <tr>
 	<th width="15px">&nbsp;</th>
 	<th width="130px">Data Inicial</th>

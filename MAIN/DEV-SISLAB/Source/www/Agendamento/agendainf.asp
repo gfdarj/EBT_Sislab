@@ -227,7 +227,7 @@ function verificaVoltar()
 %>
     </SELECT>
 		</font>
-		<INPUT TYPE="text" NAME="nova_tarefa" MAXLENGTH="250" class="texto7" style="display:none;">
+		<INPUT type="text" NAME="nova_tarefa" MAXLENGTH="250" class="texto7" style="display:none;">
 	</td>
 	<td>
     <input type="radio" name="tarefa_tipo" value="0" onclick="mudaTipo(0,-1)"><font class="fonte2">AS</font>
@@ -238,7 +238,7 @@ function verificaVoltar()
 		<font class="fonte2">Início:</font>
 	</td>
 	<td>
-		<INPUT TYPE="text" NAME="diaInicio" MAXLENGTH="2" class="texto05" VALUE="<%=dI%>"> /
+		<INPUT type="text" NAME="diaInicio" MAXLENGTH="2" class="texto05" VALUE="<%=dI%>"> /
 		<font class="fonte2">
 		<SELECT NAME="mesInicio" class="select1">
 	    <OPTION VALUE="-1"> -Mês-
@@ -255,7 +255,7 @@ function verificaVoltar()
 	    <OPTION VALUE="11"> Nov
 	    <OPTION VALUE="12"> Dez
 	  </SELECT> /
-	  <INPUT TYPE="text" NAME="anoInicio" MAXLENGTH="4" class="texto1" VALUE="<%=aI%>">
+	  <INPUT type="text" NAME="anoInicio" MAXLENGTH="4" class="texto1" VALUE="<%=aI%>">
 	</td>
 <tr>
   <td>
@@ -270,7 +270,7 @@ function verificaVoltar()
 		<font class="fonte2">Término:</font>
 	</td>
 	<td>
-	  <INPUT TYPE="text" NAME="diaFim" VALUE="<%=dF%>" MAXLENGTH="2" class="texto05"> /
+	  <INPUT type="text" NAME="diaFim" VALUE="<%=dF%>" MAXLENGTH="2" class="texto05"> /
 		<font class="fonte2">
 	  <SELECT NAME="mesFim" class="select1">
 	    <OPTION VALUE="-1"> -Mês-
@@ -288,15 +288,15 @@ function verificaVoltar()
 	    <OPTION VALUE="12"> Dez
 	  </SELECT>
 	  </font> /
-	  <INPUT TYPE="text" NAME="anoFim" MAXLENGTH="4" class="texto1" VALUE=<%=aF%>>
+	  <INPUT type="text" NAME="anoFim" MAXLENGTH="4" class="texto1" VALUE=<%=aF%>>
 	</td>
 </tr>
 </table>
-	<INPUT TYPE="hidden" NAME="data" VALUE=<%= data%>> 
-  <INPUT TYPE="hidden" NAME="tpid" value=<%= tpid%>>
-	<INPUT TYPE="hidden" NAME="tp_datainicial" value="">
-  <INPUT TYPE="hidden" NAME="tp_datafinal" value="">
-  <INPUT TYPE="hidden" NAME="pes_username" value="">
+	<INPUT type="hidden" NAME="data" VALUE=<%= data%>> 
+  <INPUT type="hidden" NAME="tpid" value=<%= tpid%>>
+	<INPUT type="hidden" NAME="tp_datainicial" value="">
+  <INPUT type="hidden" NAME="tp_datafinal" value="">
+  <INPUT type="hidden" NAME="pes_username" value="">
 <table width="774" border=0>
 <tr>
  <%if tpid <> "-1" then%>
@@ -309,14 +309,14 @@ function verificaVoltar()
 */
 	</script>
 	<td align="center">
-    <INPUT TYPE="button" NAME="btn" VALUE=" Relocar " class="botao2" ONCLICK="relocar()">
-    <INPUT TYPE="button" NAME="btn" VALUE=" Remover " class="botao2" ONCLICK="remover()">
-    <INPUT TYPE="button" NAME="btn" VALUE=" Cancelar " class="botao2" ONCLICK="limpa()">
+    <INPUT type="button" NAME="btn" VALUE=" Relocar " class="botao2" ONCLICK="relocar()">
+    <INPUT type="button" NAME="btn" VALUE=" Remover " class="botao2" ONCLICK="remover()">
+    <INPUT type="button" NAME="btn" VALUE=" Cancelar " class="botao2" ONCLICK="limpa()">
   </td>
  <%else%>
 	<td align="center">
-    <INPUT TYPE="button" NAME="btn" VALUE=" Alocar" class="botao2" ONCLICK="javascript:alocar()">
-    <INPUT TYPE="button" NAME="btn" VALUE=" Cancelar " class="botao2" onclick="limpa()">
+    <INPUT type="button" NAME="btn" VALUE=" Alocar" class="botao2" ONCLICK="javascript:alocar()">
+    <INPUT type="button" NAME="btn" VALUE=" Cancelar " class="botao2" onclick="limpa()">
   </td>
  <%end if%>
 </tr>

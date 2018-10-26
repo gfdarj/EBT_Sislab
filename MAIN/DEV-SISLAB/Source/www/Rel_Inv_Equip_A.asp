@@ -84,8 +84,8 @@ sSQL = sSQL & " ORDER BY " & RQ("ordenacao") & " " & RQ("tipoordenacao")
 %>
 <html>
 <form method="post" action="rel_inv_equip_b.asp">
-<input type="Hidden" name="ssql" value="<%=sSQL%>">
-<input type="Hidden" name="registroporpagina" value="<%=RQ("registroporpagina")%>">
+<input type="hidden" name="ssql" value="<%=sSQL%>">
+<input type="hidden" name="registroporpagina" value="<%=RQ("registroporpagina")%>">
 </form>
 <script language="javascript">
 	var frm = document.forms[0];

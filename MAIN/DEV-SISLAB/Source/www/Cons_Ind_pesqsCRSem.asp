@@ -114,11 +114,11 @@ function contC(parag, paritem, parativ, pardataini, pardatafim) {
 <!--SQL:<%=sSQL%>-->
 <form method="post" action="Cons_Ind_pesqsCRSem.asp" name="formulario">
 <input type="hidden" name="numag">
-<input type="Hidden" name="enviou" value="1">
-<table width="100%" class="tabela1" cellpadding="2" cellspacing="0">
+<input type="hidden" name="enviou" value="1">
+<table width="100%" class="table-bordered" cellpadding="2" cellspacing="0">
 <tr>
 	<td colspan="2">
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 			Análise Periódica dos Formulários de Satisfação
 		</span>
 	</td>
@@ -133,7 +133,7 @@ function contC(parag, paritem, parativ, pardataini, pardatafim) {
 	<td colspan="2">
 		De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="Button" value="Pesquisar" class="texto1" onclick="retornavalor();">
+		<input type="button" value="Pesquisar" class="texto1" onclick="retornavalor();">
 		<script language="JavaScript">
 <%
 If dataIni <> "" Then%>

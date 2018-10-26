@@ -39,17 +39,17 @@ auxClientes = (request.form("chkClientes")="on")
 %>
 <form name="formteste" method="post" action="cons_ind_pesqsCR.asp">
 <input type="hidden" name="doformteste" value="1">
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2" >&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		&nbsp;<span class="texto-vermelho-bold" >&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 			Selecione uma das opções de filtro para consulta
 		</span></b>
 	</td>
 </tr>
 <tr>
 	<td>
-		Nº AS:&nbsp;<input type="Text" name="auxAS" size="3" class="texto1">
+		Nº AS:&nbsp;<input type="text" name="auxAS" size="3" class="texto1">
 	</td>
 </tr>
 <tr>

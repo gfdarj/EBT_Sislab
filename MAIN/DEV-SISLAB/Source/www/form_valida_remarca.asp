@@ -8,7 +8,7 @@ Dim Ebt
 Set Ebt = New TEbt
 
 'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Cancelamento/Remarcação de Testes/Ensaios", "", "")
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Remarcação de Agendamento", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Remarcação de Agendamento", "", "")
 
 Response.Buffer = true
 
@@ -120,7 +120,7 @@ function Cancelar()
 <form method="post" action="form_valida_remarcaA.asp" name="frmValidaRemarca" onSubmit="return validaCampos(this);">
 <input type="hidden" name="txtNum_agendamento" value="<%= num_agendamento%>">
 <input type="hidden" name="chr_CancelarSolicitacao" value="N">
-<TABLE border=0 cellSpacing=0 width="100%" class="tabela1">
+<TABLE border=0 cellSpacing=0 width="100%" class="table-bordered">
 	<TR>
 		<TD></TD>
 		<TD></TD>
@@ -168,7 +168,7 @@ function Cancelar()
     <tr height="34"> 
         <td valign="top" colspan="10">
 			&nbsp;&nbsp;Motivo da Mudança:&nbsp;<BR>
-			<table cellpadding="0" cellspacing="0" class="tabela1">
+			<table cellpadding="0" cellspacing="0" class="table-bordered">
 			<tr>
 				<td>&nbsp;&nbsp;</td>
 				<td><%=replace(motivo, vbCrLf, "<BR>")%></td>
@@ -197,11 +197,12 @@ function Cancelar()
     <input class="texto1" type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
     <input class="texto1" type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
 </p>
-<input type="Hidden" name="solicitouCancelamento" value="<%=cancelou%>">
+<input type="hidden" name="solicitouCancelamento" value="<%=cancelou%>">
 </form>
 
 <%
-	Call imprimeRodape(RODAPE_OFF)
+    Call Tela.MostraRodape()
 end if
+
 call Env.RecordSet(False, rs_agendamento, Null)
 %>

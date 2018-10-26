@@ -83,7 +83,7 @@ Sub ListaImagens()
 
 	Set objFolder = objFSO.GetFolder(chr_Path)
 
-	call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
+	Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
 
 	chr_SQL = _
 		"SELECT ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ , ARQ_DESCRICAO " & _
@@ -232,14 +232,14 @@ Sub ListaImagens()
 
 	RW chr_Buf & chr_Buf2 & "<BR>" & chr_Buf1 & "</form><br>" & VbCrLf
 
-	Call ImprimeRodape(RODAPE_OFF)
+    Call Tela.MostraRodape()
 
 	Set objFolder = Nothing
 End Sub
 
 
 Sub MensagemErro(chr_Msg)
-	Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
 
 	chr_Buf = _
 			"<scr" & "ipt language='JavaScript'>" & VbCrLf & _
@@ -258,7 +258,7 @@ Sub MensagemErro(chr_Msg)
 
 	RW chr_Buf
 
-	Call ImprimeRodape(RODAPE_OFF)
+    Call Tela.MostraRodape()
 End Sub
 
 %>

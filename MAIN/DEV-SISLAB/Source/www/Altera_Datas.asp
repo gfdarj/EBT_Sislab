@@ -2,7 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Alteração de Datas", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Alteração de Datas", "location.href='sislab.asp'", "")
 
 Dim numAS, frm, s, objRS
 
@@ -32,7 +32,7 @@ if frm <> "" then
 		on error resume next
 		objRS.execute
 		if err <> 0 then
-			response.write "N�o foi poss&iacute;vel atualizar o Agendamento.<BR><BR>"
+			response.write "Não foi poss&iacute;vel atualizar o Agendamento.<BR><BR>"
         	response.write "ERRO: " & Err.Source & "-->" & Err.Description & "<BR>"
 		else
 			response.write "Agendamento Atualizado !!!<BR><BR>"
@@ -140,24 +140,26 @@ end if
 
 On Error Goto 0
 %>
-<form name="frmPesquisa" method="post">
-<table class="tabela1">
-<tr>
-	<td>Entre com o n&uacute;mero da AS:</td>
-	<td><input type="Text" name="num_as" size="6" value="<%=numAS%>" class="texto1"></td>
-	<td><input type="Submit" name="btnPesquisar" value="Pesquisar" class="texto1"></td>
-	<td><input type="Button" name="btnVoltar" value="Voltar" onClick="javascript:location.href='sislab.asp';" class="texto1"></td>
-</tr>
-</table>
-</form>
+<br />
+<div class="margem-10">
+
+    <form name="frmPesquisa" method="post">
+        <p>
+	        Entre com o n&uacute;mero da AS:&nbsp;
+	        <input type="text" name="num_as" size="6" value="<%=numAS%>">&nbsp;&nbsp;&nbsp;
+	        <input type="submit" name="btnPesquisar" value="Pesquisar">&nbsp;&nbsp;&nbsp;
+	        <input type="button" name="btnVoltar" value="Voltar" onClick="javascript:location.href='sislab.asp';">
+        </p>
+    </form>
 <%
 if numAS <> "" then%>
-<hr>
-<h3>Resultado da pesquisa</h3>
+    <hr>
+    <h4>Resultado da pesquisa</h4>
 
-<form name="frmAgendamento" method="post">
-<input type="hidden" name="num_as" value="<%=numAS%>">
-<input type="hidden" name="frm" value="frmAgendamento">
+    <form name="frmAgendamento" method="post">
+    <input type="hidden" name="num_as" value="<%=numAS%>">
+    <input type="hidden" name="frm" value="frmAgendamento">
+
 <%	set objRS = Server.CreateObject("ADODB.RecordSet")
 	s = "Select AG_DATASOLICITACAO, AG_DATAINICIO, AG_DATATERMINO "
 	s = s & "from agendamento where AG_NUMERO = " & numAS & " "
@@ -169,46 +171,48 @@ if numAS <> "" then%>
 	else
 		'--pego as datas da tabela agendamento%>
 <script language="JavaScript">
-function AtualizaAgendamento() {
-	f = document.all.frmAgendamento;
-	if(f.ag_datasolicitacao.value == "") {
-		alert('Data da solicitação inválida.');
-		f.ag_datasolicitacao.focus();
-	}
-	else if(f.ag_datainicio.value == "") {
-		alert('Data de início inválida.');
-		f.ag_datainicio.focus();
-	}
-	else if(f.ag_datatermino.value == "") {
-		alert('Data de término inválida.');
-		f.ag_datatermino.focus();
-	}
-	else
-		f.submit();
-}
+    function AtualizaAgendamento() {
+	    f = document.all.frmAgendamento;
+	    if(f.ag_datasolicitacao.value == "") {
+		    alert('Data da solicitação inválida.');
+		    f.ag_datasolicitacao.focus();
+	    }
+	    else if(f.ag_datainicio.value == "") {
+		    alert('Data de início inválida.');
+		    f.ag_datainicio.focus();
+	    }
+	    else if(f.ag_datatermino.value == "") {
+		    alert('Data de término inválida.');
+		    f.ag_datatermino.focus();
+	    }
+	    else
+		    f.submit();
+    }
 </script>
-<table width="100%" border="1" class="tabela1" cellpadding="2" cellspacing="0">
-<tr><th align="left" colspan="4"><b>Agendamento <%=numAS%></b></th></tr>
-<tr style="font-weight: bold;">
-	<td>Data da Solicita&ccedil;&atilde;o</td>
-	<td>Data de In&iacute;cio</td>
-	<td>Data de T&eacute;rmino</td>
-	<td>&nbsp;</td>
-</tr>
+
+    <table width="100%" class="table-bordered">
+    <tr><th align="left" colspan="4"><b>Agendamento <%=numAS%></b></th></tr>
+    <tr>
+	    <th>Data da Solicita&ccedil;&atilde;o</th>
+	    <th>Data de In&iacute;cio</th>
+	    <th>Data de T&eacute;rmino</th>
+	    <th>&nbsp;</th>
+    </tr>
 <%		while not objRS.EOF%>
-<tr>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("AG_DATASOLICITACAO"))%>" name="<%=lcase(objRS("AG_DATASOLICITACAO").Name)%>"></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("AG_DATAINICIO"))%>" name="<%=lcase(objRS("AG_DATAINICIO").Name)%>"></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("AG_DATATERMINO"))%>" name="<%=lcase(objRS("AG_DATATERMINO").Name)%>"></td>
-	<td align="center"><input class="texto1" type="Button" value="Ok" onclick="javascript:AtualizaAgendamento();"></td>
-</tr>
+    <tr>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("AG_DATASOLICITACAO"))%>" name="<%=lcase(objRS("AG_DATASOLICITACAO").Name)%>"></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("AG_DATAINICIO"))%>" name="<%=lcase(objRS("AG_DATAINICIO").Name)%>"></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("AG_DATATERMINO"))%>" name="<%=lcase(objRS("AG_DATATERMINO").Name)%>"></td>
+	    <td align="center"><input type="button" value="Ok" onclick="javascript:AtualizaAgendamento();"></td>
+    </tr>
 <%			objRS.MoveNext
 		wend%>
-</table>
-</form><br>
+    </table>
+    </form>
+    <br>
 <%		objRS.Close
 
-		'-- Pego o hist�rico de datas
+		'-- Pego o histórico de datas
 		s = "Select HD_MARCACAO, HD_DATAINICIO, HD_DATATERMINO, "
 		s = s & "case when HD_FLAGREMARCADO = 0 then 'Não' "
 		s = s & "when HD_FLAGREMARCADO = 1 then 'Sim' end "
@@ -222,11 +226,11 @@ function AtualizaAgendamento() {
 function AtualizaHistorico_Datas(id_tabela, hd_datainicio, hd_datatermino, hd_motivo) {
 	f = document.all.frmHistorico_Datas;
 	if(hd_datainicio.value == "") {
-		alert('Data de in�cio inv�lida.');
+		alert('Data de inácio inválida.');
 		hd_datainicio.focus();
 	}
 	else if(hd_datatermino.value == "") {
-		alert('Data de t�rmino inv�lida.');
+		alert('Data de término inválida.');
 		hd_datatermino.focus();
 	}
 	else {
@@ -239,7 +243,7 @@ function AtualizaHistorico_Datas(id_tabela, hd_datainicio, hd_datatermino, hd_mo
 	}
 }
 function ExcluiHistorico_Datas(id_tabela)	{
-	if(confirm('ATEN��O !!!\n\n\nPara confirmar esta exclus�o clique em OK.'))
+	if(confirm('ATENÇÃO !!!\n\n\nPara confirmar esta exclusão clique em OK.'))
 	{
 		f = document.all.frmHistorico_Datas;
 		f.excluir.value = '1';
@@ -249,43 +253,45 @@ function ExcluiHistorico_Datas(id_tabela)	{
 }
 </script>
 <form name="frmHistorico_Datas" method="post">
-<input type="hidden" name="num_as" value="<%=numAS%>">
-<input type="hidden" name="frm" value="frmHistorico_Datas">
-<input type="Hidden" name="id_tabela">
-<input type="Hidden" name="hd_datainicio">
-<input type="Hidden" name="hd_datatermino">
-<input type="Hidden" name="hd_motivo">
-<input type="Hidden" name="excluir" value="">
-<table width="100%" border="1" class="tabela1" cellpadding="2" cellspacing="0">
-<tr><th align="left" colspan="7"><b>Hist&oacute;rico de Datas (<%=numAS%>)</b></th></tr>
-<tr style="font-weight: bold;">
-	<td>ID</td>
-	<td>Data de In&iacute;cio</td>
-	<td>Data de T&eacute;rmino</td>
-	<td>Atendido</td>
-	<td>Motivo</td>
-	<td>&nbsp;</td>
-	<td>&nbsp;</td>
-</tr>
+    <input type="hidden" name="num_as" value="<%=numAS%>">
+    <input type="hidden" name="frm" value="frmHistorico_Datas">
+    <input type="hidden" name="id_tabela">
+    <input type="hidden" name="hd_datainicio">
+    <input type="hidden" name="hd_datatermino">
+    <input type="hidden" name="hd_motivo">
+    <input type="hidden" name="excluir" value="">
+
+    <table width="100%" class="table-bordered">
+    <tr><th align="left" colspan="7"><b>Hist&oacute;rico de Datas (<%=numAS%>)</b></th></tr>
+    <tr style="font-weight: bold;">
+	    <td>ID</td>
+	    <td>Data de In&iacute;cio</td>
+	    <td>Data de T&eacute;rmino</td>
+	    <td>Atendido</td>
+	    <td>Motivo</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+    </tr>
 <%			while not objRS.EOF%>
-<tr>
-	<td><%=objRS("HD_MARCACAO")%></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HD_DATAINICIO"))%>" name="<%=lcase(objRS("HD_DATAINICIO").Name)&objRS("HD_MARCACAO")%>"></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HD_DATATERMINO"))%>" name="<%=lcase(objRS("HD_DATATERMINO").Name)&objRS("HD_MARCACAO")%>"></td>
-	<td align="center"><%=objRS("HD_FLAGREMARCADO")%></td>
-	<td><textarea name="<%=lcase(objRS("HD_MOTIVO").Name)&objRS("HD_MARCACAO")%>" class="texto1" rows="3" cols="50"><%=objRS("HD_MOTIVO")%></textarea></td>
-	<td><input class="texto1" type="Button" value="Ok" onclick="javascript:AtualizaHistorico_Datas(<%=objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_DATAINICIO").Name)&objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_DATATERMINO").Name)&objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_MOTIVO").Name)&objRS("HD_MARCACAO")%>);"></td>
-	<td><input class="texto1" type="Button" value="Excluir" onclick="javascript:ExcluiHistorico_Datas(<%=objRS("HD_MARCACAO")%>);"></td>
-</tr>
+    <tr>
+	    <td><%=objRS("HD_MARCACAO")%></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HD_DATAINICIO"))%>" name="<%=lcase(objRS("HD_DATAINICIO").Name)&objRS("HD_MARCACAO")%>"></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HD_DATATERMINO"))%>" name="<%=lcase(objRS("HD_DATATERMINO").Name)&objRS("HD_MARCACAO")%>"></td>
+	    <td align="center"><%=objRS("HD_FLAGREMARCADO")%></td>
+	    <td><textarea name="<%=lcase(objRS("HD_MOTIVO").Name)&objRS("HD_MARCACAO")%>" rows="3" cols="50"><%=objRS("HD_MOTIVO")%></textarea></td>
+	    <td><input type="button" value="Ok" onclick="javascript:AtualizaHistorico_Datas(<%=objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_DATAINICIO").Name)&objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_DATATERMINO").Name)&objRS("HD_MARCACAO")%>, document.all.<%=lcase(objRS("HD_MOTIVO").Name)&objRS("HD_MARCACAO")%>);"></td>
+	    <td><input type="button" value="Excluir" onclick="javascript:ExcluiHistorico_Datas(<%=objRS("HD_MARCACAO")%>);"></td>
+    </tr>
 <%				objRS.MoveNext
 			wend%>
-</table>
-</form><br>
+    </table>
+</form>
+<br>
 <%		end if
 		objRS.Close
 
 
-		'-- Pego o hist�rico de eventos
+		'-- Pego o histórico de eventos
 		s = "Select HE_ID, sit.S_DESCRICAO, HE_DATAINICIO, HE_DATATERMINO, "
 		s = s & "HE_MOTIVO from Historico_Eventos he inner join "
 		s = s & "Situacoes sit on he.ID_SITUACAO = sit.ID_SITUACAO "
@@ -321,44 +327,47 @@ function ExcluiHistorico_Eventos(id_tabela)	{
 	}
 }
 </script>
+
 <form name="frmHistorico_Eventos" method="post">
-<input type="hidden" name="num_as" value="<%=numAS%>">
-<input type="hidden" name="frm" value="frmHistorico_Eventos">
-<input type="Hidden" name="id_tabela">
-<input type="Hidden" name="he_datainicio">
-<input type="Hidden" name="he_datatermino">
-<input type="Hidden" name="he_motivo">
-<input type="Hidden" name="excluir" value="">
-<table border="1" class="tabela1" width="100%" cellpadding="2" cellspacing="0">
-<tr><th align="left" colspan="7"><b>Hist&oacute;rico de Eventos (<%=numAS%>)</b></th></tr>
-<tr>
-	<td colspan="7">
-		<br><span style="font-weight: bold; color: red;">Atenção: A data de término não deverá estar preenchida caso o último evento não seja terminal (Por ex. finalizado, cancelado).</span><br><br>
-	</td>
-</tr>
-<tr style="font-weight: bold;">
-	<td>ID</td>
-	<td>Data de In&iacute;cio</td>
-	<td>Data de T&eacute;rmino</td>
-	<td>Situa&ccedil;&atilde;o</td>
-	<td>Motivo</td>
-	<td>&nbsp;</td>
-	<td>&nbsp;</td>
-</tr>
+    <input type="hidden" name="num_as" value="<%=numAS%>">
+    <input type="hidden" name="frm" value="frmHistorico_Eventos">
+    <input type="hidden" name="id_tabela">
+    <input type="hidden" name="he_datainicio">
+    <input type="hidden" name="he_datatermino">
+    <input type="hidden" name="he_motivo">
+    <input type="hidden" name="excluir" value="">
+
+    <table class="table-bordered" width="100%" >
+    <tr><th align="left" colspan="7"><b>Hist&oacute;rico de Eventos (<%=numAS%>)</b></th></tr>
+    <tr>
+	    <td colspan="7">
+		    <br><span style="font-weight: bold; color: red;">Atenção: A data de término não deverá estar preenchida caso o último evento não seja terminal (Por ex. finalizado, cancelado).</span><br><br>
+	    </td>
+    </tr>
+    <tr>
+	    <th>ID</th>
+	    <th>Data de In&iacute;cio</th>
+	    <th>Data de T&eacute;rmino</th>
+	    <th>Situa&ccedil;&atilde;o</th>
+	    <th>Motivo</th>
+	    <th>&nbsp;</th>
+	    <th>&nbsp;</th>
+    </tr>
 <%			while not objRS.EOF%>
-<tr>
-	<td><%=objRS("HE_ID")%></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HE_DATAINICIO"))%>" name="<%=lcase(objRS("HE_DATAINICIO").Name)&objRS("HE_ID")%>"></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HE_DATATERMINO"))%>" name="<%=lcase(objRS("HE_DATATERMINO").Name)&objRS("HE_ID")%>"></td>
-	<td><%=objRS("S_DESCRICAO")%></td>
-	<td><textarea name="<%=lcase(objRS("HE_MOTIVO").Name)&objRS("HE_ID")%>" class="texto1" rows="3" cols="50"><%=objRS("HE_MOTIVO")%></textarea></td>
-	<td align="center"><input class="texto1" type="Button" value="Ok" onclick="javascript:AtualizaHistorico_Eventos(<%=objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_DATAINICIO").Name)&objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_DATATERMINO").Name)&objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_MOTIVO").Name)&objRS("HE_ID")%>);"></td>
-	<td align="center"><input class="texto1" type="Button" value="Excluir" onclick="javascript:ExcluiHistorico_Eventos(<%=objRS("HE_ID")%>);"></td>
-</tr>
+    <tr>
+	    <td><%=objRS("HE_ID")%></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HE_DATAINICIO"))%>" name="<%=lcase(objRS("HE_DATAINICIO").Name)&objRS("HE_ID")%>"></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HE_DATATERMINO"))%>" name="<%=lcase(objRS("HE_DATATERMINO").Name)&objRS("HE_ID")%>"></td>
+	    <td><%=objRS("S_DESCRICAO")%></td>
+	    <td><textarea name="<%=lcase(objRS("HE_MOTIVO").Name)&objRS("HE_ID")%>" rows="3" cols="50"><%=objRS("HE_MOTIVO")%></textarea></td>
+	    <td align="center"><input type="button" value="Ok" onclick="javascript:AtualizaHistorico_Eventos(<%=objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_DATAINICIO").Name)&objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_DATATERMINO").Name)&objRS("HE_ID")%>, document.all.<%=lcase(objRS("HE_MOTIVO").Name)&objRS("HE_ID")%>);"></td>
+	    <td align="center"><input type="button" value="Excluir" onclick="javascript:ExcluiHistorico_Eventos(<%=objRS("HE_ID")%>);"></td>
+    </tr>
 <%				objRS.MoveNext
 			wend%>
-</table>
-</form><br>
+    </table>
+</form>
+<br>
 <%		end if
 		objRS.Close
 
@@ -399,40 +408,42 @@ function ExcluiHistorico_EventosOS(id_tabela)	{
 }
 </script>
 <form name="frmHistorico_EventosOS" method="post">
-<input type="hidden" name="num_as" value="<%=numAS%>">
-<input type="hidden" name="frm" value="frmHistorico_EventosOS">
-<input type="Hidden" name="id_tabela">
-<input type="Hidden" name="heos_datainicio">
-<input type="Hidden" name="heos_datatermino">
-<input type="Hidden" name="heos_motivo">
-<input type="Hidden" name="excluir" value="">
-<table width="100%" border="1" class="tabela1" cellpadding="2" cellspacing="0">
-<tr><th align="left" colspan="8"><b>Hist&oacute;rico de Eventos - Ordem de Servi&ccedil;o(<%=numAS%>)</b></th></tr>
-<tr style="font-weight: bold;">
-	<td>ID</td>
-	<td>Nº OS</td>
-	<td>Data de In&iacute;cio</td>
-	<td>Data de T&eacute;rmino</td>
-	<td>Situa&ccedil;&atilde;o</td>
-	<td>Motivo</td>
-	<td>&nbsp;</td>
-	<td>&nbsp;</td>
-</tr>
+    <input type="hidden" name="num_as" value="<%=numAS%>">
+    <input type="hidden" name="frm" value="frmHistorico_EventosOS">
+    <input type="hidden" name="id_tabela">
+    <input type="hidden" name="heos_datainicio">
+    <input type="hidden" name="heos_datatermino">
+    <input type="hidden" name="heos_motivo">
+    <input type="hidden" name="excluir" value="">
+
+    <table class="table-bordered" width="100%">
+    <tr><th align="left" colspan="8"><b>Hist&oacute;rico de Eventos - Ordem de Servi&ccedil;o(<%=numAS%>)</b></th></tr>
+    <tr>
+	    <th>ID</th>
+	    <th>Nº OS</th>
+	    <th>Data de In&iacute;cio</th>
+	    <th>Data de T&eacute;rmino</th>
+	    <th>Situa&ccedil;&atilde;o</th>
+	    <th>Motivo</th>
+	    <th>&nbsp;</th>
+	    <th>&nbsp;</th>
+    </tr>
 <%			while not objRS.EOF%>
-<tr>
-	<td><%=objRS("HEOS_ID")%></td>
-	<td align="center"><b><%=objRS("OS_ID")%></b></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HEOS_DATAINICIO"))%>" name="<%=lcase(objRS("HEOS_DATAINICIO").Name)&objRS("HEOS_ID")%>"></td>
-	<td><input class="texto1" size="20" type="Text" value="<%=RetiraMiliSegundos(objRS("HEOS_DATATERMINO"))%>" name="<%=lcase(objRS("HEOS_DATATERMINO").Name)&objRS("HEOS_ID")%>"></td>
-	<td><%=objRS("S_DESCRICAO")%></td>
-	<td><textarea name="<%=lcase(objRS("HEOS_MOTIVO").Name)&objRS("HEOS_ID")%>" class="texto1" rows="3" cols="50"><%=objRS("HEOS_MOTIVO")%></textarea></td>
-	<td align="center"><input class="texto1" type="Button" value="Ok" onclick="javascript:AtualizaHistorico_EventosOS(<%=objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_DATAINICIO").Name)&objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_DATATERMINO").Name)&objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_MOTIVO").Name)&objRS("HEOS_ID")%>);"></td>
-	<td align="center"><input class="texto1" type="Button" value="Excluir" onclick="javascript:ExcluiHistorico_EventosOS(<%=objRS("HEOS_ID")%>);"></td>
-</tr>
+    <tr>
+	    <td><%=objRS("HEOS_ID")%></td>
+	    <td align="center"><b><%=objRS("OS_ID")%></b></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HEOS_DATAINICIO"))%>" name="<%=lcase(objRS("HEOS_DATAINICIO").Name)&objRS("HEOS_ID")%>"></td>
+	    <td><input size="20" type="text" value="<%=RetiraMiliSegundos(objRS("HEOS_DATATERMINO"))%>" name="<%=lcase(objRS("HEOS_DATATERMINO").Name)&objRS("HEOS_ID")%>"></td>
+	    <td><%=objRS("S_DESCRICAO")%></td>
+	    <td><textarea name="<%=lcase(objRS("HEOS_MOTIVO").Name)&objRS("HEOS_ID")%>" rows="3" cols="50"><%=objRS("HEOS_MOTIVO")%></textarea></td>
+	    <td align="center"><input type="button" value="Ok" onclick="javascript:AtualizaHistorico_EventosOS(<%=objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_DATAINICIO").Name)&objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_DATATERMINO").Name)&objRS("HEOS_ID")%>, document.all.<%=lcase(objRS("HEOS_MOTIVO").Name)&objRS("HEOS_ID")%>);"></td>
+	    <td align="center"><input type="button" value="Excluir" onclick="javascript:ExcluiHistorico_EventosOS(<%=objRS("HEOS_ID")%>);"></td>
+    </tr>
 <%				objRS.MoveNext
 			wend%>
-</table>
-</form><br>
+    </table>
+</form>
+<br><br>
 <%		end if
 		objRS.Close
 
@@ -448,6 +459,8 @@ function RetiraMiliSegundos(data)
 		RetiraMiliSegundos = data
 	end if
 end function
-
-call imprimeRodape(RODAPE_OFF)
+%>
+</div>
+<%
+Call Tela.MostraRodape()
 %>

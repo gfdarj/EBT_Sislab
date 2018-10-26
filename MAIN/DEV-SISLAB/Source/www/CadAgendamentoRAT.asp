@@ -183,21 +183,21 @@ function ValidaCampos(){
 }
 </script>
 <form method="post" action="CadAgendamentoRatA.asp" name="frmAgendaTeste">
-<input type="Hidden" name="hdnSituacao">
-<input type="Hidden" name="hdAG" value="<%=num_ag%>">
-<input type="Hidden" name="strParticipantesEBT">
-<input type="Hidden" name="strAmbientesOriginal">
-<input type="Hidden" name="rat_original" value="<%=UCase(objSiteRS("ag_rat"))%>">
-<input type="Hidden" name="rt_original" value="<%=UCase(objSiteRS("ag_responsavel"))%>">
-<table border="0" width="100%" class="tabela1">
+<input type="hidden" name="hdnSituacao">
+<input type="hidden" name="hdAG" value="<%=num_ag%>">
+<input type="hidden" name="strParticipantesEBT">
+<input type="hidden" name="strAmbientesOriginal">
+<input type="hidden" name="rat_original" value="<%=UCase(objSiteRS("ag_rat"))%>">
+<input type="hidden" name="rt_original" value="<%=UCase(objSiteRS("ag_responsavel"))%>">
+<table border="0" width="100%" class="table-bordered">
 <tr> 
 	<td>
-		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+		&nbsp;&nbsp;<b><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 		<td align="right"><b><span class="menu">Agendamento Nº &nbsp;<%=num_ag%></span></b></td>
 </tr>
 </table>
 
-<table border="0" width="100%%" cellspacing="0" class="tabela1">
+<table border="0" width="100%%" cellspacing="0" class="table-bordered">
 <tr>
 	<td width="10%"></td>
 	<td width="10%"></td>
@@ -212,7 +212,7 @@ function ValidaCampos(){
 </tr>
 <tr height="34"> 
    	<td colspan="10">
-		&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;</b>Tipo de Atividade:
+		&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;</b>Tipo de Atividade:
 		<%call comboBDSQL( "tipoatividade", objConn,"Select ta_ID as valor,ta_descricao as descricao from TIPO_ATividade order by ta_ID asc;", "", "N")%>
 	</td>
 </tr>
@@ -231,23 +231,23 @@ function ValidaCampos(){
 		</select> 
 	</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Data Início:&nbsp;
+			&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Data Início:&nbsp;
 			<%call comboData("INICIO")%>
 		</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Hora Início:&nbsp;
+			&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Hora Início:&nbsp;
 			<%call comboHorario("INICIO")%>
 	</td>
 </tr>
 <tr>
 	<td colspan="10">
-		&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudança de Situação ):</a><br>
+		&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudança de Situação ):</a><br>
 		&nbsp;&nbsp;<textarea name="motivo" class="texto1" cols=147 rows=4 ></textarea>
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;RAT Responsável : &nbsp;
+        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;RAT Responsável : &nbsp;
 		<%
 		If bln_RAT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRATRESP",objConn,"N")
@@ -265,7 +265,7 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td colspan="10">
-        <p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Responsável Técnico : &nbsp;
+        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Responsável Técnico : &nbsp;
 		<%
 		If bln_RT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRESP",objConn,"N")
@@ -291,7 +291,7 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td colspan="10">
-		<p>&nbsp;&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de Serviço (OS): &nbsp;
+		<p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de Serviço (OS): &nbsp;
 		<input type="radio" name="cmbOS" value="1" id = "cmbOS1">Sim&nbsp;
 		<input type="radio" name="cmbOS" value="0"  id = "cmbOS0">Não
 	</td>
@@ -328,13 +328,13 @@ function ValidaCampos(){
 <tr height="34">
 	<td colspan="10" align="left"> &nbsp;&nbsp;
 		<%if Env.ehRAT then%>
-			<input type="Button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
+			<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
-			<input type="Button" class="texto1" onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
+			<input type="button" class="texto1" onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
 
-		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="Button" class="texto1" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
+		<input type="button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
+		<input type="button" class="texto1" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

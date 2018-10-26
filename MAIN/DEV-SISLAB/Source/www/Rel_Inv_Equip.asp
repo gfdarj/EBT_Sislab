@@ -45,7 +45,7 @@ Call Tela.MostraCabecalho()
 
 <form name="frmFiltro" method="post" action="rel_inv_equip_A.asp" onSubmit="javascript:return ValidaCampos();">
 
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
 		&nbsp;<span class="texto1B" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
@@ -53,7 +53,7 @@ Call Tela.MostraCabecalho()
 </tr>
 <tr>
 	<td>
-		<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
+		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
 		<tr>
 			<td></td>
 			<td></td>

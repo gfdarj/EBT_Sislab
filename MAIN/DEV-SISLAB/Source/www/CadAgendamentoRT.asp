@@ -52,17 +52,17 @@ function ValidaCampos(){
 }
 </script>
 <form method="post" action="novoCadAgendamentoClienteA.asp" name="frmAgendaTeste">
-<input type="Hidden" name="hdAG" value="<%=num_ag%>">
-<input type="Hidden" name="strParticipantesEBT">
-<table border="0" width="100%" class="tabela1">
+<input type="hidden" name="hdAG" value="<%=num_ag%>">
+<input type="hidden" name="strParticipantesEBT">
+<table border="0" width="100%" class="table-bordered">
 <tr> 
 	<td>
-		&nbsp;&nbsp;<b><span class="vermelho2">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+		&nbsp;&nbsp;<b><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 		<td align="right"><b><span class="menu">Agendamento Nº &nbsp;<%=num_ag%></span></b></td>
 </tr>
 </table>
 
-<table border="0" width="100%%" cellspacing="0" class="tabela1">
+<table border="0" width="100%%" cellspacing="0" class="table-bordered">
 <tr>
 	<td width="10%"></td>
 	<td width="10%"></td>
@@ -192,12 +192,12 @@ function ValidaCampos(){
 <tr height="34">
 	<td colspan="10" align="left" valign="middle"> &nbsp;&nbsp;	
 		<%if Env.ehRAT or Env.ehRT then%>
-			<input type="Button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
+			<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
-			<input type="Button" class="texto1" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
+			<input type="button" class="texto1" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
-		<input type="Button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="Button" class="texto1" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;"/>
+		<input type="button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
+		<input type="button" class="texto1" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

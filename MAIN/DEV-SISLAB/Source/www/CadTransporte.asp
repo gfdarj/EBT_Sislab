@@ -123,7 +123,7 @@ End If
 <input type="hidden" name="acao" value="">
 <input type="hidden" name="horario" value="">
 
-<table border="1" width="500px" class="tabela1" align="center" id="tb_horarios">
+<table border="1" width="500px" class="table-bordered" align="center" id="tb_horarios">
 <tr>
 	<th>Sede > Ilha do Fundão (CRT)</th>
 	<th>Ilha do Fundão (CRT) > Sede</th>
@@ -180,7 +180,7 @@ WEnd
 If bln_EhRat And bln_Alteracao And (Not bln_Imprime) Then
 %>
 <BR><BR>
-<table border="1" width="500px" class="tabela1" align="center" id="tb_novo">
+<table border="1" width="500px" class="table-bordered" align="center" id="tb_novo">
 <tr>
 	<th>Sede > Ilha do Fundão (CRT)</th>
 	<th>Ilha do Fundão (CRT) > Sede</th>

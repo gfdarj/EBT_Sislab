@@ -2,8 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-
-call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_OFF, false, "", "Consulta Pesquisa de Satisfação", "window.close()", "")
+Call Tela.ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_OFF, false, "", "Consulta Pesquisa de Satisfação", "window.close()", "")
 
 Dim objSiteRS, sSQL, objSiteRS1
 Dim auxusernameCadastro,auxIPCadastro,auxNAg,auxDataHoraCadastro
@@ -86,7 +85,7 @@ function paratras()
 <FONT style="font-size:10pt">
 <BR>
 </font>
-<table width="580" border="1" cellpadding="2" cellspacing="2" class="tabela1" style="border: solid thin;">
+<table width="580" border="1" cellpadding="2" cellspacing="2" class="table-bordered" style="border: solid thin;">
 <tr>
 	<td class="azul3bg" style="color:#FFFFFF; font-size: 12px;">
 	<b>&nbsp;&nbsp;Análise Individual dos Formulários de Satisfação</b><br>
@@ -175,7 +174,7 @@ do while not(objSiteRS.eof)
 %>
 <tr>
 	<td>
-		<table border="0" width="100%" class="tabela1" cellpadding="0" cellspacing="8">
+		<table border="0" width="100%" class="table-bordered" cellpadding="0" cellspacing="8">
 
 		<tr valign="top">
 			<td width="120px"><b>N. Agendamento:</b></td>
@@ -282,5 +281,6 @@ do while not(objSiteRS.eof)
 <br>
 <%
 call Env.Recordset(false, objSiteRS, null)
-call imprimeRodape(RODAPE_OFF)
+
+Call Tela.MostraRodape()
 %>

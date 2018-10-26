@@ -56,7 +56,7 @@ cont = 0
 <input type="hidden" name="num_as">
 <input type="hidden" name="selecao">
 <input type="hidden" name="hoje" value="<%=request("hoje")%>">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="tabela1">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="table-bordered">
 <tr>
 	<td>
 		<table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -78,7 +78,7 @@ cont = 0
 
 <tr> 
 	<td height="25">
-  	  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25" class="tabela1">
+  	  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25" class="table-bordered">
       <tr>
 		<td width="180" class="fonteTitulo1">&nbsp;</td>
 		<td>
@@ -182,7 +182,7 @@ Sub MontaVisaoPorSituacao
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 			<th>Prioridade</th>
@@ -355,7 +355,7 @@ Sub MontaVisaoPorSalas
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>
@@ -537,7 +537,7 @@ Sub MontaVisaoPorPrioridade
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, iPrioridade, iPrioridadeOld
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 <%	If EhRat Then %>
@@ -723,7 +723,7 @@ Sub MontaVisaoPorDataTermino
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim auxMesAnoOld : auxMesAnoOld = CDate("01/01/1980")
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>
@@ -900,7 +900,7 @@ Sub MontaVisaoPorRT
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>

@@ -76,12 +76,12 @@ function Excluir() {
 }
 </script>
 <form method="post" action="CadTipoArquivoA.asp" name="frm">
-<input type="Hidden" name="ehNovoTipoArquivo" value="0">
-<input type="Hidden" name="excluir" value="0">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="ehNovoTipoArquivo" value="0">
+<input type="hidden" name="excluir" value="0">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr> 
 	<td colspan="2">
-		&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
+		&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
 	</td>
 </tr>
 
@@ -94,7 +94,7 @@ function Excluir() {
 	<td>
 		<%call comboBDSQL("tipoarquivo", Env.oConn, "SELECT TAR_CODTIPOARQUIVO as valor, TAR_TIPOARQUIVO as descricao FROM TipoArquivo ORDER BY TAR_TIPOARQUIVO", "N", true)%>
 		&nbsp;&nbsp;
-		<input class="texto1" type="Button" value="Buscar" onclick="Buscar();">
+		<input class="texto1" type="button" value="Buscar" onclick="Buscar();">
 	</td>
 </tr>
 
@@ -103,12 +103,12 @@ function Excluir() {
 <tr><th align="left" colspan="2">&nbsp;&nbsp;Dados do Tipo de Arquivo</th></tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descrição :</b></td>
-	<td><input type="Text" name="desc" size="100" maxlength="300" class="texto1"></td>
+	<td width="130px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
+	<td><input type="text" name="desc" size="100" maxlength="300" class="texto1"></td>
 <tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Confidencial :</b></td>
+	<td width="130px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Confidencial :</b></td>
 	<td>
 		<input type="Radio" name="confidencial" value="1">Sim
 		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -117,7 +117,7 @@ function Excluir() {
 <tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Doc. Qualidade :</b></td>
+	<td width="130px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Doc. Qualidade :</b></td>
 	<td>
 		<input type="Radio" name="docquali" value="1">Sim
 		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -129,10 +129,10 @@ function Excluir() {
 
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
-		<input type="Button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
-		<input type="Button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		<input type="Button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+		<input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
+		<input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		<input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
 	</td>
 </tr>
 </table>

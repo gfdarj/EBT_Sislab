@@ -44,236 +44,83 @@
     } // Ends the "replaceSubstring" function
 </script>
 
-<%function ControleClientes(nome,index,objconn)%>
-<table id="tab<%=Nome%>EBT" width="100%" border="0" class="tabela1">
+<%
+Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
+	if titulo1 = "" then titulo1 = "Dados dos Participantes Embratel"
+	if titulo2 = "" then titulo2 = "Participantes Embratel"
+%>
+<script type="text/javascript">
+    function adiciona_retira_participantes<%=nome%>(tipo)
+    {
+	    var frm = document.forms[0];
+	    var nome = frm.txtNome<%=nome%>;
+	    var motivo = frm.txtMotivo<%=nome%>;
+	    var lista = frm.lst<%=nome%>;
+
+	    if (tipo == 0)
+	    {
+		    if (lista.selectedIndex != -1) {
+			    lista.options[lista.selectedIndex] = null;
+		    }
+	    }
+	    else{
+		    if (nome.value == ""){
+			    alert("O campo 'Matricula ou UserName' deve ser preenchido.");
+			    nome.focus();		
+		    }
+		    else if (motivo.value == ""){
+			    alert("O campo 'Motivo da Participação' deve ser preenchido.");
+			    motivo.focus();		
+		    }
+		    else{
+			    submitFormEscondido();
+		    }
+	    }
+    }
+
+    function submitFormEscondido()
+    {
+	    var frm = document.forms[0]
+	    var nome = frm.txtNome<%=nome%>;
+	    frm.action = "eventosInternos.asp?hdnevento=<%=7%>&nome="+nome.value+"&nomeControle=<%=nome%>&ag_numero=<%=ag_numero%>";
+	    frm.method = "post";
+	    frm.target = "escondido";
+	    frm.submit();
+    }
+</script>
+<input type="hidden" name="txtNomeCompleto<%=nome%>">
+
+<table id="tab<%=Nome%>" border="1" style="width: 100px;">
 <tr>
-	<th align="left">&nbsp;Dados do Cliente:</td>
+	<th class="linha-fundo">&nbsp;<%=titulo1%></th>
 </tr>
 <tr>
     <td>
-		<table width="100%" border="0" class="tabela1" style="background-color: #D6EBFF;">
-		<tr>
-			<td width="150px">
-				&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;&nbsp;<a href="javascript:;" title="Informar o nome do Cliente ou Razão Social.">Nome do Cliente:</a>
-			</td>
-			<td>
-	        	<input class="texto1" name="txtNome<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200" title="Informar o nome do Cliente ou Razão Social.">
-			</td>
-		</tr>
-		<tr> 
-			<td>
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="Informar expectativa de retorno associado à atividade ou valor de carteira envolvido.">Retorno Estimado(R$):
-			</td>
-			<td>
-				<input class="texto1" value="0,00" name="txtRetorno<%=nome%>" size="15" tabindex="<%=index+3%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar a expectativa de retorno associado à atividade ou valor de carteira envolvido.">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="javascript:;" title="Informar o valor do contrato associado à atividade.">Valor do Contrato (R$):</a>
-				&nbsp;
-				<input class="texto1" value="0,00" name="txtValorContrato<%=nome%>" size="15" tabindex="<%=index+4%>" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar o valor do contrato associado à atividade.">
-			</td>
-		</tr>
-	</table>
-</table>
-<table id="tab<%=Nome%>" width="100%" border="0" class="tabela1">
-<tr>
-	<th align="left">&nbsp;Dados do Cliente:</td>
+        Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
+        <br />
+		<input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+3%>" title="Adiciona um participante Embratel na lista">
+		&nbsp;
+		<input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+4%>" title="Remove um participante Embratel na lista">
+        <br />
+		<%=titulo2%>
+        <br>
+	    <select name="lst<%=nome%>"  size="4"
+			style="LINE-HEIGHT: 30px; PADDING-TOP: 3px; WIDTH: 640px; overflow: auto;"
+			multiple tabindex="<%=index+5%>">
+        </select>
+        <p>&nbsp;</p>
+    </td>
 </tr>
-<tr>
-    <td>
-		<table width="100%" border="0" class="tabela1" style="background-color: #D6EBFF;">
-		<tr> 
-			<td width="230px">
-				&nbsp;<span class="vermelho2"><b>*</b></span>&nbsp;&nbsp;<a href="javascript:;" title="Informar o principal objetivo do plano de metas associado a atividade.">Item associado ao plano de metas:</a>
-			</td>
-			<td>
-        		<%'call comboTecnologia("cmbItem" & nome,objConn,"N")%>
-				--
-				<input type="Hidden" name="cmbItem" value="">
-			</td>
-		</tr>
-	</table>
 </table>
 
 <script type="text/javascript">
-	tab<%=nome%>.style.display = 'none';
-	tab<%=nome%>EBT.style.display = 'none';
-</script>
-
-<%end function
-
-function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
-	if titulo1 = "" then titulo1 = "Dados dos Participantes Embratel:"
-	if titulo2 = "" then titulo2 = "Participantes Embratel:"
-%>
-<script>
-function adiciona_retira_participantes<%=nome%>(tipo)
-{
-	var frm = document.forms[0]
-	var nome = frm.txtNome<%=nome%>;
-	var motivo = frm.txtMotivo<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	if (tipo == 0){
-		if (lista.selectedIndex != -1){
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (nome.value == ""){
-			alert("O campo 'Matricula ou UserName' deve ser preenchido.");
-			nome.focus();		
-		}
-		else if (motivo.value == ""){
-			alert("O campo 'Motivo da Participação' deve ser preenchido.");
-			motivo.focus();		
-		}
-		else{
-			submitFormEscondido();
-		}
-	}
-}
-function submitFormEscondido(){
-	var frm = document.forms[0]
-	var nome = frm.txtNome<%=nome%>;
-	frm.action = "eventosInternos.asp?hdnevento=<%=7%>&nome="+nome.value+"&nomeControle=<%=nome%>&ag_numero=<%=ag_numero%>";
-	frm.method = "post";
-	frm.target = "escondido";
-	frm.submit();
-}
-</script>
-<input type="Hidden" name="txtNomeCompleto<%=nome%>">
-<table id="tab<%=Nome%>" width="100%" border="0" class="tabela1">
-<tr>
-	<th colspan="2" align="left">&nbsp;<%=titulo1%></th>
-</tr>
-<tr>
-    <td>
-		<table width="100%" border="0" class="tabela1" style="background-color: #D6EBFF;">
-        <tr>
-			<td width="75px">Matricula ou Username:&nbsp;</td>
-			<td>
-				<input class="texto1" name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
-			</td>
-			<td width="75px">Motivo da participação:&nbsp;</td>
-			<td>
-				<input class="texto1" name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
-			</td>
-			<td align="center">
-				<input class="texto1" type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+3%>" title="Adiciona um participante Embratel na lista">
-				&nbsp;
-				<input class="texto1" type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+4%>" title="Remove um participante Embratel na lista">
-			</td>
-		</tr>
-		<tr>
-		    <td colspan="5"><%=titulo2%><br>
-	        <select name="lst<%=nome%>" class="texto1" size="4"
-				style="LINE-HEIGHT: 30px; PADDING-TOP: 3px; WIDTH: 640px; overflow: auto;"
-				multiple tabindex="<%=index+5%>">
-        	</select>
-		</tr>
-</tr>
-</table>
-</table>
-<script language="javascript">
-	tab<%=nome%>.style.display = 'none';
+    document.getElementById("tab<%=nome%>").style.display = 'none';
 </script>
 <%
-end function
+End Function
 
-function ControleParticipantesExternos(nome,index)%>
-<script>
-function adiciona_retira_participantes<%=nome%>(tipo)
-{
-	var frm = document.forms[0]
-	var nome = frm.txtNome<%=nome%>;
-	var empresa = frm.txtEmpresa<%=nome%>;
-	var motivo = frm.txtMotivo<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	var ultimo;
-
-	if (tipo == 0){
-		if (lista.selectedIndex != -1){
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (nome.value == ""){
-			alert("O campo 'Nome' deve ser preenchido.");
-			nome.focus();		
-		}
-		else if (empresa.value == ""){
-			alert("O campo 'Empresa' deve ser preenchido.");
-			empresa.focus();		
-		}
-		else if (motivo.value == ""){
-			alert("O campo 'Motivo da Participação' deve ser preenchido.");
-			motivo.focus();		
-		}
-		else{
-			ultimo = lista.options.length;
-			lista.options[ultimo] = new Option(nome.value + " <%=SEPARADOR_CAMPO%> " + empresa.value + " <%=SEPARADOR_CAMPO%> " + motivo.value);
-			lista.options[ultimo].value = nome.value + "<%=SEPARADOR_CAMPO%>" + empresa.value + "<%=SEPARADOR_CAMPO%>" + motivo.value;
-			nome.value = "";
-			empresa.value = "";
-			motivo.value = "";
-			nome.focus();
-		}
-	}
-}
-</script>
-<table id="tab<%=Nome%>" width="100%" border="0" class="tabela1">
-<tr>
-	<th align="left">&nbsp;Dados dos participantes externos:</td>
-</tr>
-<tr>
-    <td>
-		<table width="100%" border="0" class="tabela1"  style="background-color: #D6EBFF;">
-        <tr> 
-			<td width="12%">
-				Nome:</td>
-			<td width="33%"> 
-	             <input class="texto1" name="txtNome<%=nome%>" size="40" tabindex="<%=index+1%>" maxlength="50"></td>
-            <td rowspan="3" width="9%"> 
-                <table width="30%" border="0" class="tabela1"  style="background-color: #D6EBFF;">
-                <tr>
-		            <td>
-						<input class="texto1" type="button" name="btninsere" value=">" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+4%>"></td>
-                </tr>
-                <tr>
-					<td>
-	                    <input class="texto1" type="button" name="btnretira" value="<" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+5%>"></td>
-                </tr>
-		</tr>
-        </table>
-	</td>
-
-    <td  rowspan="3" width="46%"> 
-		Participantes Externos:
-        <select name="lst<%=nome%>" size="6" class="texto1"
-	       style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 400px;"
-           multiple tabindex="<%=index+6%>">
-        </select>
-	</td>
-</tr>
-<tr> 
-	<td width="12%">
-		Empresa:</td>
-    <td width="33%"> 
-        <input class="texto1" name="txtEmpresa<%=nome%>" size="30" tabindex="<%=index+2%>" maxlength="50">
-     </td>
-</tr>
-<tr> 
-	<td width="12%">
-		Motivo da participação:</td>
-	<td width="33%"> 
-		<input class="texto1" name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+3%>" maxlength="200"></td>
-</tr>
-</table>
-</table>
-<script language="javascript">
-	tab<%=nome%>.style.display = 'none';
-</script>
-
-<%end function
 
 function ControleQuantidade(nome,titulo,nomeCampo1,sql,index)%>
 <script>
@@ -322,7 +169,7 @@ fac.focus();
 }
 
 </script>
-<input type="Hidden" name="str<%=Nome%>"/>
+<input type="hidden" name="str<%=Nome%>"/>
 <table id="tab<%=Nome%>" width="100%" border="0">
 <tr>
 	<td bgcolor="#d9d9d9">
@@ -412,14 +259,14 @@ fac.focus();
 }
 
 </script>
-<input type="Hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0" class="tabela1">
+<input type="hidden" name="str<%=Nome%>"/>
+<table id="tab<%=Nome%>" width="100%" border="0" class="table-bordered">
 <tr>
 	<th align="left" colspan="2"><%=titulo%></td>
 </tr>
 <tr>
     <td>
-		<table width="100%" border="0" class="tabela1">
+		<table width="100%" border="0" class="table-bordered">
         <tr> 
 			<td width="12%">
 				&nbsp;<%=nomeCampo1%>:</td>
@@ -429,15 +276,15 @@ fac.focus();
 				<%call comboBDpadrao(objConn,sql,"null")%>
 			</SELECT>
             <td rowspan="3" width="9%"> 
-                <table width="30%" border="0" class="tabela1">
+                <table width="30%" border="0" class="table-bordered">
                 <tr>
 		            <td>
-						<input class="texto1" type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
+						<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
 					</td>
                 </tr>
                 <tr>
 					<td>
-	                    <input class="texto1" type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
+	                    <input  type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
 					</td>
                 </tr>
 				</table>
@@ -512,7 +359,7 @@ function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
 	}
 </script>
 
-<input type="Hidden" name="str<%=Nome%>"/>
+<input type="hidden" name="str<%=Nome%>"/>
 
 <table id="tab<%=Nome%>" border="0">
 <tr>
@@ -534,8 +381,8 @@ function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
 		</TR>
 		<TR>
 			<td colspan="10" align="center">
-				<input class="texto1" type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
-				<input class="texto1" type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
+				<input  type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
+				<input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
 			</td>
 		</tr>
 		<TR>
@@ -615,14 +462,14 @@ function adiciona<%=nome%>(){
 }
 
 </script>
-<input type="Hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0" class="tabela1">
+<input type="hidden" name="str<%=Nome%>"/>
+<table id="tab<%=Nome%>" width="100%" border="0" class="table-bordered">
 <tr>
 	<th align="left" colspan="2"><%=titulo%></td>
 </tr>
 <tr>
     <td>
-		<table width="100%" border="0" class="tabela1">
+		<table width="100%" border="0" class="table-bordered">
         <tr> 
 			<td width="12%">
 				&nbsp;<%=nomeCampo1%>:</td>
@@ -632,15 +479,15 @@ function adiciona<%=nome%>(){
 				<%call comboBDpadrao(objConn,sql,"null")%>
 			</SELECT>
             <td rowspan="3" width="9%"> 
-                <table width="30%" border="0" class="tabela1">
+                <table width="30%" border="0" class="table-bordered">
                 <tr>
 		            <td>
-						<input class="texto1" type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
+						<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
 					</td>
                 </tr>
                 <tr>
 					<td>
-	                    <input class="texto1" type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
+	                    <input  type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
 					</td>
                 </tr>
 				</table>
@@ -1081,7 +928,7 @@ Sub comboAgendamentoJS(nomeText, nomeCombo)
 			combo.options[0].selected = true
 	}
 	</script>
-	<input class="texto1" type="Text" name="<%=nomeText%>" size="4" onKeyUp="comboAgendamentoBuscaAS<%=nomeText%>();">&nbsp;
+	<input  type="text" name="<%=nomeText%>" size="4" onKeyUp="comboAgendamentoBuscaAS<%=nomeText%>();">&nbsp;
 <%
 End Sub
 

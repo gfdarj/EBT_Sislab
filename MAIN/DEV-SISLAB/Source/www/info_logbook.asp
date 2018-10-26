@@ -23,13 +23,13 @@ function chama_oc(cod_oc)
 
 </script>
 <form name="seloc" target="_parent" action="CAD_evLogBook.asp" method="post">
-	<input type="Hidden" name="ocorrencia" value="">
+	<input type="hidden" name="ocorrencia" value="">
 </form>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr> 
 	<td width="2px">&nbsp;</td>
-	<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Informações de Log Book</td>
+	<td width="*" height="25" class="fonteTitulo1"><span class="texto-vermelho-bold">&raquo;</span>&nbsp; Informações de Log Book</td>
 </tr>
 <tr>
 	<td height="1"></td>

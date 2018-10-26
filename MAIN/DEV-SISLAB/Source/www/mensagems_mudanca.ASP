@@ -13,7 +13,7 @@ Dim auxRT, auxRAT, auxusername, EH_CRT, aux_Sigilo, auxorgao, auxtecnologia, aux
 EH_CRT = Env.UsuarioCRT
 %>
 <form name="formteste" method="post" action="">
-<table width=100% class="tabela1">
+<table width=100% class="table-bordered">
 	<tr><td width=11%></td>
 		<td width=10%></td>
 		<td width=10%></td>
@@ -53,7 +53,7 @@ EH_CRT = Env.UsuarioCRT
 		</td>
 	</tr>
 </table>
-<input type="Hidden" name="hdnevento" value="3">
+<input type="hidden" name="hdnevento" value="3">
 </form>
 <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
 <script language="javascript">

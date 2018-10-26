@@ -131,7 +131,7 @@ iframe {
 <table width="100%" height="100%" class="trCadtit1" border="0">
 <tr valign="top">
 	<td width="150"><font class="Fonttit3Cad"><b>Outras Caracter&iacute;sticas:</b></font><br><select multiple name="carac_outras" style="width: 150px;" ondblclick="javascript:MostraDef(this);" size="10" class="combo"></select></td>
-	<td width="40" valign="middle" align="center"><input type="Button" class="botao0" onclick="javascript:adiciona(document.formulario.carac_outras, vcarac_outras, document.formulario.carac_comp, vcarac_comp);" value=">>"> <br/> <input type="Button" class="botao0" onclick="javascript:adiciona(document.formulario.carac_comp, vcarac_comp, document.formulario.carac_outras, vcarac_outras);" value="<<"></td>
+	<td width="40" valign="middle" align="center"><input type="button" class="botao0" onclick="javascript:adiciona(document.formulario.carac_outras, vcarac_outras, document.formulario.carac_comp, vcarac_comp);" value=">>"> <br/> <input type="button" class="botao0" onclick="javascript:adiciona(document.formulario.carac_comp, vcarac_comp, document.formulario.carac_outras, vcarac_outras);" value="<<"></td>
 	<td width="230"><font class="Fonttit3Cad"><b>Caracter&iacute;stica do componente (Qtde):</b></font><br><select multiple name="carac_comp" style="width: 150px;" ondblclick="javascript:MostraDef(this);" size="10" class="combo"></select></td>
 	<td valign="middle" align="left"><input type="button" value="Nova Caracteristica" class="botao3" onclick="javascript:window.open('novacaracteristica.asp?tipo=<%=tipo%>', 'CARACTERISTICA', 'width=460, height=200, toolbar=no, status=no, menubar=no, scrollbars=no');"></td>
 </tr>

@@ -29,7 +29,7 @@ If Env.UsuarioSCE() Then
 	<!--#include file="includes/estado.asp"-->
 </script>
 <form name="formulario" method="post" action="sel_cad_reserva2.asp">
-<input type="Hidden" name="abrir_como" value="<%=ucase(request("abrir_como"))%>">
+<input type="hidden" name="abrir_como" value="<%=ucase(request("abrir_como"))%>">
 <table width="750px" class="texto1">
 <tr>
 	<td colspan="2">

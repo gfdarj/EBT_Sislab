@@ -16,10 +16,10 @@ if( objUL.form( "proc" ) = "" ) then
 %>
 <%	call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")%>
 	<form method="post" action="" name="formulario" enctype="multipart/form-data">
-	<input type="Hidden" name="proc" value="É hora de processar!">
-	<input type="Hidden" name="codarq" value="<%=request("codarq")%>">
-	<input type="Hidden" name="arq_ant" value="<%=request("ant")%>">
-	<table class="tabela1" align="center">
+	<input type="hidden" name="proc" value="É hora de processar!">
+	<input type="hidden" name="codarq" value="<%=request("codarq")%>">
+	<input type="hidden" name="arq_ant" value="<%=request("ant")%>">
+	<table class="table-bordered" align="center">
 	<tr>
 		<td><b>Arquivo Antigo:</b></td>
 		<td><%=request( "ant" ) %></td>

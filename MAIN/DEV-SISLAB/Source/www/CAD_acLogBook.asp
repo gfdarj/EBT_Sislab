@@ -19,7 +19,7 @@ if (oc = "" or oc = "0" or idacao = "" or idacao = "0") and acao <> "cadastrar" 
 <%
 end if
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Ações do LogBook", "window.close()", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Ações do LogBook", "window.close()", "")
 
 tipoacao = ""
 desc = ""
@@ -49,23 +49,25 @@ if idacao <> "" then
 	call Env.Recordset(false, objRS, null)
 end if
 %>
+<div class="margem-10">
 <form name="frm" method="post" action="inscad_aclogbook.asp" enctype="multipart/form-data">
-<input type="Hidden" name="idacao" value="<%=idacao%>">
-<input type="Hidden" name="ocorrencia" value="<%=oc%>">
-<input type="Hidden" name="id_ArquivoExclusao" value="">
-<input type="Hidden" name="id_ArquivoExclusaoNome" value="">
-<input type="Hidden" name="resposta" value="N">
-<table width="100%" class="tabela1">
+    <input type="hidden" name="idacao" value="<%=idacao%>">
+    <input type="hidden" name="ocorrencia" value="<%=oc%>">
+    <input type="hidden" name="id_ArquivoExclusao" value="">
+    <input type="hidden" name="id_ArquivoExclusaoNome" value="">
+    <input type="hidden" name="resposta" value="N">
+
+<table width="100%" class="table-condensed">
 <tr>
-	<td><b>Tipo da Ação:&nbsp;</b></td>
+	<td>Tipo da Ação:&nbsp;</td>
 	<td><%call comboBDSQL( "cmbAcao", objConn,"Select TAT_ID AS VALOR, TAT_DESCRICAO AS DESCRICAO FROM LB_TIPOACAOTOMADA", tipoacao, "N")%></td>
 </tr>
 <tr>
-	<td><b>Descrição:&nbsp;</b></td>
-	<td><input type="text" class="texto1" name="descricao" size=85 maxlength="600" value="<%=desc%>"></td>
+	<td>Descrição:&nbsp;</td>
+	<td><input type="text" name="descricao" size=85 maxlength="600" value="<%=desc%>"></td>
 </tr>
 <tr>
-	<td><b>Responsável:&nbsp;</b></td>
+	<td>Responsável:&nbsp;</td>
 	<td><%call comboUSERCRT("responsavel", objConn,"N")%></td>
 <%	if responsavel <> "" then%>
 	<script language="JavaScript">
@@ -74,11 +76,11 @@ end if
 <%	end if%>
 </tr>
 <tr>
-	<td><b>Executor:&nbsp;</b></td>
-	<td><input type="text" class="texto1" name="executor" size=35 value="<%=executante%>"></td>
+	<td>Executor:&nbsp;</td>
+	<td><input type="text" name="executor" size=35 value="<%=executante%>"></td>
 </tr>
 <tr>
-	<td><b>Prazo Previsto<br>Conclusão:</b></td>
+	<td>Prazo Previsto<br>Conclusão:</td>
 	<td><%call comboData("prazo")%></td>
 <%if not IsNull(prazo) then%>
 	<script language="JavaScript">
@@ -89,13 +91,13 @@ end if
 <%end if%>
 </tr>
 <tr>
-	<td><b>Acompanhamento:</b></td>
-	<td><textarea class="texto1" name="obs" cols="85" rows="6"><%=obs%></textarea></td>
+	<td>Acompanhamento:</td>
+	<td><textarea name="obs" cols="85" rows="6"><%=obs%></textarea></td>
 </tr>
 
 <%if acao = "finalizar" or (not IsNull(conclusao) and acao = "visualizar") then%>
 <tr>
-	<td><b>Data Conclus�o:&nbsp;</b></td>
+	<td>Data Conclusão:&nbsp;</td>
 	<td><%call comboData("conc")%></td>
 <%	if not IsNull(conclusao) then%>
 	<script language="JavaScript">
@@ -105,12 +107,10 @@ end if
 	</script>
 <%	end if%>
 </tr>
-<tr  style="font-weight: lighter;">
-	<td class="nome_cp"  style="font-weight: lighter;">
-		<b>Efic�cia:&nbsp;</b>
-	</td>
+<tr>
+	<td>Eficácia:&nbsp;</td>
 	<td>
-		<select name="opteficacia" class="combo">
+		<select name="opteficacia">
 			<option value="" <%if eficacia = "" then response.write "selected"%>>--</option>
 			<option value="1" <%if eficacia = "1" then response.write "selected"%>>Sim</option>
 			<option value="0" <%if eficacia = "0" then response.write "selected"%>>Não</option>
@@ -119,11 +119,11 @@ end if
 </tr>
 <%end if%>
 <tr>
-	<td><b>Anexar Arquivo:</b></td>
-	<td><input type="File" size="60" name="arquivo" class="texto1"></td>
+	<td>Anexar Arquivo:</td>
+	<td><input type="file" size="60" name="arquivo"></td>
 </tr>
 <tr>
-	<td valign="top"><b>Arquivos Anexos:</b></td>
+	<td valign="top">Arquivos Anexos:</td>
 	<td>
 <%
 '-- Verifica se existem arquivos anexos a esta ação
@@ -135,7 +135,7 @@ If idacao = "" Then s = s & "0" Else s = s & idacao
 call Env.RecordSet(true, objRS, s)
 If Not (objRS.Eof And objRS.Bof) Then
 
-	chr_Buf =  "	<table class='tabela1' width='100%' border='1' style='border: thin solid;' cellpadding='2' cellspacing='0'>"
+	chr_Buf =  "	<table class='table-bordered' width='100%'>"
 	While Not objRS.Eof
 		chr_Buf = chr_Buf & "	<tr>"
 		chr_Buf = chr_Buf & "		<td width='*'>"
@@ -161,7 +161,7 @@ End If
 
 Response.Write chr_Buf
 
-call Env.RecordSet(false, objRS, null)
+Call Env.RecordSet(false, objRS, null)
 %>
 	</td>
 </tr>
@@ -169,15 +169,17 @@ call Env.RecordSet(false, objRS, null)
 	<td colspan="2" align="center">
 <%
 	If (oc <> "") And (Not Env.UsuarioCRT) Then	%>
-		<input class="texto1" type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+		<input type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
 <%	Else%>
-		<input class="texto1" type="button" onclick="envia()" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+		<input type="button" onclick="envia()" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
 <%	End If%>
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 </table>
 </form>
+</div>
+
 <script language="JavaScript" src="includes/anexo.js"></script>
 <script>
 var frm = document.forms[0];
@@ -256,5 +258,5 @@ function envia(){
 <%end if%>
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -36,11 +36,11 @@ Call Tela.MostraCabecalho()
 </form>
 
 <p class="texto1">
-	&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+	&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 		Testes Disponíveis
 	</span>
 </p>
-<table border="1" cellSpacing="0" cellpadding="2" width="100%" class="tabela1">
+<table border="1" cellSpacing="0" cellpadding="2" width="100%" class="table-bordered">
 <tr>
 	<th>Título</th>
 	<th>Disponível</th>

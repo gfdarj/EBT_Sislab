@@ -137,9 +137,9 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 
 %>
 <form method="post" name="formulario">
-<input type="Hidden" name="enviou" value="1">
-<input type="Hidden" name="eq_id" value="<%=eq_id%>">
-<input type="Hidden" name="status" value="<%=status%>">
+<input type="hidden" name="enviou" value="1">
+<input type="hidden" name="eq_id" value="<%=eq_id%>">
+<input type="hidden" name="status" value="<%=status%>">
 
 <table border="0">
 
@@ -250,7 +250,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
 
 			<td class="texto1">
-					PN:<br><input type="Text" value="" name="txtPN" id="txtPN" class="texto1" readonly="true">
+					PN:<br><input type="text" value="" name="txtPN" id="txtPN" class="texto1" readonly="true">
 			</td>
     		</tr>
 
@@ -259,7 +259,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			<td bgcolor="#FFFFFF" align="left" class="texto1">
 				Número de Série:<br>
 				<input type="text" class="texto1" name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
-				<input type="Button" name="btn_ChecaNS" value="Verificar" class="texto1" title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
+				<input type="button" name="btn_ChecaNS" value="Verificar" class="texto1" title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
 			</td>
 
 			<td class="texto1" colspan="1">
@@ -626,7 +626,7 @@ function RemoveControle(l) {
 				<tr>
 				    <td valign="top" class="texto1">
 					<button name="adicionar" class="texto1" onClick="NovoAcessorio();">Novo acess&oacute;rio</button><br>
-					Qtde: <input type="Text" name="qtde_acessorios" size="4" maxlength="5" class="texto1" value="1">
+					Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5" class="texto1" value="1">
 					</td>
 
 <script language="JavaScript">
@@ -786,7 +786,7 @@ function RemoveAcessorio(linha) {
 				while not rec.eof%>
 						<tr class="texto1" id="linha_acess_<%=rec("SEQUENCIAL")%>">
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_1"><%=rec("SEQUENCIAL")%></td>
-							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_2"><input type="Text" class="texto1" size="80" maxlength="255" name="desc_acess_<%=rec("SEQUENCIAL")%>" value="<%=rec("DESCRICAO")%>"></td>
+							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_2"><input type="text" class="texto1" size="80" maxlength="255" name="desc_acess_<%=rec("SEQUENCIAL")%>" value="<%=rec("DESCRICAO")%>"></td>
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_3"><script language="JavaScript">ComboSituacaoAcessorio(true, "status_acess_<%=rec("SEQUENCIAL")%>");document.all.status_acess_<%=rec("SEQUENCIAL")%>.value=<%=rec("STATUS")%></script></td>
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_4" align="center"><script language="JavaScript">comboSimNao(true, "conforme_acess_<%=rec("SEQUENCIAL")%>", <%=cint(rec("CONFORME"))%>);</script></td>
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_5" align="center">

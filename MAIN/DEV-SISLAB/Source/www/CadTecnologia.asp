@@ -73,11 +73,11 @@ function Excluir() {
 }
 </script>
 <form method="post" action="CadTecnologiaA.asp" name="frm">
-<input type="Hidden" name="ehNovaTecnologia" value="0">
-<input type="Hidden" name="excluir" value="0">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="ehNovaTecnologia" value="0">
+<input type="hidden" name="excluir" value="0">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -88,7 +88,7 @@ function Excluir() {
 	<td width="130px">&nbsp;&nbsp;<b>Tecnologia:</b></td>
 	<td>
 		<%call comboTecnologia("tecnologia", Env.oConn,"N")%>&nbsp;&nbsp;
-		<input  class="texto1" type="Button" value="Buscar" onclick="BuscarUsuario();"></input>
+		<input  class="texto1" type="button" value="Buscar" onclick="BuscarUsuario();"></input>
 	</td>
 </tr>
 
@@ -97,8 +97,8 @@ function Excluir() {
 <tr><th align="left" colspan="2">&nbsp;&nbsp;Dados da Área Tecnológica</th></tr>
 
 <tr>
-	<td width="130px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descrição :</b></td>
-	<td><input type="Text" name="desc" size="60" class="texto1"></td>
+	<td width="130px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
+	<td><input type="text" name="desc" size="60" class="texto1"></td>
 <tr>
 
 <tr>
@@ -110,10 +110,10 @@ function Excluir() {
 
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
-		<input type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		<input type="Button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir"/>
-		<input type="Button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+		<input type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		<input type="button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir"/>
+		<input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	</td>
 </tr>
 </table>

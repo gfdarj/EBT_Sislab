@@ -29,18 +29,18 @@ function Valida()	{
 </head>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 scroll="no">
 <form name="formulario" method="post">
-<input type="Hidden" name="fabricante" value="<%=Request.querystring("fabricante")%>">
+<input type="hidden" name="fabricante" value="<%=Request.querystring("fabricante")%>">
 <table width="100%" height="100%" class="trcadtit1" border="1" align="center" cellpadding="6" align="center">
 <tr><td>
 	<table width="100%" height="100%">
 	<tr> 
 		<td><font class="Fonttit3Cad"><b>Nome Fam&iacute;lia:</b></font></td>
-		<td><input type="Text" value="" name="novafamilia" size="40" maxlength="200" class="textbox"></td>
+		<td><input type="text" value="" name="novafamilia" size="40" maxlength="200" class="textbox"></td>
 	</tr>
 	</tr>
 	<tr>
-		<td colspan="2" align="center"><input type="Button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
-			&nbsp;&nbsp;<input type="Button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
+		<td colspan="2" align="center"><input type="button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
+			&nbsp;&nbsp;<input type="button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
 		</td>
 	</tr>
 	</table>

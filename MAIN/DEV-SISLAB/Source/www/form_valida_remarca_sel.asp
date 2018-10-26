@@ -8,7 +8,7 @@ Set Ebt = New TEbt
 
 Response.Buffer = true
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Valida Remarcação - Agendamentos Disponíveis", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Valida Remarcação - Agendamentos Disponíveis", "", "")
 
 Dim rs_numteste, strSQL
 Dim num_erro, desc_erro
@@ -25,7 +25,7 @@ function abre(codigo)
 <input type="hidden" name="cmbNumeroAgendamento">
 </form>
 
-<TABLE border="1" cellpadding="2" cellspacing="0" width="100%" class="tabela1">
+<TABLE border="1" cellpadding="2" cellspacing="0" width="100%" class="table-bordered">
 	<TR>
 		<Th colSpan=2 style="font-size: 10px;">N<sup>o</sup> Agendamento - Tipo de Teste</Th>
 		<Th style="font-size: 10px;">Situação</Th>
@@ -93,5 +93,5 @@ function abre(codigo)
 <%
 Set Ebt = nothing
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

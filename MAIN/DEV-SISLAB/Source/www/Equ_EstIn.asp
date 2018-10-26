@@ -11,7 +11,7 @@ Dim int_Contador
 Dim chr_Buf
 Dim bln_Primeiro
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Equipe / Estrutura Interna", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Equipe / Estrutura Interna", "", "")
 
 sSQL="Select COUNT(DISTINCT ORGA_HIERARQUIA) from Orgao WHERE ORGA_EXIBIR = 1"
 call Env.RecordSet(True, objSiteRS, sSQL)
@@ -19,7 +19,7 @@ int_Cols = objSiteRS(0)
 call Env.RecordSet(False, objSiteRS, sSQL)
 %>
 
-<table border="0" cellpadding="2" cellspacing="4" class="tabela1" width="100%">
+<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" width="100%">
 <tr>
 	<td colspan="<%=int_Cols%>" class='texto1' align="center">
 		<span class='texto1b' style='font-size: 15px;'>ESTRUTURA INTERNA</span><br>
@@ -27,7 +27,7 @@ call Env.RecordSet(False, objSiteRS, sSQL)
 	</td>
 </tr>
 </table>
-<table border="0" cellpadding="2" cellspacing="4" class="tabela1" align="center">
+<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" align="center">
 <tr>
 <%
 	int_Cols = int_Cols * 1.5
@@ -88,7 +88,7 @@ Call Env.RecordSet(False, objSiteRS, sSQL)
 
 <br>
 
-<table border="0" cellpadding="2" cellspacing="4" class="tabela1" align="center">
+<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" align="center">
 <tr>
 	<td></td>
 	<td></td>
@@ -135,5 +135,5 @@ End If
 </table>
 <br><br>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

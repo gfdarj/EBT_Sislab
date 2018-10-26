@@ -2,9 +2,9 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 <% 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, False, "2000px", "Validação dos Arquivos", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, False, "2000px", "Validação dos Arquivos", "location.href='sislab.asp'", "")
 
 Dim RS
 Dim chr_SQL
@@ -52,7 +52,7 @@ int_ContaOk = 0
 int_ContaErro = 0
 %>
 <form action="" method="post">
-<input type="Hidden" name="Excel" value="">
+<input type="hidden" name="Excel" value="">
 <span class="texto1">
 Situação:
 	<select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" class="texto1">
@@ -64,7 +64,7 @@ Situação:
 	<a href="#" onclick="javascript:document.forms[0].Excel.value='1'; document.forms[0].submit();">Exportar para o Excel</a>-->
 </span>
 <BR><BR>
-<table width="*" border="1" class="tabela1">
+<table width="*" border="1" class="table-bordered">
 <tr>
 	<th align="center">*</th>
 	<th align="center">ID</th>
@@ -110,5 +110,5 @@ RW "Total com ERRO: " & int_ContaErro & "</b><BR><BR>"
 
 Set objFSO = Nothing
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

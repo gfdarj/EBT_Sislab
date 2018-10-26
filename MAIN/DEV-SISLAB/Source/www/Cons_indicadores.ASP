@@ -34,11 +34,11 @@ function ValidaCampos() {
 }
 </script>
 <form method="post" action="cons_indicadores.asp" name="formulario" onsubmit="return ValidaCampos();">
-<input type="Hidden" name="submited" value="0">
-<table width="100%" class="tabela1" border="0">
+<input type="hidden" name="submited" value="0">
+<table width="100%" class="table-bordered" border="0">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 			Selecione um Indicador
 		</span>
 	</td>
@@ -65,7 +65,7 @@ function ValidaCampos() {
 <%
 '-- o form foi enviado
 if request("submited") = "1" then%>
-<table class="tabela1" cellpadding="3" cellspacing="3" align="left" border="1" style="border: solid thin;">
+<table class="table-bordered" cellpadding="3" cellspacing="3" align="left" border="1" style="border: solid thin;">
 <%
 	dataIni = request("anoIni") & "-" & request("mesIni") & "-" & request("diaIni")
 	dataFim = request("anoFim") & "-" & request("mesFim") & "-" & request("diaFim")

@@ -7,7 +7,7 @@ dim auxidagenda, auxdescricao, auxtitulo, auxdatainicio, auxdatafim
 dim auxhorario, auxcontato,auxaltera, auxlocalizacao
 dim auxmesant,auxanoant,auxmesatual,auxanoatual, auxAS, auxResponsavel
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Ocupação de Ambientes do CRT", "location.href='sel_cad_agenda.asp'", "../")
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Ocupação de Ambientes do CRT", "location.href='sel_cad_agenda.asp'", "../")
 
 if (IsEmpty(request.form("sel"))) Then
 	auxselecao = 0
@@ -15,15 +15,15 @@ else
 	auxselecao = CInt(trim(request("sel")))
 End if
 %>
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span>
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span>
 	</td>
 </tr>
 <tr>
 	<td>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="tabela1">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="table-bordered">
 		<tr>
 <%
 s = "SELECT Reserva_ambientes.RAM_id, RAM_descricao, RAM_Titulo, RAM_horario, RAM_contato, Ambientes.AMB_ID, RAM_AS, RAM_Responsavel, CONVERT(VARCHAR, RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, RAM_datafim, 103) AS RAM_datafim, AMB_NOME " & _
@@ -68,7 +68,7 @@ If Not objRS.EOF Then
 <%		end if%>
 
 <%		if Not(IsNull(auxIDagenda) or auxIDagenda="")  then%>
-				<table width="100%" class="tabela1">
+				<table width="100%" class="table-bordered">
 				<tr valign="top">
 					<td width="7px"><span class="cinza1">&raquo;</span></td>
 					<td>
@@ -124,5 +124,6 @@ end if%>
 <br>
 <%
 call Env.RecordSet( false, objRS, null)
-call imprimeRodape(RODAPE_OFF)
+
+Call Tela.MostraRodape()
 %>

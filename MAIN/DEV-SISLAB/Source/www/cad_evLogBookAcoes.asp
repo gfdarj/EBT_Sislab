@@ -6,7 +6,7 @@
 <%
 Dim objRS, oc, s
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "", "", "")
 
 oc = request("ocorrencia")
 if oc = "" then oc = "0"
@@ -19,12 +19,12 @@ s = _
 	"ON TAT_ID = ACT_TIPOACAO WHERE ACT_LB = " & oc
 call Env.RecordSet(true, objRS, s)
 %>
-<table class="tabela1" width="100%" cellpadding="2" cellspacing="0" border="0" style="border-bottom: solid thin;">
+<table class="table-bordered" width="100%" cellpadding="2" cellspacing="0" border="0" style="border-bottom: solid thin;">
 <%
 if objRS.Eof and objRS.Bof then
 %>
 <tr>
-	<td colspan="1"><b><i>Nenhuma a��o tomada</i></b></td>
+	<td colspan="1"><b><i>Nenhuma ação tomada</i></b></td>
 </tr>
 <%
 else
@@ -70,12 +70,14 @@ else
 end if
 %>
 <table>
+
 <form name="form_exclui_acao" action="INSCAD_acLogBook.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
-<input type="Hidden" name="remover" value="1">
-<input type="Hidden" name="idacao" value="">
-<input type="Hidden" name="ocorrencia" value="<%=oc%>">
+<input type="hidden" name="remover" value="1">
+<input type="hidden" name="idacao" value="">
+<input type="hidden" name="ocorrencia" value="<%=oc%>">
 </form>
-<script language="JavaScript">
+
+<script type="text/javascript">
 	function remover(idacao) {
 		document.form_exclui_acao.idacao.value = idacao;
 		document.form_exclui_acao.submit();
@@ -100,5 +102,5 @@ end if
 	document.leftmargin = 0
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

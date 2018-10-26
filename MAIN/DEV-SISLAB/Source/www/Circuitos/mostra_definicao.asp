@@ -34,6 +34,6 @@ call Env.RecordSet(false, objRS, null)
 </td>
 </tr>
 <tr height="30" class="trcadtit1">
-	<td align="center"><input type="Button" name="btnCancela" value="Fechar" class="botao1" onclick="javascript:window.close();"></td>
+	<td align="center"><input type="button" name="btnCancela" value="Fechar" class="botao1" onclick="javascript:window.close();"></td>
 </tr>
 </table>

@@ -8,7 +8,7 @@ dim objRS, s
 dim auxidagenda, auxdescricao, auxtitulo, auxdatainicio, auxdatafim
 dim auxhorario, auxcontato,auxaltera, auxlocalizacao, auxas, auxresponsavel
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Reserva de Ambientes", "location.href='sel_Cad_Agenda.asp'", "../")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Reserva de Ambientes", "location.href='sel_Cad_Agenda.asp'", "../")
 %>
 <script language="javascript">
 function AtualizaData() {
@@ -100,13 +100,13 @@ call Env.RecordSet( false, objRS, null)
 <input type=hidden name=selecao value="<%=auxidagenda%>">
 <input type=hidden name=tipotxt value="-1">
 <input type=hidden name=acao value="-1">
-<table width="100%" cellspacing="0" cellpadding="3" class="tabela1">
+<table width="100%" cellspacing="0" cellpadding="3" class="table-bordered">
 <tr>
 	<td width="75px">&nbsp;Título:</td>
 	<td>
 		<input type="text" value="<%=auxtitulo%>" name="titulo" size="80" class="texto1">
 		&nbsp;&nbsp;&nbsp;
-		<input type="Button" class="texto1" value=" Ver Reservas " onclick="javascript:abreLista();">
+		<input type="button" class="texto1" value=" Ver Reservas " onclick="javascript:abreLista();">
 	</td>
 </tr>
 <tr>
@@ -195,9 +195,9 @@ If Not objRS.EOF Then
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-		<input type="Button" value="Cadastrar"  onClick="ValidaCampos();">
+		<input type="button" value="Cadastrar"  onClick="ValidaCampos();">
 <% if auxaltera="Alterar" then%>
-		<input type="Button" value="Cancelar Reserva"  onClick="Apagar();">&nbsp;
+		<input type="button" value="Cancelar Reserva"  onClick="Apagar();">&nbsp;
 <%end if%>
 	</td>
 </tr>
@@ -217,5 +217,5 @@ If Not objRS.EOF Then
 </script>
 
 <%
-call imprimeRodape(RODAPE_OFF)
+call Tela.MostraRodape()
 %>

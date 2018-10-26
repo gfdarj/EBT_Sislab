@@ -7,7 +7,7 @@ Dim Ebt
 Set Ebt = New TEbt
 
 'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios", "", "")
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Remarcação de Agendamento", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Remarcação de Agendamento", "", "")
 
 Env.ArmazenaCaminhoAnterior()
 
@@ -333,12 +333,12 @@ function PreparaCampos(f)
 
 </form>
 
-<script language="JavaScript">
+<script type="text/javascript">
 	/*** O cancelamento pelo usuario foi retirado em 29/01/2007 ***/
 	PreparaCampos(null);
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 
 if Err.number <> 0 then
 	Response.Redirect "erro.asp?perro=" & Server.URLEncode(Err.number) & "&pdescricao=" & Server.URLEncode(Err.description) 

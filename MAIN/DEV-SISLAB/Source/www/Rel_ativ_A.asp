@@ -220,7 +220,7 @@ sSQL_Dados = sSQL_Dados & " " & sSQL & " ORDER BY a.AG_NUMERO DESC; "
 %>
 <html>
 <form method="post" action="rel_ativ_b.asp">
-<input type="Hidden" name="ssql" value="<%=sSQL_Dados%>">
+<input type="hidden" name="ssql" value="<%=sSQL_Dados%>">
 </form>
 <script>
 var frm = document.forms[0]

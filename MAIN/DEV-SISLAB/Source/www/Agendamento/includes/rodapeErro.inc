@@ -33,7 +33,7 @@
 <BR>
 <table border="0" width="70%" align="center">
 	<tr>
-		<td align="center"><input type="Button" value="Voltar" onclick="javascript:history.go(-1);"></td>
+		<td align="center"><input type="button" value="Voltar" onclick="javascript:history.go(-1);"></td>
 	</tr>
 </table>
 

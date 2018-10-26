@@ -86,7 +86,7 @@ If Env.UsuarioSCE() Then
 			<option value="<%=CONTROLE_QUALIFICACAO%>">Qualificação</option>
 		</select>
 	</td>
-	<td>A vencer em at&eacute; <input type="Text" class="texto1" name="vencimento" size="5"> dias</td>
+	<td>A vencer em at&eacute; <input type="text" class="texto1" name="vencimento" size="5"> dias</td>
 </tr>
 
 <tr class="texto1"><td>&nbsp;</td></tr>

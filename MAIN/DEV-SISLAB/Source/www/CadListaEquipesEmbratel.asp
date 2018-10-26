@@ -84,15 +84,15 @@ bEof = True
     }
 </script>
 <form method="post" action="CadListaEquipesEmbratelA.asp" name="frm">
-<input type="Hidden" name="excluir" value="0">
-<input type="Hidden" name="lista_participante" value="">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="excluir" value="0">
+<input type="hidden" name="lista_participante" value="">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr> 
 	<td width="50px"></td>
 	<td width="*"></td>
 </tr>
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -108,7 +108,7 @@ bEof = True
 	<td>
 		<%Call comboBDSQL_2("gerente", Env.oConn, "select DISTINCT UserId_Gerente AS VALOR, UserId_Gerente AS DESCRICAO from EquipeEmbratel ORDER BY UserId_Gerente", "N", true)%>
 		&nbsp;&nbsp;
-		<input class="texto1" type="Button" value="Buscar" onclick="BuscarGerente();">
+		<input class="texto1" type="button" value="Buscar" onclick="BuscarGerente();">
 	</td>
 </tr>
 
@@ -117,23 +117,23 @@ bEof = True
 <tr><th align="left" colspan="2">&nbsp;&nbsp;Equipe</th></tr>
 
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username do Gerente:</b></td>
-	<td><input type="Text" name="novo_gerente" size="50" maxlength="80" class="texto1"></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username do Gerente:</b></td>
+	<td><input type="text" name="novo_gerente" size="50" maxlength="80" class="texto1"></td>
 <tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td valign="top">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username da Equipe:</b></td>
+	<td valign="top">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username da Equipe:</b></td>
 	<td>
 		<table class="texto1">
 		<tr valign="top">
 			<td><b>Participante</b><BR>
-				<input type="Text" name="novo_participante" size="50" maxlength="80" class="texto1">
+				<input type="text" name="novo_participante" size="50" maxlength="80" class="texto1">
 			</td>
 			<td valign="middle">
-				<input type="Button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
-				<input type="Button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
+				<input type="button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
+				<input type="button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
 			</td>
 			<td>
 				<b>Usuários adicionados</b><BR>
@@ -194,10 +194,10 @@ End If
 
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
-		<input type="Button" class="texto1" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
-		<input type="Button" class="texto1" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		<input type="Button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" class="texto1" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+		<input type="button" class="texto1" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
+		<input type="button" class="texto1" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		<input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" class="texto1" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
 	</td>
 </tr>
 </table>

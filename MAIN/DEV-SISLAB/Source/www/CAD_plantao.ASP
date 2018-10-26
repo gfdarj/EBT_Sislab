@@ -6,12 +6,7 @@
 <%
 If IsEmpty(Env.Usuario) Then response.redirect "msgAcessoNA.asp"
 
-Tela.SetMostraMenu = MENU_ON
-Tela.SetMostraImagem = True
-Tela.SetNomeTela = "Cadastrar Plantão de Notícias do CRT"
-Tela.SetLinkVoltar = "location.href='sel_Cad_plantao.asp';"
-Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Plantão de Notícias do CRT", "location.href='sel_Cad_plantao.asp';", "")
+call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Plantão de Notícias do CRT", "location.href='sel_Cad_plantao.asp';", "")
 
 Dim objSiteRS, sSQL,i,auxi
 Dim auxcodnoticia,auxtitnoticia,auxnoticia,auxlink
@@ -46,69 +41,72 @@ End if
 
 Call Env.RecordSet(false, objSiteRS, null)
 %>
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 
-<script language="javascript">
-function selexcluir()
-{
-  document.formulario.tipocomando.value="Excluir"	
-  document.formulario.submit()
-}
+<script type="text/javascript">
+    function selexcluir()
+    {
+      document.formulario.tipocomando.value="Excluir"	
+      document.formulario.submit()
+    }
 
-function ValidaCampos()
-{
-if (document.formulario.titulo.value=="")
-	{
-	alert("Título da notícia não informada.\nInforme o título da notícia.");
-	        formulario.titulo.focus();
-		return false;
-	}
-if (AchaAspas(document.formulario.titulo.value))
-	{
-	alert("Título não pode conter Aspas ou apóstrofes.\nCorrija o texto do Título.");
-	        formulario.titulo.focus();
-		return false;
-	}
-if (AchaAspas(document.formulario.link.value))
-	{
-	alert("Link não pode conter Aspas ou apóstrofes.\nCorrija o texto do Link.");
-	        formulario.link.focus();
-		return false;
-	}
-if(!(ValidaDataMesAno(document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value,"Data In�cio")))
-	{
-		return false;
-	}
-if(!(ValidaDataMesAno(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,"Data Expira��o")))
-	{
-		return false;
-	}
-if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value)))
-	{
-	alert("Data de Expiração não pode ser menor que Data de Início.\nCorrija as Datas.");
-		return false;
-	}
-	return true;
-}
+    function ValidaCampos()
+    {
+    if (document.formulario.titulo.value=="")
+	    {
+	    alert("Título da notícia não informada.\nInforme o título da notícia.");
+	            formulario.titulo.focus();
+		    return false;
+	    }
+    if (AchaAspas(document.formulario.titulo.value))
+	    {
+	    alert("Título não pode conter Aspas ou apóstrofes.\nCorrija o texto do Título.");
+	            formulario.titulo.focus();
+		    return false;
+	    }
+    if (AchaAspas(document.formulario.link.value))
+	    {
+	    alert("Link não pode conter Aspas ou apóstrofes.\nCorrija o texto do Link.");
+	            formulario.link.focus();
+		    return false;
+	    }
+    if(!(ValidaDataMesAno(document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value,"Data In�cio")))
+	    {
+		    return false;
+	    }
+    if(!(ValidaDataMesAno(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,"Data Expira��o")))
+	    {
+		    return false;
+	    }
+    if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formulario.mesfimexibicao.value+"/"+document.formulario.anofimexibicao.value,document.formulario.diainiexibicao.value+"/"+document.formulario.mesiniexibicao.value+"/"+document.formulario.anoiniexibicao.value)))
+	    {
+	    alert("Data de Expiração não pode ser menor que Data de Início.\nCorrija as Datas.");
+		    return false;
+	    }
+	    return true;
+    }
 </script>
+
+<div class="margem-10">
 <form method=post action="insCad_plantao.asp" name="formulario"  onsubmit="return ValidaCampos();">
 <input type="hidden" name="tipocomando" value="<%=auxaltera%>">
 <input type="hidden" name="codNoticia" value="<%=CInt(trim(auxselecao))%>">
-<div align="center">
-<table width="100%" cellpadding="3" cellspacing="3" class="tabela1">
+
+<table>
 <tr> 
 	<td>
-		<b>Título da Notícia:</b><br>
-		<input type="text" name="titulo" size="100" maxlength="255" value="<%=auxtitnoticia%>" class="texto1">
+		Título da Notícia:<br>
+		<input type="text" name="titulo" size="100" maxlength="255" value="<%=auxtitnoticia%>">
     </td>
 </tr>
+<tr><td>&nbsp;</td></tr>
 <tr> 
 	<td>
-		<table class="tabela1" cellpadding="3" cellspacing="0">
+		<table>
 		<tr>
 			<td>
-				<b>Data de Início de Exibição:</b></font><br>
-				<select name="diainiexibicao" class="combo">
+				Data de Início de Exibição:<br>
+				<select name="diainiexibicao">
 				  <option value="">Dia</option>
 				  <% for i=1 to 31 %>
 				<% if i<10 then 
@@ -120,7 +118,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <option value=<%=auxi%>><%=auxi%></option>
 				  <%next%>
 				</select>
-				<select name="mesiniexibicao" class="combo">
+				<select name="mesiniexibicao" >
 				  <option value="">Mês</option>
 				  <option value=01>Janeiro</option>
 				  <option value=02>Fevereiro</option>
@@ -135,7 +133,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <option value=11>Novembro</option>
 				  <option value=12>Dezembro</option>
 				</select>
-				<select name="anoiniexibicao" class="combo">
+				<select name="anoiniexibicao">
 				  <option value="">Ano</option>
 				  <% for i=-8 to 8 %>
 				<%cbano=year(now)-i%>
@@ -145,8 +143,8 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 			</td>
 			<td width="50px">&nbsp;</td>
 			<td>
-				<b>Data Expiração da Exibição:</b><br>
-				<select name="diafimexibicao" class="combo">
+				Data Expiração da Exibição:<br>
+				<select name="diafimexibicao">
 				  <option value="">Dia</option>
 				  <% for i=1 to 31 %>
 				<% if i<10 then 
@@ -158,7 +156,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <option value=<%=auxi%>><%=auxi%></option>
 				  <%next%>
 				</select>
-				<select name="mesfimexibicao" class="combo">
+				<select name="mesfimexibicao">
 				  <option value="">Mês</option>
 				  <option value=01>Janeiro</option>
 				  <option value=02>Fevereiro</option>
@@ -173,7 +171,7 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 				  <option value=11>Novembro</option>
 				  <option value=12>Dezembro</option>
 				</select>
-				<select name="anofimexibicao" class="combo">
+				<select name="anofimexibicao">
 				  <option value="">Ano</option>
 				  <% for i=-8 to 8 %>
 				<%cbano=year(now)-i%>
@@ -185,23 +183,27 @@ if(!(DataMaiorIgual(document.formulario.diafimexibicao.value+"/"+document.formul
 		</table>
 	</td>
 </tr>
-<tr> 
-	<td>
-		<b>Link (URL para p�gina relacionada):</b><br>
-		<input type="text" name="link" size="100" maxlength="255" value="" class="texto1">
-    </td>
-</tr>
+<tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<input type="submit" name="Submit" value=" Atualizar " class="texto1">
+		<b>Link (URL para página relacionada):</b><br>
+		<input type="text" name="link" size="100" maxlength="255" value="">
+    </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+	<td>
+		<input type="submit" name="Submit" value=" Atualizar ">
         &nbsp;&nbsp;&nbsp; 
 <%if auxaltera="Alterar \ Excluir" then %>
-        <input type="button" name="Excluir" value="  Excluir  " onclick="javascript: selexcluir()" class="texto1">
+        <input type="button" name="Excluir" value="  Excluir  " onclick="javascript: selexcluir()">
 <%end if%>
 	</td>
 </tr>
 </table>
 </form>
+</div>
+
 <script language="VBScript">
 	document.formulario.titulo.value="<%=auxtitnoticia%>"
 	document.formulario.link.value="<%=auxlink%>"

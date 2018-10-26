@@ -35,11 +35,11 @@ function ValidaCampos() {
 </script>
 
 <form method="post" action="cons_indicadoresNC.asp" name="formulario" onsubmit="return ValidaCampos();">
-<input type="Hidden" name="submited" value="0">
-<table width="100%" class="tabela1" border="0">
+<input type="hidden" name="submited" value="0">
+<table width="100%" class="table-bordered" border="0">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 			Selecione o período desejado da consulta
 		</span>
 	</td>
@@ -64,7 +64,7 @@ if request("submited") = "1" then
 	sSQL = "exec sp_Indicador_Nao_Conformidade '" & dataIni & "','" & dataFim & "';"
 	Set ObjEfi = Env.oConn.Execute(sSQL)
 %>
-<table class="tabela1" cellpadding="3" cellspacing="3" align="left" border="1" style="border: solid thin;">
+<table class="table-bordered" cellpadding="3" cellspacing="3" align="left" border="1" style="border: solid thin;">
 <tr>
 	<th>Total de Ocorrências</th>
 	<th>Não Conformidades</th>

@@ -10,7 +10,7 @@ Dim objRS, s, plataforma, mod_id
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
 
 plataforma = request("plataforma")
 if plataforma = "" then plataforma = "0"
@@ -103,8 +103,8 @@ function salvaPlataforma(frm)
 }
 </script>
 <form method="post" action="" name="frm">
-<input type="Hidden" name="listaEquipamentos" value="">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="listaEquipamentos" value="">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr><td>&nbsp;</td></tr>
 
 <tr><th align="left">&nbsp;Selecione a Plataforma</td></tr>
@@ -154,8 +154,8 @@ function salvaPlataforma(frm)
 		<table width="630px">
 		<tr>
 			<td align="right">
-				<input type="Button" class="texto1" value="Adicionar" onclick="javascript: adicionar();">&nbsp;&nbsp;
-				<input type="Button" class="texto1" value=" Remover " onclick="javascript: remover();">
+				<input type="button" class="texto1" value="Adicionar" onclick="javascript: adicionar();">&nbsp;&nbsp;
+				<input type="button" class="texto1" value=" Remover " onclick="javascript: remover();">
 			</td>
 		</tr>
 		</table>
@@ -189,7 +189,7 @@ call Env.RecordSet(false, objRS, null)
 
 <tr><td>&nbsp;</td></tr>
 
-<tr><td><input type="Button" value=" Salvar " onclick="javascript:return salvaPlataforma(document.forms[0]);"></td></tr>
+<tr><td><input type="button" value=" Salvar " onclick="javascript:return salvaPlataforma(document.forms[0]);"></td></tr>
 
 </table>
 </form>
@@ -198,5 +198,5 @@ call Env.RecordSet(false, objRS, null)
 	var frm = document.forms[0];
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

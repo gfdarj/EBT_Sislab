@@ -29,13 +29,13 @@ with objSP
 end with
 Call Env.StoredProcedure(false, objSP, nome_sp)
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Exclusão de Agendamento", "location.href='form_agenda_exclui.asp'", "")
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Exclusão de Agendamento", "location.href='form_agenda_exclui.asp'", "")
 
 'return = 1
 
 if return > 0 then '-- ok
 %>
-<table border="0" width="100%" class="tabela1">
+<table border="0" width="100%" class="table-bordered">
 <tr> 
 	<td width="100%" class="texto1B">
 		Dados exclu&iacute;dos com sucesso !! <br><br>
@@ -55,7 +55,7 @@ if return > 0 then '-- ok
 <%
 else '-- ocorreu um erro
 %>
-<table border="0" width="100%" class="tabela1">
+<table border="0" width="100%" class="table-bordered">
 <tr> 
 	<td width="100%" class="texto1B">
 		N&atilde;o foi poss&iacute;vel excluir os dados solicitados !!!<br><br>
@@ -75,5 +75,5 @@ else '-- ocorreu um erro
 <%
 end if
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

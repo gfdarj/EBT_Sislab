@@ -222,10 +222,10 @@ function ver_submit()
 </script>
 <form name="componente" action="proc_compo.asp" method="post">
 
-<input type="Hidden" name="lista_int" value="">
-<input type="Hidden" name="lista_qtd" value="">
+<input type="hidden" name="lista_int" value="">
+<input type="hidden" name="lista_qtd" value="">
 
-<input type="Hidden" name="cpt_id" value="<%= request.querystring( "cpt_id" ) %>" />
+<input type="hidden" name="cpt_id" value="<%= request.querystring( "cpt_id" ) %>" />
 <table class="tipo1" align="center">
 <tr><td></td><td></td></tr>
 <tr>
@@ -236,7 +236,7 @@ function ver_submit()
 </tr>
 <tr id="l_nome">
 	<th>Nome</th>
-	<td><input type="Text" name="cpt_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cpt_nome %>" /></td>
+	<td><input type="text" name="cpt_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cpt_nome %>" /></td>
 </tr>
 <tr id="l_tipo">
 	<th>Tipo de Componente</th>
@@ -335,7 +335,7 @@ call Env.RecordSet( false, objRS, strSQl)
 			</select>
 <br>
 Qtd:<br>
-<input type="Text" name="qtd_int" size="4" maxlength="4" value="" />
+<input type="text" name="qtd_int" size="4" maxlength="4" value="" />
 </font>
 </td>
 <td>
@@ -384,8 +384,8 @@ end if
 
 <tr>
 	<th>Vers&atilde;o de SW:</th>
-	<td><font class="Fonttit3Cad"><b>atual: <input type="Text" name="vsw_atu" size="20" maxlength="255" value="<%= vsw_atu %>" />&nbsp;&nbsp;&nbsp;
-padrão: <input type="Text" name="vsw_std" size="20" maxlength="255" value="<%= vsw_std %>" /></b></font></td>
+	<td><font class="Fonttit3Cad"><b>atual: <input type="text" name="vsw_atu" size="20" maxlength="255" value="<%= vsw_atu %>" />&nbsp;&nbsp;&nbsp;
+padrão: <input type="text" name="vsw_std" size="20" maxlength="255" value="<%= vsw_std %>" /></b></font></td>
 </tr>
 
 <tr valign="top">
@@ -395,7 +395,7 @@ padrão: <input type="Text" name="vsw_std" size="20" maxlength="255" value="<%= 
 
 <tr>
 	<th>C&oacute;digo SGP/SCE</th>
-	<td><input type="Text" name="cpt_cod_sgp_sce" size="60" maxlength="50" value="<%= cpt_cod %>" /></td>
+	<td><input type="text" name="cpt_cod_sgp_sce" size="60" maxlength="50" value="<%= cpt_cod %>" /></td>
 </tr>
 
 <tr>

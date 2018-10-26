@@ -4,7 +4,7 @@
 <!--#include file="includes/controleshtml.asp" -->
 <script language="javascript" src="includes/anexo.js"></script>
 <% 
-Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
 
 Dim RS
 Dim chr_SQL
@@ -35,7 +35,7 @@ Set RS = Env.oConn.Execute(chr_SQL)
 'RW chr_arquivo & "<BR>"
 int_Conta = 0
 %>
-<table width="100%" border="0" class="tabela1">
+<table width="100%" border="0" class="table-bordered">
 <tr>
 	<th>Arquivo</th>
 </tr>
@@ -106,7 +106,8 @@ RW "<BR>Total encontrado: " & int_Conta & "<BR><BR>"
 Set objFSO = Nothing
 
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
+
 
 Function ValidaNomeArquivo(ByRef chr_arquivo, bln_TrocaNome)
 	Dim ComAcentos

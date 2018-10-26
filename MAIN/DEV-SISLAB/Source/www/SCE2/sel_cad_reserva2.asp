@@ -289,7 +289,7 @@ While Not rec.eof
 <%	    ReservaOK = Sce.ReservaFechada(agnumero)
 
 		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
-		    <p align="right"><input type="Button" class="texto1" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p align="right"><input type="button" class="texto1" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <%	    Elseif ReservaOK then%>
     		<p align="right"><i>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</i></p>
 <%		End if%>
@@ -314,9 +314,9 @@ WEnd
 <iframe style="display: none;" name="escondido"></iframe>
 
 <form name="formulario" action="sel_cad_reserva2_aceite.asp">
-    <input type="Hidden" name="ag_numero" value="">
+    <input type="hidden" name="ag_numero" value="">
     <select name="lista_itens" style="display: none; width:500px" multiple></select>
-    <input type="Hidden" name="tudoAceitoOK" value="SIM">
+    <input type="hidden" name="tudoAceitoOK" value="SIM">
 </form>
 
 <script language="JavaScript">

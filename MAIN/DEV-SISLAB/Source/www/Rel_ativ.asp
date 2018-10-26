@@ -98,7 +98,7 @@ function controleClientes(eu)
 </script>
 <form name="formteste" method="post" action="rel_ativ_A.asp" onsubmit="javascript: if(validaCampos(this)) { showAguarde(); return true; } else return false;">
 <input type=hidden name="doformteste" value="1">
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
 		&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
@@ -106,7 +106,7 @@ function controleClientes(eu)
 </tr>
 <tr>
 	<td>
-		<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
+		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
 		<tr>
 			<td></td>
 			<td></td>
@@ -122,7 +122,7 @@ function controleClientes(eu)
 		<tr>
 			<td colspan="1" <%=chr_EstiloTD%>>
 				Nº AS&nbsp;
-				<input type="Text" name="auxAS" class="texto1" size="5" maxlength="10">
+				<input type="text" name="auxAS" class="texto1" size="5" maxlength="10">
 			</td>
 			<td colspan="9" <%=chr_EstiloTD%>>
 				Palavra-chave (Descrição/Objetivo/Título):&nbsp;
@@ -185,11 +185,11 @@ function controleClientes(eu)
 	If Env.UsuarioCRT Then
 %>
 		<BR><BR>
-		<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
+		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="0" style="background: <%=chr_BgColor%>;">
 <%
 	else
 %>
-		<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="0" style="display: none;">
+		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="0" style="display: none;">
 <%
 	End If
 %>
@@ -197,7 +197,7 @@ function controleClientes(eu)
 			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
 		</tr>
 		<tr>
-			<td colspan="10"><b><span class="vermelho2">&raquo;</span>&nbsp;Filtros da Equipe CRT</b></td>
+			<td colspan="10"><b><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Filtros da Equipe CRT</b></td>
 		</tr>
 		<tr>
 			<td colspan="6" <%=chr_EstiloTD%>>

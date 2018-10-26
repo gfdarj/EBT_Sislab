@@ -50,14 +50,14 @@ function AtualizaLocais(s)
 </script>
 
 <form name="formulario" method="post">
-<input type="Hidden" name="localgenerico" value="<%=localgenerico%>">
+<input type="hidden" name="localgenerico" value="<%=localgenerico%>">
 <table width="100%" height="100%" class="trCadtit1" border="0">
 <tr>
 	<td valign="top" width="400">
 		<font class="Fonttit3Cad"><b>Local Específico:</b></font><br>
-		<input type="Text" name="local" value="" size="40" maxlength="50">&nbsp;&nbsp;&nbsp;
-		<input type="Button" class="botao0" name="btnAdiciona" value="+" onclick="Adicionar();">
-		<input type="Button" class="botao0" name="btnRemove" value="-" onclick="Remover();">
+		<input type="text" name="local" value="" size="40" maxlength="50">&nbsp;&nbsp;&nbsp;
+		<input type="button" class="botao0" name="btnAdiciona" value="+" onclick="Adicionar();">
+		<input type="button" class="botao0" name="btnRemove" value="-" onclick="Remover();">
 	</td>
 	<td align="left" valign="top" id="cel_locais">
 		<font class="Fonttit3Cad"><b>Locais Espec&iacute;ficos:</b></font><br>

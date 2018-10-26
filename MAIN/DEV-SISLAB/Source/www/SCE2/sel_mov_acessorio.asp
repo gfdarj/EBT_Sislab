@@ -312,7 +312,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 <input type="hidden" name="eq_id" value="<%=eq_id%>">
 <input type="hidden" name="ehReserva" value="NAO">
 <input type="hidden" name="recarregouform" value="SIM">
-<input type="Hidden" name="status" value="<%=status_eq%>">  <!-- pego o estado dos itens consultados para movimentar -->
+<input type="hidden" name="status" value="<%=status_eq%>">  <!-- pego o estado dos itens consultados para movimentar -->
 <table width="100%" border="0" CLASS="texto1">
 <%
 '-- Se alterei uma movimentacao exibe uma msg de confirmaçao OK

@@ -2,8 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-
-Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Mensagens de automáticas de email - Preview", "window.close();", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Mensagens de automáticas de email - Preview", "window.close();", "")
 
 If Not (VVVNZ(Request("ID")) And VVVNZ(Request("Email"))) Then
 	Dim RS
@@ -22,5 +21,5 @@ If Not (VVVNZ(Request("ID")) And VVVNZ(Request("Email"))) Then
 	Set RS = Nothing
 End If
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

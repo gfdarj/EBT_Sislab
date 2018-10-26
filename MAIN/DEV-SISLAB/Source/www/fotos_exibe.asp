@@ -25,7 +25,7 @@ Else
 	chr_Desc = "Arquivo não encontrado"
 End If
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Fotos", "javascript:window.close();", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Fotos", "javascript:window.close();", "")
 %>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 <tr>
@@ -38,12 +38,12 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Fotos", "javascript:wi
 			<br><br>
 			<i><%=chr_Desc%></i>
 			<br><br>
-			<input type="Button" class="texto1" value=" Fechar " onclick="javascript:window.close();">
+			<input type="button" class="texto1" value=" Fechar " onclick="javascript:window.close();">
 			<br><br>
 		</center1>
 	</td>
 </tr>
 </table>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -340,7 +340,7 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px">&nbsp;</td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="vermelho2">&raquo;</span>
+							<td width="*" height="25" class="fonteTitulo1"><span class="texto-vermelho-bold">&raquo;</span>
                                 &nbsp; Acha Fácil CRT</td>
 						</tr>
 						<tr>
@@ -543,7 +543,7 @@ end if%>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px"></td>
-							<td width="*" height="25" class="fonteTitulo1"><span class="Vermelho2">&raquo;</span>&nbsp; Notícias</td>
+							<td width="*" height="25" class="fonteTitulo1"><span class="texto-vermelho-bold">&raquo;</span>&nbsp; Notícias</td>
 						</tr>
 						<tr>
 							<td height="1"></td>
@@ -627,7 +627,7 @@ end if%>
 						<tr> 
 							<td width="5px"></td>
 							<td width="*" height="25" class="fonteTitulo1" style="text-align: left;">
-								<span class="Vermelho2">&raquo;</span>&nbsp; Fotos
+								<span class="texto-vermelho-bold">&raquo;</span>&nbsp; Fotos
 							</td>
 						</tr>
 						<tr>

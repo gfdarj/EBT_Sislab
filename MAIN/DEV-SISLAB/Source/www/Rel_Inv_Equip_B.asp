@@ -66,10 +66,10 @@ function paginaAnterior()
 }
 </script>
 <form action="rel_inv_equip_B.asp" method="post">
-<input type="Hidden" name="total_registros" value="<%=total_registros%>">
+<input type="hidden" name="total_registros" value="<%=total_registros%>">
 <input type=hidden name="pagina">
-<input type="Hidden" name="ssql2" value="<%=ssql%>">
-<input type="Hidden" name="registroporpagina" value="<%=registroporpagina%>">
+<input type="hidden" name="ssql2" value="<%=ssql%>">
+<input type="hidden" name="registroporpagina" value="<%=registroporpagina%>">
 <br>
 <%
 If Not(RS.EOF) Then
@@ -78,7 +78,7 @@ If Not(RS.EOF) Then
 	RS.AbsolutePage = contpagina
 	RS.PageSize = registroporpagina
 %>
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="tabela1" style="background: #E8E8E8;">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="table-bordered" style="background: #E8E8E8;">
 <tr>
 	<td align="left" width="150px">
 		<%if contpagina > 1 then%>
@@ -97,7 +97,7 @@ If Not(RS.EOF) Then
 </tr>
 </table>
 
-<table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1" style="border: solid thin;">
+<table border="1" width="100%" cellpadding="2" cellspacing="0" class="table-bordered" style="border: solid thin;">
 <tr>
 	<th width="35px" style="font-size: xx-small;">Cód Barras</th>
 	<th style="font-size: xx-small;">Localização</th>
@@ -141,7 +141,7 @@ If Not(RS.EOF) Then
 	frm.pagina.value = <%=contpagina%>
 </script>
 
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="tabela1" style="background: #E8E8E8;">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="table-bordered" style="background: #E8E8E8;">
 <tr>
 	<td align="left" width="150px">
 		<%if contpagina > 1 then%>

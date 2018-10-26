@@ -172,7 +172,7 @@ call Env.RecordSet( false, objRS, strSQL)%>
 <table class="tipo1">
 	<tr id="l_nome">
 		<th>Nome:</th>
-		<td><input type="Text" name="cto_nome" size="40" maxlength="200" /></td>
+		<td><input type="text" name="cto_nome" size="40" maxlength="200" /></td>
 	</tr>
 	<tr id="l_tipo">
 		<th>Tipo:</th>
@@ -211,11 +211,11 @@ call Env.RecordSet( false, objRS, strSQL)%>
 <table class="tipo1">
 	<tr id="l_dataini">
 		<th>Data de in&iacute;cio:</th>
-		<td><input type="Text" size="2" maxlength="2" name="dataini_d" disabled />/<input type="Text" size="2" maxlength="2" name="dataini_m" disabled />/<input type="Text" size="4" maxlength="4" name="dataini_a" disabled /></td>
+		<td><input type="text" size="2" maxlength="2" name="dataini_d" disabled />/<input type="text" size="2" maxlength="2" name="dataini_m" disabled />/<input type="text" size="4" maxlength="4" name="dataini_a" disabled /></td>
 	</tr>
 	<tr id="l_datafim">
 		<th>Data de T&eacute;rmino:</th>
-		<td><input type="Text" size="2" maxlength="2" name="datafim_d" disabled />/<input type="Text" size="2" maxlength="2" name="datafim_m" disabled />/<input type="Text" size="4" maxlength="4" name="datafim_a" disabled /></td>
+		<td><input type="text" size="2" maxlength="2" name="datafim_d" disabled />/<input type="text" size="2" maxlength="2" name="datafim_m" disabled />/<input type="text" size="4" maxlength="4" name="datafim_a" disabled /></td>
 	</tr>
 </table>
 </div> 

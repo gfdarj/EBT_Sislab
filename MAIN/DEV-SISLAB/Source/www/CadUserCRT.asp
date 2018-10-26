@@ -123,13 +123,13 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
     }
 </script>
 <form method="post" action="CadUserCRTA.asp" name="frm">
-<input type="Hidden" name="ehNovoUsuario" value="0">
-<input type="Hidden" name="excluir" value="0">
+<input type="hidden" name="ehNovoUsuario" value="0">
+<input type="hidden" name="excluir" value="0">
 
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr><td></td><td></td></tr>
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><th align="left" colspan="2">Usuários do CRT</td></tr>
@@ -137,37 +137,37 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	<td>&nbsp;&nbsp;<b>Usuários CRT:</b></td>
 	<td>
 		<%call comboUSERCRTVIVOEMORTOS("user", Env.oConn,"N")%>&nbsp;&nbsp;
-		<input  class="texto1" type="Button" value="Buscar" onclick="BuscarUsuario();">
+		<input  class="texto1" type="button" value="Buscar" onclick="BuscarUsuario();">
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><th align="left" colspan="2">Dados do Usuário</th></tr>
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Username:</b></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username:</b></td>
 	<td>
-		<input type="Text" name="username" size="50" maxlength="80" class="texto1">
+		<input type="text" name="username" size="50" maxlength="80" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="vermelho2"><b>*</span>&nbsp;Matrícula:</b>&nbsp;
-		<input type="Text" name="matricula" class="texto1" size="15">
+		<span class="texto-vermelho-bold"><b>*</span>&nbsp;Matrícula:</b>&nbsp;
+		<input type="text" name="matricula" class="texto1" size="15">
 	</td>
 <tr>
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Nome:</b></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Nome:</b></td>
 	<td>
-		<input type="Text" name="Nome" size="60" class="texto1">
+		<input type="text" name="Nome" size="60" class="texto1">
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Celular:</b></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Celular:</b></td>
 	<td>
-		<input type="Text" name="celular" size="20" class="texto1">
+		<input type="text" name="celular" size="20" class="texto1">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="vermelho2"><b>*</span>&nbsp;Ramal:</b>&nbsp;
-		<input type="Text" name="Ramal" size="20" class="texto1">
+		<span class="texto-vermelho-bold"><b>*</span>&nbsp;Ramal:</b>&nbsp;
+		<input type="text" name="Ramal" size="20" class="texto1">
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Orgão:</b></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Orgão:</b></td>
 	<td>
 		<%call comboOrgao("orgao",Env.oConn,"N")%>
 	</td>
@@ -190,10 +190,10 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
-		<input type="Button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		<input type="Button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
-		<input type="Button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+		<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		<input type="button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
+		<input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	</td>
 </tr>
 </table>

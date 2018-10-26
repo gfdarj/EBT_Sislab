@@ -3,7 +3,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios - Agendamentos disponíveis", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios - Agendamentos disponíveis", "", "")
 
 Dim Ebt
 Dim rs_numteste, strSQL
@@ -21,7 +21,7 @@ function abre(codigo)
 }
 </script>
 
-<TABLE border=1 cellpadding="2" cellspacing="0" width="100%" class="tabela1">
+<TABLE border=1 cellpadding="2" cellspacing="0" width="100%" class="table-bordered">
 	<TR>
 		<Th colSpan=3 style="font-size: 10px;">N<sup>o</sup> Agendamento - Tipo de Teste</Th>
 		<Th style="font-size: 10px;">Situação</Th>
@@ -85,7 +85,7 @@ function abre(codigo)
 <%
 Set Ebt = nothing
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 
 if Err.number <> 0 then
 	Response.Redirect "erro.asp?perro=" & Server.URLEncode(Err.number) & "&pdescricao=" & Server.URLEncode(Err.description) 

@@ -205,9 +205,9 @@ end if
 						<%'Call ComboData("real")%>
 						<!-- ALTERADO POR NAO SER MAIS NECESSARIO ESTE CAMPO.
 						VISANDO MINIMIZAR AS ALTERACOES FOI COLOCADO A DATA DE ATUALIZACAO -->
-						<input type="Hidden" name="diareal" value="" style="display:none;">
-						<input type="Hidden" name="mesreal" value="" style="display:none;">
-						<input type="Hidden" name="anoreal" value="" style="display:none;">
+						<input type="hidden" name="diareal" value="" style="display:none;">
+						<input type="hidden" name="mesreal" value="" style="display:none;">
+						<input type="hidden" name="anoreal" value="" style="display:none;">
 						<script language="JavaScript">
 							document.all.diareal.value = "<%response.write Zeros(Day(Date()),2)%>";
 							document.all.mesreal.value = "<%response.write Zeros(Month(Date()), 2)%>";

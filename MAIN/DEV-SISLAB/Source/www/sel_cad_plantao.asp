@@ -25,7 +25,7 @@ Call Tela.MostraCabecalho()
 
 <input type="hidden" name="tipocomando" value="Alterar">
 <input type="hidden" name="noticias" value="">
-<table width="100%" border="0" class="tabela1">
+<table width="100%" border="0" class="table-bordered">
 <tr valign="middle"> 
 	<td>
 		<a href="cad_plantao.asp"><b>&lt;Cadastrar Nova Notícia&gt;</b></a>
@@ -36,7 +36,7 @@ Call Tela.MostraCabecalho()
 	<td valign="top">
 		<b>Editar Notícia Cadastrada</b><br><br>
 		<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">
-			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
+			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
 			<tr>
 				<th style="font-size: xx-small;" align="left">Notícia</th>
 				<th style="font-size: xx-small;" width="100px">Data Início</th>

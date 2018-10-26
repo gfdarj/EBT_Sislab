@@ -4,49 +4,50 @@
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sugestões - Fale Conosco", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sugestões - Fale Conosco", "", "")
 
 Dim objSiteRS, sSQL,auxusername
 
 auxusername = Env.Usuario
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script language="javascript">
-function ValidaCampos()
-{
-//if (document.formulario.titulo.value=="")
-//	{
-//	alert("Título não informado.\nInforme o Título da mensagem.");
-//		return false;
-//		formulario.titulo.focus();	
-//	}
-//if (AchaAspas(document.formulario.titulo.value))
-//	{
-//	alert("O título não pode conter Aspas ou apóstrofes.\nCorrija o título da mensagem.");
-//	        formulario.titulo.focus();
-//		return false;
-//	}
-if (document.formulario.assunto.value=="")
-	{
-	alert("Assunto não informado.\nInforme o Assunto da mensagem para encaminharmos devidamente sua mensagem.");
-		return false;
-		formulario.assunto.focus();	
-	}
-if (document.formulario.texto.value=="")
-	{
-	alert("Texto não informado.\nInforme o Texto da mensagem.");
-		return false;
-		formulario.texto.focus();	
-	}
-if (AchaAspas(document.formulario.texto.value))
-	{
-	alert("O texto não pode conter Aspas ou apóstrofes.\nCorrija o texto da mensagem.");
-	        formulario.titulo.focus();
-		return false;
-	}
-	return true;
-}
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
+    function ValidaCampos()
+    {
+    //if (document.formulario.titulo.value=="")
+    //	{
+    //	alert("Título não informado.\nInforme o Título da mensagem.");
+    //		return false;
+    //		formulario.titulo.focus();	
+    //	}
+    //if (AchaAspas(document.formulario.titulo.value))
+    //	{
+    //	alert("O título não pode conter Aspas ou apóstrofes.\nCorrija o título da mensagem.");
+    //	        formulario.titulo.focus();
+    //		return false;
+    //	}
+    if (document.formulario.assunto.value=="")
+	    {
+	    alert("Assunto não informado.\nInforme o Assunto da mensagem para encaminharmos devidamente sua mensagem.");
+		    return false;
+		    formulario.assunto.focus();	
+	    }
+    if (document.formulario.texto.value=="")
+	    {
+	    alert("Texto não informado.\nInforme o Texto da mensagem.");
+		    return false;
+		    formulario.texto.focus();	
+	    }
+    if (AchaAspas(document.formulario.texto.value))
+	    {
+	    alert("O texto não pode conter Aspas ou apóstrofes.\nCorrija o texto da mensagem.");
+	            formulario.titulo.focus();
+		    return false;
+	    }
+	    return true;
+    }
 </script>
+
 <form method=post action="fale_envia.asp" name="formulario"  onsubmit="return ValidaCampos();">
 <input type="hidden" name="username" value="<%=auxusername%>">
 <table width="100%" class="texto1">
@@ -116,5 +117,5 @@ if (AchaAspas(document.formulario.texto.value))
   </table>
 </form>
 <%
-Call ImprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

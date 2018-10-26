@@ -161,7 +161,7 @@ function limpa_caracs()
 
 function ad_carac( texto, nome )
 {
-	document.all.td_caracs.innerHTML += texto + ':&nbsp;<input type="Text" title="' + texto + '" name="' + nome + '" size="5" maxlength="255" /><br />';
+	document.all.td_caracs.innerHTML += texto + ':&nbsp;<input type="text" title="' + texto + '" name="' + nome + '" size="5" maxlength="255" /><br />';
 }
 
 function verifica_carac()
@@ -194,12 +194,12 @@ function muda_tipo( val )
 <form name="nova_fac" target="cpt_caracs" method="post"></form>
 <iframe name="cpt_caracs" style="display: none;"></iframe>
 <form name="dados_fac" method="post" action="proc_ed_circuito.asp">
-<input type="Hidden" name="tpc_id" value="" />
-<input type="Hidden" name="cto_id" value="<%= request.querystring( "cto_id" ) %>" />
+<input type="hidden" name="tpc_id" value="" />
+<input type="hidden" name="cto_id" value="<%= request.querystring( "cto_id" ) %>" />
 <table class="tipo1">
 	<tr>
 		<th>Posição:</th>
-		<td><input type="Text" size="2" maxlength="1" name="pos_nova_fac" value="" readonly /></td>
+		<td><input type="text" size="2" maxlength="1" name="pos_nova_fac" value="" readonly /></td>
 	</tr>
 	<tr>
 		<th>Componente:</th>

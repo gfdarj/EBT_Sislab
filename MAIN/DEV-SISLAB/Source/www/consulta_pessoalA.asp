@@ -16,7 +16,7 @@ link = "location.href='consulta_pessoal.asp?tp_datainicial=" & tp_datainicial & 
 titulo = "Quadro de Alocação de Pessoal - Período de " & tp_datainicial & " até " & tp_datafinal
 if username <> "-1" then titulo = titulo & " - Usuário " & username
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", titulo, link, "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", titulo, link, "")
 
 'response.write username & "<BR><BR>"
 'response.write "sp_ag_pessoas_por_periodo '"&tp_datainicial&"','"&tp_datafinal&"','"&username&"'"
@@ -88,5 +88,5 @@ end if%>
 <tr><td>&nbsp;</td></tr>
 </table>
 <%
-Call imprimeRodape2(RODAPE_OFF, "")
+Call Tela.MostraRodape()
 %>

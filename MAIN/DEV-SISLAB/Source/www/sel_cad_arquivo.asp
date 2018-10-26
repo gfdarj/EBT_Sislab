@@ -28,9 +28,9 @@ nomeArquivo = replace(request("txNomeArq"),"*","%")
 tipoArquivo = request("sbtipoarquivo")
 %>
 <form name="formulario" method="post" action="cad_arquivo.asp">
-<input type="Hidden" name="arquivos" value="">
-<input type="Hidden" name="Pesquisou" value="S">
-<table width="100%" border="0" class="tabela1">
+<input type="hidden" name="arquivos" value="">
+<input type="hidden" name="Pesquisou" value="S">
+<table width="100%" border="0" class="table-bordered">
 <tr valign="middle">
 	<td height="40">
 		<a href="cad_arquivo.asp"><b>&lt;Cadastrar Novo Arquivo&gt;</b></a>
@@ -38,7 +38,7 @@ tipoArquivo = request("sbtipoarquivo")
 </tr>
 <tr valign="top"> 
 	<td>
-		<table border="0" class="tabela1">
+		<table border="0" class="table-bordered">
 		<tr>
 			<td>Tipo Arquivo:</td>
 			<td><%
@@ -50,7 +50,7 @@ tipoArquivo = request("sbtipoarquivo")
 		</tr>
 		<tr>
 			<td>Arquivo:</td>
-			<td><input name="txNomeArq" class="texto1" type="Text" value="<%=nomeArquivo%>"></td>
+			<td><input name="txNomeArq" class="texto1" type="text" value="<%=nomeArquivo%>"></td>
 			<td><input type="button" value="Pesquisar" class="texto1" name="btnPesq" onClick="pesquisar();"></td>
 		</tr>
 		</table>
@@ -64,7 +64,7 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
 %>
 		<b>Pesquisa de arquivos cadastrados</b><br><br>
 		<!--<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">-->
-			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
+			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
 			<tr>
                 <th>#</th>
 				<th style="font-size: xx-small;" align="left">Tipo do arquivo</th>

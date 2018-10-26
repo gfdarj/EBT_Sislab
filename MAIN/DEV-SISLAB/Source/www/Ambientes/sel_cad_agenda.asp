@@ -5,7 +5,7 @@
 Dim cont, objRS, s
 cont=0
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Reserva de Ambientes", "location.href='../sislab.asp'", "../")
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Reserva de Ambientes", "location.href='../sislab.asp'", "../")
 %>
 <script language=javascript>
 function navselecao(id_res)
@@ -17,7 +17,7 @@ function navselecao(id_res)
 <form name="formulario" method="post" action="cad_agenda.asp">
 <input type="hidden" name="tipocomando" value="Alterar">
 <input type="hidden" name="sel" value="">
-<table width="100%" border="0" class="tabela1">
+<table width="100%" border="0" class="table-bordered">
 <tr valign="middle">
 	<td height="40">
 		<a href="cad_agenda.asp"><b>&lt;Cadastrar Novo Evento&gt;</b></a>
@@ -28,7 +28,7 @@ function navselecao(id_res)
 	<td valign="top">
 		<b>Editar Evento Cadastrado</b><br><br>
 		<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">
-			<table border="1" cellpadding="2" cellspacing="0" class="tabela1" width="100%" style="border: solid thin;">
+			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
 			<tr>
 				<th style="font-size: xx-small;">Data Inicial</th>
 				<th style="font-size: xx-small;">Data Final</th>
@@ -70,6 +70,7 @@ end if%>
 </form>
 <br>
 <%
-call Env.RecordSet( false, objRS, null)
-call imprimeRodape(RODAPE_OFF)
+Call Env.RecordSet( false, objRS, null)
+
+Call Tela.MostraRodape()
 %>

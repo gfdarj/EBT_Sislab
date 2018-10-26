@@ -14,7 +14,7 @@ EH_CRT = Env.UsuarioCRT()
 %>
 <form name="formteste" method="post" action="rel_logbook.asp">
 <input type=hidden name="doformteste" value=1>
-<table width=100% class="tabela1" cellpadding="2" cellspacing="2">
+<table width=100% class="table-bordered" cellpadding="2" cellspacing="2">
 	<tr><td width=10%></td>
 		<td width=10%></td>
 		<td width=10%></td>
@@ -28,7 +28,7 @@ EH_CRT = Env.UsuarioCRT()
 	</tr>
 <tr>
 	<td colspan="10">
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Selecione uma das opções de filtro para consulta</span>
 	</td>
 </tr>
 <tr><td colspan="10">&nbsp;</td></tr>

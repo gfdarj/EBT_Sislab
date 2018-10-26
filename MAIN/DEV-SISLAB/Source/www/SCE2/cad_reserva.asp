@@ -130,8 +130,8 @@ function filtraItem() {
 <iframe style="display: none;" name="escondido"></iframe>
 
 <form method="post" name="formulario">
-<input type="Hidden" name="dt_hoje" value="<%=dt_hoje%>">
-<input type="Hidden" name="ehnovo" value="<%=ehNovo%>">
+<input type="hidden" name="dt_hoje" value="<%=dt_hoje%>">
+<input type="hidden" name="ehnovo" value="<%=ehNovo%>">
 <select name="lista_itens" style="display: none; width:500px" multiple></select>
 
 <table  class="texto1" border="0">
@@ -188,10 +188,10 @@ end if
 				<%RW Combo.PadraoSql("ag_responsavel", "select upper(USERID) as VALOR, CAST(NOME as VARCHAR(40)) as DESCRICAO from USERCRT where USERID = '" & responsavel & "' order by Nome", responsavel, "")%>
 			</td>
 			<td valign="top" align="left">
-				Inicio:<br><input type="Text" name="ag_datainicio" class="texto1" size="12" value="<%=dt_inicio%>" disabled>&nbsp;
+				Inicio:<br><input type="text" name="ag_datainicio" class="texto1" size="12" value="<%=dt_inicio%>" disabled>&nbsp;
 			</td>
 			<td valign="top" align="left">
-				Fim:<BR><input type="Text" name="ag_datatermino" class="texto1" size="12" value="<%=dt_termino%>" disabled>
+				Fim:<BR><input type="text" name="ag_datatermino" class="texto1" size="12" value="<%=dt_termino%>" disabled>
 			</td>
 		</tr>
 		</table>
@@ -207,24 +207,24 @@ end if
 		<table class="texto1" width="100%" border="0">
 			<tr>
 				<td>Modelo:</td>
-				<td><input type="Text" name="modelo" class="texto1" size="50" on></td>
+				<td><input type="text" name="modelo" class="texto1" size="50" on></td>
 
 				<td>Descri&ccedil;&atilde;o:</td>
-				<td><input type="Text" name="desc_modelo" class="texto1" size="50"></td>
+				<td><input type="text" name="desc_modelo" class="texto1" size="50"></td>
 			</tr>
 			<tr>
 				<td>Fabricante:&nbsp;</td><td><%RW Combo.PadraoSql("fabricante", "select f.fab_id as VALOR, f.fab_nome as DESCRICAO from sce_fabricantes f order by f.fab_nome", "", "N")%></td>
 				<td>Cod.Barras:</td>
 				<td>
-					<input type="Text" name="coditem" class="texto1" size="25">
+					<input type="text" name="coditem" class="texto1" size="25">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="Button" value="Filtrar &gt;&gt;" class="texto1" onClick="javascript:filtraItem();">
+					<input type="button" value="Filtrar &gt;&gt;" class="texto1" onClick="javascript:filtraItem();">
 				</td>
 			</tr>
 			<tr>
 				<td>Nota Fiscal:</td>
 				<td colspan="3">
-					<input type="Text" name="notafiscal" size="6" class="texto1">
+					<input type="text" name="notafiscal" size="6" class="texto1">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.SituacaoEquipamento("status", true, true, true, STATUS_EM_ESTOQUE)%>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -234,7 +234,7 @@ end if
 			<tr>
 				<td>Documento:</td>
 				<td colspan="3">
-					<input type="Text" name="documento" size="6" class="texto1">
+					<input type="text" name="documento" size="6" class="texto1">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.EquipamentoConforme("conforme", true)%>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -422,7 +422,7 @@ function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barra
 	<td colspan="2">
 		<p class="destaque">Itens Reservados:</p>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		(qtde:&nbsp;<input type="Text" name="qtd_item" value="1" size="3" class="texto1">&nbsp;
+		(qtde:&nbsp;<input type="text" name="qtd_item" value="1" size="3" class="texto1">&nbsp;
 		<a href="#" onClick="javascript:InsereItem(document.all.qtd_item.value);">novo item</a>)
 		<table width="100%" cellpadding="0" cellspacing="0" class="texto1" border="1" id="tb_reserva" style="border: thin solid silver;">
 		<tr>

@@ -137,7 +137,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
         "       <meta charset='" & p_CharSet & "'>" & VbCrLf & _
         "       <meta http-equiv='x-ua-compatible' content='ie=edge'>" & VbCrLf & _
         "       <meta name='viewport' content='width=device-width, initial-scale==1.0'>" & VbCrLf & _
-        "       <link rel='stylesheet' href='includes/bootstrap-3.3.7-dist/css/bootstrap.min.css' media='screen'>" & VbCrLf & _
+        "       <link rel='stylesheet' href='" & PathRelativo & "includes/bootstrap-3.3.7-dist/css/bootstrap.min.css' media='screen'>" & VbCrLf & _
 		"       <link rel='stylesheet' type='text/css' href='" & PathRelativo & "estilos/" & p_estilo & "' />" & VbCrLf & _
 		"   </head>" & VbCrLf
 
@@ -205,7 +205,7 @@ Private Sub ImprimeImagemSite()
 <%  If Env.Usuario <> "" Then %>
                     <div style="float: right; text-align:right;">
                             <p style="line-height: 14px;">&nbsp;</p>
-				            <h6><%=Env.nomeAppHtml%><br />
+				            <h6 class="text-warning"><%=Env.nomeAppHtml%><br />
 					        <%=Env.Ebt.NomeReduzido%><br />
 					        <%=Env.Usuario%></h6>
                     </div>
@@ -312,26 +312,35 @@ Private Sub ImprimeNomeTela()
     linkVoltar = p_linkVoltar
 
 	if p_linkVoltar = "" then p_linkVoltar = "history.go(-1)"%>
-		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0"  style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
+		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" 
+            style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
 			<td class="realce1"> <!-- #d9d9d9 -->
 
 				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="menu" id="tbl_principal_nomeform" >
 				<tr valign="middle">
 					<td valign="middle">
-						<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">&nbsp;<span style="color: red;">&raquo;</span>&nbsp;
+                        <h4 class="text-primary">
+						<!--<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">-->
+                            &nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;
 							<i><%=p_nomeTela%></i>
-						</span>
+						<!--</span>-->
+                        </h4>
 					</td>
 
 					<td align="right" id="td2_tbl_principal_nomeform" >
 <%			If ucase(linkVoltar) <> "NENHUM" then
 				If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
-						</b><a href="javascript:<%=p_linkVoltar%>;">Voltar</a>
+						<a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
 						&nbsp;
 <%				End If
 				if ucase(p_linkVoltar) <> "SO_LINK" Then %>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 17px; width: 25px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=p_PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conteÃºdo da tela"></a></button>
+						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; background-color: none;" 
+                            onclick="javascript:imprimeTelaPrincipalSistema();">
+                            <a href="#">
+                                <img src="<%=p_PathRelativo%>img/impressora1.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela">
+                            </a>
+						</button>
 <%			    End If
 			End If%>
 						&nbsp;&nbsp;

@@ -63,7 +63,7 @@ end if
 	    			<td class="texto1" colspan="2">
 						Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:120px" maxlength="50">
 						<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="Button" value=" Procurar " onclick="buscaCB()" class="form">-->
+						<input type="button" value=" Procurar " onclick="buscaCB()" class="form">-->
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Plataforma: <%=Combo.ServicosPlataformas("plataforma", "N", "P")%>
 					</td>

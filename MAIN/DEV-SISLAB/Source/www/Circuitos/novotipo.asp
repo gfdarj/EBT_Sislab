@@ -38,7 +38,7 @@ function Valida()	{
 <table width="100%" height="100%">
 <tr> 
 	<td><font class="Fonttit3Cad"><b>Novo Tipo:</b></font></td>
-	<td><input type="Text" value="" name="novotipo" size="40" maxlength="50" class="textbox"></td>
+	<td><input type="text" value="" name="novotipo" size="40" maxlength="50" class="textbox"></td>
 </tr>
 <tr> 
 	<td><font class="Fonttit3Cad"><b>Fam&iacute;lia:</b></font></td>
@@ -54,10 +54,10 @@ function Valida()	{
 			</select>
 <%	else%>
 			<font class="Fonttit3Cad"><b><i>Nenhuma fam&iacute;lia cadastrada</i></b></font>
-			<input type="Hidden" name="familia" value="">
+			<input type="hidden" name="familia" value="">
 <%	end if
 		call Env.RecordSet(false, objRS, null)%>
-		&nbsp;&nbsp;<input type="Button" value="+" class="botao0" onclick="javascript:window.open('novafamilia.asp?fabricante='+document.formulario.fabricante.value, 'FAMILIA', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
+		&nbsp;&nbsp;<input type="button" value="+" class="botao0" onclick="javascript:window.open('novafamilia.asp?fabricante='+document.formulario.fabricante.value, 'FAMILIA', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
 	</td>
 </tr>
 <tr> 
@@ -73,17 +73,17 @@ function Valida()	{
 			</select>
 <%	else%>
 			<font class="Fonttit3Cad"><b><i>Nenhum fabricante cadastrado</i></b></font>
-			<input type="Hidden" name="fabricante" value="">
+			<input type="hidden" name="fabricante" value="">
 <%	end if
 		call Env.RecordSet(false, objRS, null)
 %>
-		&nbsp;&nbsp;<input type="Button" value="+" class="botao0" onclick="javascript:window.open('novofabricante.asp?familia='+document.formulario.familia.value, 'FABRICANTE', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
+		&nbsp;&nbsp;<input type="button" value="+" class="botao0" onclick="javascript:window.open('novofabricante.asp?familia='+document.formulario.familia.value, 'FABRICANTE', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td colspan="2" align="center"><input type="Button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
-		&nbsp;&nbsp;<input type="Button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
+	<td colspan="2" align="center"><input type="button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
+		&nbsp;&nbsp;<input type="button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
 	</td>
 </tr>
 </table>

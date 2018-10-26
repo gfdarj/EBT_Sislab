@@ -269,7 +269,7 @@ Else
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 <form name="formulario" method="POST">
-<input type="Hidden" name="ag_numero" value="<%=auxag%>">
+<input type="hidden" name="ag_numero" value="<%=auxag%>">
 <input type="hidden" name="vDataEmissao" value="25.06.99"><input type="hidden" name="vEmitente" value="EOP-31"><input type="hidden" name="vRamalEmitente" value="6067"><div align="center">
 <input type="hidden" name="userId" value="<%=trim(mid(Request.ServerVariables("REMOTE_USER"),10))%>">
 <input type="hidden" name="IP" value="<%=Request.ServerVariables("REMOTE_ADDR")%>">
@@ -281,7 +281,7 @@ Else
 	Pesquisa do Grau de Satisfação com o Serviço do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
 </p>
 
-<table border="0" width="100%" cellpadding="2" class="tabela1">
+<table border="0" width="100%" cellpadding="2" class="table-bordered">
 <tr class="azul1Bg" style="font-size: 12px;">
 	<td><span class="azul3b"><b>AS</b></span><br>
 		<%=auxag%>
@@ -301,11 +301,11 @@ Else
 </tr>
 </table>
 
-<p align="center" class="vermelho2" style="font-size: 12px;" id="p_aviso">
+<p align="center" class="texto-vermelho-bold" style="font-size: 12px;" id="p_aviso">
 	<b>Lembre-se: </b>Sua opinião é fundamental para promover a melhoria dos Nossos Processos.
 </p>
 
-<table border="0" cellpadding="2" width="100%" class="tabela1">
+<table border="0" cellpadding="2" width="100%" class="table-bordered">
 <tr>
 	<th align="left" colspan="2">1. Perfil de Utilização</th>
 </tr>
@@ -316,7 +316,7 @@ Else
 </tr>
 </table>
 
-<table border="0" width="100%" cellspacing="3" cellpadding="3" class="tabela1">
+<table border="0" width="100%" cellspacing="3" cellpadding="3" class="table-bordered">
 <tr>
 	<th colspan="2" align="left">2. Por Favor, assinale a opção que melhor representa seu grau de satisfação/insatisfação em relação aos
 		aspectos relacionados ao serviço pesquisado, indicando, se desejar comentários
@@ -402,7 +402,7 @@ Else
 
 <br>
 
-<table border="0" cellpadding="2" width="100%" class="tabela1">
+<table border="0" cellpadding="2" width="100%" class="table-bordered">
 <tr>
 	<th align="left">3. Observações e sugestões adicionais relativas aos ítens/serviço acima</th>
 </tr>
@@ -444,7 +444,7 @@ Else
 </tr>
 <tr>
 	<td>
-		<table  border="0" width="100%" cellpadding="2" class="tabela1">
+		<table  border="0" width="100%" cellpadding="2" class="table-bordered">
 		<tr>
 			<td>
 				Responsável<br>
@@ -475,10 +475,10 @@ Else
 <p align="center" id="p_conifrmaResposta">
 <%
 If bln_ExistePesquisa And (Not ehRAT) Then%>
-	<input type="Button" class='texto1' value="Voltar ao início" name="btnConfirma" onclick="javascript:location.href='index.asp';">
+	<input type="button" class='texto1' value="Voltar ao início" name="btnConfirma" onclick="javascript:location.href='index.asp';">
 <%
 Else%>
-	<input type="Button" class='texto1' value="Confirmar Respostas" name="btnConfirma" onclick="javascript:Confirma();">
+	<input type="button" class='texto1' value="Confirmar Respostas" name="btnConfirma" onclick="javascript:Confirma();">
 <%
 End If
 %>
@@ -636,7 +636,7 @@ Function MensagemSolicitantesInvalidos
 <p class="texto1" align="center"><font color="red"><b>AVISO !</b></font></p>
 <p class="texto1">Você selecionou 2 ou mais solicitantes diferentes.</p>
 <p class="texto1">Para usar a funcionalidade de resposta vários agendamentos é necessário que todos os agendamentos sejam do mesmo solicitante.</p>
-<p align="center"><input type="Button" class='texto1' value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
+<p align="center"><input type="button" class='texto1' value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
 </div>
 </center>
 <%

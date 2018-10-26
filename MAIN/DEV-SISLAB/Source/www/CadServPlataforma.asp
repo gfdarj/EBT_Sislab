@@ -6,8 +6,8 @@
 <%
 if not Env.ehRat then RESPONSE.REDIRECT "INDEX.ASP"
 %>
-<script language="javascript" src="includes/anexo.js"></script>
-<script>
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
 <%if request("ServicoRepetido") <> "" then%>
 	alert('Não foi possível incluir o Serviço <%=request("ServicoRepetido")%>, pois este já está cadastrado.')
 <%end if%>
@@ -81,16 +81,16 @@ else
 	if request("Acao") = "P" then Titulo = "Plataformas"
 end if
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, "location.href='sislab.asp'", "")
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, "location.href='sislab.asp'", "")
 %>
 <form method="post" action="CadServPlataformaA.asp" name="frm">
-<input type="Hidden" name="ehNovoServ" value="0">
-<input type="Hidden" name="ehServicoPlataforma" value="">
-<input type="Hidden" name="excluir" value="0">
-<input type="Hidden" name="acao" value="<%=Request("Acao")%>">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="ehNovoServ" value="0">
+<input type="hidden" name="ehServicoPlataforma" value="">
+<input type="hidden" name="excluir" value="0">
+<input type="hidden" name="acao" value="<%=Request("Acao")%>">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr> 
-	<td>&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 </tr>
 
 <tr><td>&nbsp;</td></tr>
@@ -100,7 +100,7 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, 
 <tr>
 	<td>&nbsp;<b><%=titulo%>:</b> &nbsp;
 		<%call comboServicosPlataformas("serv", objConn, "N", request("Acao"))%>
-		<input class="texto1" type="Button" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
+		<input class="texto1" type="button" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 </tr>
@@ -111,10 +111,10 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, 
 
 <tr>
 	<td>
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabela1">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table-bordered">
 		<tr>
-			<td width="110px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descrição:</b></td>
-			<td width="*"><input type="Text" name="desc" size="60" class="texto1"></td>
+			<td width="110px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição:</b></td>
+			<td width="*"><input type="text" name="desc" size="60" class="texto1"></td>
 		</tr>
 		</table>
 	</td>
@@ -123,10 +123,10 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & titulo, 
 <%
 if request("Acao") = "P" then
 %>
-		<input type="Hidden" name="cmbPlataforma" value="0">
+		<input type="hidden" name="cmbPlataforma" value="0">
 <tr>
 	<td>
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabela1">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table-bordered">
 		<tr>
 			<td width="110px">&nbsp;&nbsp;<b>Plataforma Pai:</b></td>
 			<td width="*">
@@ -138,8 +138,8 @@ if request("Acao") = "P" then
 </tr>
 <%
 else%>
-		<input type="Hidden" name="plat_pai" value="">
-		<input type="Hidden" name="cmbPlataforma" value="1">
+		<input type="hidden" name="plat_pai" value="">
+		<input type="hidden" name="cmbPlataforma" value="1">
 <%
 end if
 %>
@@ -147,10 +147,10 @@ end if
 
 <tr>
 	<td>&nbsp;&nbsp;
-		<input type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar">
-		<input type="Button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
-		<input type="Button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
+		<input type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar">
+		<input type="button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
+		<input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
 	</td>
 </tr>
 </table>
@@ -184,5 +184,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

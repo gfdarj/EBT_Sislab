@@ -43,7 +43,7 @@ If nova_os = "0" then
 	End If
 End If
 
-call ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de Serviço", "window.close()", "")
+Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de Serviço", "window.close()", "")
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 
@@ -153,16 +153,16 @@ function envia(){
 }
 </script>
 <form name="frm" method="post">
-<input type="Hidden" name="hdnTeste">
-<input type="Hidden" name="hdnSituacao">
-<input type="Hidden" name="hdnEvento" value="9">
-<input type="Hidden" name="num_os" value="<%=num_os%>">
-<input type="Hidden" name="num_ag" value="<%=num_ag%>">
-<input type="Hidden" name="nova_os" value="<%=nova_os%>">
-<table width="100%" class="tabela1">
+<input type="hidden" name="hdnTeste">
+<input type="hidden" name="hdnSituacao">
+<input type="hidden" name="hdnEvento" value="9">
+<input type="hidden" name="num_os" value="<%=num_os%>">
+<input type="hidden" name="num_ag" value="<%=num_ag%>">
+<input type="hidden" name="nova_os" value="<%=nova_os%>">
+<table width="100%" class="table-bordered">
 <tr>
 	<td colspan="2">
-		<table width="100%" class="tabela1">
+		<table width="100%" class="table-bordered">
 		<tr>
 			<td ><b>Ordem de Serviço Nº <%=num_os%></b></td>
 <%
@@ -269,7 +269,7 @@ End If
 </tr>
 <tr>
 	<td colspan="2">
-		<table class="tabela1" width="100%" cellpadding="0" cellspacing="0">
+		<table class="table-bordered" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
 			<td>
 				Plataforma ou Sistema utilizado no teste<br>
@@ -322,6 +322,5 @@ if nova_os = "0" then
 	Call Env.RecordSet(false, objSiteRS, null)
 end if
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>
-

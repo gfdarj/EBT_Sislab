@@ -41,7 +41,7 @@ var str = '<font class="fonte2">'
 %>
 str+='</select>';
 str+='</font>';
-str+='<INPUT TYPE="text" NAME="nova_tarefa" MAXLENGTH="250" class="texto7" style="display:none;">';
+str+='<INPUT type="text" NAME="nova_tarefa" MAXLENGTH="250" class="texto7" style="display:none;">';
 
 parent.frames[2].document.all.atividadeCelula.innerHTML = str;
 parent.frames[2].document.frmInicioTermino.tarefa_id.value = "<%=selecionado%>";

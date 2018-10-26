@@ -64,11 +64,11 @@ function filtrar()
 				</tr>
 				<tr>
 					<td class="texto1">
-						Cnpj: <input type="Text" name="txtCNPJ" class="texto1" size="15" maxlength="14">
+						Cnpj: <input type="text" name="txtCNPJ" class="texto1" size="15" maxlength="14">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Descrição: <input type="Text" name="txtDescricao" size="40" maxlength="50" class="texto1">
+						Descrição: <input type="text" name="txtDescricao" size="40" maxlength="50" class="texto1">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="Button" value="Filtrar" onclick="javascript:filtrar();" class="texto1">
+						<input type="button" value="Filtrar" onclick="javascript:filtrar();" class="texto1">
 					</td>
 				</tr>
 

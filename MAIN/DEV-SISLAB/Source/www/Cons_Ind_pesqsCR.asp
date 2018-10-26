@@ -6,7 +6,7 @@
 <%
 'On Error Resume Next
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
 
 Dim objSiteRS, sSQL,objSiteRS1
 Dim auxusernameCadastro,auxIPCadastro,auxNAg,auxDataHoraCadastro
@@ -71,13 +71,13 @@ function contC(parag,paritem)
 </script>
 <FONT style="font-size:3pt">
 <BR></font>
-<table width="100%" class="tabela1">
+<table width="100%" class="table-bordered">
 <tr>
 	<th>Análise Global dos Formulários de Satisfação</th>
 </tr>
 <tr>
 	<td>
-		<table width="100%" class="tabela1" cellpadding="2" cellspacing="0">
+		<table width="100%" class="table-bordered" cellpadding="2" cellspacing="0">
 <%
 auxAs=request("auxAs")
 auxRT=request.form("rt")
@@ -258,5 +258,5 @@ end if
 <input type="hidden" name="numag" value="">
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

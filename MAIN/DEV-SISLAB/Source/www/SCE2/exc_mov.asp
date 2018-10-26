@@ -25,7 +25,7 @@ Else
 	<html>
 	<body>
 		<form name="formulario" action="rel_mov2.asp" method="post">
-		<input type="Hidden" name="ssql" value="<%=request("ssql")%>"
+		<input type="hidden" name="ssql" value="<%=request("ssql")%>"
 		</form>
 		<script language="JavaScript">
 			document.forms[0].submit();

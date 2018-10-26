@@ -16,7 +16,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <form name="formulario" method="post">
-<input type="Hidden" name="qual_agendamento" value="">
+<input type="hidden" name="qual_agendamento" value="">
 <table class="texto1" width="100%">
 <%
 if request("msg") = "1" then %>

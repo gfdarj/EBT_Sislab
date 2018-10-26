@@ -58,10 +58,10 @@ function montaExcel()
 
 <form name="formteste" method="post" action="rel_gq.asp">
 <input type=hidden name="doformteste" value=1>
-<table width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
 			Selecione uma das opções de filtro para consulta
 		</span>
 	</td>

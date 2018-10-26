@@ -42,7 +42,7 @@ Call Tela.MostraCabecalho()
     }
 </script>
 
-<table width=100% class="tabela1">
+<table width=100% class="table-bordered">
 	<tr><td width=11%></td>
 		<td width=10%></td>
 		<td width=10%></td>
@@ -89,7 +89,7 @@ Call Tela.MostraCabecalho()
 <p class="texto"><i><u>%PARAMETRO_n%</u>: indica a sequencia dos parâmetros utilizados em um endereço da intranet/internet.</i></p>
 <p class="texto"><i><u>n</u>: é o número do parâmetro.</i></p>
 
-<input type="Hidden" name="hdnevento" value="3">
+<input type="hidden" name="hdnevento" value="3">
 
 <br />
 

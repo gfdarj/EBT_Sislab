@@ -45,7 +45,7 @@ end if%>
 	</td>
 	<td>
 		Título:&nbsp;
-		<input class="texto1" type="Text" name="titulo" size="70" value="<b><u>Termo de Responsabilidade</u></b>">
+		<input class="texto1" type="text" name="titulo" size="70" value="<b><u>Termo de Responsabilidade</u></b>">
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>

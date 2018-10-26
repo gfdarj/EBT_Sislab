@@ -15,26 +15,27 @@ function ErroHtml(menu, rodape, chr_mensagem, linkVoltar, path)
 
 	If linkVoltar = "" Then linkVoltar = "javascript:history.go(-1);"
 
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
 
-	response.write "<br><p class='texto1'>"
+	response.write "<br><p>"
 
-	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Descrição do(s) erro(s) encontrado(s)</span><br><br>"
+	response.write "&nbsp;<span class='texto-vermelho-bold'>&raquo;</span>&nbsp;<span style='font-size: 12px;'>Descrição do(s) erro(s) encontrado(s)</span><br><br>"
 
 	response.write "&nbsp;&nbsp;<b>Descrição:</b> " & chr_mensagem & "<br><br>"
 
 	response.write "</p>"
-	response.write "<p class='texto1'>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
-	call imprimeRodape(rodape)
-end function
+	response.write "<p>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
+
+    Call Tela.MostraRodape()
+End Function
 
 
-function MsgGravacaoDados(menu, rodape, msgHtml, linkvoltar, path)
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Gravação de Dados", "SO_IMPRESSORA", path)
-	response.write "<table border='0' width='100%' class='tabela1' cellpadding='0' cellspacing='3'><tr><td>" & msgHtml & "</td></tr></table>"
-	response.write "<br><p class='texto1'>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
-	call imprimeRodape(rodape)
-end function
+Function MsgGravacaoDados(menu, rodape, msgHtml, linkvoltar, path)
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Gravação de Dados", "SO_IMPRESSORA", path)
+	response.write "<table border='0' width='100%' cellpadding='0' cellspacing='3'><tr><td>" & msgHtml & "</td></tr></table>"
+	response.write "<br><p>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
+    Call Tela.MostraRodape()
+End Function
 
 
 '--------------------------------------------------------------------------------------------

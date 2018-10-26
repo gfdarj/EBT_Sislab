@@ -49,7 +49,7 @@ End If%>
 		<td align="center" colspan="2" nowrap><p class="erro"><font size="2"><%=strMsg%></font></p></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2" nowrap><button type="Button" onclick="validaCampos()">Entrar no Sistema de Administração</button></td>
+		<td align="center" colspan="2" nowrap><button type="button" onclick="validaCampos()">Entrar no Sistema de Administração</button></td>
 	</tr>
 </table>
 </form>

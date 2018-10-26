@@ -11,7 +11,7 @@ function AbreJanela(str, nomejan)
 	w.focus();
 }
 </script>
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<td>
 	<p align="justify">O Centro de Refer&ecirc;ncia Tecnol&oacute;gica ocupa uma &aacute;rea de 1200m<sup>2</sup> no Parque Tecnol&oacute;gico da Ilha do Fund&atilde;o, onde foram construídos os prédios do Laboratório e o de apoio.</p>

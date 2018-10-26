@@ -10,7 +10,7 @@ Dim disponivel, tempo, area_tec, tipo, area, pto_cc, pto_ca, pto_telefonicos, de
 Dim auxTipoTeste
 Dim int_Repeticao
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Testes", "location.href='form_atualiza_teste_sel.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Testes", "location.href='form_atualiza_teste_sel.asp'", "")
 cod_teste = request("cod_teste")
 
 if cod_teste <> "" then
@@ -67,7 +67,7 @@ function validaCampos(frm)
 </script>
 <form method="post" action="form_especifica_testeA.asp" name="frmEspecificaTeste" onSubmit="return validaCampos(this);">
 <input type="hidden" value="<%= cod_teste%>" name="cod_teste">
-<table border="0" width="100%" cellspacing="2" cellpadding="0" class="tabela1">
+<table border="0" width="100%" cellspacing="2" cellpadding="0" class="table-bordered">
 <tr>
 	<td width="550px">
 		&nbsp;&nbsp;Título:<BR>
@@ -90,7 +90,7 @@ function validaCampos(frm)
 	</td>
 	<td colspan="2" valign="top">
 		Período de Repetição do Teste<br>
-		<input class="texto1" size="3" maxlength="2" type="Text" name="periodoRepeticao" value="<%=int_Repeticao%>"> mês(es)<BR>
+		<input class="texto1" size="3" maxlength="2" type="text" name="periodoRepeticao" value="<%=int_Repeticao%>"> mês(es)<BR>
 		<i>(Zero ou Vazio indicam a <u>Não</u> repetição)</i>
 	</td>
 </tr>
@@ -111,5 +111,5 @@ function validaCampos(frm)
 </table>
 </form>
 <%
-Call ImprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

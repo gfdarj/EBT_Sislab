@@ -8,7 +8,7 @@ Dim agnumero : agnumero = ""
 
 agnumero = request("cmbAS")
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Excluir um Agendamento", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Excluir um Agendamento", "location.href='sislab.asp'", "")
 %>
 <script language="JavaScript">
     function selecionarAS(eu) {
@@ -22,9 +22,9 @@ call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLA
 </script>
 
 <form name="formulario" method="post" action="form_agenda_exclui.asp">
-<input type="Hidden" name="ag_numero" value="<%=agnumero%>">
-<input type="Hidden" name="os_id" value="">
-<table width="100%" cellpadding="2" cellspacing="0" border="0" class="tabela1">
+<input type="hidden" name="ag_numero" value="<%=agnumero%>">
+<input type="hidden" name="os_id" value="">
+<table width="100%" cellpadding="2" cellspacing="0" border="0" class="table-bordered">
 <tr>
 	<td>
 		<span class="texto1B">Selecione uma AS para exclus&atilde;o</span><br>
@@ -48,10 +48,10 @@ if agnumero <> "" then
 %>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="tabela1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0" class="table-bordered" border="1">
 		<tr>
 			<td class="realce1" colspan="2">Dados do Agendamento <%=agnumero%></td>
-			<td width="60px" rowspan="7" align="center" valign="middle"><input type="Button" value=" Excluir Agendamento" class="texto1" onclick="javascript:excluirAS(<%=agnumero%>);"></td>
+			<td width="60px" rowspan="7" align="center" valign="middle"><input type="button" value=" Excluir Agendamento" class="texto1" onclick="javascript:excluirAS(<%=agnumero%>);"></td>
 		</tr>
 		<tr><td width="75px">&nbsp;<b>Tecnologia:</b></td><td>&nbsp;<%=objRS("TEC_NOME")%></td></tr>
 		<tr><td>&nbsp;<b>Objetivo:</b></td><td>&nbsp;<%=objRS("AG_OBJETIVO")%></td></tr>
@@ -86,14 +86,14 @@ if agnumero <> "" then
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="tabela1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0" class="table-bordered" border="1">
 		<tr><td class="realce1" colspan="3">Dados da Ordem de Servi&ccedil;o</td></tr>
 		<tr style="font-weight: bold;"><td width="70px">Nº OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
 <%			while not objRS.Eof%>
-		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="Button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
+		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
 <%				objRS.MoveNext
 			wend%>
-		<tr><td colspan="2">&nbsp;</td><td align="center"><input type="Button" class="texto1" value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
+		<tr><td colspan="2">&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
 		</table>
 	</td>
 </tr>
@@ -340,5 +340,5 @@ Não existem atividades realizadas no momento.
 </tr>
 </table>
 <%
-Call imprimeRodape(RODAPE_On)
+Call Tela.MostraRodape()
 %>

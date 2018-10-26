@@ -14,31 +14,31 @@ If RQ("exportaExcel") = "S" Then
 	Call CriaExcelGeral("Dados da Tabela " & RQ("tb"), RS, Null)
 
 Else
-	Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "*", "Gerenciador de Dados", "location.href='sislab.asp'", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "*", "Gerenciador de Dados", "location.href='sislab.asp'", "")
 %>
-<script language='javascript'>
-//Exporta os dados de uma tabela para o excel
-function exportaParaExcel()
-{
-	var f = document.forms[0];
+<script type="text/javascript">
+    //Exporta os dados de uma tabela para o excel
+    function exportaParaExcel()
+    {
+	    var f = document.forms[0];
 
-	f.target = '_blank';
-	f.exportaExcel.value = 'S';
-	f.tb.value = '<%=RQ("tb")%>';
-	f.target = '_blank';
-	f.action = '';
-	f.submit();
-}
+	    f.target = '_blank';
+	    f.exportaExcel.value = 'S';
+	    f.tb.value = '<%=RQ("tb")%>';
+	    f.target = '_blank';
+	    f.action = '';
+	    f.submit();
+    }
 </script>
 
 <form name='frm' target='_blank'>
 <input type='hidden' name='exportaExcel' value='N'>
 <input type='hidden' name='tb' value='N'>
 
-<table border="0" width='100%' class="tabela1" cellpadding="2" cellspacing="0">
+<table border="0" width='100%' class="table-bordered" cellpadding="2" cellspacing="0">
 <tr>
 	<td valign='top'>
-		<table border="1" class="tabela1" cellpadding="2" cellspacing="0">
+		<table border="1" class="table-bordered" cellpadding="2" cellspacing="0">
 		<tr><th align="left" colspan="7"><b>Tabelas do SISLAB</b></th></tr>
 <%
 	Set RS = Env.oConn.Execute("select LOWER(name) from sysobjects where xtype = 'U' order by name")
@@ -99,8 +99,7 @@ function exportaParaExcel()
 </form>
 
 <%
-	Call ImprimeRodape(RODAPE_OFF)
-
+    Call Tela.MostraRodape()
 End If
 
 Set RS = Nothing

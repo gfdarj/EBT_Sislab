@@ -113,8 +113,8 @@ function excluiMovimentacao(mov_id) {
 }
 </script>
 <form name="formulario" action="sel_mov_acessorio.asp" method="post">
-<input type="Hidden" name="mov_id" value="">
-<input type="Hidden" name="ssql" value="<%=ssql%>"
+<input type="hidden" name="mov_id" value="">
+<input type="hidden" name="ssql" value="<%=ssql%>"
 </form>
 <%
 end if

@@ -8,15 +8,15 @@ Dim objRS, s, plataforma
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Equipamentos em Plataformas", "location.href='sislab.asp'", "")
 
 plataforma = request("plataforma")
 if plataforma = "" then plataforma = "0"
 %>
 <form method="post" action="CadPlataformaEquipamentoHist.asp" name="frm">
-<input type="Hidden" name="hpe_id" value="">
-<input type="Hidden" name="idplataforma" value="<%=plataforma%>">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="hpe_id" value="">
+<input type="hidden" name="idplataforma" value="<%=plataforma%>">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr><td>&nbsp;</td></tr>
 
 <tr><th align="left">&nbsp;Selecione a Plataforma</td></tr>
@@ -49,7 +49,7 @@ s =	"SELECT f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO " & _
 	"ORDER BY MOD_DESCRICAO, EQ_CODIGOBARRAS"
 call Env.RecordSet(true, objRS, s)
 if not objRS.Eof then%>
-		<table class="tabela1" width="100%">
+		<table class="table-bordered" width="100%">
 		<tr>
 			<td width="200px"><b>Cód.Barras</b></td><td><b>Modelo</b></td><td><b>Descrição</b></td>
 		</tr>
@@ -60,7 +60,7 @@ if not objRS.Eof then%>
 		</table>
 <%
 else%>
-		<table class="tabela1" width="100%">
+		<table class="table-bordered" width="100%">
 		<tr><td><b>Nenhum equipamento cadastrado neste momento</b></td></tr>
 		</table>
 <%
@@ -86,7 +86,7 @@ s =	"SELECT HPE_ID, f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO, " & _
 	"ORDER BY pe.HPE_DATAALTERACAO, f.EQ_CODIGOBARRAS, pe.HPE_TIPOMOVIMENTO"
 call Env.RecordSet(true, objRS, s)
 if not objRS.Eof then%>
-		<table class="tabela1" width="100%">
+		<table class="table-bordered" width="100%">
 		<tr>
 <%		if Env.ehRAT Then %>
 			<td align="center">&nbsp;</td>
@@ -120,7 +120,7 @@ call Env.RecordSet(false, objRS, null)
 
 <tr><td>&nbsp;</td></tr>
 
-<tr><td><input type="Button" value=" Voltar " onclick="history.go(-1);"></td></tr>
+<tr><td><input type="button" value=" Voltar " onclick="history.go(-1);"></td></tr>
 
 </table>
 </form>
@@ -136,5 +136,5 @@ call Env.RecordSet(false, objRS, null)
 	}
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

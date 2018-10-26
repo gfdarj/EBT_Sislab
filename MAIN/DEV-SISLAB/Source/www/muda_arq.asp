@@ -5,10 +5,10 @@
 Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
 %>
 	<form method="post" action="muda_arq_salva.asp" name="formulario" enctype="multipart/form-data">
-	<input type="Hidden" name="proc" value="É hora de processar!">
-	<input type="Hidden" name="codarq" value="<%=request("codarq")%>">
-	<input type="Hidden" name="arq_ant" value="<%=request("ant")%>">
-	<input type="Hidden" name="ag_numero" value="<%=request("ag_numero")%>">
+	<input type="hidden" name="proc" value="É hora de processar!">
+	<input type="hidden" name="codarq" value="<%=request("codarq")%>">
+	<input type="hidden" name="arq_ant" value="<%=request("ant")%>">
+	<input type="hidden" name="ag_numero" value="<%=request("ag_numero")%>">
 	<script language="JavaScript" src="includes/anexo.js"></script>
 	<script language="JavaScript">
 	function atualiza()
@@ -23,7 +23,7 @@ Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alter
 		}
 	}
 	</script>
-	<table class="tabela1" align="center">
+	<table class="table-bordered" align="center">
 	<tr>
 		<td><b>Arquivo Antigo:</b></td>
 		<td><%=request( "ant" ) %></td>

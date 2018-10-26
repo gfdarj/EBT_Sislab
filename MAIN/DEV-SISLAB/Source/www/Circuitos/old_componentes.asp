@@ -110,7 +110,7 @@ function ver_submit()
 }
 </script>
 <form name="componente" action="proc_compo.asp" method="post">
-<input type="Hidden" name="cpt_id" value="<%= request.querystring( "cpt_id" ) %>" />
+<input type="hidden" name="cpt_id" value="<%= request.querystring( "cpt_id" ) %>" />
 <table class="tipo1" align="center">
 <tr><td></td><td></td></tr>
 <tr>
@@ -121,7 +121,7 @@ function ver_submit()
 </tr>
 <tr id="l_nome">
 	<th>Nome</th>
-	<td><input type="Text" name="cpt_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cpt_nome %>" /></td>
+	<td><input type="text" name="cpt_nome" onchange="javascript:ver_submit();" size="60" maxlength="200" value="<%= cpt_nome %>" /></td>
 </tr>
 <tr id="l_tipo">
 	<th>Tipo de Componente</th>
@@ -194,7 +194,7 @@ loop %>
 </tr>
 <tr>
 	<th>C&oacute;digo SGP/SCE</th>
-	<td><input type="Text" name="cpt_cod_sgp_sce" size="60" maxlength="50" value="<%= cpt_cod %>" /></td>
+	<td><input type="text" name="cpt_cod_sgp_sce" size="60" maxlength="50" value="<%= cpt_cod %>" /></td>
 </tr>
 <tr>
 	<td colspan="2" align="center"><button name="btn_OK" onclick="javascript:verifica();" disabled>&nbsp;&nbsp;OK&nbsp;&nbsp;</button></td>

@@ -32,8 +32,8 @@ If Env.UsuarioSCE() Then
 	<td valign="top">
 		<form name="formulario" method="post">
 		Selecione o ano desejado:&nbsp;
-		<input type="Text" class="texto1" size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
-		<input type="Submit" class="texto1" value="Pesquisar">
+		<input type="text" class="texto1" size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
+		<input type="submit" class="texto1" value="Pesquisar">
 		</form>
 		<script language="JavaScript">
 			document.forms[0].ano.focus();

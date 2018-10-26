@@ -72,10 +72,10 @@ Response.Clear
 
 Call ImprimeCabecalho2("Cadastro de Agendamento - Upload de Arquivos", MENU_OFF, false, "100%", "Agendamento " & auxnumAS & " - Upload de Arquivos e Diagramas", "NENHUM", "")
 %>
-<table border="0" width="100%" class="tabela1" cellpadding="3" cellspacing="3">
+<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="vermelho2">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Arquivos Gravados (Total: <%=Arquivo.TotalArquivos%>)</span>
+		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Arquivos Gravados (Total: <%=Arquivo.TotalArquivos%>)</span>
 	</td>
 </tr>
 <tr><td>S: <%=s %></td></tr>
@@ -95,7 +95,7 @@ Next
 	<td class="cinza1"><i>Gravado por: <%=auxusername%>&nbsp;&nbsp;&nbsp;IP: <%=auxip%></i></td>
 </tr>
 <tr>
-	<td align="center"><input type="Button" class="texto1" value="Fechar" onclick="javascript:window.close();"></td>
+	<td align="center"><input type="button" class="texto1" value="Fechar" onclick="javascript:window.close();"></td>
 </tr>
 </table>
 <%

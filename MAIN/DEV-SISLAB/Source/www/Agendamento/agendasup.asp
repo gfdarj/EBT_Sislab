@@ -139,9 +139,9 @@ function inicial()
 
 <%call MostraHeader%>
 <form name="formSuperior" method="post">
-<INPUT TYPE="hidden" NAME="data" VALUE="<%= data%>">
-<INPUT TYPE="hidden" NAME="dataTipo" VALUE="">
-<INPUT TYPE="hidden" NAME="dataQtd" VALUE="">
+<INPUT type="hidden" NAME="data" VALUE="<%= data%>">
+<INPUT type="hidden" NAME="dataTipo" VALUE="">
+<INPUT type="hidden" NAME="dataQtd" VALUE="">
 <table width="774" border=0 cellspacing=0>
 <tr>
   <td>
@@ -165,17 +165,17 @@ function inicial()
 		</font>
   </td>
 	<td align="center">
-	  <INPUT TYPE="button" VALUE=" < Mês " ONCLICK="mudaData('m-1')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" < Sem " ONCLICK="mudaData('d-7')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" < Dia " ONCLICK="mudaData('d-1')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" Dia > " ONCLICK="mudaData('d+1')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" Sem > " ONCLICK="mudaData('d+7')" class="botao1">
-	  <INPUT TYPE="button" VALUE=" Mês > " ONCLICK="mudaData('m+1')" class="botao1">
+	  <INPUT type="button" VALUE=" < Mês " ONCLICK="mudaData('m-1')" class="botao1">
+	  <INPUT type="button" VALUE=" < Sem " ONCLICK="mudaData('d-7')" class="botao1">
+	  <INPUT type="button" VALUE=" < Dia " ONCLICK="mudaData('d-1')" class="botao1">
+	  <INPUT type="button" VALUE=" Dia > " ONCLICK="mudaData('d+1')" class="botao1">
+	  <INPUT type="button" VALUE=" Sem > " ONCLICK="mudaData('d+7')" class="botao1">
+	  <INPUT type="button" VALUE=" Mês > " ONCLICK="mudaData('m+1')" class="botao1">
 	</td>
 	<td align="right">
 		<font class="fonte2">Data:</font>
-		<INPUT TYPE="text" NAME="dataI" SIZE="8" MAXLENGTH="10" class="texto2">
-		<INPUT TYPE="button" VALUE="->" ONCLICK="localizaData()" class="botao05">
+		<INPUT type="text" NAME="dataI" SIZE="8" MAXLENGTH="10" class="texto2">
+		<INPUT type="button" VALUE="->" ONCLICK="localizaData()" class="botao05">
 	</td>
 </tr>
 </form>		

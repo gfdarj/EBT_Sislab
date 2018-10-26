@@ -4,7 +4,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Órgão", "location.href='sislab.asp'", "")
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Órgão", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>
@@ -89,11 +89,11 @@ function Excluir() {
 }
 </script>
 <form method="post" action="CadOrgaoA.asp" name="frm">
-<input type="Hidden" name="ehNovoOrgao" value="0">
-<input type="Hidden" name="excluir" value="0">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<input type="hidden" name="ehNovoOrgao" value="0">
+<input type="hidden" name="excluir" value="0">
+<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr> 
-	<td colspan="2">&nbsp;<span class="vermelho2"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 </tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -104,7 +104,7 @@ function Excluir() {
 	<td width="100px">&nbsp;&nbsp;<b>Órgão:</b></td>
 	<td>
 		<%call comboOrgaoHierarquia("orga_id", Env.oConn,"N")%>&nbsp;&nbsp;
-		<input class="texto1" type="Button" value="Buscar" onclick="BuscarOrgao();">
+		<input class="texto1" type="button" value="Buscar" onclick="BuscarOrgao();">
 	</td>
 </tr>
 
@@ -113,28 +113,28 @@ function Excluir() {
 <tr><th align="left" colspan="2">Dados do Órgão</th></tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Sigla:</b></td>
-	<td><input type="Text" name="sigla" size="60" class="texto1"></td>
+	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Sigla:</b></td>
+	<td><input type="text" name="sigla" size="60" class="texto1"></td>
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;Descrição:</b></td>
-	<td><input type="Text" name="desc" size="60" class="texto1"></td>
+	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição:</b></td>
+	<td><input type="text" name="desc" size="60" class="texto1"></td>
 <tr>
 
 <tr>
 	<td width="100px">&nbsp;&nbsp;Fax:</b></td>
-	<td><input type="Text" name="fax" size="20" class="texto1"></td>
+	<td><input type="text" name="fax" size="20" class="texto1"></td>
 <tr>
 
 <tr>
 	<td width="100px">&nbsp;&nbsp;Ramal:</b></td>
-	<td><input type="Text" name="ramal" size="10" class="texto1"></td>
+	<td><input type="text" name="ramal" size="10" class="texto1"></td>
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="Username do responsável pelo órgão">Chefe</a>:</b></td>
-	<td><input type="Text" name="chefe" size="30" class="texto1"></td>
+	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;<a href="#" title="Username do responsável pelo órgão">Chefe</a>:</b></td>
+	<td><input type="text" name="chefe" size="30" class="texto1"></td>
 <tr>
 
 <tr>
@@ -143,18 +143,18 @@ function Excluir() {
 <tr>
 
 <tr>
-	<td width="100px">&nbsp;<span class="vermelho2"><b>*</span>&nbsp;<a href="#" title="Número inteiro que Indica a posição hierárquica do órgão dentro do cadastro">Hierarquia</a>:</b></td>
-	<td><input type="Text" name="hierarquia" size="10" class="texto1"></td>
+	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;<a href="#" title="Número inteiro que Indica a posição hierárquica do órgão dentro do cadastro">Hierarquia</a>:</b></td>
+	<td><input type="text" name="hierarquia" size="10" class="texto1"></td>
 <tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
-		<input type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		<input type="Button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir"/>
-		<input type="Button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="Button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+		<input type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		<input type="button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir"/>
+		<input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		<input type="button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	</td>
 </tr>
 </table>
@@ -192,5 +192,5 @@ else%>
 
 </script>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

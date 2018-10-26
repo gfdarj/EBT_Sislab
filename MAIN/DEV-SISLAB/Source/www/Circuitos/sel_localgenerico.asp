@@ -59,8 +59,8 @@ function ApagaLocal()
 Call MostraHeader
 %>
 <form name="formulario" method="post">
-<input type="Hidden" name="lista_car" value="">
-<input type="Hidden" name="lista_qtd" value="">
+<input type="hidden" name="lista_car" value="">
+<input type="hidden" name="lista_qtd" value="">
 <table width="700" class="trcadtit1" border="1" align="center">
 <tr> 
 	<td width="60"></td>
@@ -101,15 +101,15 @@ Call MostraHeader
 		call Env.RecordSet(false, objRS, null)
 		%>
 		&nbsp;&nbsp;&nbsp;
-		<input type="Button" class="botao0" value="+" onclick="javascript:window.open('novolocalgenerico.asp', 'GENERICO', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
-		<input type="Button" class="botao0" value="-" disabled onclick="ApagaLocal();">
+		<input type="button" class="botao0" value="+" onclick="javascript:window.open('novolocalgenerico.asp', 'GENERICO', 'width=420, height=70, toolbar=no, status=no, menubar=no, scrollbars=no');">
+		<input type="button" class="botao0" value="-" disabled onclick="ApagaLocal();">
 	</td>
 </tr>
 <tr><td width="100%" colspan="2"><iframe name="localgenerico" src="" scrolling="Auto" frameborder="0" style="display: none; width:690; height:110;"></iframe></td></tr>
 <!--<tr id="botaoconfirma" style="display: none;">
 	<td colspan="2" align="center">
-		<input type="Button" class="botao1" value="Cadastrar" onclick="javascript:CadastraLocais();">&nbsp;
-		<input type="Button" class="botao1" value="Cancelar" onclick="javascript:location.href = 'sel_localgenerico.asp';">
+		<input type="button" class="botao1" value="Cadastrar" onclick="javascript:CadastraLocais();">&nbsp;
+		<input type="button" class="botao1" value="Cancelar" onclick="javascript:location.href = 'sel_localgenerico.asp';">
 	</td>
 </tr>-->
 </table>

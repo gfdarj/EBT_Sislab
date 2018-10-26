@@ -83,7 +83,7 @@ Set UpLoad = Nothing
 '---------------------------------------
 
 Sub MensagemErro(chr_Msg)
-	Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
 
 	chr_Buf = _
 			"<scr" & "ipt language='JavaScript'>" & VbCrLf & _
@@ -102,7 +102,7 @@ Sub MensagemErro(chr_Msg)
 
 	RW chr_Buf
 
-	Call ImprimeRodape(RODAPE_OFF)
+    Call Tela.MostraRodape()
 End Sub
 
 %>

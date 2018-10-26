@@ -20,11 +20,11 @@ Set Ebt = New TEbt
 tot = 0
 Auxselecao = Request("selecao")
 
-if request("emjanela") = "1" then
-	call ImprimeCabecalho2("SISLAB - Ficha do agendamento", MENU_OFF, false, "", "Acompanhamento de Agendamento - N<sup>o</sup> AS: " & auxselecao, "SO_IMPRESSORA", "")
-else
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento - N<sup>o</sup> AS: " & auxselecao, "", "")
-end if
+If Request("emjanela") = "1" Then
+	Call Tela.ImprimeCabecalho2("SISLAB - Ficha do agendamento", MENU_OFF, false, "", "Acompanhamento de Agendamento - N<sup>o</sup> AS: " & auxselecao, "SO_IMPRESSORA", "")
+Else
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento - N<sup>o</sup> AS: " & auxselecao, "", "")
+End if
 
 'Crio um RecordSet para Montar Consulta
 'Consulta agenda segundo filtros
@@ -93,7 +93,7 @@ AuxTipoTesteint=objSiteRS("TA_ID")
 
 <br>
 
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Histórico de Eventos</th>
 </tr>
@@ -149,7 +149,7 @@ if Not objSiteRS.eof then
 	objSiteRS.MoveFirst%>
 <br>
 
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Histórico de Eventos - Ordem de Serviço</th>
 </tr>
@@ -198,7 +198,7 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 if not (objSiteRS.Eof and objSiteRS.Bof) then
 %>
 <br>
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Histórico de Alterações de Datas</th>
 </tr>
@@ -236,7 +236,7 @@ sSQL = sSQL & " WHERE VW.AG_NUMERO="&AuxSelecao&"; "
 call Env.RecordSet( true, objSiteRS, sSQL)
 if Not objSiteRS.eof then%>
 <br>
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Arquivos Associados</th>
 </tr>
@@ -272,7 +272,7 @@ End If%>
 
 <br>
 
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Dados do Agendamento</th>
 </tr>
@@ -638,7 +638,7 @@ If not (objRes.EOF and objRes.BOF) then
 	objRes.MoveFirst%>
 <br>
 
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Dados do Servi&ccedil;o</th>
 </tr>
@@ -701,13 +701,13 @@ if Env.usuarioCRT then
 	if cint(objSiteRS("Valor")) > 0 then%>
 <br>
 
-<table class="tabela1" border="0" width="100%" cellpadding="3" cellspacing="0">
+<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
 <tr>
 	<th align="left">Histórico de Comunicações deste Agendamento</th>
 </tr>
 </table>
 
-<table class="tabela1" width="100%" border="1" cellpadding="2" cellspacing="1">
+<table class="table-bordered" width="100%" border="1" cellpadding="2" cellspacing="1">
 <tr>
 	<td align="center">
 		<font face="arial" class="item"  color="#000000">
@@ -733,5 +733,5 @@ function abreArquivo(nome){
 }
 </script>
 <%
-Call ImprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

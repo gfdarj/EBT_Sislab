@@ -28,7 +28,7 @@ else
 	call Env.RecordSet(true, objRS, sSQL)
 	if Not objRS.eof then%>
 <br>
-<table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
+<table border="1" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr>
 	<td width="30%"></td>
 	<td width="70%"></td>

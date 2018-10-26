@@ -15,18 +15,18 @@ exibeTodos = request("exibeTodos")
 if exibeTodos <> "1" then exibeTodos = "0"
 if username = "" or username = null then username="-1"
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Pessoal Alocado por Período", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Pessoal Alocado por Período", "location.href='sislab.asp'", "")
 %>
 
 <!-- Funcao isDate (data), onde data = dd/mm/aaaa -->
-<script language="JavaScript" src="<%=PathRelativo%>includes/manipulaObj.js"></script>
+<script type="text/javascript" src="<%=PathRelativo%>includes/manipulaObj.js"></script>
 <style>
-.celula
-{        
-	BORDER-TOP: black thin inset; 
-}
+    .celula
+    {        
+	    BORDER-TOP: black thin inset; 
+    }
 </style> 
-<script>
+<script type="text/javascript">
 //retorna =0 datas iguais; >0 data2 > data1; <0 data2 < data1
 function comparaData(data1, data2) //formato dd/mm/aaaa
 {
@@ -78,7 +78,7 @@ function submeter()
 <tr>
   <td>
 		<font class="fonte2">Início:</font>
-		<INPUT TYPE="text" NAME="diaInicio" size="3" MAXLENGTH="2" class="combo"> /
+		<INPUT type="text" NAME="diaInicio" size="3" MAXLENGTH="2" class="combo"> /
 		<font class="fonte2">
 		<SELECT NAME="mesInicio" class="combo">
 	    <OPTION VALUE="-1"> -Mês-
@@ -95,11 +95,11 @@ function submeter()
 	    <OPTION VALUE="11"> Nov
 	    <OPTION VALUE="12"> Dez
 	  </SELECT> /
-	  <INPUT TYPE="text" size="4" NAME="anoInicio" MAXLENGTH="4" class="combo">
+	  <INPUT type="text" size="4" NAME="anoInicio" MAXLENGTH="4" class="combo">
 	</td>
   <td>
 		<font class="fonte2">Término:</font>
-	  <INPUT TYPE="text" NAME="diaFim" MAXLENGTH="2" size="3" class="combo"> /
+	  <INPUT type="text" NAME="diaFim" MAXLENGTH="2" size="3" class="combo"> /
 		<font class="fonte2">
 	  <SELECT NAME="mesFim" class="combo">
 	    <OPTION VALUE="-1"> -Mês-
@@ -117,10 +117,10 @@ function submeter()
 	    <OPTION VALUE="12"> Dez
 	  </SELECT>
 	  </font> /
-	  <INPUT TYPE="text" NAME="anoFim" size="4" MAXLENGTH="4" class="combo">
+	  <INPUT type="text" NAME="anoFim" size="4" MAXLENGTH="4" class="combo">
 	</td>
 	<td>
-	  <INPUT TYPE="button" VALUE=" Ok " onclick="submeter()">
+	  <INPUT type="button" VALUE=" Ok " onclick="submeter()">
 	</td>
 </tr>
 <tr>
@@ -176,5 +176,5 @@ frm.exibeTodos.checked = <%if exibeTodos then response.write "true" else respons
 frm.username.value = "<%=username%>";
 </script>
 <%
-Call imprimeRodape2(RODAPE_OFF, "")
+Call Tela.MostraRodape()
 %>

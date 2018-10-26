@@ -125,7 +125,7 @@ function ValidaCampos(){
 		</td>
 		<td colspan="8">
 		<%call comboDePara("depara", objConn,"N")%>&nbsp;&nbsp;
-		<input  class="combo" type="Button" value="Buscar" onclick="Buscar();"></input>
+		<input  class="combo" type="button" value="Buscar" onclick="Buscar();"></input>
 		</td>
 	</tr>
 	<tr> 
@@ -143,7 +143,7 @@ function ValidaCampos(){
 	</tr>
 
 	<tr height="34">
-		<td colspan="10" align="left">&nbsp;<input class="texto1" type="Button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
+		<td colspan="10" align="left">&nbsp;<input class="texto1" type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
 		</td>
 	</tr>
 	</tr>

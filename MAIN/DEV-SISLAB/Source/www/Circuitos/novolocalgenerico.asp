@@ -28,7 +28,7 @@ function Valida()	{
 <table width="100%" height="100%">
 <tr> 
 	<td><font class="Fonttit3Cad"><b>Novo local:</b></font></td>
-	<td><input type="Text" value="" name="novolocal" size="40" maxlength="50" class="textbox"></td>
+	<td><input type="text" value="" name="novolocal" size="40" maxlength="50" class="textbox"></td>
 </tr>
 <tr> 
 	<td><font class="Fonttit3Cad"><b>Tipo:</b></font></td>
@@ -36,8 +36,8 @@ function Valida()	{
 </tr>
 <tr><td colspan="2"></td></tr>
 <tr>
-	<td colspan="2" align="center"><input type="Button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
-		&nbsp;&nbsp;<input type="Button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
+	<td colspan="2" align="center"><input type="button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
+		&nbsp;&nbsp;<input type="button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
 	</td>
 </tr>
 </table>

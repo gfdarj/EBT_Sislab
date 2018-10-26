@@ -18,7 +18,7 @@ Response.buffer = True
 response.flush
 %>
 <br>
-<table width="100%" cellpadding="2" cellspacing="0" border="1" class="tabela1">
+<table width="100%" cellpadding="2" cellspacing="0" border="1" class="table-bordered">
 <tr>
 	<th width="50px">Nº AS</th>
 	<th>Objetivo</th>

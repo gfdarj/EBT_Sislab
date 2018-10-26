@@ -67,11 +67,11 @@ function paginaAnterior()
 }
 </script>
 <form action="rel_ativ_B.asp" method="post">
-<input type="Hidden" name="total_registros" value="<%=total_registros%>">
+<input type="hidden" name="total_registros" value="<%=total_registros%>">
 <input type=hidden name="pagina">
-<input type="Hidden" name="ssql2" value="<%=ssql%>">
+<input type="hidden" name="ssql2" value="<%=ssql%>">
 <br>
-<table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1" style="border: solid thin;">
+<table border="1" width="100%" cellpadding="2" cellspacing="0" class="table-bordered" style="border: solid thin;">
 <tr>
 	<th width="35px" style="font-size: xx-small;">N&deg; AS</th>
 	<th style="font-size: xx-small;">Atividade</th>
@@ -200,7 +200,7 @@ If Not(objSiteRS.EOF) Then
 	frm.pagina.value = <%=contpagina%>
 </script>
 
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="tabela1">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="table-bordered">
 <tr>
 	<td align="left" width="150px">
 		<%if contpagina > 1 then%>

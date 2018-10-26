@@ -111,7 +111,7 @@ sSQL = sSQL & " ORDER BY ARQ_Link  DESC; "
 call Env.RecordSet( true, objSiteRS, sSQL)
 
 If Not(objSiteRS.EOF) Then%>
-<table width="100%" class="tabela1" cellpadding="3" cellpadding="2">
+<table width="100%" class="table-bordered" cellpadding="3" cellpadding="2">
 <tr>
 	<th>Arquivo</th>
 	<th width="12%">Tipo</th>
@@ -208,7 +208,7 @@ Else
 <p class="texto1" align="center">
 <b>Nenhum arquivo foi encontrado com estes critérios de consulta.</b>
 <br><br>
-<input type="Button" value="Voltar" class="texto1" onclick="javascript:history.go(-1);">
+<input type="button" value="Voltar" class="texto1" onclick="javascript:history.go(-1);">
 </p>
 <%
 End If

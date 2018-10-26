@@ -26,21 +26,21 @@ function Valida()	{
 </head>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 scroll="no">
 <form name="formulario" method="post">
-<input type="Hidden" name="tipo" value="<%request.querystring("tipo")%>">
+<input type="hidden" name="tipo" value="<%request.querystring("tipo")%>">
 <table width="100%" height="100%" class="trcadtit1" border="1" align="center" cellpadding="6" align="center">
 <tr><td>
 <table>
 <tr> 
 	<td><font class="Fonttit3Cad"><b>Nome:</b></font></td>
-	<td><input type="Text" value="" name="novacarac" size="50" maxlength="50" class="textbox"></td>
+	<td><input type="text" value="" name="novacarac" size="50" maxlength="50" class="textbox"></td>
 </tr>
 <tr> 
 	<td valign="top"><font class="Fonttit3Cad"><b>Defini&ccedil;&atilde;o:</b></font></td>
 	<td><textarea name="definicao" rows="7" cols="43"></textarea></td>
 </tr>
 <tr>
-	<td colspan="2" align="center"><input type="Button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
-		&nbsp;&nbsp;<input type="Button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
+	<td colspan="2" align="center"><input type="button" name="btnOk" value="Ok" class="botao1" onclick="javascript:Valida();">
+		&nbsp;&nbsp;<input type="button" name="btnCancela" value="Cancelar" class="botao1" onclick="javascript:window.close();">
 	</td>
 </tr>
 </table>
