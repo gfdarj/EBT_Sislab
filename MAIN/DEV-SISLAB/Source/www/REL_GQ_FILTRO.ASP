@@ -4,7 +4,7 @@
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Acompanhamento de AS", "location.href='rel_gq_filtro.asp';", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Acompanhamento de AS", "location.href='rel_gq_filtro.asp';", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
@@ -155,5 +155,5 @@ function montaExcel()
 </table>
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

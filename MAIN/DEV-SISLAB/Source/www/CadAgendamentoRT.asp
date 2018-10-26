@@ -12,7 +12,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Cadastro de Agendamento - RT"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RT", "", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RT", "", "")
 %>
 <body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
 <script>

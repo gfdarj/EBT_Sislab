@@ -20,7 +20,7 @@ function abreArquivo(oc, selecao){
 }
 </style> 
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Quadro de Registros (OPM / AM, AC e AP) em Ocorrências", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK - Quadro de Registros (OPM / AM, AC e AP) em Ocorrências", "", "")
 
 	Dim sSQL, objSiteRS, TipoRes, objConn
 
@@ -249,5 +249,5 @@ set objSiteRS = Nothing
 </form>
 
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

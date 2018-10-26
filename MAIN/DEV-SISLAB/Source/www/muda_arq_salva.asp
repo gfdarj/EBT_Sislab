@@ -40,18 +40,18 @@ end if
 '-----------------------------------------
 
 function Erro( msg )
-	call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Erro na alteração de arquivo !", "NENHUM", "")
+	Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Erro na alteração de arquivo !", "NENHUM", "")
 %>
 <p class="erro" class="texto1b"><%= msg %></p>
 <p align="center">
 	<button class="texto1" onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
 	<button class="texto1" onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
 </p>
-<%	call ImprimeRodape(RODAPE_OFF)
+<%	Call Tela.MostraRodape()
 end function
 
 function Terminar( nome_arq )
-	call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
+	Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
 %>
 	<script language="JavaScript1.2">
 		window.opener.muda_arq("<%=Replace(nome_arq, "\", "\\")%>");
@@ -61,6 +61,6 @@ function Terminar( nome_arq )
 		<span class="texto1B" style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
 		<button onclick="javascript:window.close()" class="texto1">&nbsp;Fechar&nbsp;</button>
 	</p>
-<%	call ImprimeRodape(RODAPE_OFF)
+<%	Call Tela.MostraRodape()
 end function
 %>

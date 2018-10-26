@@ -44,7 +44,7 @@ End Function
 '--------------------------------------------------------------------------------------------
 function erroDB(menu, rodape, apenasErroSistema, Erro, linkVoltar, path)
 	Dim objErro
-	call ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, menu, true, "", "Erro nao Gravação de Dados", "SO_IMPRESSORA", path)
 	response.write "<br><p class='texto1'>"
 
 	response.write "&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Descrição do(s) erro(s) encontrado(s)</span><br><br>"

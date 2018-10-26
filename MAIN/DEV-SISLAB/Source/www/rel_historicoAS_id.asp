@@ -6,7 +6,7 @@ Dim s, objRS
 Dim anterior : anterior = 0
 Dim dt_ini_anterior, dt_fim_anterior, data_invalida, conta_data_invalida
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Agendamentos - Listagem de AS por ordem de cadastro", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Agendamentos - Listagem de AS por ordem de cadastro", "location.href='sislab.asp'", "")
 
 Server.ScriptTimeout = 1000
 Response.buffer = True
@@ -88,5 +88,5 @@ if conta_data_invalida > 0 then
 end if
 
 call Env.RecordSet(false, objRS, null)
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

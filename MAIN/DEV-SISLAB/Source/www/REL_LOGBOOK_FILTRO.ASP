@@ -8,7 +8,7 @@ Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objs
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
 Dim auxRT, auxRAT, auxusername, EH_CRT, aux_Sigilo, auxorgao, auxtecnologia, auxorgaosel,auxAs
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de LOGBOOK", "", "")
 
 EH_CRT = Env.UsuarioCRT()
 %>
@@ -129,5 +129,5 @@ function envia(){
 }
 </script>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

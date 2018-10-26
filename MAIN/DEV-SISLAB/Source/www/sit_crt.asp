@@ -17,15 +17,15 @@ chr_Ordem = UCase(RQ("ordem"))
 
 If Request("emjanela") = "1" Then
 	If Request("hoje") = "1" Then
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Lista de Atividades - Hoje no CRT", "SO_IMPRESSORA", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Lista de Atividades - Hoje no CRT", "SO_IMPRESSORA", "")
 	Else
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Lista de Atividades do CRT", "SO_IMPRESSORA", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, false, "100%", "Lista de Atividades do CRT", "SO_IMPRESSORA", "")
 	End If
 Else
 	If Request("hoje") = "1" Then
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista de Atividades - Hoje no CRT", "", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista de Atividades - Hoje no CRT", "", "")
 	Else
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista de Atividades do CRT", "", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista de Atividades do CRT", "", "")
 	End If
 End If
 
@@ -147,9 +147,9 @@ End If
 <%
 '### Rodapé
 if request("emjanela") = "1" then
-	call ImprimeRodape(RODAPE_OFF)
+	Call Tela.MostraRodape()
 else
-	call ImprimeRodape(RODAPE_ON)
+	Call Tela.MostraRodape()
 end if
 %>
 <script language="JavaScript">

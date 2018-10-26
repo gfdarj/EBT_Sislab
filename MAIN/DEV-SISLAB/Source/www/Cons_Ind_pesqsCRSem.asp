@@ -28,7 +28,7 @@ Tela.SetMostraMenu = MENU_ON
 Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Pesquisa de Satisfação - Relatório Consolidado"
 Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_ON, true, "", "Pesquisa de Satisfação - Relatório Consolidado", "", "")
+'''''Call Tela.ImprimeCabecalho2("SISLAB - Pesquisa de Satisfação", MENU_ON, true, "", "Pesquisa de Satisfação - Relatório Consolidado", "", "")
 
 dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
 dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))

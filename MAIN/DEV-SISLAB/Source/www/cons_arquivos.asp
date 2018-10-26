@@ -24,7 +24,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Sistema de Gestão - Consulta de Arquivos"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
 
 auxsitarq = RQ("sitarquivo")
 auxidorgao = RQ("orgao")

@@ -2,7 +2,7 @@
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
-call ImprimeCabecalho2("SISLAB - Comentários - Pesquisa de Satisfação", MENU_OFF, false, "100%", "", "", "window.close()")
+Call Tela.ImprimeCabecalho2("SISLAB - Comentários - Pesquisa de Satisfação", MENU_OFF, false, "100%", "", "", "window.close()")
 
 Dim objSiteRS, cont, sSQL,tot, auxselag,auxselit,auxnitem,auxselativ
 Dim auxnRitem, auxseltipo, dataIni, dataFim
@@ -204,5 +204,5 @@ end if
 </table>
 <%
 call Env.recordset(false, objSiteRS, null)
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -47,7 +47,7 @@ auxag = Request("num_ag")
 ''''ehRat = False : ehRT = False : EhGQ = False : ehCrt = False : auxusername = "ANIEXP"
 
 if request("emjanela") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Pesquisa de Satisfação do CRT", "SO_IMPRESSORA", "")
+	Call Tela.ImprimeCabecalho2("", MENU_OFF, false, "100%", "Pesquisa de Satisfação do CRT", "SO_IMPRESSORA", "")
 else
 	If EhRAT Then
 		If Request.form("num_ag") <> "" Then
@@ -59,7 +59,7 @@ else
 		linkVoltar = "location.href='index.asp'"
 	End If
 
-	call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfação - CRT", linkVoltar, "")
+	Call Tela.ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfação - CRT", linkVoltar, "")
 end if
 
 
@@ -215,7 +215,7 @@ Else
 		If Not RS.Eof Then
 			If UCase(ag_solicitante) <> UCase(RS("AG_USERNAME")) Then
 				Call MensagemSolicitantesInvalidos()
-				Call imprimeRodape(RODAPE_OFF)
+				Call Tela.MostraRodape()
 				Response.End
 			End If
 		End If
@@ -597,9 +597,9 @@ end if
 Set Ebt = Nothing
 
 if request("emjanela") = "1" or auxag = "" then
-	Call imprimeRodape(RODAPE_OFF)
+	Call Tela.MostraRodape()
 else
-	Call imprimeRodape(RODAPE_ON)
+	Call Tela.MostraRodape()
 end if
 
 Function PegaIndiceRespostas(valor)

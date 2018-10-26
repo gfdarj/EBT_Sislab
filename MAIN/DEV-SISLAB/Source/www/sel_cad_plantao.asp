@@ -12,7 +12,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Plantão de Notícias do CRT"
 Tela.SetLinkVoltar = "location.href='sislab.asp';"
 Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do CRT", "location.href='sislab.asp';", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Plantão de Notícias do CRT", "location.href='sislab.asp';", "")
 %>
 <script type="text/javascript">
 	function navselecao(noticiaID) {

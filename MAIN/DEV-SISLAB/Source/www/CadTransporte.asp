@@ -18,10 +18,10 @@ Tela.SetNomeTela = "Cadastro do Horário do Transporte"
 
 If bln_Imprime Then
     Tela.SetLinkVoltar = "window.close()"
-	'Call imprimeCabecalho2(TITULO_SITE, MENU_OFF, True, "", "", "window.close()", "")
+	'Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, True, "", "", "window.close()", "")
 Else
     Tela.SetLinkVoltar = "location.href='sislab.asp'"
-	'Call imprimeCabecalho2(TITULO_SITE, MENU_ON, True, "", "", "location.href='sislab.asp'", "")
+	'Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, True, "", "", "location.href='sislab.asp'", "")
 End If
 
 Call Tela.MostraCabecalho()

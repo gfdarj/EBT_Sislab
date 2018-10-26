@@ -188,7 +188,7 @@ Else
 End If
 
 
-call ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfação - CRT", linkVoltar, "")
+Call Tela.ImprimeCabecalho2("", MENU_ON, true, "", "Pesquisa de Satisfação - CRT", linkVoltar, "")
 
 If idacao <= 0 Then
 	Response.Write "<br><p class='texto1' style='font-size: 12px;'>&nbsp;&nbsp;<b>Ocorreu um erro na execução desta ação</b></p>" & VbCrLf
@@ -220,5 +220,5 @@ end if
 
 Set Arquivo = Nothing
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

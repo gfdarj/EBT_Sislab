@@ -13,7 +13,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Sistemas de Gestão - Arquivos Disponíveis"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-'''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gestão - Arquivos Disponíveis", "", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gestão - Arquivos Disponíveis", "", "")
 %>
 
 <form method=post action="cons_arquivos.asp" name="formulario">

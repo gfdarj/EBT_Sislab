@@ -11,7 +11,7 @@ Tela.SetMostraMenu = MENU_ON
 Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Consulta de Indicadores"
 Call Tela.MostraCabecalho()
-'''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores", "location.href='sislab.asp'", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores", "location.href='sislab.asp'", "")
 %>
 <script language="javascript">
 function ValidaCampos() {

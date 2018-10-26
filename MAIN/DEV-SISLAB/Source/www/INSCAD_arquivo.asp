@@ -33,7 +33,7 @@ Arquivo.SetOverwrite = False
 
 Call Arquivo.Init_UP()
 If Arquivo.TemErro Then
-    Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
+    Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
     RW "<BR>"
     RW "<p class='texto'><font color='red'><B>Ocorreu um erro ao criar o objeto de Upload.</B></font></p>"
     RW "<p class='texto'><font color='red'><B>Mensagem: " & Arquivo.MensagemErro() & "</B></font></p>"
@@ -41,7 +41,7 @@ If Arquivo.TemErro Then
 End If
 Call Arquivo.Upload()
 If Arquivo.TemErro Then
-    Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
+    Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
     RW "<BR>"
     RW "<p class='texto'><font color='red'><B>Ocorreu um erro ao tentar salvar o arquivo.</B></font></p>"
     RW "<p class='texto'><font color='red'><B>Mensagem: " & Arquivo.MensagemErro() & "</B></font></p>"
@@ -233,5 +233,5 @@ If RETORNO <> "-1" then
 </table>
 </center>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

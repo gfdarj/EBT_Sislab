@@ -10,9 +10,9 @@ dim objRS, s, tecnologia
 
 '-- indica se foi chamado a partir do index
 if request("index") = "1" then
-	call ImprimeCabecalho2("", MENU_OFF, false, "100%", "Relatório de Tecnologias por Fabricante", "SO_IMPRESSORA", "")
+	Call Tela.ImprimeCabecalho2("", MENU_OFF, false, "100%", "Relatório de Tecnologias por Fabricante", "SO_IMPRESSORA", "")
 else
-	call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Tecnologias por Fabricante", "", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Tecnologias por Fabricante", "", "")
 end if
 %>
 <table class="texto1" border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">
@@ -48,9 +48,9 @@ call Env.Recordset(false, objRS, null)
 </table>
 <%
 if request("index") = "1" then
-	Call imprimeRodape(RODAPE_OFF)
+	Call Tela.MostraRodape()
 else
-	Call imprimeRodape(RODAPE_ON)
+	Call Tela.MostraRodape()
 end if
 
 

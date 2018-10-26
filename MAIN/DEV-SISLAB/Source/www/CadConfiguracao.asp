@@ -9,7 +9,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Configuração de parâmetros do SISLAB"
 Tela.SetLinkVoltar = "location.href='sislab.asp'"
 Call Tela.MostraCabecalho()
-''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Configuração de parâmetros do SISLAB", "location.href='sislab.asp'", "")
+''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Configuração de parâmetros do SISLAB", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 %>

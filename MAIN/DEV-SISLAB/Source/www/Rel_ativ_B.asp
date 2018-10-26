@@ -28,7 +28,7 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 
 total_registros = objSiteRS.RecordCount
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento", "location.href='rel_ativ.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento", "location.href='rel_ativ.asp'", "")
 %>
 <script language="javascript" src="includes/manipulaObj.js"></script>
 <script language="javascript">
@@ -236,7 +236,7 @@ end if
 <input type="hidden" name="selecao">
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 
 Function TesteRepetido(str, procurar_por)
 	Dim ret : ret = True

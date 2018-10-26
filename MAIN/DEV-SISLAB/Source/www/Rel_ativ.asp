@@ -4,7 +4,7 @@
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento e Resultado de Agendamento", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento e Resultado de Agendamento", "", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
@@ -293,5 +293,5 @@ function controleClientes(eu)
 </table>
 </form>
 <%
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

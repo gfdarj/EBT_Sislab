@@ -23,7 +23,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Relatório para Inventário de Equipamentos"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-'''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inventário de Equipamentos", "", "")
 %>
 <script type="text/javascript">
     function ValidaCampos() {

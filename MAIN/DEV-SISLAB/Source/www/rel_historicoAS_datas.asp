@@ -5,7 +5,7 @@
 Dim s, objRS
 Dim anterior : anterior = 0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Agendamentos - Listagem de AS por ordem de datas", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Agendamentos - Listagem de AS por ordem de datas", "location.href='sislab.asp'", "")
 
 Server.ScriptTimeout = 1000
 Response.buffer = True
@@ -62,5 +62,5 @@ end if
 <br><br>
 <%
 call Env.RecordSet(false, objRS, null)
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

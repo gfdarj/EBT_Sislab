@@ -5,7 +5,7 @@
 Dim objConn, objRS, i, max
 Dim tot_geral : tot_geral = 0
 
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Verifica Numeração dos Agendamentos", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Verifica Numeração dos Agendamentos", "location.href='sislab.asp'", "")
 
 call Env.RecordSet(true, objRS, "SELECT MAX(AG_NUMERO) FROM Agendamento")
 max = objRS(0)
@@ -48,5 +48,5 @@ if tot_geral > 0 then%>
 end if%>
 </table>
 <%
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

@@ -2,7 +2,7 @@
 <!--#INCLUDE FILE="includes/PadraoHTML.asp" -->
 <!--#INCLUDE FILE="includes/global.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Localização / Área", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Localização / Área", "", "")
 %>
 <script language="JavaScript">
 function AbreJanela(str, nomejan)
@@ -44,5 +44,5 @@ function AbreJanela(str, nomejan)
 </table>
 <br>
 <%
-Call imprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

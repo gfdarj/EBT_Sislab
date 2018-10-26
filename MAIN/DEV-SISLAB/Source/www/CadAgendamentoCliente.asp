@@ -38,7 +38,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Cadastro de Agendamento - Cliente"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
+''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "", "")
 
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
@@ -408,22 +408,24 @@ end if
 	<th align="left" colspan="10" class="linha-fundo">Dados do Solicitante</th>
 </tr>
 <tr class="espaco-minimo-35">
-	<td colspan="6">Nome do Responsável: &nbsp;
+	<td colspan="6">
+		Nome do Responsável: &nbsp;
 		<input type="text" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
 	</td>
 	<td colspan="4">Matrícula:&nbsp;
-		<input  READONLY  name="txtMatricula" size="15" tabindex="3">
+		<input readonly name="txtMatricula" size="15" tabindex="3">
 	</td>
 </tr>
 <tr class="espaco-minimo-35">
-	<td  colspan="3">Órgão:&nbsp;<input  READONLY name="txtOrgao" size="20" tabindex="4" maxlength="50">
+	<td  colspan="3">
+		Órgão:&nbsp;<input  READONLY name="txtOrgao" size="20" tabindex="4" maxlength="50">
 	</td>
 	<td  colspan="4">E-mail:&nbsp;
 		<input type=hidden name="Username">
-		<input   READONLY  name="txtEMail" size="30" tabindex="5" maxlength="200">
+		<input readonly name="txtEMail" size="30" tabindex="5" maxlength="200">
 	</td>
 	<td  colspan="3">Ramal:&nbsp;
-		<input   name="txtRamal" size="20" tabindex="6" maxlength="10" >
+		<input name="txtRamal" size="20" tabindex="6" maxlength="10" >
 	</td>
 </tr>
 
@@ -432,12 +434,14 @@ end if
 <tr>
 	<th colspan="10" class="linha-fundo">Dados do Agendamento</th>
 </tr>
+
 <tr class="espaco-minimo-35">
     <td colspan="10"><span class="texto-vermelho-bold"><b>*</b></span>
 		<u title="Nome de referência associada a atividade.">Título do agendamento:</u>&nbsp;
 		<input  name="txtTitulo" size="70" tabindex="7" maxlength="50" title="Nome de referência associada a atividade">
 	</td>
 </tr>
+
 <tr class="espaco-minimo-35">
     <td colspan="10">Período previsto para a atividade:&nbsp;
 		&nbsp;&nbsp;
@@ -447,6 +451,7 @@ end if
 		<%call comboData("FIM")%>
 	</td>
 </tr>
+
 <tr class="espaco-minimo-35">
 	<td colspan="10">
 			<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;
@@ -454,16 +459,16 @@ end if
 			<%call comboTecnologia("cmbTec",objConn,"N")%>
 	</td>
 </tr>
+
 <tr class="espaco-minimo-35">
-	<td colspan="10"><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Tipo de Sigilo:
-        <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">
-        Sigilo de Resultado&nbsp;
-        <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">
-        Sigilo de Ambiente e Resultado&nbsp;
-		<input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>
-		Sem Sigilo&nbsp;
+	<td colspan="10">
+		<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Tipo de Sigilo:
+        <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">Sigilo de Resultado&nbsp;
+        <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">Sigilo de Ambiente e Resultado&nbsp;
+		<input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>Sem Sigilo&nbsp;
 	</td>
 </tr>
+
 <!--
 <tr>
 	<td colspan="10"> 
@@ -487,91 +492,93 @@ end if
 </tr>
 
 <tr class="espaco-minimo-35" id="tabParticipantes" style="display: none;">
-	<td colspan="10">
-        <script type="text/javascript">
-            function adiciona_retira_participantesParticipantes(tipo)
-            {
-	            var frm = document.forms[0]
-	            var nome = frm.txtNomeParticipantes;
-	            var empresa = frm.txtEmpresaParticipantes;
-	            var motivo = frm.txtMotivoParticipantes;
-	            var lista = frm.lstParticipantes;
-	            var ultimo;
+	<td colspan="10" style="width: 100%;">
 
-	            if (tipo == 0){
-		            if (lista.selectedIndex != -1){
-			            lista.options[lista.selectedIndex]=null;
-		            }
-	            }
-	            else{
-		            if (nome.value == ""){
-			            alert("O campo 'Nome' deve ser preenchido.");
-			            nome.focus();		
-		            }
-		            else if (empresa.value == ""){
-			            alert("O campo 'Empresa' deve ser preenchido.");
-			            empresa.focus();		
-		            }
-		            else if (motivo.value == ""){
-			            alert("O campo 'Motivo da Participação' deve ser preenchido.");
-			            motivo.focus();		
-		            }
-		            else{
-			            ultimo = lista.options.length;
-			            lista.options[ultimo] = new Option(nome.value + " <%=SEPARADOR_CAMPO%> " + empresa.value + " <%=SEPARADOR_CAMPO%> " + motivo.value);
-			            lista.options[ultimo].value = nome.value + "<%=SEPARADOR_CAMPO%>" + empresa.value + "<%=SEPARADOR_CAMPO%>" + motivo.value;
-			            nome.value = "";
-			            empresa.value = "";
-			            motivo.value = "";
-			            nome.focus();
-		            }
-	            }
-            }
-        </script>
-        <table border="0" style="width: 100px;">
-        <tr><td></td><td></td><td></td><td></td></tr>
-        <tr>
-	        <th colspan="4" class="linha-fundo">Dados dos participantes externos</th>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;">
-		        <table border="0" style="width: 500px;">
-                <tr class="espaco-minimo-35">
-			        <td>Nome:</td>
-			        <td><input name="txtNomeParticipantes" size="40" tabindex="15" maxlength="50"></td>
-                </tr>
-                <tr>
-	                <td>Empresa:</td>
-                    <td><input  name="txtEmpresaParticipantes" size="30" tabindex="19" maxlength="50"></td>
-                </tr>
-                <tr> 
-	                <td>Motivo da participação:</td>
-	                <td><input  name="txtMotivoParticipantes" size="40" tabindex="20" maxlength="200"></td>
-                </tr>
-                </table>
-            </td>
-            <td>
-                &nbsp;
-                <input  type="button" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="16">
-                <br />
-                &nbsp;
-                <input  type="button" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="17">
-                &nbsp;
-            </td>
-            <td>&nbsp;</td>
-            <td>
-		        Participantes Externos:<br />
-                <select name="lstParticipantes" size="6" 
-	               style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 400px;"
-                   multiple tabindex="18">
-                </select>
-            </td>
-		</tr>
-        </table>
+			<script type="text/javascript">
+				function adiciona_retira_participantesParticipantes(tipo)
+				{
+					var frm = document.forms[0]
+					var nome = frm.txtNomeParticipantes;
+					var empresa = frm.txtEmpresaParticipantes;
+					var motivo = frm.txtMotivoParticipantes;
+					var lista = frm.lstParticipantes;
+					var ultimo;
+	
+					if (tipo == 0){
+						if (lista.selectedIndex != -1){
+							lista.options[lista.selectedIndex]=null;
+						}
+					}
+					else{
+						if (nome.value == ""){
+							alert("O campo 'Nome' deve ser preenchido.");
+							nome.focus();		
+						}
+						else if (empresa.value == ""){
+							alert("O campo 'Empresa' deve ser preenchido.");
+							empresa.focus();		
+						}
+						else if (motivo.value == ""){
+							alert("O campo 'Motivo da Participação' deve ser preenchido.");
+							motivo.focus();		
+						}
+						else{
+							ultimo = lista.options.length;
+							lista.options[ultimo] = new Option(nome.value + " <%=SEPARADOR_CAMPO%> " + empresa.value + " <%=SEPARADOR_CAMPO%> " + motivo.value);
+							lista.options[ultimo].value = nome.value + "<%=SEPARADOR_CAMPO%>" + empresa.value + "<%=SEPARADOR_CAMPO%>" + motivo.value;
+							nome.value = "";
+							empresa.value = "";
+							motivo.value = "";
+							nome.focus();
+						}
+					}
+				}
+			</script>
+	
+			<table border="0" style="width: 100px;">
+			<tr><td></td><td></td><td></td><td></td></tr>
+			<tr>
+				<th colspan="4" class="linha-fundo">Dados dos participantes externos</th>
+			</tr>
+			<tr>
+				<td style="vertical-align: top;">
+					<table border="0" style="width: 500px;">
+					<tr class="espaco-minimo-35">
+						<td>Nome:</td>
+						<td><input name="txtNomeParticipantes" size="40" tabindex="15" maxlength="50"></td>
+					</tr>
+					<tr>
+						<td>Empresa:</td>
+						<td><input  name="txtEmpresaParticipantes" size="30" tabindex="19" maxlength="50"></td>
+					</tr>
+					<tr> 
+						<td>Motivo da participação:</td>
+						<td><input  name="txtMotivoParticipantes" size="40" tabindex="20" maxlength="200"></td>
+					</tr>
+					</table>
+				</td>
+				<td>
+					&nbsp;
+					<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="16">
+					<br />
+					&nbsp;
+					<input  type="button" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="17">
+					&nbsp;
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					Participantes Externos:<br />
+					<select name="lstParticipantes" size="6" 
+						style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 400px;"
+						multiple tabindex="18">
+					</select>
+				</td>
+			</tr>
+			</table>
 
-        <script type="text/javascript">
-            document.getElementById("tabParticipantes").style.display = 'none';
-        </script>
+			<script type="text/javascript">
+				document.getElementById("tabParticipantes").style.display = 'none';
+			</script>
 	</td>
 </tr>
 
@@ -610,18 +617,18 @@ end if
 
 <tr class="espaco-minimo-35" id="tabClienteEBT">
 	<td colspan="10">
-
         <table width="100%" border="0" style="width: 800px;">
         <tr>
-	        <th class="linha-fundo">&nbsp;Dados do Cliente:</th>
+	        <th class="linha-fundo">&nbsp;Dados do Cliente</th>
         </tr>
         <tr>
             <td>
 		        <table border="0" style="width: 100%;">
 		        <tr>
-                    <td><span class="texto-vermelho-bold"><b>*</b></span></td>
+                    <td>
+						<span class="texto-vermelho-bold"><b>*</b></span>
+					</td>
 			        <td style="width: 180px;">
-				        
                         <u title="Informar o nome do Cliente ou Razão Social.">Nome do Cliente:</u>
 			        </td>
 			        <td>
@@ -629,7 +636,7 @@ end if
 			        </td>
 		        </tr>
 		        <tr> 
-                    <td></td>
+                    <td>&nbsp;</td>
 			        <td>
 				        <u title="Informar expectativa de retorno associado à atividade ou valor de carteira envolvido.">Retorno Estimado(R$):</u>
 			        </td>
@@ -641,18 +648,19 @@ end if
 				        <input type="text" value="0,00" name="txtValorContratoCliente" size="15" tabindex="32" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar o valor do contrato associado à atividade.">
 			        </td>
 		        </tr>
-	        </table>
+				</table>
+			</td>
+		</tr>
         </table>
-
 	</td>
 </tr>
 
 <tr class="espaco-minimo-35" id="tabCliente">
-	<th colspan="10">
+	<td colspan="10">
 
         <table border="0" style="width: 800px; font-weight: normal;" class="linha-fundo">
         <tr>
-	        <th>&nbsp;Dados do Cliente:</th>
+	        <th>&nbsp;Dados do Cliente</th>
         </tr>
         <tr>
             <td>
@@ -681,24 +689,26 @@ end if
 	</td>
 </tr>
 
-
 <tr class="espaco-minimo-35">
 	<td colspan="10">
         <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais.">Ambiente Necessário:</u><br>
 		<textarea name="ambiente"  cols="120" rows="4" title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais."></textarea>
 	</td>
 </tr>
+
 <tr class="espaco-minimo-100">
 	<td colspan="10"><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW).">Recursos Necessários:</u><br>
 		<textarea name="recursos"  cols="120" rows="4" title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW)."></textarea>
 	</td>
 </tr>
+
 <tr class="espaco-minimo-100">
 	<td colspan="10">
         <u title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</u><br>
 		<textarea name="obs"  cols="120" rows="4" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento."></textarea>
 	</td>
 </tr>
+
 <tr>
 	<td colspan="10">&nbsp;</td>
 </tr>

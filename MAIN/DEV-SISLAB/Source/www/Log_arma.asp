@@ -2,7 +2,7 @@
 <!--#INCLUDE FILE="includes/PadraoHTML.asp" -->
 <!--#INCLUDE FILE="includes/global.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Logística e armazenagem", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Logística e armazenagem", "", "")
 %>
 
 <table width=620>
@@ -25,5 +25,5 @@ call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Logística e armazenagem
 </tr>
 </table>
 <%
-Call imprimeRodape(RODAPE_ON)
+Call Tela.MostraRodape()
 %>

@@ -334,11 +334,11 @@ Private Sub ImprimeNomeTela()
 						<a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
 						&nbsp;
 <%				End If
-				if ucase(p_linkVoltar) <> "SO_LINK" Then %>
-						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; background-color: none;" 
+                if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+                        <button id="btn_imprimeTelaPrincipalSistema" style="border: none; background-color: transparent;"
                             onclick="javascript:imprimeTelaPrincipalSistema();">
-                            <a href="#">
-                                <img src="<%=p_PathRelativo%>img/impressora1.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela">
+                            <a href="#" style="background-color: transparent;">
+                                <img width="20px" src="<%=p_PathRelativo%>img/impressora1.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela">
                             </a>
 						</button>
 <%			    End If

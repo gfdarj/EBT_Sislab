@@ -9,7 +9,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Cadastro de Tipo de Arquivo"
 Tela.SetLinkVoltar = "location.href='sislab.asp'"
 Call Tela.MostraCabecalho()
-''''call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Arquivo", "location.href='sislab.asp'", "")
+''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Tipo de Arquivo", "location.href='sislab.asp'", "")
 
 If not Env.ehRAT then
 	RESPONSE.REDIRECT "INDEX.ASP"

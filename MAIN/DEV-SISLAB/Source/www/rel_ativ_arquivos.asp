@@ -13,12 +13,12 @@ else
 	Dim bln_ehLogBook
 
 	If request("oc") <> "" Then	'-- ocorrencia do logbook
-		call ImprimeCabecalho2("Ocorrência " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma ação", "NENHUM", "")
+		Call Tela.ImprimeCabecalho2("Ocorrência " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma ação", "NENHUM", "")
 		bln_ehLogBook = True
 
 		sSQL = "Select 'LogBook' AS TIPOARQUIVO, '" & Replace(Application("SISLAB_FolderArquivosLB"),"\","") & "/' + REPLACE(ACA_LINK, '\', '/') AS NOMEARQUIVO, ACA_LINK AS LINK From LB_ACOESTOMADAS_ARQUIVOS WHERE ACT_ID = " & Request("selecao")
 	Else
-		call ImprimeCabecalho2("AS " & request("selecao") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados ao agendamento " & request("selecao"), "NENHUM", "")
+		Call Tela.ImprimeCabecalho2("AS " & request("selecao") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados ao agendamento " & request("selecao"), "NENHUM", "")
 		bln_ehLogBook = False
 
 		sSQL = "Select TAR_TipoArquivo AS TIPOARQUIVO, '" & Replace(Application("SISLAB_FolderArquivos"),"\","") & "/' + REPLACE(Arq_nomeArq, '\', '/') AS NOMEARQUIVO, Arq_Link AS LINK From vw_ArquivosTeste VW INNER JOIN Agendamento A ON VW.AG_Numero = A.Ag_Numero "

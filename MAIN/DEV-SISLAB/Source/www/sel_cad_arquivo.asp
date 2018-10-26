@@ -3,7 +3,7 @@
 <!-- #include file="includes/global.asp" -->
 <!-- #include file="includes/controleshtml.asp" -->
 <%
-call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos do Site do CRT", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos do Site do CRT", "", "")
 %>
 <script language="JavaScript1.2">
 function navselecao(id_arq)
@@ -124,5 +124,5 @@ End If
     document.forms[0].sbtipoarquivo.value = '<%=tipoArquivo%>';
 </script>
 <%
-Call ImprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

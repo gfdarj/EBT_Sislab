@@ -70,7 +70,7 @@ Next
 
 Response.Clear
 
-Call ImprimeCabecalho2("Cadastro de Agendamento - Upload de Arquivos", MENU_OFF, false, "100%", "Agendamento " & auxnumAS & " - Upload de Arquivos e Diagramas", "NENHUM", "")
+Call Tela.ImprimeCabecalho2("Cadastro de Agendamento - Upload de Arquivos", MENU_OFF, false, "100%", "Agendamento " & auxnumAS & " - Upload de Arquivos e Diagramas", "NENHUM", "")
 %>
 <table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
 <tr>
@@ -101,5 +101,5 @@ Next
 <%
 Set Arquivo = Nothing
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

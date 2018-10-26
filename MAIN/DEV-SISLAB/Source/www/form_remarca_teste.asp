@@ -6,7 +6,7 @@ Dim Ebt
 
 Set Ebt = New TEbt
 
-'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios", "", "")
+'Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cancelamento ou Remarcação de Testes/Ensaios", "", "")
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Remarcação de Agendamento", "", "")
 
 Env.ArmazenaCaminhoAnterior()

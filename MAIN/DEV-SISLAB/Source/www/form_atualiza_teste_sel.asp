@@ -13,7 +13,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Atualização de Testes"
 Tela.SetLinkVoltar = "location.href='sislab.asp'"
 Call Tela.MostraCabecalho()
-'''''Call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes", "location.href='sislab.asp'", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Atualização de Testes", "location.href='sislab.asp'", "")
 %>
 <script language="javascript">
     function abre(codigo, excluir)

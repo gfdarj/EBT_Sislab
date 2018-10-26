@@ -21,7 +21,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Cadastro de Agendamento - RAT"
 Tela.SetLinkVoltar = ""
 Call Tela.MostraCabecalho()
-'''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RAT", "", "")
+'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - RAT", "", "")
 
 If num_ag <> "" Then
 	Dim rsEBT,rsCLI

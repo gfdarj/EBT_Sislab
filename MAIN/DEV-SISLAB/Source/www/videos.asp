@@ -3,7 +3,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_str.asp" -->
 <%
-call imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Vídeos do CRT", "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Vídeos do CRT", "", "")
 
 Dim objFSO, objFolder, objFile
 Dim chr_Path : chr_Path = Server.MapPath("videos/")
@@ -38,5 +38,5 @@ chr_Buf = chr_Buf & "</table>" & VbCrLf
 
 Response.write chr_Buf
 
-call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

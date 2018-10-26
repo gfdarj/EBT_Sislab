@@ -17,7 +17,7 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Mensagens de automáticas de email"
 Tela.SetLinkVoltar = "location.href='sislab.asp'"
 Call Tela.MostraCabecalho()
-''''Call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de automáticas de email", "location.href='sislab.asp'", "")
+''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Mensagens de automáticas de email", "location.href='sislab.asp'", "")
 
 'EH_CRT = Env.UsuarioCRT
 %>

@@ -2,7 +2,7 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
+Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alteração de Arquivo", "NENHUM", "")
 %>
 	<form method="post" action="muda_arq_salva.asp" name="formulario" enctype="multipart/form-data">
 	<input type="hidden" name="proc" value="É hora de processar!">
@@ -44,5 +44,5 @@ Call ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Alter
 	</table>
 	</form>
 <%
-call ImprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

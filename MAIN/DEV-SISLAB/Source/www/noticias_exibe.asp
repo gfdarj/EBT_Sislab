@@ -21,7 +21,7 @@ If Not VVVNZ(id_Noticia) Then
 		chr_Noticia = RS("PLA_TITNOTICIA")
 		chr_Link = RS("PLA_LINK")
 
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", chr_Noticia, "window.close();", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", chr_Noticia, "window.close();", "")
 
 		chr_Buf = VbCrLf & _
 				"<table class='tabela1' border='0' width='100%' height='500px'>" & VbCrLf & _
@@ -42,7 +42,7 @@ If Not VVVNZ(id_Noticia) Then
 	Else
 		chr_Noticia = "Nenhuma notícia encontrada."
 
-		Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Notícias CRT", "window.close();", "")
+		Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Notícias CRT", "window.close();", "")
 
 		chr_Buf = VbCrLf & _
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _
@@ -62,7 +62,7 @@ Else
 	chr_Noticia = "Código da Notícia inválido."
 	chr_Link = ""
 
-	Call ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Notícias CRT", "window.close();", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, true, "", "Notícias CRT", "window.close();", "")
 
 		chr_Buf = VbCrLf & _
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _
@@ -78,5 +78,5 @@ End If
 
 RW chr_Buf
 
-Call imprimeRodape(RODAPE_OFF)
+Call Tela.MostraRodape()
 %>

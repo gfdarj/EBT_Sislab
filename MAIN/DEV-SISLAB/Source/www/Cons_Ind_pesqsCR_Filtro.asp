@@ -10,7 +10,7 @@ Tela.SetMostraMenu = MENU_ON
 Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Consulta Pesquisa de Satisfação"
 Call Tela.MostraCabecalho()
-''''''call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
+''''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta Pesquisa de Satisfação", "", "")
 
 Dim objSiteRS, objSiteMail, objArquivos, contte, contat, sSQL, tot,auxbarq, objsiteCRT
 Dim auxtipoteste,auxsituacaoteste, auxdiasteste, auxdescricao, auxsolicitante

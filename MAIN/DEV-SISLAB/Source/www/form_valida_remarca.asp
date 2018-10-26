@@ -7,7 +7,7 @@ Dim Ebt
 
 Set Ebt = New TEbt
 
-'call ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Cancelamento/Remarcação de Testes/Ensaios", "", "")
+'Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Cancelamento/Remarcação de Testes/Ensaios", "", "")
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação de Remarcação de Agendamento", "", "")
 
 Response.Buffer = true
