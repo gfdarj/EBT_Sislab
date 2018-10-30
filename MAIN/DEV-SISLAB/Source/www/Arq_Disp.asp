@@ -16,23 +16,22 @@ Call Tela.MostraCabecalho()
 '''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistemas de Gestão - Arquivos Disponíveis", "", "")
 %>
 
+<div class="margem-10">
+
 <form method=post action="cons_arquivos.asp" name="formulario">
-<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
+
+<h4 class="texto-vermelho-bold">AVISO: <small>Os documentos do SG quando impressos só tem valor com a identificação de "Cópia Controlada" através de carimbo ou tarja.</small></h4>
+<h4 class="texto-vermelho-bold">IMPORTANTE: <small>Todo Empregado ao acessar ou manusear qualquer documento do SG possui a responsabilidade de evitar a reprodução indevida dos documentos e assegurar a utilização da versão mais atual.</small></h4>
+
+<table border="0" style="width: 100%;">
 <tr>
-	<td class="texto1">
-		<font color="#ff0000" ><b>AVISO :</b></font> <br>Os documentos do SG quando impressos só tem valor com a identificação de "Cópia Controlada" através de carimbo ou tarja. <br><br>
-		<font color="#ff0000" ><b>IMPORTANTE :</b></font><br>Todo Empregado ao acessar ou manusear qualquer documento do SG possui a responsabilidade de evitar a reprodução indevida dos documentos e assegurar a utilização da versão mais atual.
-	</td>
-</tr>
-<tr><td height="5px"></td></tr>
-<tr>
-	<td>
-		&nbsp;<span class="texto1b" style="font-size: 12px;">Informe os Critérios da sua Pesquisa</span>
-	</td>
+	<th>
+		Informe os Critérios da sua Pesquisa
+	</th>
 </tr>
 <tr>
 	<td>
-		<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3" style="background: <%=chr_BgColor%>;">
+		<table border="0">
 		<tr>
 			<td></td>
 			<td></td>
@@ -45,19 +44,19 @@ Call Tela.MostraCabecalho()
 			<td></td>
 			<td></td>
 		</tr>
-	    <tr> 
+	    <tr style="height: 55px;">
     		<td colspan="10">Assunto<br>
-				<input type="text" name="assunto" size="60" maxlength="90" value="" class="texto1">
+				<input type="text" name="assunto" size="60" maxlength="90" value="" >
 			</td>
 		</tr>
-		<tr>
+		<tr style="height: 55px;">
 			<td colspan="10">Responsável pelo Arquivo<br>
 				<%CALL comboUSERCRT("responsavel",objConn,TRUE)%>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="3">Tipo de Arquivo<br>
-				<select name="tipoarquivo" style="font-size=8pt">
+		<tr style="height: 55px;">
+			<td colspan="2">Tipo de Arquivo<br>
+				<select name="tipoarquivo">
 					<option value="">-- Todos --</option>
 					<%	'-- Os roteiros e laudos devem ser exibidos como opcao de filtro para todos.
 					'-- apenas se forem sigilosos nao devem ser exibidos na lista de resultados
@@ -68,8 +67,8 @@ Call Tela.MostraCabecalho()
 					'end if%>
 				</select>
 			</td>
-			<td colspan="7">Situação do Arquivo<br>
-				<select name="sitarquivo" class="texto1">
+			<td colspan="8">Situação do Arquivo<br>
+				<select name="sitarquivo">
 					<option value="">-- Todas --</option>
 <%					if Env.ehGQ then
 						call comboBDpadrao(objConn,"Select SAR_CodSitArquivo as valor, SAR_SitArquivo as descricao from SituacaoArquivo order by SAR_SitArquivo asc",2)
@@ -81,16 +80,18 @@ Call Tela.MostraCabecalho()
 				</select>
 			</td>
 		</tr>
-		<tr><td height="10px"></td></tr>
-		<tr valign="middle">
-			<td colspan="10" align="left">
-				<input type="submit" name="Submit" value="Pesquisar" class="texto1">&nbsp;&nbsp;&nbsp;
-			</td>
-		</tr>
 		</table>
 	</td>
 </tr>
+<tr style="height: 55px;">
+    <td>
+        <input type="submit" name="Submit" value="Pesquisar" >
+    </td>
+</tr>
 </table>
+
+</form>
+</div>
 <%
 Call Tela.MostraRodape()
 %>

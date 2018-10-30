@@ -332,6 +332,9 @@ Class TEnvironment
 	    End If
     End Sub
 
+    Private Sub ImprimeErrosConexao()
+        ImprimeErrosConexao = "ERRO"
+    End Sub 
 
     Public Sub StoredProcedure(opcao, command, strExec)
 	    If(opcao)Then

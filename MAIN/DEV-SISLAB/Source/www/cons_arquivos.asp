@@ -2,16 +2,16 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
-
 <%
 Dim objSiteRS, cont, sSQL,tot, auxidorgao, EhGQ,EHrat, EHRt, auxusername, i,objConn, EHCrt
-Dim auxassunto, auxresponsavel, auxtipoarq,auxsitarq
+Dim auxassunto, auxresponsavel, auxtipoarq,auxsitarq, contaFlush
 
 auxusername = Env.NomeReduzido()
 EH_CRT = Env.usuarioCRT()
 EH_GQ = Env.ehGQ()
 EHrat =  Env.ehRAT()
 EHrt =  Env.ehRT()
+contaFlush = 0
 
 '---debug---
 'eh_GQ = false
@@ -22,7 +22,7 @@ EHrt =  Env.ehRT()
 Tela.SetMostraMenu = MENU_ON
 Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Sistema de Gestão - Consulta de Arquivos"
-Tela.SetLinkVoltar = ""
+Tela.SetLinkVoltar = "location.href='arq_disp.asp';"
 Call Tela.MostraCabecalho()
 '''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão - Consulta de Arquivos", "", "")
 
@@ -62,13 +62,13 @@ end if
     }
 </script>
 
+<div class="margem-10">
 <form method="post" action="cad_arquivo.asp">
 <%
 tot=0
 
-  'Crio um RecordSet para Montar Consulta
-
-' Consulta de Todas os arquivos segundo filtros
+'Crio um RecordSet para Montar Consulta
+'Consulta de Todas os arquivos segundo filtros
 
 sSQL = "Select * From vw_Consarq "
 sSQL = sSQL & " WHERE ARQ_IDOrgao >= 0 "
@@ -108,17 +108,17 @@ sSQL = sSQL & " ORDER BY ARQ_Link  DESC; "
 'response.write ssql & " & " & eh_gq
 'response.end
 
-call Env.RecordSet( true, objSiteRS, sSQL)
+Call Env.RecordSet( true, objSiteRS, sSQL)
 
-If Not(objSiteRS.EOF) Then%>
-<table width="100%" class="table-bordered" cellpadding="3" cellpadding="2">
+If Not objSiteRS.EOF Then%>
+<table width="100%" class="table-bordered table-striped table-hover table-condensed" style="width: 100%;">
 <tr>
 	<th>Arquivo</th>
-	<th width="12%">Tipo</th>
-	<th width="8%">Situação</th>
-	<th width="10%">Data</td>
-	<th width="10%">Respons&aacute;vel</th>
-	<th width="10%">Expira em</td>
+	<th width="12%" style="text-align: center;">Tipo</th>
+	<th width="8%" style="text-align: center;">Situação</th>
+	<th width="10%" style="text-align: center;">Data</td>
+	<th width="10%" style="text-align: center;">Respons&aacute;vel</th>
+	<th width="10%" style="text-align: center;">Expira em</td>
 </tr>
 <%
 	Do while Not(objSiteRS.EOF)
@@ -139,73 +139,75 @@ If Not(objSiteRS.EOF) Then%>
 		end if
 %>
 <tr>
-<td  bgcolor="<%=COR%>" align="left">
-<font face="verdana" color="#000000" class="FontMenu1">
-<B>
+    <td align="left">
+        <B>
 <!--
 Parte do código que define se arquivos devem ou não ser exibidos de acordo com o usuario logado
 -->
 <%		if objSiteRS("ARQ_Ocultar") = TRUE then
 			if EH_CRT = TRUE or objSiteRS("AG_RESPONSAVEL") = Env.usuario then%>
-		<a href="javascript:janelaespecial('arquivos/<%=Replace(objSiteRS("ARQ_NomeArq"), "\", "/")%>');" style="color=#000000"><%=UCase(objSiteRS("ARQ_Link"))%></a>
-	<%		ELSE%>
-		<%=UCase(objSiteRS("ARQ_Link"))%>
-	<%		END IF
-		ELSE%>
-		<a href="javascript:janelaespecial('arquivos/<%=Replace(objSiteRS("ARQ_NomeArq"), "\", "/")%>');" style="color=#000000"><%=UCase(objSiteRS("ARQ_Link"))%></a>
-<%		END IF%>
-</B>
-</font>
-</a>
-</td>
-<td bgcolor="<%=COR%>" align="center">
-<font face="verdana" color="#000000" class="FontMenu1">
-<%if objSiteRS("TAR_TipoArquivo") <> "" then  response.write objSiteRS("TAR_TipoArquivo") else response.write "N/A" end if%></font>
-</td>
-<td bgcolor="<%=COR%>" align="center">
-<font face="verdana" color="#000000" class="FontMenu1">
-<%if objSiteRS("SAR_SitArquivo") <> "" then  response.write UCase(objSiteRS("SAR_SitArquivo")) else response.write "N/A" end if%></font>
-</td>
-<td bgcolor="<%=COR%>" align="center">
-<font face="verdana" color="#000000" class="FontMenu1">
+		    <a href="javascript:janelaespecial('arquivos/<%=Replace(objSiteRS("ARQ_NomeArq"), "\", "/")%>');"><%=objSiteRS("ARQ_Link")%></a>
+<%		    Else%>
+    		<%=objSiteRS("ARQ_Link")%>
+	<%		End If
+		Else %>
+	    	<a href="javascript:janelaespecial('arquivos/<%=Replace(objSiteRS("ARQ_NomeArq"), "\", "/")%>');"><%=objSiteRS("ARQ_Link")%></a>
+<%		End If%>
+        </B>
+    </td>
+
+    <td align="center">
+<%if objSiteRS("TAR_TipoArquivo") <> "" then  response.write objSiteRS("TAR_TipoArquivo") else response.write "N/A" end if%>
+    </td>
+
+    <td align="center">
+<%if objSiteRS("SAR_SitArquivo") <> "" then 
+        response.write "<span style='background-color: " & cor & "';>" & objSiteRS("SAR_SitArquivo") & "</span>"
+  else
+        response.write "N/A" 
+  end if%>
+    </td>
+
+    <td align="center">
 <%'=formataDatadisplay(objSiteRS("ARQ_DataAtualizacao"))%> 
 	<%=objSiteRS("ARQ_DataAPROVACAO")%> 
 	<% if objSiteRS("ARQ_DATAEXPIRACAO") <> ""  then %>
 	<B></B><br> REV: <%=objSiteRS("ARQ_VERSAO")%> 
 	<% end if%>
-</font>
-</td>
-<td bgcolor="<%=COR%>" align="center">
-<font face="tahoma" color="#000000" class="FontMenu1">
-<%=UCase(objSiteRS("ARQ_responsavel"))%></font>
-</td>
+    </td>
 
-<td bgcolor="<%=COR%>" align="center">
-<font face="tahoma" color="#000000" class="FontMenu1">
+    <td align="center">
+    <%=objSiteRS("ARQ_responsavel")%>
+    </td>
+
+    <td align="center">
 <%		If objSiteRS("ARQ_DATAEXPIRACAO") <> "" and objSiteRS("arq_idSituacao") = 2 and objSiteRS("ARQ_CodArqTipo") <> 30 then  
-			response.write day(UCase(objSiteRS("ARQ_DATAEXPIRACAO"))) & "/" & month(UCase(objSiteRS("ARQ_DATAEXPIRACAO"))) & "/" & year(UCase(objSiteRS("ARQ_DATAEXPIRACAO")))
+			response.write day(objSiteRS("ARQ_DATAEXPIRACAO")) & "/" & month(objSiteRS("ARQ_DATAEXPIRACAO")) & "/" & year(UCase(objSiteRS("ARQ_DATAEXPIRACAO")))
 			If ((Env.ehRT or  Env.ehRAT or Env.ehGQ)) and expirado then
-				response.write "<br><a href='javascript:Valida(" & objSiteRS("ARQ_codarq") & ")'><font face='tahoma' color='#000000' class='FontMenu1'><B>Validar</B></font></a>"
+				response.write "<br><a href='javascript:Valida(" & objSiteRS("ARQ_codarq") & ")'><B>Validar</B></a>"
 			End If
 		Else
 			response.write "N/A" 
 		End If
 
 		If CINT(objSiteRS("VALIDACAO")) > 0 and objSiteRS("ARQ_DATAEXPIRACAO") <> "" THEN
-			response.write "<br><a href='javascript:Historico(" & objSiteRS("ARQ_codarq") & ")'><font face='tahoma' color='#000000' class='FontMenu1'><B>Historico</B></font></a>"
+			response.write "<br><a href='javascript:Historico(" & objSiteRS("ARQ_codarq") & ")'><B>Historico</B></a>"
 		End If
 %>
-</font>
-</td>
+    </td>
 </tr>
 <%		objSiteRS.movenext
+        contaFlush = contaFlush + 1
+        If contaFlush mod 30 Then
+            Response.Flush
+        End If
 	Loop%>
 </table>
 <%
 Else
 %>
 <br>
-<p class="texto1" align="center">
+<p align="center">
 <b>Nenhum arquivo foi encontrado com estes critérios de consulta.</b>
 <br><br>
 <input type="button" value="Voltar" class="texto1" onclick="javascript:history.go(-1);">
@@ -213,29 +215,29 @@ Else
 <%
 End If
 %>
-<font style="font-size: 3pt"><br></font>
+
+<br />
 
 <%  If Err then%>
 
 
 <center>
 <table width="450">
-<tr>
-<td>
-<center>
-<font size=5 color=#000050>
-Ocorreu algum erro no carregamento desta página.<br><br>
-Qualquer dúvida entre em contato com o CRT no Ramal 8297.
-</font>
-</center>
-</td>
-</tr>
+    <tr>
+        <td>
+            <center>
+            Ocorreu algum erro no carregamento desta página.<br><br>
+            Qualquer dúvida entre em contato com o CRT no Ramal 8297.
+            </center>
+        </td>
+    </tr>
 </table>
 </form>
 </left>
 
 <%end if%>
 </center>
+</div>
 <%
 Call Tela.MostraRodape()
 %>

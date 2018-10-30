@@ -51,19 +51,21 @@ cont = 0
 	}
 </script>
 
+<div class="margem-10">
 
 <form name="formulario" method="get">
 <input type="hidden" name="num_as">
 <input type="hidden" name="selecao">
 <input type="hidden" name="hoje" value="<%=request("hoje")%>">
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="table-bordered">
 <tr>
 	<td>
 		<table width="100%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td class="fonteTitulo1"><span style="color: red">&raquo;</span>&nbsp;Agendamentos do CRT</td>
-			<td align="right" class="texto1" style="color: gray;">Ordenar por:&nbsp;
-				<select name="ordem" class="texto1" onChange="javascript:document.formulario.submit();" style="color: gray;">
+			<td><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Agendamentos do CRT</td>
+			<td align="right" style="color: gray;">Ordenar por:&nbsp;
+				<select name="ordem" onChange="javascript:document.formulario.submit();" style="color: gray;">
 					<option value=""<%=IIf(chr_Ordem = "", " selected", "")%>>Situação</option>
 					<option value="S"<%=IIf(chr_Ordem = "S", "selected", "")%>>Salas</option>
 					<option value="D"<%=IIf(chr_Ordem = "D", "selected", "")%>>Data Término</option>
@@ -80,9 +82,9 @@ cont = 0
 	<td height="25">
   	  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25" class="table-bordered">
       <tr>
-		<td width="180" class="fonteTitulo1">&nbsp;</td>
+		<td width="180">&nbsp;</td>
 		<td>
-	        <div align="right" class="links">Agendamentos em andamento: <b><span id="tot_agenda">XX</span></b>&nbsp;
+	        <div align="right">Agendamentos em andamento: <b><span id="tot_agenda">XX</span></b>&nbsp;
           <font color="#993300">l</font>&nbsp; Agendamentos futuros: <b><%
 s = "select count(*) as Total_Futuros From vw_Agendamento "
 s = s & "where ID_SITUACAO = 1 or (ID_SITUACAO=3 and AG_DATAINICIO > getDate())"
@@ -101,7 +103,6 @@ Call Env.RecordSet( false, objRS, s )
 
 <tr>
     <td height="10">
-		<font class="noticias">
 <%
 sSQL = "select * from dbo.vw_PESQ_SATISFACAO order by indice desc; "
 Call Env.RecordSet(True, objSiteRS, sSQL)
@@ -120,7 +121,6 @@ if not(objSiteRS.EOF) Then
 			</div>
 <%
 End If%>
-		</font>
 	</td>
 </tr>
 
@@ -144,6 +144,8 @@ End If
 </tr>
 </table>
 </form>
+</div>
+
 <%
 '### Rodapé
 if request("emjanela") = "1" then
@@ -152,23 +154,24 @@ else
 	Call Tela.MostraRodape()
 end if
 %>
-<script language="JavaScript">
-//-- comentado o codigo que utiliza esta linha !!!!!
-document.all.tot_agenda.innerText = "<%=conta%>"; // atualizo o contador de agendamentos
 
-function chama_as(cod_as, oquefazer)
-{
-	if(oquefazer == 1) {
-		document.formulario.action = "cadAgendamentoCliente.asp";
-		document.formulario.num_as.value = cod_as;
-		document.formulario.selecao.value = cod_as;
-		document.formulario.submit();
-	}
-	else {
-		var jan = window.open('ficha_as.asp?emjanela=1&selecao=' + cod_as, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
-		jan.focus();
-	}
-}
+<script type="text/javascript">
+    //-- comentado o codigo que utiliza esta linha !!!!!
+    document.all.tot_agenda.innerText = "<%=conta%>"; // atualizo o contador de agendamentos
+
+    function chama_as(cod_as, oquefazer)
+    {
+	    if(oquefazer == 1) {
+		    document.formulario.action = "cadAgendamentoCliente.asp";
+		    document.formulario.num_as.value = cod_as;
+		    document.formulario.selecao.value = cod_as;
+		    document.formulario.submit();
+	    }
+	    else {
+		    var jan = window.open('ficha_as.asp?emjanela=1&selecao=' + cod_as, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+		    jan.focus();
+	    }
+    }
 </script>
 
 <%
@@ -182,24 +185,24 @@ Sub MontaVisaoPorSituacao
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 			<th>Prioridade</th>
           <th>Atividade</th>
-          <th>Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th>Salas</th>
-          <th>&nbsp;</th>
+          <th style="text-align: center;">Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
+		  <th style="text-align: center;">Salas</th>
+          <th style="text-align: center; width: 30px;">&nbsp;</th>
         </tr>
 <%
-	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT TOP 50 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
 		"FROM vw_Agendamento a  " & _
-		"WHERE a.ID_SITUACAO in "
+		"/*WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
 		s = s & "(3, 6, 7) AND (a.AG_DATAINICIO < getDate()) "
 	else
-		s = s & "(1, 2, 3, 6, 7) "
+		s = s & "(1, 2, 3, 6, 7) */ "
 	end if
 
 	s = s & "ORDER BY a.ID_SITUACAO ASC, a.AG_NUMERO DESC"
@@ -255,7 +258,7 @@ Sub MontaVisaoPorSituacao
 					if AUXSITUACAOCHG <> "" Then
 %>
 		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="RIGHT" COLSPAN="5"><br>
 				<B>total: <%=cont%></B>
 			</td>
 		</tr>
@@ -264,7 +267,7 @@ Sub MontaVisaoPorSituacao
 					end if%>
 
 		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="LEFT" COLSPAN="5"><br>
 			<B>Agendamentos Situação: <%=AUXSITUACAO%></B>
 			</td>
 		</tr>
@@ -280,7 +283,7 @@ Sub MontaVisaoPorSituacao
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
@@ -291,7 +294,7 @@ Sub MontaVisaoPorSituacao
 
 			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
-			<td width="*" align="justify">
+			<td width="*" align="justify" style="vertical-align: middle; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
 <%		end if %>
@@ -310,16 +313,16 @@ Sub MontaVisaoPorSituacao
 <%	'End If%>
 			</td>
 
-			<td width="140px" align="center">
-				<span font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
-				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
+			<td width="200px" align="center">
+				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+				<br>(<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</span></td>
+			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</td>
 
-			<td align="center">
+			<td align="center" style="vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -336,10 +339,10 @@ Sub MontaVisaoPorSituacao
 %>
 
         <tr bgcolor="#ffffff"> 
-          <td align="RIGHT" COLSPAN="4"><br>
+            <td align="RIGHT" COLSPAN="4"><br>
 		<B>total: <%=cont%></B>
 <%cont=0%>
-	  </TD>
+            </TD>
 	</tr>
 
         </tbody> 
@@ -355,7 +358,7 @@ Sub MontaVisaoPorSalas
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>
@@ -436,7 +439,7 @@ Sub MontaVisaoPorSalas
 		if auxSalaOld <> "" Then
 %>
 		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="RIGHT" COLSPAN="5"><br>
 				<B>total: <%=cont%></B>
 			</td>
 		</tr>
@@ -445,7 +448,7 @@ Sub MontaVisaoPorSalas
 		end if%>
 
 		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="LEFT" COLSPAN="5"><br>
 			<B>Sala: <%=auxSala%></B>
 			</td>
 		</tr>
@@ -461,7 +464,7 @@ Sub MontaVisaoPorSalas
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
@@ -492,7 +495,7 @@ Sub MontaVisaoPorSalas
 			</td>
 
 			<td width="140px" align="center">
-				<span font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
 			</td>
 
@@ -500,7 +503,7 @@ Sub MontaVisaoPorSalas
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -537,7 +540,7 @@ Sub MontaVisaoPorPrioridade
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, iPrioridade, iPrioridadeOld
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 <%	If EhRat Then %>
@@ -620,7 +623,7 @@ Sub MontaVisaoPorPrioridade
 		if iPrioridadeOld <> "" Then
 %>
 		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="RIGHT" COLSPAN="5"><br>
 				<B>total: <%=cont%></B>
 			</td>
 		</tr>
@@ -629,7 +632,7 @@ Sub MontaVisaoPorPrioridade
 		end if%>
 
 		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="LEFT" COLSPAN="5"><br>
 			<B>Prioridade: <%=MostraPrioridade(iPrioridade, "")%></B>
 			</td>
 		</tr>
@@ -645,7 +648,7 @@ Sub MontaVisaoPorPrioridade
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
@@ -678,7 +681,7 @@ Sub MontaVisaoPorPrioridade
 			</td>
 
 			<td width="140px" align="center">
-				<span font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
 			</td>
 
@@ -686,7 +689,7 @@ Sub MontaVisaoPorPrioridade
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -723,7 +726,7 @@ Sub MontaVisaoPorDataTermino
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim auxMesAnoOld : auxMesAnoOld = CDate("01/01/1980")
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>
@@ -800,7 +803,7 @@ Sub MontaVisaoPorDataTermino
 		If auxMesAnoOld <> CDate("01/01/1980") Then
 %>
 		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="RIGHT" COLSPAN="5"><br>
 				<B>total: <%=cont%></B>
 			</td>
 		</tr>
@@ -809,7 +812,7 @@ Sub MontaVisaoPorDataTermino
 		end if%>
 
 		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="LEFT" COLSPAN="5"><br>
 			<B>Término: <%=IIf(IsNull(auxAG_DATATERMINO), "", Right("0"&Month(auxAG_DATATERMINO),2) & "/" & Year(auxAG_DATATERMINO))%></B>
 			</td>
 		</tr>
@@ -825,7 +828,7 @@ Sub MontaVisaoPorDataTermino
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
@@ -856,7 +859,7 @@ Sub MontaVisaoPorDataTermino
 			</td>
 
 			<td width="140px" align="center">
-				<span font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
 			</td>
 
@@ -864,7 +867,7 @@ Sub MontaVisaoPorDataTermino
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -900,7 +903,7 @@ Sub MontaVisaoPorRT
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="table-bordered">
+      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
         <tr>
           <th>AS</th>
 		  <th>Prioridade</th>
@@ -976,7 +979,7 @@ Sub MontaVisaoPorRT
 					if auxRTOld <> "" Then
 %>
 		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="RIGHT" COLSPAN="5"><br>
 				<B>total: <%=cont%></B>
 			</td>
 		</tr>
@@ -985,7 +988,7 @@ Sub MontaVisaoPorRT
 					end if%>
 
 		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
+			<td align="LEFT" COLSPAN="5"><br>
 			<B>Responsável Técnico: <%=auxRespTec%></B>
 			</td>
 		</tr>
@@ -1001,7 +1004,7 @@ Sub MontaVisaoPorRT
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
@@ -1032,15 +1035,15 @@ Sub MontaVisaoPorRT
 			</td>
 
 			<td width="140px" align="center">
-				<span font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
 			</td>
 
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</span></td>
+			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</td>
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a class="texto_tabela" href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
