@@ -294,7 +294,7 @@ Sub MontaVisaoPorSituacao
 
 			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
-			<td width="*" align="justify" style="vertical-align: middle; text-align:justify;">
+			<td width="*" align="justify" style="vertical-align: top; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
 <%		end if %>
@@ -309,7 +309,7 @@ Sub MontaVisaoPorSituacao
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=Ucase(auxAG_USERNAME)%> - RT: <%=Ucase(auxRT)%></b>
+			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
@@ -318,7 +318,7 @@ Sub MontaVisaoPorSituacao
 				<br>(<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</td>
+			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
 			<td align="center" style="vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
@@ -676,7 +676,7 @@ Sub MontaVisaoPorPrioridade
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=Ucase(auxAG_USERNAME)%> - RT: <%=Ucase(auxRT)%></b>
+			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
@@ -684,8 +684,8 @@ Sub MontaVisaoPorPrioridade
 				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
 			</td>
-
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</span></td>
+            
+			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</span></td>
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
