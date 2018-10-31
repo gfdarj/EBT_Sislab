@@ -74,12 +74,12 @@ else
 		set rec = Env.oconn.execute(ssql)
 		'-- monto um quadro de aviso, contendo os equips e os acessorios
 		if not (rec.eof and rec.bof) then
-			msg =	"<table width='600px' align='center' class='texto' style='border: thin red solid;'>" + _
+			msg =	"<table width='600px' align='center' style='border: thin red solid;'>" + _
 					"<tr><th style='border-bottom: thin red solid;'>Existem acessórios do item em uso ou no estoque !</th></tr>" + _
 					"<tr><td>&nbsp;</td></tr>" + _
 					"<tr><td>Para realizar a esta movimentação, é necessário fazer devolução do acessório no cadastro do item. Clique nos itens abaixo para alterá-los</td></tr>" + _
 					"<tr><td>" + _
-						"<table width='100%' class='texto'>" + _
+						"<table width='100%'>" + _
 						"<tr align='left'><th width='130px'>Cód. Barras</th><th>Acess&oacute;rio</th><th width='80px'>Status Acess.</th></tr>"
 			eq_id = ""
 			while not rec.eof

@@ -10,7 +10,7 @@ numAS = Request("num_as")
 frm = UCase(Request.form("frm"))
 
 if frm <> "" then
-	response.write "<hr><span class='texto'>"
+	response.write "<hr><span>"
 
 	set objRS = Server.CreateObject("ADODB.Command")
 	objRS.ActiveConnection = Env.oConn

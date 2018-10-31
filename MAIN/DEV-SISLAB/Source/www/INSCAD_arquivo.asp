@@ -35,16 +35,16 @@ Call Arquivo.Init_UP()
 If Arquivo.TemErro Then
     Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
     RW "<BR>"
-    RW "<p class='texto'><font color='red'><B>Ocorreu um erro ao criar o objeto de Upload.</B></font></p>"
-    RW "<p class='texto'><font color='red'><B>Mensagem: " & Arquivo.MensagemErro() & "</B></font></p>"
+    RW "<p class='texto-vermelho-bold'>Ocorreu um erro ao criar o objeto de Upload.</p>"
+    RW "<p class='texto-vermelho-bold'>Mensagem: " & Arquivo.MensagemErro() & "</p>"
     RE
 End If
 Call Arquivo.Upload()
 If Arquivo.TemErro Then
     Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
     RW "<BR>"
-    RW "<p class='texto'><font color='red'><B>Ocorreu um erro ao tentar salvar o arquivo.</B></font></p>"
-    RW "<p class='texto'><font color='red'><B>Mensagem: " & Arquivo.MensagemErro() & "</B></font></p>"
+    RW "<p class='texto-vermelho-bold'>Ocorreu um erro ao tentar salvar o arquivo.</p>"
+    RW "<p class='texto-vermelho-bold'>Mensagem: " & Arquivo.MensagemErro() & "</p>"
     RE
 End If
 

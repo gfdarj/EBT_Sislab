@@ -223,11 +223,11 @@ Function MontaAgendamentosDoDia(W)
 	If W = "" Then W = "100%"
 
 	chr_Buf = _
-			"<table width='" & W & "' class='texto' cellpadding='2' cellspacing='0' border='0'>" & VbCrLf & _
+			"<table width='" & W & "' cellpadding='2' cellspacing='0' border='0'>" & VbCrLf & _
 			"<tr><td height='7px'></td></tr>" & VbCrLf
 
 	If (RS.Eof And RS.Bof) Then
-		chr_Buf = chr_Buf & "<tr><td class='texto' align='center'>Nenhum agendamento em Execução hoje</td></tr>"
+		chr_Buf = chr_Buf & "<tr><td align='center'>Nenhum agendamento em Execução hoje</td></tr>"
 	Else
 		i = 1
 		While Not RS.Eof
@@ -236,7 +236,7 @@ Function MontaAgendamentosDoDia(W)
 			'<td>RAT:&nbsp;" & RS("AG_RAT") & "&nbsp;/&nbsp;RT:&nbsp;" & RS("AG_RESPONSAVEL") & "&nbsp;</td></tr>"
 			chr_Buf = chr_Buf & _
 				"<tr valign='top' class='" & chr_Class & "'>" & VbCrLf & _
-				"	<td valign='top' align='center' width='30px'><b><a class='texto' style='color: #999999;' href='#' title='Veja este agendamento'>" & RS("AG_NUMERO") & "</a></b></td>" & VbCrLf & _
+				"	<td valign='top' align='center' width='30px'><b><a href='#' title='Veja este agendamento'>" & RS("AG_NUMERO") & "</a></b></td>" & VbCrLf & _
 				"	<td width='*'>" & VbCrLf
 
 			If RS("AG_SIGILO") = 1 Then
