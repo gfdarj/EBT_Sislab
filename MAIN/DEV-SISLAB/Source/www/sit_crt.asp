@@ -52,80 +52,80 @@ cont = 0
 </script>
 
 <div class="margem-10">
+    <form name="formulario" method="get">
+        <input type="hidden" name="num_as">
+        <input type="hidden" name="selecao">
+        <input type="hidden" name="hoje" value="<%=request("hoje")%>">
 
-<form name="formulario" method="get">
-<input type="hidden" name="num_as">
-<input type="hidden" name="selecao">
-<input type="hidden" name="hoje" value="<%=request("hoje")%>">
+        <table style="width: 100%;">
+        <tr>
+	        <td>
+		        <table style="width: 100%;">
+		        <tr>
+			        <td>
+                        <h4><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Agendamentos do CRT</h4>
+			        </td>
+			        <td style="color: gray; text-align: right;">
+                        Ordenar por:&nbsp;
+				        <select name="ordem" onChange="javascript:document.formulario.submit();" style="color: gray;">
+					        <option value=""<%=IIf(chr_Ordem = "", " selected", "")%>>Situação</option>
+					        <option value="S"<%=IIf(chr_Ordem = "S", "selected", "")%>>Salas</option>
+					        <option value="D"<%=IIf(chr_Ordem = "D", "selected", "")%>>Data Término</option>
+					        <option value="P"<%=IIf(chr_Ordem = "P", "selected", "")%>>Prioridade</option>
+					        <option value="R"<%=IIf(chr_Ordem = "R", "selected", "")%>>Resp. Técnico</option>
+				        </select>
+			        </td>
+		        </tr>
+		        </table>
+	        </td>
+        </tr>
+        </table>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="table-bordered">
-<tr>
-	<td>
-		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr>
-			<td><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Agendamentos do CRT</td>
-			<td align="right" style="color: gray;">Ordenar por:&nbsp;
-				<select name="ordem" onChange="javascript:document.formulario.submit();" style="color: gray;">
-					<option value=""<%=IIf(chr_Ordem = "", " selected", "")%>>Situação</option>
-					<option value="S"<%=IIf(chr_Ordem = "S", "selected", "")%>>Salas</option>
-					<option value="D"<%=IIf(chr_Ordem = "D", "selected", "")%>>Data Término</option>
-					<option value="P"<%=IIf(chr_Ordem = "P", "selected", "")%>>Prioridade</option>
-					<option value="R"<%=IIf(chr_Ordem = "R", "selected", "")%>>Resp. Técnico</option>
-				</select>
-			</td>
-		</tr>
-		</table>
-	</td>
-</tr>
-
-<tr> 
-	<td height="25">
-  	  <table width="100%" border="0" cellspacing="0" cellpadding="0" height="25" class="table-bordered">
-      <tr>
-		<td width="180">&nbsp;</td>
-		<td>
-	        <div align="right">Agendamentos em andamento: <b><span id="tot_agenda">XX</span></b>&nbsp;
-          <font color="#993300">l</font>&nbsp; Agendamentos futuros: <b><%
-s = "select count(*) as Total_Futuros From vw_Agendamento "
-s = s & "where ID_SITUACAO = 1 or (ID_SITUACAO=3 and AG_DATAINICIO > getDate())"
-Call Env.RecordSet( true, objRS, s)
-if not IsNull( objRS(0) ) then Response.write objRS(0)
-Call Env.RecordSet( false, objRS, s )
-%>
-					</b></div>
-        </td>
-      </tr>
-  	  </table>
-    </td>
-</tr>
-
-<tr><td height="1" bgcolor="#003366"></td></tr>
-
-<tr>
-    <td height="10">
+        <table style="width: 100%;">
+        <tr>
+            <td>
 <%
 sSQL = "select * from dbo.vw_PESQ_SATISFACAO order by indice desc; "
 Call Env.RecordSet(True, objSiteRS, sSQL)
 if not(objSiteRS.EOF) Then
 	objSiteRS.MoveFirst
 %>
-			&nbsp;<b>Pesquisa Satisfação</b>: Total de <%=objSiteRS("TIPO")%>: <%=objSiteRS("Indice")%><br>
+			    <b>Pesquisa Satisfação</b>: Total de <%=objSiteRS("TIPO")%>: <span class="text-info"><%=objSiteRS("Indice")%></span>
+                <br>
 <%
 	indice = objSiteRS("Indice")
-	objSiteRS.MoveNext %><div align="right"><%
+	objSiteRS.MoveNext %>
+<%
 	While not(objSiteRS.EOF)%>
-			<%=objSiteRS("TIPO")%>: <%=objSiteRS("Indice")%> (<%=FormatNumber(objSiteRS("Indice")*100/indice,2)%>%)
+			<%=objSiteRS("TIPO")%>: <span class="text-info"><%=objSiteRS("Indice")%></span> (<%=FormatNumber(objSiteRS("Indice")*100/indice,2)%>%)
 <%		objSiteRS.MoveNext
 		If Not objSiteRS.Eof Then Response.Write "&nbsp;&nbsp;"
 	Wend %>
-			</div>
 <%
 End If%>
-	</td>
-</tr>
+	        </td>
 
-<tr>
-	<td>
+		    <td style="text-align: right;">
+	            <div align="right">Agendamentos em andamento: <b><span id="tot_agenda" class="text-info">0</span></b>&nbsp;
+                <span class="texto-vermelho-bold">l</span>&nbsp; Agendamentos futuros: <b><%
+s = "select count(*) as Total_Futuros From vw_Agendamento "
+s = s & "where ID_SITUACAO = 1 or (ID_SITUACAO=3 and AG_DATAINICIO > getDate())"
+Call Env.RecordSet( true, objRS, s)
+if not IsNull( objRS(0) ) then Response.write "<span class='text-info'>" & objRS(0) & "</span>"
+Call Env.RecordSet( false, objRS, s )
+%>
+					    </b>
+	            </div>
+            </td>
+
+        </tr>
+        </table>
+
+        <br /><br />
+
+        <table style="width: 100%;">
+        <tr>
+	        <td>
 <%
 '### Imprime o corpo da lista de acordo com a ordenação escolhida
 If chr_Ordem = "S" Then
@@ -140,10 +140,11 @@ Else
 	Call MontaVisaoPorSituacao
 End If
 %>
-    </td>
-</tr>
-</table>
-</form>
+                <br />
+            </td>
+        </tr>
+        </table>
+    </form>
 </div>
 
 <%
@@ -185,36 +186,36 @@ Sub MontaVisaoPorSituacao
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
+      <table class="table-bordered table-striped table-hover table-condensed" style="width: 100%;">
         <tr>
-          <th>AS</th>
-			<th>Prioridade</th>
-          <th>Atividade</th>
-          <th style="text-align: center;">Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th style="text-align: center;">Salas</th>
-          <th style="text-align: center; width: 30px;">&nbsp;</th>
+            <th>AS</th>
+            <th>Prioridade</th>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th style="text-align: center; width: 30px;">&nbsp;</th>
         </tr>
 <%
 	s = "SELECT TOP 50 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
 		"FROM vw_Agendamento a  " & _
-		"/*WHERE a.ID_SITUACAO in "
+		"WHERE a.ID_SITUACAO in "
 
-	if request("hoje") = "1" then
+	If request("hoje") = "1" Then
 		s = s & "(3, 6, 7) AND (a.AG_DATAINICIO < getDate()) "
-	else
-		s = s & "(1, 2, 3, 6, 7) */ "
-	end if
+	Else
+		s = s & "(1, 2, 3, 6, 7) "
+	End If
 
 	s = s & "ORDER BY a.ID_SITUACAO ASC, a.AG_NUMERO DESC"
 
 	Call Env.RecordSet( true, objRS, s)
-	if not (objRS.EOF and objRS.BOF) then
+	If Not (objRS.EOF and objRS.BOF) Then
 		atual = objRS("AG_NUMERO")
 
 		'-- pego o titulo do agendamento, caso nao exista mostro o objetivo
-		if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
+		If Not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
 
-		while not objRS.EOF
+		While Not objRS.EOF
 			aux_Sigilo = objRS("AG_SIGILO")
 			aux_Atividade = objRS("TA_DESCRICAO")
 			aux_DescSigilo = objRS("TS_DESCRICAO")
@@ -230,14 +231,14 @@ Sub MontaVisaoPorSituacao
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
 
-			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
-				auxbgcolor="Vermelho1Bg"
-			else
-				auxbgcolor="Padrao"
-			end if
+			If (auxAG_DATATERMINO < Date() Or (auxsituacao="Agendado" And auxAG_DATAINICIO < Date())) Then
+				auxbgcolor="bg-danger"
+			Else
+				auxbgcolor=""
+			End If
 
-			if TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
-			if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
+			If TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
+			If Not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
 
 			objRS.MoveNext
 
@@ -254,30 +255,27 @@ Sub MontaVisaoPorSituacao
 				conta = conta + 1
 
 				if auxSITUACAO <> AUXSITUACAOCHG Then
-
 					if AUXSITUACAOCHG <> "" Then
 %>
-		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" COLSPAN="5"><br>
-				<B>total: <%=cont%></B>
+		<tr>
+			<td align="RIGHT" colspan="6"><br>
+				<B>Total: <%=cont%></B>
 			</td>
 		</tr>
-<%
-						cont = 0
-					end if%>
+<%						cont = 0
+					End If %>
 
-		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" COLSPAN="5"><br>
-			<B>Agendamentos Situação: <%=AUXSITUACAO%></B>
+		<tr>
+			<td align="LEFT" COLSPAN="6"><br>
+			    <B>Agendamentos Situação: <span class="text-warning"><%=AUXSITUACAO%></span></B>
 			</td>
 		</tr>
 <%
-					AUXSITUACAOCHG=auxSITUACAO 
+					AUXSITUACAOCHG = auxSITUACAO
 				end if%>
 
 		<tr class="<%=auxbgcolor%>" valign="top">
-			<td width="40px" align="center">
-				<b>
+			<td style="text-align: center; width: 40px;">
 <%
 	cont=cont+1
 
@@ -289,10 +287,9 @@ Sub MontaVisaoPorSituacao
 	'				Response.Write anterior
 	'end if
 %>
-				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
 			<td width="*" align="justify" style="vertical-align: top; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
@@ -313,14 +310,14 @@ Sub MontaVisaoPorSituacao
 <%	'End If%>
 			</td>
 
-			<td width="200px" align="center">
+			<td style="text-align: center; width: 200px;">
 				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
 				<br>(<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
+			<td style="width: 120px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
-			<td align="center" style="vertical-align: middle;">
+			<td style="vertical-align: middle; text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
@@ -339,13 +336,12 @@ Sub MontaVisaoPorSituacao
 %>
 
         <tr bgcolor="#ffffff"> 
-            <td align="RIGHT" COLSPAN="4"><br>
-		<B>total: <%=cont%></B>
+            <td align="RIGHT" COLSPAN="6"><br>
+	        	<B>Total: <%=cont%></B>
 <%cont=0%>
             </TD>
-	</tr>
+        </tr>
 
-        </tbody> 
       </table>
 <%
 End Sub
@@ -358,14 +354,14 @@ Sub MontaVisaoPorSalas
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
+    <table class="table-bordered table-hover table-striped table-condensed" style="width: 100%;">
         <tr>
-          <th>AS</th>
-		  <th>Prioridade</th>
-          <th>Atividade</th>
-          <th>Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th>Salas</th>
-          <th>&nbsp;</th>
+            <th>AS</th>
+            <th>Prioridade</th>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th>&nbsp;</th>
         </tr>
 <%
 	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
@@ -374,25 +370,24 @@ Sub MontaVisaoPorSalas
 		"LEFT JOIN Ambientes ab ON ra.AMB_ID = ab.AMB_ID " & _
 		"WHERE a.ID_SITUACAO in "
 
-	if request("hoje") = "1" then
+	If request("hoje") = "1" Then
 		s = s & "(3, 6, 7) AND (a.AG_DATAINICIO < getDate()) "
-	else
+	Else
 		s = s & "(1, 2, 3, 6, 7) "
-	end if
+	End If
 
 	s = s & "ORDER BY ab.AMB_NOME ASC, a.ID_SITUACAO ASC, a.AG_NUMERO DESC"
 
-'RW s & "<BR>"
+	Call Env.RecordSet(true, objRS, s)
 
-	Call Env.RecordSet( true, objRS, s)
-	if not (objRS.EOF and objRS.BOF) then
+	If Not (objRS.EOF And objRS.BOF) Then
 		atual = objRS("AG_NUMERO")
 		auxSalaOld = ""
 
 		'-- pego o titulo do agendamento, caso nao exista mostro o objetivo
-		if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
+		If Not IsNull(objRS("AG_TITULO")) Then auxAG_OBJETIVO = objRS("AG_TITULO") Else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
 
-		while not objRS.EOF
+		While Not objRS.EOF
 			aux_Sigilo = objRS("AG_SIGILO")
 			aux_Atividade = objRS("TA_DESCRICAO")
 			aux_DescSigilo = objRS("TS_DESCRICAO")
@@ -412,9 +407,9 @@ Sub MontaVisaoPorSalas
 			if IsNull(auxTEC) then auxTEC = ""
 
 			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
-				auxbgcolor="Vermelho1Bg"
-		   else
-				auxbgcolor="Padrao"
+				auxbgcolor="bg-danger"
+		    else
+				auxbgcolor=""
 			end if
 
 			if TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
@@ -434,48 +429,42 @@ Sub MontaVisaoPorSalas
 			if not ((atual = anterior) or (objRS.eof and (atual <> 0))) Then
 				conta = conta + 1
 
-	if (auxSala <> auxSalaOld) Then
-
-		if auxSalaOld <> "" Then
+	            If (auxSala <> auxSalaOld) Then
+		            If auxSalaOld <> "" Then
 %>
-		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" COLSPAN="5"><br>
-				<B>total: <%=cont%></B>
+		<tr>
+			<td align="RIGHT" COLSPAN="6"><br>
+				<B>Total: <%=cont%></B>
 			</td>
 		</tr>
-<%
-			cont=0
-		end if%>
+<%			            cont=0
+    		        End If%>
 
-		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" COLSPAN="5"><br>
-			<B>Sala: <%=auxSala%></B>
+		<tr>
+			<td align="LEFT" COLSPAN="6"><br>
+			    <B>Sala: <span class="text-warning"><%=auxSala%></span></B>
 			</td>
 		</tr>
-<%
-		auxSalaOld = auxSala
-	end if %>
+<%		            auxSalaOld = auxSala
+    	        End If %>
 
-		<tr class="<%=auxbgcolor%>" valign="top">
-			<td width="40px" align="center">
-				<b>
+		<tr class="<%=auxbgcolor%>" style="vertical-align: top;">
+			<td width="40px" style="text-align: center;">
 <%
-	cont=cont+1
+            	cont=cont+1
 
 	'### Se for usuario de fora do CRT apenas coloco o numero da AS
 	'if MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then%>
-				<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
+                <a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=anterior%>, 0);"><%=anterior%></a>
 <%
 	'else
 	'				Response.Write anterior
-	'end if
-%>
-				</b>
+	'end if %>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
-			<td width="*" align="justify">
+			<td width="*" align="justify" style="vertical-align: top; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
 <%		end if %>
@@ -490,44 +479,42 @@ Sub MontaVisaoPorSalas
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=Ucase(auxAG_USERNAME)%> - RT: <%=Ucase(auxRT)%></b>
+    			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
-			<td width="140px" align="center">
-				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
-				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
+			<td style="text-align: center; width: 200px;">
+				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
+                <br>(<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</span></td>
+			<td style="width: 120px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
-			<td align="center">
+			<td align="center" style="vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
-			</td>
+            </td>
         </tr>
 <%		'AuxAG_OBJETIVO = testeAtual
 			end if
 
-			response.flush
-		wend
-	end if
+			Response.flush
+		WEnd
+	End If
+
 	conta = objRS.RecordCount
 	Call Env.RecordSet( false, objRS, s)
 %>
-
-        <tr bgcolor="#ffffff"> 
-          <td align="RIGHT" COLSPAN="4"><br>
-		<B>total: <%=cont%></B>
+        <tr>
+            <td align="RIGHT" COLSPAN="6"><br>
+                <B>Total: <%=cont%></B>
 <%cont=0%>
-	  </TD>
-	</tr>
-
-        </tbody> 
-      </table>
+            </td>
+        </tr>
+    </table>
 <%
 End Sub
 
@@ -540,16 +527,16 @@ Sub MontaVisaoPorPrioridade
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, iPrioridade, iPrioridadeOld
 	Dim bln_Primeira : bln_Primeira = True
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
+    <table class="table-bordered table-hover table-striped table-condensed" style="width: 100%;">
         <tr>
-          <th>AS</th>
-<%	If EhRat Then %>
-		  <th>Prioridade</th>
-<%	End If %>
-          <th>Atividade</th>
-          <th>Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th>Salas</th>
-          <th>&nbsp;</th>
+            <th>AS</th>
+<%	'If EhRat Then %>
+            <th>Prioridade</th>
+<%	'End If %>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th>&nbsp;</th>
         </tr>
 <%
 	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
@@ -568,15 +555,15 @@ Sub MontaVisaoPorPrioridade
 
 'RW s & "<BR>"
 
-	Call Env.RecordSet( true, objRS, s)
-	if not (objRS.EOF and objRS.BOF) then
+	Call Env.RecordSet(true, objRS, s)
+	If Not (objRS.EOF and objRS.BOF) Then
 		atual = objRS("AG_NUMERO")
 		auxSalaOld = ""
 
 		'-- pego o titulo do agendamento, caso nao exista mostro o objetivo
-		if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
+		If Not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
 
-		while not objRS.EOF
+		While Not objRS.EOF
 			aux_AgNumero = objRS("AG_NUMERO")
 			aux_Sigilo = objRS("AG_SIGILO")
 			aux_Atividade = objRS("TA_DESCRICAO")
@@ -596,9 +583,9 @@ Sub MontaVisaoPorPrioridade
 			if IsNull(auxTEC) then auxTEC = ""
 
 			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
-				auxbgcolor="Vermelho1Bg"
+				auxbgcolor="bg-danger"
 		   else
-				auxbgcolor="Padrao"
+				auxbgcolor=""
 			end if
 
 			if TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
@@ -618,31 +605,26 @@ Sub MontaVisaoPorPrioridade
 			if not ((atual = anterior) or (objRS.eof and (atual <> 0))) Then
 				conta = conta + 1
 
-	if (iPrioridade <> iPrioridadeOld) Then
-
-		if iPrioridadeOld <> "" Then
+	            if (iPrioridade <> iPrioridadeOld) Then
+		            if iPrioridadeOld <> "" Then
 %>
-		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" COLSPAN="5"><br>
-				<B>total: <%=cont%></B>
+		<tr>
+			<td align="RIGHT" COLSPAN="6"><br>
+				<B>Total: <%=cont%></B>
 			</td>
 		</tr>
-<%
-			cont=0
-		end if%>
-
-		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" COLSPAN="5"><br>
-			<B>Prioridade: <%=MostraPrioridade(iPrioridade, "")%></B>
+<%			            cont=0
+		            end if%>
+		<tr>
+			<td colspan="5"><br>
+			    <B>Prioridade: <span class="text-warning"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></span></B>
 			</td>
 		</tr>
-<%
-		iPrioridadeOld = iPrioridade
-	end if %>
+<%		            iPrioridadeOld = iPrioridade
+	            end if %>
 
 		<tr class="<%=auxbgcolor%>" valign="top">
-			<td width="40px" align="center">
-				<b>
+			<td style="width: 40px; text-align: center;">
 <%
 	cont=cont+1
 
@@ -654,14 +636,13 @@ Sub MontaVisaoPorPrioridade
 	'				Response.Write anterior
 	'end if
 %>
-				</b>
 			</td>
 
-<%	If EhRat Then %>
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
-<%	End If %>
+<%	'If EhRat Then %>
+			<td style="text-align: center;"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+<%	'End If %>
 
-			<td width="*" align="justify">
+			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
 <%		end if %>
@@ -676,18 +657,18 @@ Sub MontaVisaoPorPrioridade
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
+			    <br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
-			<td width="140px" align="center">
-				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
-				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
+			<td style="width: 200px; text-align: center;">
+				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%><br>
+				(<%=auxsituacao%>)
 			</td>
             
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</span></td>
+			<td style="width: 120px;""><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
-			<td align="center">
+			<td style="text-align: center; vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
@@ -696,24 +677,23 @@ Sub MontaVisaoPorPrioridade
 			</td>
         </tr>
 <%		'AuxAG_OBJETIVO = testeAtual
-			end if
+			End If
 
 			response.flush
-		wend
-	end if
+		WEnd
+	End If
+
 	conta = objRS.RecordCount
 	Call Env.RecordSet( false, objRS, s)
 %>
-
         <tr bgcolor="#ffffff"> 
-          <td align="RIGHT" COLSPAN="4"><br>
-		<B>total: <%=cont%></B>
+            <td align="RIGHT" COLSPAN="4"><br>
+		        <B>Total: <%=cont%></B>
 <%cont=0%>
-	  </TD>
-	</tr>
+            </TD>
+        </tr>
 
-        </tbody> 
-      </table>
+    </table>
 <%
 End Sub
 
@@ -726,14 +706,14 @@ Sub MontaVisaoPorDataTermino
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 	Dim auxMesAnoOld : auxMesAnoOld = CDate("01/01/1980")
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
+    <table class="table-bordered table-hover table-striped table-condensed" style="width: 100%;">
         <tr>
-          <th>AS</th>
-		  <th>Prioridade</th>
-          <th>Atividade</th>
-          <th>Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th>Salas</th>
-          <th>&nbsp;</th>
+            <th>AS</th>
+            <th>Prioridade</th>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th>&nbsp;</th>
         </tr>
 <%
 	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
@@ -776,9 +756,9 @@ Sub MontaVisaoPorDataTermino
 			if IsNull(auxTEC) then auxTEC = ""
 
 			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
-				auxbgcolor="Vermelho1Bg"
+				auxbgcolor="bg-danger"
 		   else
-				auxbgcolor="Padrao"
+				auxbgcolor=""
 			end if
 
 			if TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
@@ -802,27 +782,25 @@ Sub MontaVisaoPorDataTermino
 
 		If auxMesAnoOld <> CDate("01/01/1980") Then
 %>
-		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" COLSPAN="5"><br>
-				<B>total: <%=cont%></B>
+		<tr>
+			<td colspan="6" style="text-align: right;"><br>
+				<B>Total: <%=cont%></B>
 			</td>
 		</tr>
-<%
-			cont=0
-		end if%>
+<%			cont=0
+		End If%>
 
-		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" COLSPAN="5"><br>
-			<B>Término: <%=IIf(IsNull(auxAG_DATATERMINO), "", Right("0"&Month(auxAG_DATATERMINO),2) & "/" & Year(auxAG_DATATERMINO))%></B>
+		<tr>
+			<td colspan="6"><br>
+			    <B>Término: <span class="text-warning"><%=IIf(IsNull(auxAG_DATATERMINO), "", Right("0"&Month(auxAG_DATATERMINO),2) & "/" & Year(auxAG_DATATERMINO))%></span></B>
 			</td>
 		</tr>
 <%
 		auxMesAnoOld = auxAG_DATATERMINO
 	End If %>
 
-		<tr class="<%=auxbgcolor%>" valign="top">
-			<td width="40px" align="center">
-				<b>
+		<tr class="<%=auxbgcolor%>" style="vertical-align: top;">
+			<td style="width: 40px; text-align: center;">
 <%
 	cont=cont+1
 
@@ -834,12 +812,11 @@ Sub MontaVisaoPorDataTermino
 	'				Response.Write anterior
 	'end if
 %>
-				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
-			<td width="*" align="justify">
+			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
 <%		end if %>
@@ -854,16 +831,16 @@ Sub MontaVisaoPorDataTermino
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=Ucase(auxAG_USERNAME)%> - RT: <%=Ucase(auxRT)%></b>
+    			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
-			<td width="140px" align="center">
-				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
-				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
+			<td style="width: 200px; text-align: center;">
+				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%><br>
+                (<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><span style="font-size: 9px;"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</span></td>
+			<td style="width: 200px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
@@ -882,16 +859,13 @@ Sub MontaVisaoPorDataTermino
 	conta = objRS.RecordCount
 	Call Env.RecordSet( false, objRS, s)
 %>
-
-        <tr bgcolor="#ffffff"> 
-          <td align="RIGHT" COLSPAN="4"><br>
-		<B>total: <%=cont%></B>
+        <tr bgcolor="#ffffff">
+            <td align="RIGHT" COLSPAN="6"><br>
+		        <B>Total: <%=cont%></B>
 <%cont=0%>
-	  </TD>
-	</tr>
-
-        </tbody> 
-      </table>
+            </td>
+        </tr>
+    </table>
 <%
 End Sub
 
@@ -903,36 +877,36 @@ Sub MontaVisaoPorRT
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
-      <table border="0" width="100%" cellspacing="3" cellpadding="4" align="center" class="table-bordered">
+    <table class="table-bordered table-hover table-striped table-condensed" style="width: 100%;">
         <tr>
-          <th>AS</th>
-		  <th>Prioridade</th>
-          <th>Atividade</th>
-          <th>Data solicitada<br>in&iacute;cio-t&eacute;rmino</th>
-		  <th>Salas</th>
-          <th>&nbsp;</th>
+            <th>AS</th>
+            <th>Prioridade</th>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
-		"FROM vw_Agendamento a  " & _
+	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, u.NOME AS 'NOME_RT' " & _
+		"FROM vw_Agendamento a LEFT JOIN UserCRT u ON a.AG_RESPONSAVEL = u.UserID " & _
 		"WHERE a.ID_SITUACAO in "
 
-	if request("hoje") = "1" then
+	If request("hoje") = "1" then
 		s = s & "(3, 6, 7) AND (a.AG_DATAINICIO < getDate()) "
-	else
+	Else
 		s = s & "(1, 2, 3, 6, 7) "
-	end if
+	End If
 
-	s = s & "ORDER BY a.AG_RESPONSAVEL ASC, a.ID_SITUACAO DESC, a.AG_NUMERO DESC"
+	s = s & "ORDER BY u.NOME, a.AG_RESPONSAVEL ASC, a.ID_SITUACAO DESC, a.AG_NUMERO DESC"
 
-	Call Env.RecordSet( true, objRS, s)
-	if not (objRS.EOF and objRS.BOF) then
+	Call Env.RecordSet(true, objRS, s)
+	If not (objRS.EOF and objRS.BOF) Then
 		atual = objRS("AG_NUMERO")
 
 		'-- pego o titulo do agendamento, caso nao exista mostro o objetivo
-		if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
+		If Not IsNull(objRS("AG_TITULO")) Then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
 
-		while not objRS.EOF
+		While Not objRS.EOF
 			aux_Sigilo = objRS("AG_SIGILO")
 			aux_Atividade = objRS("TA_DESCRICAO")
 			aux_DescSigilo = objRS("TS_DESCRICAO")
@@ -948,13 +922,24 @@ Sub MontaVisaoPorRT
 			aux_AgNumero = objRS("AG_NUMERO")
 
 			if IsNull(auxRT) then auxRT = ""
-			auxRespTec = IIf(VVVN(objRS("AG_RESPONSAVEL")), "Nenhum RT definido", objRS("AG_RESPONSAVEL"))
+
+            If VVVN(objRS("AG_RESPONSAVEL")) Then
+			    auxRespTec = "Nenhum RT definido"
+            Else
+                If VVVN(objRS("NOME_RT")) Then
+    			    auxRespTec = objRS("AG_RESPONSAVEL")
+                Else
+    			    auxRespTec = objRS("NOME_RT") & " (" & objRS("AG_RESPONSAVEL") & ")"
+                End If
+            End If
+
+
 			if IsNull(auxTEC) then auxTEC = ""
 
 			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
-				auxbgcolor="Vermelho1Bg"
+				auxbgcolor="bg-danger"
 			else
-				auxbgcolor="Padrao"
+				auxbgcolor=""
 			end if
 
 			if TemArquivo(Env.oConn, objRS("AG_NUMERO"))  then auxbarq=1 else auxbarq=0
@@ -973,32 +958,27 @@ Sub MontaVisaoPorRT
 			conta = 0
 			if not ((atual = anterior) or (objRS.eof and (atual <> 0))) Then
 				conta = conta + 1
-
 				if auxRespTec <> auxRTOld Then
-
 					if auxRTOld <> "" Then
 %>
-		<tr bgcolor="#ffffff"> 
-			<td align="RIGHT" COLSPAN="5"><br>
-				<B>total: <%=cont%></B>
+		<tr>
+			<td colspan="6" style="text-align: right;"><br>
+				<B>Total: <%=cont%></B>
 			</td>
 		</tr>
-<%
-						cont=0
+<%						cont=0
 					end if%>
 
-		<tr bgcolor="#ffffff"> 
-			<td align="LEFT" COLSPAN="5"><br>
-			<B>Responsável Técnico: <%=auxRespTec%></B>
+		<tr>
+			<td colspan="6"><br>
+    			<B>Responsável Técnico: <span class="text-warning"><%=auxRespTec%></span></B>
 			</td>
 		</tr>
-<%
-					auxRTOld = auxRespTec
+<%					auxRTOld = auxRespTec
 				end if%>
 
-		<tr class="<%=auxbgcolor%>" valign="top">
-			<td width="40px" align="center">
-				<b>
+		<tr class="<%=auxbgcolor%>" style="vertical-align: top;">
+			<td style="width: 40px; text-align: center;">
 <%
 	cont=cont+1
 
@@ -1010,18 +990,17 @@ Sub MontaVisaoPorRT
 	'				Response.Write anterior
 	'end if
 %>
-				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;"><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
 
-			<td width="*" align="justify">
+			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
 				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
-<%		end if %>
-<%		if auxbarq then %>
+<%		End If %>
+<%		If auxbarq Then %>
 				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
-<%		end if %>
+<%		End If %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
 	'	Response.Write "ACESSO RESTRITO (SIGILOSO)"
@@ -1030,18 +1009,18 @@ Sub MontaVisaoPorRT
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=Ucase(auxAG_USERNAME)%> - RT: <%=Ucase(auxRT)%></b>
+    			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 
-			<td width="140px" align="center">
-				<span style="font-size: 9px;"><%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%>
-				<br><span style="color:#600000; font-size: 9px;">(<%=auxsituacao%>)</span></span>
+			<td style="width: 140px; text-align: center;">
+				<%=auxAG_DATAINICIO_F%>-<%=auxAG_DATATERMINO_F%><br>
+				(<%=auxsituacao%>)
 			</td>
 
-			<td width="120px"><%=AmbienteAS(Env.oConn, anterior, ", ")%>&nbsp;</td>
+			<td style="width: 120px;"><%=AmbienteAS(Env.oConn, anterior, "<br />")%>&nbsp;</td>
 
-			<td align="center">
+			<td style="text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%			Else%>
@@ -1059,15 +1038,13 @@ Sub MontaVisaoPorRT
 	Call Env.RecordSet( false, objRS, s)
 %>
 
-        <tr bgcolor="#ffffff"> 
-          <td align="RIGHT" COLSPAN="4"><br>
-		<B>total: <%=cont%></B>
+        <tr>
+            <td colspan="6" style="text-align: right;"><br>
+                <B>Total: <%=cont%></B>
 <%cont=0%>
-	  </TD>
-	</tr>
-
-        </tbody> 
-      </table>
+            </TD>
+        </tr>
+    </table>
 <%
 End Sub
 
@@ -1083,7 +1060,7 @@ Function MostraPrioridade(valor, agnumero)
 
 	If EhRat And Not VVVNZ(agnumero) Then
 		MostraPrioridade = _
-			"<select name='idPrioridade' class='texto' style='width: 60px;' onChange='javascript:return trocaPrioridade(" & agnumero& ", this.value);'>" & VbCrLf & _
+			"<select name='idPrioridade' style='' onChange='javascript:return trocaPrioridade(" & agnumero& ", this.value);'>" & VbCrLf & _
 			"<option value='1'" & IIf(Val = "1", "selected", "") & ">Alta</option>" & VbCrLf & _
 			"<option value='2'" & IIf(Val = "2", "selected", "") & ">Média</option>" & VbCrLf & _
 			"<option value='3'" & IIf(Val = "3", "selected", "") & ">Baixa</option>" & VbCrLf & _
