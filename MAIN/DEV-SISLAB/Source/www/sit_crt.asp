@@ -106,8 +106,8 @@ End If%>
 	        </td>
 
 		    <td style="text-align: right;">
-	            <div align="right">Agendamentos em andamento: <b><span id="tot_agenda" class="text-info">0</span></b>&nbsp;
-                <span class="texto-vermelho-bold">l</span>&nbsp; Agendamentos futuros: <b><%
+	            <div style="text-align: right;">Agendamentos em andamento: <b><span id="tot_agenda" class="text-info">0</span></b>&nbsp;
+                <strong>l</strong>&nbsp; Agendamentos futuros: <b><%
 s = "select count(*) as Total_Futuros From vw_Agendamento "
 s = s & "where ID_SITUACAO = 1 or (ID_SITUACAO=3 and AG_DATAINICIO > getDate())"
 Call Env.RecordSet( true, objRS, s)
