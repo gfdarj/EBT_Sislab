@@ -315,7 +315,7 @@ Private Sub ImprimeNomeTela()
 		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" 
             style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
-			<td class="realce1"> <!-- #d9d9d9 -->
+			<td class="destaque titulo">
 
 				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="menu" id="tbl_principal_nomeform" >
 				<tr valign="middle">

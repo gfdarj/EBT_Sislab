@@ -8,19 +8,12 @@ Dim auxEHRESP, auxEHGQ, auxusername,i
 
 auxusername = Env.Usuario
 %>
-<script language=javascript>
-function navselecao(idOC)
-{
-	document.all.ocorrencia.value = idOC;
-    document.formulario.submit();
-}
-function pesquisar()
-{
-	var frm;
-	frm = document.forms[0];
-	frm.action="sel_cad_logbook.asp";
-	frm.submit();
-}
+<script type="text/javascript">
+    function navselecao(idOC)
+    {
+	    document.all.ocorrencia.value = idOC;
+        document.formulario.submit();
+    }
 </script>
 <%
 Tela.SetMostraMenu = MENU_ON
@@ -39,45 +32,31 @@ tipoOcorrencia = request("tipoOcorrencia")
 sSQL = "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo order by tar_tipoarquivo asc"
 call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 %>
-<form name="formulario" method="post" action="cad_evLogBook.asp">
-<input type="hidden" name="enviei" value="SIM">
-<input type="hidden" name="ocorrencia" value="">
-<table width="100%" class="table-bordered">
-<tr>
-	<td height="40">
-		<a href="cad_evLogBook.asp"><b>&lt;Cadastrar Nova Ocorrência&gt;</b></a>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="REL_LOGBOOK_FILTRO.ASP"><b>&lt;Consultar andamento das Ocorrências (OCs)&gt;</b></a>
-	</td>
-</tr>
-<tr>
-	<td>
-		<table class="table-bordered">
-		<tr>
-			<td><b>Tipo de Ocorrência :</b>
-			<td><%call comboBDSQL( "tipoOcorrencia", objConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", tipoOcorrencia, true)%></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td><b>Descrição :</b></td>
-			<td><input name="descricao" type="text" value="<%=request("descricao")%>"></td>
-			<td><input type="button" class="texto1" value="Pesquisar" name="btnPesq" onClick="pesquisar();"></td>
-		</tr>
-		</table>
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr valign="top">
-	<td valign="top">
+<div class="margem-10">
+
+    <form name="formulario" method="post" action="sel_cad_logbook.asp">
+        <input type="hidden" name="enviei" value="SIM">
+        <input type="hidden" name="ocorrencia" value="">
+
+        <p><a href="cad_evLogBook.asp"><b>&lt;Cadastrar Nova Ocorrência&gt;</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="rel_logbook_filtro.ASP"><b>&lt;Consultar andamento das Ocorrências (OCs)&gt;</b></a></p>
+
+        <p><b>Tipo de Ocorrência :</b><%call comboBDSQL( "tipoOcorrencia", objConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", tipoOcorrencia, true)%></p>
+
+        <p><b>Descrição :</b><input type="text" name="descricao" value="<%=request("descricao")%>"></p>
+
+        <p><input type="submit" value="Pesquisar" name="btnPesq"></p>
+
 <%
 If Request("enviei") = "SIM" Then
 %>
-		<b>Pesquisa de Ocorrências</b><br><br>
-			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
-			<tr>
-				<th style="font-size: xx-small;" align="left">Nº OC</th>
-				<th style="font-size: xx-small;" align="left">Descrição</th>
-			</tr>
+        <br />
+        <h4>Ocorrências encontradas</h4>
+
+	    <table class="table-bordered table-striped table-hover table-condensed" style="width: 100%;">
+	    <tr>
+		    <th style="text-align: center; width: 60px;">Nº OC</th>
+		    <th>Descrição</th>
+	    </tr>
 <%
 	sSQL = "Select *, (SELECT COUNT(A.LB_ID) FROM LB_ACOESTOMADAS_ARQUIVOS A WHERE A.LB_ID = LB.LB_ID) QTD_ARQUIVOS From lb_logbook lb "
 	if Descricao <> "" then
@@ -93,33 +72,36 @@ If Request("enviei") = "SIM" Then
 
 	If Not objSiteRS.EOF Then
 		do while not objSiteRS.EOF%>
-			<tr valign="top">
-				<td width="35px"><a href="#" onclick="navselecao(<%=objSiteRS("LB_ID")%>);" title="Clique aqui para editar esta ocorrência"><b><%=objSiteRS("LB_ID")%></b></a></td>
-				<td>
+	    <tr style="vertical-align: top;">
+		    <td style="text-align: center;">
+                <a href="#" onclick="navselecao(<%=objSiteRS("LB_ID")%>);" title="Clique aqui para editar esta ocorrência"><b><%=objSiteRS("LB_ID")%></b></a>
+		    </td>
+		    <td>
 <%			If objSiteRS("QTD_ARQUIVOS") = 1 Then%>
-					<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivo anexo">
+    		    <img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivo anexo">
 <%			ElseIf objSiteRS("QTD_ARQUIVOS") > 1 Then%>
-					<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivos anexos">
+	    		<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivos anexos">
 <%			End If%>
-					<a href="#" onclick="navselecao(<%=objSiteRS("LB_ID")%>);" title="Clique aqui para editar esta ocorrência"><%=objSiteRS("LB_Descricao")%>&nbsp;
-				</td>
-			</tr>
+		    	<%=objSiteRS("LB_Descricao")%>&nbsp;
+		    </td>
+	    </tr>
 <%			objSiteRS.MoveNext
-		loop
-	else
-%>
-			<tr>
-				<td colspan="2" align='center'><b><i>Não Existem Ocorrências Cadastradas No Momento</i></b></td>
-			</tr><%
+		Loop
+	Else %>
+	    <tr>
+		    <td colspan="2" align='center'><b><i>Não Existem Ocorrências Cadastradas No Momento</i></b></td>
+	    </tr><%
 	end if
 
 	objSiteRS.Close
 	Set objSiteRS = Nothing
-	%>
-			</table>
-</form>
+%>
+		</table>
+        <br />
 <%
-End If
-
+End If %>
+    </form>
+</div>
+<%
 Call Tela.MostraRodape()
 %>
