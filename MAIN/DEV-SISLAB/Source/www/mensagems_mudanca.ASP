@@ -12,70 +12,64 @@ Dim auxRT, auxRAT, auxusername, EH_CRT, aux_Sigilo, auxorgao, auxtecnologia, aux
 
 EH_CRT = Env.UsuarioCRT
 %>
-<form name="formteste" method="post" action="">
-<table width=100% class="table-bordered">
-	<tr><td width=11%></td>
-		<td width=10%></td>
-		<td width=10%></td>
-		<td width=7%></td>
-		<td width=10%></td>
-		<td width=13%></td>
-		<td width=10%></td>
-		<td width=10%></td>
-		<td width=5%></td>
-		<td width=14%></td>
-	</tr>
-	<tr><td colspan=3 align=left valign=top>
-			<B>&nbsp;Situação : </B>&nbsp;
-		<select name="s_descricao"  class="combo" onchange="mudamsg()">
-		<option value="">--</option>
-			<%call comboBD(Env.oConn,"Select distinct S_DESCRICAO as valor,S_DESCRICAO as descricao from situacoes WHERE S_OS = 0 order by S_DESCRICAO asc;")%>
-		</select>
-			</Font>
-		</td>
-		<td colspan=7 align=left valign=middle>
-			<B>&nbsp;Tipo :</B>&nbsp;
-			<select name="s_os"  class="combo" onchange="mudamsg()">
-				<%call comboBD(Env.oConn,"Select '0' as valor,'           AS           ' as descricao union Select '1' as valor,'           OS           ' as descricao order by descricao;")%>
-			</select>
+<div class="margem-10">
+    <form name="formteste" method="post" action="">
+        <table style="width: 100%;">
+	        <tr>
+                <td colspan=3 align=left valign=top>
+			        Situação: &nbsp;
+		            <select name="s_descricao"  onchange="mudamsg()">
+		            <option value="">--</option>
+			            <%call comboBD(Env.oConn,"Select distinct S_DESCRICAO as valor,S_DESCRICAO as descricao from situacoes WHERE S_OS = 0 order by S_DESCRICAO asc;")%>
+		            </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			        Tipo:&nbsp;
+			        <select name="s_os" onchange="mudamsg()">
+				        <%call comboBD(Env.oConn,"Select '0' as valor,'           AS           ' as descricao union Select '1' as valor,'           OS           ' as descricao order by descricao;")%>
+			        </select>
+		            &nbsp;
+		        </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+		    <tr>
+		        <td colspan=10 align=left valign="top">
+		        Mensagem:<br>
+		        <textarea cols="120" rows="17" name="mensagem"></textarea>
+		        </td>
+		    </tr>
+            <tr><td>&nbsp;</td></tr>
+		    <tr>
+		        <td colspan=10>
+			        <input type="button" name="botao" value="    Ok    " onclick="envia();">
+		        </td>
+	        </tr>
+        </table>
+        <input type="hidden" name="hdnevento" value="3">
+    </form>
+    <br />
+    <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
+</div>
 
-		&nbsp;
-		</td>
-		<tr>
-		<td colspan=10 align=left valign="top">
-		<B>&nbsp;Mensagem : </B><br>
-		&nbsp;<textarea class="texto1" cols="120" rows="17" name="mensagem"></textarea>
-		</td>
-		</tr>
-		<tr>
-		<td colspan=10>
-			&nbsp;<input type="button" class="texto1" name="botao" value="    Ok    " onclick="envia();">
-		</td>
-	</tr>
-</table>
-<input type="hidden" name="hdnevento" value="3">
-</form>
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-<script language="javascript">
-function mudamsg() {
-	var frm = document.forms[0]
-	frm.botao.disabled = true;
-	frm.hdnevento.value = "3"
-	frm.mensagem.value = "Pesquisando....";
-	frm.action = "eventosInternos.asp"
-	frm.method = "post";
-	frm.target = "escondido";
-	frm.submit();
-}
-function envia(){
-	var frm = document.forms[0]
-	frm.hdnevento.value = "4"
-	frm.action = "eventosInternos.asp"
-	frm.method = "post";
-	frm.target = "escondido";
-	frm.submit();
-}
-</SCRIPT>
+<script type="text/javascript">
+    function mudamsg() {
+	    var frm = document.forms[0]
+	    frm.botao.disabled = true;
+	    frm.hdnevento.value = "3"
+	    frm.mensagem.value = "Pesquisando....";
+	    frm.action = "eventosInternos.asp"
+	    frm.method = "post";
+	    frm.target = "escondido";
+	    frm.submit();
+    }
+    function envia(){
+	    var frm = document.forms[0]
+	    frm.hdnevento.value = "4"
+	    frm.action = "eventosInternos.asp"
+	    frm.method = "post";
+	    frm.target = "escondido";
+	    frm.submit();
+    }
+</script>
 <%
 Call Tela.MostraRodape()
 %>
