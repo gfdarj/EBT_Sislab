@@ -43,7 +43,7 @@ chr_DataFim = Trim(request("anodataFim") & "-" & request("mesdataFim") & "-" & r
 If chr_DataIni = "'--'" Then chr_DataIni = "NULL" Else chr_DataIni = "'" & chr_DataIni & " 00:00'"
 If chr_DataFim = "'--'" Then chr_DataFim = "NULL" Else chr_DataFim = "'" & chr_DataFim & " 00:00'"
 %>
-<script language="javascript">
+<script type="text/javascript">
 var matriz=new Array()
 x=0;
 <%
@@ -82,59 +82,63 @@ x++;
 	End If
 End If
 %>
-function retornavalor() {
-	document.formulario.action="Cons_Ind_pesqsCRSem.asp";
-	document.formulario.submit();
-}
-function janelacoment(partipo,parag,paritem, parserv, pardataini, pardatafim) {
-    window.open("janelaComentariosGR.asp?tipo="+partipo+"&ag="+parag+"&it="+paritem+"&ser="+parserv+"&dataIni="+pardataini+"&dataFim="+pardatafim,'Comentarios','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=321,height=300, top=0, left=0');
-}
-function respostas(nag) {
-	//formulario.numag.value=nag;
-	//document.formulario.action="Cons_Resp_pesqsCRSem.asp";
-	//formulario.submit();
-	var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
-	jan.focus();
-}
-function contC(parag, paritem, parativ, pardataini, pardatafim) {
-	var cont=0;
-	for (m=0;m<=matriz.length-1;m++) {	 
-		if (matriz[m][1]==parag) {
-			if (matriz[m][paritem]!='' & matriz[m][paritem]!=' ') {
-				cont=cont+1;
-			}
-		} 
-	}
-	if (cont!=0)
-		return('<a href="javascript: janelacoment(-6,'+parag+','+paritem+',\''+parativ+'\',\''+pardataini+'\',\''+pardatafim+'\');">Coment.:'+cont+'</a>');
-	else
-		return('-');
-}
+    function retornavalor() 
+    {
+	    document.formulario.action="Cons_Ind_pesqsCRSem.asp";
+	    document.formulario.submit();
+    }
+    function janelacoment(partipo,parag,paritem, parserv, pardataini, pardatafim)
+    {
+        window.open("janelaComentariosGR.asp?tipo="+partipo+"&ag="+parag+"&it="+paritem+"&ser="+parserv+"&dataIni="+pardataini+"&dataFim="+pardatafim,'Comentarios','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=321,height=300, top=0, left=0');
+    }
+    function respostas(nag)
+    {
+	    //formulario.numag.value=nag;
+	    //document.formulario.action="Cons_Resp_pesqsCRSem.asp";
+	    //formulario.submit();
+	    var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+	    jan.focus();
+    }
+    function contC(parag, paritem, parativ, pardataini, pardatafim)
+    {
+	    var cont=0;
+	    for (m=0;m<=matriz.length-1;m++) {	 
+		    if (matriz[m][1]==parag) {
+			    if (matriz[m][paritem]!='' & matriz[m][paritem]!=' ') {
+				    cont=cont+1;
+			    }
+		    } 
+	    }
+	    if (cont!=0)
+		    return('<a href="javascript: janelacoment(-6,'+parag+','+paritem+',\''+parativ+'\',\''+pardataini+'\',\''+pardatafim+'\');">Coment.:'+cont+'</a>');
+	    else
+		    return('-');
+    }
 </script>
 <!--SQL:<%=sSQL%>-->
+<div class="margem-10">
 <form method="post" action="Cons_Ind_pesqsCRSem.asp" name="formulario">
 <input type="hidden" name="numag">
 <input type="hidden" name="enviou" value="1">
-<table width="100%" class="table-bordered" cellpadding="2" cellspacing="0">
+
+<table style="width: 100%;">
 <tr>
 	<td colspan="2">
-		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<strong>
 			Análise Periódica dos Formulários de Satisfação
-		</span>
+		</strong>
 	</td>
 </tr>
-
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-	<td colspan="2"><b>Período:</b></td>
+	<td colspan="2"><strong>Período:</strong></td>
 </tr>
-
 <tr> 
 	<td colspan="2">
 		De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="Pesquisar" class="texto1" onclick="retornavalor();">
-		<script language="JavaScript">
+		<input type="button" value="Pesquisar" onclick="retornavalor();">
+		<script type="text/javascript">
 <%
 If dataIni <> "" Then%>
 			document.all.diadataIni.value = '<%=left(dataIni,2)%>';
@@ -157,7 +161,7 @@ if request("enviou") = "1" then
 %>
 <tr>
 	<td colspan="2">
-		<table width="100%" cellpadding="3" cellspacing="0" border="1" style="border: solid thin;">
+		<table border="1" style="border: solid thin; width: 100%;">
 <%
 '		"FROM PesquisaSatisfacao p RIGHT JOIN vw_Agendamento a ON p.PSQ_NAg = a.AG_NUMERO " & VbCrLf & 
 '		"  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID " & VbCrLf & 
@@ -290,96 +294,96 @@ if request("enviou") = "1" then
 -->
 	</td>
 </tr>
-<tr class="azul1bg">
+<tr class="destaque titulo">
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Comunicação</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Comunicação</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Cortesia</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Cortesia</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Presteza</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Presteza</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Flexibilidade</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Flexibilidade</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Rapidez</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Rapidez</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Iniciativa</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Iniciativa</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Confiabilidade</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Confiabilidade</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Infraestrutura</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Infraestrutura</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Ambiente</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Ambiente</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Acesso</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Acesso</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Geral</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Geral</b></font>
 	</td>
 </tr>
-<tr bgcolor="#FFFFFF">
+<tr>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1, auxR1Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,2,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1, auxR1Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,2,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,3,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,3,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,4,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,4,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,5,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,5,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,6,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,6,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,7,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,7,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,8,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,8,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,9,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,9,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,10,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,10,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,11,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,11,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,12,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,12,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 </tr>
 <tr bgcolor="#666625">
@@ -513,96 +517,96 @@ End If
 	</td>
 </tr>
 
-<tr  class="azul1bg">
+<tr class="destaque titulo">
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Comunicação</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Comunicação</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Cortesia</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Cortesia</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Presteza</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Presteza</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Flexibilidade</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Flexibilidade</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Rapidez</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Rapidez</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Iniciativa</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Iniciativa</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Confiabilidade</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Confiabilidade</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Infraestrutura</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Infraestrutura</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Ambiente</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Ambiente</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Acesso</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Acesso</b></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<b>Geral</b></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <b>Geral</b></font>
 	</td>
 </tr>
-<tr bgcolor="#FFFFFF">
+<tr>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1,auxR1Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1,auxR1Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br></font>
 	</td>
 	<td align="center">
-	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br></font>
+	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
+	    <%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br></font>
 	</td>
 	</tr>
 	<tr bgcolor="#666625">
@@ -615,11 +619,12 @@ End If
 
 	Call Env.RecordSet(False, objRSGLO, sSQL)
 	Call Env.RecordSet(False, objRS, sSQL)
-
 End If
 %>
 </table>
 </form>
+<br />
+</div>
 <%
 '----------------------------------------------------------------
 '
