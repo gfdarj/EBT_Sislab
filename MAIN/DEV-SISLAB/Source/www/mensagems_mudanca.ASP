@@ -16,7 +16,7 @@ EH_CRT = Env.UsuarioCRT
     <form name="formteste" method="post" action="">
         <table style="width: 100%;">
 	        <tr>
-                <td colspan=3 align=left valign=top>
+                <td>
 			        Situação: &nbsp;
 		            <select name="s_descricao"  onchange="mudamsg()">
 		            <option value="">--</option>
@@ -32,14 +32,14 @@ EH_CRT = Env.UsuarioCRT
             </tr>
             <tr><td>&nbsp;</td></tr>
 		    <tr>
-		        <td colspan=10 align=left valign="top">
-		        Mensagem:<br>
-		        <textarea cols="120" rows="17" name="mensagem"></textarea>
+		        <td>
+		            Mensagem:<br>
+		            <textarea cols="120" rows="17" name="mensagem"></textarea>
 		        </td>
 		    </tr>
             <tr><td>&nbsp;</td></tr>
 		    <tr>
-		        <td colspan=10>
+		        <td>
 			        <input type="button" name="botao" value="    Ok    " onclick="envia();">
 		        </td>
 	        </tr>
