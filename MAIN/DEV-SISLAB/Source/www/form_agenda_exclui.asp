@@ -10,7 +10,7 @@ agnumero = request("cmbAS")
 
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do SISLAB - Excluir um Agendamento", "location.href='sislab.asp'", "")
 %>
-<script language="JavaScript">
+<script type="text/javascript">
     function selecionarAS(eu) {
 	    if(eu.value == "")
 		    alert("Selecione um agendamento");
@@ -21,19 +21,19 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Administração do 
     }
 </script>
 
-<form name="formulario" method="post" action="form_agenda_exclui.asp">
-<input type="hidden" name="ag_numero" value="<%=agnumero%>">
-<input type="hidden" name="os_id" value="">
-<table width="100%" cellpadding="2" cellspacing="0" border="0" class="table-bordered">
-<tr>
-	<td>
-		<span class="texto1B">Selecione uma AS para exclus&atilde;o</span><br>
+<div class="margem-10">
+    <form name="formulario" method="post" action="form_agenda_exclui.asp">
+    <input type="hidden" name="ag_numero" value="<%=agnumero%>">
+    <input type="hidden" name="os_id" value="">
+
+	<p>
+		Selecione uma AS para exclus&atilde;o<br>
 		<%Call comboAgendamento("txtAS", "cmbAS", objConn, agnumero, "N")%>
 		&nbsp;&nbsp;&nbsp;
-		<input class="texto1" type="button" onclick="javascript:selecionarAS(document.all.cmbAS);" value=" Selecionar ">
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
+		<input type="button" onclick="javascript:selecionarAS(document.all.cmbAS);" value=" Selecionar ">
+	</p>
+
+    <br />
 <%
 if agnumero <> "" then
 	s = _
@@ -46,23 +46,24 @@ if agnumero <> "" then
 	call Env.RecordSet(true, objRS, s)
 	if not (objRS.Eof and objRS.Bof) then
 %>
-<tr>
-	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="table-bordered" border="1">
-		<tr>
-			<td class="realce1" colspan="2">Dados do Agendamento <%=agnumero%></td>
-			<td width="60px" rowspan="7" align="center" valign="middle"><input type="button" value=" Excluir Agendamento" class="texto1" onclick="javascript:excluirAS(<%=agnumero%>);"></td>
-		</tr>
-		<tr><td width="75px">&nbsp;<b>Tecnologia:</b></td><td>&nbsp;<%=objRS("TEC_NOME")%></td></tr>
-		<tr><td>&nbsp;<b>Objetivo:</b></td><td>&nbsp;<%=objRS("AG_OBJETIVO")%></td></tr>
-		<tr><td>&nbsp;<b>Solicita&ccedil;&atilde;o:</b></td><td>&nbsp;<%=objRS("AG_DATASOLICITACAO")%></td></tr>
-		<tr><td>&nbsp;<b>Per&iacute;odo:</b></td><td>&nbsp;<%=objRS("AG_DATAINICIO")%>&nbsp;-&nbsp;<%=objRS("AG_DATATERMINO")%></td></tr>
-		<tr><td>&nbsp;<b>RT:</b></td><td>&nbsp;<%=objRS("AG_RESPONSAVEL")%></td></tr>
-		<tr><td>&nbsp;<b>RAT:</b></td><td>&nbsp;<%=objRS("AG_RAT")%></td></tr>
-		</table>
-	</td>
-</tr>
-		<script language="JavaScript">
+    <table style="width: 100%;">
+    <tr>
+	    <td>
+		    <table class="table-bordered table-condensed" style="width: 100%;">
+		    <tr>
+			    <td class="realce1" colspan="2">Dados do Agendamento <%=agnumero%></td>
+			    <td width="60px" rowspan="7" align="center" valign="middle"><input type="button" value=" Excluir Agendamento" class="texto1" onclick="javascript:excluirAS(<%=agnumero%>);"></td>
+		    </tr>
+		    <tr><td width="75px">&nbsp;<b>Tecnologia:</b></td><td>&nbsp;<%=objRS("TEC_NOME")%></td></tr>
+		    <tr><td>&nbsp;<b>Objetivo:</b></td><td>&nbsp;<%=objRS("AG_OBJETIVO")%></td></tr>
+		    <tr><td>&nbsp;<b>Solicita&ccedil;&atilde;o:</b></td><td>&nbsp;<%=objRS("AG_DATASOLICITACAO")%></td></tr>
+		    <tr><td>&nbsp;<b>Per&iacute;odo:</b></td><td>&nbsp;<%=objRS("AG_DATAINICIO")%>&nbsp;-&nbsp;<%=objRS("AG_DATATERMINO")%></td></tr>
+		    <tr><td>&nbsp;<b>RT:</b></td><td>&nbsp;<%=objRS("AG_RESPONSAVEL")%></td></tr>
+		    <tr><td>&nbsp;<b>RAT:</b></td><td>&nbsp;<%=objRS("AG_RAT")%></td></tr>
+		    </table>
+	    </td>
+    </tr>
+		<script type="text/javascript">
 			function excluirAS(agnumero) {
 				var ok = false;
 				var msg = "Confirma a exclusão do agendamento " + agnumero + " ?";
@@ -83,21 +84,23 @@ if agnumero <> "" then
 			"WHERE AG_NUMERO = " & agnumero
 		call Env.RecordSet(true, objRS, s)
 		if not (objRS.Eof and objRS.Bof) then%>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="table-bordered" border="1">
-		<tr><td class="realce1" colspan="3">Dados da Ordem de Servi&ccedil;o</td></tr>
-		<tr style="font-weight: bold;"><td width="70px">Nº OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+	    <td>
+		    <table class="table-bordered table-condensed" style="width: 100%;">
+		    <tr>
+                <td colspan="3">Dados da Ordem de Servi&ccedil;o</td>
+		    </tr>
+		    <tr style="font-weight: bold;"><td width="70px">Nº OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
 <%			while not objRS.Eof%>
-		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
+    		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
 <%				objRS.MoveNext
 			wend%>
-		<tr><td colspan="2">&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
-		</table>
-	</td>
-</tr>
-		<script language="JavaScript">
+		    <tr><td colspan="2">&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
+		    </table>
+	    </td>
+    </tr>
+		<script type="text/javascript">
 			function excluirOS(agnumero, os) {
 				var ok = false;
 				var msg = (os < 0) ? "Confirma a exclusão de todas as OS´s do agendamento " + agnumero + " ?" : "Confirma a exclusão da OS número " + os + " do agendamento " + agnumero + " ?";
@@ -112,17 +115,22 @@ if agnumero <> "" then
 		</script>
 <%		end if
 	else%>
-<tr><td align="center">Agendamento n&atilde;o encontrado</td></tr>
+    <tr>
+        <td align="center">Agendamento n&atilde;o encontrado</td>
+    </tr>
 <%
 	end if
 	call Env.RecordSet(false, objRS, null)
 end if
 %>
-</table>
-</form>
+    </table>
+    </form>
+</div>
 
+<%Call Tela.MostraRodape() %>
 
 <%response.end%>
+
 
 <script language="javascript">
 function chama_as(cod_as) {
@@ -242,97 +250,6 @@ Não existem atividades agendadas no momento.
 <input type="hidden" name="selecao">
 </form>
 
-<!--
-
-<table border="0" width="720" cellpadding="2">
-  <tr>
-<td  bgcolor="#000030">
-<font face="arial" class="Fonttit1Cad" color="#FFFFFF"><B>
-<center>
-Últimas Atividades Realizadas</B></Font>
-<br></center>
-</td></tr>
-</table>
-
-
-<table width="720">
-
-<tr>
-<td  bgcolor="#666666" align="center" width="48%">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<B>
-ATIVIDADE
-</B>
-</font>
-</td>
-
-<td  bgcolor="#666666" align="center" width="15%">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<B>
-SOLICITANTE
-</B>
-</font>
-</td>
-
-<td  bgcolor="#666666" align="center" width="15%">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<B>
-RESPONSÁVEL</B>
-</font>
-</td>
-
-<td  bgcolor="#666666" align="center" width="22%">
-<font face="verdana"  color="#FFFFFF" class="FontMenu1">
-<B>
-INÍCIO - TÉRMINO
-</font>
-</td>
-</tr>
-<%
-     If Not(objSiteRS.EOF) Then
-
-	Do while Not(objSiteRS.EOF)
-%>
-<tr>
-<td  bgcolor="#888888" align="left">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<B>
-&nbsp;&nbsp;<%=objSiteRS("ARQ_Link")%>
-</B>
-</font>
-</a>
-</td>
-<td bgcolor="#888888" align="center">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<%=objSiteRS("TAR_TipoArquivo")%></font>
-</td>
-<td bgcolor="#888888" align="center">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<%=objSiteRS("TAR_TipoArquivo")%></font>
-</td>
-<td bgcolor="#888888" align="center">
-<font face="verdana" color="#FFFFFF" class="FontMenu1">
-<%=objSiteRS("ARQ_DataAtualizacao")%></font>
-</td>
-</tr>
-<%objSiteRS.movenext%>
-<%loop%>
-<%else%>
-<tr>
-<td colspan=5>
-<div align="justify">
-<font face="verdana" color="#000050" Style="font-size=12pt">
-<br>
-Não existem atividades realizadas no momento.
-<br>
-</font>
-</div>
-</td>
-</tr>
-<% end if %>
-</table>
-
--->
 
 </div>
 </font>

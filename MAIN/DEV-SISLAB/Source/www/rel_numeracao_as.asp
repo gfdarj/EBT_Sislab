@@ -2,51 +2,84 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
-Dim objConn, objRS, i, max
+Dim chr_SQL, objConn, objRS, i, max
 Dim tot_geral : tot_geral = 0
+max = 0
 
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Verifica Numeração dos Agendamentos", "location.href='sislab.asp'", "")
 
-call Env.RecordSet(true, objRS, "SELECT MAX(AG_NUMERO) FROM Agendamento")
-max = objRS(0)
-call Env.RecordSet(false, objRS, null)
-call Env.RecordSet(true, objRS, "SELECT AG_NUMERO, AG_OBJETIVO FROM Agendamento ORDER BY AG_NUMERO")
-if not (objRS.Eof and objRS.Bof) then tot_geral = objRS.RecordCount
+chr_SQL = "" & VbCrLf & _
+          "IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[##agendamento]') AND OBJECTPROPERTY(id,N'IsTable') = 1) " & VbCrLf & _
+          "	  DROP TABLE ##agendamento " & VbCrLf & _
+          "GO" & VbCrLf & _  
+          "IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[#agendamento1]') AND OBJECTPROPERTY(id,N'IsTable') = 1) " & VbCrLf & _
+          "   DROP TABLE #agendamento1" & VbCrLf & _
+          "GO" & VbCrLf & _  
+          "SET NOCOUNT ON " & VbCrLf & _
+          "CREATE TABLE #agendamento1 ( AG_NUMERO INT PRIMARY KEY )" & VbCrLf & _
+          "DECLARE @max INT, @conta INT" & VbCrLf & _
+	      "SET @conta = 1" & VbCrLf & _
+	      "SELECT @max = MAX(AG_NUMERO) FROM Agendamento" & VbCrLf & _
+	      "WHILE @conta <= @max" & VbCrLf & _
+	      "BEGIN" & VbCrLf & _
+	      "    INSERT INTO #agendamento1 VALUES (@conta)" & VbCrLf & _
+	      "    SET @conta = @conta + 1" & VbCrLf & _
+	      "END" & VbCrLf & _
+	      "SELECT a1.AG_NUMERO, a2.AG_OBJETIVO FROM #agendamento1 a1 LEFT JOIN Agendamento a2 ON a1.AG_NUMERO = a2.AG_NUMERO" & VbCrLf & _
+	      "DROP TABLE #agendamento1" & VbCrLf & _
+          "GO" & VbCrLf & _  
+          "" & VbCrLf
 
 Server.ScriptTimeout = 1000
-Response.buffer = True
-response.flush
+Response.Buffer = True
+Response.Flush
+
+Call Env.RecordSet(true, objRS, chr_SQL)
 %>
-<br>
-<table width="100%" cellpadding="2" cellspacing="0" border="1" class="table-bordered">
-<tr>
-	<th width="50px">Nº AS</th>
-	<th>Objetivo</th>
-</tr>
+<div class="margem-10">
+    <br>
 <%
-for i = 1 to max
-	objRS.Find "AG_NUMERO = " & i
+If Not (objRS.Eof and objRS.Bof) Then
 %>
-<tr>
-	<td><%if objRS.Eof then response.write i else response.write "<b>" & i & "</b>"%></td>
-	<td><%if not objRS.Eof then response.write objRS("AG_OBJETIVO")%>&nbsp;</td>
-</td>
-</tr>
+    <table class="table-bordered table-condensed table-striped table-hover">
+    <tr>
+	    <th style="width: 70px">Nº AS</th>
+	    <th>Objetivo</th>
+    </tr>
 <%
-	if not objRS.Eof then tot_ag = tot_ag + 1
-	objRS.MoveFirst
-	response.flush
-next
-call Env.RecordSet(false, objRS, null)
-if tot_geral > 0 then%>
-<tr>
-	<td colspan="2" align="right">
-	<b>Números vagos: <%=max - tot_geral%>&nbsp;&nbsp;&nbsp;&nbsp;Total de Agendamentos: <%=tot_geral%></b>
-	</td>
-</tr>
+    While Not objRS.Eof
+%>
+    <tr class="<%If (Not achou) Then Response.Write "bg-warning"%>">
+	    <td style="text-align: center;"><%=i%></td>
+	    <td style="text-align: justify;">
+<%          If VVVNZ(objRS("AG_OBJETIVO")) Then
+                Response.Write "** Não encontrado **"
+            Else
+                Response.Write objRS("AG_OBJETIVO")
+                tot_geral = total_geral + 1
+            End If %>&nbsp;
+	    </td>
+    </tr>
+<%
+        max = max + 1
+	    objRS.MoveFirst
+        If conta Mod 100 Then Response.Flush
+    WEnd
+
+    Call Env.RecordSet(false, objRS, null)
+%>
+    </table>
+    <br />
+    <p style="text-align: right;">
+	    <strong>Números vagos: <%=max - tot_geral%>&nbsp;&nbsp;&nbsp;&nbsp;Total de Agendamentos: <%=tot_geral%></strong>
+    </p>
+<%
+Else%>
+    <p style="text-align: center;">Nenhum Agendamento encontrado!</p>
 <%
 end if%>
-</table>
+    <br />
+</div>
 <%
 Call Tela.MostraRodape()
 %>

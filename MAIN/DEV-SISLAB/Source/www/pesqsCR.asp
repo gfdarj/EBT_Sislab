@@ -99,14 +99,14 @@ If VVVNZ(auxag) Then
 <br>
 <form name="formulario" method="post" class="texto1">
 <p><b>Selecione um ou mais agendamento(s):</b><%=IIf(VVVN(RQ("exibir")), "&nbsp;<i>(Para selecionar mais de um agendamento utilize a tecla <u>Shift</u> ou <u>Ctrl</u>)</i>", "")%></p>
-<p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag" class="combo" size="15" style="width: 700px;">
+<p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag"  size="15" style="width: 700px;">
 <%	while not objRS.Eof%>
 <option value="<%=objRS("AG_NUMERO")%>"><%=objRS("AG_NUMERO")%> (<%=UCase(objRS("AG_USERNAME"))%>) - <%=left(objRS("AG_OBJETIVO"),100)%></option>
 <%		objRS.MoveNext
 	wend%>
 </select></p>
 <p>
-	<b>Exibir:</b>&nbsp;<select name="exibir" class="combo" onchange="javascript:trocaAS();">
+	<b>Exibir:</b>&nbsp;<select name="exibir"  onchange="javascript:trocaAS();">
 	<option value="" <%=IIf(VVVN(RQ("exibir")), "selected", "")%>>Somente Agendamentos sem Respostas</option>
 	<option value="T" <%=IIf(RQ("exibir") = "T", "selected", "")%>>Todos os Agendamentos</option>
 	<option value="R" <%=IIf(RQ("exibir") = "R", "selected", "")%>>Somente Agendamentos com Respostas</option>
@@ -128,7 +128,7 @@ If VVVNZ(auxag) Then
 %>
 	&nbsp;&nbsp;&nbsp;
 	<b>Exibir Solicitante:</b>
-	<select name="solicitante" class="combo" onchange="javascript:trocaAS();">
+	<select name="solicitante"  onchange="javascript:trocaAS();">
 	<option value="">Todos os Solicitantes</option>
 	<option value="--">-----------------------</option>
 	<option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>

@@ -75,14 +75,14 @@ function montaExcel()
 <tr>
 	<td>
 		Situação:&nbsp;
-		<select name="situacao"  class="combo">
+		<select name="situacao"  >
 			<option value="">Todas as Situações</option>
 			<option value="NC">Todas Não Concluídas</option>
 			<%call comboBD(Env.oConn,"Select ID_Situacao as valor,left(S_DESCRICAO,35) as descricao from Situacoes where S_OS = 0 order by ID_Situacao asc;")%>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Resposta à Pesquisa de Satisfação:
-		<select name="tempesquisa" class="combo">
+		<select name="tempesquisa" >
 			<option value="">Todos os agendamentos</option>
 			<option value="Sim">Apenas agendamentos com resposta</option>
 			<option value="Não">Apenas agendamentos sem resposta</option>

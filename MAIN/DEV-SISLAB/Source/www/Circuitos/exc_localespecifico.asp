@@ -23,7 +23,7 @@ call StoredProcedure( false, objSP, "SP_FAC_EXCLUI_LOCAL_ESPECIFICO")
 %><script language="JavaScript">
 	var str='';
 	str += '<font class="Fonttit3Cad"><b>Locais Espec&iacute;ficos:</b></font><br>';
-	str += '<select multiple name="locais" style="width: 200px;" size="6" class="combo">';
+	str += '<select multiple name="locais" style="width: 200px;" size="6" >';
 <%
 if ret > 0 then
 	s = "select e.LEE_ID, e.LEE_NOME from FAC_Locais_Especificos_Equip e "

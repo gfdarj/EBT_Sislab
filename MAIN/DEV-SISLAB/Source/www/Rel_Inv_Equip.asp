@@ -77,7 +77,7 @@ Call Tela.MostraCabecalho()
 			<td colspan="2">Nota Fiscal: <input type="text" name="notafiscal" size="10" class="texto1"></td>
 			<td colspan="2">
 				Propriedade:
-				<select name="propriedade" class="combo">
+				<select name="propriedade" >
 					<option value="">Todos</option>
 					<option value="M">Comodato (Embratel)</option>
 					<option value="C">CRT</option>
@@ -91,7 +91,7 @@ Call Tela.MostraCabecalho()
 		<tr>
 			<td colspan="8">Fornecedor: <%call comboFornecedor("idfornecedor", Env.oConn, "", "N", "FORNECEDOR", False)%></td>
 			<td colspan="2">Status:
-				<select name="status" class="combo">
+				<select name="status" >
 					<option value="">Todos</option>
 					<option value="0">Cadastrado</option>
 					<option value="2">Em Uso</option>
@@ -105,19 +105,19 @@ Call Tela.MostraCabecalho()
 
 		<tr>
 			<td colspan="5">Ordenação:
-				<select name="ordenacao" class="combo">
+				<select name="ordenacao" >
 					<option value="E.EQ_CODIGOBARRAS">Código de Barras</option>
 					<option value="QTD_MOV.TOTAL_MOVIMENTOS">Quantidade de Movimentos</option>
 					<option value="E.STATUS">Status do Equipamento</option>
 				</select>
-				<select name="tipoordenacao" class="combo">
+				<select name="tipoordenacao" >
 					<option value="ASC">Ascendente</option>
 					<option value="DESC">Descendente</option>
 				</select>
 			</td>
 			<td colspan="5" align="right">
 				Registros por Página:
-				<select name="registroporpagina" class="combo">
+				<select name="registroporpagina" >
 					<option value="10">10</option>
 					<option value="30">30</option>
 					<option value="50">50</option>

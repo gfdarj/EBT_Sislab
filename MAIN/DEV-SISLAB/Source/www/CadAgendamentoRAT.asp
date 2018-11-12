@@ -219,7 +219,7 @@ function ValidaCampos(){
 <tr height="34">
 	<td  colspan="2">
 		&nbsp;&nbsp;&nbsp;Situação:&nbsp;
-		<select name="cmbSituacao" class="combo" onchange="avaliaSituacao();">
+		<select name="cmbSituacao"  onchange="avaliaSituacao();">
          		<option value="0" selected></option>
 			<%	strSQL = "select distinct s.ID_SITUACAO as valor  , s.S_DESCRICAO as descricao"
 				strSQL = strSQL & " from situacoes_situacoes ss, situacoes s"

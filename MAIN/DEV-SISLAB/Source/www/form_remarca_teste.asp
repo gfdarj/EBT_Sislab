@@ -243,7 +243,7 @@ function PreparaCampos(f)
 			    &nbsp;&nbsp;Período previsto para teste:&nbsp;
 			    &nbsp;&nbsp;Início:&nbsp;
 			    <input type="hidden" name="txtInicio" size="10" value="<%=formataData(data_inicio)%>">
-			    <select name="cmbInicio_dia" class="combo" tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+			    <select name="cmbInicio_dia"  tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
 				    <option value="0" selected></option>
 				    <%For i=1 to 31
 					    if (i \ 10) = 0 then%>
@@ -253,7 +253,7 @@ function PreparaCampos(f)
 					    <%end if%>
 				    <%Next%>
 			    </select>/
-			    <select name="cmbInicio_mes" class="combo" tabindex="8" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+			    <select name="cmbInicio_mes"  tabindex="8" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
 				    <option value="0" selected></option>
 				    <%For i=1 to 12
 					    if (i \ 10) = 0 then%>
@@ -263,7 +263,7 @@ function PreparaCampos(f)
 					    <%end if%>
 				    <%Next%>
 			    </select>/
-				    <select name="cmbInicio_ano" class="combo" tabindex="9" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
+				    <select name="cmbInicio_ano"  tabindex="9" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
 				    <option value="0" selected></option>
 				    <%For i=year(date())-1 to year(date())+1%>
 					    <option value="<%=i%>" <%if year(data_inicio) = i then response.write "selected"%>><%=i%></option>
@@ -272,7 +272,7 @@ function PreparaCampos(f)
 	
 			    &nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;
 			    <input type="hidden" name="txtFim" size="10" tabindex="7" value="<%=formataData(data_termino)%>">
-			    <select name="cmbFim_dia" class="combo" tabindex="10" onchange="montaFim()">
+			    <select name="cmbFim_dia"  tabindex="10" onchange="montaFim()">
 				    <option value="0" selected></option>
 				    <%For i=1 to 31
 					    if (i \ 10) = 0 then%>
@@ -282,7 +282,7 @@ function PreparaCampos(f)
 					    <%end if%>
 				    <%Next%>
 			    </select>/
-			    <select name="cmbFim_mes" class="combo" tabindex="11" onchange="montaFim()">
+			    <select name="cmbFim_mes"  tabindex="11" onchange="montaFim()">
 				    <option value="0" selected></option>
 				    <%For i=1 to 12
 					    if (i \ 10) = 0 then%>
@@ -292,7 +292,7 @@ function PreparaCampos(f)
 					    <%end if%>
 				    <%Next%>
         	    </select>/
-			    <select name="cmbFim_ano" class="combo" tabindex="12" onchange="montaFim()">
+			    <select name="cmbFim_ano"  tabindex="12" onchange="montaFim()">
 				    <option value="0" selected></option>
 				    <%For i=year(date())-1 to year(date())+1%>
 					    <option value="<%=i%>" <%if year(data_termino) = i then response.write "selected"%>><%=i%></option>

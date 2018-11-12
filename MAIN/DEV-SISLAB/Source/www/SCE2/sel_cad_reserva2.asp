@@ -235,7 +235,7 @@ While Not rec.eof
 		    If rec("REQ_MOVIMENTOU") or session("status") = PERFIL_RAT or ehRelatorio then
 				If Not IsNull(rec("REQ_ACEITO")) Then response.write SimNao(rec("REQ_ACEITO")) else response.write "--" End If
 			Else %>
-				    <select name="aceite_<%=agnumero%>_<%=contaAS%>" class="combo">
+				    <select name="aceite_<%=agnumero%>_<%=contaAS%>" >
 					    <option value="__<%=rec("EQ_ID")%>">--</option>
 					    <option value="1_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 1 then response.write "selected"%>>Sim</option>
 					    <option value="0_<%=rec("EQ_ID")%>" <%if rec("REQ_ACEITO") = 0 then response.write "selected"%>>Não</option>

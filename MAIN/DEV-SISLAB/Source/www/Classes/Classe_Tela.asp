@@ -165,7 +165,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 %>
 <!--------------------- Imprime a tela Principal --------------------->
 
-		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" width="<%=p_tamanhoTela%>">
+		<table id="tr_princ_conteudo" cellpadding="2" cellspacing="2" border="0" style="width: <%=p_tamanhoTela%>;">
 		<tr>
 			<td>
 <%

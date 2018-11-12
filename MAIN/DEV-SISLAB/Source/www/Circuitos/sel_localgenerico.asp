@@ -81,7 +81,7 @@ Call MostraHeader
 		dim objRS, objConn
 		call Env.RecordSet(true, objRS, "select * from FAC_LOCAIS_GENERICOS_EQUIP order by LGE_NOME")
 		if not ( objRS.EOF and ObjRS.BOF ) then		%>
-			<select name="local" class="combo" onchange="javascript:DadosLocal(this);">
+			<select name="local"  onchange="javascript:DadosLocal(this);">
 			<option value="">-- Selecione o Local gen&eacute;rico --</option><%
 			while not objRS.EOF	%>
 				<option value="<%=objRS("LGE_ID")%>"><%

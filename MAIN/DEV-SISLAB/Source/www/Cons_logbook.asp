@@ -153,7 +153,7 @@ Filtros para Acompanhamento de Ocorrências (Log Book):</B></Font>
 <font face="tahoma" class="fontmenu1"><B>
 &nbsp;Tipo Ocorrência:</B><br>
 &nbsp;
-<select name="tipoocorrencia"  class="combo">
+<select name="tipoocorrencia"  >
 <option value="Todos">Todos os Tipos de Ocorrência</option>
 
 <%
@@ -190,7 +190,7 @@ end if
 <font face="tahoma" class="fontmenu1"><B>
 &nbsp;Situação:</B><br>
 &nbsp;
-<select name="situacao"  class="combo">
+<select name="situacao"  >
 <option value="Todos">Todos as Situações</option>
 <option value="P">Pendentes</option>
 <option value="C">Concluídas</option>
@@ -201,7 +201,7 @@ end if
 <font face="tahoma" class="fontmenu1"><B>
 &nbsp;Cadastrado por:</B><br>
 &nbsp;
-<select name="cadastradopor"  class="combo">
+<select name="cadastradopor"  >
 <option value="Todos">Todos os Cadastrantes</option>
 
 <%

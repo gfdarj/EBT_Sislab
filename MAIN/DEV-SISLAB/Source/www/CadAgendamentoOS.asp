@@ -195,7 +195,7 @@ End If
 <tr height="34">
 	<td>
 		Situação:&nbsp;
-		<select name="cmbSituacao" class="combo" onchange="avaliaSituacao();">
+		<select name="cmbSituacao"  onchange="avaliaSituacao();">
 <%		if nova_os <> "1" then
 			strSQL = "select distinct s.ID_SITUACAO as valor  , s.S_DESCRICAO as descricao"
 				strSQL = strSQL & " from situacoes_situacoes ss, situacoes s"

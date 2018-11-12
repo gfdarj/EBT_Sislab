@@ -134,14 +134,14 @@ function controleClientes(eu)
 				Cliente Embratel:&nbsp;<input class="texto1" type="Checkbox" name="chkClientes" onclick="javascript:controleClientes(this);">
 			</td>
 			<td colspan="4" <%=chr_EstiloTD%>>
-				<select name="clientes" class="combo" disabled>
+				<select name="clientes"  disabled>
 					<option value="">Todo os Clientes</option>
 					<%call comboBD(Env.oConn, "Select DISTINCT AG_CLIENTEEXTERNO as valor, CASE WHEN LEN(AG_CLIENTEEXTERNO) > 40 THEN LEFT(AG_CLIENTEEXTERNO, 40) + '...' ELSE AG_CLIENTEEXTERNO END as descricao from Agendamento WHERE AG_CLIENTEEXTERNO IS NOT NULL order by AG_CLIENTEEXTERNO asc")%>
 				</select>
 			</td>
 			<td colspan="6" <%=chr_EstiloTD%>>
 				Tecnologia:&nbsp;
-				<select name="tecnologia" class="combo">
+				<select name="tecnologia" >
 					<option value="">Todas as Tecnologias</option>
 					<%call comboBD(Env.oConn,"Select Tec_Nome as valor,left(Tec_Nome,35) as descricao from Tecnologia order by Tec_nome asc")%>
 				</select>
@@ -173,7 +173,7 @@ function controleClientes(eu)
 			</td>
 			<td colspan="7" <%=chr_EstiloTD%>>
 				Situação do Agendamento:&nbsp;
-				<select name="situacaoteste"  class="combo">
+				<select name="situacaoteste"  >
 					<option value="">Todos as Situações</option>
 					<option value="NC">Todas Não Concluídas</option>
 					<%call comboBD(Env.oConn,"Select ID_Situacao as valor,left(S_DESCRICAO,35) as descricao from Situacoes where S_OS = 0 order by ID_Situacao asc;")%>
@@ -235,7 +235,7 @@ function controleClientes(eu)
 			</td>
 			<td colspan="4" <%=chr_EstiloTD%>>
 				�rg�o Solicitante:&nbsp;
-				<select name="orgao" class="combo">
+				<select name="orgao" >
 					<option value="">Todos os Órgãos</option>
 					<%call comboBD(Env.oConn,"Select distinct AG_ORGAO, rtrim(ltrim(AG_ORGAO)) as valor,rtrim(ltrim(AG_ORGAO)) as descricao from agendamento where not(AG_ORGAO is null) and ag_orgao <> '' order by AG_ORGAO asc")%>
 				</select>

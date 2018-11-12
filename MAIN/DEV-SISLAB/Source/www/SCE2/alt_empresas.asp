@@ -135,7 +135,7 @@ function FormataCpf(campo,tammax,teclapres) {
 							</TD>
 							<td>
 							Tipo da empresa<br>
-							<select class="combo" name="tipoempresa"><option value="F" <%if rec("ENF_TIPOEMPRESA") = "F" then response.write "selected" end if%>>Fornecedora</option><option value="T" <%if rec("ENF_TIPOEMPRESA") = "T" then response.write "selected" end if%>>Transportadora</option></select>
+							<select  name="tipoempresa"><option value="F" <%if rec("ENF_TIPOEMPRESA") = "F" then response.write "selected" end if%>>Fornecedora</option><option value="T" <%if rec("ENF_TIPOEMPRESA") = "T" then response.write "selected" end if%>>Transportadora</option></select>
 							</td>
   	  					</tr>
 					</TABLE>

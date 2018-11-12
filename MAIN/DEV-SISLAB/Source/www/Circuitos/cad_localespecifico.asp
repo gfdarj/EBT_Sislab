@@ -61,7 +61,7 @@ function AtualizaLocais(s)
 	</td>
 	<td align="left" valign="top" id="cel_locais">
 		<font class="Fonttit3Cad"><b>Locais Espec&iacute;ficos:</b></font><br>
-		<select multiple name="locais" style="width: 200px;" size="6" class="combo">
+		<select multiple name="locais" style="width: 200px;" size="6" >
 <%	s = "select e.LEE_ID, e.LEE_NOME from FAC_Locais_Especificos_Equip e "
 		s = s & "where e.LGE_ID = " & localgenerico & " order by e.LEE_NOME"
 		call Env.RecordSet(true, objRS, s)

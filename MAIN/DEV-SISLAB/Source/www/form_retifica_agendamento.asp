@@ -80,7 +80,7 @@ function validaCampos(form)
         <tr>
           <td valign="top" align="right" colspan="2"><font class="item"><b>Nome do usuário:</b></td> 
 	      <td valign="top" align="left">
-            <select name="cmbUserID" class="combo">
+            <select name="cmbUserID" >
             <% 
               dim s, rs
               set rs = Server.CreateObject("ADODB.RecordSet")
@@ -100,7 +100,7 @@ function validaCampos(form)
         <tr>
           <td valign="top" align="right" colspan="2"><font class="item"><b>Tipo:</b></td> 
           <td valign="top" align="left">
-            <select name="cmbRetifica" class="combo">
+            <select name="cmbRetifica" >
               <option value="I" selected>Identificação da Amostra</option>
               <option value="R">Retificação</option>
             </select>

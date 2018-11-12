@@ -351,7 +351,7 @@ Qtd:<br>
 		 	<div align=left>
 	<font class="Fonttit3Cad"><b>&nbsp;&nbsp;&nbsp;Interfaces - Qtd (Existentes)
 			<br>&nbsp;&nbsp;
-		  <select name="lstint" class="combo" style="width:250px" size=3 Multiple>
+		  <select name="lstint"  style="width:250px" size=3 Multiple>
 <%
 
 if( isnumeric( cstr( request.querystring( "cpt_id" ) ) ) ) then

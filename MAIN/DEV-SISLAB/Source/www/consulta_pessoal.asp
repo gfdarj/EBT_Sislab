@@ -78,9 +78,9 @@ function submeter()
 <tr>
   <td>
 		<font class="fonte2">Início:</font>
-		<INPUT type="text" NAME="diaInicio" size="3" MAXLENGTH="2" class="combo"> /
+		<INPUT type="text" NAME="diaInicio" size="3" MAXLENGTH="2" > /
 		<font class="fonte2">
-		<SELECT NAME="mesInicio" class="combo">
+		<SELECT NAME="mesInicio" >
 	    <OPTION VALUE="-1"> -Mês-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
@@ -95,13 +95,13 @@ function submeter()
 	    <OPTION VALUE="11"> Nov
 	    <OPTION VALUE="12"> Dez
 	  </SELECT> /
-	  <INPUT type="text" size="4" NAME="anoInicio" MAXLENGTH="4" class="combo">
+	  <INPUT type="text" size="4" NAME="anoInicio" MAXLENGTH="4" >
 	</td>
   <td>
 		<font class="fonte2">Término:</font>
-	  <INPUT type="text" NAME="diaFim" MAXLENGTH="2" size="3" class="combo"> /
+	  <INPUT type="text" NAME="diaFim" MAXLENGTH="2" size="3" > /
 		<font class="fonte2">
-	  <SELECT NAME="mesFim" class="combo">
+	  <SELECT NAME="mesFim" >
 	    <OPTION VALUE="-1"> -Mês-
 	    <OPTION VALUE="01"> Jan
 	    <OPTION VALUE="02"> Fev
@@ -117,7 +117,7 @@ function submeter()
 	    <OPTION VALUE="12"> Dez
 	  </SELECT>
 	  </font> /
-	  <INPUT type="text" NAME="anoFim" size="4" MAXLENGTH="4" class="combo">
+	  <INPUT type="text" NAME="anoFim" size="4" MAXLENGTH="4" >
 	</td>
 	<td>
 	  <INPUT type="button" VALUE=" Ok " onclick="submeter()">
@@ -127,7 +127,7 @@ function submeter()
   <td colspan="3">
 		<font class="fonte2">Nome:</font>
     <font  class="fonte2">
-    <SELECT NAME="username" size="1" class="combo">
+    <SELECT NAME="username" size="1" >
 	  <OPTION VALUE="-1">- Todos -</OPTION>
 <%	Dim objRS
 		Call Env.RecordSet(True, objRS, "select USERID, NOME from userCRT order by userid")

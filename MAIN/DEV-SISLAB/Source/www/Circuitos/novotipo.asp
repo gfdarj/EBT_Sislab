@@ -46,7 +46,7 @@ function Valida()	{
 		dim objConn, objRS
 		call Env.RecordSet(true, objRS, "select * from FAC_Familia_Tipo_Componente order by FTC_NOME")
 		if not (objRS.EOF and objRS.BOF) then%>
-			<select name="familia" class="combo"><option value="">-- Selecione uma fam&iacute;lia --</option><%
+			<select name="familia" ><option value="">-- Selecione uma fam&iacute;lia --</option><%
 			while not objRS.EOF%>
 				<option value="<%=objRS("FTC_ID")%>"><%=objRS("FTC_NOME")%></option>
 <%			objRS.MoveNext
@@ -65,7 +65,7 @@ function Valida()	{
 	<td><%
 		call Env.RecordSet(true, objRS, "select * from FAC_Fabricante_Tipo_Componente order by FAB_NOME")
 		if not (objRS.EOF and objRS.BOF) then%>
-			<select name="fabricante" class="combo"><option value="">-- Selecione um Fabricante --</option><%
+			<select name="fabricante" ><option value="">-- Selecione um Fabricante --</option><%
 			while not objRS.EOF%>
 				<option value="<%=objRS("FAB_ID")%>"><%=objRS("FAB_NOME")%></option>
 <%			objRS.MoveNext

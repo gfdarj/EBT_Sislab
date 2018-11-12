@@ -23,7 +23,7 @@ Call Tela.MostraCabecalho()
 <h4 class="texto-vermelho-bold">AVISO: <small>Os documentos do SG quando impressos só tem valor com a identificação de "Cópia Controlada" através de carimbo ou tarja.</small></h4>
 <h4 class="texto-vermelho-bold">IMPORTANTE: <small>Todo Empregado ao acessar ou manusear qualquer documento do SG possui a responsabilidade de evitar a reprodução indevida dos documentos e assegurar a utilização da versão mais atual.</small></h4>
 
-<table border="0" style="width: 100%;">
+<table class="largura-total">
 <tr>
 	<th>
 		Informe os Critérios da sua Pesquisa

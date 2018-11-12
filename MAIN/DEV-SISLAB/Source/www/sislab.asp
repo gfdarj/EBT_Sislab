@@ -26,7 +26,6 @@ ehRat = Env.EhRat
 </style>
 
 
-
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -87,7 +86,7 @@ End If%>
             <h5><a href="form_agenda_exclui.asp" target="_parent">Excluir um Agendamento</a></h5>
             <h5><a href="CadDePara.asp" target="_parent">Ferramenta DE -> PARA</a></h5>
             <h5><a href="rel_historicoAS_datas.asp" target="_parent">Histórico dos Agendamentos por ordem de data</a></h5>
-            <h5><a href="rel_historicoAS_id.asp" target="_parent">Histórico dos Agendamentos por ordem de cadastro</a></h5>
+            <h5><a href="rel_historicoAS_datas.asp?Ord=1" target="_parent">Histórico dos Agendamentos por ordem de cadastro</a></h5>
             <h5><a href="rel_numeracao_as.asp" target="_parent">Verifica Numeração dos Agendamentos</a></h5>
 <%
 End If%>
@@ -105,8 +104,8 @@ End If%>
             <h5><a href="CadTipoArquivo.asp" target="_parent">Cadastro de Tipos de Arquivo</a></h5>
             <h5><a href="CadTipoAtividade.asp" target="_parent">Cadastro de Tipos de Atividade</a></h5>
             <h5><a href="CadTipoTeste.asp" target="_parent">Cadastro de Tipos de Teste (Especificação)</a></h5>
-            <h5><a href="CadLbTipoOcorrencia.asp" target="_parent">>Cadastro de Tipos de Ocorrência LogBook</a></h5>
-            <h5><a href="Cadusercrt.asp" target="_parent">>Cadastro de Usuário CRT</a></h5>
+            <h5><a href="CadLbTipoOcorrencia.asp" target="_parent">Cadastro de Tipos de Ocorrência LogBook</a></h5>
+            <h5><a href="Cadusercrt.asp" target="_parent">Cadastro de Usuário CRT</a></h5>
             <h5><a href="CadListaEquipesEmbratel.asp" target="_parent">Lista de equipes para acesso a dados sigilosos</a></h5>
         </div>
 

@@ -82,7 +82,7 @@ function ValidaCampos(){
 	<td colspan="9" valign="top">
 		&nbsp;&nbsp;&nbsp;Ordem de Serviços Associadadas:<br>
 		&nbsp;&nbsp;
-		<select name="lstdisposicao" size="5" class="combo"
+		<select name="lstdisposicao" size="5" 
             style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 600px"
 		>
 	</td>

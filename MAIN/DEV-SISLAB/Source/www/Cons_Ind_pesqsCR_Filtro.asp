@@ -60,7 +60,7 @@ auxClientes = (request.form("chkClientes")="on")
 <tr>
 	<td>
 		Tecnologia:&nbsp;
-		<select name="tecnologia" class="combo">
+		<select name="tecnologia" >
 			<option value="">Todos as Tecnologias</option>
 			<%call comboBD(Env.oConn,"Select Tec_ID as valor,left(Tec_Nome,35) as descricao from Tecnologia order by Tec_nome asc")%>
 		</select>	
@@ -95,7 +95,7 @@ auxClientes = (request.form("chkClientes")="on")
 	<td>
 		Órgão Solicitante:
 		&nbsp;
-		<select name="orgao" class="combo">
+		<select name="orgao" >
 			<option value="">Todos os Órgãos</option>
 			<%call comboBD(Env.oConn,"Select distinct AG_ORGAO, rtrim(ltrim(AG_ORGAO)) as valor,rtrim(ltrim(AG_ORGAO)) as descricao from agendamento where not(AG_ORGAO is null) and ag_orgao <> '' order by AG_ORGAO asc")%>
 		</select>

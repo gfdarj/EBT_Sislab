@@ -121,9 +121,8 @@ Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
 <%
 End Function
 
-
-function ControleQuantidade(nome,titulo,nomeCampo1,sql,index)%>
-<script>
+Function ControleQuantidade(nome,titulo,nomeCampo1,sql,index)%>
+<script type="text/javascript">
 function adiciona_retira_<%=nome%>(tipo)
 {
 	var frm = document.forms[0]
@@ -167,16 +166,15 @@ fac.value = "";
 qtd.value = "";
 fac.focus();
 }
-
 </script>
+
 <input type="hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0">
+<table id="tab<%=Nome%>" border="0" style="width: 100%;">
 <tr>
 	<td bgcolor="#d9d9d9">
 		<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
 		<%=titulo%>:</font></td>
 </tr>
-
 <tr>
     <td>
 		<table width="100%" border="0">
@@ -184,7 +182,7 @@ fac.focus();
 			<td width="12%">
 				<font class="item">&nbsp;<%=nomeCampo1%>:</font></td>
 			<td width="33%"> 
-			<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>">
+			<select  name="cmb<%=nome%>" tabindex="<%=index+1%>">
 				<%call comboBD(objConn,sql)%>
 			</SELECT>
             <td rowspan="3" width="9%"> 
@@ -219,48 +217,48 @@ fac.focus();
 </table>
 <%end function
 
-function ControleComboMultiplo(nome,titulo,nomeCampo1,sql,index)%>
-<script>
-function adiciona_retira_<%=nome%>(tipo)
-{
-	var frm = document.forms[0]
-	var fac = frm.cmb<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	var str1 = frm.str<%=nome%>;
+Function ControleComboMultiplo(nome,titulo,nomeCampo1,sql,index)%>
+<script type="text/javascript">
+    function adiciona_retira_<%=nome%>(tipo)
+    {
+	    var frm = document.forms[0]
+	    var fac = frm.cmb<%=nome%>;
+	    var lista = frm.lst<%=nome%>;
+	    var str1 = frm.str<%=nome%>;
 
-	if ( tipo == 0){
-		if (lista.selectedIndex != -1){
-			str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>', "");
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (fac.value == ""){
-			alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
-			fac.focus();		
-		}
-		else{
-			adiciona<%=nome%>()
-		}
-	}
-}
+	    if ( tipo == 0){
+		    if (lista.selectedIndex != -1){
+			    str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].text + '<%=SEPARADOR_REGISTRO%>', "");
+			    lista.options[lista.selectedIndex]=null;
+		    }
+	    }
+	    else{
+		    if (fac.value == ""){
+			    alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
+			    fac.focus();		
+		    }
+		    else{
+			    adiciona<%=nome%>()
+		    }
+	    }
+    }
 
-function adiciona<%=nome%>(){
-var frm = document.forms[0]
+    function adiciona<%=nome%>()
+    {
+        var frm = document.forms[0]
 
-var fac = frm.cmb<%=nome%>;
-var lista = frm.lst<%=nome%>;
-var str1 = frm.str<%=nome%>;
+        var fac = frm.cmb<%=nome%>;
+        var lista = frm.lst<%=nome%>;
+        var str1 = frm.str<%=nome%>;
 
-lista.options[lista.options.length] = new Option(fac.value);
-str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
-fac.value = "";
-fac.focus();
-}
-
+        lista.options[lista.options.length] = new Option(fac.value);
+        str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
+        fac.value = "";
+        fac.focus();
+    }
 </script>
 <input type="hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0" class="table-bordered">
+<table id="tab<%=Nome%>" border="0" class="table-bordered" style="width: 100%;">
 <tr>
 	<th align="left" colspan="2"><%=titulo%></td>
 </tr>
@@ -269,9 +267,9 @@ fac.focus();
 		<table width="100%" border="0" class="table-bordered">
         <tr> 
 			<td width="12%">
-				&nbsp;<%=nomeCampo1%>:</td>
+				<%=nomeCampo1%>:</td>
 			<td width="33%"> 
-			<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>">
+			<select name="cmb<%=nome%>" tabindex="<%=index+1%>">
 				<%'call comboBD(objConn,sql)%>
 				<%call comboBDpadrao(objConn,sql,"null")%>
 			</SELECT>
@@ -294,15 +292,16 @@ fac.focus();
 	</td>
     <td  rowspan="3" width="46%"> 
 		<%=titulo%>:
-        <select name="lst<%=nome%>" size="4" class="combo" style="WIDTH: 250px" multiple tabindex="<%=index+5%>">
+        <select name="lst<%=nome%>" size="4"  style="WIDTH: 250px" multiple tabindex="<%=index+5%>">
         </select>
 	</td>
 </tr>
 </table>
-<%end function
+<%
+End Function
 
-function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
-<script>
+Function ControleComboMultiplo2(nome, titulo, nomeCampo1, sql, index, TIPOCAMPO)%>
+<script type="text/javascript">
 	function adiciona_retira_<%=nome%>(tipo)
 	{
 		var frm = document.forms[0]
@@ -363,35 +362,33 @@ function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
 
 <table id="tab<%=Nome%>" border="0">
 <tr>
-	<td class="azul1Bg">
-		<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
-		&nbsp;<%=titulo%>:</font>
-	</td>
+	<th>
+		<%=titulo%>
+	</th>
 </tr>
 <tr>
 	<td>
-		<table width="100%" border="0">
-		<tr> 
-				<td width="12%"  colspan="3">
-					<font class="item">&nbsp;<%=nomeCampo1%>:</font></td>
-				<td width="33%"  colspan="7 "> 
-				<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>" size="6" ondblclick="javascript:adiciona_retira_<%=nome%>(1)" style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" >
-					<%call comboBD(objConn,sql)%>
-				</SELECT>
-		</TR>
-		<TR>
-			<td colspan="10" align="center">
+		<table style="width: 100%;">
+		<tr>
+			<td width="12%">
+				<%=nomeCampo1%><br />
+			    <select  name="cmb<%=nome%>" tabindex="<%=index+1%>" size="6" ondblclick="javascript:adiciona_retira_<%=nome%>(1)" style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" >
+				    <%call comboBD(objConn,sql)%>
+			    </select>
+            </td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
 				<input  type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
 				<input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
 			</td>
 		</tr>
-		<TR>
-			<td width="12%" colspan="3">
-				<font class="item"><%=titulo%>:</font></TD>
-			<td width="33%" colspan="7"> 
-				<select name="lst<%=nome%>" class="combo" size=6
-				style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" ondblclick="javascript:adiciona_retira_<%=nome%>(0)"
-				tabindex="<%=index+5%>">
+		<tr>
+			<td>
+				<%=titulo%><br />
+				<select name="lst<%=nome%>"  size=6
+				    style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 580px" ondblclick="javascript:adiciona_retira_<%=nome%>(0)"
+				    tabindex="<%=index+5%>">
 				</select>
 			</td>
 		</tr>
@@ -399,7 +396,6 @@ function ControleComboMultiplo2(nome,titulo,nomeCampo1,sql,index,TIPOCAMPO)%>
 	</td>
 </tr>
 </table>
-
 <%
 End Function
 
@@ -474,7 +470,7 @@ function adiciona<%=nome%>(){
 			<td width="12%">
 				&nbsp;<%=nomeCampo1%>:</td>
 			<td width="33%"> 
-			<select class="combo" name="cmb<%=nome%>" tabindex="<%=index+1%>">
+			<select  name="cmb<%=nome%>" tabindex="<%=index+1%>">
 				<%'call comboBD(objConn,sql)%>
 				<%call comboBDpadrao(objConn,sql,"null")%>
 			</SELECT>
@@ -497,7 +493,7 @@ function adiciona<%=nome%>(){
 	</td>
     <td  rowspan="3" width="46%"> 
 		<%=titulo%>:
-        <select name="lst<%=nome%>" size="4" class="combo"
+        <select name="lst<%=nome%>" size="4" 
 	       style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 250px" 
            multiple tabindex="<%=index+5%>">
         </select>
@@ -613,7 +609,7 @@ end sub
 
 
 Sub ComboBD2( nome, objRecordSet, padrao, todos)%>
-			<select class="combo" name="<%=nome%>">
+			<select  name="<%=nome%>">
 			<% if todos then%>
 							<option value="">-- Todos --</option>
 			<%end if%>
@@ -631,7 +627,7 @@ Sub ComboBDSQL(nome, objConn, SQL, padrao, todos)
 	dim valor, descricao
 
 	call Env.RecordSet( true, objRecordSet, SQL )%>
-			<select class="combo" name="<%=nome%>">
+			<select  name="<%=nome%>">
 			<% if todos="N" then%>
 							<option value="">--</option>
 			<%end if%>
@@ -660,7 +656,7 @@ Sub comboBDSQL_2(nome, objConn, SQL, padrao, todos)
 	dim valor, descricao
 
 	Set objRecordSet = objConn.Execute(SQL)%>
-			<select class="combo" name="<%=nome%>">
+			<select  name="<%=nome%>">
 			<% if todos="N" then%>
 							<option value="">--</option>
 			<%end if%>
@@ -818,7 +814,7 @@ End Sub
 
 sub comboData(nome)
 	Dim i, auxi, cbano %>
-	<select name="dia<%=nome%>" class="combo">
+	<select name="dia<%=nome%>" >
 		<option value="">Dia</option>
 		<%for i=1 to 31
 			if i < 10 then
@@ -830,11 +826,11 @@ sub comboData(nome)
 		next %>
 	</select>
 
-	<select name="mes<%=nome%>" class="combo">
+	<select name="mes<%=nome%>" >
 		<%= opt_meses( 10 ) %>
 	</select>
 
-	<select name="ano<%=nome%>" class="combo">
+	<select name="ano<%=nome%>" >
 		<option value="">Ano</option>
 			<%for i=-1 to 10
 				cbano = year( now ) - i %>
@@ -845,7 +841,7 @@ sub comboData(nome)
 end sub
 
 sub comboHorario(nome)%>
-	<select name="hora<%=nome%>" class="combo">
+	<select name="hora<%=nome%>" >
 		<option value="">Hora</option><%
 			for i = 0 to 23
 				if i<10 then
@@ -857,7 +853,7 @@ sub comboHorario(nome)%>
 			next%>
 	</select>&nbsp;:&nbsp;
 
-	<select name="minuto<%=nome%>" class="combo">
+	<select name="minuto<%=nome%>" >
 		<option value="">Minuto</option><%
 			for i = 0 to 59
 				cbhora = i
@@ -873,7 +869,7 @@ sub comboHorario(nome)%>
 end sub
 
 function comboCriticidade(nome)%>
-	<select name="<%=nome%>" class="combo">
+	<select name="<%=nome%>" >
 		<option value="" selected>--</option>
 		<option value="1">1 - Baixa</option>
 		<option value="2">2 - M&eacute;dia</option>
@@ -883,7 +879,7 @@ function comboCriticidade(nome)%>
 end function
 
 function comboEstadoOCorrencia(nome)%>
-	<select name="<%=nome%>" class="combo">
+	<select name="<%=nome%>" >
 		<option value="" selected>--</option>
 		<option value="NO">Nova Ocorrência</option>
 		<option value="EA">Em Análise</option>

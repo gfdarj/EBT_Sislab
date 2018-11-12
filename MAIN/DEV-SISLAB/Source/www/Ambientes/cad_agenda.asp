@@ -150,7 +150,7 @@ call Env.RecordSet( true, objRS, s)
 
 If Not objRS.EOF Then
 	objRS.MoveFirst%>
-		<select name="responsavel" class="combo">
+		<select name="responsavel" >
 		<option value="">Selecione o Responsável</option>
 <%	do while not objRS.EOF%>
 		<option value=<%=Ucase(objRS("userid"))%>><%=Ucase(objRS("userid"))%> - <%=left(objRS("Nome"),40)%></option> 
@@ -174,7 +174,7 @@ s = "Select * From Ambientes WHERE AMB_USADOPORAG = 0 order by AMB_Nome asc;"
 call Env.RecordSet( true, objRS, s)
 If Not objRS.EOF Then
 	objRS.MoveFirst%>
-		<select name="localizacao" class="combo">
+		<select name="localizacao" >
 		<option value=0>Selecione o Ambiente a ser usado</option>
 	 <% do while not objRS.EOF %>
 		<option value=<%=objRS("AMB_ID")%>><%=objRS("AMB_Nome")%></option> 

@@ -80,7 +80,7 @@ Call MostraHeader
 		call Connection(true, objConn)
 		call RecordSet(true, objRS, "select * from FAC_Tipo_Componente order by TPC_NOME", objConn) 
 		if not ( objRS.EOF and ObjRS.BOF ) then%>
-			<select name="tipocomponente" class="combo" onchange="javascript:DadosTipo(this);">
+			<select name="tipocomponente"  onchange="javascript:DadosTipo(this);">
 			<option value="">-- Selecione o tipo do componente --</option><%
 			while not objRS.EOF%>
 				<option value="<%=objRS("TPC_ID")%>"><%=objRS("TPC_NOME")%></option><%

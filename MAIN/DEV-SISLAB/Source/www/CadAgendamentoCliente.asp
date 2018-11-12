@@ -316,7 +316,7 @@ End If
 <input type="hidden" name="strParticipantesEBT">
 <input type="hidden" name="cmbEmail" value="1" id="cmbEmail1">
 
-<table border="0" style="width: 100%;">
+<table class="largura-total">
 <tr valign="middle">
 	<td>
 		&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
@@ -370,7 +370,7 @@ if num_ag <> "" then
 <tr>
 	<td colspan="10">
 <%		If MostraDadoSigiloso(int_Sigilo, chr_Username) Then %>
-		<table border="0" style="width: 100%;">
+		<table class="largura-total">
 <%			rsArquivos.MoveFirst
 			Do while Not rsArquivos.eof%>
 		<tr>
@@ -617,13 +617,13 @@ end if
 
 <tr class="espaco-minimo-35" id="tabClienteEBT">
 	<td colspan="10">
-        <table width="100%" border="0" style="width: 800px;">
+        <table border="0" style="width: 800px;">
         <tr>
 	        <th class="linha-fundo">&nbsp;Dados do Cliente</th>
         </tr>
         <tr>
             <td>
-		        <table border="0" style="width: 100%;">
+		        <table class="largura-total">
 		        <tr>
                     <td>
 						<span class="texto-vermelho-bold"><b>*</b></span>

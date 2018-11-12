@@ -39,7 +39,7 @@ Dim num_erro, desc_erro, cor
 	<tr>
 <%
 	strSQL = _
-		"SELECT top 100 * FROM vw_Agendamento a " & _
+		"SELECT * FROM vw_Agendamento a " & _
 		"WHERE EXISTS (SELECT he.AG_NUMERO FROM Historico_Eventos he WHERE he.AG_NUMERO = a.AG_NUMERO AND he.HE_DATATERMINO is NULL) " & _
 		"and EXISTS (SELECT hd.AG_NUMERO FROM Historico_Datas hd WHERE hd.AG_NUMERO = a.AG_NUMERO) " & _
 		"and (a.AG_FLAGREMARCACAO = 1 OR a.AG_SOLICITOUCANCELAMENTO = 1) ORDER BY a.AG_NUMERO"

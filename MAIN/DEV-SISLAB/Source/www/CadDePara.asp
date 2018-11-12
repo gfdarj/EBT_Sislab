@@ -4,12 +4,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Tela.SetMostraMenu = MENU_ON
-Tela.SetMostraImagem = True
-Tela.SetNomeTela = "Manutenção de dados: De - Para"
-Tela.SetLinkVoltar = "location.href='sislab.asp'"
-Call Tela.MostraCabecalho()
-'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Manutenção de dados: De - Para", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Manutenção de dados: De - Para", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
@@ -53,107 +48,76 @@ SELECT CASE TABELA
 		sSQLDEPARA2 = "SELECT s_id AS valor, s_descricao AS descricao from Servicos_Plataformas where s_servico = 0 order by s_descricao;"
 END SELECT
 %>
-<body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
-<script language="javascript" src="includes/anexo.js"></script>
-<script>
-function Buscar(){
-	var frm = document.forms[0];
-	frm.action = "CadDePara.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
+<script type="text/javascript" src="includes/anexo.js"></script>
+<script type="text/javascript">
+    function Buscar() {
+	    var frm = document.forms[0];
+	    frm.action = "CadDePara.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
 
-}
-function Cancela(){
-	var frm = document.forms[0];
-	frm.action = "sislab.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
+    }
+    function Cancela(){
+	    var frm = document.forms[0];
+	    frm.action = "sislab.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
+	    if (frm.strDE.value == ""){
+		    alert("Selecione pelo menos um valor no campo 'Valores a substituir'")
+		    return false;
+	    }
 
-function ValidaCampos(){
-	var frm = document.forms[0];
-
-	if (frm.strDE.value == ""){
-		alert("Selecione pelo menos um valor no campo 'Valores a substituir'")
-		return false;
-	}
-
-	if (frm.para.value == ""){
-		alert("Selecione um valor no campo 'Para'")
-		return false;
-	}
-	frm.action = "CadDeParaA.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
-
+	    if (frm.para.value == ""){
+		    alert("Selecione um valor no campo 'Para'")
+		    return false;
+	    }
+	    frm.action = "CadDeParaA.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
 </script>
-<form method="post" action="CadDeParaA.asp" name="frm">
 
-  <table border="0" width="100%">
-  <tr> 
-		<td bordercolor="#cccccc">
-		  <font class="Fonttit3Cad"><b>&nbsp;<font color=#FF0000>*</font>&nbsp; Indica um Campo Obrigatório</td>
-  </tr>
-  </table>
-	<table border="0" width="100%%" cellspacing="0">
-	<tr>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-		<td width="10%"></td>
-	</tr>
-	<TR>
-		<td class="azul1Bg" colspan="10">
-			<font face="tahoma" color="#222222" style="font-size: 10pt; font-weight: bold;">
-			&nbsp;&nbsp;Ferramenta De - Para</font>
-		</td>
-	</tr>
+<div class="margem-10">
+    <form method="post" action="CadDeParaA.asp" name="frm">
 
-	<tr height="34"> 
-    	<td colspan="2"><font class="item"><b>&nbsp;&nbsp;</b>De - Para Disponíveis :
-		</td>
-		<td colspan="8">
-		<%call comboDePara("depara", objConn,"N")%>&nbsp;&nbsp;
-		<input  class="combo" type="button" value="Buscar" onclick="Buscar();"></input>
-		</td>
-	</tr>
-	<tr> 
-		<%CALL ControleComboMultiplo2("DE","Valores a substituir","Disponíveis para substituição",sSQLDEPARA1,"2",TIPOCAMPO)%>
-	</TR>
-	<tr>
-    	<td colspan="1"><font class="item"><b>&nbsp;&nbsp;</b>Para :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<%
-		IF TIPOCAMPO = "COMBO" THEN
-			call comboBDSQL( "para", objConn,sSQLDEPARA2, "", "N")%>&nbsp;&nbsp;<%
-		ELSE%>
-			<input type="text" class="texto1" name="para" SIZE=93"></input>
-		<%END IF%>
-		</td>
-	</tr>
+        <p>
+            De - Para Disponíveis :
+		    <%call comboDePara("depara", objConn,"N")%>&nbsp;&nbsp;
+		    <input type="button" value="Buscar" onclick="Buscar();" />
+        </p>
 
-	<tr height="34">
-		<td colspan="10" align="left">&nbsp;<input class="texto1" type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
-		</td>
-	</tr>
-	</tr>
-</table>
-</form>
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-<script>
-var frm = document.forms[0]
-var frmAll = document.all
-frm.depara.value = '<%=TABELA%>'
+        <p>
+    		<%Call ControleComboMultiplo2("DE", "Valores a substituir", "Disponíveis para substituição", sSQLDEPARA1, "2", TIPOCAMPO)%>
+        </p>
+
+        <p>
+            Para <small>(Novo valor)</small>:&nbsp;
+<%		    IF TIPOCAMPO = "COMBO" THEN
+			    Call comboBDSQL( "para", objConn,sSQLDEPARA2, "", "N")%>&nbsp;&nbsp;<%
+		    ELSE%>
+		    <input type="text" name="para" SIZE="70" />
+		    <%END IF%>
+        </p>
+
+        <p>
+            <input class="texto1" type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
+        </p>
+
+    </form>
+    <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
+</div>
+
+<script type="text/javascript">
+    var frm = document.forms[0]
+    var frmAll = document.all
+    frm.depara.value = '<%=TABELA%>'
 </script>
 <%
 Call Tela.MostraRodape()
