@@ -94,7 +94,7 @@ Sub ListaImagens()
 	Call Env.RecordSet(True, RS, chr_SQL)
 
 	chr_Buf = _
-			"<scr" & "ipt language='JavaScript'>" & VbCrLf & _
+			"<scr" & "ipt type='text/javascript'>" & VbCrLf & _
 			"function abreJanela(id_arq)" & VbCrLf & _
 			"{" & VbCrLf & _
 			"	var w = window.open('fotos_exibe.asp?arq=' + id_arq, '', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=780,height=500,top=5,left=5');" & VbCrLf & _
@@ -106,8 +106,9 @@ Sub ListaImagens()
 			"	f.submit();" & VbCrLf & _
 			"}" & VbCrLf & _
 			"</scr" & "ipt>" & VbCrLf & _
-			"<scr" & "ipt language='jav" & "ascr" & "ipt' src='inclu" & "des/anexo.js'></scr" & "ipt>" & VbCrLf & _
+			"<scr" & "ipt type='text/jav" & "ascr" & "ipt' src='inclu" & "des/anexo.js'></scr" & "ipt>" & VbCrLf & _
 			"" & VbCrLf & _
+			"<div class='margem-10'>" & VbCrLf & _
 			"<form name='frmUpload' method='post' action='fotosUpload.asp'  ENCTYPE='multipart/form-data'>" & VbCrLf & _
 			"<input type='hidden' name='usuario' value='" & Env.Usuario() & "'>" & VbCrLf & _
 			"<input type='hidden' name='acao' value=''>" & VbCrLf & _
@@ -115,10 +116,10 @@ Sub ListaImagens()
 			"<input type='hidden' name='arquivo' value=''>" & VbCrLf
 
 	chr_Buf1 = _
-			"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Visualização</span><br><br>" & VbCrLf & _
-			"<table align='center' class='tabela1' border='1' cellpadding='3' cellspacing='0'>" & VbCrLf & _
+			"<br><br>" & VbCrLf & _
+			"<table class='table-condensed table-bordered table-striped table-hover'>" & VbCrLf & _
 			"<tr>" & VbCrLf & _
-			"	<td align='center'><b>Visualização</b></td><td><b>Arquivo</b></td><td><b>Descrição</b></td></td><td><b>Tamanho</b><td>&nbsp;&nbsp;&nbsp;</td>" & VbCrLf & _
+			"	<th align='center'><b>Visualização</b></th><th><b>Arquivo</b></th><th><b>Descrição</b></th><th><b>Tamanho</b></th><th>&nbsp;&nbsp;&nbsp;</th>" & VbCrLf & _
 			"</tr>" & VbCrLf
 
 	If Not (RS.Eof And RS.Bof) Then
@@ -167,7 +168,7 @@ Sub ListaImagens()
 
 	'--Entra com os dados para cadastro da foto.
 	chr_Buf2 = VbCrLf & _
-			"<scr" & "ipt language='JavaScript'>" & VbCrLf & _
+			"<scr" & "ipt type='text/javascript'>" & VbCrLf & _
 			"function ValidaUpload(f)" & VbCrLf & _
 			"{" & VbCrLf & _
 			"	if (document.all.id_arquivo.value == '') {" & VbCrLf & _
@@ -207,30 +208,31 @@ Sub ListaImagens()
 			"hideAguarde();" & VbCrLf & _
 			"</scr" & "ipt>" & VbCrLf & _
 			"" & VbCrLf & _
-			"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Selecione uma foto</span><br><br>" & VbCrLf & _
-			"<table align='center' class='tabela1' border='0' cellpadding='3' cellspacing='0'>" & VbCrLf & _
+			"<br>" & VbCrLf & _
+			"<table align='center'>" & VbCrLf & _
 			"	<tr><td>Selecione a Foto desejada:</td></tr>" & VbCrLf & _
 			"	<tr>" & VbCrLf & _
 			"		<td>" & VbCrLf & _
-			"			<span class='texto1'><input id='id_arquivo' type='File' size='65' name='FILE1' class='texto1'></span>" & VbCrLf & _
+			"			<input id='id_arquivo' type='File' size='65' name='FILE1'>" & VbCrLf & _
 			"		</td>" & VbCrLf & _
 			"	</tr>" & VbCrLf & _
 			"	<tr><td>Título da Imagem:</td></tr>" & VbCrLf & _
 			"		<td>" & VbCrLf & _
-			"			<input type='text' class='texto1' value='' name='titulo' size='80' maxlength='100'>" & VbCrLf & _
+			"			<input type='text' value='' name='titulo' size='80' maxlength='100'>" & VbCrLf & _
 			"		</td>" & VbCrLf & _
 			"	</tr>" & VbCrLf & _
 			"	<tr><td>Descrição da Imagem:</td></tr>" & VbCrLf & _
 			"		<td>" & VbCrLf & _
-			"			<textarea name='descricao' cols='80' rows='3' class='texto1'></textarea>" & VbCrLf & _
+			"			<textarea name='descricao' cols='80' rows='3'></textarea>" & VbCrLf & _
 			"		</td>" & VbCrLf & _
 			"	</tr>" & VbCrLf & _
-			"	<tr><td align='center'><input type='Button' class='texto1' value='Carregar' onclick='javascript:Envia();'></td></tr>" & VbCrLf & _
+			"	<tr><td>&nbsp;</td></tr>" & VbCrLf & _
+			"	<tr><td align='center'><input type='Button' value='Carregar' onclick='javascript:Envia();'></td></tr>" & VbCrLf & _
 			"	</table>" & VbCrLf
 
 	'chr_Buf = chr_Buf & chr_Buf2 & "<BR>" & chr_Buf1 & "</form><br>" & VbCrLf
 
-	RW chr_Buf & chr_Buf2 & "<BR>" & chr_Buf1 & "</form><br>" & VbCrLf
+	RW chr_Buf & chr_Buf2 & "<BR>" & chr_Buf1 & "</form></div><br>" & VbCrLf
 
     Call Tela.MostraRodape()
 
@@ -242,7 +244,7 @@ Sub MensagemErro(chr_Msg)
 	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
 
 	chr_Buf = _
-			"<scr" & "ipt language='JavaScript'>" & VbCrLf & _
+			"<scr" & "ipt type='text/javascript'>" & VbCrLf & _
 			"hideAguarde()" & VbCrLf & _
 			"</scr" & "ipt>" & VbCrLf & _
 			"<table align='center' class='tabela1' border='0' cellpadding='3' cellspacing='0'>" & VbCrLf & _

@@ -21,27 +21,27 @@ Call Tela.MostraCabecalho()
 	}
 </script>
 
-<form name="formulario" method="post" action="cad_plantao.asp">
+<div class="margem-10">
+    <form name="formulario" method="post" action="cad_plantao.asp">
+        <input type="hidden" name="tipocomando" value="Alterar">
+        <input type="hidden" name="noticias" value="">
 
-<input type="hidden" name="tipocomando" value="Alterar">
-<input type="hidden" name="noticias" value="">
-<table width="100%" border="0" class="table-bordered">
-<tr valign="middle"> 
-	<td>
-		<a href="cad_plantao.asp"><b>&lt;Cadastrar Nova Notícia&gt;</b></a>
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr valign="top">
-	<td valign="top">
-		<b>Editar Notícia Cadastrada</b><br><br>
-		<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">
-			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
-			<tr>
-				<th style="font-size: xx-small;" align="left">Notícia</th>
-				<th style="font-size: xx-small;" width="100px">Data Início</th>
-				<th style="font-size: xx-small;" width="100px">Data Término</th>
-			</tr>
+        <table class="largura-total">
+        <tr valign="middle"> 
+	        <td>
+		        <a href="cad_plantao.asp"><b>&lt;Cadastrar Nova Notícia&gt;</b></a>
+	        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr valign="top">
+	        <td valign="top">
+		        <b>Editar Notícia Cadastrada</b><br><br>
+			    <table class="table-bordered table-condensed table-striped table-hover largura-total">
+			    <tr>
+				    <th >Notícia</th>
+				    <th class="texto-centralizado">Data Início</th>
+				    <th class="texto-centralizado">Data Término</th>
+			    </tr>
 <%
 sSQL = "Select PLA_codNoticia, PLA_titNoticia, CONVERT(VARCHAR, PLA_DATAINICIO, 103) AS PLA_DATAINICIO, "
 sSQL = sSQL & "CONVERT(VARCHAR, PLA_DATATERMINO, 103) AS PLA_DATATERMINO From plantao "
@@ -51,24 +51,25 @@ Call Env.RecordSet(true, objRS, sSQL)
 If Not objRS.EOF Then 
 	objRS.MoveFirst
 	do while not objRS.EOF%>
-			<tr>
-				<td><a href="#" onclick="navselecao(<%=objRS("PLA_codNoticia")%>);" title="Clique aqui para editar esta notícia"><%=objRS( "PLA_titNoticia" )%></a>&nbsp;</td>
-				<td align="center"><%=objRS("PLA_DATAINICIO")%>&nbsp;</td>
-				<td align="center"><%=objRS("PLA_DATATERMINO")%>&nbsp;</td>
-			</tr>
+			        <tr>
+				        <td><a href="#" onclick="navselecao(<%=objRS("PLA_codNoticia")%>);" title="Clique aqui para editar esta notícia"><%=objRS( "PLA_titNoticia" )%></a>&nbsp;</td>
+				        <td class="texto-centralizado"><%=objRS("PLA_DATAINICIO")%>&nbsp;</td>
+				        <td class="texto-centralizado"><%=objRS("PLA_DATATERMINO")%>&nbsp;</td>
+			        </tr>
 <%		objRS.movenext
 	loop
 else %>
-			<tr><td align="center" colspan="3"><b><i>Não existem notícias cadastradas no momento</i></b></td></tr>
+        			<tr><td align="center" colspan="3"><b><i>Não existem notícias cadastradas no momento</i></b></td></tr>
 <%
 end if %>
-		</table>
-		</div>
-	</td>
-</tr>
-</table>
-</form>
-<br>
+		        </table>
+	        </td>
+        </tr>
+        </table>
+    </form>
+    <br />
+</div>
+
 <%
 Call Tela.MostraRodape()
 %>

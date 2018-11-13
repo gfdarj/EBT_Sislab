@@ -122,84 +122,90 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	    }
     }
 </script>
-<form method="post" action="CadUserCRTA.asp" name="frm">
-<input type="hidden" name="ehNovoUsuario" value="0">
-<input type="hidden" name="excluir" value="0">
 
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
-<tr><td></td><td></td></tr>
-<tr> 
-	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
-</tr>
-<tr><td colspan="2">&nbsp;</td></tr>
-<tr><th align="left" colspan="2">Usuários do CRT</td></tr>
-<tr>
-	<td>&nbsp;&nbsp;<b>Usuários CRT:</b></td>
-	<td>
-		<%call comboUSERCRTVIVOEMORTOS("user", Env.oConn,"N")%>&nbsp;&nbsp;
-		<input  class="texto1" type="button" value="Buscar" onclick="BuscarUsuario();">
-	</td>
-</tr>
-<tr><td colspan="2">&nbsp;</td></tr>
-<tr><th align="left" colspan="2">Dados do Usuário</th></tr>
-<tr>
-	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username:</b></td>
-	<td>
-		<input type="text" name="username" size="50" maxlength="80" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="texto-vermelho-bold"><b>*</span>&nbsp;Matrícula:</b>&nbsp;
-		<input type="text" name="matricula" class="texto1" size="15">
-	</td>
-<tr>
-<tr>
-	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Nome:</b></td>
-	<td>
-		<input type="text" name="Nome" size="60" class="texto1">
-	</td>
-</tr>
-<tr>
-	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Celular:</b></td>
-	<td>
-		<input type="text" name="celular" size="20" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="texto-vermelho-bold"><b>*</span>&nbsp;Ramal:</b>&nbsp;
-		<input type="text" name="Ramal" size="20" class="texto1">
-	</td>
-</tr>
-<tr>
-	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Orgão:</b></td>
-	<td>
-		<%call comboOrgao("orgao",Env.oConn,"N")%>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;&nbsp;RAT:
-		<input type="Checkbox" name="chkRAT" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		RT:&nbsp;<input type="Checkbox" name="chkRT" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		GQ:&nbsp;<input type="Checkbox" name="chkGQ" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Visível:&nbsp;<input type="Checkbox" name="chkexibir" class="texto1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Perfil SCE:&nbsp;<%=Combo.PadraoSql("perfilSce", "SELECT ID_PERFIL AS VALOR, NM_PERFIL AS DESCRICAO FROM Perfil_SCE ORDER BY ID_PERFIL", "", "N")%>
-	</td>
-</tr>
+<div class="margem-10">
+    <form method="post" action="CadUserCRTA.asp" name="frm">
+        <input type="hidden" name="ehNovoUsuario" value="0">
+        <input type="hidden" name="excluir" value="0">
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <table >
+        <tr><td></td><td></td></tr>
+        <tr> 
+	        <td colspan="2"><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><th align="left" colspan="2">Usuários do CRT</th></tr>
+        <tr>
+	        <td>Usuários CRT:&nbsp;</td>
+	        <td>
+		        <%call comboUSERCRTVIVOEMORTOS("user", Env.oConn,"N")%>&nbsp;&nbsp;
+		        <input type="button" value="Buscar" onclick="BuscarUsuario();">
+	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><th align="left" colspan="2">Dados do Usuário</th></tr>
+        <tr>
+	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Username:</td>
+	        <td>
+		        <input type="text" name="username" size="50" maxlength="80">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <span class="texto-vermelho-bold">*</span>&nbsp;Matrícula:&nbsp;
+		        <input type="text" name="matricula" class="texto1" size="15">
+	        </td>
+        <tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Nome:</td>
+	        <td>
+		        <input type="text" name="Nome" size="60">
+	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Celular:</td>
+	        <td>
+		        <input type="text" name="celular" size="20">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <span class="texto-vermelho-bold">*</span>&nbsp;Ramal:&nbsp;
+		        <input type="text" name="Ramal" size="20">
+	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Orgão:</td>
+	        <td>
+		        <%call comboOrgao("orgao",Env.oConn,"N")%>
+	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td colspan="2">
+                RAT: <input type="Checkbox" name="chkRAT" class="texto1">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        RT:&nbsp;<input type="Checkbox" name="chkRT" class="texto1">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        GQ:&nbsp;<input type="Checkbox" name="chkGQ" class="texto1">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        Visível:&nbsp;<input type="Checkbox" name="chkexibir" class="texto1">
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        Perfil SCE:&nbsp;<%=Combo.PadraoSql("perfilSce", "SELECT ID_PERFIL AS VALOR, NM_PERFIL AS DESCRICAO FROM Perfil_SCE ORDER BY ID_PERFIL", "", "N")%>
+	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td colspan="2">
+		        <input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		        <input type="button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
+		        <input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+	        </td>
+        </tr>
+        </table>
+    </form>
+    <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
+</div>
 
-<tr>
-	<td colspan="2">&nbsp;&nbsp;
-		<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		<input type="button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
-		<input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
-	</td>
-</tr>
-</table>
-</form>
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-<script>
+<script type="text/javascript">
 var frm = document.forms[0];
 <%
 USER = request("user")

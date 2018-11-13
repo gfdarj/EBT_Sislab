@@ -2,9 +2,8 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
-<script type="text/javascript" src="includes/anexo.js"></script>
 <% 
-Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, False, "2000px", "Validação dos Arquivos", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Validação dos Arquivos", "location.href='sislab.asp'", "")
 
 Dim RS
 Dim chr_SQL
@@ -51,28 +50,32 @@ int_Conta = 0
 int_ContaOk = 0
 int_ContaErro = 0
 %>
-<form action="" method="post">
-<input type="hidden" name="Excel" value="">
-<span class="texto1">
-Situação:
-	<select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" class="texto1">
-		<option value="" <%If VVVN(chr_Situacao) Then RW "selected" End If%>>Todos</option>
-		<option value="OK" <%If chr_Situacao = "OK" Then RW "selected" End If%>>Apenas OK</option>
-		<option value="ERRO" <%If chr_Situacao = "ERRO" Then RW "selected" End If%>>Apenas com ERRO</option>
-	</select>
+<script type="text/javascript" src="includes/anexo.js"></script>
+
+<div class="margem-10">
+    <form method="post">
+        <input type="hidden" name="Excel" value="">
+        <br />
+        <p>
+            Situação:
+	            <select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" class="texto1">
+		            <option value="" <%If VVVN(chr_Situacao) Then RW "selected" End If%>>Todos</option>
+		            <option value="OK" <%If chr_Situacao = "OK" Then RW "selected" End If%>>Apenas OK</option>
+		            <option value="ERRO" <%If chr_Situacao = "ERRO" Then RW "selected" End If%>>Apenas com ERRO</option>
+	            </select>
 <!--	&nbsp;&nbsp;&nbsp;
 	<a href="#" onclick="javascript:document.forms[0].Excel.value='1'; document.forms[0].submit();">Exportar para o Excel</a>-->
-</span>
-<BR><BR>
-<table width="*" border="1" class="table-bordered">
-<tr>
-	<th align="center">*</th>
-	<th align="center">ID</th>
-	<th>Tipo</th>
-	<th>Arquivo</th>
-	<th align="center">Responsável</th>
-	<th align="center">AS</th>
-</tr>
+        </p>
+        <br />
+        <table class="table-bordered table-condensed table-striped table-hover largura-total">
+        <tr>
+	        <th class="texto-centralizado">*</th>
+	        <th class="texto-centralizado">ID</th>
+	        <th>Tipo</th>
+	        <th>Arquivo</th>
+	        <th class="texto-centralizado">Responsável</th>
+	        <th class="texto-centralizado">AS</th>
+        </tr>
 <%
 While Not RS.Eof
 	chr_Arquivo = Replace(RS("arq_nomearq"), "\\", "\")
@@ -84,30 +87,34 @@ While Not RS.Eof
 	End If
 
 	If (chr_Situacao = "") Or (chr_Situacao = "OK" And bln_Existe) Or (chr_Situacao = "ERRO" And Not bln_Existe) Then%>
-<tr>
-	<td align="center" bgcolor="<%=IIf(bln_Existe, "green", "red")%>"><font color="#ffffff"><%=IIf(bln_Existe, "OK", "ERRO")%></font></td>
-	<td align="center"><%=RS("arq_codarq")%></td>
-	<td><%=RS("tar_tipoarquivo")%></td>
-	<td>
-		<%=RS("arq_link")%><BR><BR>
-		<%=RS("arq_nomearq")%>
-	</td>
-	<td align="center"><%=RS("arq_responsavel")%>&nbsp;</td>
-	<td align="center"><%=RS("ag_numero")%>&nbsp;</td>
-</tr>
+        <tr>
+	        <td class="texto-centralizado <%=IIf(bln_Existe, "bg-success text-primary", "bg-danger text-primary")%>"><%=IIf(bln_Existe, "OK", "ERRO")%></td>
+	        <td class="texto-centralizado"><%=RS("arq_codarq")%></td>
+	        <td><%=RS("tar_tipoarquivo")%></td>
+	        <td>
+		        <%=RS("arq_link")%><BR><BR>
+		        <%=RS("arq_nomearq")%>
+	        </td>
+	        <td class="texto-centralizado"><%=RS("arq_responsavel")%>&nbsp;</td>
+	        <td class="texto-centralizado"><%=RS("ag_numero")%>&nbsp;</td>
+        </tr>
 <%		int_Conta = int_Conta + 1
 	End If
+
+    If int_Conta Mod 100 Then Response.Flush
 
 	RS.MoveNext
 WEnd
 %>
-</table>
-</form>
+        </table>
+    </form>
 <%
 RW "<BR><b>Total encontrado: " & int_Conta & "&nbsp;&nbsp&nbsp;&nbsp;"
 RW "Total OK: " & int_ContaOK & "&nbsp;&nbsp&nbsp;&nbsp;"
 RW "Total com ERRO: " & int_ContaErro & "</b><BR><BR>"
-
+%>
+</div>
+<%
 Set objFSO = Nothing
 
 Call Tela.MostraRodape()

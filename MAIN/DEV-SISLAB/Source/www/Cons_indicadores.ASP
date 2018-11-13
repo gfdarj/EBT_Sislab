@@ -5,67 +5,66 @@
 <%
 Dim objRS, sSQL, dataIni, dataFim, Total
 
-If IsEmpty( Env.usuario ) Then response.redirect "msgAcessoNA.asp"
+If IsEmpty( Env.Usuario ) Then Response.Redirect "msgAcessoNA.asp"
 
-Tela.SetMostraMenu = MENU_ON
-Tela.SetMostraImagem = True
-Tela.SetNomeTela = "Consulta de Indicadores"
-Call Tela.MostraCabecalho()
-'''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicadores", "location.href='sislab.asp'", "")
 %>
-<script language="javascript">
-function ValidaCampos() {
-	var d = document.forms[0];
-	if((d.diaIni.value == '') || (d.mesIni.value == '') || (d.anoIni.value == '') || (d.diaFim.value == '') || (d.mesFim.value == '') || (d.anoFim.value == '')) {
-		alert('O período informado é inválido');
-		return false;
-	}
-	else {
-		var dI = d.anoIni.value + '' + d.mesIni.value + '' + d.diaIni.value;
-		var dF = d.anoFim.value + '' + d.mesFim.value + '' + d.diaFim.value;
+<script type="text/javascript">
+    function ValidaCampos()
+    {
+	    var d = document.forms[0];
+	    if((d.diaIni.value == '') || (d.mesIni.value == '') || (d.anoIni.value == '') || (d.diaFim.value == '') || (d.mesFim.value == '') || (d.anoFim.value == '')) {
+		    alert('O período informado é inválido');
+		    return false;
+	    }
+	    else {
+		    var dI = d.anoIni.value + '' + d.mesIni.value + '' + d.diaIni.value;
+		    var dF = d.anoFim.value + '' + d.mesFim.value + '' + d.diaFim.value;
 
-		if(dI > dF) {
-			alert('Data inicial é maior que a data final');
-			return false;
-		}
-	}
-	d.submited.value = 1;
-	return true;
-}
+		    if(dI > dF) {
+			    alert('Data inicial é maior que a data final');
+			    return false;
+		    }
+	    }
+	    d.submited.value = 1;
+	    return true;
+    }
 </script>
-<form method="post" action="cons_indicadores.asp" name="formulario" onsubmit="return ValidaCampos();">
-<input type="hidden" name="submited" value="0">
-<table width="100%" class="table-bordered" border="0">
-<tr>
-	<td>
-		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
-			Selecione um Indicador
-		</span>
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<td>
-		<input type="radio" name="cmbIndicador" value="1" checked>Eventos por Atividade (por nº de dias)
-		&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="cmbIndicador" value="0">Eventos por Responsável (por nº de dias)
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<td>
-		&nbsp;Período :&nbsp;<%call comboData("Ini")%>&nbsp;até&nbsp;<%call comboData("Fim")%>
-		&nbsp;&nbsp;&nbsp;
-		<input type="submit" class="texto1" value="Pesquisar">
-	</td>
-</tr>
-</table>
-</form>
-<br>
+
+<div class="margem-10">
+    <form method="post" action="cons_indicadores.asp" name="formulario" onsubmit="return ValidaCampos();">
+        <input type="hidden" name="submited" value="0">
+
+        <table class="largura-total">
+        <tr>
+	        <td>
+		        <span class="texto-vermelho-bold">&raquo;</span>&nbsp;Selecione um Indicador
+	        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+	        <td>
+		        <input type="radio" name="cmbIndicador" value="1" checked> Eventos por Atividade (por nº de dias)
+		        &nbsp;&nbsp;&nbsp;
+		        <input type="radio" name="cmbIndicador" value="0"> Eventos por Responsável (por nº de dias)
+	        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+	        <td>
+		        Período :&nbsp;<%call comboData("Ini")%>&nbsp;até&nbsp;<%call comboData("Fim")%>
+	        </td>
+        </tr>
+        </table>
+        <br />
+        <p><input type="submit" class="texto1" value="Pesquisar"></p>
+    </form>
+
+    <br />
 <%
 '-- o form foi enviado
 if request("submited") = "1" then%>
-<table class="table-bordered" cellpadding="3" cellspacing="3" align="left" border="1" style="border: solid thin;">
+    <table class="table-bordered table-condensed table-striped table-hover">
 <%
 	dataIni = request("anoIni") & "-" & request("mesIni") & "-" & request("diaIni")
 	dataFim = request("anoFim") & "-" & request("mesFim") & "-" & request("diaFim")
@@ -96,7 +95,9 @@ if request("submited") = "1" then%>
 <%	end if%>
 </table>
 <br>
-<script language="javascript">
+</div>
+
+<script type="text/javascript">
 	var d = document.forms[0];
 
 	d.diaIni.value = '<%=request("diaIni")%>';

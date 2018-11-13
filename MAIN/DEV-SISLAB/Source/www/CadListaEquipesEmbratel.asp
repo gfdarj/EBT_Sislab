@@ -4,12 +4,7 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Tela.SetMostraMenu = MENU_ON
-Tela.SetMostraImagem = True
-Tela.SetNomeTela = "Lista das Equipes da Embratel"
-Tela.SetLinkVoltar = "location.href='sislab.asp'"
-Call Tela.MostraCabecalho()
-''''''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes da Embratel ", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes da Embratel ", "location.href='sislab.asp'", "")
 
 if not Env.ehRAT then response.redirect "index.asp"
 
@@ -83,143 +78,147 @@ bEof = True
 	    }
     }
 </script>
-<form method="post" action="CadListaEquipesEmbratelA.asp" name="frm">
-<input type="hidden" name="excluir" value="0">
-<input type="hidden" name="lista_participante" value="">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
-<tr> 
-	<td width="50px"></td>
-	<td width="*"></td>
-</tr>
-<tr> 
-	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
-</tr>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+<div class="margem-10">
+    <form method="post" action="CadListaEquipesEmbratelA.asp" name="frm">
+        <input type="hidden" name="excluir" value="0">
+        <input type="hidden" name="lista_participante" value="">
 
-<tr><td colspan="2"><p><b><font color="#ff0000">Cadastro de equipes da embratel para que o gerente possa ter acesso à dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</font></b></p></td></tr>
+        <table>
+        <tr> 
+	        <td></td>
+	        <td></td>
+        </tr>
+        <tr> 
+	        <td colspan="2">&nbsp;<span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</td>
+        </tr>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><th align="left" colspan="2">Gerencia</td></tr>
+        <tr><td colspan="2"><span class="texto-vermelho-bold">Cadastro de equipes da embratel para que o gerente possa ter acesso à dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</span></td></tr>
 
-<tr>
-	<td>&nbsp;&nbsp;<b>Username do Gerente:</b></td>
-	<td>
-		<%Call comboBDSQL_2("gerente", Env.oConn, "select DISTINCT UserId_Gerente AS VALOR, UserId_Gerente AS DESCRICAO from EquipeEmbratel ORDER BY UserId_Gerente", "N", true)%>
-		&nbsp;&nbsp;
-		<input class="texto1" type="button" value="Buscar" onclick="BuscarGerente();">
-	</td>
-</tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <tr><th colspan="2">Gerencia</th></tr>
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Equipe</th></tr>
+        <tr>
+	        <td>Username do Gerente:</td>
+	        <td>
+		        <%Call comboBDSQL_2("gerente", Env.oConn, "select DISTINCT UserId_Gerente AS VALOR, UserId_Gerente AS DESCRICAO from EquipeEmbratel ORDER BY UserId_Gerente", "N", true)%>
+		        &nbsp;&nbsp;
+		        <input type="button" value="Buscar" onclick="BuscarGerente();">
+	        </td>
+        </tr>
 
-<tr>
-	<td>&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username do Gerente:</b></td>
-	<td><input type="text" name="novo_gerente" size="50" maxlength="80" class="texto1"></td>
-<tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <tr><th colspan="2">Equipe</th></tr>
 
-<tr>
-	<td valign="top">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Username da Equipe:</b></td>
-	<td>
-		<table class="texto1">
-		<tr valign="top">
-			<td><b>Participante</b><BR>
-				<input type="text" name="novo_participante" size="50" maxlength="80" class="texto1">
-			</td>
-			<td valign="middle">
-				<input type="button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
-				<input type="button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
-			</td>
-			<td>
-				<b>Usuários adicionados</b><BR>
-				<select name="lista" style="width: 250px; HEIGHT: 100px;" class="texto1" multiple>
+        <tr>
+	        <td>&nbsp;<span class="texto-vermelho-bold">*</span>&nbsp;Username do Gerente:</td>
+	        <td><input type="text" name="novo_gerente" size="50" maxlength="80"></td>
+        <tr>
+
+        <tr><td colspan="2">&nbsp;</td></tr>
+
+        <tr>
+	        <td style="vertical-align: top;"><span class="texto-vermelho-bold">*</span>&nbsp;Username da Equipe:</td>
+	        <td>
+		        <table class="largura-total">
+		        <tr style="vertical-align: top;">
+			        <td>Username do Participante<BR>
+				        <input type="text" name="novo_participante" size="50" maxlength="80">
+			        </td>
+			        <td valign="middle">
+				        <input type="button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
+				        <input type="button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
+			        </td>
+			        <td>
+				        Usuários adicionados<BR>
+				        <select name="lista" style="width: 250px; HEIGHT: 100px;" multiple>
 <%
 if Not VVVN(gerente) Then
 	ssql = "select * from EquipeEmbratel where UserId_Gerente = '" & gerente & "'"
 	Set RS = Env.oConn.Execute(ssql)
 	bEof = RS.Eof
 	While Not RS.Eof %>
-					<option value="<%=RS("UserId_Membro")%>"><%=RS("UserId_Membro")%></option>
+    			    		<option value="<%=RS("UserId_Membro")%>"><%=RS("UserId_Membro")%></option>
 <%		RS.MoveNext
 	WEnd
-End If
-%>
-				</select>
-			</td>
-		</tr>
-		</table>
-	</td>
-<tr>
+End If %>
+				        </select>
+			        </td>
+		        </tr>
+		        </table>
+	        </td>
+        <tr>
+
+        <script type="text/javascript">
+            function adiciona_retira_participantes(tipo)
+            {
+	            var frm = document.forms[0]
+	            var nome = frm.novo_participante;
+	            var lista = frm.lista;
+	            var ultimo;
+
+	            if (tipo == 0){
+		            if (lista.selectedIndex != -1){
+			            lista.options[lista.selectedIndex]=null;
+		            }
+	            }
+	            else
+	            {
+		            if (nome.value == ""){
+			            alert("O campo 'Participante' deve ser preenchido.");
+			            nome.focus();
+		            }
+		            else if (!validacaoEmail(nome.value)) {
+		                alert("E-mail inválido!");
+		                nome.focus();
+                    }
+		            else {
+		                ultimo = lista.options.length;
+		                lista.options[ultimo] = new Option(nome.value, nome.value);
+		                lista.options[ultimo].value = nome.value;
+		                nome.value = "";
+		                nome.focus();
+		            }
+	            }
+            }
+        </script>
+
+        <tr><td colspan="2">&nbsp;</td></tr>
+
+        <tr>
+	        <td colspan="2">
+		        <input type="button" class="texto1" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
+		        <input type="button" class="texto1" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		        <input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="texto1" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+	        </td>
+        </tr>
+        </table>
+    </form>
+    <iframe name="escondido" style="display: none;"></iframe>
+</div>
 
 <script type="text/javascript">
-    function adiciona_retira_participantes(tipo)
-    {
-	    var frm = document.forms[0]
-	    var nome = frm.novo_participante;
-	    var lista = frm.lista;
-	    var ultimo;
-
-	    if (tipo == 0){
-		    if (lista.selectedIndex != -1){
-			    lista.options[lista.selectedIndex]=null;
-		    }
-	    }
-	    else
-	    {
-		    if (nome.value == ""){
-			    alert("O campo 'Participante' deve ser preenchido.");
-			    nome.focus();
-		    }
-		    else if (!validacaoEmail(nome.value)) {
-		        alert("E-mail inválido!");
-		        nome.focus();
-            }
-		    else {
-		        ultimo = lista.options.length;
-		        lista.options[ultimo] = new Option(nome.value, nome.value);
-		        lista.options[ultimo].value = nome.value;
-		        nome.value = "";
-		        nome.focus();
-		    }
-	    }
-    }
-</script>
-
-<tr><td colspan="2">&nbsp;</td></tr>
-
-<tr>
-	<td colspan="2">&nbsp;&nbsp;
-		<input type="button" class="texto1" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
-		<input type="button" class="texto1" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		<input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="button" class="texto1" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
-	</td>
-</tr>
-</table>
-</form>
-<iframe name="escondido" style="display: none;"></iframe>
-<script>
-var frm = document.forms[0];
-var frmAll = document.all;
-<%
-If Not VVVN(gerente) then
-	If Not bEof Then%>
-		frm.btnIncluir.disabled = false;
-		frm.btnExcluir.disabled = false;
-		frm.novo_gerente.value = '<%=UCase(gerente)%>';
-	<%Else%>
-		frm.btnSalvar.disabled = true;
-		frm.btnCancelar.disabled = true;	
-	<%End If
-else%>
-	frm.btnSalvar.disabled = true;
-	frm.btnCancelar.disabled = true;
-<%end if%>
+    var frm = document.forms[0];
+    var frmAll = document.all;
+    <%
+    If Not VVVN(gerente) then
+	    If Not bEof Then%>
+		    frm.btnIncluir.disabled = false;
+		    frm.btnExcluir.disabled = false;
+		    frm.novo_gerente.value = '<%=UCase(gerente)%>';
+	    <%Else%>
+		    frm.btnSalvar.disabled = true;
+		    frm.btnCancelar.disabled = true;	
+	    <%End If
+    else%>
+	    frm.btnSalvar.disabled = true;
+	    frm.btnCancelar.disabled = true;
+    <%end if%>
 </script>
 <%
 Set RS = Nothing

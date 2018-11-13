@@ -27,6 +27,7 @@
     border-bottom-color: red;
 }
 
+
 .margem-10 {
     padding-left: 10px;
     padding-right: 20px;
@@ -39,6 +40,7 @@
 .espaco-minimo-100 { min-height: 100px; height: 100px; }
 
 /* Textos */
+.texto-centralizado { text-align: center; }
 .texto-vermelho-bold {
     color: red;
     font-weight: bold;
