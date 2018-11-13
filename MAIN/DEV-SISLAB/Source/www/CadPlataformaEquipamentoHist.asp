@@ -13,34 +13,37 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico de Equip
 plataforma = request("plataforma")
 if plataforma = "" then plataforma = "0"
 %>
-<form method="post" action="CadPlataformaEquipamentoHist.asp" name="frm">
-<input type="hidden" name="hpe_id" value="">
-<input type="hidden" name="idplataforma" value="<%=plataforma%>">
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
-<tr><td>&nbsp;</td></tr>
+<div class="margem-10">
+    <form method="post" action="CadPlataformaEquipamentoHist.asp" name="frm">
+        <input type="hidden" name="hpe_id" value="">
+        <input type="hidden" name="idplataforma" value="<%=plataforma%>">
 
-<tr><th align="left">&nbsp;Selecione a Plataforma</td></tr>
+        <table class="largura-total">
+        <tr><td>&nbsp;</td></tr>
 
-<tr>
-	<td>&nbsp;<b>Plataforma:</b> &nbsp;
-		<%call comboServicosPlataformas("plataforma", Env.oConn, "N", "P")%>
-		<script language="JavaScript">
-			frm.plataforma.onchange = BuscarPlataformas;
-			frm.plataforma.value = '<%=plataforma%>';
-			function BuscarPlataformas() {
-				frm.action = 'CadPlataformaEquipamentoHist.asp';
-				frm.submit();
-			}
-		</script>
-	</td>
-</tr>
+        <tr><th>Selecione a Plataforma</th></tr>
 
-<tr><td>&nbsp;</td></tr>
+        <tr>
+	        <td>
+                Plataforma:&nbsp;
+		        <%call comboServicosPlataformas("plataforma", Env.oConn, "N", "P")%>
+		        <script type="text/javascript">
+			        frm.plataforma.onchange = BuscarPlataformas;
+			        frm.plataforma.value = '<%=plataforma%>';
+			        function BuscarPlataformas() {
+				        frm.action = 'CadPlataformaEquipamentoHist.asp';
+				        frm.submit();
+			        }
+		        </script>
+	        </td>
+        </tr>
 
-<tr><th align="left">&nbsp;Equipamentos da Plataforma</th></tr>
+        <tr><td>&nbsp;</td></tr>
 
-<tr>
-	<td>
+        <tr><th>Equipamentos da Plataforma</th></tr>
+
+        <tr>
+	        <td>
 <%
 s =	"SELECT f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO " & _
 	"FROM vw_SCE_Equipamentos_Fabricantes f INNER JOIN Plataforma_Equipamentos pe " & _
@@ -49,85 +52,86 @@ s =	"SELECT f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO " & _
 	"ORDER BY MOD_DESCRICAO, EQ_CODIGOBARRAS"
 call Env.RecordSet(true, objRS, s)
 if not objRS.Eof then%>
-		<table class="table-bordered" width="100%">
-		<tr>
-			<td width="200px"><b>Cód.Barras</b></td><td><b>Modelo</b></td><td><b>Descrição</b></td>
-		</tr>
+		        <table class="table-bordered table-condensed table-striped table-hover largura-total">
+		        <tr>
+			        <td width="200px"><b>Cód.Barras</b></td><td><b>Modelo</b></td><td><b>Descrição</b></td>
+		        </tr>
 <%		while not objRS.Eof%>
-		<tr><td><%=objRS("EQ_CODIGOBARRAS")%></td><td><%=objRS("MOD_CODNOME")%></td><td><%=objRS("MOD_DESCRICAO")%></td></tr>
+        		<tr><td><%=objRS("EQ_CODIGOBARRAS")%></td><td><%=objRS("MOD_CODNOME")%></td><td><%=objRS("MOD_DESCRICAO")%></td></tr>
 <%		objRS.MoveNext
 	wend%>
-		</table>
+		        </table>
 <%
 else%>
-		<table class="table-bordered" width="100%">
-		<tr><td><b>Nenhum equipamento cadastrado neste momento</b></td></tr>
-		</table>
+		        <p><small>Nenhum equipamento cadastrado neste momento</small></p>
 <%
 end if
 call Env.RecordSet(false, objRS, null)
 %>
-	</td>
-</tr>
+	        </td>
+        </tr>
 
-<tr><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td></tr>
 
-<tr><th align="left">&nbsp;Histórico das mudanças na Plataforma</th></tr>
+        <tr><th>Histórico das mudanças na Plataforma</th></tr>
 
-<tr>
-	<td>
+        <tr>
+	        <td>
 <%
 s =	"SELECT HPE_ID, f.EQ_CODIGOBARRAS, f.MOD_CODNOME, f.MOD_DESCRICAO, " & _
-	"CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 103) + ' ' + LEFT(CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 114), 5) AS HPE_DATAALTERACAO, " & _
-	"CASE WHEN pe.HPE_TIPOMOVIMENTO = 'E' THEN 'Entrada' ELSE 'Saída' END AS HPE_TIPOMOVIMENTO " & _
+	"   CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 103) + ' ' + LEFT(CONVERT(VARCHAR, pe.HPE_DATAALTERACAO, 114), 5) AS HPE_DATAALTERACAO, " & _
+	"   pe.HPE_TIPOMOVIMENTO " & _
 	"FROM vw_SCE_Equipamentos_Fabricantes f INNER JOIN Historico_Plataforma_Equipamentos pe " & _
 	"ON f.EQ_ID = pe.EQ_ID " & _
 	"WHERE pe.S_ID = " & plataforma & " " & _
 	"ORDER BY pe.HPE_DATAALTERACAO, f.EQ_CODIGOBARRAS, pe.HPE_TIPOMOVIMENTO"
 call Env.RecordSet(true, objRS, s)
 if not objRS.Eof then%>
-		<table class="table-bordered" width="100%">
-		<tr>
+		        <table class="table-bordered table-condensed table-striped table-hover largura-total">
+		        <tr>
 <%		if Env.ehRAT Then %>
-			<td align="center">&nbsp;</td>
+        			<th>&nbsp;</th>
 <%		End If %>
-			<td width="200px"><b>Cód.Barras</b></td>
-			<td><b>Modelo</b></td>
-			<td><b>Descrição</b></td>
-			<td><b>Data Mov.</b></td>
-			<td align="center"><b>Movimento</b></td>
-		</tr>
+			        <th width="200px"><b>Cód.Barras</b></th>
+			        <th>Modelo</th>
+			        <th>Descrição</th>
+			        <th>Data Mov.</th>
+			        <th class="texto-centralizado">Movimento</th>
+		        </tr>
 <%		while not objRS.Eof%>
-		<tr>
+		        <tr>
 <%			if Env.ehRAT Then %>
-			<td align="center"><a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histórico"><img src="img/btn_excluir.gif" border="0"></a></td>
+        			<td class="texto-centralizado"><a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histórico"><img src="img/btn_excluir.gif" border="0"></a></td>
 <%			End If %>
-			<td><%=objRS("EQ_CODIGOBARRAS")%></td>
-			<td><%=objRS("MOD_CODNOME")%></td>
-			<td><%=objRS("MOD_DESCRICAO")%></td>
-			<td><%=objRS("HPE_DATAALTERACAO")%></td>
-			<td align="center"><%=objRS("HPE_TIPOMOVIMENTO")%></td>
-		</tr>
+			        <td><%=objRS("EQ_CODIGOBARRAS")%></td>
+			        <td><%=objRS("MOD_CODNOME")%></td>
+			        <td><%=objRS("MOD_DESCRICAO")%></td>
+			        <td><%=objRS("HPE_DATAALTERACAO")%></td>
+			        <td class="texto-centralizado"><%
+                        If objRS("HPE_TIPOMOVIMENTO") = "E" Then %>
+                        <span class="text-success">Entrada</span>
+<%                      Else %>
+                        <span class="text-warning">Saída</span>
+<%                      End If %>
+
+			        </td>
+		        </tr>
 <%		objRS.MoveNext
 	wend%>
-		</table>
+        		</table>
 <%
 end if
 call Env.RecordSet(false, objRS, null)
 %>
-	</td>
-</tr>
+	        </td>
+        </tr>
+        </table>
+    </form>
+    <br />
+</div>
 
-<tr><td>&nbsp;</td></tr>
-
-<tr><td><input type="button" value=" Voltar " onclick="history.go(-1);"></td></tr>
-
-</table>
-</form>
-<script language="JavaScript">
+<script type="text/javascript">
 	var frm = document.forms[0];
-
-
 	function ExcluirItem(hist)
 	{
 		frm.hpe_id.value = hist;

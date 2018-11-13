@@ -41,6 +41,8 @@
 
 /* Textos */
 .texto-centralizado { text-align: center; }
+.texto-justificado { text-align: justify; }
+.texto-direito { text-align: right; }
 .texto-vermelho-bold {
     color: red;
     font-weight: bold;
