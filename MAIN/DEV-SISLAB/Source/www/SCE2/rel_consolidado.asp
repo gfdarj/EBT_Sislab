@@ -17,14 +17,14 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%" class="texto1" border="0">
+<table width="100%"  border="0">
 <tr><td class="destaque" colspan="3">Posi&ccedil;&atilde;o consolidada dos itens no Estoque</td></tr>
 <tr><td>&nbsp;</td></tr>
 
 <tr><td class="linha_par" colspan="3"><span class="destaque">Equipamentos</span></td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Geral</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "", "")%></td>
@@ -47,7 +47,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "S", "")%></td>
@@ -70,7 +70,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em N&atilde;o Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "N", "")%></td>
@@ -99,7 +99,7 @@ If Env.UsuarioSCE() Then
 <tr><td class="linha_par" colspan="3"><span class="destaque">Controle de Equipamentos Vencidos</span></td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Geral</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "", "")%></td>
@@ -122,7 +122,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "S", "", "")%></td>
@@ -145,7 +145,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em N&atilde;o Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "N", "", "")%></td>
@@ -173,7 +173,7 @@ If Env.UsuarioSCE() Then
 
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Calibra&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "", CONTROLE_CALIBRACAO)%></td>
@@ -196,7 +196,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Manuten&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "", CONTROLE_MANUTENCAO)%></td>
@@ -219,7 +219,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Qualifica&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "", CONTROLE_CALIBRACAO)%></td>
@@ -248,7 +248,7 @@ If Env.UsuarioSCE() Then
 <tr><td class="linha_par" colspan="3"><span class="destaque">Instrumentais</span></td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Geral</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "", "S")%></td>
@@ -271,7 +271,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "S", "S")%></td>
@@ -294,7 +294,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em N&atilde;o Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalItens(STATUS_CADASTRADO, "N", "S")%></td>
@@ -323,7 +323,7 @@ If Env.UsuarioSCE() Then
 <tr><td class="linha_par" colspan="3"><span class="destaque">Controle de Instrumentais Vencidos</span></td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Geral</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "S", "")%></td>
@@ -346,7 +346,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "S", "S", "")%></td>
@@ -369,7 +369,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Em N&atilde;o Conformidade</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "N", "S", "")%></td>
@@ -397,7 +397,7 @@ If Env.UsuarioSCE() Then
 
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Calibra&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "S", CONTROLE_CALIBRACAO)%></td>
@@ -420,7 +420,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Manuten&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "S", CONTROLE_MANUTENCAO)%></td>
@@ -443,7 +443,7 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><td colspan="2"><b>Qualifica&ccedil;&atilde;o</b></td></tr>
 		<tr valign="top">
 			<td width="40%">Cadastrados:</td><td><%=TotalControlesVencidos(STATUS_CADASTRADO, "", "S", CONTROLE_CALIBRACAO)%></td>

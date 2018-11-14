@@ -18,7 +18,7 @@ Dim objSiteRS, cont, sSQL, tot
     <link rel="stylesheet" href="estilos/style.css">
 </head>
 
-<script language="javascript">
+<script type="text/javascript">
 function chama_as(cod_as)
 {
     	sel.selecao.value=cod_as;

@@ -2,7 +2,7 @@
 If( cint(Request.Cookies("login")("grpid")) <> 1 )Then%>
 <html>
 <body>
-<script language="JavaScript">
+<script type="text/javascript">
 parent.location.href = "login.asp"
 </script>
 </body>

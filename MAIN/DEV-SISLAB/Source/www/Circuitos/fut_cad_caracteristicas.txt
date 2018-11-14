@@ -18,7 +18,7 @@ call Connection(true, objConn)
 </head>
 <body topmargin=0 leftmargin=0 scroll="no" onload="sincroniza(document.formulario.carac_outras, vcarac_outras);sincroniza(document.formulario.carac_comp, vcarac_comp);">
 <script language="JavaScript" src="includes/qtd_caract.js"></script>
-<script language="JavaScript">
+<script type="text/javascript">
 //----- ORDENACAO DOS VETORES
 var vcarac_outras = new Array(), vcarac_comp = new Array();
 <%

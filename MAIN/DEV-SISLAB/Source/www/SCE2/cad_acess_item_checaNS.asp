@@ -13,12 +13,12 @@ if request("numeroserie") <> "" then
 	Set rec = Env.oConn.execute(s)
 	If rec(0) > 0 Then
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	alert('Este número de série já está cadastrado.');
 </script>
 <%			'--Nao tem prazo
 	else%>
-<script language="JavaScript">
+<script type="text/javascript">
 	alert('Número de série OK.');
 </script>
 <%

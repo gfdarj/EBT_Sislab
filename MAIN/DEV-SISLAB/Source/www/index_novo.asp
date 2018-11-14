@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1 linha_fundo">
                             <h4>Notícias</h4>
-					        <span class="texto1" style="font-size: 9px;"><i>Clique na notícia para abrir</i></span>
+					        <span  style="font-size: 9px;"><i>Clique na notícia para abrir</i></span>
 
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1 linha_fundo">
 
                             <h4>Fotos</h4>
-							<span class="texto1" style="font-size: 9px;"><i>Clique na foto para ampliar</i></span>
+							<span  style="font-size: 9px;"><i>Clique na foto para ampliar</i></span>
 
                         </div>
                     </div>

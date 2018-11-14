@@ -16,7 +16,7 @@ If Env.UsuarioSCE() Then
 %>
 <form name="formulario" method="post">
 <input type="hidden" name="qual_agendamento" value="">
-<table width="100%" cellpadding="2" cellspacing="0" class="texto1">
+<table width="100%" cellpadding="2" cellspacing="0" >
 <%  if request("msg") = "1" then %>
 <tr><th>Carga recebida com sucesso.</th></tr>
 <tr><td>&nbsp;</td></tr>
@@ -36,7 +36,7 @@ If Env.UsuarioSCE() Then
 	<td>
 		<%=Combo.MeusAgendamentos(True, "txtAS", "ag_numero_destino", "", "N")%>
 		<span id="responsavel_destino" style="font-weight: bold; font-style: italic;">&nbsp;</span>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			var f = document.formulario;
 			f.ag_numero_destino.onchange = BuscaEq;
 			f.txtAS.onblur = BuscaEq;
@@ -52,22 +52,22 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<table width="100%" class="texto1" cellpadding="2" cellspacing="0">
+		<table width="100%"  cellpadding="2" cellspacing="0">
 			<tr></tr>
 		</table>
 		
 		Equipamentos cedidos ao usu&aacute;rio<br>
-		<select multiple name="eq_destino" style="width: 640px;" class="texto1" size="6"></select>
+		<select multiple name="eq_destino" style="width: 640px;"  size="6"></select>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td align="center"><button class="texto1" onclick="javascript:validaRecepcao();">&gt;&gt; Receber carga dos itens selecionados</button></td>
+	<td align="center"><button  onclick="javascript:validaRecepcao();">&gt;&gt; Receber carga dos itens selecionados</button></td>
 </tr>
 </table>
 </form>
 <iframe src="" name="escondido" style="display: none;"></iframe>
-<script language="JavaScript">
+<script type="text/javascript">
 var d = document.forms[0];
 function validaRecepcao() {
 	var i;

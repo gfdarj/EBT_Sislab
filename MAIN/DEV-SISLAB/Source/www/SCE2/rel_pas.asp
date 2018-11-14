@@ -21,7 +21,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <form name="formulario" action="rel_pas2.asp" method="post">
-<table width="100%" class="texto1">
+<table width="100%" >
 <tr>
 	<td>Agendamento:<br>
 		<%=Combo.MeusAgendamentos(False, "txtAS", "ag_numero", "", "N")%>
@@ -35,7 +35,7 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td><input type="submit" class="texto1" value=" Gerar "></td></tr>
+<tr><td><input type="submit"  value=" Gerar "></td></tr>
 </table>
 </form>
 <%

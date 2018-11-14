@@ -10,7 +10,7 @@ Call Tela.ImprimeCabecalho2("Cadastro de Agendamento - Upload de Arquivos", MENU
 
 '-- este arquivo de upload deve ser executado dentro de uma janela
 if agendamento = "" then%>
-<script language="JavaScript">
+<script type="text/javascript">
 	alert("Nenhum agendamento definido !");
 	window.close();
 </script>
@@ -18,7 +18,7 @@ if agendamento = "" then%>
 end if
 %>
 <script language="javascript" src="includes/anexo.js"></script>
-<script language="JavaScript">
+<script type="text/javascript">
 function validaArquivos()
 {
 	var f = document.forms[0];

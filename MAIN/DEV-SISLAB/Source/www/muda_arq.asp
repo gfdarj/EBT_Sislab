@@ -10,7 +10,7 @@ Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "
 	<input type="hidden" name="arq_ant" value="<%=request("ant")%>">
 	<input type="hidden" name="ag_numero" value="<%=request("ag_numero")%>">
 	<script language="JavaScript" src="includes/anexo.js"></script>
-	<script language="JavaScript">
+	<script type="text/javascript">
 	function atualiza()
 	{
 		var f = document.formulario;
@@ -31,14 +31,14 @@ Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "
 	<tr>
 		<td><b>Novo Arquivo:</b></td>
 		<td>
-			<input type="File" name="arq" size="30" class="texto1">
+			<input type="File" name="arq" size="30" >
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<button class="texto1" style="width: 70px;" onclick="javascript:return atualiza();">&nbsp;OK&nbsp;</button>
+			<button  style="width: 70px;" onclick="javascript:return atualiza();">&nbsp;OK&nbsp;</button>
 			&nbsp;&nbsp;
-			<button style="width: 70px;" onclick="javascript:window.close();" class="texto1">Cancelar</button>
+			<button style="width: 70px;" onclick="javascript:window.close();" >Cancelar</button>
 		</td>
 	</tr>
 	</table>

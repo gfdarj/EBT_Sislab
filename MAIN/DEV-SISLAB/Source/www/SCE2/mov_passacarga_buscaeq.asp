@@ -17,7 +17,7 @@ if qual_agendamento = "" then response.end
 
 agnumero = request("ag_numero_" & qual_agendamento)
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	var w = window.parent;
 	var oOption;
 

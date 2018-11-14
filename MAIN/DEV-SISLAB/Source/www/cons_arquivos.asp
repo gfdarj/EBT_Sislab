@@ -210,7 +210,7 @@ Else
 <p align="center">
 <b>Nenhum arquivo foi encontrado com estes critérios de consulta.</b>
 <br><br>
-<input type="button" value="Voltar" class="texto1" onclick="javascript:history.go(-1);">
+<input type="button" value="Voltar"  onclick="javascript:history.go(-1);">
 </p>
 <%
 End If

@@ -6,7 +6,7 @@ Dim where, recIN, recEQ, linha, ssql
 where = trim(request("sql"))	'-- recebe o filtro SQL usado na tela anterior (clausula WHERE)
 
 if where = "" then%>
-<script language="JavaScript">alert("Não foi possível gerar planilha Excel."); window.close();</script><%
+<script type="text/javascript">alert("Não foi possível gerar planilha Excel."); window.close();</script><%
 else
 	'-- concateno o campo do codigo de barras com uma funcao do EXCEL pois o proprio "acha"
 	'-- que o codigo de barras é um valor numérico e apresenta o mesmo em notacao cientifica
@@ -39,7 +39,7 @@ else
 		'Response.end
 
 '	else%>
-<!-- <script language="JavaScript">alert("Nenhuma reserva encontrada para este agendamento.");  window.close();</script> -->
+<!-- <script type="text/javascript">alert("Nenhuma reserva encontrada para este agendamento.");  window.close();</script> -->
 <%'	end if
 end if
 

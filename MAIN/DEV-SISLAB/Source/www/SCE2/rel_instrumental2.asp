@@ -106,10 +106,10 @@ If Not bln_exportaExcel Then
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%" class="texto1" border="0">
+<table width="100%"  border="0">
 <tr>
 	<td class="detalhe" colspan="2">
-		<table width="100%" cellpadding="0" cellspacing="0" class="texto1"><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" class="texto"><!--Total de itens encontrados: <%'=rec.recordcount%>--></td></tr></table>
+		<table width="100%" cellpadding="0" cellspacing="0" ><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" class="texto"><!--Total de itens encontrados: <%'=rec.recordcount%>--></td></tr></table>
 	</td>
 </tr>
 <tr><td colspan="2" width="40px">&nbsp;</td></tr>
@@ -118,7 +118,7 @@ If Not bln_exportaExcel Then
 	if not (rec.eof and rec.bof) then%>
 <tr>
 	<td class="detalhe" colspan="2">
-		<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+		<table width="100%"  border="1" cellpadding="2" cellspacing="0">
 		<tr>
 			<th>*</th>
 			<th>Cód. Barras</th>
@@ -159,7 +159,7 @@ If Not bln_exportaExcel Then
 <%
 	else
 %>
-<tr><td align="center" class="texto1">Nenhum <%=lcase(descricaoeq)%> encontrado !</td></tr>
+<tr><td align="center" >Nenhum <%=lcase(descricaoeq)%> encontrado !</td></tr>
 <%
 	End if
 %>

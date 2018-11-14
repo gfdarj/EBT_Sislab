@@ -15,7 +15,7 @@ oc = request("ocorrencia")
 responsavel = ""
 
 if (oc = "" or oc = "0" or idacao = "" or idacao = "0") and acao <> "cadastrar" then%>
-	<script language="JavaScript">alert("Ocorrência inválida"); window.close();</script>
+	<script type="text/javascript">alert("Ocorrência inválida"); window.close();</script>
 <%
 end if
 
@@ -70,7 +70,7 @@ end if
 	<td>Responsável:&nbsp;</td>
 	<td><%call comboUSERCRT("responsavel", objConn,"N")%></td>
 <%	if responsavel <> "" then%>
-	<script language="JavaScript">
+	<script type="text/javascript">
 		document.all.responsavel.value = '<%=responsavel%>';
 	</script>
 <%	end if%>
@@ -83,7 +83,7 @@ end if
 	<td>Prazo Previsto<br>Conclusão:</td>
 	<td><%call comboData("prazo")%></td>
 <%if not IsNull(prazo) then%>
-	<script language="JavaScript">
+	<script type="text/javascript">
 		document.all.diaprazo.value = '<%=Zeros(Day(prazo),2)%>';
 		document.all.mesprazo.value = '<%=Zeros(Month(prazo),2)%>';
 		document.all.anoprazo.value = '<%=Year(prazo)%>';
@@ -100,7 +100,7 @@ end if
 	<td>Data Conclusão:&nbsp;</td>
 	<td><%call comboData("conc")%></td>
 <%	if not IsNull(conclusao) then%>
-	<script language="JavaScript">
+	<script type="text/javascript">
 		document.all.diaconc.value = '<%=Zeros(Day(conclusao),2)%>';
 		document.all.mesconc.value = '<%=Zeros(Month(conclusao),2)%>';
 		document.all.anoconc.value = '<%=Year(conclusao)%>';

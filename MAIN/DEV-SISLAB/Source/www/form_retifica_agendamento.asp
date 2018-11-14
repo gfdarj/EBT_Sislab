@@ -20,7 +20,7 @@ Response.Addheader "Pragma","no-cache"
 Call MostraHeader 
 %>
 <script language="javascript" src="includes/anexo.js"></script>
-<script language="JavaScript">
+<script type="text/javascript">
 function initCampos()
 // Inicializa os campos
 {

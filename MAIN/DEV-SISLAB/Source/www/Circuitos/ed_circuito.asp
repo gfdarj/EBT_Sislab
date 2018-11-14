@@ -261,7 +261,7 @@ call Env.RecordSet( false, objRS, strSQl)
 </form>
 </div>
 
-<script language="javascript">
+<script type="text/javascript">
 if (document.all.dados_fac.bt_at.disabled == true)
 	document.all.d_carac.style.display = "none";
 	//document.all.tabcarac.style.display = "none";

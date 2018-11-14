@@ -60,15 +60,15 @@ function filtrar()
 				<tr><td>&nbsp;</td></tr>
 
 				<tr>
-					<td class="texto1"><b>Filtro</b></td>
+					<td ><b>Filtro</b></td>
 				</tr>
 				<tr>
-					<td class="texto1">
-						Cnpj: <input type="text" name="txtCNPJ" class="texto1" size="15" maxlength="14">
+					<td >
+						Cnpj: <input type="text" name="txtCNPJ"  size="15" maxlength="14">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Descrição: <input type="text" name="txtDescricao" size="40" maxlength="50" class="texto1">
+						Descrição: <input type="text" name="txtDescricao" size="40" maxlength="50" >
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="Filtrar" onclick="javascript:filtrar();" class="texto1">
+						<input type="button" value="Filtrar" onclick="javascript:filtrar();" >
 					</td>
 				</tr>
 
@@ -80,12 +80,12 @@ If request("CNPJ") <> "" Or request("Desc") <> "" Then
 				<tr>
 					<td valign="top" class=texto>
 <%RW Combo.FornecedorFiltroCnpjDescricao("enf_id", "", false, "", true, request("CNPJ"), request("Desc"))%>
-					<script language="JavaScript">document.all.enf_id.size = 20;</script>
+					<script type="text/javascript">document.all.enf_id.size = 20;</script>
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td class="texto"><%if a <> 1 then%><input type="submit" value=" Alterar " class="texto1"><%end if%></td>
+					<td class="texto"><%if a <> 1 then%><input type="submit" value=" Alterar " ><%end if%></td>
 			    </tr>
 <%
 End If
@@ -97,7 +97,7 @@ End If
 </form>
 </center>
 
-<script language="javascript">
+<script type="text/javascript">
 //document.forms(0).enf_id[0].selected = true;
 </script>
 <%

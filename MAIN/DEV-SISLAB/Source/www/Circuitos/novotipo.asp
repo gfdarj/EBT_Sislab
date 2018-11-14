@@ -90,7 +90,7 @@ function Valida()	{
 </td></tr>
 </table>
 </form>
-<script language="JavaScript"><%
+<script type="text/javascript"><%
 if Request.querystring("familia") <> "" then%>
 	document.all.familia.value = <%=Request.querystring("familia")%><%
 end if

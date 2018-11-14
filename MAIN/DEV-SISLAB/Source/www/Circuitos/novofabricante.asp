@@ -47,7 +47,7 @@ function Valida()	{
 </td></tr>
 </table>
 </form>
-<script language="JavaScript">document.all.novofabricante.focus();//display:none;</script>
+<script type="text/javascript">document.all.novofabricante.focus();//display:none;</script>
 <iframe name="escondido" frameborder="1" style=" width:300px; height:100px;" scrolling="no"></iframe>
 </body>
 </html>

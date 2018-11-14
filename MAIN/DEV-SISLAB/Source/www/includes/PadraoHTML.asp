@@ -50,7 +50,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 				<tr valign="bottom">
 					<td width="120px" align="right">&nbsp;</td>
 					<td width="120px" class="texto">
-						<b><a href="index.asp" class="texto1"><span class="texto">SISLAB</span></a></b><br>
+						<b><a href="index.asp" ><span class="texto">SISLAB</span></a></b><br>
 						Usu&aacute;rio: <%=Env.Usuario%>
 					</td>
 					<td width="245px" align="right">
@@ -136,7 +136,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 ' ==> para voltar a colocar o HEIGHT basta tirar o If abaixo e colocar
 '     o valor "height: 310px" no style do div principal (acima)
 	if false then%>
-<script language="JavaScript">
+<script type="text/javascript">
 	//testo a resolucao do video e altero o DIV de informações
 	var resolucao = screen.width + "x" + screen.height;
 	if (resolucao == "800x600") {
@@ -403,7 +403,7 @@ stm_em();
 			</td>
 		</tr>
 		</table>
-		<script language="JavaScript">
+		<script type="text/javascript">
 		function imprimeTelaPrincipalSistema() {
 			var d = document.all;
 			var undef;

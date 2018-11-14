@@ -17,7 +17,7 @@ If Env.UsuarioSCE() Then
 %>
 <form name="formulario" method="post">
 <input type="hidden" name="qual_agendamento" value="">
-<table class="texto1" width="100%">
+<table  width="100%">
 <%
 if request("msg") = "1" then %>
 <tr>
@@ -38,7 +38,7 @@ end if
 		<%'call comboAgendamento("txtAS_origem", "ag_numero_origem", conn, cstr(ag_numero), "N")%>
 		&nbsp;&nbsp;&nbsp;
 		<span id="responsavel_origem" style="font-weight: bold; font-style: italic;">&nbsp;</span>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			var f = document.formulario;
 			f.ag_numero_origem.onchange = BuscaEqOrigem;
 			f.txtAS_origem.onblur = BuscaEqOrigem;
@@ -55,7 +55,7 @@ end if
 <tr>
 	<td>
 		<b>*&nbsp;</b>Equipamentos em condições de carga (sem reservas no período do agendamento)<br>
-		<select multiple name="eq_origem" style="width: 640px;" class="texto1" size="6"></select>
+		<select multiple name="eq_origem" style="width: 640px;"  size="6"></select>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
@@ -66,9 +66,9 @@ end if
 		<%'call comboMeusAgendamentos(false, "txtAS_destino", "ag_numero_destino", conn, cstr(ag_numero), "N")%>
 		<%=Combo.MeusAgendamentos(False, "txtAS_destino", "ag_numero_destino", CStr(ag_numero), "N")%>
 		&nbsp;&nbsp;&nbsp;
-		<button class="texto1" onclick="javascript:passarEqDestino();"><img src="img/seta_abaixo.gif"> Mover para destino</button>
+		<button  onclick="javascript:passarEqDestino();"><img src="img/seta_abaixo.gif"> Mover para destino</button>
 		<span id="responsavel_destino" style="font-weight: bold; font-style: italic;">&nbsp;</span>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			f.ag_numero_destino.onchange = BuscaEqDestino;
 			f.txtAS_destino.onblur = BuscaEqDestino;
 			function BuscaEqDestino() {
@@ -85,7 +85,7 @@ end if
 <tr>
 	<td>
 		<b>*&nbsp;</b>Equipamentos <b>cedidos</b> ao agendamento destino<br>
-		<select multiple name="eq_destino" style="width: 640px;" class="texto1" size="6"></select>
+		<select multiple name="eq_destino" style="width: 640px;"  size="6"></select>
 		<br>
 		(<a href="#" onclick="javascript:removeSelecionados(0);">clique aqui para remover itens selecionados</a>)
 
@@ -93,11 +93,11 @@ end if
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td align="center"><button class="texto1" onclick="javascript:validaPassagem();">&gt;&gt; Passar a carga dos itens selecionados</button></td>
+	<td align="center"><button  onclick="javascript:validaPassagem();">&gt;&gt; Passar a carga dos itens selecionados</button></td>
 </tr>
 </table>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 var d = document.forms[0];
 
 // confirma e salva a passagem

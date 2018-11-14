@@ -88,7 +88,7 @@ Satisfação Geral
 </td>
 </tr>
 
-<script language="javascript">
+<script type="text/javascript">
 
 function janelalink(link)
 {

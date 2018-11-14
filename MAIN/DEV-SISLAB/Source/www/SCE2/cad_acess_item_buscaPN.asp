@@ -9,13 +9,13 @@ if request("mod_id") <> "" then
 	Set rec = Env.oConn.execute(s)
 	If Not (rec.Eof And rec.Bof) Then
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	window.parent.document.all.txtPN.value = '<%=rec(0)%>';
 </script>
 <%
 	Else
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	window.parent.document.all.txtPN.value = '';
 </script>
 <%

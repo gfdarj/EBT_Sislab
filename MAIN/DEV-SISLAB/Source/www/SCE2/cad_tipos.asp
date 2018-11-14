@@ -18,7 +18,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -34,7 +34,7 @@ function ValidaCampos()
 <form method=post action="cad_tipos2.asp" name="formulario"  onsubmit="return ValidaCampos();">
 <table width="100%">
 	<tr>
-		<td class="texto1"><%
+		<td ><%
 		msg = request("msg")
 		if msg  = 1 then
 		response.write "Tipo cadastrado com sucesso!<br><br>"
@@ -42,15 +42,15 @@ function ValidaCampos()
 		response.write "Tipo já existente!<br><br>"
 		end if%></td>
 	</tr> 
-	<tr class="texto1">
+	<tr >
 		<td>Filho de:&nbsp;<br>
 			<%RW Combo.PadraoSql("super_tipo", "select tipo_id as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
-	<tr class="texto1"><td>Tipo:<br><input type="text" class="texto1" name="tipo_descricao" style="width:600" maxlength="100"></td></tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
-	<tr><td><input type="submit" name="Submit" value=" Cadastrar " class="texto1"></td></tr>
+	<tr ><td>&nbsp;</td></tr>
+	<tr ><td>Tipo:<br><input type="text"  name="tipo_descricao" style="width:600" maxlength="100"></td></tr>
+	<tr ><td>&nbsp;</td></tr>
+	<tr><td><input type="submit" name="Submit" value=" Cadastrar " ></td></tr>
  </table>
 </form>
 <%

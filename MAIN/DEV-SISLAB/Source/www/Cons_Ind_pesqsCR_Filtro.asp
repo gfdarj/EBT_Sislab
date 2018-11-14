@@ -49,7 +49,7 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 <tr>
 	<td>
-		Nº AS:&nbsp;<input type="text" name="auxAS" size="3" class="texto1">
+		Nº AS:&nbsp;<input type="text" name="auxAS" size="3" >
 	</td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 <tr>
 	<td>
-		Agendado nos últimos <input class="texto1" name="diasteste" value="<%=auxdiasteste%>" size="2" maxlength="3"> dias
+		Agendado nos últimos <input  name="diasteste" value="<%=auxdiasteste%>" size="2" maxlength="3"> dias
 	</td>
 </tr>
 <tr>
@@ -83,7 +83,7 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 <tr>
 	<td>
-		Solicitante:&nbsp;<input type="text" size="9" name="solicitante" class="texto1">
+		Solicitante:&nbsp;<input type="text" size="9" name="solicitante" >
 	</td>
 </tr>
 <tr>
@@ -113,7 +113,7 @@ auxClientes = (request.form("chkClientes")="on")
 </tr>
 </table>
 </form>
-<script language="javascript">
+<script type="text/javascript">
 formteste.rt.value='<%=request.form("rt")%>'
 formteste.rat.value='<%=request.form("rat")%>'
 formteste.tipoteste.value='<%=request.form("tipoteste")%>'

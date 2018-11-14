@@ -53,7 +53,7 @@ tipoArquivo = request("sbtipoarquivo")
 		</tr>
         <tr><td>&nbsp;</td></tr>
         <tr valign="top"> 
-			<td colspan="2"><input type="button" value="Pesquisar" class="texto1" name="btnPesq" onClick="pesquisar();"></td>
+			<td colspan="2"><input type="button" value="Pesquisar"  name="btnPesq" onClick="pesquisar();"></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         </table>

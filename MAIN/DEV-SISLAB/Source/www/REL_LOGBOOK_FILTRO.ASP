@@ -37,7 +37,7 @@ EH_CRT = Env.UsuarioCRT()
             <tr>
 	            <td colspan=1  align=left valign=top>
 		            <B>N&deg; OC</B><br>
-		            <input type="text" class="texto1" name="ocorrencia" size="5">
+		            <input type="text"  name="ocorrencia" size="5">
 	            </td>
 	            <td colspan=1  align=left valign=top>
 		            <B>OPM <br><input type="Checkbox" name="chkOPM"></B>
@@ -70,7 +70,7 @@ EH_CRT = Env.UsuarioCRT()
             <tr>
 		        <td colspan="4">
 			        <B>Descrição :</B><br>
-			        <input type="text" class="texto1" name="desc" size="60">
+			        <input type="text"  name="desc" size="60">
 		        </td>
 		        <td colspan="5">
 			        <B>Cadastrado por :</B><br>

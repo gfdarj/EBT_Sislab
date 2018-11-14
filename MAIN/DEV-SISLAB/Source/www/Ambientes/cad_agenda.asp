@@ -10,7 +10,7 @@ dim auxhorario, auxcontato,auxaltera, auxlocalizacao, auxas, auxresponsavel
 
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Reserva de Ambientes", "location.href='sel_Cad_Agenda.asp'", "../")
 %>
-<script language="javascript">
+<script type="text/javascript">
 function AtualizaData() {
 	var datainicio, datatermino, dataas;
 	// var inputedData =  prompt ("type something!", "" );
@@ -104,9 +104,9 @@ call Env.RecordSet( false, objRS, null)
 <tr>
 	<td width="75px">&nbsp;Título:</td>
 	<td>
-		<input type="text" value="<%=auxtitulo%>" name="titulo" size="80" class="texto1">
+		<input type="text" value="<%=auxtitulo%>" name="titulo" size="80" >
 		&nbsp;&nbsp;&nbsp;
-		<input type="button" class="texto1" value=" Ver Reservas " onclick="javascript:abreLista();">
+		<input type="button"  value=" Ver Reservas " onclick="javascript:abreLista();">
 	</td>
 </tr>
 <tr>
@@ -118,14 +118,14 @@ call Env.RecordSet( false, objRS, null)
 		<%call comboData("Fim")%>
 
 <%if IsDate(auxdatainicio) then%>
-		<script language="javascript">
+		<script type="text/javascript">
 			document.forms[0].diaInicio.value = '<%=Zeros(Day(auxdatainicio),2)%>';
 			document.forms[0].mesInicio.value = '<%=Zeros(Month(auxdatainicio),2)%>';
 			document.forms[0].anoInicio.value = '<%=Year(auxdatainicio)%>';
 		</script>
 <%end if%>
 <%if IsDate(auxdatafim) then%>
-		<script language="javascript">
+		<script type="text/javascript">
 			document.forms[0].diaFim.value = '<%=Zeros(Day(auxdatafim),2)%>';
 			document.forms[0].mesFim.value = '<%=Zeros(Month(auxdatafim),2)%>';
 			document.forms[0].anoFim.value = '<%=Year(auxdatafim)%>';
@@ -137,7 +137,7 @@ call Env.RecordSet( false, objRS, null)
 <tr>
 	<td>&nbsp;Horário:</td>
 	<td>
-		<input type="text" name="horario" class="texto1" size="50" value="<%=auxhorario%>">
+		<input type="text" name="horario"  size="50" value="<%=auxhorario%>">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 </tr>
@@ -162,7 +162,7 @@ end if%>
 </tr>
 <tr>
 	<td>&nbsp;Descrição:</td>
-	<td><textarea name=descricao cols="100" rows="6" class="texto1"><%=auxdescricao%></textarea></td>
+	<td><textarea name=descricao cols="100" rows="6" ><%=auxdescricao%></textarea></td>
 </tr>
 <tr>
 	<td>&nbsp;Localização:</td>
@@ -190,7 +190,7 @@ If Not objRS.EOF Then
 </tr>
 <tr>
 	<td>&nbsp;Contato:</td>
-	<td><textarea name="contato" cols="100" rows="3" class="texto1"><%=auxcontato%></textarea></td>
+	<td><textarea name="contato" cols="100" rows="3" ><%=auxcontato%></textarea></td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
@@ -204,7 +204,7 @@ If Not objRS.EOF Then
 </table>
 </form>
 
-<script language="javascript">
+<script type="text/javascript">
 <%if auxlocalizacao <> "" then%>
 	document.formulario.localizacao.value=<%=auxlocalizacao%>
 <%end if%>

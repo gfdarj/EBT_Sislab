@@ -31,7 +31,7 @@ total_registros = objSiteRS.RecordCount
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento", "location.href='rel_ativ.asp'", "")
 %>
 <script language="javascript" src="includes/manipulaObj.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 function chama_as(cod_as, oquefazer)
 {
 	if(oquefazer == 1) {
@@ -195,7 +195,7 @@ If Not(objSiteRS.EOF) Then
 	wend
 %>
 </table>
-<script language="JavaScript">
+<script type="text/javascript">
 	var frm = document.forms[0]
 	frm.pagina.value = <%=contpagina%>
 </script>

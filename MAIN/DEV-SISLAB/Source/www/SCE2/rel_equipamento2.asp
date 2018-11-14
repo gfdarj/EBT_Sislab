@@ -107,10 +107,10 @@ If Env.UsuarioSCE() Then
 
     Set rec = Env.oconn.execute(ssql)
 %>
-<table width="100%" class="texto1" border="0">
+<table width="100%"  border="0">
 <tr>
 	<td colspan="2">
-		<table class="destaque" width="100%" cellpadding="0" cellspacing="0"><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" class="texto1">&nbsp;</td></tr></table>
+		<table class="destaque" width="100%" cellpadding="0" cellspacing="0"><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" >&nbsp;</td></tr></table>
 	</td>
 </tr>
 <tr><td colspan="2" width="40px">&nbsp;</td></tr>
@@ -123,7 +123,7 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table width="100%" class="texto1" cellpadding="0" cellspacing="0">
+		<table width="100%"  cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="*"><%=rec("MOD_CODNOME")%> <b>-</b> <%=rec("MOD_DESCRICAO")%> <b>-</b> <%=rec("FAB_NOME")%></td>
 			<td align="right">Situa&ccedil;&atilde;o: <%=rec("DESC_STATUS")%></td>
@@ -138,7 +138,7 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table class="texto1" cellpadding="0" cellspacing="0">
+		<table  cellpadding="0" cellspacing="0">
 			<tr>
 				<td>Localiza&ccedil;&atilde;o: <%=rec("EQ_LOCALIZACAO")%></td>
 				<td width="40px">&nbsp;</td>
@@ -175,7 +175,7 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table class="texto1" cellpadding="0" cellspacing="0">
+		<table  cellpadding="0" cellspacing="0">
 			<tr><td colspan="6"><b><i>Opera&ccedil;&atilde;o</i></b></td><td colspan="3"><i><b>Armazenagem</i></b></td></tr>
 			<tr>
 				<td>Delta: <%=rec("EQ_OPER_DELTA")%></td>
@@ -213,7 +213,7 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table class="texto1" cellpadding="2" cellspacing="0" border="1">
+		<table  cellpadding="2" cellspacing="0" border="1">
 <%  			controle = ""
 			    nomecontrole = ""
 			    while not recInst.eof
@@ -269,7 +269,7 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table class="texto1" cellpadding="2" cellspacing="0" border="1" width="550px">
+		<table  cellpadding="2" cellspacing="0" border="1" width="550px">
 		<tr>
 			<td width="70px"><b><i>Sequencial</i></b></td>
 			<td width="*"><i><b>Descrição</i></b></td>

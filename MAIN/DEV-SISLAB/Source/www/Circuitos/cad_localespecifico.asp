@@ -20,7 +20,7 @@ if localgenerico = "" then localgenerico = -1
 	<link rel="stylesheet" href="includes/style.css">
 </head>
 <body topmargin=0 leftmargin=0 scroll="no">
-<script language="JavaScript">
+<script type="text/javascript">
 function Adicionar()
 {
 	var f = document.formulario;

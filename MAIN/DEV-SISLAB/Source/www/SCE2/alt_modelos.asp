@@ -23,7 +23,7 @@ If Env.UsuarioSCE() Then
     ssql = "select * from sce_modelos where mod_id = " & request("mod_id")
     set recm = Env.oconn.execute(ssql)
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -48,10 +48,10 @@ function ValidaCampos()
 <table width="790px">
 	<tr>
 		<td>
-			<table width="100%" class="texto1" cellpadding=0 cellspacing=0>
+			<table width="100%"  cellpadding=0 cellspacing=0>
 			<tr>
 				<td>
-					Modelo:&nbsp;<input type="text" class="texto1" name="mod_codnome" size=35 maxlength="50" value="<%=recm("mod_codnome")%>">
+					Modelo:&nbsp;<input type="text"  name="mod_codnome" size=35 maxlength="50" value="<%=recm("mod_codnome")%>">
 				</td>
 				<td>
 					Fabricante:&nbsp;<%RW Combo.PadraoSql("fab_id", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", cstr(recm("fab_id")), "N")%>
@@ -62,16 +62,16 @@ function ValidaCampos()
 	<tr><td class="texto">&nbsp;</td></tr>
 	<tr>
 		<td>
-  			<table width="100%" class="texto1" cellpadding=0 cellspacing=0>
+  			<table width="100%"  cellpadding=0 cellspacing=0>
 			<tr> 
-				<td class="texto1">SaP:&nbsp;
-					<input type="text" class="texto1" name="mod_net" maxlength="100" value="<%=recm("mod_net")%>">
+				<td >SaP:&nbsp;
+					<input type="text"  name="mod_net" maxlength="100" value="<%=recm("mod_net")%>">
 				</td>
-				<td class="texto1">Área de Utilização:
+				<td >Área de Utilização:
 				  <%ssql = "select * from sce_areautilizacao order by au_descricao"
 				  set rec = Env.oconn.execute(ssql)
 				  if not rec.eof then%>
-					<select name="au_id" class="texto1">
+					<select name="au_id" >
 					<%i = 0
 					while not rec.eof
 						ssql = "select * from sce_areasutil_modelo where mod_id = "& recm("mod_id") &" and au_id = "& rec("au_id")
@@ -86,14 +86,14 @@ function ValidaCampos()
 			</table>
 	  	</td>
     </tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr> 
-		<td class="texto1">
+		<td >
 			Família Tipo:&nbsp;
 					<%ssql = "select * from sce_tipos order by tipo_descricao"
 					set rec = Env.oconn.execute(ssql)
 					if not rec.eof then%>
-			<select name="tipo_id" class="texto1">
+			<select name="tipo_id" >
 				<option value=""></option>
 						<%while not rec.eof%>					
 				<option value="<%=rec("tipo_id")%>" <%if recm("tipo_id") = rec("tipo_id") then response.write " selected"%>><%=rec("tipo_descricao")%></option>
@@ -103,24 +103,24 @@ function ValidaCampos()
 					<%end if%>
 		</td>	
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr> 
-		<td bgcolor="#FFFFFF" class="texto1">Descrição do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="texto1"><%=recm("mod_descricao")%></textarea></td>
+		<td bgcolor="#FFFFFF" >Descrição do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" ><%=recm("mod_descricao")%></textarea></td>
 	</tr>
 	<tr><td class="texto">&nbsp;</td></tr>
 	<tr> 
-      	<td bgcolor="#FFFFFF" class="texto1">Observações<br>
-		<textarea class="texto1" name="mod_obs" style="width:550" cols="80" rows="5"><%=recm("mod_obs")%></textarea></td>
+      	<td bgcolor="#FFFFFF" >Observações<br>
+		<textarea  name="mod_obs" style="width:550" cols="80" rows="5"><%=recm("mod_obs")%></textarea></td>
 	</tr>
 	<%ssql = "select * from sce_partnumbermodelo where mod_id = "& recm("mod_id")
 	set rec = Env.oconn.execute(ssql)%>
 	<tr> 
-      	<td bgcolor="#FFFFFF"  class="texto1"><br>Part Number:<br>
-		<input type="text" class="texto1" name="p_number" size="100" maxlength="100"  <%if not rec.eof then%>value="<%=rec("pn_partnumber")%>"<%end if%>></td>
+      	<td bgcolor="#FFFFFF"  ><br>Part Number:<br>
+		<input type="text"  name="p_number" size="100" maxlength="100"  <%if not rec.eof then%>value="<%=rec("pn_partnumber")%>"<%end if%>></td>
 	</tr>
 
 	<tr>
-		<td class="texto1"><br><input type="checkbox" name="sgp" value="1" <%if recm("sgp") = 1 then response.write " checked"%>>&nbsp;atualizar pelo SGP</td>
+		<td ><br><input type="checkbox" name="sgp" value="1" <%if recm("sgp") = 1 then response.write " checked"%>>&nbsp;atualizar pelo SGP</td>
 	</tr>
 	<script>
 		function func2(){
@@ -129,8 +129,8 @@ function ValidaCampos()
 	</script>
 	 <tr> 
       <td><br>
-        <input type="submit" name="Submit" value=" Alterar " class="texto1">&nbsp;&nbsp;
-        <input type="submit" name="Submit" value=" Excluir " class="texto1" onClick="func2();">
+        <input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;
+        <input type="submit" name="Submit" value=" Excluir "  onClick="func2();">
       </td>
     </tr>
   </table>

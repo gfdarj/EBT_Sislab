@@ -64,7 +64,7 @@ auxusername = Env.Usuario
         <tr>
             <td>
 			    Assunto:<br>
-			    <select class="texto1" name="assunto">
+			    <select  name="assunto">
 			        <option value="">Selecione o assunto ...</option>
 			        <option value="Automação de Testes">Automação de Testes</option>
 			        <option value="Avaliação de Serviços do CRT">Avaliação de Serviços do CRT</option>

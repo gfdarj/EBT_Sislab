@@ -66,14 +66,14 @@ If Env.UsuarioSCE() Then
     end if
 %>
 
-<script language="JavaScript">
+<script type="text/javascript">
 <%
 If ag_numero <> "" Then
 %>
 	//---- cria os combos de ambiente ---
 	function comboAmbiente(escreve, id_combo, padrao) {
 		var str = '';
-		str += '<select name="' + id_combo + '" class="texto1">';
+		str += '<select name="' + id_combo + '" >';
 <%
 	chr_SQL = _
 				"select a.AMB_ID as VALOR, a.AMB_NOME as DESCRICAO " & _
@@ -134,7 +134,7 @@ function filtraItem() {
 <input type="hidden" name="ehnovo" value="<%=ehNovo%>">
 <select name="lista_itens" style="display: none; width:500px" multiple></select>
 
-<table  class="texto1" border="0">
+<table   border="0">
 
 <%
 if CStr(Request("cadastrou")) <> "" or CStr(Request("alterou")) <> "" or CStr(Request("excluiu")) <> "" then%>
@@ -159,7 +159,7 @@ end if
 	    <p class="destaque">AS</p>
 		<%'call comboAgendamento("txtAS", "ag_numero", conn, cstr(ag_numero), "N")%>
 		<%RW Combo.MeusAgendamentos(False, "txtAS", "ag_numero", CStr(ag_numero), "N")%>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			var f = document.formulario;
 			f.ag_numero.onblur = BuscaDadosAS;
 			f.ag_numero.onchange = BuscaDadosAS;
@@ -177,7 +177,7 @@ end if
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-		<table width="100%" class="texto1" border="0" cellpadding="0" cellspacing="0">
+		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td valign="top">
 				Ambiente(s):<br>
@@ -188,10 +188,10 @@ end if
 				<%RW Combo.PadraoSql("ag_responsavel", "select upper(USERID) as VALOR, CAST(NOME as VARCHAR(40)) as DESCRICAO from USERCRT where USERID = '" & responsavel & "' order by Nome", responsavel, "")%>
 			</td>
 			<td valign="top" align="left">
-				Inicio:<br><input type="text" name="ag_datainicio" class="texto1" size="12" value="<%=dt_inicio%>" disabled>&nbsp;
+				Inicio:<br><input type="text" name="ag_datainicio"  size="12" value="<%=dt_inicio%>" disabled>&nbsp;
 			</td>
 			<td valign="top" align="left">
-				Fim:<BR><input type="text" name="ag_datatermino" class="texto1" size="12" value="<%=dt_termino%>" disabled>
+				Fim:<BR><input type="text" name="ag_datatermino"  size="12" value="<%=dt_termino%>" disabled>
 			</td>
 		</tr>
 		</table>
@@ -204,27 +204,27 @@ end if
 	<td colspan="2">
 		<p class="destaque">Filtros:</p>
 		&nbsp;&nbsp;&nbsp;(Selecione os campos abaixo para filtrar os dados do equipamento)
-		<table class="texto1" width="100%" border="0">
+		<table  width="100%" border="0">
 			<tr>
 				<td>Modelo:</td>
-				<td><input type="text" name="modelo" class="texto1" size="50" on></td>
+				<td><input type="text" name="modelo"  size="50" on></td>
 
 				<td>Descri&ccedil;&atilde;o:</td>
-				<td><input type="text" name="desc_modelo" class="texto1" size="50"></td>
+				<td><input type="text" name="desc_modelo"  size="50"></td>
 			</tr>
 			<tr>
 				<td>Fabricante:&nbsp;</td><td><%RW Combo.PadraoSql("fabricante", "select f.fab_id as VALOR, f.fab_nome as DESCRICAO from sce_fabricantes f order by f.fab_nome", "", "N")%></td>
 				<td>Cod.Barras:</td>
 				<td>
-					<input type="text" name="coditem" class="texto1" size="25">
+					<input type="text" name="coditem"  size="25">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="Filtrar &gt;&gt;" class="texto1" onClick="javascript:filtraItem();">
+					<input type="button" value="Filtrar &gt;&gt;"  onClick="javascript:filtraItem();">
 				</td>
 			</tr>
 			<tr>
 				<td>Nota Fiscal:</td>
 				<td colspan="3">
-					<input type="text" name="notafiscal" size="6" class="texto1">
+					<input type="text" name="notafiscal" size="6" >
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.SituacaoEquipamento("status", true, true, true, STATUS_EM_ESTOQUE)%>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -234,7 +234,7 @@ end if
 			<tr>
 				<td>Documento:</td>
 				<td colspan="3">
-					<input type="text" name="documento" size="6" class="texto1">
+					<input type="text" name="documento" size="6" >
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.EquipamentoConforme("conforme", true)%>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -254,7 +254,7 @@ end if
 <!-- Fim - Filtros para consulta de itens -->
 
 <tr><td colspan="2">&nbsp;</td></tr>
-<script language="JavaScript">
+<script type="text/javascript">
 var linha = 0;
 var total_linhas = 0;
 
@@ -417,14 +417,14 @@ function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barra
 </table>
 
 
-<table class="texto1" border="0">
+<table  border="0">
 <tr>
 	<td colspan="2">
 		<p class="destaque">Itens Reservados:</p>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		(qtde:&nbsp;<input type="text" name="qtd_item" value="1" size="3" class="texto1">&nbsp;
+		(qtde:&nbsp;<input type="text" name="qtd_item" value="1" size="3" >&nbsp;
 		<a href="#" onClick="javascript:InsereItem(document.all.qtd_item.value);">novo item</a>)
-		<table width="100%" cellpadding="0" cellspacing="0" class="texto1" border="1" id="tb_reserva" style="border: thin solid silver;">
+		<table width="100%" cellpadding="0" cellspacing="0"  border="1" id="tb_reserva" style="border: thin solid silver;">
 		<tr>
 			<th align="left" width="150px">Item</th>
 			<th width="*" align="left">Descrição</th>
@@ -467,22 +467,22 @@ if ag_numero <> "" then
 			reservado = Sce.VerificaReservaItem(True, ag_numero, rec("EQ_ID"), false)
 
 %>		<tr id="linha_<%=linha%>">
-			<td id="linha_<%=linha%>_col_1" valign="top" class="texto1">
-				<script language="JavaScript">inputText(true, 'item_<%=linha%>', '<%=rec("EQ_CODIGOBARRAS")%>', 21, 16, 'onKeyUp="proxCampo(this, document.formulario.dt_ini_<%=linha%>);" onBlur="javascript:validaCodBarras(this, <%=linha%>);"');</script>
+			<td id="linha_<%=linha%>_col_1" valign="top" >
+				<script type="text/javascript">inputText(true, 'item_<%=linha%>', '<%=rec("EQ_CODIGOBARRAS")%>', 21, 16, 'onKeyUp="proxCampo(this, document.formulario.dt_ini_<%=linha%>);" onBlur="javascript:validaCodBarras(this, <%=linha%>);"');</script>
 				<!--<span id='linha_<%=linha%>_col_2' style='font-size: 8px; color: gray;'><i><%'=rec("DESCRICAO")%></i></span>-->
 			</td>
-			<td id="linha_<%=linha%>_col_2" class="texto1"><%=rec("DESCRICAO")%></td>
-			<td id="linha_<%=linha%>_col_3" class="texto1" valign="top"><script language="JavaScript">inputText(true, 'dt_ini_<%=linha%>', '<%=rec("REQ_DATAINICIO")%>', 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, document.all.dt_fim_<%=linha%>);"');</script></td>
-			<td id="linha_<%=linha%>_col_4" class="texto1" valign="top"><script language="JavaScript">inputText(true, 'dt_fim_<%=linha%>', '<%=rec("REQ_DATATERMINO")%>', 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, document.all.cmb_setup_<%=linha%>);"');</script></td>
-			<td id="linha_<%=linha%>_col_5" class="texto1" align="center" valign="top"><script language="JavaScript">comboAmostraEq(true, 'cmb_setup_<%=linha%>', '<%=rec("REQ_EQSETUP")%>');</script></td>
-			<td id="linha_<%=linha%>_col_6" class="texto1" align="center" valign="top"><script language="JavaScript">comboAmbiente(true, 'cmb_amb_<%=linha%>', '<%=rec("AMB_ID")%>');</script></td>
-			<td id="linha_<%=linha%>_col_7" class="texto1" align="center" valign="top"><%if isNull(rec("REQ_ACEITO")) then response.write "&nbsp;" else response.write SimNao(rec("REQ_ACEITO"))%></td>
-			<td id="linha_<%=linha%>_col_8" class="texto1" valign="top" align="center" title="Item está movimentado para esta AS"><%=EmUso%></td>
-			<td id="linha_<%=linha%>_col_9" class="texto1" valign="top">
+			<td id="linha_<%=linha%>_col_2" ><%=rec("DESCRICAO")%></td>
+			<td id="linha_<%=linha%>_col_3"  valign="top"><script type="text/javascript">inputText(true, 'dt_ini_<%=linha%>', '<%=rec("REQ_DATAINICIO")%>', 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, document.all.dt_fim_<%=linha%>);"');</script></td>
+			<td id="linha_<%=linha%>_col_4"  valign="top"><script type="text/javascript">inputText(true, 'dt_fim_<%=linha%>', '<%=rec("REQ_DATATERMINO")%>', 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, document.all.cmb_setup_<%=linha%>);"');</script></td>
+			<td id="linha_<%=linha%>_col_5"  align="center" valign="top"><script type="text/javascript">comboAmostraEq(true, 'cmb_setup_<%=linha%>', '<%=rec("REQ_EQSETUP")%>');</script></td>
+			<td id="linha_<%=linha%>_col_6"  align="center" valign="top"><script type="text/javascript">comboAmbiente(true, 'cmb_amb_<%=linha%>', '<%=rec("AMB_ID")%>');</script></td>
+			<td id="linha_<%=linha%>_col_7"  align="center" valign="top"><%if isNull(rec("REQ_ACEITO")) then response.write "&nbsp;" else response.write SimNao(rec("REQ_ACEITO"))%></td>
+			<td id="linha_<%=linha%>_col_8"  valign="top" align="center" title="Item está movimentado para esta AS"><%=EmUso%></td>
+			<td id="linha_<%=linha%>_col_9"  valign="top">
 <%			if (rec("REQ_ACEITO")) and (Env.PerfilSCE = PERFIL_RAT) or rec("REQ_MOVIMENTOU") or (not ehAgValido)then%>
 				<img src="img/btn_branco.gif">
 
-				<script language="JavaScript">
+				<script type="text/javascript">
 				document.all.item_<%=linha%>.disabled = true;
 				document.all.dt_ini_<%=linha%>.disabled = true;
 				document.all.dt_fim_<%=linha%>.disabled = true;
@@ -494,7 +494,7 @@ if ag_numero <> "" then
 				<span onClick="javascript:RemoveItem(<%=linha%>);" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>
 <%			end if%>
 			</td>
-			<script language="JavaScript">
+			<script type="text/javascript">
 				document.all["item_<%=linha%>"].eq_id = "<%=rec("EQ_ID")%>";
 			</script>
 		</tr>
@@ -502,7 +502,7 @@ if ag_numero <> "" then
 			rec.MoveNext
 			linha = linha + 1
 		wend%>
-		<script language="JavaScript">linha = <%=linha%>; total_linhas = <%=linha%>;</script>
+		<script type="text/javascript">linha = <%=linha%>; total_linhas = <%=linha%>;</script>
 <%	end if
 end if
 %>
@@ -514,21 +514,21 @@ end if
 <tr>
 	<td colspan="2">
 	    <p class="destaque">Observações:</p>
-		<textarea name="obs" class="texto1" rows="10" cols="110"><%=obs%></textarea>
+		<textarea name="obs"  rows="10" cols="110"><%=obs%></textarea>
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 </table>
 
-<table class="texto1" border="0" align="center">
+<table  border="0" align="center">
 <tr>
 	<td colspan="2" align="right">
-	  	<input type="button" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>" class="texto1" onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
+	  	<input type="button" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>"  onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if not ehNovo then%>
-	  	<input type="button" name="btnNovo" value="Nova Reserva" class="texto1" onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
-	  	<input type="button" name="btnExcluir" value="Excluir Reserva" class="texto1" onClick="javascript:excluirReserva();">&nbsp;&nbsp;
-		<script language="JavaScript">
+	  	<input type="button" name="btnNovo" value="Nova Reserva"  onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
+	  	<input type="button" name="btnExcluir" value="Excluir Reserva"  onClick="javascript:excluirReserva();">&nbsp;&nbsp;
+		<script type="text/javascript">
 		function excluirReserva() {
 			location.href = 'exc_reserva.asp?ag_numero=<%=ag_numero%>';
 		}
@@ -539,7 +539,7 @@ end if%>
 </table>
 </form>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function validaListaItens() {
 	var i, j, k;
 	/* varre a tabela de itens */

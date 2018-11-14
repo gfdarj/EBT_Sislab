@@ -53,7 +53,7 @@ End If%>
 	</tr>
 </table>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 function validaCampos(){
 	var formulario = document.LOGIN;
 	if(formulario.senha.value == ""){

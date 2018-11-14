@@ -19,12 +19,12 @@ If Env.UsuarioSCE() Then
 <form name="formulario" action="rel_instrumentalnovo2.asp" method="post">
 <input type="hidden" value="" name="exportaExcel">
 
-<table width="750px" class="texto1">
+<table width="750px" >
 <tr><td colspan="2" valign="middle" class="destaque">Selecione as opções de filtro</td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
+		Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
 	</td>
 	<td>
 		Fabricantes:&nbsp;
@@ -35,31 +35,31 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Modelo:&nbsp;<input type=text name=modelo class="texto1"></td>
-	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo" class="texto1" size="50"></td>
+	<td>Modelo:&nbsp;<input type=text name=modelo ></td>
+	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo"  size="50"></td>
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50"></td>
+	<td>Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="50"></td>
 	<td>
 		Instrumental:&nbsp;
-		<select name="instrumental" class="texto1">
+		<select name="instrumental" >
 			<option value="">Todos</option>
 			<option value="1" selected>Sim</option>
 			<option value="0">Não</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Conforme:&nbsp;
-		<select name="conforme" class="texto1">
+		<select name="conforme" >
 			<option value="">Todos</option>
 			<option value="1">Sim</option>
 			<option value="0">Não</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Situação:&nbsp;
-		<select name="status" class="texto1">
+		<select name="status" >
 			<option value="">Todos</option>
 			<option value="<%=STATUS_EM_ESTOQUE%>">Em estoque</option>
 			<option value="<%=STATUS_EM_USO%>">Em uso</option>
@@ -69,7 +69,7 @@ If Env.UsuarioSCE() Then
 	</td>	
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">
@@ -77,21 +77,21 @@ If Env.UsuarioSCE() Then
 	</td>	
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td>
 		Controle do Instrumental:&nbsp;
-		<select name="controle" class="texto1">
+		<select name="controle" >
 			<option value="">--</option>
 			<option value="<%=CONTROLE_CALIBRACAO%>">Calibração</option>
 			<option value="<%=CONTROLE_MANUTENCAO%>">Manutenção</option>
 		</select>
 	</td>
-	<td>A vencer em até <input type="text" class="texto1" name="vencimento" size="5"> dias</td>
+	<td>A vencer em até <input type="text"  name="vencimento" size="5"> dias</td>
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
 		Período:&nbsp;
@@ -99,12 +99,12 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td>&nbsp;</td>
 	<td align="center">
-	    <script language="javascript">
+	    <script type="text/javascript">
 	    function exportaParaExcel()
 	    {
 		    document.formulario.target = "_blank";
@@ -118,9 +118,9 @@ If Env.UsuarioSCE() Then
 		    document.formulario.submit();
 	    }
 	    </script>
-		<input type="button" name="buscar" value="próximo &gt;&gt;" class="texto1" onclick='javascript: envia();'>
+		<input type="button" name="buscar" value="próximo &gt;&gt;"  onclick='javascript: envia();'>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" name="buscar" value="Exportar para Excel" class="texto1" onclick="javascript:exportaParaExcel();">
+		<input type="button" name="buscar" value="Exportar para Excel"  onclick="javascript:exportaParaExcel();">
 	</td>
 </tr>
 </table>

@@ -4,7 +4,7 @@
 		</div>
 	</div>
 </span>
-<script language="JavaScript">
+<script type="text/javascript">
 MenuStatus = "hide"
 window.onscroll=RolaCaixa
 var menu, caixa, Teto

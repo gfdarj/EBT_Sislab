@@ -19,7 +19,7 @@ if tipo = "" then tipo = -1
 	<link rel="stylesheet" href="includes/style.css">
 </head>
 <script language="JavaScript" src="includes/qtd_caract.js"></script>
-<script language="JavaScript">
+<script type="text/javascript">
 //----- ORDENACAO DOS VETORES
 //var vcarac_outras = new Array(), vcarac_comp = new Array();
 var vcarac_outras[][], vcarac_comp[][];

@@ -74,7 +74,7 @@ function submeter()
 <form name="frmPessoal" action="consulta_pessoalA.asp" method="post">
 <input type="hidden" name="tp_datainicial" value="">
 <input type="hidden" name="tp_datafinal" value="">
-<table class="texto1" width="100%" border="0" cellpadding="2" cellspacing="0">
+<table  width="100%" border="0" cellpadding="2" cellspacing="0">
 <tr>
   <td>
 		<font class="fonte2">Início:</font>

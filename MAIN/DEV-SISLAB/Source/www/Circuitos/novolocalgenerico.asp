@@ -44,7 +44,7 @@ function Valida()	{
 </td></tr>
 </table>
 </form>	<!-- display:none; -->
-<script language="JavaScript">document.all.novolocal.focus();</script>
+<script type="text/javascript">document.all.novolocal.focus();</script>
 <iframe name="escondido" frameborder="1" style="display:none; width:300px; height:100px;" scrolling="no"></iframe>
 </body>
 </html>

@@ -15,7 +15,7 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -52,19 +52,19 @@ function Mascara2 (keypress, objeto){
 <div align="center">
 <table width="100%">	
 	<tr>
-		<td class="texto1">
+		<td >
 		<%if request("msg") <> "" then response.write "<br><strong>Fabricante cadastrado com sucesso!</strong><br><br>"%></td>
 	</tr>
     <tr> 
       <td>
   		<table width="100%" cellpadding=0 cellspacing=0>
     		<tr> 
-      			<td bgcolor="#FFFFFF" align="left" class="texto1">Fabricante<br>
-					<input type="text" class="texto1" name="nome" style="width:600px" maxlength="100"></td>
+      			<td bgcolor="#FFFFFF" align="left" >Fabricante<br>
+					<input type="text"  name="nome" style="width:600px" maxlength="100"></td>
     		</tr>
 			<tr><td>&nbsp;</td></tr>
 			<tr>
-      			<td><input type="submit" name="Submit" value="Cadastrar" class="texto1"></td>
+      			<td><input type="submit" name="Submit" value="Cadastrar" ></td>
 		    </tr>
 		</table>
       </td>

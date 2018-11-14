@@ -15,7 +15,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function geraTermo() {
 	if(document.all.doc_id.value == "") {
 		alert("Selecione um documento");
@@ -27,11 +27,11 @@ function geraTermo() {
 }
 </script>
 <form name="formulario" method="post" action="rel_termoresp2.asp" onsubmit="javascript:return geraTermo();" target="_blank">
-<table width="100%" class="texto1" cellpadding="2" cellspacing="0">
+<table width="100%"  cellpadding="2" cellspacing="0">
 <tr>
 	<td>
 		Documento:&nbsp;
-		<select name="doc_id" class="texto1">
+		<select name="doc_id" >
 			<option value="">--</option><%
 ssql = "select * from sce_documentacao order by doc_id"
 set rec = Env.oconn.execute(ssql)
@@ -45,7 +45,7 @@ end if%>
 	</td>
 	<td>
 		Título:&nbsp;
-		<input class="texto1" type="text" name="titulo" size="70" value="<b><u>Termo de Responsabilidade</u></b>">
+		<input  type="text" name="titulo" size="70" value="<b><u>Termo de Responsabilidade</u></b>">
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
@@ -60,7 +60,7 @@ end if%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-	<input class="texto1" type="submit" value=" Gerar Termo de Responsabilidade ">
+	<input  type="submit" value=" Gerar Termo de Responsabilidade ">
 	</td>
 </table>
 </form>

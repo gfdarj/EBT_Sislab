@@ -23,8 +23,8 @@ set rec = Env.oconn.execute(ssql)
 <input type="hidden" name="fab_id" value="<%=request("fab_id")%>">
 <table width="100%">
     <tr> 
-		<td class="texto1">Nome do Fabricante<br>
-					<input type="text" class="texto1" name="fab_nome" style="width:600px" maxlength="100" value="<%=rec("fab_nome")%>">
+		<td >Nome do Fabricante<br>
+					<input type="text"  name="fab_nome" style="width:600px" maxlength="100" value="<%=rec("fab_nome")%>">
 		</td>
 	</tr>
 	<script>
@@ -32,10 +32,10 @@ set rec = Env.oconn.execute(ssql)
 		document.formulario.action = "exc_fabricantes.asp"
 	}
 	</script>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr> 
-		<td><input type="submit" name="Submit" value=" Alterar " class="texto1">&nbsp;&nbsp;
-		    <input type="submit" name="Submit" value=" Excluir " class="texto1" onclick="func2();">
+		<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;
+		    <input type="submit" name="Submit" value=" Excluir "  onclick="func2();">
 		</td>
     </tr>
 </form>

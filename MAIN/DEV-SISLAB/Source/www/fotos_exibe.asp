@@ -38,7 +38,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_OFF, False, "", "Fotos", "javascri
 			<br><br>
 			<i><%=chr_Desc%></i>
 			<br><br>
-			<input type="button" class="texto1" value=" Fechar " onclick="javascript:window.close();">
+			<input type="button"  value=" Fechar " onclick="javascript:window.close();">
 			<br><br>
 		</center1>
 	</td>

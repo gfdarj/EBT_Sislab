@@ -9,13 +9,13 @@ if request("no_id") <> "" then
 		if not IsNull(rec(0)) then
 			'--Tem prazo
 			if CBool(rec(0)) then%>
-<script language="JavaScript">
+<script type="text/javascript">
 	window.parent.document.all.tr_validade_separador.style.display = "block";
 	window.parent.document.all.tr_validade.style.display = "block";
 </script>
 <%			'--Nao tem prazo
 			else%>
-<script language="JavaScript">
+<script type="text/javascript">
 	window.parent.document.all.tr_validade_separador.style.display = "none";
 	window.parent.document.all.tr_validade.style.display = "none";
 	//window.parent.document.all.nf_validade.value = "";

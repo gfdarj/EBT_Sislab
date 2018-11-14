@@ -46,7 +46,7 @@ end if
 <!--#include file="includes\verificaResolucao.inc"-->
 <!-- Funcao isDate (data), onde data = dd/mm/aaaa -->
 <script type="text/javascript" src="includes\isDate.js"></script>
-<SCRIPT LANGUAGE="JavaScript">
+<script type="text/javascript">
 function mudaAtividade()
 {
 	var frm = document.frmInicioTermino;
@@ -255,7 +255,7 @@ function verificaVoltar()
 	    <OPTION VALUE="11"> Nov
 	    <OPTION VALUE="12"> Dez
 	  </SELECT> /
-	  <INPUT type="text" NAME="anoInicio" MAXLENGTH="4" class="texto1" VALUE="<%=aI%>">
+	  <INPUT type="text" NAME="anoInicio" MAXLENGTH="4"  VALUE="<%=aI%>">
 	</td>
 <tr>
   <td>
@@ -288,7 +288,7 @@ function verificaVoltar()
 	    <OPTION VALUE="12"> Dez
 	  </SELECT>
 	  </font> /
-	  <INPUT type="text" NAME="anoFim" MAXLENGTH="4" class="texto1" VALUE=<%=aF%>>
+	  <INPUT type="text" NAME="anoFim" MAXLENGTH="4"  VALUE=<%=aF%>>
 	</td>
 </tr>
 </table>

@@ -47,7 +47,7 @@ nrodia = weekday(data)
 </style> 
 
 <script language="JavaScript" src="includes\manipulaObj.js"></script>
-<SCRIPT LANGUAGE="JavaScript">
+<script type="text/javascript">
 function alteraCamada(msg)
 {
 	var tamdiv = 350;

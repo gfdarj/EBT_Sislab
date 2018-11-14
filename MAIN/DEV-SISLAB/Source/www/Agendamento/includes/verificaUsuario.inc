@@ -1,7 +1,7 @@
 ﻿<%If( Request.Cookies("login")("usrlogin") = "" )Then%>
 <html>
 <body>
-<script language="JavaScript">
+<script type="text/javascript">
 parent.location.href = "login.asp"
 </script>
 </body>

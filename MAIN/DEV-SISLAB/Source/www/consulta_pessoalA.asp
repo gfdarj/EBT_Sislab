@@ -23,7 +23,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", titulo, link, "")
 'response.end
 
 if tp_datainicial <> "" then%>
-<table width="100%" cellspacing="0" border="0" class="texto1" style="font-size:13px;">
+<table width="100%" cellspacing="0" border="0"  style="font-size:13px;">
 <%
 	Dim nomeT
 	nomeT = ""

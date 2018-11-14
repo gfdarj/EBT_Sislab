@@ -15,7 +15,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <form method="post" action="adm_depara_modelos2.asp" name="formulario" onsubmit="javascript:return executaDePara(this);">
-<table class="texto1">
+<table >
 <%
 if request("msg")<>"" then%>
 <tr>
@@ -36,7 +36,7 @@ end if
 	</td>
 	<td>&nbsp;</td>
 </tr>
-<tr><td>&nbsp;</td><td align="center"><input class="texto1" type="submit" value="Executar !"></td></tr>
+<tr><td>&nbsp;</td><td align="center"><input  type="submit" value="Executar !"></td></tr>
 <tr><td colspan="2" class="destaque">Modelo novo: (Para)</td></tr>
 <tr>
 	<td>
@@ -47,7 +47,7 @@ end if
 
 </table>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 	d = document.forms[0];
 	d.mod_id_old.size = 10;
 	d.mod_id_new.size = 10;

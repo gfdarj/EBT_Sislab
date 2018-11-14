@@ -124,7 +124,7 @@ If Env.UsuarioSCE() Then
 	    response.write "<b><i>Nenhum responsável encontrado para este documento</i></b>"
     else
 	    endereco = ""
-%>		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+%>		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr><th align="left" width="120px">Nome:</th><td><%=rec("DOC_NOME")%>&nbsp;</td></tr>
 		<tr><th align="left" width="120px">Identificação:</th><td><%=rec("DOC_IDE")%>&nbsp;</td></tr>
 		<tr>

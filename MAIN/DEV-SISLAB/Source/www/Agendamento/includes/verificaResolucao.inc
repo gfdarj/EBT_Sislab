@@ -1,4 +1,4 @@
-﻿<script language="JavaScript">
+﻿<script type="text/javascript">
 	var resolucao = screen.width + "x" + screen.height;
 	if (resolucao == "800x600")
 	{

@@ -21,7 +21,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%" class="texto1" border="0">
+<table width="100%"  border="0">
 
 <%If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posição em <i>" & Request("ano") & "</i></td></tr>" End If %>
 
@@ -32,10 +32,10 @@ If Env.UsuarioSCE() Then
 	<td valign="top">
 		<form name="formulario" method="post">
 		Selecione o ano desejado:&nbsp;
-		<input type="text" class="texto1" size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
-		<input type="submit" class="texto1" value="Pesquisar">
+		<input type="text"  size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
+		<input type="submit"  value="Pesquisar">
 		</form>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			document.forms[0].ano.focus();
 		</script>
 	</td>
@@ -116,7 +116,7 @@ If Env.UsuarioSCE() Then
 <%	    ElseIf RS("MES") > 12 Then %>
 		<center><b><i>Nenhuma informação encontrada !</i></b><center>
 <%	    Else %>
-		<table align="center" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table align="center" cellpadding="2" cellspacing="0"  border="1">
 		<tr style="font-weight: bold;">
 			<td align="center">Mês</td>
 			<td align="center">Total Entrada</td>

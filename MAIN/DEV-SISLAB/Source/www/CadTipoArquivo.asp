@@ -107,7 +107,7 @@ End If
 
         <tr>
 	        <td width="130px"><span class="texto-vermelho-bold">*</span>&nbsp;Descrição:</td>
-	        <td><input type="text" name="desc" size="100" maxlength="300" class="texto1"></td>
+	        <td><input type="text" name="desc" size="100" maxlength="300" ></td>
         <tr>
 
         <tr><td colspan="2">&nbsp;</td></tr>

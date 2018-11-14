@@ -17,7 +17,7 @@ dim objConn, objRS, strSQL, cto_nome, tpc_id, cto_permanente, cto_ativado, cto_a
 'On error resume next
 %>
 <br>
-<script language="JavaScript">
+<script type="text/javascript">
 function chk_teste( sel )
 {
 	var d = document.det_circ;
@@ -142,7 +142,7 @@ WEnd
 <button name="btn_OK" type="submit">&nbsp;OK&nbsp;</button>
 </p>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 {
 <%if (tpc_id = "4") then%> 
 	{
@@ -157,7 +157,7 @@ WEnd
 
 </script>
 
-<script language="JavaScript">
+<script type="text/javascript">
 
 function Preenche(){
 document.det_circ.tpc_id.value = '<%= tpc_id %>';

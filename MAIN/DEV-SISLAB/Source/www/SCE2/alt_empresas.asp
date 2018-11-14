@@ -3,7 +3,7 @@
 <!-- #INCLUDE FILE="includes/estado.asp" -->
 <!-- #INCLUDE FILE="includes/abre.asp" -->
 <!-- #INCLUDE FILE="includes/bib_str.asp" -->
-<script language="javascript">
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
 <%

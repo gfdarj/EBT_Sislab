@@ -126,7 +126,7 @@ If Env.UsuarioSCE() Then
 
     '-- se nao for relatorio entao mostro opcoes de mostrar planilha e/ou fazer a movimentacao
     If Not ehRelatorio Then
-%>	<script language="JavaScript">
+%>	<script type="text/javascript">
 	function geraPlanilhaReserva(agnumero) {
 		var sql = "<%=where%>";
 		if(sql.search(/where/gi) == -1) sql += " where "; else sql += " AND ";
@@ -137,15 +137,15 @@ If Env.UsuarioSCE() Then
 	</script>
 <%  end if %>
 
-<table width="100%" class="texto1">
+<table width="100%" >
 <%
     if rec.eof and rec.bof then%>
     <tr>
-	    <td align="center" class="texto1"><i>Nenhuma reserva encontrada !</i></td>
+	    <td align="center" ><i>Nenhuma reserva encontrada !</i></td>
     </tr>
 <%  else %>
     <tr><td class="destaque">Listagem de reservas por ordem de cadastro</td></tr>
-    <tr><td class="texto1"><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
+    <tr><td ><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
 </table>
 
 <br />
@@ -158,7 +158,7 @@ While Not rec.eof
 	obs = rec("RES_OBSERVACAO")
 	If IsNull(obs) Then obs = "" End If
 %>
-<table width="100%" border="0" class="texto1" cellpadding="0" cellspacing="0">
+<table width="100%" border="0"  cellpadding="0" cellspacing="0">
     <tr class="linha_par">
 	    <th>AS</th>
 	    <th>Dt In&iacute;cio</th>
@@ -184,7 +184,7 @@ While Not rec.eof
 
 <center>
 
-<table width="90%" border="0" class="texto1" cellpadding="0" cellspacing="0">
+<table width="90%" border="0"  cellpadding="0" cellspacing="0">
 <%  If Not IsNull(rec("EQ_ID")) Then %>
 
 <%      agtemp = rec("AG_NUMERO") %>
@@ -200,7 +200,7 @@ While Not rec.eof
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			<table width="100%" border="1" class="texto1" cellpadding="2" cellspacing="0" style="border: none ;">
+			<table width="100%" border="1"  cellpadding="2" cellspacing="0" style="border: none ;">
 			<tr>
                 <th>#</th>
 				<th>C&oacute;d Barras</th>
@@ -275,7 +275,7 @@ While Not rec.eof
     	If obs <> "" Then%>
 			<tr>
 				<td colspan="9">
-					<table class="texto1" cellpadding="0" cellspacing="0" width="100%">
+					<table  cellpadding="0" cellspacing="0" width="100%">
 					<tr>
 						<td width="60px" valign="top"><i>Observação:</i></td>
 						<td><i><%=Replace(obs, VbCrLf, "<br>")%></i></td>
@@ -289,7 +289,7 @@ While Not rec.eof
 <%	    ReservaOK = Sce.ReservaFechada(agnumero)
 
 		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
-		    <p align="right"><input type="button" class="texto1" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p align="right"><input type="button"  value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <%	    Elseif ReservaOK then%>
     		<p align="right"><i>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</i></p>
 <%		End if%>
@@ -319,7 +319,7 @@ WEnd
     <input type="hidden" name="tudoAceitoOK" value="SIM">
 </form>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function movimentarAS(ag_numero, total_itens) {
 	var i, oOption, itemOK = true;
 

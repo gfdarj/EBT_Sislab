@@ -52,7 +52,7 @@ if agnumero <> "" then
 		    <table class="table-bordered table-condensed" style="width: 100%;">
 		    <tr>
 			    <td class="realce1" colspan="2">Dados do Agendamento <%=agnumero%></td>
-			    <td width="60px" rowspan="7" align="center" valign="middle"><input type="button" value=" Excluir Agendamento" class="texto1" onclick="javascript:excluirAS(<%=agnumero%>);"></td>
+			    <td width="60px" rowspan="7" align="center" valign="middle"><input type="button" value=" Excluir Agendamento"  onclick="javascript:excluirAS(<%=agnumero%>);"></td>
 		    </tr>
 		    <tr><td width="75px">&nbsp;<b>Tecnologia:</b></td><td>&nbsp;<%=objRS("TEC_NOME")%></td></tr>
 		    <tr><td>&nbsp;<b>Objetivo:</b></td><td>&nbsp;<%=objRS("AG_OBJETIVO")%></td></tr>
@@ -93,10 +93,10 @@ if agnumero <> "" then
 		    </tr>
 		    <tr style="font-weight: bold;"><td width="70px">Nº OS</td><td>Teste</td><td width="150px">&nbsp;</td></tr>
 <%			while not objRS.Eof%>
-    		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
+    		<tr><td><%=objRS("OS_ID")%></td><td><%=objRS("T_TITULO")%>&nbsp;</td><td align="center"><input type="button"  value="Excluir OS <%=objRS("OS_ID")%>" onclick="javascript:excluirOS(<%=agnumero%>,<%=objRS("OS_ID")%>);"></td></tr>
 <%				objRS.MoveNext
 			wend%>
-		    <tr><td colspan="2">&nbsp;</td><td align="center"><input type="button" class="texto1" value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
+		    <tr><td colspan="2">&nbsp;</td><td align="center"><input type="button"  value="Excluir Tudo" onclick="javascript:excluirOS(<%=agnumero%>,-1);"></td></tr>
 		    </table>
 	    </td>
     </tr>
@@ -132,7 +132,7 @@ end if
 <%response.end%>
 
 
-<script language="javascript">
+<script type="text/javascript">
 function chama_as(cod_as) {
 	sel.selecao.value=cod_as;
 	sel.submit();

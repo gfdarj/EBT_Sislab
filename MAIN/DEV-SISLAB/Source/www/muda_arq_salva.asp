@@ -44,8 +44,8 @@ function Erro( msg )
 %>
 <p class="erro" class="texto1b"><%= msg %></p>
 <p align="center">
-	<button class="texto1" onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
-	<button class="texto1" onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
+	<button  onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	<button  onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
 </p>
 <%	Call Tela.MostraRodape()
 end function
@@ -59,7 +59,7 @@ function Terminar( nome_arq )
 	</script>
 	<p align="center">
 		<span class="texto1B" style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
-		<button onclick="javascript:window.close()" class="texto1">&nbsp;Fechar&nbsp;</button>
+		<button onclick="javascript:window.close()" >&nbsp;Fechar&nbsp;</button>
 	</p>
 <%	Call Tela.MostraRodape()
 end function

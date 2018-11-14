@@ -14,7 +14,7 @@ if request("fab_id") <> "" then
 	Set RS = Env.oConn.execute(s)
 	If Not (RS.Eof And RS.Bof) Then
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	var w = window.parent.document.all.mod_id;
 
 	for (var i = w.options.length - 1; i >= 0; i--){
@@ -40,7 +40,7 @@ if request("fab_id") <> "" then
 <%
 	Else
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 	var w = window.parent.document.all.mod_id;
 
 	for (var i = w.options.length - 1; i >= 0; i--){

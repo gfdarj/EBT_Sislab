@@ -54,7 +54,7 @@ else
 end if
 
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 var lge_ativo = "-1";
 function muda_lee( sel )
 {
@@ -201,7 +201,7 @@ loop %>
 </tr>
 </table><%
 if( tpc_id <> "" ) then %>
-<script language="JavaScript">
+<script type="text/javascript">
 document.componente.tpc_id.value = <%= tpc_id %>;
 document.componente.lge_id.value = <%= lge_id %>;
 muda_lee( document.componente.lge_id );

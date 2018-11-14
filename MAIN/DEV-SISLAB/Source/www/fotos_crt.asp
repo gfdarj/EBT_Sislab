@@ -62,7 +62,7 @@ Else
 End If
 %>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function abreJanela(id_arq)
 {
 	var w = window.open('fotos_exibe.asp?arq=' + id_arq, '', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=780,height=500,top=5,left=5');
@@ -80,7 +80,7 @@ If id_Arq > 0 Then
 <%
 Else
 %>
-	<span class="texto1">Nenhuma foto encontrada</span>
+	<span >Nenhuma foto encontrada</span>
 <%
 End If
 %>
@@ -93,7 +93,7 @@ RE
 	'Response.Redirect "Http://" & Request.ServerVariables("SERVER_NAME") & Application("SISLAB_PathRaiz") & Request("URL")
 '	Response.Redirect Request("URL") & "?img=" & Request("Image")
 %>
-	<script language="JavaScript">
+	<script type="text/javascript">
 		//var w;
 		//alert('Janela !!!');
 		//w = window.open('Http://<%'=Request.ServerVariables("SERVER_NAME")%><%'=Application("SISLAB_PathRaiz")%><%=Request("URL")%>', 'FotoCRT', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=460,height=300,top=5,left=5');

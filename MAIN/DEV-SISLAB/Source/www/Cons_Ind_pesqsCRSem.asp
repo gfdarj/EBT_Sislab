@@ -343,47 +343,47 @@ if request("enviou") = "1" then
 <tr>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1, auxR1Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,2,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1, auxR1Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,2,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,3,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,3,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,4,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,4,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,5,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,5,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,6,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,6,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,7,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,7,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,8,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,8,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,9,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,9,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,10,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,10,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,11,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,11,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
-	    <%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br><script language="javascript">document.write(contC(<%=numag%>,12,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
+	    <%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,12,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script></font>
 	</td>
 </tr>
 <tr bgcolor="#666625">

@@ -91,7 +91,7 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 	        <td>
 		        <%call comboAreaTecnologica("areatec", objConn,"N")%>
 		        &nbsp;&nbsp;
-		        <input class="texto1" type="button" value="Buscar" onclick="BuscarUsuario();">
+		        <input  type="button" value="Buscar" onclick="BuscarUsuario();">
 	        </td>
         </tr>
 
@@ -101,7 +101,7 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
         <tr>
 	        <td width="130px"><span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição:</b></td>
-	        <td><input type="text" name="desc" size="60" class="texto1"></td>
+	        <td><input type="text" name="desc" size="60" ></td>
         <tr>
 
         <tr><td colspan="2">&nbsp;</td></tr>

@@ -212,7 +212,7 @@ If Env.UsuarioSCE() Then
     'response.write enf_id & "   NF:" & nf_id
     'response.end
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 var frm = document.forms[0];
 
 function validaMovimentacao() {
@@ -313,7 +313,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 <input type="hidden" name="ehReserva" value="NAO">
 <input type="hidden" name="recarregouform" value="SIM">
 <input type="hidden" name="status" value="<%=status_eq%>">  <!-- pego o estado dos itens consultados para movimentar -->
-<table width="100%" border="0" CLASS="texto1">
+<table width="100%" border="0" >
 <%
 '-- Se alterei uma movimentacao exibe uma msg de confirmaçao OK
     if request("alterouOK") = "1" then%>
@@ -347,11 +347,11 @@ function ValidaEquipamentosSubstituidos(eqs)
 
 <tr>
 	<td>
-		<table cellpadding="0" width="100%" CLASS="texto1">
+		<table cellpadding="0" width="100%" >
 		<tr>
 			<td width="200px">
 				Tipo de Movimentação:<br>
-				<select name="notipo" class="texto1" onChange="javascript:atualizarNO(this.value);">
+				<select name="notipo"  onChange="javascript:atualizarNO(this.value);">
 					<option value="">--</option>
 <%if Env.PerfilSce = PERFIL_ADM or (status_eq = CStr(STATUS_EXPEDIDO) or status_eq = CStr(STATUS_EXPEDIDO_SUBST) or status_eq = CStr(STATUS_CADASTRADO)) then%>
 						<option value="<%=MOV_ENTRADA%>" <%if tipo = MOV_ENTRADA then response.write "selected"%>>Entrada</option>
@@ -370,7 +370,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 			<td align="left" width="*">
 				Natureza de Operação:<br>
 				<div id="div_noid" align="left">
-				<select name="noid" id="noid" class="texto1" onChange="javascript:atualizarNOCampos(this.value);">
+				<select name="noid" id="noid"  onChange="javascript:atualizarNOCampos(this.value);">
 				<option value="">--</option>
 				</select>
 				</div>
@@ -384,7 +384,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 	<td valign="top"><br>
 		Fornecedor:<br>
 		<%=Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			//document.all.enf_id.onchange = enviaDados;
 		</script>
 	</td>
@@ -406,11 +406,11 @@ function ValidaEquipamentosSubstituidos(eqs)
 
 <tr>
 	<td>
-		<table width="450px" class="texto1" cellpadding="0" cellspacing="0">
+		<table width="450px"  cellpadding="0" cellspacing="0">
 		<tr>
 			<td valign="top" id="id_documento" style="display:none;"><br>
 				Documento:<br>
-				<select name="doc_id" class="texto1">
+				<select name="doc_id" >
 					<option value=0></option>
 <%			ssql = "select * from sce_documentacao order by doc_id"
 			set rec = Env.oconn.execute(ssql)
@@ -422,10 +422,10 @@ function ValidaEquipamentosSubstituidos(eqs)
 			end if%>
 				</select>
 			</td>
-			<td valign="top" CLASS="texto1"><br>
+			<td valign="top" ><br>
 				<div id="id_cde" style="display:none;">
 				CDE:<br>
-				<input type="text" name="cde" class="texto1" value="<%=cde%>"><br>
+				<input type="text" name="cde"  value="<%=cde%>"><br>
 				</div>
 			</td>
 		</tr>
@@ -435,11 +435,11 @@ function ValidaEquipamentosSubstituidos(eqs)
 
 <tr>
 	<td>
-		<table class="texto1" cellpadding="0" cellspacing="0">
+		<table  cellpadding="0" cellspacing="0">
 		<tr>
 			<td valign="top" width="200px"><br>
 				Solicitante:<br>
-				<input type="text" name="solicitante" class="texto1" value="<%=mov_solicitante%>">
+				<input type="text" name="solicitante"  value="<%=mov_solicitante%>">
 				<br>
 			</td>
 			<td id="id_calibracao" style="display:none;">
@@ -452,7 +452,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 </tr>
 
 <tr id="id_asa" style="display:none;">
-	<td valign="top" CLASS="texto1" colspan="2"><br>
+	<td valign="top"  colspan="2"><br>
 		AS:<br>
         <%=Combo.MeusAgendamentos(False, "txtAg_numero", "ag_numero", asa, "N")%> <br>
 	</td>
@@ -462,13 +462,13 @@ function ValidaEquipamentosSubstituidos(eqs)
 <tr>
 	<td>
 		Localização: (<i>Informar apenas quando for devolução</i>)<BR>
-		<input type="text" class="texto1" name="localizacao" size="25" value="">
+		<input type="text"  name="localizacao" size="25" value="">
 	</td>
 </tr>
 
 <tr>
 	<td valign="top" width="100px">
-		<table class="texto1" cellpadding="2" cellspacing="0" border="0" width="400px">
+		<table  cellpadding="2" cellspacing="0" border="0" width="400px">
 		<tr>
 			<td><Br>Data Real da Movimentação:<br><%=Combo.Data("Mov")%></td>
 			<td><Br>Hora da Movimentação:<br><%=Combo.Horario("Mov")%></td>
@@ -479,7 +479,7 @@ function ValidaEquipamentosSubstituidos(eqs)
 
 <tr id="id_substituicaoeq" style="display:none;">
     <td>
-		<table width="100%" class="texto1" cellpadding="0" cellspacing="0" border="0">
+		<table width="100%"  cellpadding="0" cellspacing="0" border="0">
         <tr><td>&nbsp;</td></tr>
         <tr><td class="destaque">Item(ns) movimentados (preencha se houve a troca ou substituição de SGP)</td></tr>
         <tr>
@@ -489,7 +489,7 @@ function ValidaEquipamentosSubstituidos(eqs)
            "FROM vw_SCE_Equipamentos_Fabricantes " & _
            "WHERE EQ_ID IN (" & eq_id & ")"
     Set RS = Env.oConn.Execute(ssql) %>
-		        <table class="texto1" cellpadding="2" cellspacing="2" border="0">
+		        <table  cellpadding="2" cellspacing="2" border="0">
 		        <tr><th>Cód. Barras (novo)</th><th>Modelo</th><th>Situação</th><th>Cód. Barras Anterior (substituído)</th></tr>
 <%  Dim sclasse
     linha=0
@@ -505,14 +505,14 @@ function ValidaEquipamentosSubstituidos(eqs)
 			        <td class="<%=sclasse%>"><%=RS("MOD_CODNOME")%></td>
 			        <td class="<%=sclasse%>"><%=RS("DESC_STATUS")%></td>
 			        <td class="<%=sclasse%>" align="center">
-			            <input type="text" class="texto1" name="eq_id<%=RS("EQ_ID")%>" id="id<%=RS("EQ_ID")%>" value="<%=RS("EQ_CODIGOBARRASANTERIOR")%>" maxlength="16" size="21" onblur="javascript:TestaEquipamento(this, <%=RS("EQ_ID")%>, false);" onkeyup="javascript:TestaEquipamento(this, <%=RS("EQ_ID")%>, true);" onkeypress="javascript:onlynum(this);">
+			            <input type="text"  name="eq_id<%=RS("EQ_ID")%>" id="id<%=RS("EQ_ID")%>" value="<%=RS("EQ_CODIGOBARRASANTERIOR")%>" maxlength="16" size="21" onblur="javascript:TestaEquipamento(this, <%=RS("EQ_ID")%>, false);" onkeyup="javascript:TestaEquipamento(this, <%=RS("EQ_ID")%>, true);" onkeypress="javascript:onlynum(this);">
 			        </td>
 			        <td id="linhaEQ_ID<%=RS("EQ_ID")%>">&nbsp;</td>
 		        </tr>
 <%      RS.MoveNext
         linha = linha + 1
     WEnd %>
-                <script language="javascript">
+                <script type="text/javascript">
                     function TestaEquipamento(eu, eq_id, keypress) {
                         if (eu.value != '') {
                             //chama a função para testar o equipamento
@@ -551,18 +551,18 @@ function ValidaEquipamentosSubstituidos(eqs)
 </tr>
 
 <tr>
-	<td valign="top" CLASS="texto1"><br><%
+	<td valign="top" ><br><%
 if Ok_Alterar_Mov then%>
-		<input type="button" value=" Alterar este Movimento " class="texto1" onClick="javascript:validaMovimentacao();"><%
+		<input type="button" value=" Alterar este Movimento "  onClick="javascript:validaMovimentacao();"><%
 else%>
-		<input type="button" value=" Movimentar " class="texto1" onClick="javascript:validaMovimentacao();"><%
+		<input type="button" value=" Movimentar "  onClick="javascript:validaMovimentacao();"><%
 end if
 %>		<br>
 	</td>
 </tr>
  </table>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 <%if tipo <> "" then%>
 document.formulario.notipo.value='<%=tipo%>';
 atualizarNO(<%=tipo%>);
@@ -592,7 +592,7 @@ document.all.fl_calibracao.checked = true;
 
 
 
-<script language="javascript">
+<script type="text/javascript">
     /*	function controleFornecedor(exibir) {
     if (exibir == 'none') {
     }

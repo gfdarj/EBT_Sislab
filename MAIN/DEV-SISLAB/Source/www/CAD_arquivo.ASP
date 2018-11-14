@@ -81,7 +81,7 @@ End if
 
 %>
 <script language="javascript" src="includes/anexo.js"></script>
-<script language="javascript">
+<script type="text/javascript">
     function adiciona(chave, item1, lista) {
     // funcao que acrescenta um item em uma lista
 	    lista.options[lista.options.length] = new Option(item1, chave);
@@ -502,7 +502,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 				<td colspan="6">
 					<b>Agendamento:</b><br>
 	
-		<script language="JavaScript">
+		<script type="text/javascript">
     	    function adicionaAgendamento()
 			{
 				var combo = document.formulario.agendamento
@@ -693,9 +693,9 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			<tr>
 				<td colspan="2" valign="top">
 					<b>Vers&atilde;o do Documento:</b><br>
-					<input type="text" name="o1" value="<%=auxo1%>" maxlength="2" size="2" class="texto1">&nbsp;.&nbsp;
-					<input type="text" name="o2" value="<%=auxo2%>" maxlength="2" size="2" class="texto1">&nbsp;.&nbsp;
-					<input type="text" name="o3" value="<%=auxo3%>" maxlength="3" size="3" class="texto1">
+					<input type="text" name="o1" value="<%=auxo1%>" maxlength="2" size="2" >&nbsp;.&nbsp;
+					<input type="text" name="o2" value="<%=auxo2%>" maxlength="2" size="2" >&nbsp;.&nbsp;
+					<input type="text" name="o3" value="<%=auxo3%>" maxlength="3" size="3" >
 				</td>
 				<td>&nbsp;</td>
 
@@ -720,7 +720,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 				</td>
 				<td colspan="5" valign="top">
 					<b>Observa&ccedil;&atilde;o:</b><br>
-					<textarea class="texto1" name="observacao" cols="45" rows="3"><%= auxobservacao %></textarea>
+					<textarea  name="observacao" cols="45" rows="3"><%= auxobservacao %></textarea>
 				</td>
 			</tr>
 			<tr><td colspan="10">&nbsp;</td></tr>

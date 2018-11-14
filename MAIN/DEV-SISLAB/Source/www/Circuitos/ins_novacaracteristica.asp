@@ -24,7 +24,7 @@ if novacarac <> "" then
 	end with
 	call Env.StoredProcedure( false, objSP, "SP_FAC_CADASTRA_CARACTERISTICA")
 
-%><script language="JavaScript"><%
+%><script type="text/javascript"><%
 	if ret > 0 then%>
 		window.parent.opener.ad_novo("<%=novacarac%>", "<%=ret%>");
 		window.parent.close();

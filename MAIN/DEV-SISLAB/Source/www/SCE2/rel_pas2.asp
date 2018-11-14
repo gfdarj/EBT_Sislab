@@ -72,7 +72,7 @@ End Function
 
 Sub ImprimeListaPassagem(objconn, objRS, tipo, ag)%>
 <%	if not (objRS.Eof and objRS.bof) then%>
-<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 <tr>
 <%'		if tipo = "ORIG" or ag <> "" then%>
 	<th align="left" width="65px">AS Origem</th>
@@ -111,7 +111,7 @@ Sub ImprimeListaPassagem(objconn, objRS, tipo, ag)%>
 		wend%>
 </table>
 <%	else%>
-<p align="center" class="texto1"><i>Nenhuma carga encontrada</i></p>
+<p align="center" ><i>Nenhuma carga encontrada</i></p>
 <%	end if
 End Sub
 %>

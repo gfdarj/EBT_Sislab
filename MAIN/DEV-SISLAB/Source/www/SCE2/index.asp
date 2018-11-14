@@ -29,11 +29,11 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%" class="texto1" cellpadding="2" cellspacing="2" border="0">
+<table class="largura-total table-condensed">
 <tr>
-	<td valign="top">
-		<table width="100%" class="texto1" border="0" cellpadding="4" cellspacing="0">
-		<tr valign="top">
+	<td style="vertical-align: top;">
+		<table class="largura-total table-condensed">
+		<tr style="vertical-align: top;">
 			<td>
 				<%'Call ImprimeControles(CONTROLE_CALIBRACAO, "Cód. Barras", "Vencimento")%>
 				<%Call ImprimeControleSaidaParaManutencao()%>
@@ -49,8 +49,8 @@ If Env.UsuarioSCE() Then
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td valign="top">
-		<table width="100%" class="texto1" border="0" cellpadding="4" cellspacing="0">
+	<td style="vertical-align: top;">
+		<table class="largura-total table-condensed">
 		<tr valign="top">
 			<td><%Call ImprimeControlesNotaFiscalVencida()%></td>
 		</tr>
@@ -91,35 +91,37 @@ Sub ImprimeControlesSaidaCalibracao()
 			"ORDER BY CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) ASC"
 	Set RS = Env.oConn.Execute(sSql)
 
-	url_xls = "<div align='right'><a href=""../excel.asp?titulo=" & sTitulo & "&sql=" & Server.UrlEncode(sSql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+	url_xls = Link2Xls(sTitulo, Server.UrlEncode(sSql))
 %>
-				<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+				<table class="largura-total table-condensed table-bordered">
 				<tr>
 					<td>
-						<b>
-						<table width="100%" border="0" class="texto1">
-						<tr><td><b><font color='navy'><%=sTitulo%></font></b></td><td align="right"><%=url_xls%></td></tr>
+						<table class="largura-total table-condensed">
+						<tr>
+                            <td><strong class="text-info"><%=sTitulo%></strong></td>
+                            <td class="texto-direito"><%=url_xls%></td>
+						</tr>
 						</table>
 
 						<div style="overflow: auto; height: 140px;">
-							<table width="100%" class="texto1">
+							<table class="largura-total">
 <%
 	If Not (RS.eof And RS.bof) Then%>
-							<tr><th align="left">Cód. Barras</th><th align="left">Local</th><th align="center">CDE</th><th align="left">Dt.Prox.Calib.</th></tr>
+							<tr><th>Cód. Barras</th><th>Local</th><th class="texto-centralizado">CDE</th><th>Dt.Prox.Calib.</th></tr>
 <%      total = 0 %>
 <%		While Not RS.Eof%>
 							<tr>
 								<td><%=Sce.LinkEquipamento(RS("EQ_ID"), RS("EQ_CODIGOBARRAS_M"), False)%></td>
-								<td align="center"><%=ConverteNuloHTML(RS("EQ_LOCALIZACAO_M"))%></td>
-								<td align="center"><%=ConverteNuloHTML(RS("CDE_M"))%></td>
-								<td align="center"><%=ConverteNuloHTML(RS("DT_PROX_CALIBRACAO_M"))%></td>
+								<td class="texto-centralizado"><%=ConverteNuloHTML(RS("EQ_LOCALIZACAO_M"))%></td>
+								<td class="texto-centralizado"><%=ConverteNuloHTML(RS("CDE_M"))%></td>
+								<td class="texto-centralizado"><%=ConverteNuloHTML(RS("DT_PROX_CALIBRACAO_M"))%></td>
 							</tr>
 <%			RS.MoveNext
             total = total + 1
 		WEnd%>
-							<tr><td colspan="2" align="right"><i>Total de itens: <%=total%></i></td></tr>
+							<tr><td colspan="4" class="texto-direito"><small>Total de itens: <%=total%></small></td></tr>
 <%	Else
-%>							<tr><td colspan="2"><i>Nenhum item encontrado</i></td></tr><%
+%>							<tr><td colspan="4" class="texto-centralizado"><small>Nenhum item encontrado</small></td></tr><%
 	End if%>				</table>
 						</div>
 					</td>
@@ -149,36 +151,38 @@ Sub ImprimeControleSaidaParaManutencao()
 			"      AND GETDATE() > m.MOV_DATA + 90"
 	Set RS = Env.oConn.Execute(sSql)
 
-	url_xls = "<div align='right'><a href=""../excel.asp?titulo=" & sTitulo & "&sql=" & Server.UrlEncode(sSql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+	url_xls = Link2Xls(sTitulo, Server.UrlEncode(sSql))
 %>
-				<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+				<table class="largura-total table-condensed table-bordered">
 				<tr>
 					<td>
-						<b>
-						<table width="100%" border="0" class="texto1">
-						<tr><td><b><font color='navy'><%=sTitulo%></font></b></td><td align="right"><%=url_xls%></td></tr>
+						<table class="largura-total table-condensed">
+						<tr>
+                            <td><strong class="text-info"><%=sTitulo%></strong></td>
+                            <td class="texto-direito"><%=url_xls%></td>
+						</tr>
 						</table>
 
 						<div style="overflow: auto; height: 140px;">
-							<table width="100%" class="texto1">
+							<table class="largura-total">
 <%
 	If Not (RS.eof And RS.bof) Then%>
-							<tr><th>&nbsp;</th><th align="left">Cód. Barras</th><th align="center">CDE</th><th align="left">Dt. Saída</th><th align="right">Dias</th></tr>
+							<tr><th>&nbsp;</th><th>Cód. Barras</th><th class="texto-centralizado">CDE</th><th>Dt. Saída</th><th class="texto-direito">Dias</th></tr>
 <%      total = 0 %>
 <%		While Not RS.Eof%>
-							<tr bgcolor="<%'=IIf(RS("FL_CALIBRACAO") = 1, "#CCFFFF", "#FFFFCC")%>">
-								<td><%=IIf(RS("FL_CALIBRACAO") = 1, "<font color='#000099'>C</font>", "<font color='#009900'>M</font>")%></td>
+							<tr>
+								<td><%=IIf(RS("FL_CALIBRACAO") = 1, "<span class='text-warning'>c</span>", "<span class='text-success'>m</span>")%></td>
 								<td><%=Sce.LinkEquipamento(RS("EQ_ID"), RS("EQ_CODIGOBARRAS_M"), False)%></td>
-								<td align="center"><%=ConverteNuloHTML(RS("CDE_M"))%></td>
+								<td class="texto-centralizado"><%=ConverteNuloHTML(RS("CDE_M"))%></td>
 								<td><%=ConverteNuloHTML(RS("DT_SAIDA_M"))%></td>
-								<td align="right"><%=ConverteNuloHTML(RS("QTD_DIAS_M"))%></td>
+								<td class="texto-direito"><%=ConverteNuloHTML(RS("QTD_DIAS_M"))%></td>
 							</tr>
 <%			RS.MoveNext
             total = total + 1
 		WEnd%>
-							<tr><td colspan="2" align="right"><i>Total de itens: <%=total%></i></td></tr>
+							<tr><td colspan="5" class="texto-direito"><small>Total de itens: <%=total%></small></td></tr>
 <%	Else
-%>							<tr><td colspan="2"><i>Nenhum item encontrado</i></td></tr><%
+%>							<tr><td colspan="5" class="texto-centralizado"><small>Nenhum item encontrado</small></td></tr><%
 	End if%>				</table>
 						</div>
 					</td>
@@ -235,38 +239,39 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 	'exit sub
 	Set rec = Env.oConn.Execute(s)
 
-	url_xls = "<div align='right'><a href=""../excel.asp?titulo=" & Titulo & "&sql=" & Server.UrlEncode(s) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+	url_xls = Link2Xls(Titulo, Server.UrlEncode(s))
 %>
-				<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+				<table class="largura-total table-condensed table-bordered">
 				<tr>
 					<td>
-						<b>
-						<table width="100%" border="0" class="texto1">
+						<table class="largura-total table-condensed">
 <%
 	if tipo = CONTROLE_CALIBRACAO then %>
-						<tr><td><b>Calibração e Qualificação</b></td><td align="right"><%=url_xls%></td></tr>
+						<tr><td><b>Calibração e Qualificação</b></td><td class="texto-direito"><%=url_xls%></td></tr>
 						<tr><td colspan="2"><i>(Vencidas ou &agrave; vencer)</i></td></tr>
 <%	elseif tipo = CONTROLE_MANUTENCAO then %>
-						<tr><td><b>Manut. <font color='red'>C</font>orretiva/<font color='blue'>P</font>reventiva</b></td><td align="right"><%=url_xls%></td></tr>
+						<tr><td><b>Manut. <font color='red'>C</font>orretiva/<font color='blue'>P</font>reventiva</b></td><td class="texto-direito"><%=url_xls%></td></tr>
 						<tr><td colspan="2"><i>(Vencidas ou &agrave; vencer)</i></td></tr>
 <%	else %>
-						<tr><td><b><font color='#ff0000'>Não Conformidades</font></b></td><td align="right"><%=url_xls%></td></tr>
+						<tr><td><b><font color='#ff0000'>Não Conformidades</font></b></td><td class="texto-direito"><%=url_xls%></td></tr>
 						<tr><td colspan="2">&nbsp;</td></tr>
 <%	end if %>
 						</table>
 
 						<div style="overflow: auto; height: 140px;">
-							<table width="100%" class="texto1">
+							<table class="largura-total">
 <%
 	if not (rec.eof and rec.bof) then%>
-							<tr><th align="left"><%=chr_Titulo1%></th><th align="left"><%=chr_Titulo2%></th></tr>
+							<tr><th><%=chr_Titulo1%></th><th><%=chr_Titulo2%></th></tr>
 <%      total = 0 %>
 <%		while not rec.eof%>
-							<tr><td><%=ImprimeTipoManutencaoHTML(rec("TIPO"))%><%=ConverteNuloHTML(rec("Código Barras_M"))%></td><td><%=ConverteNuloHTML(rec("Status_M"))%></td></tr>
+							<tr>
+                                <td><%=ImprimeTipoManutencaoHTML(rec("TIPO"))%><%=ConverteNuloHTML(rec("Código Barras_M"))%></td><td><%=ConverteNuloHTML(rec("Status_M"))%></td>
+							</tr>
 <%			rec.moveNext
             total = total + 1
 		wend%>
-							<tr><td colspan="2" align="right"><i>Total de itens: <%=total%></i></td></tr>
+							<tr><td colspan="2" class="texto-direito"><i>Total de itens: <%=total%></i></td></tr>
 <%	else
 %>							<tr><td colspan="2"><i>Nenhum item encontrado</i></td></tr><%
 	end if%>				</table>
@@ -293,23 +298,25 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 		" AND EQ_CONFORME = 0"
 	s = s & "ORDER BY DESC_STATUS, EQ_CODIGOBARRAS"
 
-	url_xls = "<div align='right'><a href=""../excel.asp?titulo=" & Titulo & "&sql=" & Server.UrlEncode(s) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
+	url_xls = Link2Xls(Titulo, Server.UrlEncode(s))
 
 	'response.write s
-%>				<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+%>				<table class="largura-total table-condensed table-bordered">
 				<tr>
 					<td>
-						<b>
-						<table width="100%" border="0" class="texto1">
-						<tr><td><b><font color='#ff0000'><%=Titulo%></font></b></td><td align="right"><%=url_xls%></td></tr>
+						<table class="largura-total table-condensed">
+						<tr>
+                            <td><strong class="text-danger"><%=Titulo%></strong></td>
+                            <td class="texto-direito"><%=url_xls%></td>
+						</tr>
 						</table>
 						
 						<div style="overflow: auto; height: 140px;">
-							<table width="100%" class="texto1">
+							<table class="largura-total">
 <%
 	Set rec = Env.oConn.Execute(s)
 	if not (rec.eof and rec.bof) then%>
-							<tr><th align="left"><%=chr_Titulo1%></th><th align="left"><%=chr_Titulo2%></th><th align="left"><%=chr_Titulo3%></th><th align="left"><%=chr_Titulo4%></th></tr>
+							<tr><th><%=chr_Titulo1%></th><th><%=chr_Titulo2%></th><th><%=chr_Titulo3%></th><th><%=chr_Titulo4%></th></tr>
 <%      total = 0 %>
 <%		while not rec.eof%>
 							<tr>
@@ -317,9 +324,11 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 								<td><%=ConverteNuloHTML(IIf(Len(rec("Modelo_M")) > 10 , Left(rec("Modelo_M"), 10) & "...", rec("Modelo_M")))%></td>
 								<td><%
 									If CStr(rec("Cod. Status")) = CStr(STATUS_EM_USO) Then 
-										Response.Write "<font color='red' style='color:red'><b>"
+										Response.Write "<span class='text-danger'>"
+                                    Else
+										Response.Write "<span>"
 									End If
-									Response.Write ConverteNuloHTML(rec("Status_M")) & "</font>"
+									Response.Write ConverteNuloHTML(rec("Status_M")) & "</span>"
 									%>
 								</td>
 								<td><%=ConverteNuloHTML(rec("EQ_LOCALIZACAO_M"))%></td>
@@ -327,9 +336,9 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 <%			rec.moveNext
             total = total + 1
 		wend %>
-							<tr><td colspan="3" align="right"><i>Total de itens: <%=total%></i></td></tr>
+							<tr><td colspan="3" class="texto-direito"><small>Total de itens: <%=total%></small></td></tr>
 <%	else
-%>							<tr><td colspan="3"><i>Nenhum item encontrado</i></td></tr><%
+%>							<tr><td colspan="3"><small>Nenhum item encontrado</small></td></tr><%
 	end if%>				</table>
 						</div>
 					</td>
@@ -407,14 +416,15 @@ Sub ImprimeControlesNotaFiscalVencida()
 	s = s & "ORDER BY " & VbCrLf
 	s = s & "	ag.AG_RESPONSAVEL, ag.AG_NUMERO DESC, emp.ENF_NOME, nf.NF_NUMERONOTA, e.EQ_CODIGOBARRAS" & VbCrLf
 
-	url_xls = "<div align='right'><a href=""../excel.asp?titulo=" & Titulo & "&sql=" & Server.UrlEncode(s_xls) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"%>
-				<table width="100%" class="texto1" border="1" cellpadding="2" cellspacing="0">
+	url_xls = Link2Xls(Titulo, Server.UrlEncode(s_xls))
+%>
+				<table class="largura-total table-condensed table-bordered">
 				<tr>
 					<td>
-						<table width="100%" class="texto1" border="0" cellpadding="0" cellspacing="2">
+						<table class="largura-total table-condensed">
 						<tr>
-							<td width="50%"><b><font color='navy'>Notas Fiscais Vencidas</font></b></td>
-							<td align="right"><%=url_xls%>	</td>
+							<td><strong class="text-info">Notas Fiscais Vencidas</strong></td>
+							<td class="texto-direito"><%=url_xls%>	</td>
 						</tr>
 						</table>
 					</td>
@@ -422,7 +432,7 @@ Sub ImprimeControlesNotaFiscalVencida()
 				<tr>
 					<td>
 						<div style="overflow: auto; height: 190px;">
-							<table width="100%" class="texto1">
+							<table class="largura-total table-condensed">
 <%	'response.write s
 	Set rec = Env.oConn.Execute(s)
 	if not (rec.eof and rec.bof) then
@@ -430,14 +440,14 @@ Sub ImprimeControlesNotaFiscalVencida()
 		int_nfid = -1
 %>
 							<tr>
-								<th align="left">AS</th>
-								<th align="left">RT</th>
-								<th align="left">NF</th>
-								<th align="left">Vencimento</th>
-								<th align="left">Empresa</th>
-								<th align="left">Equipamento</th>
-								<th align="left">Descrição</th>
-								<th align="left">Local</th>
+								<th>AS</th>
+								<th>RT</th>
+								<th>NF</th>
+								<th>Vencimento</th>
+								<th>Empresa</th>
+								<th>Equipamento</th>
+								<th>Descrição</th>
+								<th>Local</th>
 							</tr>
 <%      total = 0
 		'chr_User = "CTERRA"   'debug
@@ -484,10 +494,10 @@ Sub ImprimeControlesNotaFiscalVencida()
 		WEnd
 %>
 							<tr>
-								<td colspan="8" align="right">
-									<i>Total de Notas Fiscais: <%=int_TotalNota%></i>
+								<td colspan="8" class="texto-direito">
+									<small>Total de Notas Fiscais: <%=int_TotalNota%></small>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<i>Total de itens: <%=total%></i>
+									<small>Total de itens: <%=total%></small>
 								</td>
 							</tr>
 <%	else
@@ -501,9 +511,14 @@ End Sub
 
 Function ImprimeTipoManutencaoHTML(tipo)
 	If tipo = CONTROLE_MANUTENCAO Then
-		ImprimeTipoManutencaoHTML = "<font color='Red' title='Corretiva'><b>c</b></font>"
+		ImprimeTipoManutencaoHTML = "<strong class='text-danger' title='Corretiva'>c</strong>"
 	ElseIf tipo = CONTROLE_MANUTENCAO_PREVENTIVA Then
-		ImprimeTipoManutencaoHTML = "<font color='Blue' title='Corretiva'><b>p</b></font>"
+		ImprimeTipoManutencaoHTML = "<strong class='text-warning' title='Preventiva'>p</strong>"
 	End If
+End Function
+
+
+Function Link2Xls(titulo, sql)
+    Link2Xls = "<div class='texto-direito'><a class='text-success' href='../excel.asp?titulo=" & titulo & "&sql=" & Server.UrlEncode(sql) & "' target='_blank' alt='Exporta esta listagem para o Excel'><strong>XLS</strong></a></div>"
 End Function
 %>

@@ -101,7 +101,7 @@ rs_agendamento.Close
 set rs_agendamento = nothing
 %>
 
-<script language="JavaScript">
+<script type="text/javascript">
 var msgMotivo,remarca
 msgMotivo = "O campo 'Motivo do Cancelamento' deve ser preenchido."
 remarca = 0
@@ -320,15 +320,15 @@ function PreparaCampos(f)
     <p >
         <div style="vertical-align: top; margin-left: 10px;">
             <div style="display:inline-block; vertical-align:top;">Motivo do Cancelamento:</div>
-	        <div style="display:inline-block; vertical-align: top;"><TEXTAREA class="texto1" cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA></div>
+	        <div style="display:inline-block; vertical-align: top;"><TEXTAREA  cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA></div>
         </div>
     </p>
 
     <br>
 
     <p align="center"> 
-        <input class="texto1" type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
-        <input class="texto1" type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
+        <input  type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
+        <input  type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
     </p>
 
 </form>

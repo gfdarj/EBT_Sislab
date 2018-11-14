@@ -26,17 +26,17 @@ function navselecao()
 }
 </script>
 <form name="formulario" method="post" action="rel_nf2.asp">
-<table width="100%" class="texto1">
+<table width="100%" >
 	<tr>
 	    <td>
-			<table cellpadding="0" cellspacing="0" class="texto1">
+			<table cellpadding="0" cellspacing="0" >
 				<tr>
 					<td>
-						Número da Nota:&nbsp;<input type="text" name="nf_numeronota" class="texto1" size="10">
+						Número da Nota:&nbsp;<input type="text" name="nf_numeronota"  size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--						CFOP:&nbsp;<input type="text" name="nf_cfop" class="form" size="7"> -->
 						Tipo:&nbsp;
-						<select name="tiponota" class="texto1">
+						<select name="tiponota" >
 						<option value="">--</option>
 						<option value="<%=NF_ENTRADA%>">Entrada</option>
 						<option value="<%=NF_SAIDA%>">Sa&iacute;da</option>
@@ -95,7 +95,7 @@ function navselecao()
 	<tr>
 		<td colspan="2">
 		Ordenar resultado por&nbsp;
-		<select name="ordenacao" class="texto1">
+		<select name="ordenacao" >
 			<option value="0" selected>Nota Fiscal</option>
 			<option value="1">Fornecedor, Data Vencimento, Nota Fiscal</option>
 			<option value="2">Data Vencimento, Fornecedor, Nota Fiscal</option>
@@ -103,7 +103,7 @@ function navselecao()
 		</td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
-	<tr><td><input type=submit value=" Gerar " class="texto1"></td></tr>
+	<tr><td><input type=submit value=" Gerar " ></td></tr>
 </table>
 </form>
 <%

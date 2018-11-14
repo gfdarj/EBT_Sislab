@@ -16,7 +16,7 @@ Response.Addheader "Pragma","no-cache"
 	<link rel="stylesheet" href="includes/style.css">
 </head>
 <script language="JavaScript" src="includes/qtd_caract.js"></script>
-<script language="JavaScript">
+<script type="text/javascript">
 function DadosLocal(eu)
 {	var f = document.all;
 	if( eu.value == "" )
@@ -115,7 +115,7 @@ Call MostraHeader
 </table>
 </form>
 <iframe name="escondido" frameborder="0" style="display:none; width:300px; height:100px;"></iframe>
-<script language="JavaScript">
+<script type="text/javascript">
 <%if request.querystring("local") <> "" then%>
 	DadosLocal( document.formulario.local );
 	document.formulario.local.value="<%=request.querystring("local")%>";

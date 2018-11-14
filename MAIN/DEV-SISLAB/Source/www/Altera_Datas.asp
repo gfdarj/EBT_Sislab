@@ -221,7 +221,7 @@ if numAS <> "" then%>
 		s = s & "order by AG_NUMERO, HD_MARCACAO"
 		objRS.Open s, Env.oConn
 		if not objRS.Eof then%>
-<script language="JavaScript">
+<script type="text/javascript">
 // Passo o ID da tabela por parametro para cada linha
 function AtualizaHistorico_Datas(id_tabela, hd_datainicio, hd_datatermino, hd_motivo) {
 	f = document.all.frmHistorico_Datas;
@@ -300,7 +300,7 @@ function ExcluiHistorico_Datas(id_tabela)	{
 		's = s & "order by AG_NUMERO, he.HE_ID"
 		objRS.Open s, Env.oConn
 		if not objRS.Eof then%>
-<script language="JavaScript">
+<script type="text/javascript">
 // Passo o ID da tabela por parametro para cada linha
 function AtualizaHistorico_Eventos(id_tabela, he_datainicio, he_datatermino, he_motivo) {
 	f = document.all.frmHistorico_Eventos;
@@ -382,7 +382,7 @@ function ExcluiHistorico_Eventos(id_tabela)	{
 		's = s & "order by AG_NUMERO, he.OS_ID, he.HEOS_ID"
 		objRS.Open s, Env.oConn
 		if not objRS.Eof then%>
-<script language="JavaScript">
+<script type="text/javascript">
 // Passo o ID da tabela por parametro para cada linha
 function AtualizaHistorico_EventosOS(id_tabela, heos_datainicio, heos_datatermino, heos_motivo) {
 	f = document.all.frmHistorico_EventosOS;

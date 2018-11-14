@@ -27,7 +27,7 @@
 <!--#include file="includes\verificaResolucao.inc"-->
 <!-- Funcao isDate (data), onde data = dd/mm/aaaa -->
 <script type="text/javascript" src="includes\isDate.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 function getCookieVal (offset) 
 {
 	var endstr = document.cookie.indexOf (";", offset);

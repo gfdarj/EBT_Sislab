@@ -47,7 +47,7 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
 %>
 <script language="javascript" src="includes/anexo.js"></script>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function Historico(){
 	var strurl
 	strurl = "eventosinternos.asp?hdnEvento=10&num_os=" + '<%=num_os%>' + "&num_ag=" + '<%=num_ag%>'
@@ -225,8 +225,8 @@ End If
 </tr>
 <tr>
 	<td id="dadosSituacao3">Motivo ( Somente em caso de mudança de Situação ):</font><br>
-		<textarea name="motivo" class="texto1" cols="110" rows="4"><%=motivo%></textarea>
-		<textarea name="motivo_old" class="texto1" style="display:none;"><%=motivo%></textarea>
+		<textarea name="motivo"  cols="110" rows="4"><%=motivo%></textarea>
+		<textarea name="motivo_old"  style="display:none;"><%=motivo%></textarea>
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
@@ -284,7 +284,7 @@ End If
 </tr>
 <tr>
 	<td colspan="2">Observação:<br>
-			<textarea name="obs" class="texto1" cols=110 rows=4 ><%=os_observacoes%></textarea>
+			<textarea name="obs"  cols=110 rows=4 ><%=os_observacoes%></textarea>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>

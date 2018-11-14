@@ -20,12 +20,12 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <form name="formulario" action="rel_equipamento2.asp" method="post">
-<table class="texto1">
+<table >
 <tr><td colspan="2" valign="middle" class="destaque">Selecione o Item:</td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td width="40%">
-		Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25">
+		Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
 	</td>
 	<td>
 		Fabricantes:&nbsp;
@@ -36,25 +36,25 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Modelo:&nbsp;<input type=text name=modelo class="texto1"></td>
-	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo" class="texto1" size="50"></td>
+	<td>Modelo:&nbsp;<input type=text name=modelo ></td>
+	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo"  size="50"></td>
 </tr>
 
 <tr class="texto"><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">
-		Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50">
+		Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="50">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		Controle do Instrumental:&nbsp;
-		<select name="controle" class="texto1">
+		<select name="controle" >
 			<option value="">--</option>
 			<option value="<%=CONTROLE_CALIBRACAO%>">Calibra&ccedil;&atilde;o</option>
 			<option value="<%=CONTROLE_MANUTENCAO%>">Manuten&ccedil;&atilde;o</option>
 			<option value="<%=CONTROLE_QUALIFICACAO%>">Qualifica&ccedil;&atilde;o</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-	Registro/Certificado/CDE/RMA:&nbsp;<input type="text" class="texto1" name="cde_equip" size="10">
+	Registro/Certificado/CDE/RMA:&nbsp;<input type="text"  name="cde_equip" size="10">
 	</td>
 </tr>
 
@@ -63,21 +63,21 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td colspan="2">
 		Instrumental:&nbsp;
-		<select name="instrumental" class="texto1">
+		<select name="instrumental" >
 			<option value="">Todos</option>
 			<option value="1">Sim</option>
 			<option value="0">Não</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		Conforme:&nbsp;
-		<select name="conforme" class="texto1">
+		<select name="conforme" >
 			<option value="">Todos</option>
 			<option value="1">Sim</option>
 			<option value="0">Não</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		Situa&ccedil;&atilde;o:&nbsp;
-		<select name="status" class="texto1">
+		<select name="status" >
 			<option value="">Todos</option>
 			<option value="<%=STATUS_EM_ESTOQUE%>">Em estoque</option>
 			<option value="<%=STATUS_EM_USO%>">Em uso</option>
@@ -89,7 +89,7 @@ If Env.UsuarioSCE() Then
 	</td>	
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">
@@ -106,12 +106,12 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 
-<tr class="texto1"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td>&nbsp;</td>
 	<td align="center">
-		<input type="submit" name="buscar" value="próximo &gt;&gt;" class="texto1">
+		<input type="submit" name="buscar" value="próximo &gt;&gt;" >
 	</td>
 </tr>
 </table>

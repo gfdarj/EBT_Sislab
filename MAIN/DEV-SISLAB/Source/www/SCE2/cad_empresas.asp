@@ -10,39 +10,40 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
-function ValidaCampos()
-{
-	var frm = document.formulario;
-	if (frm.enf_nome.value.length == 0)
-	{
-		alert("Defina o Nome da Empresa!");
-		frm.enf_nome.focus()
-		return false;
-	}
-	return true;
-}
+<script type="text/javascript">
+    function ValidaCampos()
+    {
+	    var frm = document.formulario;
+	    if (frm.enf_nome.value.length == 0)
+	    {
+		    alert("Defina o Nome da Empresa!");
+		    frm.enf_nome.focus()
+		    return false;
+	    }
+	    return true;
+    }
 
-function Mascara (keypress, objeto){
-	campo = eval (objeto);
-	separador = '-'; 
-	conjunto1 = 5;
-	if (campo.value.length == conjunto1){
-		campo.value = campo.value + separador;
-	}
-}
+    function Mascara (keypress, objeto){
+	    campo = eval (objeto);
+	    separador = '-'; 
+	    conjunto1 = 5;
+	    if (campo.value.length == conjunto1){
+		    campo.value = campo.value + separador;
+	    }
+    }
 
-function Mascara2 (keypress, objeto){
-	campo = eval (objeto);
-	separador = '-'; 
-	conjunto1 = 4;
-	if (campo.value.length == conjunto1){
-		campo.value = campo.value + separador;
-	}
-}
-<!--#include file="includes/vform.js"-->
+    function Mascara2 (keypress, objeto){
+	    campo = eval (objeto);
+	    separador = '-'; 
+	    conjunto1 = 4;
+	    if (campo.value.length == conjunto1){
+		    campo.value = campo.value + separador;
+	    }
+    }
+    <!--#include file="includes/vform.js"-->
 </script>
 
+<div class="margem-10">
 <form method=post action="cad_empresas2.asp" name="formulario"  onsubmit="vdform('formulario','nome','Nome','R','endereco','Endereco','R','cidade','Cidade','R','uf','UF','R','ie','IE','R','cnpj','CNPJ','CNPJ','enf_cpf','CPF','CPF','tel','Telefone','Number','fax','Fax','Number'); return document.ValorPassou;">
 <table width="100%">	
 	<tr>
@@ -53,42 +54,42 @@ function Mascara2 (keypress, objeto){
       <td>
   		<table width="100%" cellpadding=0 cellspacing=0>
     		<tr> 
-      			<td bgcolor="#FFFFFF" align="left" class="texto1">Nome da Empresa<br>
-					<input type="text" class="texto1" name="nome" style="width:600px" maxlength="100"></td>
+      			<td bgcolor="#FFFFFF" align="left">Nome da Empresa<br>
+					<input type="text" name="nome" style="width:600px" maxlength="100"></td>
     		</tr>
     		<tr> 
-      			<td bgcolor="#FFFFFF" class="texto1">Endereço<br>
-					<input type="text" class="texto1" name="endereco" style="width:600px" maxlength="150"></td>
+      			<td bgcolor="#FFFFFF">Endereço<br>
+					<input type="text" name="endereco" style="width:600px" maxlength="150"></td>
     		</tr>
     		<tr>
 				<td>
-					<TABLE WIDTH="500" cellpadding="0" cellspacing="0" class="texto1">
+					<TABLE WIDTH="500" cellpadding="0" cellspacing="0">
 							<TR>
-								<TD CLASS="texto1">
+								<TD>
 								Cidade<br>
-								<input type="text" class="texto1" name="cidade" style="width:300px" maxlength="50"></td>
-	      						<td bgcolor="#FFFFFF" align="left" class="texto1">Estado<br>
-								<select name="enf_uf" class="texto1">
+								<input type="text" name="cidade" style="width:300px" maxlength="50"></td>
+	      						<td bgcolor="#FFFFFF">Estado<br>
+								<select name="enf_uf">
               			<% for i =1 to 27 %>
 			           <option value="<%=i%>"><%=retestado(i)%></option>
 					  <% next %>
            			 </select>&nbsp;&nbsp;&nbsp;</td>
-	      						<td class="texto1" bgcolor="#FFFFFF">Cep<br>
-								<input type="text" class="texto1" name="cep" style="width:100px" maxlength="9" onKeyPress="Mascara(window.event.keyCode, this);" ></td>
+	      						<td bgcolor="#FFFFFF">Cep<br>
+								<input type="text" name="cep" style="width:100px" maxlength="9" onKeyPress="Mascara(window.event.keyCode, this);" ></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			<tr> 
       			<td class="texto" bgcolor="#FFFFFF">
-					<TABLE WIDTH="550" cellpadding="0" cellspacing="0" class="texto1">
+					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<TD CLASS="texto1">
+							<TD>
 							IE<br>
-								<input type="text" class="texto1" name="ie" style="width:170px" maxlength="20"></td>
-					      	<td class="texto1" bgcolor="#FFFFFF"> 
+								<input type="text" name="ie" style="width:170px" maxlength="20"></td>
+					      	<td bgcolor="#FFFFFF"> 
 								CNPJ<br>
-								<input type="text" class="texto1" name="cnpj" style="width:170px" maxlength="18" onkeydown="FormataCNPJ(this,event);"></td>
+								<input type="text" name="cnpj" style="width:170px" maxlength="18" onkeydown="FormataCNPJ(this,event);"></td>
 			  	  		</tr>
 					</TABLE>
 				</TD>
@@ -135,41 +136,41 @@ function FormataCpf(campo,tammax,teclapres) {
 </script>
 			
 			<tr> 
-      			<td class="texto1">
-					<TABLE WIDTH="550" cellpadding="0" cellspacing="0" class="texto1">
-						<TR CLASS="texto1">
+      			<td>
+					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
+						<TR>
 							<TD>CPF<br>
-							<input type="text" class="texto1" name="enf_cpf" onKeyUp="FormataCpf('cpf',11,event)" maxLength=14>
+							<input type="text" name="enf_cpf" onKeyUp="FormataCpf('cpf',11,event)" maxLength=14>
 							</TD>
 							<td>
 							Tipo da empresa<br>
-							<select class="texto1" name="tipoempresa"><option value="F">Fornecedora</option><option value="T">Transportadora</option></select>
+							<select name="tipoempresa"><option value="F">Fornecedora</option><option value="T">Transportadora</option></select>
 							</td>
   	  					</tr>
 					</TABLE>
 				</TD>
 			</TR>
     		<tr> 
-      			<td class="texto1" bgcolor="#FFFFFF">
-					<TABLE WIDTH="550" cellpadding="0" cellspacing="0" class="texto1">
+      			<td bgcolor="#FFFFFF">
+					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<TD CLASS="texto1">Telefone<br>
-							(<input type="text" class="texto1" name="ddd" style="width:30px"  maxlength="3">)&nbsp;<input type="text" class="form" name="tel" style="width:170px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);" ></TD>
-							<TD CLASS="texto1">Contato<br>
-							<input type="text" class="texto1" name="contato" style="width:300px" maxlength="50"></td>
+							<TD>Telefone<br>
+							(<input type="text" name="ddd" style="width:30px"  maxlength="3">)&nbsp;<input type="text" class="form" name="tel" style="width:170px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);" ></TD>
+							<TD>Contato<br>
+							<input type="text" name="contato" style="width:300px" maxlength="50"></td>
   	  					</tr>
 					</TABLE>
 				</TD>
 			</TR>
 			<tr> 
       			<td class="texto" bgcolor="#FFFFFF">
-					<TABLE WIDTH="550" cellpadding="0" cellspacing="0" class="texto1">
+					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<TD CLASS="texto1">Email<br>
-							<input type="text" class="texto1" name="email" style="width:250px" maxlength="50"></TD>
-							<td class="texto1" bgcolor="#FFFFFF"> 
+							<TD>Email<br>
+							<input type="text" name="email" style="width:250px" maxlength="50"></TD>
+							<td bgcolor="#FFFFFF"> 
 								Fax<br>
-								(<input type="text" class="texto1" name="ddd_fax" style="width:30px" maxlength="3">)&nbsp;<input type="text" class="form" name="fax" style="width:150px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);"></td>
+								(<input type="text" name="ddd_fax" style="width:30px" maxlength="3">)&nbsp;<input type="text" class="form" name="fax" style="width:150px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);"></td>
   	  					</tr>
 					</TABLE>
 				</TD>
@@ -183,18 +184,19 @@ function FormataCpf(campo,tammax,teclapres) {
 				<option value="3">Fabricante</option></td>
 			</tr>-->
 			<tr> 
-      			<td class="texto1"> 
+      			<td> 
 					<br>Observação<br>
-					<textarea class="texto1" name="observacao" rows="2" style="width:600px"></textarea><br><br><br></td>
+					<textarea name="observacao" rows="2" style="width:600px"></textarea><br><br><br></td>
     		</tr>
 
-			<tr><td><input type="submit" name="Submit" value="Cadastrar" class="texto1"></td></tr>
+			<tr><td><input type="submit" name="Submit" value="Cadastrar"></td></tr>
 		</table>
       </td>
     </tr>
-
-</form>
   </table>
+
+    </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

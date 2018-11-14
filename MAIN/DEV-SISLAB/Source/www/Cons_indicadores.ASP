@@ -57,7 +57,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Consulta de Indicad
         </tr>
         </table>
         <br />
-        <p><input type="submit" class="texto1" value="Pesquisar"></p>
+        <p><input type="submit"  value="Pesquisar"></p>
     </form>
 
     <br />

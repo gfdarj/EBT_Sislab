@@ -242,7 +242,7 @@ function ValidaCampos(){
 <tr>
 	<td colspan="10">
 		&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudança de Situação ):</a><br>
-		&nbsp;&nbsp;<textarea name="motivo" class="texto1" cols=147 rows=4 ></textarea>
+		&nbsp;&nbsp;<textarea name="motivo"  cols=147 rows=4 ></textarea>
 	</td>
 </tr>
 <tr height="34">
@@ -284,7 +284,7 @@ function ValidaCampos(){
 <tr>
 	<td colspan="10">
 		<%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			document.all.tabParticipantesEBT.style.display = 'block';
 		</script>
 	</td>
@@ -299,11 +299,11 @@ function ValidaCampos(){
 <tr height="34">
 	<td colspan="3">
 		&nbsp;&nbsp;Teste tem repetição:&nbsp;
-		<input type="Checkbox" name="chkRepeticao" class="texto1">
+		<input type="Checkbox" name="chkRepeticao" >
 	</td>
 	<td colspan="7">
 		&nbsp;&nbsp;Tem Executante do CRT:&nbsp;
-		<input type="Checkbox" name="chkExecutante" class="texto1">
+		<input type="Checkbox" name="chkExecutante" >
 	</td>
 </tr>
 
@@ -322,19 +322,19 @@ function ValidaCampos(){
 </tr>
 <tr>
 	<td colspan="10">&nbsp;&nbsp;Relatório de Agendamento:<br>
-		&nbsp;&nbsp;<textarea name="relatAS" class="texto1" cols="147" rows="12"></textarea>
+		&nbsp;&nbsp;<textarea name="relatAS"  cols="147" rows="12"></textarea>
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="10" align="left"> &nbsp;&nbsp;
 		<%if Env.ehRAT then%>
-			<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
+			<input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
-			<input type="button" class="texto1" onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
+			<input type="button"  onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
 
-		<input type="button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="button" class="texto1" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
+		<input type="button"  onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
+		<input type="button"  onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

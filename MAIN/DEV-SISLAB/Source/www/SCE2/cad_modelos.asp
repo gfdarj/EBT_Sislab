@@ -18,7 +18,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -41,7 +41,7 @@ function ValidaCampos()
 <form method=post action="cad_modelos2.asp" name="formulario"  onsubmit="return ValidaCampos();">
 <table width="100%">
 	<tr>
-		<td class="texto1">
+		<td >
 <%		msg =  request("msg")
 		if msg = 1 then
 		response.write "Modelo inserido com sucesso!<br><br>"
@@ -53,10 +53,10 @@ function ValidaCampos()
 		<td>
   			<table cellpadding=0 cellspacing=0>
 	  			<tr>
-			      <td class="texto1">
-	        		Modelo:&nbsp;<input type="text" class="texto1" name="mod_codnome" size=35 maxlength="50">
+			      <td >
+	        		Modelo:&nbsp;<input type="text"  name="mod_codnome" size=35 maxlength="50">
 					</td>
-			      <td class="texto1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fabricante:&nbsp;
+			      <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fabricante:&nbsp;
 					<%RW Combo.PadraoSql("fab_id", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 				</td>
 	      		   
@@ -68,14 +68,14 @@ function ValidaCampos()
 		<td>
   			<table width="600" cellpadding=0 cellspacing=0>
 	  			<tr> 
-	      		   <td bgcolor="#FFFFFF" class="texto1">SaP:&nbsp;
-					<input type="text" class="texto1" name="mod_net" style="width:100" maxlength="100">
+	      		   <td bgcolor="#FFFFFF" >SaP:&nbsp;
+					<input type="text"  name="mod_net" style="width:100" maxlength="100">
 					</td>
-				  <td bgcolor="#FFFFFF" class="texto1">Área de Utilização:
+				  <td bgcolor="#FFFFFF" >Área de Utilização:
 				  <%ssql = "select * from sce_areautilizacao order by au_descricao"
 				  set rec = Env.oconn.execute(ssql)
 				  if not rec.eof then%>
-					<select name="au_id" class="texto1">
+					<select name="au_id" >
 					<%i = 0
 					while not rec.eof%>
 						<option value="<%=rec("au_id")%>" <%if i = 0 then response.write "selected"%>><%=rec("au_descricao")%></option>
@@ -96,15 +96,15 @@ function ValidaCampos()
 		<td>
   			<table width="600" cellpadding=0 cellspacing=0>
 	  			<tr> 
-    			<!--  <td bgcolor="#FFFFFF" class="texto1">
+    			<!--  <td bgcolor="#FFFFFF" >
 				  	Código do SGP:&nbsp;
 					<input type="text" class="form" name="cod_sgp" size="20" maxlength="100"><br><br>
 				</td>-->
-				<td bgcolor="#FFFFFF" class="texto1">Família Tipo:&nbsp;
+				<td bgcolor="#FFFFFF" >Família Tipo:&nbsp;
 					<%ssql = "select * from sce_tipos order by tipo_descricao"
 					set rec = Env.oconn.execute(ssql)
 					if not rec.eof then%>
-						<select name="tipo_id" class="texto1">
+						<select name="tipo_id" >
 						<option value=""></option>
 						<%while not rec.eof%>					
 							<option value="<%=rec("tipo_id")%>"><%=rec("tipo_descricao")%></option>
@@ -121,21 +121,21 @@ function ValidaCampos()
 		</td>
 	</tr>
 	<tr> 
-      <td bgcolor="#FFFFFF" class="texto1">Descrição do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="form"></textarea><br><br></td>
+      <td bgcolor="#FFFFFF" >Descrição do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" class="form"></textarea><br><br></td>
 	 </tr>
 	<tr> 
-      	<td bgcolor="#FFFFFF" class="texto1">Observações<br>
-		<textarea class="texto1" name="mod_obs" style="width:550" cols="80" rows="5"></textarea></td>
+      	<td bgcolor="#FFFFFF" >Observações<br>
+		<textarea  name="mod_obs" style="width:550" cols="80" rows="5"></textarea></td>
 	</tr>
 	<tr> 
-      	<td bgcolor="#FFFFFF"  class="texto1"><br>Part Number:<br>
-		<input type="text" class="texto1" name="p_number" size="100" maxlength="100"></td>
+      	<td bgcolor="#FFFFFF"  ><br>Part Number:<br>
+		<input type="text"  name="p_number" size="100" maxlength="100"></td>
 	</tr>
 	<tr>
-		<td class="texto1"><br><input type="checkbox" name="sgp" value="1" checked>&nbsp;atualizar pelo SGP</td>
+		<td ><br><input type="checkbox" name="sgp" value="1" checked>&nbsp;atualizar pelo SGP</td>
 	</tr>
 	 <tr> 
-      <td><br><%if n <> 1 then%><input type="submit" name="Submit" value=" Cadastrar " class="texto1"><%end if%></td>
+      <td><br><%if n <> 1 then%><input type="submit" name="Submit" value=" Cadastrar " ><%end if%></td>
     </tr>
   </table>
   </form>

@@ -22,7 +22,7 @@ if tipo <> "" then
 	end with
 	call Env.StoredProcedure(false, objSP, "SP_FAC_CADASTRA_TIPO_COMPONENTE")
 %>
-	<html><script language="JavaScript"><%
+	<html><script type="text/javascript"><%
 	if ret > 0 then%>
 		window.parent.opener.location = "sel_tipocomponentes.asp?tipo=<%=ret%>";
 		window.parent.close();

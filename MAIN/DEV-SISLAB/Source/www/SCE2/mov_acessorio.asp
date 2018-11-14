@@ -24,7 +24,7 @@ If Env.UsuarioSCE() Then
 	<!--#include file="includes/vform.js"-->
 </script>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function movimentaItens() {<%
 '--
 '-- Se for administrador pode fazer movimentos para qualquer tipo de situacao.
@@ -48,7 +48,7 @@ end if
 </script>
 <form name="formulario" method="post" action="mov_acessorio2.asp" onsubmit="javascript:return movimentaItens();">
 <input type="hidden" name="busca" value="1">
-<table width="750px" class="texto1">
+<table width="750px" >
 	<tr><td><%if request("msg") <> "" then response.write " <strong><div align='center'>Movimentação efetuada com sucesso.<br> Foi criado um histórico de movimentação com estes dados.</div></strong><br><br>"%></td></tr>
 	<tr>
 	    <td valign="middle" class="destaque">Selecione o filtro</td>
@@ -58,10 +58,10 @@ end if
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td> 
-      		<table border="0" class="texto1" cellpadding="0" cellspacing="0">
+      		<table border="0"  cellpadding="0" cellspacing="0">
 	  			<tr>
-	    			<td class="texto1" colspan="2">
-						Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:120px" maxlength="50">
+	    			<td  colspan="2">
+						Código Barras:&nbsp;<input type="text"  name="codbarras" style="width:120px" maxlength="50">
 						<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" value=" Procurar " onclick="buscaCB()" class="form">-->
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,54 +69,54 @@ end if
 					</td>
 				</tr>
 
-				<tr><td class="texto1" colspan="2"><br></td></tr>
+				<tr><td  colspan="2"><br></td></tr>
 
 				<tr>
-	    			<td class="texto1">
+	    			<td >
 						Fabricante:&nbsp;
 						<%=Combo.PadraoSql("fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 					</td>
-					<td class="texto1">
-					Modelo:&nbsp;<input type="text" name="modelo" class="texto1" style="width:200px">
+					<td >
+					Modelo:&nbsp;<input type="text" name="modelo"  style="width:200px">
 					</td>
 				</tr>
 				<tr>
-					<td class="texto1" colspan="2"><br></td>
+					<td  colspan="2"><br></td>
 				</tr>
 				
 				<tr>
-					<td class="texto1" colspan=2>	
+					<td  colspan=2>	
 					Fornecedor 		
                     <%=Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
 					</td>
 				</tr>
 
-				<tr><td class="texto1">&nbsp;</td></tr>
+				<tr><td >&nbsp;</td></tr>
 
 				<tr>
-					<td class="texto1" width="50%" colspan="2">
-					Nota Fiscal:&nbsp;<input type="text" class="texto1" name="notafiscal" size="20">
+					<td  width="50%" colspan="2">
+					Nota Fiscal:&nbsp;<input type="text"  name="notafiscal" size="20">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Documento:&nbsp;<input type="text" class="texto1" name="documento" size="7" maxlength="10">
+					Documento:&nbsp;<input type="text"  name="documento" size="7" maxlength="10">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					CDE:&nbsp;<input type="text" class="texto1" name="cde" size="10">
+					CDE:&nbsp;<input type="text"  name="cde" size="10">
 					</td>
 				</tr>
 
-				<tr class="texto1"><td>&nbsp;</td></tr>
+				<tr ><td>&nbsp;</td></tr>
 
 				<tr>
-	  				<td class="texto1" colspan="3">
-						N&deg; AS:&nbsp;<input type="text" class="texto1" name="as" size="10">
+	  				<td  colspan="3">
+						N&deg; AS:&nbsp;<input type="text"  name="as" size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" maxlength="50">
+						Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="50">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Localiza&ccedil;&atilde;o:&nbsp;<input type="text" class="texto1" name="localizacao" size="25" value="">
+						Localiza&ccedil;&atilde;o:&nbsp;<input type="text"  name="localizacao" size="25" value="">
 					</td>
 				</tr>
 
 				<tr>
-					<td class="texto1" colspan="3" align="right"><input type="submit" name="buscar" value="próximo &gt;&gt;" class="texto1"></td>
+					<td  colspan="3" align="right"><input type="submit" name="buscar" value="próximo &gt;&gt;" ></td>
 				</tr>
 			</table>
       	</td>

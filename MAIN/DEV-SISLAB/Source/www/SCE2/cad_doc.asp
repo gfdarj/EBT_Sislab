@@ -28,45 +28,45 @@ If Env.UsuarioSCE() Then
 		<%if request("msg")<>"" then response.write "<strong>Documento cadastrado com sucesso!</strong><br><br>"%></td>
 	</tr>
 	<TR>
-		<TD CLASS="texto1">Responsável Técnico:&nbsp;
+		<TD >Responsável Técnico:&nbsp;
 			<input type="texto1" class="form" name="doc_responsavel" size="30" maxlength="50">
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
 	<tr> 
 		<td>
 			<TABLE WIDTH="600" cellpadding="0" cellspacing="0">
 			<TR>
-				<TD CLASS="texto1">Nome do Cliente:&nbsp;
-					<input type="text" class="texto1" name="doc_nome" size="30" maxlength="50">
+				<TD >Nome do Cliente:&nbsp;
+					<input type="text"  name="doc_nome" size="30" maxlength="50">
 				</td>
-				<TD CLASS="texto1">Email do Cliente:&nbsp;
-					<input type="text" class="texto1" name="doc_mail" size="30" maxlength="50">
+				<TD >Email do Cliente:&nbsp;
+					<input type="text"  name="doc_mail" size="30" maxlength="50">
 				</td>
 			</tr>
 			</table>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 			<TABLE cellpadding="0" cellspacing="0">
 			<TR>
-				<TD CLASS="texto1">Identidade do Cliente:&nbsp;
+				<TD >Identidade do Cliente:&nbsp;
 					<input type="text" class="form" name="doc_ide" size="30" maxlength="50">
 				</td>
 				<td width="60px">&nbsp;</td>
-				<TD CLASS="texto1">Telefone do Cliente:&nbsp;
+				<TD >Telefone do Cliente:&nbsp;
 					<input type="text" class="form" name="doc_fone" size="30" maxlength="50">
 				</td>
 			</tr>
 			</table>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			<TABLE cellpadding="0" cellspacing="0" CLASS="texto1">
+			<TABLE cellpadding="0" cellspacing="0" >
 			<TR>
 				<TD>Empresa do Cliente:&nbsp;</td>
 				<td><%RW Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", False)%>
@@ -74,21 +74,21 @@ If Env.UsuarioSCE() Then
 			</tr>
 			<tr>
 				<td align="right">OU PREENCHA:&nbsp;</td>
-				<td><input type="text" class="texto1" name="doc_empresa" size="40" maxlength="50"></td>
+				<td><input type="text"  name="doc_empresa" size="40" maxlength="50"></td>
 				</td>
 			</tr>
 			</table>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
-	<tr CLASS="texto1">
+	<tr ><td>&nbsp;</td></tr>
+	<tr >
 		<TD>Observação:<br>
-			<textarea name="doc_observacao" class="texto1" cols="80" rows="5"></textarea>
+			<textarea name="doc_observacao"  cols="80" rows="5"></textarea>
 		</td>
 	</tr>
 	<tr class="texto"><td>&nbsp;</td></tr>
 	<tr> 
-		<td><input type="submit" name="Submit" value="Cadastrar" class="texto1"></td>
+		<td><input type="submit" name="Submit" value="Cadastrar" ></td>
     </tr>
 </table>
 </form>

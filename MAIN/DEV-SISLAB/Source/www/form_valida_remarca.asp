@@ -75,7 +75,7 @@ else
 	if IsNull(cancelou) then cancelou = false
 %>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function anyChecked(radioSet)
 {
 	for (i = 0; i < radioSet.length; i++)
@@ -194,8 +194,8 @@ function Cancelar()
 </TABLE>
 <br>
 <p align="center"> 
-    <input class="texto1" type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
-    <input class="texto1" type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
+    <input  type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
+    <input  type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
 </p>
 <input type="hidden" name="solicitouCancelamento" value="<%=cancelou%>">
 </form>

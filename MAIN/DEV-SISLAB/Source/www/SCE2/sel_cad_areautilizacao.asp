@@ -22,7 +22,7 @@ function navselecao()
 <form name="formulario" method="post" action="alt_areasutilizacao.asp">
 <table width="100%">
 	<tr>
-		<td class="texto1">
+		<td >
 		<%if request("msg") <> "" then
 			if cint(request("msg")) = 1 then response.write "Area de Utilização alterada com sucesso!<br><br>"
 			if cint(request("msg")) = 2 then response.write "Area de Utilização excluída com sucesso!<br><br>"
@@ -32,13 +32,13 @@ function navselecao()
   	<tr>
 	    <td  valign="middle" class="destaque">Editar Areas de Utilização Cadastradas:</td>
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td valign="top" valign="middle" class="texto1">
+		<td valign="top" valign="middle" >
 		<%ssql = "select * from sce_areautilizacao order by au_descricao"
 		set rec = Env.oconn.execute(ssql)
 		if not rec.eof then%>
-			<select name="au_id" size="15" class="texto1" style="width:600">
+			<select name="au_id" size="15"  style="width:600">
 			<%while not rec.eof%>
 				<option value="<%=rec("au_id")%>"><%=rec("au_descricao")%></option>
 				<%rec.movenext
@@ -49,9 +49,9 @@ function navselecao()
 		end if%>
 		</td>
     </tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-	    <td  valign="middle"><input type=submit value=" Alterar " class="texto1"></td>
+	    <td  valign="middle"><input type=submit value=" Alterar " ></td>
 	</tr>
 </table>
 </form>

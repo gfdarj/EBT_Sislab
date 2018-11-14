@@ -42,7 +42,7 @@ chr_BgColor = "#E8E8E8"
 chr_EstiloTD = "style='border-bottom: solid " & chr_BgColor & " thin;'"
 %>
 <script language="JavaScript" src="includes/anexo.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 function chama_as(cod_as)
 {
     sel.selecao.value=cod_as;
@@ -122,16 +122,16 @@ function controleClientes(eu)
 		<tr>
 			<td colspan="1" <%=chr_EstiloTD%>>
 				Nº AS&nbsp;
-				<input type="text" name="auxAS" class="texto1" size="5" maxlength="10">
+				<input type="text" name="auxAS"  size="5" maxlength="10">
 			</td>
 			<td colspan="9" <%=chr_EstiloTD%>>
 				Palavra-chave (Descrição/Objetivo/Título):&nbsp;
-				<input type="text" size="60" maxlength="60" name="descricao" class="texto1">
+				<input type="text" size="60" maxlength="60" name="descricao" >
 			</td>
 		</tr>
 		<tr>
 			<td colspan="1" <%=chr_EstiloTD%>>
-				Cliente Embratel:&nbsp;<input class="texto1" type="Checkbox" name="chkClientes" onclick="javascript:controleClientes(this);">
+				Cliente Embratel:&nbsp;<input  type="Checkbox" name="chkClientes" onclick="javascript:controleClientes(this);">
 			</td>
 			<td colspan="4" <%=chr_EstiloTD%>>
 				<select name="clientes"  disabled>
@@ -163,13 +163,13 @@ function controleClientes(eu)
 				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');"><img src="img/ajuda.gif" border="0"></a>
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
-				Agendado nos últimos <input class="texto1" name="diasteste" size="5" maxlength="10"> dias
+				Agendado nos últimos <input  name="diasteste" size="5" maxlength="10"> dias
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3" <%=chr_EstiloTD%>>
 				Username do Solicitante:&nbsp;
-				<input type="text" size="9" name="solicitante" class="texto1">
+				<input type="text" size="9" name="solicitante" >
 			</td>
 			<td colspan="7" <%=chr_EstiloTD%>>
 				Situação do Agendamento:&nbsp;
@@ -202,7 +202,7 @@ function controleClientes(eu)
 		<tr>
 			<td colspan="6" <%=chr_EstiloTD%>>
 				Username ou nome do participante:&nbsp;
-				<input type="text" size="50" maxlength="60" name="participante" class="texto1">
+				<input type="text" size="50" maxlength="60" name="participante" >
 			</td>
 			<td colspan="4" <%=chr_EstiloTD%>>
 				Sigilo:&nbsp;
@@ -259,22 +259,22 @@ function controleClientes(eu)
 		</tr>
 		<tr>
 			<td colspan="2" <%=chr_EstiloTD%>>
-				Teste com Repetição:&nbsp;<input class="texto1" type="Checkbox" name="chkRepeticao">
+				Teste com Repetição:&nbsp;<input  type="Checkbox" name="chkRepeticao">
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
-				Executante do CRT:&nbsp;<input class="texto1" type="Checkbox" name="chkExecutanteCRT">
+				Executante do CRT:&nbsp;<input  type="Checkbox" name="chkExecutanteCRT">
 			</td>
 			<td colspan="2" <%=chr_EstiloTD%>>
-				Tem OS:&nbsp;<input class="texto1" type="Checkbox" name="chkTemOS">
+				Tem OS:&nbsp;<input  type="Checkbox" name="chkTemOS">
 			</td>
 			<td colspan="3" <%=chr_EstiloTD%>>
-				Tem Comentário:&nbsp;<input class="texto1" type="Checkbox" name="chkTemComentario">
+				Tem Comentário:&nbsp;<input  type="Checkbox" name="chkTemComentario">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3" <%=chr_EstiloTD%>>
 				SGP do Equipamento:&nbsp;
-				<input type="text" size="23" maxlength="16" name="codigobarras" class="texto1">
+				<input type="text" size="23" maxlength="16" name="codigobarras" >
 			</td>
 			<td colspan="7" <%=chr_EstiloTD%>>
 				Ambiente utilizado no teste:&nbsp;
@@ -287,7 +287,7 @@ function controleClientes(eu)
 <tr><td></td></tr>
 <tr>
 	<td align="right">
-		<input type="submit" name="Filtro" Value="Consultar" class="texto1">
+		<input type="submit" name="Filtro" Value="Consultar" >
 	</td>
 </tr>
 </table>

@@ -21,7 +21,7 @@ if familia <> "" then
 	end with
 	call Env.StoredProcedure( false, objSP, "SP_FAC_CADASTRA_FAMILIA_TIPO_COMPONENTE")
 %>
-	<html><script language="JavaScript"><%
+	<html><script type="text/javascript"><%
 	if ret > 0 then%>
 		window.parent.opener.location = "novotipo.asp?familia=<%=ret%>&fabricante=<%=fabricante%>";
 		window.parent.close();

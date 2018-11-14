@@ -97,7 +97,7 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 	<td width="100px">&nbsp;&nbsp;<b>Parâmetro:</b></td>
 	<td>
 		<%'Call comboConfiguracao("configuracao", Env.oConn,"N")%>&nbsp;&nbsp;
-		<input  class="texto1" type="button" value="Buscar" onclick="BuscarUsuario();"></input>
+		<input   type="button" value="Buscar" onclick="BuscarUsuario();"></input>
 	</td>
 </tr>
 
@@ -107,22 +107,22 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
 <tr>
 	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Código:</b></td>
-	<td><input type="text" name="cfg_id" size="7" class="texto1"></td>
+	<td><input type="text" name="cfg_id" size="7" ></td>
 <tr>
 
 <tr>
 	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
-	<td><input type="text" name="desc" size="60" class="texto1"></td>
+	<td><input type="text" name="desc" size="60" ></td>
 <tr>
 
 <tr>
 	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Valor :</b></td>
-	<td><input type="text" name="valor1" size="30" class="texto1"></td>
+	<td><input type="text" name="valor1" size="30" ></td>
 <tr>
 
 <tr>
 	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Tipo do Valor :</b></td>
-	<td><input type="text" name="tipovalor1" size="30" class="texto1"></td>
+	<td><input type="text" name="tipovalor1" size="30" ></td>
 <tr>
 
 <tr>

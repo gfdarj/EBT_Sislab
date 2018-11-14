@@ -9,7 +9,7 @@
 <html>
 <head>
 	<title>Agendamento</title>
-<script language="JavaScript">
+<script type="text/javascript">
 parent.frames[2].document.all.atividadeCelula.innerHTML = "<font class='fonte2'>Aguarde...</font>";
 var str = '<font class="fonte2">'
  		str+= '<select name="tarefa_id" class="select7" onchange="mudaAtividade()">';

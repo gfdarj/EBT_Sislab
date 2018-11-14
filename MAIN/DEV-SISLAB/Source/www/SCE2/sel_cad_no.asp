@@ -25,7 +25,7 @@ function navselecao()
 <form name="formulario" method="post" action="alt_no.asp">
 <table>
 	<tr>
-		<div class="texto1">
+		<div >
 		<%if request("msg") <> "" then
 			if cint(request("msg")) = 1 then response.write "Natureza de Operação alterada com sucesso.<br><br>"
 			if cint(request("msg")) = 2 then response.write "Natureza de Operação excluída com sucesso.<br><br>"
@@ -35,13 +35,13 @@ function navselecao()
     <tr> 
 		<td class="destaque">Editar / Excluir Natureza de Operação</td>
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td VALIGN="TOP" class="texto1">
+		<td VALIGN="TOP" >
 			<%ssql = "select * from sce_natureza_operacao order by no_descricao"
 			set rec = Env.oconn.execute(ssql)
 			if not rec.eof then%>
-				<select name="no_id" size="15" class="texto1" style="width:600" >
+				<select name="no_id" size="15"  style="width:600" >
 				<%while not rec.eof%>
 					<option value="<%=rec("no_id")%>"><%=rec("no_descricao")%></option>
 					<%rec.movenext
@@ -53,7 +53,7 @@ function navselecao()
 		</td>
 	</tr>
 	<tr>
-		<td class="texto" align="left"><br><br><input type=submit value=" Editar " class="texto1"></td>
+		<td class="texto" align="left"><br><br><input type=submit value=" Editar " ></td>
     </tr>
   </table>
 </form>

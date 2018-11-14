@@ -72,7 +72,7 @@ end function
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 
-<script language="javascript">
+<script type="text/javascript">
 function parafrente()
 {
 	formulario.operacao.value=1;

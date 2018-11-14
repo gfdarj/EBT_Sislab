@@ -30,7 +30,7 @@ end if
 <meta http-equiv="Pragma" content="no-cache">
 </head>
 
-<script language="javascript">
+<script type="text/javascript">
 
 function ValidaCampos()
 {
@@ -415,7 +415,7 @@ Não existem ocorrências para estes critérios de consulta.<br>
 
 %>
 
-<script language="javascript">
+<script type="text/javascript">
 formulario.tipoocorrencia.value='<%=auxtipooco%>'
 formulario.dias.value=<%=auxdias%>
 formulario.situacao.value='<%=auxsituacao%>'

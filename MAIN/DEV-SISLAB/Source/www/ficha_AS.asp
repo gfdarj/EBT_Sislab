@@ -121,7 +121,7 @@ sSQL = _
 call Env.RecordSet( true, objSiteRS, sSQL)
 objSiteRS.MoveFirst
 Do while Not objSiteRS.eof%>
-<tr class="texto1">
+<tr >
 	<td>&nbsp;&nbsp;<b><%=objSiteRS("S_Descricao")%></b>&nbsp;</td>
 	<td align="center"><%=(objSiteRS("HE_DataInicio"))%>&nbsp;</td>
 	<td align="center"><%=(objSiteRS("HE_DataTermino"))%>&nbsp;</td>
@@ -177,7 +177,7 @@ if Not objSiteRS.eof then
 		Do while len(auxOS) < 3
 			auxOS="0"&auxOS
 		loop%>
-<tr class="texto1">
+<tr >
 	<td>&nbsp;&nbsp;<b><%=auxselecao%>/<%=auxOS%>&nbsp;-&nbsp;<%=objSiteRS("T_Titulo")%></b></td>
 	<td align="center"><b><%=objSiteRS("S_Descricao")%>&nbsp;</b></td>
 	<td align="center"><%=(objSiteRS("HEOS_DataInicio"))%>&nbsp;</td>
@@ -217,7 +217,7 @@ if not (objSiteRS.Eof and objSiteRS.Bof) then
 <%
 objSiteRS.MoveFirst
 Do while Not objSiteRS.eof%>
-<tr class="texto1">
+<tr >
 	<td align="center"><%=(objSiteRS("HD_DataInicio"))%>&nbsp;</td>
 	<td align="center"><%=(objSiteRS("HD_DataTermino"))%>&nbsp;</td>
 	<td><%=objSiteRS("HD_MOTIVO")%>&nbsp;</td>
@@ -255,7 +255,7 @@ if Not objSiteRS.eof then%>
 </tr>
 <%		objSiteRS.MoveFirst
 		Do while Not objSiteRS.eof%>
-<tr class="texto1">
+<tr >
 	<td>&nbsp;&nbsp;<b><%=objSiteRS("TAR_TipoArquivo")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
 		<a href="#" title="Clique aqui para visualizar o arquivo" onclick="abreArquivo('arquivos/<%=Replace(objSiteRS("Arq_nomeArq"), "\", "/")%>');"><%=objSiteRS("Arq_Link")%></a>
@@ -296,7 +296,7 @@ End If%>
 	&nbsp;&nbsp;TÍTULO DO AGENDAMENTO
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 	&nbsp;<%=auxtitulo%>
 	</td>
@@ -312,7 +312,7 @@ End If%>
 	<B>DATA DE TÉRMINO</B>
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="6">
 	&nbsp;<%=auxtipoteste%>&nbsp;&nbsp;<%=auxdadosteste%>
 	</td>
@@ -334,7 +334,7 @@ End If%>
 	CONFIDENCIALIDADE
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="6">
 	&nbsp;&nbsp;<%=auxTec%>
 	</td>
@@ -351,7 +351,7 @@ End If%>
 	&nbsp;&nbsp;OBJETIVO DO TESTE
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 	&nbsp;&nbsp;<%=auxobjteste%>
 	</td>
@@ -362,7 +362,7 @@ End If%>
 	&nbsp;&nbsp;AMBIENTE NECESSÁRIO
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 	&nbsp;&nbsp;<%=auxambiente%>
 	</td>
@@ -373,7 +373,7 @@ End If%>
 	&nbsp;&nbsp;RECURSOS NECESSÁRIOS
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 	&nbsp;&nbsp;<%=auxrecursos%>
 	</td>
@@ -384,7 +384,7 @@ End If%>
 	&nbsp;&nbsp;OBSERVAÇÕES
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 	&nbsp;&nbsp;<%=auxObs%>
 	</td>
@@ -401,7 +401,7 @@ End If%>
 	ÓRGÃO
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="6">
 	&nbsp;&nbsp;<%=AuxResponsavel%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=AuxMatricula%>)
 	</td>
@@ -424,7 +424,7 @@ End If%>
 	&nbsp;&nbsp;RETORNO DO CLIENTE (R$)
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="3">
 	&nbsp;&nbsp;<%=auxamostra%>
 	</td>
@@ -443,7 +443,7 @@ if not IsNull(AuxMetas) then%>
 	&nbsp;&nbsp;PLANO DE METAS DA EMBRATEL
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="4">
 	&nbsp;&nbsp;<%=AuxMetas%>
 	</td>
@@ -492,7 +492,7 @@ Set ebt1  = nothing
 	ÓRGÃO
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="6">
 	&nbsp;&nbsp;<%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)
 	</td>
@@ -540,7 +540,7 @@ Set ebt1 = Nothing
 	</td>
 </tr>
 
-<tr class="texto1">
+<tr >
 	<td colspan="6">
 	&nbsp;&nbsp;<%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)
 	</td>
@@ -565,7 +565,7 @@ if Not(objSIteRS.EOF) then
 	&nbsp;&nbsp;PARTICIPANTES EXTERNOS
 	</td>
 </tr>
-<tr class="texto1">
+<tr >
 	<td colspan="10">
 <%	Do While Not(objSiteRS.EOF)%>
 	&nbsp;&nbsp;Nome: <%=objSiteRS("PE_NOME")%> - 
@@ -592,7 +592,7 @@ if objSiteRS(0) > 0 then
 	SISTEMAS UTILIZADOS
 	</td>
 </tr>
-<tr class="texto1" valign="top">
+<tr  valign="top">
 	<td colspan="5">
 <%	sSQL = _
 		"SELECT UPPER(sp.S_DESCRICAO) FROM Agenda_Servicos_Plataforma asp INNER JOIN " & _
@@ -655,7 +655,7 @@ If not (objRes.EOF and objRes.BOF) then
 	<td align="center">AMOSTRA</td>
 </tr>
 <%	While not objRes.EOF%>
-<tr class="texto1" valign="top">
+<tr  valign="top">
 	<td align="center"><%=Zeros(objRes("OS_ID"),3)%></td>
 	<td>
 		<%=objRes("T_TITULO")%>

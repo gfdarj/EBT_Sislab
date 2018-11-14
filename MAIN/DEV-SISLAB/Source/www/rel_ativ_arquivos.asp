@@ -4,7 +4,7 @@
 <%
 if request("selecao") = "" then
 %>
-	<script language="JavaScript">
+	<script type="text/javascript">
 	window.close();
 	</script>
 <%
@@ -39,7 +39,7 @@ else
 </tr>
 <%		objRS.MoveFirst
 		Do while Not objRS.eof%>
-<tr class="texto1">
+<tr >
 	<td>&nbsp;&nbsp;<b><%=objRS("TIPOARQUIVO")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
 		<a href="#" onclick="abreArquivo('<%=objRS("NOMEARQUIVO")%>');"><%=objRS("LINK")%></a>
@@ -49,8 +49,8 @@ else
 <%			objRS.MoveNext
 		Loop%>
 </table>
-<p class="texto1" align="center"><a href="javascript:window.close();">Fechar</a></p>
-<script language="JavaScript">
+<p  align="center"><a href="javascript:window.close();">Fechar</a></p>
+<script type="text/javascript">
 function abreArquivo(nome){
 	var janela;
 	janela = window.open(nome, '', 'width=550,toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');

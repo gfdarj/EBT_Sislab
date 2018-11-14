@@ -33,14 +33,14 @@ If Env.UsuarioSCE() Then
 <input type="hidden" name="eq_id" value="<%=lista_itens%>">
 <input type="hidden" name="ehReserva" value="SIM">
 
-<table width="100%" class="texto1">
+<table width="100%" >
 <tr><th class="destaque">Lista de itens selecionados para movimentação pela Reserva/AG <%=request("ag_numero")%></th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr id="tr_data_movimento"><td>Data da Movimentação:&nbsp;<%RW Combo.Data("Mov")%></td></tr>
 <tr id="tr_data_movimento_branco"><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="texto1">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" >
 		<tr>
 			<th width="120px">Cód Barras</th>
 			<th>Modelo</th>
@@ -73,16 +73,16 @@ wend%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td align="center">
-		<input type="button" name="btnNovaConsulta" value="Nova Consulta" class="texto1" onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 100px;  display: inline;">
+		<input type="button" name="btnNovaConsulta" value="Nova Consulta"  onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 100px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnImprimir" value="Imprimir" class="texto1" onclick="javascript:imprimirLista();" style="width: 100px;  display: inline;">
+		<input type="button" name="btnImprimir" value="Imprimir"  onclick="javascript:imprimirLista();" style="width: 100px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();" class="texto1" style="width: 100px; display: inline;">
+		<input type="button" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();"  style="width: 100px; display: inline;">
 	</td></tr>
 </table>
 </form>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function movimentarReserva() {
 	document.formulario.submit();
 }

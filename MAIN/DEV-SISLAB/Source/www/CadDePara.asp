@@ -107,7 +107,7 @@ END SELECT
         </p>
 
         <p>
-            <input class="texto1" type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
+            <input  type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
         </p>
 
     </form>

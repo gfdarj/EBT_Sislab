@@ -13,7 +13,7 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -36,15 +36,15 @@ function ValidaCampos()
 <form method="post" action="cad_no2.asp" name="formulario">
 <table width="100%">
 	<tr>
-		<td class="texto1">
+		<td >
 		<%if request("msg") <> "" then response.write "<strong>Natureza de Operação cadastrada com sucesso!</strong><br><br>"%></td>
 	</tr>
 	<tr> 
     	<td>
 		  <table width="100%" cellpadding=0 cellspacing=0>
 			  <tr valign="top">
-			      <td class="texto1">Tipo<br>
-						<select name="no_tipo" class="texto1" style="width:170px" multiple>
+			      <td >Tipo<br>
+						<select name="no_tipo"  style="width:170px" multiple>
 							<option value="<%=MOV_ENTRADA%>">Entrada</option>
 							<option value="<%=MOV_LOGISTICA_ENTRADA%>">Logística Entrada</option>
 							<option value="<%=MOV_LOGISTICA_SAIDA%>">Logística Saída</option>
@@ -52,16 +52,16 @@ function ValidaCampos()
 							<option value="<%=MOV_EXPEDICAO_SUBST%>">Substituição</option>
 						</select>
 			      </td>
-			      <td class="texto1">Descrição da Natureza de Operação<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50"></td>
+			      <td >Descrição da Natureza de Operação<br><input type="text"  name="no_descricao" style="width:300" maxlength="50"></td>
 			    </tr>
 			</table>
 	  </td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
-	<tr class="texto1">
+	<tr ><td>&nbsp;</td></tr>
+	<tr >
 		<td>
 			<table cellpadding="0" cellspacing="0">
-			<tr class="texto1">
+			<tr >
 			   <td>
 			   	CDE<input type="checkbox" name="cde" value="1">
 			   </td>
@@ -81,9 +81,9 @@ function ValidaCampos()
 			</table>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
 	<tr>
-	   <td><input type="button" name="Submit" value=" Cadastrar " class="texto1" onclick="ValidaCampos()"></td>
+	   <td><input type="button" name="Submit" value=" Cadastrar "  onclick="ValidaCampos()"></td>
     </tr>
  </table>
 </form>

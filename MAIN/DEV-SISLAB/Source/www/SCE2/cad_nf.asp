@@ -102,7 +102,7 @@ If Env.UsuarioSCE() Then
 </script>
 <form method="post" action="cad_nf2.asp" name="formulario" onSubmit="javascript:return validaNota(this);">
 <input type="hidden" name="nf_id" value="<%=nf_id%>">
-<table width="790px" class="texto1">
+<table width="790px" >
     <tr><td><b><%=titulo%></b></td></tr>
 <%
 if request("msg")<>"" then%>
@@ -121,20 +121,20 @@ end if
 %>
     <tr> 
       <td>
-  		<table width="100%" cellpadding=0 cellspacing=0 class="texto1">
+  		<table width="100%" cellpadding=0 cellspacing=0 >
     		  <tr>
 				<td>
-					<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" class="texto1">
+					<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" >
 							<TR>
 								<TD>Número da Nota:&nbsp;
-								<input type="text" class="texto1" name="nf_numeronota" size="10" maxlength="30" value="<%=nf_numeronota%>">
+								<input type="text"  name="nf_numeronota" size="10" maxlength="30" value="<%=nf_numeronota%>">
 								</td>
 								<td><input type="Checkbox" name="devolucao" value="1" <%if devolucao then response.write "checked"%>>&nbsp;Devolucao Completa</td>
 								<TD>Qtde. Volumes:&nbsp;
-								<input type="text" class="texto1" name="nf_qtdevolumes" size="10" maxlength="30"value="<%=nf_qtdevolumes%>">
+								<input type="text"  name="nf_qtdevolumes" size="10" maxlength="30"value="<%=nf_qtdevolumes%>">
 								</td>
 								<TD>Valor Total&nbsp;R$:
-								<input type="text" class="texto1" name="nf_valortotal" size="15" maxlength="30" value="<%=nf_valortotal%>"></td>
+								<input type="text"  name="nf_valortotal" size="15" maxlength="30" value="<%=nf_valortotal%>"></td>
 							</tr>
 						</table>
 					</td>
@@ -142,11 +142,11 @@ end if
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 					<td>
-						<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" class="texto1">
+						<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" >
 							<TR>
 								<TD>Data da Emissão:&nbsp;
 								<%RW Combo.Data("emissao")%>
-								<script language="JavaScript">
+								<script type="text/javascript">
 									document.all.diaemissao.value = "<%if nf_dataemissao <> "" then response.write Zeros(Day(CDate(nf_dataemissao)),2)%>";
 									document.all.mesemissao.value = "<%if nf_dataemissao <> "" then response.write Zeros(Month(CDate(nf_dataemissao)), 2)%>";
 									document.all.anoemissao.value = "<%if nf_dataemissao <> "" then response.write Year(CDate(nf_dataemissao))%>";
@@ -154,14 +154,14 @@ end if
 								</td>
 
 								<TD>Número do Conhecimento:&nbsp;
-								<input type="text" class="texto1" name="nf_nconhecimento" size="10" maxlength="30" value="<%=nf_nconhecimento%>"></td>
+								<input type="text"  name="nf_nconhecimento" size="10" maxlength="30" value="<%=nf_nconhecimento%>"></td>
 								<TD>
 									Tipo:&nbsp;
-									<select name="nf_tipo" class="texto1" onChange="javascript:tipoNota(this);">
+									<select name="nf_tipo"  onChange="javascript:tipoNota(this);">
 									<option value="1" <%if nf_tipo = "1" then response.write "selected"%>>Entrada</option>
 									<option value="2" <%if nf_tipo = "2" then response.write "selected"%>>Saída</option>
 									</select>
-									<script language="JavaScript">
+									<script type="text/javascript">
 										function tipoNota(eu) {
 											if(eu.value == "1") {
 												document.all.tr_aceitacao.style.display = "block";
@@ -193,7 +193,7 @@ end if
 					<td>
 						Data de Recebimento:&nbsp;
 						<%RW Combo.Data("recebimento")%>
-						<script language="JavaScript">
+						<script type="text/javascript">
 							document.all.diarecebimento.value = "<%if nf_recebimento <> "" then response.write Zeros(Day(CDate(nf_recebimento)),2)%>";
 							document.all.mesrecebimento.value = "<%if nf_recebimento <> "" then response.write Zeros(Month(CDate(nf_recebimento)), 2)%>";
 							document.all.anorecebimento.value = "<%if nf_recebimento <> "" then response.write Year(CDate(nf_recebimento))%>";
@@ -208,7 +208,7 @@ end if
 						<input type="hidden" name="diareal" value="" style="display:none;">
 						<input type="hidden" name="mesreal" value="" style="display:none;">
 						<input type="hidden" name="anoreal" value="" style="display:none;">
-						<script language="JavaScript">
+						<script type="text/javascript">
 							document.all.diareal.value = "<%response.write Zeros(Day(Date()),2)%>";
 							document.all.mesreal.value = "<%response.write Zeros(Month(Date()), 2)%>";
 							document.all.anoreal.value = "<%response.write Year(Date())%>";
@@ -238,12 +238,12 @@ end if
 
 				<tr>
 					<td>
-						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" class="texto1">
+						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" >
 							<tr>
 								<td><br>Natureza de Operação:&nbsp;
 <%			if no_id = "" then valor = "" else valor = cstr(no_id)
 			RW Combo.PadraoSql("no_id", "select no_id as VALOR, no_descricao as DESCRICAO from sce_natureza_operacao order by no_descricao", valor, "N")%>
-								<script language="JavaScript">
+								<script type="text/javascript">
 									document.all.no_id.onchange = temValidade;
 									function temValidade() {
 										document.forms[0].action = "cad_nf_temvalidade.asp";
@@ -287,7 +287,7 @@ end if
 
 				<tr id="tr_aceitacao" style="display: block;">
 					<td>
-						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" class="texto1">
+						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" >
 							<TR>
 								<TD colspan=3>
 								<b>Aceitação</b><br>
@@ -323,13 +323,13 @@ end if
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td align="center">
-			<input class="texto1" type="submit" <%if nf_id = "" then%> value="Cadastrar" <%else%> value="Alterar" <%end if%>>
+			<input  type="submit" <%if nf_id = "" then%> value="Cadastrar" <%else%> value="Alterar" <%end if%>>
 <%
 if nf_id <> "" then%>
 			&nbsp;&nbsp;
-			<input class="texto1" type="button" value="Nova Nota" onClick="javascript:location.href='cad_nf.asp';">
+			<input  type="button" value="Nova Nota" onClick="javascript:location.href='cad_nf.asp';">
 			&nbsp;&nbsp;
-			<input class="texto1" type="button" value=" Excluir " onClick="javascript:excluirNota();"><%
+			<input  type="button" value=" Excluir " onClick="javascript:excluirNota();"><%
 end if
 %>
 		</td>
@@ -344,7 +344,7 @@ End If
 
 Call Tela.MostraRodape()
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 function excluirNota() {
 	document.formulario.action="exc_nf.asp";
 	document.formulario.target = "";

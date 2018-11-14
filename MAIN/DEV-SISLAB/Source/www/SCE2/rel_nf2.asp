@@ -140,15 +140,15 @@ If Env.UsuarioSCE() Then
 	Dim url_xls
 	url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Notas Fiscais" & titulo & "&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
 %>
-<table width="100%" class="texto1" cellpadding="2" cellspacing="0" border="0">
+<table width="100%"  cellpadding="2" cellspacing="0" border="0">
 <tr>
 	<td class="destaque"><p>Listagem de Notas Fiscais<%=titulo%></p></td>
 	<td align="right" class="destaque"><%=url_xls%></td>
 </tr>
 </table>
 <%    if not rec.eof then %>
-<table width="100%" class="texto1" cellpadding="2" cellpadding="0"><tr><td><i>As notas em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o com vencidas.</i></td></tr></table>
-<table width="100%" class="texto1" cellpadding="2" cellspacing="0" border="1">
+<table width="100%"  cellpadding="2" cellpadding="0"><tr><td><i>As notas em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o com vencidas.</i></td></tr></table>
+<table width="100%"  cellpadding="2" cellspacing="0" border="1">
 	<tr>
 		<th align="left">Fornecedor</th>
 		<th>Data de Emissão</th>
@@ -168,10 +168,10 @@ If Env.UsuarioSCE() Then
 %>
 <!--	<tr <%'if bg = 0 then%>bgcolor="#C0E0EF"<%'end if%>> -->
 	<tr <%if not IsNull(rec("nf_datavencimento_M")) then if cdate(rec("nf_datavencimento_M")) < date() and (rec("nf_devolucaocompleta_M") = 0) then response.write "class='vencido'" else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if end if else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if %>>
-		<td class="texto1"><%=ConverteNuloHTML(rec("enf_nome_M"))%>&nbsp;</td>
-		<td class="texto1" align="center"><%=ConverteNuloHTML(rec("nf_dataemissao_M"))%></td>
-		<td class="texto1" align="center"><%=ConverteNuloHTML(rec("nf_recebimento_M"))%></td>
-		<td class="texto1" align="center">
+		<td ><%=ConverteNuloHTML(rec("enf_nome_M"))%>&nbsp;</td>
+		<td  align="center"><%=ConverteNuloHTML(rec("nf_dataemissao_M"))%></td>
+		<td  align="center"><%=ConverteNuloHTML(rec("nf_recebimento_M"))%></td>
+		<td  align="center">
 <%	    		if Env.PerfilSce <> PERFIL_RAT then%>
 			<a href=cad_nf.asp?nf_id=<%=rec("nf_id")%>>
 <%	    		end if%>
@@ -186,12 +186,12 @@ If Env.UsuarioSCE() Then
 			&nbsp;
 <%		    	End If %>
 		</td>
-		<td class="texto1"><%=ConverteNuloHTML(rec("NO_DESCRICAO_M"))%></td>
-		<td class="texto1" align="center"><%=Left(ConverteNuloHTML(rec("NF_TIPONOTA_M")), 1)%></td>
-		<td class="texto1" align="center"><%=ConverteNuloHTML(rec("nf_validade_M"))%></td>
-		<td class="texto1" align="center"><%=ConverteNuloHTML(rec("nf_datavencimento_M"))%></td>
-		<td class="texto1" align="center"><%=ConverteNuloHTML(rec("nf_numeronota_PAI_M"))%></td>
-		<td class="texto1" align="center">
+		<td ><%=ConverteNuloHTML(rec("NO_DESCRICAO_M"))%></td>
+		<td  align="center"><%=Left(ConverteNuloHTML(rec("NF_TIPONOTA_M")), 1)%></td>
+		<td  align="center"><%=ConverteNuloHTML(rec("nf_validade_M"))%></td>
+		<td  align="center"><%=ConverteNuloHTML(rec("nf_datavencimento_M"))%></td>
+		<td  align="center"><%=ConverteNuloHTML(rec("nf_numeronota_PAI_M"))%></td>
+		<td  align="center">
 <%
 		'If Left(rec("NF_TIPONOTA"), 1) = "S" Then
 			Response.Write SimNao(rec("NF_DEVOLUCAOCOMPLETA_M"))
@@ -204,9 +204,9 @@ If Env.UsuarioSCE() Then
 <%	    	rec.movenext
 	    wend %>
 </table>
-<p class="texto1" align="right"><i>Registros encontrados: <%=cont%></i></p>
+<p  align="right"><i>Registros encontrados: <%=cont%></i></p>
 <%  else %>
-	<p class="texto1" align="center"><i>Nenhuma Nota Fiscal encontrada</i></p><%
+	<p  align="center"><i>Nenhuma Nota Fiscal encontrada</i></p><%
     End if %>
 <br>
 <%

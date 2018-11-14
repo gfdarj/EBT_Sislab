@@ -14,7 +14,7 @@ Call Tela.MostraCabecalho()
 if not Env.ehRAT then response.redirect "index.asp"
 %>
 <script language="javascript" src="includes/anexo.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 	function BuscarAmbiente(){
 		var frm = document.forms[0];
 		frm.action = "CadAmbientes.asp";
@@ -87,7 +87,7 @@ if not Env.ehRAT then response.redirect "index.asp"
 	<td>
 		<%call comboBDSQL("ambiente", Env.oConn, "SELECT AMB_ID as valor, AMB_NOME as descricao FROM Ambientes ORDER BY AMB_NOME", "N", true)%>
 		&nbsp;&nbsp;
-		<input class="texto1" type="button" value="Buscar" onclick="BuscarAmbiente();">
+		<input  type="button" value="Buscar" onclick="BuscarAmbiente();">
 	</td>
 </tr>
 
@@ -97,7 +97,7 @@ if not Env.ehRAT then response.redirect "index.asp"
 
 <tr>
 	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
-	<td><input type="text" name="desc" size="60" class="texto1"></td>
+	<td><input type="text" name="desc" size="60" ></td>
 <tr>
 
 <tr>

@@ -94,7 +94,7 @@ If Env.UsuarioSCE() Then
 
     If Env.PerfilSce = PERFIL_ADM Then
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 function alteraMovimentacao(mov_id) {
 	var d = document.forms[0];
 	d.mov_id.value = mov_id;
@@ -160,32 +160,32 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
 		<td><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação"></a></td>
 		<td><a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a></td>
 <%		    end if%>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("eq_codigobarras_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("mod_codnome_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("fab_nome_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("as_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("mov_solicitante_M"))%>
 			<%if rec("MOV_PASSAGEM") then response.write "&nbsp;<b>(*)</b>" end if%>
 		</td>
-		<td class="texto1" align="center" valign="top" <%=IIf(rec("FL_CALIBRACAO_M"), "title='Envio para Calibração' style='background-color: Silver;'", "")%>>
+		<td  align="center" valign="top" <%=IIf(rec("FL_CALIBRACAO_M"), "title='Envio para Calibração' style='background-color: Silver;'", "")%>>
 			<%=ConverteNuloHTML(rec("cde_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(rec("nf_numeronota_M"))%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=Zeros(ConverteNuloHTML(rec("DOC_ID_M")),4)%>
 		</td>
-		<td class="texto1" align="center" valign="top">
+		<td  align="center" valign="top">
 			<%=ConverteNuloHTML(ConcatenaDataHora(rec("data_M"), rec("hora_M")))%><br><%="("&ConverteNuloHTML(rec("no_descricao_M"))&")"%>
 		</td>
 	</tr>
@@ -195,8 +195,8 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
 	    wend
     end if%>
 </table>
-<p align="left" class="texto1"><i><b>(*)</b> Movimentação de passagem de carga</i></p>
-<p align="left" class="texto1"><i><b>(**)</b> Os CDE´s em <span style='background-color: Silver;'>cinza</span> indicam envio para calibração</i></p>
+<p align="left" ><i><b>(*)</b> Movimentação de passagem de carga</i></p>
+<p align="left" ><i><b>(**)</b> Os CDE´s em <span style='background-color: Silver;'>cinza</span> indicam envio para calibração</i></p>
 <br>
 <%
 Else

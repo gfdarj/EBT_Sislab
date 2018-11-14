@@ -101,7 +101,7 @@ If Env.UsuarioSCE() Then
 <form name="formulario" action="sel_mov_acessorio.asp" method="post">
 <input type="hidden" name="status" value="<%=request("status")%>">  <!-- pego o estado dos itens consultados para movimentar -->
 
-<table width="100%" cellpadding="2" cellspacing="0" class="texto1">
+<table width="100%" cellpadding="2" cellspacing="0" >
 <tr>
 	<td><%
     'if request("eq_id") = "" or a <> "" or isnull(a) then 
@@ -115,9 +115,9 @@ If Env.UsuarioSCE() Then
     <td class="Destaque" align="center">Escolha um Item</td>
 </tr>
 <tr valign="top">
-    <td class="texto1">
+    <td >
 		<br><br>
-		<table width="100%" cellpadding="2" cellspacing="0" border="1" class="texto1">
+		<table width="100%" cellpadding="2" cellspacing="0" border="1" >
   			<tr bgcolor="#C0E0EF">
 			  <th align="center">&nbsp;</th>
 		      <th align="center">Itens</th>
@@ -147,12 +147,12 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 <tr>
-   	<td class="texto1" align="center"><br><br>
-	&nbsp;&nbsp;&nbsp;&nbsp;<input type=submit value=" Escolher " class="texto1">&nbsp;&nbsp;<br><br>
+   	<td  align="center"><br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;<input type=submit value=" Escolher " >&nbsp;&nbsp;<br><br>
 	</td>
 </tr>
 <tr>
-      	<td class="texto1" align="center">
+      	<td  align="center">
 		&nbsp;&nbsp;&nbsp;&nbsp;<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo Ítem</a>
 	</td>
 </tr>

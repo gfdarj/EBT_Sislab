@@ -21,7 +21,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%" class="texto1" border="0">
+<table width="100%"  border="0">
 <%  If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posição consolidada de Movimentações " & Request("ano") & "</td></tr>" End If %>
 <tr><td>&nbsp;</td></tr>
 
@@ -30,10 +30,10 @@ If Env.UsuarioSCE() Then
 	<td>
 		<form name="formulario" method="post">
 		Selecione o ano desejado:&nbsp;
-		<input type="text" class="texto1" size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
-		<input type="submit" class="texto1" value="Pesquisar">
+		<input type="text"  size="5" maxlength="4" name="ano" value="<%=Year(Date)%>">&nbsp;
+		<input type="submit"  value="Pesquisar">
 		</form>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			document.forms[0].ano.focus();
 		</script>
 	</td>
@@ -46,7 +46,7 @@ Else
 %>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 <%
     	ano = Request("ano")
 

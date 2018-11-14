@@ -909,7 +909,7 @@ end function
 
 Sub comboAgendamentoJS(nomeText, nomeCombo)
 %>
-	<script language="JavaScript">
+	<script type="text/javascript">
 	function comboAgendamentoBuscaAS<%=nomeText%>() {
 		var frm = document.forms[0];
 		var combo = frm.<%=nomeCombo%>;

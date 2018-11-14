@@ -61,13 +61,13 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inv
 		        </tr>
 
 		        <tr>
-			        <td colspan="2">Código Barras: <input type="text" name="codigobarras" size="20" maxlength="16" class="texto1"></td>
-			        <td colspan="2">Localização: <input type="text" name="localizacao" size="20" class="texto1"></td>
-			        <td colspan="6">Modelo: <input type="text" name="modelo" size="20" class="texto1"></td>
+			        <td colspan="2">Código Barras: <input type="text" name="codigobarras" size="20" maxlength="16" ></td>
+			        <td colspan="2">Localização: <input type="text" name="localizacao" size="20" ></td>
+			        <td colspan="6">Modelo: <input type="text" name="modelo" size="20" ></td>
 		        </tr>
 
 		        <tr>
-			        <td colspan="2">Nota Fiscal: <input type="text" name="notafiscal" size="10" class="texto1"></td>
+			        <td colspan="2">Nota Fiscal: <input type="text" name="notafiscal" size="10" ></td>
 			        <td colspan="2">
 				        Propriedade:
 				        <select name="propriedade" >
@@ -78,7 +78,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inv
 					        <option value="T">Terceiros</option>
 				        </select>
 			        </td>
-			        <td colspan="6">Qtde de Movimentos: <input type="text" name="qtdmov" size="6" maxlength="5" class="texto1"></td>
+			        <td colspan="6">Qtde de Movimentos: <input type="text" name="qtdmov" size="6" maxlength="5" ></td>
 		        </tr>
 
 		        <tr>
@@ -123,7 +123,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inv
 		<tr><td>&nbsp;</td></tr>
         </table>
 
-        <p><input type="submit" name="btnConsultar" Value="Consultar" class="texto1"></p>
+        <p><input type="submit" name="btnConsultar" Value="Consultar" ></p>
 
     </form>
 </div>

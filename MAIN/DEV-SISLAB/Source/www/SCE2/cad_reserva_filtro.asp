@@ -100,7 +100,7 @@ If Env.UsuarioSCE() Then
 
     Set objRS = Env.oconn.execute(s)
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 var total_linhas = 0;
 var checkedAll = false;
 function checkAll() {
@@ -112,11 +112,11 @@ function checkAll() {
 }
 </script>
 <form name="formulario">
-<table width="100%" border="0" class="texto1">
+<table width="100%" border="0" >
 <tr>
 	<td>
 		<!--<div style="width: 100%; height: 200; overflow: auto; border: thin silver solid;">-->
-		<table class="texto1" width="100%" border="1" cellpadding="2" cellspacing="0" style="border: thin silver solid;">
+		<table  width="100%" border="1" cellpadding="2" cellspacing="0" style="border: thin silver solid;">
 		<tr valign="top">
 			<th><a href="#" onClick="javascript:checkAll();"><img src="img/checked.gif" border="0"></a></th>
 			<th align="left">C&oacute;digo de Barras</th>
@@ -134,7 +134,7 @@ function checkAll() {
 		</tr>
 		<tbody><%
 if objRS.eof and objRS.Bof then%>
-		<tr><td colspan="9<%'if request("notafiscal") <> "" or request("fornecedor") <> "" then response.write "10" else response.write "9"%>" align="center" class="texto1">Nenhum equipamento encontrado !</td></tr><%
+		<tr><td colspan="9<%'if request("notafiscal") <> "" or request("fornecedor") <> "" then response.write "10" else response.write "9"%>" align="center" >Nenhum equipamento encontrado !</td></tr><%
 else
 	linha = 1
 	while not objRS.eof
@@ -168,7 +168,7 @@ else
 		linha = linha + 1
 	wend%>
 		</tbody>
-		<script language="JavaScript">total_linhas = <%=linha-1%></script><%
+		<script type="text/javascript">total_linhas = <%=linha-1%></script><%
 end if%>
 		</table>
 		<!--</div>-->
@@ -177,13 +177,13 @@ end if%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td align="center">
-		<input type="button" value=" Incluir " class="texto1" onClick="javascript:IncluiListaItens();">
+		<input type="button" value=" Incluir "  onClick="javascript:IncluiListaItens();">
 		&nbsp;&nbsp;&nbsp;
-		<input type="button" value=" Voltar " class="texto1" onClick="javascript:window.close();">
+		<input type="button" value=" Voltar "  onClick="javascript:window.close();">
 	</td>
 </tr>
 </table>
-<script language="JavaScript">
+<script type="text/javascript">
 var w = window.opener;
 /* verifica se ja existe o equipamento na lista */
 function ExisteItemLista(eq_id) {

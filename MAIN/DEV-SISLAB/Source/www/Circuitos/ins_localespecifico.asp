@@ -21,7 +21,7 @@ with( objSP )
 end with
 call Env.StoredProcedure( false, objSP, "SP_FAC_CADASTRA_LOCAL_ESPECIFICO")
 
-%><script language="JavaScript">
+%><script type="text/javascript">
 	var str='';
 	str += '<font class="Fonttit3Cad"><b>Locais Espec&iacute;ficos:</b></font><br>';
 	str += '<select multiple name="locais" style="width: 200px;" size="6" >';

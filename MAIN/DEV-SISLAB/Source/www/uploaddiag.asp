@@ -95,7 +95,7 @@ Next
 	<td class="cinza1"><i>Gravado por: <%=auxusername%>&nbsp;&nbsp;&nbsp;IP: <%=auxip%></i></td>
 </tr>
 <tr>
-	<td align="center"><input type="button" class="texto1" value="Fechar" onclick="javascript:window.close();"></td>
+	<td align="center"><input type="button"  value="Fechar" onclick="javascript:window.close();"></td>
 </tr>
 </table>
 <%

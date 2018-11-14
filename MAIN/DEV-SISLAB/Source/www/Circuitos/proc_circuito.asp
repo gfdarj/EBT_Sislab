@@ -74,7 +74,7 @@ if( ret < 0 ) then
 else %>
 <html>
 <body>
-<script language="JavaScript"><%
+<script type="text/javascript"><%
 	if( request.form( "cto_id" ) <> "" ) then %>
 window.opener.location.href = "ed_circuito.asp?cto_id=<%= request.form( "cto_id" ) %>";
 window.close();<%

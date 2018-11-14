@@ -191,10 +191,10 @@ End If %>
 
         <tr>
 	        <td colspan="2">
-		        <input type="button" class="texto1" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
-		        <input type="button" class="texto1" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		        <input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" class="texto1" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+		        <input type="button"  onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
+		        <input type="button"  onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		        <input type="button"  onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button"  onclick="Cancela()" value=" Cancelar " name="btnCancelar">
 	        </td>
         </tr>
         </table>

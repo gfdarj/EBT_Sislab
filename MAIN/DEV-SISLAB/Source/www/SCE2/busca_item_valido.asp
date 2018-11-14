@@ -34,7 +34,7 @@ If Not (objRS.Eof And objRS.Bof) Then '-- ITEM VALIDO --
 	End If
 
 	reservado = Sce.VerificaReservaItem(true, request("ag_numero"), objRS("EQ_ID"), false)%>
-<script language="JavaScript">
+<script type="text/javascript">
 	var f = window.parent;
 	f.document.all["item_<%=request("linhaTabela")%>"].eq_id = <%=objRS("EQ_ID")%>; // equip ID
 	f.document.all["linha_<%=request("linhaTabela")%>_col_2"].innerText = '<%=objRS("DESCRICAO")%>';
@@ -43,7 +43,7 @@ If Not (objRS.Eof And objRS.Bof) Then '-- ITEM VALIDO --
 <%	Call Sce.MarcaItemReservado((reservado <> ""), request("linhaTabela"))
 
 else  '-- ITEM NAO EXISTE --%>
-<script language="JavaScript">
+<script type="text/javascript">
 	var f = window.parent;
 	f.document.all["item_<%=request("linhaTabela")%>"].eq_id = ""; // equip ID
 	f.document.all["linha_<%=request("linhaTabela")%>_col_2"].innerHTML = '<span style="color:red; font-weight:bold;"><i>Item não encontrado</i></span>';

@@ -30,7 +30,7 @@ If Env.UsuarioSCE() Then
 </script>
 <form name="formulario" method="post" action="sel_cad_reserva2.asp">
 <input type="hidden" name="abrir_como" value="<%=ucase(request("abrir_como"))%>">
-<table width="750px" class="texto1">
+<table width="750px" >
 <tr>
 	<td colspan="2">
 <%		if request("msg") <> "" then
@@ -61,7 +61,7 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1">
+	<td colspan="2" >
 		Per&iacute;odo:&nbsp;
 		<%RW Combo.Data("inicio")%>
 		&nbsp;at&eacute;&nbsp;
@@ -72,8 +72,8 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" size="25" maxlength="20"></td>
-	<td class="texto1">Fabricantes:&nbsp;
+	<td>Código Barras:&nbsp;<input type="text"  name="codbarras" size="25" maxlength="20"></td>
+	<td >Fabricantes:&nbsp;
 	<%RW Combo.PadraoSql( "fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 	</td>
 </tr>
@@ -81,8 +81,8 @@ If Env.UsuarioSCE() Then
 <tr><td>&nbsp;</td></tr>
 
 <tr>
-	<td>Modelo:&nbsp;<input type="text" name="modelo" class="texto1"></td>
-	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo" class="texto1" size="50"></td>
+	<td>Modelo:&nbsp;<input type="text" name="modelo" ></td>
+	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo"  size="50"></td>
 </tr>
 
 <tr><td>&nbsp;</td></tr>
@@ -104,17 +104,17 @@ If Env.UsuarioSCE() Then
 <tr>
 	<td>
 		Número de Série:&nbsp;
-		<input type="text" class="texto1" name="numeroserie" maxlength="50">
+		<input type="text"  name="numeroserie" maxlength="50">
 	</td>
 	<td align="center">
 		<%RW Combo.PropriedadeEquipamento("propriedade", True)%>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name="buscar" value="próximo &gt;&gt;" class="texto1">
+		<input type="submit" name="buscar" value="próximo &gt;&gt;" >
 	</td>
 </tr>
 </table>
 </form>
-<script language="JavaScript">document.formulario.txtAS.focus();</script>
+<script type="text/javascript">document.formulario.txtAS.focus();</script>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

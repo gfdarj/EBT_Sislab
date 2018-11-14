@@ -54,14 +54,14 @@ if rec.recordcount = 1 then
 else%>
 			<table border="1" align="center" cellpadding="2" cellspacing="2"><%
 		if not (rec.eof and rec.bof) then%>
-			<tr class="texto1" bgcolor="#C0E0EF">
+			<tr  bgcolor="#C0E0EF">
 				<th>Modelo</th>
 				<th>Fabricante</th>
 				<th>Descrição</th>
 				<th>Part Number</th>
 			</tr>
 <%			while not rec.eof%>
-			<tr class="texto1" bgcolor="#C0E0EF">
+			<tr  bgcolor="#C0E0EF">
 				<td><a href=alt_modelos.asp?mod_id=<%=rec("mod_id")%>><%=rec("mod_codnome")%></a></td>
 				<td><%if isnull(rec("fab_nome")) then response.write "&nbsp;" else response.write rec("fab_nome")%></td>
 				<td><%if isnull(rec("mod_descricao")) then response.write "&nbsp;" else response.write rec("mod_descricao") end if%></td>
@@ -77,8 +77,8 @@ set rec = nothing
 %>
 		</td>
 	</tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
-	<tr><td align="center"><input type="button" class="texto1" value="Voltar" onclick="javascript:history.go(-1);"></td></tr>
+	<tr ><td>&nbsp;</td></tr>
+	<tr><td align="center"><input type="button"  value="Voltar" onclick="javascript:history.go(-1);"></td></tr>
 </table>
 </form>
 <br>

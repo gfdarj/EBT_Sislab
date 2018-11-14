@@ -79,21 +79,21 @@ function f(){
 }
 </script>
 	<tr>
-		<td valign="top"  valign="middle" class="texto1">
-		    Busque por número da nota:&nbsp;<input type=text name=numeronota class="texto1" size="10">&nbsp;
-		    <input type=submit value="buscar" class="texto1" onclick="f();"><br><br>Busque por Empresa:<br>
+		<td valign="top"  valign="middle" >
+		    Busque por número da nota:&nbsp;<input type=text name=numeronota  size="10">&nbsp;
+		    <input type=submit value="buscar"  onclick="f();"><br><br>Busque por Empresa:<br>
 
 <%              RW Combo.Fornecedor("enf_id", "", false, "", true)%>
-			    <script language="JavaScript">
+			    <script type="text/javascript">
 				    document.all.enf_id.size = 20;
 				    document.all.enf_id.onchange = func;
 			</script>
 		</td>
     </tr>
 	<tr>
-		<td valign="top"  valign="middle" class="texto1">
+		<td valign="top"  valign="middle" >
 		<%if not recnf.eof then%>
-			<select name="nf_id" size="5" class="texto1" style="width:600">
+			<select name="nf_id" size="5"  style="width:600">
 			</select>
 		<%else
 			response.write "Não Existem Notas Fiscais Cadastradas No Momento."
@@ -114,7 +114,7 @@ function f(){
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 	    <td valign="middle">
-	        <input type=submit value=" Editar " class="texto1" onclick="f1(); return document.vp;">
+	        <input type=submit value=" Editar "  onclick="f1(); return document.vp;">
 	    </td>
 	</tr>
 </table>

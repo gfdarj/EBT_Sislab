@@ -58,7 +58,7 @@ if categoria = CAT_CONSUMIVEL or categoria = CAT_EQUIPAMENTO then
 else%>
 <html>
 	<head><title>SCE - [ERRO]</title></head>
-	<body><script language="JavaScript">alert('Categoria inválida !'); history.go(-1);</script></body>
+	<body><script type="text/javascript">alert('Categoria inválida !'); history.go(-1);</script></body>
 </html>
 <%
 end if
@@ -72,7 +72,7 @@ Function ConfirmaExclusao(eq_id, categoria)%>
 <html>
 	<head><title>SCE - [Confirmação de exclusão]</title></head>
 	<body>
-	<script language="JavaScript">
+	<script type="text/javascript">
 	if(confirm('ATENÇÃO !!!\n\nEste equipamento possui movimentações.\n\nExcluindo o mesmo, TODAS os seus movimentos, controles e históricos também serão excluídos.\n\nDeseja continuar ?')) {
 		location.href = 'exc_item.asp?eq_id=<%=eq_id%>&categoria=<%=categoria%>&apagamovimentos=1';
 	}

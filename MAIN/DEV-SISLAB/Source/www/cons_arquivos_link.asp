@@ -58,7 +58,7 @@ int_ContaErro = 0
         <br />
         <p>
             Situação:
-	            <select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" class="texto1">
+	            <select name="situacao" onchange="document.forms[0].Excel.value=''; document.forms[0].submit();" >
 		            <option value="" <%If VVVN(chr_Situacao) Then RW "selected" End If%>>Todos</option>
 		            <option value="OK" <%If chr_Situacao = "OK" Then RW "selected" End If%>>Apenas OK</option>
 		            <option value="ERRO" <%If chr_Situacao = "ERRO" Then RW "selected" End If%>>Apenas com ERRO</option>

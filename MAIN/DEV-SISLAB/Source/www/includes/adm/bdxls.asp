@@ -96,7 +96,7 @@ If Comando <> "" Then
 %>
 <p align="center"><button type="button" onClick="javascript:history.go(-1);">Voltar...</button></p>
 <%Else%>
-<script language="JavaScript">
+<script type="text/javascript">
 function vai(){
 	if(document.admin_remoto.sql.value == ""){
 		alert("Digite alguma coisa!!!\nComo você vai executar um comando em branco no Banco de Dados??? ");

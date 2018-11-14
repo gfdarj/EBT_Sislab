@@ -19,7 +19,7 @@ Call Env.StoredProcedure(False, objSP, "sp_SCE_CADASTRA_ACEITE_RESERVA")
 %>
 <html>
 <body>
-	<script language="JavaScript">
+	<script type="text/javascript">
 <%
 If Env.oconn.Errors.Count > 0 Then%>
 	alert("ERRO DE GRAVAÇÂO:\n\n<%=Env.oconn.Errors(0).Description%>");

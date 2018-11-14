@@ -67,10 +67,10 @@ Else
 <form name='frm' target='' action=''>
 <input type='hidden' name='exportarExcel' value=''>
 
-<table width="100%" class="texto1" border="0"><tr><td>&nbsp;</td></tr>
+<table width="100%"  border="0"><tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0" class="texto1" border="1">
+		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 <%    	If RS.Eof And RS.Bof Then %>
 		<tr><td align='center'><b><i>Nenhuma informação encontrada !</i></b></td></tr>
 <%	    Else %>
@@ -110,7 +110,7 @@ Else
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td align='right'><a class="texto1" href='#' onclick='javascript:geraExcel();'>Exportar para Excel</a></td></tr>
+<tr><td align='right'><a  href='#' onclick='javascript:geraExcel();'>Exportar para Excel</a></td></tr>
 </table>
 </form>
 <%  Else

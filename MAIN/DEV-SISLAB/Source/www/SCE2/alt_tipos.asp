@@ -13,7 +13,7 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -40,8 +40,8 @@ set rec = Env.oconn.execute(ssql)
 					<%ssql = "select * from sce_tipos where tipo_id <> "& rec("tipo_id") &" order by tipo_descricao"
 					set rec2 = Env.oconn.execute(Ssql)
 					if not rec2.eof then%>
-						<td class="texto1">Filho de:<br />
-							<select name="super_tipo" class="texto1">
+						<td >Filho de:<br />
+							<select name="super_tipo" >
 								<option value=""></option>
 								<%while not rec2.eof%>
 									<option value="<%=rec2("tipo_id")%>" <%if rec("TIPO_supertipo") = rec2("tipo_id") then response.write " selected"%>><%=rec2("tipo_descricao")%></option>
@@ -55,7 +55,7 @@ set rec = Env.oconn.execute(ssql)
 		</td>
 	</tr>
 	 <tr> 
-	 	<td bgcolor="#FFFFFF" class="texto1">Tipo<br><input type="text" class="texto1" name="tipo_descricao" style="width:600" maxlength="100" value="<%=rec("tipo_descricao")%>"><br><br></td>
+	 	<td bgcolor="#FFFFFF" >Tipo<br><input type="text"  name="tipo_descricao" style="width:600" maxlength="100" value="<%=rec("tipo_descricao")%>"><br><br></td>
 	</tr>
 	<script>
 		function func(){
@@ -63,7 +63,7 @@ set rec = Env.oconn.execute(ssql)
 		}
 	</script>
 	<tr>
-		<td><input type="submit" name="Submit" value=" Alterar " class="texto1">&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir " class="texto1" onclick="func();"></td>
+		<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir "  onclick="func();"></td>
 	</tr>
  </table>
 </form>

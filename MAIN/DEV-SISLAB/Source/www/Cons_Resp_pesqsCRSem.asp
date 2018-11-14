@@ -67,7 +67,7 @@ function retornaopcao1(opcao)
 	if opcao>=4 then retornaopcao1="<img width=15 height=15 src='img/smile1.gif'>" end if
 end function
 %>
-<script language="javascript">
+<script type="text/javascript">
 function parafrente()
 {
 	formulario.operacao.value=1;

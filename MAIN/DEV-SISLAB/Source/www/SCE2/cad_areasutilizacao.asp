@@ -13,7 +13,7 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -31,18 +31,18 @@ function ValidaCampos()
 <input type="hidden" name="au_id" value="">
 <table width="100%">
 	<tr>
-		<td class="texto1">
+		<td >
 		<%if request("msg") <> "" then response.write "Área cadastrada com sucesso!<br><br>"%></td>
 	</tr>
 	<tr> 
-		<td class="texto1">
+		<td >
 			Descrição da Área de Utilização<br>
-			<input type="text" class="texto1" name="au_descricao" style="width:600" maxlength="50">
+			<input type="text"  name="au_descricao" style="width:600" maxlength="50">
 		</td>
 	</tr> 
 	<tr class="texto"><td>&nbsp;</td></tr>
 	<tr class="texto">
-		<td><input type="submit" name="Submit" value=" Cadastrar " class="texto1"></td>
+		<td><input type="submit" name="Submit" value=" Cadastrar " ></td>
 	</tr>
 </table>
 </form>

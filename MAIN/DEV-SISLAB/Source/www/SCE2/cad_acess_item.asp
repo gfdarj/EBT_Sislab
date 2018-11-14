@@ -146,7 +146,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 <%'-- parametro passado por cad_acess_item2.asp caso o item tenha sido cadastrado com sucesso
 	if request("cadastrou") <> "" then%>
 	<tr valign="middle" align="center">
-		<td class="texto1"><b>Equipamento atualizado com sucesso !!!</b></td>
+		<td ><b>Equipamento atualizado com sucesso !!!</b></td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
 <%	end if%>
@@ -154,7 +154,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 <%'-- parametro passado por exc_item.asp caso o item tenha sido excluido com sucesso
 	if request("excluiu") <> "" then%>
 	<tr valign="middle" align="center">
-		<td class="texto1"><b>Equipamento exclu&iacute;do com sucesso !!!</b></td>
+		<td ><b>Equipamento exclu&iacute;do com sucesso !!!</b></td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
 <%	end if%>
@@ -163,10 +163,10 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 	<td>
 		<table cellpadding="0" cellspacing="0" border="0">
 		<tr> 
-			<td class="texto1" colspan='3'>
+			<td  colspan='3'>
 			Plataforma<br>
 			<%RW Combo.ServicosPlataformas("plataforma", "N", "P")%>
-			<script language="JavaScript">
+			<script type="text/javascript">
 			    document.forms[0].plataforma.value = '<%=id_Plataforma%>';
 			</script>
 			<input type='hidden' name='plataformaAnterior' value='<%=id_PlataformaAnterior%>'>
@@ -194,16 +194,16 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		maxAjaxObj.get();
 	}
 </script>
-			<td class="texto1" align="right" colspan="2">
+			<td  align="right" colspan="2">
 <%              If Not VVVNZ(eq_id) Then %>
-				<table bgcolor="#CCCCCC"  class="texto1" cellpadding="2" cellspacing="2" border="0">
+				<table bgcolor="#CCCCCC"   cellpadding="2" cellspacing="2" border="0">
 				<tr>
 					<td>
-						Último Inventário:<br>&nbsp;&nbsp;&nbsp;<input type="text" id="dtUltInventario" name="dtUltInventario" size="19" class="texto1" value="<%=DtUltInventario%>">
+						Último Inventário:<br>&nbsp;&nbsp;&nbsp;<input type="text" id="dtUltInventario" name="dtUltInventario" size="19"  value="<%=DtUltInventario%>">
 <%				    'If session("status") = PERFIL_RAT Then %>
 <%				    If session("status") = PERFIL_ADM Then %>
-						&nbsp;&nbsp;<input type="button" value=" Marcar " class="texto1" onClick="javascript:atualizarInventario(<%=eq_id%>, false);">
-						&nbsp;&nbsp;<input type="button" value="Desmarcar" class="texto1" onClick="javascript:atualizarInventario(<%=eq_id%>, true);">
+						&nbsp;&nbsp;<input type="button" value=" Marcar "  onClick="javascript:atualizarInventario(<%=eq_id%>, false);">
+						&nbsp;&nbsp;<input type="button" value="Desmarcar"  onClick="javascript:atualizarInventario(<%=eq_id%>, true);">
 <%				    End If %>
 					</td>
 				</tr>
@@ -215,18 +215,18 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
 		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1"><br></td></tr>
+		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
 
 		<tr>
-			<td bgcolor="#FFFFFF" align="left" class="texto1">
+			<td bgcolor="#FFFFFF" align="left" >
 				Fabricante<br>
-					<select name="fab_id" class="texto1" style="width:300;" onChange="javascript:buscaModelos(this.value);">
+					<select name="fab_id"  style="width:300;" onChange="javascript:buscaModelos(this.value);">
 						<option value="">-- Escolha um Fabricante --</option>
                      <%RW Combo.OptionBD("select f.fab_id as VALOR, f.fab_nome as DESCRICAO from sce_fabricantes f order by f.fab_nome", "", fab_id) %>
 					</select>
 			</td>
 
-  			<td bgcolor="#FFFFFF" align="left" class="texto1">
+  			<td bgcolor="#FFFFFF" align="left" >
 			    Modelo<br>
 <%					If mod_id = "" then valor = 0 else valor = cint(mod_id)
 
@@ -234,11 +234,11 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 						ssql = "select m.mod_id as VALOR, m.mod_codnome + ' - ' + CAST(m.mod_descricao as VARCHAR(100)) as DESCRICAO from sce_modelos m where fab_id = " & fab_id & " AND mod_id = " & valor
 						Set rec = Env.oconn.execute(ssql) %>
 
-						<input type="hidden" name="mod_id" class="texto1" value="<%=valor%>">
-						<input type="text" name="mod_desc" class="texto1" size="50" value="<%If Not rec.Eof Then Response.Write rec("descricao")%>" readonly>
+						<input type="hidden" name="mod_id"  value="<%=valor%>">
+						<input type="text" name="mod_desc"  size="50" value="<%If Not rec.Eof Then Response.Write rec("descricao")%>" readonly>
 <%					Else %>
 
-					<select name="mod_id" id="mod_id" class="texto1" style="width:280;" onChange="javascript:buscaPN(this.value);">
+					<select name="mod_id" id="mod_id"  style="width:280;" onChange="javascript:buscaPN(this.value);">
 						<option value="">-- Escolha um Modelo --</option>
 <%
 						if fab_id <> "" or fab_id <> fab_id_old then
@@ -249,36 +249,36 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 <%					End If %>
 			</td>
 
-			<td class="texto1">
-					PN:<br><input type="text" value="" name="txtPN" id="txtPN" class="texto1" readonly="true">
+			<td >
+					PN:<br><input type="text" value="" name="txtPN" id="txtPN"  readonly="true">
 			</td>
     		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1"><br></td></tr>
+		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
 		<tr> 
-			<td bgcolor="#FFFFFF" align="left" class="texto1">
+			<td bgcolor="#FFFFFF" align="left" >
 				Número de Série:<br>
-				<input type="text" class="texto1" name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
-				<input type="button" name="btn_ChecaNS" value="Verificar" class="texto1" title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
+				<input type="text"  name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
+				<input type="button" name="btn_ChecaNS" value="Verificar"  title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
 			</td>
 
-			<td class="texto1" colspan="1">
+			<td  colspan="1">
 				Código de Barras<br>
-				<input type="text" class="texto1" name="codbarras" style="width:200" maxlength="16" value="<%=codbarras%>">
+				<input type="text"  name="codbarras" style="width:200" maxlength="16" value="<%=codbarras%>">
 			</td>
 
-			<td class="texto1" colspan="2">
+			<td  colspan="2">
 				Código de Barras Anterior<br>
-				<input type="text" class="texto1" name="codbarrasanterior" style="width:200" maxlength="16" value="<%=codbarrasanterior%>">
+				<input type="text"  name="codbarrasanterior" style="width:200" maxlength="16" value="<%=codbarrasanterior%>">
 			</td>
 		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1">&nbsp;</td></tr>
+		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" >&nbsp;</td></tr>
 
-		<tr class="texto1">
+		<tr >
 			<td>
 				Localização<br>
-				<input type="text" name="localizacao" class="texto1" size="50" maxlength="255" value="<%=localizacao%>">
+				<input type="text" name="localizacao"  size="50" maxlength="255" value="<%=localizacao%>">
 				</td>
 				<td colspan="2">
 				Conforme<br>
@@ -292,11 +292,11 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
     	</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" class="texto1"><br></td></tr>
+		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
 
 		<tr>
-      			<td bgcolor="#FFFFFF" colspan="3" class="texto1">Observações<br>
-				<textarea class="texto1" name="obs" cols="140" rows="9"><%=obs%></textarea>
+      			<td bgcolor="#FFFFFF" colspan="3" >Observações<br>
+				<textarea  name="obs" cols="140" rows="9"><%=obs%></textarea>
 			</td>
 		</tr>
 
@@ -304,8 +304,8 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		<tr><td class="destaque" colspan="3">Dados de Manutenção</td></tr>
 		<tr><td colspan="3">&nbsp;</td></tr>
 		<tr>
-      			<td colspan="3" class="texto1">Observações<br>
-				<textarea class="texto1" name="manutencaopreventiva" cols="140" rows="9"><%=manutencaopreventiva%></textarea>
+      			<td colspan="3" >Observações<br>
+				<textarea  name="manutencaopreventiva" cols="140" rows="9"><%=manutencaopreventiva%></textarea>
 			</td>
 		</tr>
 		<tr><td colspan="3">&nbsp;</td></tr>
@@ -313,24 +313,24 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			<td colspan="3">
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 				<tr> 
-				    <td class="texto1" colspan="4">
+				    <td  colspan="4">
 					Opera&ccedil;&atilde;o<br>
-					Delta: <input type="text" class="texto1" name="deltaoperacao" size="30" maxlength="50" value="<%=deltaoperacao%>">
+					Delta: <input type="text"  name="deltaoperacao" size="30" maxlength="50" value="<%=deltaoperacao%>">
 					&nbsp;&nbsp;&nbsp;
-					Umidade: <input type="text" class="texto1" name="umidadeoperacao" size="30" maxlength="50" value="<%=umidadeoperacao%>">
+					Umidade: <input type="text"  name="umidadeoperacao" size="30" maxlength="50" value="<%=umidadeoperacao%>">
 					&nbsp;&nbsp;&nbsp;
-					Warm Up: <input type="text" class="texto1" name="warmupoperacao" size="30" maxlength="50" value="<%=warmupoperacao%>">
+					Warm Up: <input type="text"  name="warmupoperacao" size="30" maxlength="50" value="<%=warmupoperacao%>">
 					</td>
 				</tr>
 
-				<tr><td class="texto1">&nbsp;</td></tr>
+				<tr><td >&nbsp;</td></tr>
 
 				<tr>
-		      			<td class="texto1" colspan="4">
+		      			<td  colspan="4">
 						Armazenagem<br>
-						Delta: <input type="text" class="texto1" name="deltaarmazenagem" size="30" maxlength="50" value="<%=deltaarmazenagem%>">
+						Delta: <input type="text"  name="deltaarmazenagem" size="30" maxlength="50" value="<%=deltaarmazenagem%>">
 						&nbsp;&nbsp;&nbsp;
-						Umidade: <input type="text" class="texto1" name="umidadearmazenagem" size="30" maxlength="50" value="<%=umidadearmazenagem%>">
+						Umidade: <input type="text"  name="umidadearmazenagem" size="30" maxlength="50" value="<%=umidadearmazenagem%>">
 					</td>
 				</tr>
 
@@ -338,21 +338,21 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 				<tr><td class="destaque" colspan="4">Controle do Equipamento <!--(Calibra&ccedil;&atilde;o/Manuten&ccedil;&atilde;o/Qualifica&ccedil;&atilde;o)--></td></tr>
 				<tr><td colspan="4">&nbsp;</td></tr>
 				<tr>
-					<td class="texto1" width="40%">
+					<td  width="40%">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Frequencia de Calibração: <input type="text" class="texto1" name="freq_calibracao" maxlength="7" size="5" value="<%=freq_calibracao%>">
+						Frequencia de Calibração: <input type="text"  name="freq_calibracao" maxlength="7" size="5" value="<%=freq_calibracao%>">
 					</td>
 				</tr>
 
-<script language="JavaScript">
+<script type="text/javascript">
 var linha = 0;
 var total_linhas = 0;
 var frm = document.all.formulario;
 </script>
 <!--
 				<tr>
-					<td class="texto1" width="40%">Controle<br>
-						<select name="controle" class="texto1" onChange="javascript:proxCampo(this, document.formulario.diascontrole);">
+					<td  width="40%">Controle<br>
+						<select name="controle"  onChange="javascript:proxCampo(this, document.formulario.diascontrole);">
 						<option value="">-- Selecione o controle --</option>
 						<option value="<%'=CONTROLE_MANUTENCAO_PREVENTIVA%>">Manutenção Preventiva</option>
 <%'If not bln_AcessoRAT Then%>
@@ -363,28 +363,28 @@ var frm = document.all.formulario;
 <%'End If%>
 						</select>
 					</td>
-					<td class="texto1" width="90px">Dias<br>
-						<input type="text" name="diascontrole" class="texto1" size="5" maxlength="6" onKeyPress="javascript:proxCampo(this, document.formulario.diacontrole);">
+					<td  width="90px">Dias<br>
+						<input type="text" name="diascontrole"  size="5" maxlength="6" onKeyPress="javascript:proxCampo(this, document.formulario.diacontrole);">
 					</td>
-					<td class="texto1" colspan="2">Data do Controle<br>
+					<td  colspan="2">Data do Controle<br>
 						<%'Call ComboData("controle")%>
 					</td>
 				</tr>
-				<tr><td class="texto1">&nbsp;</td></tr>
+				<tr><td >&nbsp;</td></tr>
 				<tr>
-					<td class="texto1" width="40%">Registro / Certificado / CDE / RMA<br>
-						<input type="text" class="texto1" name="registrocontrole" size="30" maxlength="50" onKeyPress="javascript:proxCampo(this, document.formulario.responsavelcontrole);">
+					<td  width="40%">Registro / Certificado / CDE / RMA<br>
+						<input type="text"  name="registrocontrole" size="30" maxlength="50" onKeyPress="javascript:proxCampo(this, document.formulario.responsavelcontrole);">
 					</td>
-					<td colspan="2" class="texto1">Respons&aacute;vel<br>
-						<input type="text" class="texto1" name="responsavelcontrole" size="30" maxlength="50" onKeyPress="javascript:proxCampo(this, document.formulario.btnInsereControle);">
+					<td colspan="2" >Respons&aacute;vel<br>
+						<input type="text"  name="responsavelcontrole" size="30" maxlength="50" onKeyPress="javascript:proxCampo(this, document.formulario.btnInsereControle);">
 					</td>
-					<td align="right" valign="bottom"><button name="btnInsereControle" class="texto1" onClick="javascript:InsereControle();">&gt;&gt;&nbsp;Adicionar Controle</button>&nbsp;</td>
+					<td align="right" valign="bottom"><button name="btnInsereControle"  onClick="javascript:InsereControle();">&gt;&gt;&nbsp;Adicionar Controle</button>&nbsp;</td>
 				</tr>
 
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 					<td colspan="4">
-<script language="JavaScript">
+<script type="text/javascript">
 var linha = 0;
 var total_linhas = 0;
 var frm = document.all.formulario;
@@ -550,8 +550,8 @@ function RemoveControle(l) {
 }
 </script>
 						<select name="lista_controles" multiple style="display: none; width:500px;"></select>
-						<table id="tb_controle" class="texto1" width="100%" cellpadding="2" cellspacing="0" border="1">
-						<tr class="texto1">
+						<table id="tb_controle"  width="100%" cellpadding="2" cellspacing="0" border="1">
+						<tr >
 							<th width="100px" align="left">Controle</th>
 							<th width="50px">Dias</th>
 							<th width="100px">Data Controle</th>
@@ -599,7 +599,7 @@ function RemoveControle(l) {
 						</tr>
 <%'						rec.MoveNext
 '					wend%>
-						<script language="JavaScript">
+						<script type="text/javascript">
 							linha = <%'=rec.RecordCount%>;
 							total_linhas = <%'=rec.RecordCount%>;
 						</script>
@@ -619,17 +619,17 @@ function RemoveControle(l) {
 
 	<tr><td colspan="3">&nbsp;</td></TR>
 
-	<tr><td class="texto1" colspan="3">Acessórios do Equipamento</td></tr>
+	<tr><td  colspan="3">Acessórios do Equipamento</td></tr>
 	<tr>
 		<td colspan="3">
   			<table width="100%" cellspacing="2" cellpadding="2" border="0">
 				<tr>
-				    <td valign="top" class="texto1">
-					<button name="adicionar" class="texto1" onClick="NovoAcessorio();">Novo acess&oacute;rio</button><br>
-					Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5" class="texto1" value="1">
+				    <td valign="top" >
+					<button name="adicionar"  onClick="NovoAcessorio();">Novo acess&oacute;rio</button><br>
+					Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5"  value="1">
 					</td>
 
-<script language="JavaScript">
+<script type="text/javascript">
 var separa_campo = "¿?¿";
 var linha_acess = 0;
 var total_linhas_acess = 0;
@@ -638,7 +638,7 @@ var seq_acess = 0;
 /* Cria uma nova combo conformidade para o acessorio Sim/Nao */
 function ComboConformeAcessorio(escreve, id_combo) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="texto1">';
+	str += '<select name="' + id_combo + '" >';
 	str += '<option value="1">Sim</option>';
 	str += '<option value="0">Não</option>';
 	str += '</select>';
@@ -649,7 +649,7 @@ function ComboConformeAcessorio(escreve, id_combo) {
 /* Cria uma nova combo de situacoes para o acessorio */
 function ComboSituacaoAcessorio(escreve, id_combo) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="texto1">';
+	str += '<select name="' + id_combo + '" >';
 	str += '<option value="<%=STATUS_EM_ESTOQUE%>">Em Estoque</option>';
 	str += '<option value="<%=STATUS_EM_USO%>">Em Uso</option>';
 	str += '<option value="<%=STATUS_EXPEDIDO%>">Expedido</option>';
@@ -765,11 +765,11 @@ function RemoveAcessorio(linha) {
 }
 </script>
 
-				    <td valign="top" class="texto1">
+				    <td valign="top" >
 						<!-- select utilizada para concatenar a lista de acessorios -->
 						<select name="lista_acessorios" style="display:none" multiple></select>
-						<table id="tb_acessorios" class="texto1" width="100%" cellpadding="0" cellspacing="0" border="1">
-						<tr class="texto1">
+						<table id="tb_acessorios"  width="100%" cellpadding="0" cellspacing="0" border="1">
+						<tr >
 							<th width="50px">Seq.</th>
 							<th width="450px">Descri&ccedil;&atilde;o</th>
 							<th width="100px">Situa&ccedil;&atilde;o</th>
@@ -784,11 +784,11 @@ function RemoveAcessorio(linha) {
 			iSeq = 0
 			if not (rec.eof or rec.bof) then
 				while not rec.eof%>
-						<tr class="texto1" id="linha_acess_<%=rec("SEQUENCIAL")%>">
+						<tr  id="linha_acess_<%=rec("SEQUENCIAL")%>">
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_1"><%=rec("SEQUENCIAL")%></td>
-							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_2"><input type="text" class="texto1" size="80" maxlength="255" name="desc_acess_<%=rec("SEQUENCIAL")%>" value="<%=rec("DESCRICAO")%>"></td>
-							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_3"><script language="JavaScript">ComboSituacaoAcessorio(true, "status_acess_<%=rec("SEQUENCIAL")%>");document.all.status_acess_<%=rec("SEQUENCIAL")%>.value=<%=rec("STATUS")%></script></td>
-							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_4" align="center"><script language="JavaScript">comboSimNao(true, "conforme_acess_<%=rec("SEQUENCIAL")%>", <%=cint(rec("CONFORME"))%>);</script></td>
+							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_2"><input type="text"  size="80" maxlength="255" name="desc_acess_<%=rec("SEQUENCIAL")%>" value="<%=rec("DESCRICAO")%>"></td>
+							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_3"><script type="text/javascript">ComboSituacaoAcessorio(true, "status_acess_<%=rec("SEQUENCIAL")%>");document.all.status_acess_<%=rec("SEQUENCIAL")%>.value=<%=rec("STATUS")%></script></td>
+							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_4" align="center"><script type="text/javascript">comboSimNao(true, "conforme_acess_<%=rec("SEQUENCIAL")%>", <%=cint(rec("CONFORME"))%>);</script></td>
 							<td id="linha_acess_<%=rec("SEQUENCIAL")%>_col_5" align="center">
 
 <%				    If bln_AcessoRAT Then %>
@@ -803,7 +803,7 @@ function RemoveAcessorio(linha) {
                     rec.MoveNext
 				WEnd
 %>
-			<script language="JavaScript">
+			<script type="text/javascript">
 				linha_acess = <%=iSeq%>;
 				total_linhas_acess = <%=iSeq%>;
 				seq_acess = <%=iSeq%>;
@@ -824,7 +824,7 @@ function RemoveAcessorio(linha) {
 	<tr><td colspan="3">&nbsp;</td></tr>
 
 	<tr>	
-		<td class="texto1" colspan="3">Propriedade:<br>
+		<td  colspan="3">Propriedade:<br>
 <%If bln_AcessoRAT Then
 		Select Case propriedade
 		Case EQ_PROPRIEDADE_TER
@@ -851,12 +851,12 @@ function RemoveAcessorio(linha) {
 
 	<tr> 
 		<td align="right" colspan="3">
-		  	<input type="button" name="Submit" value="<%if eq_id = "" then response.write "Cadastrar" else response.write "Alterar"%>" class="texto1" onClick="javascript:CadastraItem();">&nbsp;&nbsp;
+		  	<input type="button" name="Submit" value="<%if eq_id = "" then response.write "Cadastrar" else response.write "Alterar"%>"  onClick="javascript:CadastraItem();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if eq_id <> "" then%>
-		  	<input type="button" name="btnNovo" value="Novo Equipamento" class="texto1" onClick="javascript:NovoEquipamento();">&nbsp;&nbsp;
-	  		<input type="button" name="btnExcluir" value="Excluir" class="texto1" onClick="javascript:ExcluirItem();">&nbsp;&nbsp;
-		<script language="JavaScript">
+		  	<input type="button" name="btnNovo" value="Novo Equipamento"  onClick="javascript:NovoEquipamento();">&nbsp;&nbsp;
+	  		<input type="button" name="btnExcluir" value="Excluir"  onClick="javascript:ExcluirItem();">&nbsp;&nbsp;
+		<script type="text/javascript">
 		function ExcluirItem() {
 <%If bln_AcessoRAT Then%>
 			alert(MSG_SEM_ACESSO);

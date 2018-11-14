@@ -47,7 +47,7 @@ function Valida()	{
 </td></tr>
 </table>
 </form>
-<script language="JavaScript">document.all.novafamilia.focus();</script>
+<script type="text/javascript">document.all.novafamilia.focus();</script>
 <iframe name="escondido" frameborder="1" style="display:none; width:300px; height:100px;" scrolling="no"></iframe>
 </body>
 </html>

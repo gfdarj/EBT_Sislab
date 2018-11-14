@@ -28,13 +28,13 @@ If Env.UsuarioSCE() Then
     <tr>
 	    <td class="destaque">Edição de Documentos</td>
     </tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td valign="top" valign="middle" class="texto1">
+		<td valign="top" valign="middle" >
 		<%ssql = "select * from sce_documentacao order by doc_id"
 		set rec = Env.oconn.execute(ssql)
 		if not rec.eof then%>
-			<select name="doc_id" size="15" class="texto1" style="width:600">
+			<select name="doc_id" size="15"  style="width:600">
 			<%while not rec.eof%>
 				<option value="<%=rec("doc_id")%>"><%=Zeros(rec("doc_id"),4)%> / Resp: <%=rec("doc_responsavel")%> / Cliente: <%=rec("DOC_NOME")%></option>
 				<%rec.movenext
@@ -45,9 +45,9 @@ If Env.UsuarioSCE() Then
 		end if%>
 		</td>
     </tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-	    <td valign="middle" class="titulo"><input type="submit" value=" Editar " class="texto1"></td>
+	    <td valign="middle" class="titulo"><input type="submit" value=" Editar " ></td>
 	</tr>
  </table>
  </form>

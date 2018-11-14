@@ -27,11 +27,11 @@ if( objUL.form( "proc" ) = "" ) then
 	<tr>
 		<td><b>Novo Arquivo:</b></td>
 		<td>
-			<input type="File" name="arq" size="30" class="texto1">
+			<input type="File" name="arq" size="30" >
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center"><button class="texto1" onclick="javascript:if( formulario.arq.value != '' ) formulario.submit(); else alert( 'Por favor, escolha um arquivo' );">&nbsp;OK&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="javascript:window.close();" class="texto1">Cancelar</button></td>
+		<td colspan="2" align="center"><button  onclick="javascript:if( formulario.arq.value != '' ) formulario.submit(); else alert( 'Por favor, escolha um arquivo' );">&nbsp;OK&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="javascript:window.close();" >Cancelar</button></td>
 	</tr>
 	</table>
 	</form>
@@ -72,8 +72,8 @@ function Erro( msg )
 %>
 <p class="erro" class="texto1b"><%= msg %></p>
 <p align="center">
-	<button class="texto1" onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
-	<button class="texto1" onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
+	<button  onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	<button  onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
 </p>
 <%	Call Tela.MostraRodape()
 end function
@@ -87,7 +87,7 @@ function Terminar( nome_arq )
 	</script>
 	<p align="center">
 		<span class="texto1B" style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
-		<button onclick="javascript:window.close()" class="texto1">&nbsp;Fechar&nbsp;</button>
+		<button onclick="javascript:window.close()" >&nbsp;Fechar&nbsp;</button>
 	</p>
 <%	Call Tela.MostraRodape()
 end function

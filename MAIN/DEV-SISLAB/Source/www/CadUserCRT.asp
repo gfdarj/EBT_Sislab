@@ -150,7 +150,7 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 		        <input type="text" name="username" size="50" maxlength="80">
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		        <span class="texto-vermelho-bold">*</span>&nbsp;Matrícula:&nbsp;
-		        <input type="text" name="matricula" class="texto1" size="15">
+		        <input type="text" name="matricula"  size="15">
 	        </td>
         <tr>
         <tr><td colspan="2">&nbsp;</td></tr>
@@ -180,13 +180,13 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
 	        <td colspan="2">
-                RAT: <input type="Checkbox" name="chkRAT" class="texto1">
+                RAT: <input type="Checkbox" name="chkRAT" >
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        RT:&nbsp;<input type="Checkbox" name="chkRT" class="texto1">
+		        RT:&nbsp;<input type="Checkbox" name="chkRT" >
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        GQ:&nbsp;<input type="Checkbox" name="chkGQ" class="texto1">
+		        GQ:&nbsp;<input type="Checkbox" name="chkGQ" >
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        Visível:&nbsp;<input type="Checkbox" name="chkexibir" class="texto1">
+		        Visível:&nbsp;<input type="Checkbox" name="chkexibir" >
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		        Perfil SCE:&nbsp;<%=Combo.PadraoSql("perfilSce", "SELECT ID_PERFIL AS VALOR, NM_PERFIL AS DESCRICAO FROM Perfil_SCE ORDER BY ID_PERFIL", "", "N")%>
 	        </td>
@@ -194,10 +194,10 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
 	        <td colspan="2">
-		        <input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		        <input type="button" class="texto1" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
-		        <input type="button" class="texto1" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" class="texto1" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+		        <input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		        <input type="button"  onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
+		        <input type="button"  onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button"  onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	        </td>
         </tr>
         </table>

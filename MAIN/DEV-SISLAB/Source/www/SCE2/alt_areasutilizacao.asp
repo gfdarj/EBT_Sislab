@@ -13,7 +13,7 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -36,16 +36,16 @@ set rec = Env.oconn.execute(ssql)%>
   <table width="100%" cellpadding=0 cellspacing=0>
   
     <tr> 
-      <td class="texto1" colspan="10" bgcolor="#FFFFFF" align="left"> 
+      <td  colspan="10" bgcolor="#FFFFFF" align="left"> 
 			Descrição da Área de Utilização<br>
-			<input type="text" class="texto1" name="au_descricao" style="width:600" maxlength="100" value="<%=rec("au_descricao")%>">&nbsp;&nbsp;
+			<input type="text"  name="au_descricao" style="width:600" maxlength="100" value="<%=rec("au_descricao")%>">&nbsp;&nbsp;
 			</b>
       </td>
     </tr>
 </table>
       </td>
     </tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
     <tr> 
 	<script>
 	function func(){
@@ -53,7 +53,7 @@ set rec = Env.oconn.execute(ssql)%>
 		}
 	</script>
       <td>
-          <input type="submit" name="Submit" value=" Editar " class="texto1">  <input type="submit" name="Submit" value=" Excluir " class="texto1" onclick="func();">
+          <input type="submit" name="Submit" value=" Editar " >  <input type="submit" name="Submit" value=" Excluir "  onclick="func();">
       </td>
     </tr>
   </table>

@@ -102,7 +102,7 @@ Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & tit
         <tr>
 	        <td><%=titulo%>: &nbsp;
 		        <%call comboServicosPlataformas("serv", objConn, "N", request("Acao"))%>
-		        <input class="texto1" type="button" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
+		        <input  type="button" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	        </td>
         </tr>

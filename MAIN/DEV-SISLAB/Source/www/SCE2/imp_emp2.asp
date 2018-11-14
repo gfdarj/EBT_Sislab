@@ -51,10 +51,10 @@ If Env.UsuarioSCE() Then
 	    if size <> 1 then rec.movenext
     end if
 %>
-<table width="100%" class="texto1">
+<table width="100%" >
 	<tr>
-	    <td class="texto1">
-			<table width="100%" class="texto1" cellpadding="0" cellspacing="0">
+	    <td >
+			<table width="100%"  cellpadding="0" cellspacing="0">
 			<%if not rec.eof then%>
 				<tr>
 					<th width="200" align="left">Empresa</th>
@@ -77,23 +77,23 @@ If Env.UsuarioSCE() Then
 					bg = 0
 				end if%>
 				<tr  <%if bg = 1 then%>bgcolor="#C0E0EF"<%end if%>>
-					<td class="texto1"><a href="alt_empresas.asp?enf_id=<%=rec("enf_id")%>"><%=rec("enf_nome")%></a>&nbsp;</td>
-					<td class="texto1" width="2"></td>										
-					<td class="texto1"><%=montacnpj(rec("enf_cnpj"))%>&nbsp;</td>
-					<td class="texto1" width="2"></td>										
-					<td class="texto1"><%=rec("enf_ie")%>&nbsp;</td>
-					<td class="texto1" width="2"></td>										
-					<td class="texto1"><%=retestado(rec("enf_uf"))%>&nbsp;</td>
-					<td class="texto1" width="2"></td>										
-					<td class="texto1"><%=rec("enf_cidade")%>&nbsp;</td>
-					<td class="texto1" width="2"></td>										
-					<td class="texto1"><%=rec("enf_endereco")%>&nbsp;</td>
+					<td ><a href="alt_empresas.asp?enf_id=<%=rec("enf_id")%>"><%=rec("enf_nome")%></a>&nbsp;</td>
+					<td  width="2"></td>										
+					<td ><%=montacnpj(rec("enf_cnpj"))%>&nbsp;</td>
+					<td  width="2"></td>										
+					<td ><%=rec("enf_ie")%>&nbsp;</td>
+					<td  width="2"></td>										
+					<td ><%=retestado(rec("enf_uf"))%>&nbsp;</td>
+					<td  width="2"></td>										
+					<td ><%=rec("enf_cidade")%>&nbsp;</td>
+					<td  width="2"></td>										
+					<td ><%=rec("enf_endereco")%>&nbsp;</td>
 			    </tr>
 				<%rec.movenext
 			wend
 			else%>
 				<tr>
-					<td class="texto1" align="center"><strong>Nenhuma Empresa cadastrada com esses parâmetros</strong></td>
+					<td  align="center"><strong>Nenhuma Empresa cadastrada com esses parâmetros</strong></td>
 				</tr>
 			<%end if%>
 			</table>
@@ -106,7 +106,7 @@ If Env.UsuarioSCE() Then
 				<%end if
 			next%><div align=right class=texto>
 				Para Impressão, clique no botão "Imprimir" e configure a página para ser impressa no formato de Paisagem.&nbsp;&nbsp;&nbsp;&nbsp;
-					<button onclick="window.print();" class="texto1">Imprimir</button></div>
+					<button onclick="window.print();" >Imprimir</button></div>
 		</td>
 	</tr>
 </table>

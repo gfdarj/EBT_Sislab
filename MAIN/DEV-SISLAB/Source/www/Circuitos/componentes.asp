@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="includes/style.css">
 </head>
 <script language="JavaScript" src="includes/qtd_caract.js"></script>
-<script language="javascript">
+<script type="text/javascript">
 
 function retiraInt()
 {
@@ -142,7 +142,7 @@ else
 end if
 
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 var lge_ativo = "-1";
 function muda_lee( sel )
 {
@@ -403,7 +403,7 @@ padrão: <input type="text" name="vsw_std" size="20" maxlength="255" value="<%= 
 </tr>
 </table><%
 if( tpc_id <> "" ) then %>
-<script language="JavaScript">
+<script type="text/javascript">
 document.componente.tpc_id.value = <%= tpc_id %>;
 document.componente.lge_id.value = <%= lge_id %>;
 muda_lee( document.componente.lge_id );

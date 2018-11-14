@@ -25,18 +25,18 @@ If Env.UsuarioSCE() Then
 
 <form name="formulario" method="post" action="rel_mov2.asp" onsubmit="vdform('formulario','documento','Documento','Number'); return document.ValorPassou;">
 
-<table width="100%" class="texto1">
+<table width="100%" >
 	<tr><td valign="middle" class="destaque">Selecione o Item</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	 <tr>
 		<td colspan="2">
-      		<table border="0" class="texto1">
+      		<table border="0" >
 			<tr>
-				<td valign="top" CLASS="texto1">
+				<td valign="top" >
 				Tipo de Movimentação:&nbsp;
 <%			Dim notipo : notipo = request("notipo")
 			if notipo = "" then notipo = 0 else notipo = CInt(request("notipo"))%>
-				<select name="notipo" class="texto1" onchange="func2();">
+				<select name="notipo"  onchange="func2();">
 					<option value=""> -- Tipo de Movimento --</option>
 					<option value="<%=MOV_ENTRADA%>" <%if notipo = MOV_ENTRADA then response.write " selected"%>>Entrada</option>
 					<option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if notipo = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>Logística Entrada</option>
@@ -53,11 +53,11 @@ If Env.UsuarioSCE() Then
 </script>
 		</td>
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td valign="top" CLASS="texto1" colspan="2">
+		<td valign="top"  colspan="2">
 			Natureza de Operação:&nbsp;		
-				<select name="noid" class="texto1">
+				<select name="noid" >
 				<option value="">-- Natureza da Operação --</option>
 <%					ssql = "select * from sce_natureza_operacao "
 					if request("notipo") <> "" then ssql = ssql & "where no_tipo = " & request("notipo") & " "
@@ -73,22 +73,22 @@ If Env.UsuarioSCE() Then
 		</td>
 	</tr>	
 	<tr>
-		<td class="texto1" colspan="2"><br></td>
+		<td  colspan="2"><br></td>
 	</tr>
 	  			<tr>
-	    			<td class="texto1">
-Código Barras:&nbsp;<input type="text" class="texto1" name="codbarras" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
-						<td class="texto1">
-Localizacao:&nbsp;<input type="text" class="texto1" name="localizacao" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
+	    			<td >
+Código Barras:&nbsp;<input type="text"  name="codbarras" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
+						<td >
+Localizacao:&nbsp;<input type="text"  name="localizacao" style="width:200px" maxlength="50">&nbsp;&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="texto1" colspan="2"><br></td>
+					<td  colspan="2"><br></td>
 				</tr>
 
 				<tr>
-	    			<td class="texto1">
+	    			<td >
 					Fabricante:&nbsp;
-					<select name="fabricante" class="texto1">
+					<select name="fabricante" >
 					<option value="">-- Todos --</option>
 <%                  RW Combo.OptionBD("select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "")
 				'ssql = "select * from sce_fabricantes order by fab_nome"
@@ -102,17 +102,17 @@ Localizacao:&nbsp;<input type="text" class="texto1" name="localizacao" style="wi
 						</select>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
-					<td class="texto1">
-Modelo:&nbsp;<input type="text" name="modelo" class="texto1" style="width:200px"></td>
+					<td >
+Modelo:&nbsp;<input type="text" name="modelo"  style="width:200px"></td>
 				</tr>
 				<tr>
-					<td class="texto1" colspan="2"><br></td>
+					<td  colspan="2"><br></td>
 				</tr>
 
 				<tr>
-						<td class="texto1" colspan="2">
+						<td  colspan="2">
 						Fornecedor				
-							<select name=enf_id class="texto1">
+							<select name=enf_id >
 							<option value="">-- Todos --</option>
 <%				ssql = "select enf_id as VALOR, (case when enf_nome is null then '' else LEFT(enf_nome, 45) end) + "
 				ssql = ssql & "(case when enf_cidade is null or enf_cidade = '' then '' else ' / ' + enf_cidade end) + "
@@ -133,47 +133,47 @@ Modelo:&nbsp;<input type="text" name="modelo" class="texto1" style="width:200px"
 
 				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td class="texto1" colspan="2">
-					Nota Fiscal:&nbsp;<input type="text" class="texto1" name="notafiscal" size="20" maxlength="50">
+					<td  colspan="2">
+					Nota Fiscal:&nbsp;<input type="text"  name="notafiscal" size="20" maxlength="50">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Documento:&nbsp;<input type="text" class="texto1" name="documento" size="7" maxlength="10">
+					Documento:&nbsp;<input type="text"  name="documento" size="7" maxlength="10">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					CDE:&nbsp;<input type="text" class="texto1" name="cde" size="10">
+					CDE:&nbsp;<input type="text"  name="cde" size="10">
 					</td>
 				</tr>
 
 				<tr>
-					<td class="texto1" colspan="2"><br></td>
+					<td  colspan="2"><br></td>
 				</tr>
 				<%'end if%>
 
 	  			<tr>
-					<td class="texto1">
-					Número de Série:&nbsp;<input type="text" class="texto1" name="numeroserie" style="width:200px" maxlength="50"></td>
-					<td class="texto1">
-					Data da Movimentação:&nbsp;<input type="text" class="texto1" name="dia" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="mes" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text" class="texto1" name="ano" size=4 maxlength="4"></td>
+					<td >
+					Número de Série:&nbsp;<input type="text"  name="numeroserie" style="width:200px" maxlength="50"></td>
+					<td >
+					Data da Movimentação:&nbsp;<input type="text"  name="dia" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text"  name="mes" size=2 maxlength="2">&nbsp;/&nbsp;<input type="text"  name="ano" size=4 maxlength="4"></td>
 				</tr>
 
-	  			<tr><td class="texto1" colspan="2"><br></td></tr>
+	  			<tr><td  colspan="2"><br></td></tr>
 
 				<tr>
-					<td class="texto1" colspan="2">
+					<td  colspan="2">
 						Plataforma: <%=Combo.ServicosPlataformas("plataforma", "N", "P")%>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						AS:&nbsp;<input type="text" class="texto1" name="asa" style="width:50px" maxlength="50">
+						AS:&nbsp;<input type="text"  name="asa" style="width:50px" maxlength="50">
 					</td>
 				</tr>
 
-	  			<tr><td class="texto1" colspan="2"><br></td></tr>
+	  			<tr><td  colspan="2"><br></td></tr>
 
 				<tr>
-					<td class="texto1" colspan="2">
-						RT:&nbsp;<input type="text" class="texto1" name="solicitante" style="width:200px" maxlength="50">
+					<td  colspan="2">
+						RT:&nbsp;<input type="text"  name="solicitante" style="width:200px" maxlength="50">
 					</td>
 				</tr>
 
 				<tr>
-					<td class="texto1" colspan="2" align="right"><input type="submit" name="buscar" value="buscar &gt;&gt;" class="texto1"></td>
+					<td  colspan="2" align="right"><input type="submit" name="buscar" value="buscar &gt;&gt;" ></td>
 				</tr>
 			</table>
       	</td>

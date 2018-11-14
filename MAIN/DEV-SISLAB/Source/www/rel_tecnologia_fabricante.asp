@@ -15,7 +15,7 @@ else
 	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Tecnologias por Fabricante", "", "")
 end if
 %>
-<table class="texto1" border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">
+<table  border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">
 <tr class="realce">
 	<th>TECNOLOGIA</th>
 	<th>FABRICANTE</th>

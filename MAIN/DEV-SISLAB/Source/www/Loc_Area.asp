@@ -4,7 +4,7 @@
 <%
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Localização / Área", "", "")
 %>
-<script language="JavaScript">
+<script type="text/javascript">
 function AbreJanela(str, nomejan)
 {
 	var w = window.open(str, nomejan, "toolbar=1,location=0,directories=0,status=1,menubar=0,scrollbars=1,resizable=1,width=640,height=480,top=10,left=10");

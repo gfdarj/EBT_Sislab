@@ -18,7 +18,7 @@
 Call MostraHeader 
 
 'adicionar aqui verificacoes de seguranca / acesso %>
-<script language="JavaScript">
+<script type="text/javascript">
 function verifica()
 {
 	var d = document.novo_circ;

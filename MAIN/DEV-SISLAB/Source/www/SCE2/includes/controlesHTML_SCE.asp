@@ -16,7 +16,7 @@ End Function
 Function MarcaItemReservado(reservado, linhaTabela)
 	Dim color
 	if reservado then color = "#FF0000" else color = "#000000"
-%>	<script language="JavaScript">
+%>	<script type="text/javascript">
 	f.document.all["linha_<%=linhaTabela%>"].style.color = '<%=color%>';
 	f.document.all["item_<%=linhaTabela%>"].style.color = '<%=color%>';
 	f.document.all["dt_ini_<%=linhaTabela%>"].style.color = '<%=color%>';

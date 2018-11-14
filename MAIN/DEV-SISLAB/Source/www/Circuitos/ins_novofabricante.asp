@@ -18,7 +18,7 @@ if fabricante <> "" then
 	end with
 	call StoredProcedure( false, objSP, "SP_FAC_CADASTRA_FABRICANTE")
 %>
-	<html><script language="JavaScript"><%
+	<html><script type="text/javascript"><%
 	if ret > 0 then%>
 		window.parent.opener.location = "novotipo.asp?fabricante=<%=ret%>&familia=<%=familia%>";
 		window.parent.close();

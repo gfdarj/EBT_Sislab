@@ -97,7 +97,7 @@ If VVVNZ(auxag) Then
 	'### escolher multiplos itens se forem agendamentos sem resposta !!!
 %>
 <br>
-<form name="formulario" method="post" class="texto1">
+<form name="formulario" method="post" >
 <p><b>Selecione um ou mais agendamento(s):</b><%=IIf(VVVN(RQ("exibir")), "&nbsp;<i>(Para selecionar mais de um agendamento utilize a tecla <u>Shift</u> ou <u>Ctrl</u>)</i>", "")%></p>
 <p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag"  size="15" style="width: 700px;">
 <%	while not objRS.Eof%>
@@ -152,9 +152,9 @@ If VVVNZ(auxag) Then
 	<input type="hidden" name="solicitante" value="<%=auxusername%>">
 <%	End If '### EhCRT %>
 </p>
-<p><input type="button" class="texto1" value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
+<p><input type="button"  value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
 </form>
-<script language="JavaScript">
+<script type="text/javascript">
 	function trocaAS()
 	{
 		var f = document.formulario;
@@ -408,7 +408,7 @@ Else
 </tr>
 <tr>
 	<td valign="top">
-		<textarea class="texto1" rows="9" name="comenta_adicionais" cols="120"><%=comenta_adicionais%></textarea>
+		<textarea  rows="9" name="comenta_adicionais" cols="120"><%=comenta_adicionais%></textarea>
 	</td>
 </tr>
 
@@ -419,7 +419,7 @@ Else
 </tr>
 <tr>
 	<td valign="top">
-		<textarea class="texto1" rows="9" name="comenta_outros" cols="120"><%=comenta_outros%></textarea>
+		<textarea  rows="9" name="comenta_outros" cols="120"><%=comenta_outros%></textarea>
 	</td>
 </tr>
 
@@ -448,23 +448,23 @@ Else
 		<tr>
 			<td>
 				Responsável<br>
-				<input class="texto1" type="text" name="fNome" size="35">
+				<input  type="text" name="fNome" size="35">
 			</td>
 			<td>
 				Username<br>
-				<input class="texto1" type="text" name="fUsername" size="15">
+				<input  type="text" name="fUsername" size="15">
 			</td>
 			<td>
 				Telefone<br>
-				<input class="texto1" type="text" name="fRamal" size="12">
+				<input  type="text" name="fRamal" size="12">
 			</td>
 			<td>
 				E-mail<br>
-				<input class="texto1" type="text" name="fEMail" size="30">
+				<input  type="text" name="fEMail" size="30">
 			</td>
 			<td>
 				Órgão ou Empresa<br>
-				<input class="texto1" type="text" name="fOrgao" size="15">
+				<input  type="text" name="fOrgao" size="15">
 			</td>
 		</tr>
 		</table>
@@ -485,7 +485,7 @@ End If
 </p>
 </form>
 
-<script language="JavaScript">
+<script type="text/javascript">
 function taPreenchido(obj) {
 	var i;
 	for(i=0; i<5; i++) {
@@ -622,7 +622,7 @@ Sub TR_Opcoes(nomeRadio, nomeComent, valor)
 		<input type="radio" value="2" name="<%=nomeRadio%>"> - Insatisfeito<br>
 		<input type="radio" value="1" name="<%=nomeRadio%>"> - Muito InSatisfeito
 	</td>
-	<td width="50%" valign="bottom"><em>Comentários:</em><textarea class="texto1" rows="8" name="<%=nomeComent%>" cols="45"><%=valor%></textarea></td>
+	<td width="50%" valign="bottom"><em>Comentários:</em><textarea  rows="8" name="<%=nomeComent%>" cols="45"><%=valor%></textarea></td>
 </tr>
 <%
 End Sub
@@ -633,9 +633,9 @@ Function MensagemSolicitantesInvalidos
 <center>
 <div style="width:400px" align="justify">
 <p>&nbsp;</p>
-<p class="texto1" align="center"><font color="red"><b>AVISO !</b></font></p>
-<p class="texto1">Você selecionou 2 ou mais solicitantes diferentes.</p>
-<p class="texto1">Para usar a funcionalidade de resposta vários agendamentos é necessário que todos os agendamentos sejam do mesmo solicitante.</p>
+<p  align="center"><font color="red"><b>AVISO !</b></font></p>
+<p >Você selecionou 2 ou mais solicitantes diferentes.</p>
+<p >Para usar a funcionalidade de resposta vários agendamentos é necessário que todos os agendamentos sejam do mesmo solicitante.</p>
 <p align="center"><input type="button" class='texto1' value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
 </div>
 </center>

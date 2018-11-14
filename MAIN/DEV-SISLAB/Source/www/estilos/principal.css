@@ -14,7 +14,7 @@
 }
 
 /* Example CSS for the two demo scrollers */
-.someclass{ //class to apply to your scroller(s) if desired }
+.someclass{ /*class to apply to your scroller(s) if desired*/ }
 
 
 
@@ -36,6 +36,7 @@
 }
 
 .largura-total { width: 100%; }
+.altura-total { height: 100% }
 
 .espaco-minimo-35 { min-height: 35px; height: 35px; }
 .espaco-minimo-100 { min-height: 100px; height: 100px; }

@@ -21,7 +21,7 @@ with( objSP )
 end with
 call Env.StoredProcedure( false, objSP, "SP_FAC_CADASTRA_LOCAL_GENERICO")
 %>
-<html><script language="JavaScript"><%
+<html><script type="text/javascript"><%
 if ret > 0 then%>
 	window.parent.opener.location = "sel_localgenerico.asp?local=<%=ret%>";
 	window.parent.close();<%

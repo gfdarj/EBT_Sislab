@@ -22,34 +22,34 @@ function navselecao()
 }
 </script>
 <form name="formulario" method="post" action="imp_emp2.asp">
-<table width="100%" class="texto1">
+<table width="100%" >
 	<tr>
-	    <td class="texto1">
+	    <td >
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td valign="top" class="texto1">
-					Empresa:&nbsp;<input type=text name=enf_nome class="texto1">
+					<td valign="top" >
+					Empresa:&nbsp;<input type=text name=enf_nome >
 					</td>
 					<td width="40px"></td>
-					<td valign="top" class="texto1">
-					CNPJ:&nbsp;<input type=text name=enf_cnpj class="texto1">
+					<td valign="top" >
+					CNPJ:&nbsp;<input type=text name=enf_cnpj >
 					</td>
 				<tr>
-				<tr><td class="texto1">&nbsp;</td></tr>
+				<tr><td >&nbsp;</td></tr>
 				<tr>
-					<td valign="top" class="texto1">
-					Cidade:&nbsp;<input type=text name=enf_cidade class="texto1">
+					<td valign="top" >
+					Cidade:&nbsp;<input type=text name=enf_cidade >
 					</td>
 					<td width="40px"></td>
-					<td valign="top" class="texto1">
-					Inscrição Estadual:&nbsp;<input type=text name=enf_ie class="texto1">
+					<td valign="top" >
+					Inscrição Estadual:&nbsp;<input type=text name=enf_ie >
 					</td>
 				<tr>
-				<tr><td class="texto1">&nbsp;</td></tr>
+				<tr><td >&nbsp;</td></tr>
 				<tr>
-					<td valign="top" class="texto1">
+					<td valign="top" >
 					Estado:&nbsp;
-					<select name="enf_uf" class="texto1">
+					<select name="enf_uf" >
 						<option value=""></option>
               			<% for i =1 to 27 %>
 			           <option value="<%=i%>"><%=retestado(i)%></option>
@@ -59,8 +59,8 @@ function navselecao()
 			</table>
 		</td>
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
-	<tr><td class="texto1"><input type=submit value=" Gerar " class="texto1"></td></tr>
+	<tr><td >&nbsp;</td></tr>
+	<tr><td ><input type=submit value=" Gerar " ></td></tr>
  </table>
 </form>
 <%

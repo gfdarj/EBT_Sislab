@@ -31,13 +31,13 @@ function navselecao()
    <tr>
 	    <td  valign="middle" class="destaque">Editar / Excluir Família Tipo :</td>
 	</tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td valign="top" class="texto1">
+		<td valign="top" >
 			<%ssql = "select * from sce_tipos order by tipo_descricao"
 			set rec = Env.oconn.execute(ssql)
 			if not rec.eof then%>
-				<select name="tipo_id" size="15" class="texto1" style="width:600">
+				<select name="tipo_id" size="15"  style="width:600">
 				<%while not rec.eof%>
 					<option value="<%=rec("tipo_id")%>"><%=rec("tipo_descricao")%></option>
 					<%rec.movenext
@@ -48,9 +48,9 @@ function navselecao()
 			<%end if%>
 		</td>		
     </tr>
-	<tr><td class="texto1">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
-		<td valign=top class="texto1"><input type=submit value=" Editar " class="texto1"></td>
+		<td valign=top ><input type=submit value=" Editar " ></td>
 	</tr>
   </table>
 </form>

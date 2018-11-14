@@ -24,7 +24,7 @@ with( objSP )
 end with
 call Env.StoredProcedure( false, objSP, "SP_FAC_ATUALIZA_REL_CARACTERISTICAS_TIPO")
 %>
-<html><script language="JavaScript"><%
+<html><script type="text/javascript"><%
 if ret > 0 then%>
 	alert( "Componente atualizado com sucesso." );
 	window.parent.location = "sel_tipocomponentes.asp";<%

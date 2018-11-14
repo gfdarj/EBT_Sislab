@@ -19,7 +19,7 @@ Dim auxC7,auxC8,auxC9,auxC10,auxC11
 Dim auxC_3, auxC_4,prireg,ultreg,contreg,atureg,totresp
 Dim dataIni, dataFim
 %>
-<script language="javascript">
+<script type="text/javascript">
 var matriz=new Array()
 x=0;
 <%
@@ -155,7 +155,7 @@ response.write "<!-- SQL: " & ssql & " -->"
 call Env.RecordSet(true, objSiteRS, sSQL)
 
 if objSiteRS.eof and objSiteRS.Bof then%>
-<tr class="texto1">
+<tr >
 	<td colspan="11" align="center">
 		<b>Não existe pesquisa que satisfaça os requisitos da consulta.</b>
 	</td>
@@ -201,47 +201,47 @@ else
 <tr>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)%><br><script language="javascript">document.write(contC(<%=numag%>,2))</script></font>
+	<%=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)%><br><script type="text/javascript">document.write(contC(<%=numag%>,2))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)%><br><script language="javascript">document.write(contC(<%=numag%>,3))</script></font>
+	<%=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)%><br><script type="text/javascript">document.write(contC(<%=numag%>,3))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)%><br><script language="javascript">document.write(contC(<%=numag%>,4))</script></font>
+	<%=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)%><br><script type="text/javascript">document.write(contC(<%=numag%>,4))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)%><br><script language="javascript">document.write(contC(<%=numag%>,5))</script></font>
+	<%=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)%><br><script type="text/javascript">document.write(contC(<%=numag%>,5))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)%><br><script language="javascript">document.write(contC(<%=numag%>,6))</script></font>
+	<%=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)%><br><script type="text/javascript">document.write(contC(<%=numag%>,6))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)%><br><script language="javascript">document.write(contC(<%=numag%>,7))</script></font>
+	<%=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)%><br><script type="text/javascript">document.write(contC(<%=numag%>,7))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)%><br><script language="javascript">document.write(contC(<%=numag%>,8))</script></font>
+	<%=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)%><br><script type="text/javascript">document.write(contC(<%=numag%>,8))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)%><br><script language="javascript">document.write(contC(<%=numag%>,9))</script></font>
+	<%=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)%><br><script type="text/javascript">document.write(contC(<%=numag%>,9))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)%><br><script language="javascript">document.write(contC(<%=numag%>,10))</script></font>
+	<%=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)%><br><script type="text/javascript">document.write(contC(<%=numag%>,10))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)%><br><script language="javascript">document.write(contC(<%=numag%>,11))</script></font>
+	<%=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)%><br><script type="text/javascript">document.write(contC(<%=numag%>,11))</script></font>
 	</td>
 	<td align="center">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
-	<%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)%><br><script language="javascript">document.write(contC(<%=numag%>,12))</script></font>
+	<%=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)%><br><script type="text/javascript">document.write(contC(<%=numag%>,12))</script></font>
 	</td>
 </tr>
 <tr bgcolor="#666625">

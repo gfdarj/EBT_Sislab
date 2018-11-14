@@ -88,13 +88,13 @@ function ValidaCampos(){
 	</td>
 	<td colspan="1" valign="top">
 		<%if Env.ehRAT or Env.ehRT then%>
-			<input type="button" class="texto1" name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:80px;"/><br><br>
-			<input type="button" class="texto1" name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:80px;"/><br><br>
-			<input type="button" class="texto1" name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:80px;"/><br><br>
+			<input type="button"  name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:80px;"/><br><br>
+			<input type="button"  name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:80px;"/><br><br>
+			<input type="button"  name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:80px;"/><br><br>
 		<%else%>
-			<input type="button" class="texto1" name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
-			<input type="button" class="texto1" name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
-			<input type="button" class="texto1" name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
+			<input type="button"  name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
+			<input type="button"  name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
+			<input type="button"  name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
 		<%end if%>			
 	</td>
 </tr>
@@ -162,7 +162,7 @@ function ValidaCampos(){
 <tr>
 	<td colspan="10">
 		<%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
-		<script language="JavaScript">
+		<script type="text/javascript">
 			document.all.tabParticipantesEBT.style.display = 'block';
 		</script>
 	</td>
@@ -186,18 +186,18 @@ function ValidaCampos(){
 </tr>
 <tr>
 	<td colspan="10">&nbsp;&nbsp;Relatório de Agendamento:<br>
-		&nbsp;&nbsp;<textarea name="relatAS" class="texto1" cols="145" rows="12"></textarea>
+		&nbsp;&nbsp;<textarea name="relatAS"  cols="145" rows="12"></textarea>
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="10" align="left" valign="middle"> &nbsp;&nbsp;	
 		<%if Env.ehRAT or Env.ehRT then%>
-			<input type="button" class="texto1" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
+			<input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
-			<input type="button" class="texto1" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
+			<input type="button"  value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
-		<input type="button" class="texto1" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="button" class="texto1" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;"/>
+		<input type="button"  onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
+		<input type="button"  onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

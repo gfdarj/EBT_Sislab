@@ -12,7 +12,7 @@ Dim auxRT, auxRAT, auxusername, EH_CRT, auxorgao, auxtecnologia, auxorgaosel,aux
 
 EH_CRT = Env.UsuarioCRT
 %>
-<script language="javascript">
+<script type="text/javascript">
 function testaPreenchimento()
 {
 	var f = document.forms[0];
@@ -98,17 +98,17 @@ function montaExcel()
 <tr>
 	<td>
 		Username ou nome do participante:&nbsp;
-		<input type="text" size="20" maxlength="50" name="participante" class="texto1">
+		<input type="text" size="20" maxlength="50" name="participante" >
 	</td>
 </tr>
 <tr>
 	<td>
-		Solicitado nos últimos <input class="texto1" name="sol_dias" size="3" maxlength="10"> dias
+		Solicitado nos últimos <input  name="sol_dias" size="3" maxlength="10"> dias
 	</td>
 </tr>
 <tr>
 	<td>
-		Iniciado nos últimos <input class="texto1" name="ini_dias" size="3" maxlength="10"> dias
+		Iniciado nos últimos <input  name="ini_dias" size="3" maxlength="10"> dias
 	</td>
 </tr>
 <tr>
@@ -149,7 +149,7 @@ function montaExcel()
 </tr>
 <tr>
 	<td>
-		<input type=button name="Filtro" Value="Gerar Planilha" onclick="montaExcel();" class="texto1">
+		<input type=button name="Filtro" Value="Gerar Planilha" onclick="montaExcel();" >
 	</td>
 </tr>
 </table>

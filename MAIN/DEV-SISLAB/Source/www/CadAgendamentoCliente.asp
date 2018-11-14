@@ -735,7 +735,7 @@ end if
 <%'if not SolicitouCancela then%>
 <!-- AQUI: AINDA NAO TERMINEI A IMPLANTACAO
 		<input type="button" value="Solicitar Cancelamento" title="Solicita o cancelamento deste Agendamento" onclick="javascript:solicitaCancelamentoAS();">
-		<script language="JavaScript">
+		<script type="text/javascript">
 		function solicitaCancelamentoAS() {
 			alert("oi");
 		}

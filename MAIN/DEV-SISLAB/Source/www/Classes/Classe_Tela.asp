@@ -399,7 +399,7 @@ End Sub
 
 Public Sub ImprimeMenuSce()
 	Dim base_dir : base_dir = "includes/menu"
-	Dim frameTop : frameTop = 120
+	Dim frameTop : frameTop = 146
 	Dim wdtCadastros : wdtCadastros = 150
 	Dim wdtConsultas : wdtConsultas = 150
 	Dim wdtRelatorios : wdtRelatorios = 260
@@ -426,27 +426,27 @@ Public Sub ImprimeMenuSce()
 		hgtRelatorios = 160
 	end if
 %>
-	<script language="JavaScript" src="includes/menu/menu.js"></script>
+	<script type="text/javascript" src="includes/menu/menu.js"></script>
 
 	<!-- Cadastros-->
-	<iframe id="menuCadastros" frameBorder="0" style="position:absolute; left:130px; width:<%=wdtCadastros%>px; top:<%=frameTop%>px; height:<%=hgtCadastros%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('cadastros');" src="<%=base_dir%>/menu_cadastros.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
+	<iframe id="menuCadastros" frameBorder="0" style="position:absolute; left:150px; width:<%=wdtCadastros%>px; top:<%=frameTop%>px; height:<%=hgtCadastros%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('cadastros');" src="<%=base_dir%>/menu_cadastros.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
 	<!-- Consultas -->
-	<iframe id="menuConsultas" frameBorder="0" style="position:absolute; left:254px; width:<%=wdtConsultas%>px; top:<%=frameTop%>px;  height:<%=hgtConsultas%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('consultas');" src="<%=base_dir%>/menu_consultas.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
+	<iframe id="menuConsultas" frameBorder="0" style="position:absolute; left:300px; width:<%=wdtConsultas%>px; top:<%=frameTop%>px;  height:<%=hgtConsultas%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('consultas');" src="<%=base_dir%>/menu_consultas.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
 	<!-- Relatorios -->
-	<iframe id="menuRelatorios" frameBorder="0" style="position:absolute; left:378px; width:<%=wdtRelatorios%>px; top:<%=frameTop%>px;  height:<%=hgtRelatorios%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('relatorios');" src="<%=base_dir%>/menu_relatorios.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
+	<iframe id="menuRelatorios" frameBorder="0" style="position:absolute; left:450px; width:<%=wdtRelatorios%>px; top:<%=frameTop%>px;  height:<%=hgtRelatorios%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('relatorios');" src="<%=base_dir%>/menu_relatorios.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
 	<!-- Movimentacao -->
-	<iframe id="menuMovimentacao" frameBorder="0" style="position:absolute; left:495px; width:<%=wdtMovimentacao%>px; top:<%=frameTop%>px;  height:<%=hgtMovimentacao%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('movimentacao');" src="<%=base_dir%>/menu_movimentacao.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
+	<iframe id="menuMovimentacao" frameBorder="0" style="position:absolute; left:600px; width:<%=wdtMovimentacao%>px; top:<%=frameTop%>px;  height:<%=hgtMovimentacao%>px; z-index:900; display: none;" onmouseout="javascript:testaMousePointer('movimentacao');" src="<%=base_dir%>/menu_movimentacao.asp?perfil=<%=perfil%>" marginheight="0" marginwidth="0"></iframe>
 
-    <p class='texto1'>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="20">
+    <p>
+		<table class="largura-total" border="0">
 		<tr>
-	        <td align="left" width="120px"><a href="index.asp" class="links"><font class="links"><b>> Início</b></a></td>
-			<td align="left" id="mnuCadastros" width="120px"><a href="#" onMouseOver="javascript:mostraMenuCadastros(true);"><font class="links"><b>> Cadastros</b></a></td>
-			<td align="left" id="mnuConsultas" width="120px"><a href="#" onMouseOver="javascript:mostraMenuConsultas(true);"><font class="links"><b>> Consultas</b></a></td>
-			<td align="left" id="mnuRelatorios" width="120px"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><font class="links"><b>> Relatórios</b></a></td>
-			<td align="left" id="mnuMovimentacao" width="*"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><font class="links"><b>> Movimentação</b></a></td>
+	        <td style="width: 150px;"><a href="index.asp" class="links"><font class="links"><b>> Início</b></a></td>
+			<td id="mnuCadastros" style="width: 150px;"><a href="#" onMouseOver="javascript:mostraMenuCadastros(true);"><b>> Cadastros</b></a></td>
+			<td id="mnuConsultas" style="width: 150px;"><a href="#" onMouseOver="javascript:mostraMenuConsultas(true);"><b>> Consultas</b></a></td>
+			<td id="mnuRelatorios" style="width: 150px;"><a href="#" onMouseOver="javascript:mostraMenuRelatorios(true);"><b>> Relatórios</b></a></td>
+			<td id="mnuMovimentacao"><a href="#" onMouseOver="javascript:mostraMenuMovimentacao(true);"><b>> Movimentação</b></a></td>
 		</tr>
-        <tr id="tr_princ_cabecalho_separador2"><td colspan="5" bgcolor="#003366" height="1"></td></tr>
+        <tr id="tr_princ_cabecalho_separador2"><td colspan="5" style="background-color: #003366; height: 1px;" ></td></tr>
 	    </table>
     </p>
 <%

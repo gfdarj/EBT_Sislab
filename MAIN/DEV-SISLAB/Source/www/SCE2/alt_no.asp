@@ -16,7 +16,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language="javascript">
+<script type="text/javascript">
 function ValidaCampos()
 {
 	var frm = document.formulario;
@@ -45,13 +45,13 @@ set rec = Env.oconn.execute(ssql)
 <input type="hidden" name="no_id" value="<%=request("no_id")%>">
 <table width="790px">
   	<tr><td class="destaque">Editar / Excluir Natureza de Operação:</td></tr>
-	<tr class="texto1"><td>&nbsp;</td></tr>
+	<tr ><td>&nbsp;</td></tr>
 	<tr> 
     	<td>
 		  <table width="100%" cellpadding=0 cellspacing=0 height=80>
 		  <tr> 
-		      <td bgcolor="#FFFFFF" class="texto1" valign="top">Tipo<br>
-					<select name="no_tipo" class="texto1" style="width:170px" multiple>
+		      <td bgcolor="#FFFFFF"  valign="top">Tipo<br>
+					<select name="no_tipo"  style="width:170px" multiple>
 					 <option value="<%=MOV_ENTRADA%>" <%if rec("NO_TIPO") = MOV_ENTRADA then response.write " selected"%>>Entrada </option>
 					 <option value="<%=MOV_LOGISTICA_ENTRADA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_ENTRADA then response.write " selected"%>>Logística Entrada</option>
 					 <option value="<%=MOV_LOGISTICA_SAIDA%>" <%if rec("NO_TIPO") = MOV_LOGISTICA_SAIDA then response.write " selected"%>>Logística Saída</option>
@@ -59,28 +59,28 @@ set rec = Env.oconn.execute(ssql)
 					 <option value="<%=MOV_EXPEDICAO_SUBST%>" <%if rec("NO_TIPO") = MOV_EXPEDICAO_SUBST then response.write " selected"%>>Substituição</option>
 					</select>
 		      </td>
-		      <td bgcolor="#FFFFFF" class="texto1" valign="top">Descrição da Natureza de Operação<br><input type="text" class="texto1" name="no_descricao" style="width:300" maxlength="50" value="<%=rec("no_descricao")%>"></td>
+		      <td bgcolor="#FFFFFF"  valign="top">Descrição da Natureza de Operação<br><input type="text"  name="no_descricao" style="width:300" maxlength="50" value="<%=rec("no_descricao")%>"></td>
 		    </tr>
 			</table>
 	  </td>
 	</tr>
 	<tr> 
-	   <td bgcolor="#FFFFFF" class="texto1">
+	   <td bgcolor="#FFFFFF" >
 	   	<input type="checkbox" name="cde" value="1"  <%if rec("cde")=True then response.write "checked"%>>CDE
 	   </td>
     </tr>
 	<tr> 
-	   <td bgcolor="#FFFFFF" class="texto1">
+	   <td bgcolor="#FFFFFF" >
     	   	<input type="checkbox" name="defeito" value="1"  <%if rec("defeito")=True then response.write "checked"%>>Defeito
 	   </td>
     </tr>
 	<tr> 
-	   <td bgcolor="#FFFFFF" class="texto1">
+	   <td bgcolor="#FFFFFF" >
             <input type="checkbox" name="prazo" value="1"  <%if rec("prazo")=True then response.write "checked"%>>Prazo de Retorno
 	   </td>
     </tr>
 	<tr> 
-	   <td bgcolor="#FFFFFF" class="texto1">
+	   <td bgcolor="#FFFFFF" >
 	   	    <input type="checkbox" name="as" value="1"  <%if rec("asa")=True then response.write "checked"%>>AS
 	   </td>
     </tr>
@@ -93,9 +93,9 @@ set rec = Env.oconn.execute(ssql)
 	<tr><td>&nbsp;</td></tr>
 	<tr> 
 	   <td>
-           <input type="button" name="Submit" value="Alterar" class="texto1" onClick="ValidaCampos()">
+           <input type="button" name="Submit" value="Alterar"  onClick="ValidaCampos()">
            &nbsp;&nbsp;
-           <input type="button" name="Submit" value="Excluir" class="texto1" onClick="func2()">
+           <input type="button" name="Submit" value="Excluir"  onClick="func2()">
 	   </td>
     </tr>
  </table>

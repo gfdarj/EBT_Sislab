@@ -62,14 +62,14 @@ Call Tela.MostraCabecalho()
 	    <tr>
 		    <td>
 		        Texto da Mensagem: </B><br />
-		        <textarea class="texto1" cols="120" rows="17" name="mensagem"></textarea>
+		        <textarea  cols="120" rows="17" name="mensagem"></textarea>
 		    </td>
         </tr>
         <tr><td>&nbsp;</td></tr>
 		<tr>
 		    <td colspan=10>
-			    &nbsp;<input type="button" class="texto1" name="botao" value="    Ok    " onclick="envia();">
-			    &nbsp;<input type="button" class="texto1" name="botao" value="  Preview " onclick="preview(document.forms[0].s_descricao.value);">
+			    &nbsp;<input type="button"  name="botao" value="    Ok    " onclick="envia();">
+			    &nbsp;<input type="button"  name="botao" value="  Preview " onclick="preview(document.forms[0].s_descricao.value);">
 		    </td>
 	    </tr>
     </table>

@@ -47,7 +47,7 @@ function Valida()	{
 </td></tr>
 </table>
 </form>	<!-- display:none; -->
-<script language="JavaScript">document.all.novacarac.focus();</script>
+<script type="text/javascript">document.all.novacarac.focus();</script>
 <iframe name="escondido" frameborder="0" style=" width:300px; height:100px;" scrolling="no"></iframe>
 </body>
 </html>
