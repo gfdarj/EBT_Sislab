@@ -40,7 +40,7 @@ If Env.UsuarioSCE() Then
 	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo"  size="50"></td>
 </tr>
 
-<tr class="texto"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">
@@ -58,7 +58,7 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 
-<tr class="texto"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">
@@ -97,7 +97,7 @@ If Env.UsuarioSCE() Then
 	</td>	
 </tr>
 
-<tr class="texto"><td>&nbsp;</td></tr>
+<tr ><td>&nbsp;</td></tr>
 
 <tr>
 	<td colspan="2">

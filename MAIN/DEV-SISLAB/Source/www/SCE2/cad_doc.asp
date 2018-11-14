@@ -18,80 +18,72 @@ If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 %>
-<script>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
-<form method=post action="cad_doc2.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','Responsável','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','Número do Documento','R'); return document.ValorPassou;">
-<table width="100%">
-	<tr>
-		<td class=texto1>
-		<%if request("msg")<>"" then response.write "<strong>Documento cadastrado com sucesso!</strong><br><br>"%></td>
-	</tr>
-	<TR>
-		<TD >Responsável Técnico:&nbsp;
-			<input type="texto1" class="form" name="doc_responsavel" size="30" maxlength="50">
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr> 
-		<td>
-			<TABLE WIDTH="600" cellpadding="0" cellspacing="0">
-			<TR>
-				<TD >Nome do Cliente:&nbsp;
+
+<div class="margem-10">
+    <form method=post action="cad_doc2.asp" name="formulario"  onsubmit="vdform('formulario','doc_responsavel','Responsável','R','dia','Dia','RNumber','mes','Mes','RNumber','ano','Ano','RNumber','doc_numero','Número do Documento','R'); return document.ValorPassou;">
+        <table >
+	        <tr>
+		        <td>
+		        <%if request("msg")<>"" then response.write "<strong>Documento cadastrado com sucesso!</strong><br><br>"%></td>
+	        </tr>
+	        <tr>
+		        <td>Responsável Técnico:&nbsp;<input type="text" name="doc_responsavel" size="30" maxlength="50"></td>
+	        </tr>
+	        <tr><td>&nbsp;</td></tr>
+			<tr>
+				<td>Nome do Cliente:&nbsp;
 					<input type="text"  name="doc_nome" size="30" maxlength="50">
 				</td>
-				<TD >Email do Cliente:&nbsp;
+			</tr>
+	        <tr><td>&nbsp;</td></tr>
+			<tr>
+				<td>Email do Cliente:&nbsp;
 					<input type="text"  name="doc_mail" size="30" maxlength="50">
 				</td>
 			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr>
-		<td>
-			<TABLE cellpadding="0" cellspacing="0">
-			<TR>
-				<TD >Identidade do Cliente:&nbsp;
-					<input type="text" class="form" name="doc_ide" size="30" maxlength="50">
-				</td>
-				<td width="60px">&nbsp;</td>
-				<TD >Telefone do Cliente:&nbsp;
-					<input type="text" class="form" name="doc_fone" size="30" maxlength="50">
-				</td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr>
-		<td>
-			<TABLE cellpadding="0" cellspacing="0" >
-			<TR>
-				<TD>Empresa do Cliente:&nbsp;</td>
-				<td><%RW Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", False)%>
-				</td>
-			</tr>
+	        <tr><td>&nbsp;</td></tr>
 			<tr>
-				<td align="right">OU PREENCHA:&nbsp;</td>
-				<td><input type="text"  name="doc_empresa" size="40" maxlength="50"></td>
+				<td>Identidade do Cliente:&nbsp;
+					<input type="text"  name="doc_ide" size="30" maxlength="50">
 				</td>
 			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr >
-		<TD>Observação:<br>
-			<textarea name="doc_observacao"  cols="80" rows="5"></textarea>
-		</td>
-	</tr>
-	<tr class="texto"><td>&nbsp;</td></tr>
-	<tr> 
-		<td><input type="submit" name="Submit" value="Cadastrar" ></td>
-    </tr>
-</table>
-</form>
+	        <tr><td>&nbsp;</td></tr>
+	        <tr>
+				<td>Telefone do Cliente:&nbsp;
+					<input type="text"  name="doc_fone" size="30" maxlength="50">
+				</td>
+	        </tr>
+	        <tr><td>&nbsp;</td></tr>
+	        <tr>
+		        <td>
+			        <table class="largura-total">
+			        <tr>
+				        <td>Empresa do Cliente:&nbsp;</td>
+				        <td><%RW Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", False)%></td>
+			        </tr>
+			        <tr>
+				        <td class="texto-direito text-info">Ou Preencha:&nbsp;</td>
+				        <td><input type="text"  name="doc_empresa" size="40" maxlength="50"></td>
+			        </tr>
+			        </table>
+		        </td>
+	        </tr>
+	        <tr><td>&nbsp;</td></tr>
+	        <tr>
+		        <TD>Observação:<br>
+			        <textarea name="doc_observacao"  cols="80" rows="5"></textarea>
+		        </td>
+	        </tr>
+	        <tr><td>&nbsp;</td></tr>
+	        <tr> 
+		        <td><input type="submit" name="Submit" value="Cadastrar" ></td>
+            </tr>
+        </table>
+    </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -31,10 +31,10 @@ If Env.UsuarioSCE() Then
 	    ano_doc = "/" & left(rec("DOC_DATADOCUMENTO"), 4)
     end if
 %>
-<table width="645px" class="texto" cellpadding="4" cellspacing="0" border="0">
+<table width="645px"  cellpadding="4" cellspacing="0" border="0">
 <tr>
 	<td>
-		<table width="100%" cellpadding="0" cellspacing="0" class="texto">
+		<table width="100%" cellpadding="0" cellspacing="0" >
 		<tr>
 			<td width="180px"><img src="../img/logoebt.bmp" border="0"></td>
 			<td align="right">
@@ -72,7 +72,7 @@ If Env.UsuarioSCE() Then
 	    response.write "<b><i>Nenhum equipamento encontrado para este documento</i></b>"
     else
 	    listaAS = ""
-%>		<table width="100%" cellpadding="2" cellspacing="0" class="texto" border="1">
+%>		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
 		<tr>
 			<th>DESCRI&Ccedil;&Atilde;O</th>
 			<th>MODELO/PART NUMBER</th>

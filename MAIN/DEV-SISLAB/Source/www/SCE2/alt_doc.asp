@@ -19,7 +19,7 @@ If Env.UsuarioSCE() Then
 <form method=post action="alt_doc2.asp" name="formulario">
 <table width="100%">
 	<tr>
-		<td class="texto">
+		<td >
 		<%if request("msg")<>"" then 
 			if cint(request("msg")) = 1 then response.write "<br><strong>Documento alterado com sucesso!</strong><br><br>"
 			if cint(request("msg")) = 2 then response.write "<br><strong>Documento excluído com sucesso!</strong><br><br>"

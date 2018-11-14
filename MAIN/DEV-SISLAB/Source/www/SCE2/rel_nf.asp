@@ -34,7 +34,7 @@ function navselecao()
 					<td>
 						Número da Nota:&nbsp;<input type="text" name="nf_numeronota"  size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<!--						CFOP:&nbsp;<input type="text" name="nf_cfop" class="form" size="7"> -->
+<!--						CFOP:&nbsp;<input type="text" name="nf_cfop"  size="7"> -->
 						Tipo:&nbsp;
 						<select name="tiponota" >
 						<option value="">--</option>

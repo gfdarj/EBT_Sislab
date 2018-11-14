@@ -19,39 +19,39 @@ set rec = conn.execute(ssql)%>
       <td>
   		<table width="100%" cellpadding=0 cellspacing=0>
     		<tr> 
-      			<td  align="left" class="texto">Nome da Empresa<br>
-					<input type="text" class="form" name="enf_nome" style="width:600px" maxlength="100" value="<%=rec("enf_nome")%>"></td>
+      			<td  align="left" >Nome da Empresa<br>
+					<input type="text"  name="enf_nome" style="width:600px" maxlength="100" value="<%=rec("enf_nome")%>"></td>
     		</tr>
     		<tr> 
-      			<td  class="texto">Endereço<br>
-					<input type="text" class="form" name="enf_endereco" style="width:600px" maxlength="150" value="<%=rec("enf_endereco")%>"></td>
+      			<td  >Endereço<br>
+					<input type="text"  name="enf_endereco" style="width:600px" maxlength="150" value="<%=rec("enf_endereco")%>"></td>
     		</tr>
     		<tr>
 				<td>
 					<TABLE WIDTH="500" cellpadding="0" cellspacing="0">
 							<TR>
-								<TD CLASS="TEXTO">
+								<TD >
 								Cidade<br>
-								<input type="text" class="form" name="enf_cidade" style="width:300px" maxlength="50" value="<%=rec("enf_cidade")%>"></td>
-	      						<td  align="left" class="texto">Estado<br>
-								<select name="enf_uf" class="form">
+								<input type="text"  name="enf_cidade" style="width:300px" maxlength="50" value="<%=rec("enf_cidade")%>"></td>
+	      						<td  align="left" >Estado<br>
+								<select name="enf_uf" >
               			<% for i =1 to 27 %>
 			           <option value="<%=i%>" <%if i = rec("enf_uf") then response.write " selected"%>><%=retestado(i)%></option>
 					  <% next %>
            			 </select>&nbsp;&nbsp;&nbsp;</td>
-	      						<td class="texto" >Cep<br>
-								<input type="text" class="form" name="enf_cep" style="width:100px" maxlength="9" value="<%=rec("enf_cep")%>"></td>
+	      						<td  >Cep<br>
+								<input type="text"  name="enf_cep" style="width:100px" maxlength="9" value="<%=rec("enf_cep")%>"></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			<tr> 
-      			<td class="texto" >
+      			<td  >
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<TD CLASS="TEXTO">
+							<TD >
 							IE<br>
-								<input type="text" class="form" name="enf_ie" style="width:170px" maxlength="20"  value="<%=rec("enf_ie")%>"></td>
+								<input type="text"  name="enf_ie" style="width:170px" maxlength="20"  value="<%=rec("enf_ie")%>"></td>
 								<script language="JavaScript1.1">
 function FormataCNPJ(Campo, teclapres){
 
@@ -78,9 +78,9 @@ function FormataCNPJ(Campo, teclapres){
 		}
 }
 </script>
-					      	<td class="texto" > 
+					      	<td  > 
 								CNPJ<br>
-								<input type="text" class="form" name="enf_cnpj" style="width:170px" onKeydown="JavaScript:FormataCNPJ(this,event)" maxLength=18 value="<%=FormataCnpj(rec("enf_cnpj"))%>"></td>
+								<input type="text"  name="enf_cnpj" style="width:170px" onKeydown="JavaScript:FormataCNPJ(this,event)" maxLength=18 value="<%=FormataCnpj(rec("enf_cnpj"))%>"></td>
 			  	  		</tr>
 					</TABLE>
 				</TD>
@@ -127,11 +127,11 @@ function FormataCpf(campo,tammax,teclapres) {
 </script>
 			
 			<tr> 
-      			<td class="texto" >
+      			<td  >
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
-						<TR CLASS="TEXTO">
+						<TR >
 							<TD>CPF<br>
-							<input type="text" class="form" name="enf_cpf" onKeyUp="FormataCpf('cpf',11,event)" maxLength=14  value="<%=rec("enf_cpf")%>">
+							<input type="text"  name="enf_cpf" onKeyUp="FormataCpf('cpf',11,event)" maxLength=14  value="<%=rec("enf_cpf")%>">
 							</TD>
 							<td>
 							Tipo da empresa<br>
@@ -142,34 +142,34 @@ function FormataCpf(campo,tammax,teclapres) {
 				</TD>
 			</TR>
     		<tr> 
-      			<td class="texto">
+      			<td >
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<TD CLASS="TEXTO">Telefone<br>
-							(<input type="text" class="form" name="ddd" style="width:30px" maxlength="20" value="<%=rec("enf_ddd")%>">)&nbsp;<input type="text" class="form" name="enf_tel" style="width:170px" maxlength="20"  value="<%=rec("enf_tel")%>"></TD>
-							<TD CLASS="TEXTO">Contato<br>
-							<input type="text" class="form" name="enf_contato" style="width:300px" maxlength="50" value="<%=rec("enf_contato")%>"></td>
+							<TD >Telefone<br>
+							(<input type="text"  name="ddd" style="width:30px" maxlength="20" value="<%=rec("enf_ddd")%>">)&nbsp;<input type="text"  name="enf_tel" style="width:170px" maxlength="20"  value="<%=rec("enf_tel")%>"></TD>
+							<TD >Contato<br>
+							<input type="text"  name="enf_contato" style="width:300px" maxlength="50" value="<%=rec("enf_contato")%>"></td>
   	  					</tr>
 					</TABLE>
 				</TD>
 			</TR>
 			<tr> 
-      			<td class="texto" >
+      			<td  >
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
-							<td class="texto">
+							<td >
 								Fax<br>
-								(<input type="text" class="form" name="ddd_fax" style="width:30px" maxlength="20" value="<%=rec("enf_ddd_fax")%>">)&nbsp;<input type="text" class="form" name="enf_fax" style="width:150px" maxlength="20" value="<%=rec("enf_fax")%>"></td>
-							<TD CLASS="TEXTO">Email<br>
-							<input type="text" class="form" name="email" style="width:300px" maxlength="50" value="<%=rec("enf_email")%>"></td>
+								(<input type="text"  name="ddd_fax" style="width:30px" maxlength="20" value="<%=rec("enf_ddd_fax")%>">)&nbsp;<input type="text"  name="enf_fax" style="width:150px" maxlength="20" value="<%=rec("enf_fax")%>"></td>
+							<TD >Email<br>
+							<input type="text"  name="email" style="width:300px" maxlength="50" value="<%=rec("enf_email")%>"></td>
   	  					</tr>
 					</TABLE>
 				</TD>
 			</TR>
 			<tr> 
-      			<td class="texto"> 
+      			<td > 
 					<br>Observação<br>
-					<textarea class="form" name="enf_observacao" rows="2" style="width:600px"><%=rec("enf_observacao")%></textarea></td>
+					<textarea  name="enf_observacao" rows="2" style="width:600px"><%=rec("enf_observacao")%></textarea></td>
     		</tr>
 			<script>
 			function func2(){
@@ -178,7 +178,7 @@ function FormataCpf(campo,tammax,teclapres) {
 			</script>
 			<tr><td>&nbsp;</td></tr>
 			<tr> 
-      			<td><input type="submit" name="Submit" value=" Alterar " class="form">&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir " class="form" onclick="func2();"></td>
+      			<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir "  onclick="func2();"></td>
 		    </tr>
 		</table>
       </td>

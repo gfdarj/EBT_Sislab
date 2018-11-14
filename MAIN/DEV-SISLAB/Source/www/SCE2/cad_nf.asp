@@ -96,13 +96,17 @@ If Env.UsuarioSCE() Then
 	    set r = nothing
     end if
 %>
-<script>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 	<!--#include file="includes/montacnpj.inc"-->
 </script>
+
+<div class="margem-10">
 <form method="post" action="cad_nf2.asp" name="formulario" onSubmit="javascript:return validaNota(this);">
+
 <input type="hidden" name="nf_id" value="<%=nf_id%>">
-<table width="790px" >
+
+<table class="largura-total">
     <tr><td><b><%=titulo%></b></td></tr>
 <%
 if request("msg")<>"" then%>
@@ -121,28 +125,33 @@ end if
 %>
     <tr> 
       <td>
-  		<table width="100%" cellpadding=0 cellspacing=0 >
+            <table class="largura-total">
     		  <tr>
 				<td>
-					<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" >
-							<TR>
-								<TD>Número da Nota:&nbsp;
-								<input type="text"  name="nf_numeronota" size="10" maxlength="30" value="<%=nf_numeronota%>">
-								</td>
-								<td><input type="Checkbox" name="devolucao" value="1" <%if devolucao then response.write "checked"%>>&nbsp;Devolucao Completa</td>
-								<TD>Qtde. Volumes:&nbsp;
-								<input type="text"  name="nf_qtdevolumes" size="10" maxlength="30"value="<%=nf_qtdevolumes%>">
-								</td>
-								<TD>Valor Total&nbsp;R$:
-								<input type="text"  name="nf_valortotal" size="15" maxlength="30" value="<%=nf_valortotal%>"></td>
-							</tr>
-						</table>
+					<table class="largura-total">
+					    <tr>
+						    <td>
+                                Número da Nota:&nbsp;
+    						    <input type="text"  name="nf_numeronota" size="10" maxlength="30" value="<%=nf_numeronota%>">
+						    </td>
+						    <td>
+                                <input type="Checkbox" name="devolucao" value="1" <%if devolucao then response.write "checked"%>>&nbsp;Devolucao Completa</td>
+						    <td>
+                                Qtde. Volumes:&nbsp;
+						        <input type="text"  name="nf_qtdevolumes" size="10" maxlength="30"value="<%=nf_qtdevolumes%>">
+						    </td>
+						    <td>
+                                Valor Total&nbsp;R$:
+						        <input type="text"  name="nf_valortotal" size="15" maxlength="30" value="<%=nf_valortotal%>">
+						    </td>
+					    </tr>
+				        </table>
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 					<td>
-						<TABLE WIDTH="100%" cellpadding="0" cellspacing="0" >
+						<table class="largura-total">
 							<TR>
 								<TD>Data da Emissão:&nbsp;
 								<%RW Combo.Data("emissao")%>
@@ -238,9 +247,10 @@ end if
 
 				<tr>
 					<td>
-						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" >
+						<table class="largura-total">
 							<tr>
-								<td><br>Natureza de Operação:&nbsp;
+								<td>
+                                    Natureza de Operação:&nbsp;
 <%			if no_id = "" then valor = "" else valor = cstr(no_id)
 			RW Combo.PadraoSql("no_id", "select no_id as VALOR, no_descricao as DESCRICAO from sce_natureza_operacao order by no_descricao", valor, "N")%>
 								<script type="text/javascript">
@@ -253,15 +263,16 @@ end if
 									}
 								</script>
 								</td>
-								<script>
+								<script type="text/javascript">
 									function f4(){
 										if (document.formulario.nf_cfop.value != ''){
 											document.formulario.nf_cfop.value = document.formulario.nf_cfop.value+'.';
 										}
 									}
 								</script>
-								<TD><br>CFOP:&nbsp;
-								<input type="text" class="form" name="nf_cfop" size="10" maxlength="30"value="<%=nf_cfop%>">
+								<td>
+                                    CFOP:&nbsp;
+								    <input type="text" name="nf_cfop" size="10" maxlength="30"value="<%=nf_cfop%>">
 								</td>
 							</tr>
 						</table>
@@ -271,7 +282,7 @@ end if
 				<tr id="tr_validade" style="display: none;">
 					<TD>
 						Validade em Dias:&nbsp;
-						<input type="text" class="form" name="nf_validade" size="10" maxlength="30"  value="<%=nf_validade%>">
+						<input type="text" name="nf_validade" size="10" maxlength="30"  value="<%=nf_validade%>">
 					</td>
 				</tr>
 
@@ -287,25 +298,25 @@ end if
 
 				<tr id="tr_aceitacao" style="display: block;">
 					<td>
-						<TABLE WIDTH="600" cellpadding="0" cellspacing="0" >
-							<TR>
-								<TD colspan=3>
+						<table>
+							<tr>
+								<td colspan=3>
 								<b>Aceitação</b><br>
 								Integridade:&nbsp;
-								<input type="radio" name="integridade" value="1" <%if integridade = "1" then response.write "checked"%>>Conforme
-								<input type="radio" name="integridade" value="0" <%if integridade = "0" then response.write "checked"%>>Não Conforme
+								<input type="radio" name="integridade" value="1" <%if integridade = "1" then response.write "checked"%>>&nbsp;Conforme
+								<input type="radio" name="integridade" value="0" <%if integridade = "0" then response.write "checked"%>>&nbsp;Não Conforme
 								<br>
 								Números de Volume:&nbsp;
-								<input type="radio" name="volume" value="1" <%if volume = "1" then response.write "checked"%>>Conforme
-								<input type="radio" name="volume" value="0" <%if volume = "0" then response.write "checked"%>>Não Conforme
+								<input type="radio" name="volume" value="1" <%if volume = "1" then response.write "checked"%>>&nbsp;Conforme
+								<input type="radio" name="volume" value="0" <%if volume = "0" then response.write "checked"%>>&nbsp;Não Conforme
 								<br>
 								Carta de Correção:&nbsp;
-								<input type="radio" name="carta" value="P" <%if carta = "P" then response.write "checked"%>>Pendente
-								<input type="radio" name="carta" value="R" <%if carta = "R" then response.write "checked"%>>Recebida
+								<input type="radio" name="carta" value="P" <%if carta = "P" then response.write "checked"%>>&nbsp;Pendente
+								<input type="radio" name="carta" value="R" <%if carta = "R" then response.write "checked"%>>&nbsp;Recebida
 								<br>
 								Inspeção Técnica:&nbsp;
-								<input type="radio" name="aceite" value="1" <%if aceite = "1" then response.write "checked"%> value="1"> Conforme
-								<input type="radio" name="aceite" value="0" <%if aceite = "0" then response.write "checked"%> value="1"> Não Conforme
+								<input type="radio" name="aceite" value="1" <%if aceite = "1" then response.write "checked"%> value="1">&nbsp;Conforme
+								<input type="radio" name="aceite" value="0" <%if aceite = "0" then response.write "checked"%> value="1">&nbsp;Não Conforme
 								</td>
 							</tr>
 						</table>
@@ -322,7 +333,7 @@ end if
     </tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-		<td align="center">
+		<td>
 			<input  type="submit" <%if nf_id = "" then%> value="Cadastrar" <%else%> value="Alterar" <%end if%>>
 <%
 if nf_id <> "" then%>
@@ -337,6 +348,7 @@ end if
 </table>
 </form>
 <iframe src="" name="escondido" style="display: none;"></iframe>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

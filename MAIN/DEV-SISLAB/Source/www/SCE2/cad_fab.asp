@@ -48,16 +48,17 @@ function Mascara2 (keypress, objeto){
 <!--#include file="includes/vform.js"-->
 </script>
 
+<div class="margem-10">
+
 <form method="post" action="cad_fab2.asp" name="formulario"  onsubmit="vdform('formulario','nome','Nome','R'); return document.ValorPassou;">
-<div align="center">
-<table width="100%">	
+<table>
 	<tr>
 		<td >
 		<%if request("msg") <> "" then response.write "<br><strong>Fabricante cadastrado com sucesso!</strong><br><br>"%></td>
 	</tr>
     <tr> 
       <td>
-  		<table width="100%" cellpadding=0 cellspacing=0>
+  		<table >
     		<tr> 
       			<td bgcolor="#FFFFFF" align="left" >Fabricante<br>
 					<input type="text"  name="nome" style="width:600px" maxlength="100"></td>
@@ -69,8 +70,9 @@ function Mascara2 (keypress, objeto){
 		</table>
       </td>
     </tr>
-</form>
   </table>
+</form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

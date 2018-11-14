@@ -145,7 +145,7 @@ function submeter()
 </tr>
 <tr>
 	<td colspan="3">
-		<input type="Checkbox" name="exibeTodos" value="1" class="texto">
+		<input type="Checkbox" name="exibeTodos" value="1" >
 		<font class="fonte2">Exibir Todos os Agendamentos</font>
 	</td>
 </tr>

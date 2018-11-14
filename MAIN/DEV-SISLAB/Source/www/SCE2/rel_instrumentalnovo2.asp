@@ -104,7 +104,7 @@ If Not bln_exportaExcel Then
 <table width="100%"  border="0">
 <tr>
 	<td class="detalhe" colspan="2">
-		<table width="100%" cellpadding="0" cellspacing="0" ><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" class="texto"><!--Total de itens encontrados: <%'=rec.recordcount%>--></td></tr></table>
+		<table width="100%" cellpadding="0" cellspacing="0" ><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" ><!--Total de itens encontrados: <%'=rec.recordcount%>--></td></tr></table>
 	</td>
 </tr>
 <tr><td colspan="2" width="40px">&nbsp;</td></tr>

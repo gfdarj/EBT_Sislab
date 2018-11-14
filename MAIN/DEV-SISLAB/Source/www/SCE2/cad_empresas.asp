@@ -81,60 +81,60 @@ If Env.UsuarioSCE() Then
 					</td>
 				</tr>
 			<tr> 
-      			<td class="texto" bgcolor="#FFFFFF">
-					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
+      			<td  bgcolor="#FFFFFF">
+					<table style="width: 550px;">
 						<TR>
-							<TD>
-							IE<br>
-								<input type="text" name="ie" style="width:170px" maxlength="20"></td>
-					      	<td bgcolor="#FFFFFF"> 
+							<td>
+							    IE<br>
+								<input type="text" name="ie" style="width:170px" maxlength="20">
+							</td>
+					      	<td>
 								CNPJ<br>
 								<input type="text" name="cnpj" style="width:170px" maxlength="18" onkeydown="FormataCNPJ(this,event);"></td>
 			  	  		</tr>
-					</TABLE>
-				</TD>
-			</TR>
-			<SCRIPT>
-
-function FormataCpf(campo,tammax,teclapres) {
- var tecla = teclapres.keyCode;
+					</table>
+				</td>
+			</tr>
+<script type="text/javascript">
+    function FormataCpf(campo,tammax,teclapres) {
+     var tecla = teclapres.keyCode;
   
- vr = event.srcElement.value;
- vr = vr.replace( "/", "" );
- vr = vr.replace( "/", "" );
- vr = vr.replace( ",", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- tam = vr.length;
+     vr = event.srcElement.value;
+     vr = vr.replace( "/", "" );
+     vr = vr.replace( "/", "" );
+     vr = vr.replace( ",", "" );
+     vr = vr.replace( ".", "" );
+     vr = vr.replace( ".", "" );
+     vr = vr.replace( ".", "" );
+     vr = vr.replace( ".", "" );
+     vr = vr.replace( "-", "" );
+     vr = vr.replace( "-", "" );
+     vr = vr.replace( "-", "" );
+     vr = vr.replace( "-", "" );
+     vr = vr.replace( "-", "" );
+     tam = vr.length;
 
- if (tam < tammax && tecla != 8){ tam = vr.length + 1 ; }
+     if (tam < tammax && tecla != 8){ tam = vr.length + 1 ; }
 
- if (tecla == 8 ){ tam = tam - 1 ; }
+     if (tecla == 8 ){ tam = tam - 1 ; }
   
- if ( tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105 ){
-  if ( tam <= 2 ){ 
-    event.srcElement.value = vr ; }
-   if ( (tam > 2) && (tam <= 5) ){
-    event.srcElement.value = vr.substr( 0, tam - 2 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 6) && (tam <= 8) ){
-    event.srcElement.value = vr.substr( 0, tam - 5 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 9) && (tam <= 11) ){
-    event.srcElement.value = vr.substr( 0, tam - 8 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 12) && (tam <= 14) ){
-    event.srcElement.value = vr.substr( 0, tam - 11 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 15) && (tam <= 17) ){
-    event.srcElement.value = vr.substr( 0, tam - 14 ) + '.' + vr.substr( tam - 14, 3 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ;}
- }  
-}
+     if ( tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105 ){
+      if ( tam <= 2 ){ 
+        event.srcElement.value = vr ; }
+       if ( (tam > 2) && (tam <= 5) ){
+        event.srcElement.value = vr.substr( 0, tam - 2 ) + '-' + vr.substr( tam - 2, tam ) ; }
+       if ( (tam >= 6) && (tam <= 8) ){
+        event.srcElement.value = vr.substr( 0, tam - 5 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+       if ( (tam >= 9) && (tam <= 11) ){
+        event.srcElement.value = vr.substr( 0, tam - 8 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+       if ( (tam >= 12) && (tam <= 14) ){
+        event.srcElement.value = vr.substr( 0, tam - 11 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+       if ( (tam >= 15) && (tam <= 17) ){
+        event.srcElement.value = vr.substr( 0, tam - 14 ) + '.' + vr.substr( tam - 14, 3 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ;}
+     }  
+    }
 </script>
-			
+
 			<tr> 
       			<td>
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
@@ -155,7 +155,7 @@ function FormataCpf(campo,tammax,teclapres) {
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
 							<TD>Telefone<br>
-							(<input type="text" name="ddd" style="width:30px"  maxlength="3">)&nbsp;<input type="text" class="form" name="tel" style="width:170px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);" ></TD>
+							(<input type="text" name="ddd" style="width:30px"  maxlength="3">)&nbsp;<input type="text"  name="tel" style="width:170px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);" ></TD>
 							<TD>Contato<br>
 							<input type="text" name="contato" style="width:300px" maxlength="50"></td>
   	  					</tr>
@@ -163,22 +163,22 @@ function FormataCpf(campo,tammax,teclapres) {
 				</TD>
 			</TR>
 			<tr> 
-      			<td class="texto" bgcolor="#FFFFFF">
+      			<td  bgcolor="#FFFFFF">
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
 							<TD>Email<br>
 							<input type="text" name="email" style="width:250px" maxlength="50"></TD>
 							<td bgcolor="#FFFFFF"> 
 								Fax<br>
-								(<input type="text" name="ddd_fax" style="width:30px" maxlength="3">)&nbsp;<input type="text" class="form" name="fax" style="width:150px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);"></td>
+								(<input type="text" name="ddd_fax" style="width:30px" maxlength="3">)&nbsp;<input type="text"  name="fax" style="width:150px" maxlength="9" onKeyPress="Mascara2(window.event.keyCode, this);"></td>
   	  					</tr>
 					</TABLE>
 				</TD>
 			</TR>
     	<!--	<tr>
-				<td class="texto"><br>
+				<td ><br>
 				Categoria da Empresa:&nbsp;
-				<select name="categoria" class="form">
+				<select name="categoria" >
 				<option value="1">Fornecedor</option>
 				<option value="2">Transportadora</option>
 				<option value="3">Fabricante</option></td>
@@ -186,9 +186,10 @@ function FormataCpf(campo,tammax,teclapres) {
 			<tr> 
       			<td> 
 					<br>Observação<br>
-					<textarea name="observacao" rows="2" style="width:600px"></textarea><br><br><br></td>
+					<textarea name="observacao" rows="2" style="width:600px"></textarea>
+      			</td>
     		</tr>
-
+            <tr><td>&nbsp;</td></tr>
 			<tr><td><input type="submit" name="Submit" value="Cadastrar"></td></tr>
 		</table>
       </td>

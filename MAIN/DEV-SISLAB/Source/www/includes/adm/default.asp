@@ -42,7 +42,7 @@ End If%>
 <br>
 <table align="center" border="0">
 	<tr>
-		<td align="right" nowrap><p class="texto">Senha:</p></td>
+		<td align="right" nowrap><p >Senha:</p></td>
 		<td align="left" nowrap><input type="Password" name="senha" size="15"></td>
 	</tr>
 	<tr>

@@ -46,11 +46,11 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td bgcolor="#FFFFFF" background="img/barra_titulo6.gif" height="40" width="100%" align="left">
-				<table border="0" class="texto" width="100%" cellpadding="0" cellspacing="0" height="100%">
+				<table border="0"  width="100%" cellpadding="0" cellspacing="0" height="100%">
 				<tr valign="bottom">
 					<td width="120px" align="right">&nbsp;</td>
-					<td width="120px" class="texto">
-						<b><a href="index.asp" ><span class="texto">SISLAB</span></a></b><br>
+					<td width="120px" >
+						<b><a href="index.asp" ><span >SISLAB</span></a></b><br>
 						Usu&aacute;rio: <%=Env.Usuario%>
 					</td>
 					<td width="245px" align="right">
@@ -275,7 +275,7 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 				    <td>
                         <img src="<%=PathRelativo%>img/titulo_centro.jpg" height="70" border="0" id="imgTituloCentro" style="display: inline;">
 				    </td>
-				    <td valign="middle" class="texto" align="right">
+				    <td valign="middle"  align="right">
 				            <br /><br />
 					        <b><%=Env.nomeAppHtml%></b><br />
 					        <b><%=Env.Ebt.NomeReduzido%></b><br>

@@ -52,7 +52,7 @@ function filtrar()
 		</td>
 	</tr>
    <tr>
-	    <td class="texto">
+	    <td >
 			<table>
 				<tr>
 					<td class="destaque">Editar / Excluir Empresas Cadastradas</td>
@@ -85,7 +85,7 @@ If request("CNPJ") <> "" Or request("Desc") <> "" Then
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td class="texto"><%if a <> 1 then%><input type="submit" value=" Alterar " ><%end if%></td>
+					<td ><%if a <> 1 then%><input type="submit" value=" Alterar " ><%end if%></td>
 			    </tr>
 <%
 End If

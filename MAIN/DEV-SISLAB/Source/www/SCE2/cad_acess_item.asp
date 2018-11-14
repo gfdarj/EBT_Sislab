@@ -18,9 +18,9 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language="JavaScript" src="includes/bib_obj.js"></script>
-<script language="JavaScript" src="includes/bib_str.js"></script>
-<script>
+<script type="text/javascript" src="includes/bib_obj.js"></script>
+<script type="text/javascript" src="includes/bib_str.js"></script>
+<script type="text/javascript">
 	<!--#INCLUDE FILE="includes/vform.js" -->
 	<!--#INCLUDE FILE="includes/montacnpj.inc" -->
 	<!--#INCLUDE FILE="includes/estado.asp" -->
@@ -134,8 +134,9 @@ else
 end if
 
 fab_id_old = fab_id		'-- guardo o id do fabricante original
-
 %>
+
+<div class="margem-10">
 <form method="post" name="formulario">
 <input type="hidden" name="enviou" value="1">
 <input type="hidden" name="eq_id" value="<%=eq_id%>">
@@ -286,8 +287,8 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 				<%if conforme or eq_id = "" then response.write "Sim" Else  response.write "Não" end if%>
 				<input type="hidden" name="conforme" value="<%if conforme or eq_id = "" then response.write 1 Else  response.write 0 end if%>">
 <%				Else %>
-				<input type="Radio" name="conforme" value="1" <%if conforme or eq_id = "" then response.write "checked" end if%>>Sim&nbsp;&nbsp;&nbsp;
-				<input type="Radio" name="conforme" value="0" <%if not conforme then response.write "checked" end if%>>N&atilde;o
+				<input type="Radio" name="conforme" value="1" <%if conforme or eq_id = "" then response.write "checked" end if%>>&nbsp;Sim&nbsp;&nbsp;&nbsp;
+				<input type="Radio" name="conforme" value="0" <%if not conforme then response.write "checked" end if%>>&nbsp;N&atilde;o
 <%				End If  %>
 			</td>
     	</tr>
@@ -622,11 +623,12 @@ function RemoveControle(l) {
 	<tr><td  colspan="3">Acessórios do Equipamento</td></tr>
 	<tr>
 		<td colspan="3">
-  			<table width="100%" cellspacing="2" cellpadding="2" border="0">
+  			<table class="largura-total">
 				<tr>
-				    <td valign="top" >
-					<button name="adicionar"  onClick="NovoAcessorio();">Novo acess&oacute;rio</button><br>
-					Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5"  value="1">
+				    <td style="vertical-align: top;">
+                        <input type="button" name="adicionar" onclick="NovoAcessorio();" value="Novo acess&oacute;rio"/>
+					    <br>
+					    Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5"  value="1">
 					</td>
 
 <script type="text/javascript">
@@ -765,15 +767,15 @@ function RemoveAcessorio(linha) {
 }
 </script>
 
-				    <td valign="top" >
+				    <td style="vertical-align: top;">
 						<!-- select utilizada para concatenar a lista de acessorios -->
 						<select name="lista_acessorios" style="display:none" multiple></select>
 						<table id="tb_acessorios"  width="100%" cellpadding="0" cellspacing="0" border="1">
 						<tr >
-							<th width="50px">Seq.</th>
-							<th width="450px">Descri&ccedil;&atilde;o</th>
-							<th width="100px">Situa&ccedil;&atilde;o</th>
-							<th width="100px">Conforme</th>
+							<th style="width: 50px;">Seq.</th>
+							<th style="width: 450px;">Descri&ccedil;&atilde;o</th>
+							<th style="width: 100px;">Situa&ccedil;&atilde;o</th>
+							<th style="width: 100px;">Conforme</th>
 							<th><img src="img/btn_branco.gif"></th>
 						</tr>
 						<tbody id="tb_acessorios_body">
@@ -839,18 +841,18 @@ function RemoveAcessorio(linha) {
 %>
 			<input type="hidden" name="propriedade" value="<%=propriedade%>">
 <%Else %>
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_TER%>" <%if propriedade = EQ_PROPRIEDADE_TER or propriedade = "" then response.write "checked"%>>Terceiros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_EBT%>" <%if propriedade = EQ_PROPRIEDADE_EBT then response.write "checked"%>>Embratel - Outros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_CRT%>" <%if propriedade = EQ_PROPRIEDADE_CRT then response.write "checked"%>>Embratel - CRT&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_COM%>" <%if propriedade = EQ_PROPRIEDADE_COM then response.write "checked"%>>Embratel - Comodato
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_TER%>" <%if propriedade = EQ_PROPRIEDADE_TER or propriedade = "" then response.write "checked"%>>&nbsp;Terceiros&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_EBT%>" <%if propriedade = EQ_PROPRIEDADE_EBT then response.write "checked"%>>&nbsp;Embratel - Outros&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_CRT%>" <%if propriedade = EQ_PROPRIEDADE_CRT then response.write "checked"%>>&nbsp;Embratel - CRT&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_COM%>" <%if propriedade = EQ_PROPRIEDADE_COM then response.write "checked"%>>&nbsp;Embratel - Comodato
 <%End If %>
 		</td>
 	</tr>
 
-	<tr><td colspan="3"><hr width="700" size="1"></td></TR>
+	<tr><td colspan="3">&nbsp;</td></TR>
 
 	<tr> 
-		<td align="right" colspan="3">
+		<td colspan="3">
 		  	<input type="button" name="Submit" value="<%if eq_id = "" then response.write "Cadastrar" else response.write "Alterar"%>"  onClick="javascript:CadastraItem();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if eq_id <> "" then%>
@@ -871,8 +873,10 @@ end if%>
 </table>
 </form>
 <iframe name="escondido" style="display: none;"></iframe>
+    <br />
+</div>
 
-<script>
+<script type="text/javascript">
 var MSG_SEM_ACESSO = "ATENÇÂO !!!\n\nUsuário sem privilégios para executar esta operação";
 
 function NovoEquipamento() {

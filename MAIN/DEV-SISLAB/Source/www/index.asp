@@ -197,9 +197,9 @@ Call Tela.MostraCabecalho()
             While Not RS.Eof
 		        conta = conta + 1
                 If Not(VVVNZ(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
-                                        pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);" class="texto" target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
+                                        pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);"  target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
 <%		        Else%>
-                                        pausecontent[<%=conta-1%>]= '<font class="texto"><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
+                                        pausecontent[<%=conta-1%>]= '<font ><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
 <%		        End If
 		        RS.MoveNext
 	        WEnd 

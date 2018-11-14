@@ -53,7 +53,7 @@ function navselecao()
 		</td>
 	</tr>
 	<tr>
-		<td class="texto" align="left"><br><br><input type=submit value=" Editar " ></td>
+		<td  align="left"><br><br><input type=submit value=" Editar " ></td>
     </tr>
   </table>
 </form>

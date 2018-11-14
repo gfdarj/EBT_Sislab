@@ -14,34 +14,37 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <script type="text/javascript">
-function ValidaCampos()
-{
-	var frm = document.formulario;
-	if (frm.no_tipo.value == "")
-	{
-		alert("Defina o Tipo!");
-		frm.no_tipo.focus();
-		return false;
-	}
-	if (frm.no_descricao.value.length == 0)
-	{
-		alert("Defina a Descricao!");
-		frm.no_descricao.focus();
-		return false;
-	}
-	frm.submit();
-	return true;
-}
+    function ValidaCampos()
+    {
+	    var frm = document.formulario;
+	    if (frm.no_tipo.value == "")
+	    {
+		    alert("Defina o Tipo!");
+		    frm.no_tipo.focus();
+		    return false;
+	    }
+	    if (frm.no_descricao.value.length == 0)
+	    {
+		    alert("Defina a Descricao!");
+		    frm.no_descricao.focus();
+		    return false;
+	    }
+	    frm.submit();
+	    return true;
+    }
 </script>
+
+<div class="margem-10">
 <form method="post" action="cad_no2.asp" name="formulario">
-<table width="100%">
+
+<table class="largura-total">
 	<tr>
-		<td >
+		<td>
 		<%if request("msg") <> "" then response.write "<strong>Natureza de Operação cadastrada com sucesso!</strong><br><br>"%></td>
 	</tr>
 	<tr> 
     	<td>
-		  <table width="100%" cellpadding=0 cellspacing=0>
+		  <table class="largura-total">
 			  <tr valign="top">
 			      <td >Tipo<br>
 						<select name="no_tipo"  style="width:170px" multiple>
@@ -52,7 +55,7 @@ function ValidaCampos()
 							<option value="<%=MOV_EXPEDICAO_SUBST%>">Substituição</option>
 						</select>
 			      </td>
-			      <td >Descrição da Natureza de Operação<br><input type="text"  name="no_descricao" style="width:300" maxlength="50"></td>
+			      <td >Descrição da Natureza de Operação<br><input type="text"  name="no_descricao" style="width:300px;" maxlength="50"></td>
 			    </tr>
 			</table>
 	  </td>
@@ -63,19 +66,19 @@ function ValidaCampos()
 			<table cellpadding="0" cellspacing="0">
 			<tr >
 			   <td>
-			   	CDE<input type="checkbox" name="cde" value="1">
+			   	CDE <input type="checkbox" name="cde" value="1">
 			   </td>
 			   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			   <td>
-			   	Defeito<input type="checkbox" name="defeito" value="1" >
+			   	Defeito <input type="checkbox" name="defeito" value="1" >
 			   </td>
 			   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			   <td>
-			   	Prazo de Retorno<input type="checkbox" name="prazo" value="1">
+			   	Prazo de Retorno <input type="checkbox" name="prazo" value="1">
 			   </td>
 			   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			   <td>
-			   	AS<input type="checkbox" name="as" value="1">
+			   	AS <input type="checkbox" name="as" value="1">
 			   </td>
 			</tr>
 			</table>
@@ -87,6 +90,7 @@ function ValidaCampos()
     </tr>
  </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

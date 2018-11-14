@@ -59,7 +59,7 @@ function ValidaCampos()
 			</table>
 		</td>
 	</tr>
-	<tr><td class="texto">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr>
 		<td>
   			<table width="100%"  cellpadding=0 cellspacing=0>
@@ -107,7 +107,7 @@ function ValidaCampos()
 	<tr> 
 		<td bgcolor="#FFFFFF" >Descrição do Modelo<br><textarea style="width:550" cols="80" rows="5" name="mod_descricao" ><%=recm("mod_descricao")%></textarea></td>
 	</tr>
-	<tr><td class="texto">&nbsp;</td></tr>
+	<tr><td >&nbsp;</td></tr>
 	<tr> 
       	<td bgcolor="#FFFFFF" >Observações<br>
 		<textarea  name="mod_obs" style="width:550" cols="80" rows="5"><%=recm("mod_obs")%></textarea></td>

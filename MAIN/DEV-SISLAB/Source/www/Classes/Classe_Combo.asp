@@ -267,7 +267,7 @@ Public Function Data(nome)
     buffer = buffer & _
 	    "<select name='mes" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 		    opt_meses(10) & VbCrLf & _
-	    "</select>"
+	    "</select>&nbsp;"
 
     buffer = buffer & _
 	    "<select name='ano" & nome & "' class='" & p_classe & "'>" & VbCrLf & _

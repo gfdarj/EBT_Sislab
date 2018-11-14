@@ -31,28 +31,33 @@ function ValidaCampos()
 	return true;
 }
 </script>
-<form method=post action="cad_tipos2.asp" name="formulario"  onsubmit="return ValidaCampos();">
-<table width="100%">
-	<tr>
-		<td ><%
-		msg = request("msg")
-		if msg  = 1 then
-		response.write "Tipo cadastrado com sucesso!<br><br>"
-		elseif msg = 2 then
-		response.write "Tipo já existente!<br><br>"
-		end if%></td>
-	</tr> 
-	<tr >
-		<td>Filho de:&nbsp;<br>
-			<%RW Combo.PadraoSql("super_tipo", "select tipo_id as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr ><td>Tipo:<br><input type="text"  name="tipo_descricao" style="width:600" maxlength="100"></td></tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr><td><input type="submit" name="Submit" value=" Cadastrar " ></td></tr>
- </table>
-</form>
+
+<div class="margem-10">
+    <form method=post action="cad_tipos2.asp" name="formulario"  onsubmit="return ValidaCampos();">
+        <table class="largura-total">
+	    <tr>
+		    <td><%
+		        msg = request("msg")
+		        If msg  = 1 Then
+		            Response.Write "Tipo cadastrado com sucesso!<br><br>"
+		        ElseIf msg = 2 Then
+		            Response.Write "Tipo já existente!<br><br>"
+		        End If %>
+		    </td>
+	    </tr> 
+	    <tr>
+		    <td>
+                Filho de:&nbsp;<br>
+			    <%RW Combo.PadraoSql("super_tipo", "select tipo_id as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr><td>Tipo:<br><input type="text" name="tipo_descricao" style="width:600" maxlength="100"></td></tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr><td><input type="submit" name="Submit" value="Cadastrar" ></td></tr>
+     </table>
+    </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
