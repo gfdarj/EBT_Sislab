@@ -19,17 +19,18 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
+<script type="text/javascript">
 function navselecao()
 {
     document.formulario.submit();
 }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="rel_nf2.asp">
-<table width="100%" >
+<table class="largura-total">
 	<tr>
 	    <td>
-			<table cellpadding="0" cellspacing="0" >
+			<table class="largura-total">
 				<tr>
 					<td>
 						Número da Nota:&nbsp;<input type="text" name="nf_numeronota"  size="10">
@@ -86,9 +87,9 @@ function navselecao()
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			<input type="Checkbox" name="pendentes" value="1">Notas Pendentes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Checkbox" name="vencidas" value="1">Notas Vencidas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Checkbox" name="avencer" value="1">Notas &agrave; vencer
+			<input type="Checkbox" name="pendentes" value="1">&nbsp;Notas Pendentes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Checkbox" name="vencidas" value="1">&nbsp;Notas Vencidas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Checkbox" name="avencer" value="1">&nbsp;Notas &agrave; vencer
 		</td>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
@@ -106,6 +107,7 @@ function navselecao()
 	<tr><td><input type=submit value=" Gerar " ></td></tr>
 </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -36,8 +36,9 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 
-    ssql =	"SELECT * " & _
-		    "FROM vw_SCE_Reserva_Equipamentos "
+    ssql =	"SELECT e.*, u.NOME AS [RES_NOME] " & _
+		    "FROM vw_SCE_Reserva_Equipamentos e " & _
+            "LEFT JOIN UserCRT u ON e.RES_RESPONSAVEL = u.USERID "
 
     where = ""
 
@@ -137,15 +138,17 @@ If Env.UsuarioSCE() Then
 	</script>
 <%  end if %>
 
-<table width="100%" >
+<div class="margem-10">
+
+<table class="largura-total">
 <%
     if rec.eof and rec.bof then%>
     <tr>
 	    <td align="center" ><i>Nenhuma reserva encontrada !</i></td>
     </tr>
 <%  else %>
-    <tr><td class="destaque">Listagem de reservas por ordem de cadastro</td></tr>
-    <tr><td ><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
+    <tr><td>Listagem de reservas por ordem de cadastro</td></tr>
+    <tr><td ><i>Os itens em destaque (<span class="bg-danger">&nbsp;&nbsp;</span>) est&atilde;o sendo utilizados em mais de uma reserva.</i></td></tr>
 </table>
 
 <br />
@@ -159,19 +162,19 @@ While Not rec.eof
 	If IsNull(obs) Then obs = "" End If
 %>
 <table width="100%" border="0"  cellpadding="0" cellspacing="0">
-    <tr class="linha_par">
+    <tr class="titulo destaque">
 	    <th>AS</th>
 	    <th>Dt In&iacute;cio</th>
 	    <th>Dt T&eacute;rmino</th>
 	    <th>Respons&aacute;vel</th>
 	    <th><%If ehRelatorio Then Response.Write "&nbsp;" Else Response.Write "Planilha XLS" End If %></th>
     </tr>
-	<tr class="linha_par">
-        <td align="center"><a href="cad_reserva.asp?ag_numero=<%=rec("AG_NUMERO")%>"><b><%=rec("AG_NUMERO")%></b></a></td>
-		<td align="center"><b><%=FormataData(rec("AG_DATAINICIO"), null)%></b></td>
-		<td align="center"><b><%=FormataData(rec("AG_DATATERMINO"), null)%></b></td>
-		<td align="center"><b><%if isnull(rec("RES_RESPONSAVEL")) then response.write "&nbsp;" else response.write rec("RES_RESPONSAVEL")%></b></td>
-		<td align="center">
+	<tr>
+        <td><a href="cad_reserva.asp?ag_numero=<%=rec("AG_NUMERO")%>"><b><%=rec("AG_NUMERO")%></b></a></td>
+		<td><b><%=FormataData(rec("AG_DATAINICIO"), null)%></b></td>
+		<td><b><%=FormataData(rec("AG_DATATERMINO"), null)%></b></td>
+		<td><b><%if isnull(rec("RES_RESPONSAVEL")) then response.write "&nbsp;" else response.write rec("RES_NOME") & " - <small>" & rec("RES_RESPONSAVEL") & "</small>"%></b></td>
+		<td>
 <%		    If Not ehRelatorio Then%>
 				<b>(<a href="#" onclick="javascript:geraPlanilhaReserva(<%=rec("AG_NUMERO")%>);">Gerar</a>)</b>
 <%		    Else%>
@@ -184,7 +187,7 @@ While Not rec.eof
 
 <center>
 
-<table width="90%" border="0"  cellpadding="0" cellspacing="0">
+<table style="width: 90%;">
 <%  If Not IsNull(rec("EQ_ID")) Then %>
 
 <%      agtemp = rec("AG_NUMERO") %>
@@ -196,11 +199,11 @@ While Not rec.eof
     </tr>
 	<tr><td>&nbsp;</td></tr>
 <%              End If %>
-	<tr><td><font color="#008080"><p><b><%=rec("AMB_NOME")%></b>&nbsp;</p></font></td></tr>
+	<tr><th><%=rec("AMB_NOME")%>&nbsp;</th></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			<table width="100%" border="1"  cellpadding="2" cellspacing="0" style="border: none ;">
+			<table class="largura-total table-bordered table-condensed">
 			<tr>
                 <th>#</th>
 				<th>C&oacute;d Barras</th>
@@ -217,7 +220,7 @@ While Not rec.eof
 <%			ehReservado = Trim(Sce.VerificaReservaItem(false, agnumero, rec("EQ_ID"), false))
 
 		    If ehReservado <> "" then%>
-			<tr class="vencido">
+			<tr class="bg-danger">
 <%			Else%>
 			<tr>
 <%			End If%>
@@ -246,11 +249,12 @@ While Not rec.eof
 			</tr>
 
 <%			if ehReservado <> "" then%>
-			<tr class="vencido">
+			<tr class="bg-danger">
 <%		    else%>
 			<tr>
 <%		    end if%>
-			    <td colspan="9"><i>
+			    <td colspan="9"><small>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				    Localiza&ccedil;&atilde;o:&nbsp;<%=rec("EQ_LOCALIZACAO")%>
 				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				    Status:&nbsp;<%=rec("DESC_STATUS")%>
@@ -261,7 +265,7 @@ While Not rec.eof
     <%				    if ehReservado <> "" then%>
 				    <br><b>Reserva(s):<%=ehReservado%></b>
     <%				    end if%>
-				    </i>
+				    </small>
 			    </td>
 			</tr>
 <%
@@ -275,10 +279,10 @@ While Not rec.eof
     	If obs <> "" Then%>
 			<tr>
 				<td colspan="9">
-					<table  cellpadding="0" cellspacing="0" width="100%">
+					<table class="largura-total">
 					<tr>
 						<td width="60px" valign="top"><i>Observação:</i></td>
-						<td><i><%=Replace(obs, VbCrLf, "<br>")%></i></td>
+						<td><small><i><%=Replace(obs, VbCrLf, "<br>")%></i></small></td>
 					</tr>
 					</table>
 				</td>
@@ -289,9 +293,9 @@ While Not rec.eof
 <%	    ReservaOK = Sce.ReservaFechada(agnumero)
 
 		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
-		    <p align="right"><input type="button"  value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p class="texto-direito"><input type="button"  value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <%	    Elseif ReservaOK then%>
-    		<p align="right"><i>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</i></p>
+    		<p class="texto-direito"><small>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</small></p>
 <%		End if%>
         </td>
     </tr>
@@ -311,51 +315,54 @@ WEnd
 </table>
 </center>
 
-<iframe style="display: none;" name="escondido"></iframe>
+    <iframe style="display: none;" name="escondido"></iframe>
 
-<form name="formulario" action="sel_cad_reserva2_aceite.asp">
-    <input type="hidden" name="ag_numero" value="">
-    <select name="lista_itens" style="display: none; width:500px" multiple></select>
-    <input type="hidden" name="tudoAceitoOK" value="SIM">
-</form>
+    <form name="formulario" action="sel_cad_reserva2_aceite.asp">
+        <input type="hidden" name="ag_numero" value="">
+        <select name="lista_itens" style="display: none; width:500px" multiple></select>
+        <input type="hidden" name="tudoAceitoOK" value="SIM">
+    </form>
+
+    <br />
+</div>
 
 <script type="text/javascript">
-function movimentarAS(ag_numero, total_itens) {
-	var i, oOption, itemOK = true;
+    function movimentarAS(ag_numero, total_itens) {
+	    var i, oOption, itemOK = true;
 
-	document.all.lista_itens.length = 0;  // limpa o select
-	document.all.ag_numero.value = ag_numero;
-	for(i=1; i<= total_itens; i++)
-	{	// CONCATENO O SELECT COM O ACEITE + O ID DO EQUIPAMENTO, APENAS SE TODOS OS EQUIPAMENTOS
-		// ESTIVEREM MARCADOS COMO ACEITO É CHAMADA A TELA DE MOVIMENTACAO
-		// "1_" para ACEITO, "0_" para NAO ACEITO e "__" para nao escolhido
-		if(document.all["aceite_" + ag_numero + "_"+i].value.substr(0,1) != "1") {
-			itemOK = false;  // algum item esta como Não ou sem aceite
-		}
-		oOption = document.createElement("OPTION");
-		document.all.lista_itens.options.add(oOption);
+	    document.all.lista_itens.length = 0;  // limpa o select
+	    document.all.ag_numero.value = ag_numero;
+	    for(i=1; i<= total_itens; i++)
+	    {	// CONCATENO O SELECT COM O ACEITE + O ID DO EQUIPAMENTO, APENAS SE TODOS OS EQUIPAMENTOS
+		    // ESTIVEREM MARCADOS COMO ACEITO É CHAMADA A TELA DE MOVIMENTACAO
+		    // "1_" para ACEITO, "0_" para NAO ACEITO e "__" para nao escolhido
+		    if(document.all["aceite_" + ag_numero + "_"+i].value.substr(0,1) != "1") {
+			    itemOK = false;  // algum item esta como Não ou sem aceite
+		    }
+		    oOption = document.createElement("OPTION");
+		    document.all.lista_itens.options.add(oOption);
 
-		oOption.innerText = document.all["aceite_" + ag_numero + "_"+i].value;
-		oOption.value = oOption.innerText;
-		oOption.selected = true;
-	}
+		    oOption.innerText = document.all["aceite_" + ag_numero + "_"+i].value;
+		    oOption.value = oOption.innerText;
+		    oOption.selected = true;
+	    }
 
-	if( !itemOK ) {
-		document.all.tudoAceitoOK.value = "NAO";
-		if(!confirm("ATENÇÂO !\n\nExistem itens não aceitos ou não verificados.\n\nDeseja mesmo assim gravar a aceitação ?")) {
-			return false;
-		}
-	}
-	else
-		document.all.tudoAceitoOK.value = "SIM";
+	    if( !itemOK ) {
+		    document.all.tudoAceitoOK.value = "NAO";
+		    if(!confirm("ATENÇÂO !\n\nExistem itens não aceitos ou não verificados.\n\nDeseja mesmo assim gravar a aceitação ?")) {
+			    return false;
+		    }
+	    }
+	    else
+		    document.all.tudoAceitoOK.value = "SIM";
 
-	if(document.all.lista_itens.length > 0) {
-		document.formulario.target = "escondido";
-		document.formulario.submit();
-	}
-	else
-		alert("ERRO !\n\nNenhum item foi incluído na lista");
-}
+	    if(document.all.lista_itens.length > 0) {
+		    document.formulario.target = "escondido";
+		    document.formulario.submit();
+	    }
+	    else
+		    alert("ERRO !\n\nNenhum item foi incluído na lista");
+    }
 </script>
 <%
     End If 'eof

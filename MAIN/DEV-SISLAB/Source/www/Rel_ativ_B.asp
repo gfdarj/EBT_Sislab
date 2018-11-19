@@ -30,64 +30,67 @@ total_registros = objSiteRS.RecordCount
 
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de Agendamento", "location.href='rel_ativ.asp'", "")
 %>
-<script language="javascript" src="includes/manipulaObj.js"></script>
+<script type="text/javascript" src="includes/manipulaObj.js"></script>
 <script type="text/javascript">
-function chama_as(cod_as, oquefazer)
-{
-	if(oquefazer == 1) {
-	   	sel.selecao.value=cod_as;
-		sel.action = 'CadAgendamentoCliente.asp'
-		sel.method = 'Post'
-		sel.submit();
-	}
-	else {
-		var jan = window.open('ficha_as.asp?emjanela=1&selecao=' + cod_as, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
-		jan.focus();
-	}
-}
+    function chama_as(cod_as, oquefazer)
+    {
+	    if(oquefazer == 1) {
+	   	    sel.selecao.value=cod_as;
+		    sel.action = 'CadAgendamentoCliente.asp'
+		    sel.method = 'Post'
+		    sel.submit();
+	    }
+	    else {
+		    var jan = window.open('ficha_as.asp?emjanela=1&selecao=' + cod_as, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+		    jan.focus();
+	    }
+    }
 
-function proximaPagina()
-{
-	var frm = document.forms[0];
-	frm.pagina.value = <%=pagina+1%>;
-	frm.submit();
-}
-function VaiPagina(pagina)
-{
-	var frm = document.forms[0];
-	frm.pagina.value = pagina;
-	frm.submit();
-}
+    function proximaPagina()
+    {
+	    var frm = document.forms[0];
+	    frm.pagina.value = <%=pagina+1%>;
+	    frm.submit();
+    }
+    function VaiPagina(pagina)
+    {
+	    var frm = document.forms[0];
+	    frm.pagina.value = pagina;
+	    frm.submit();
+    }
 
-function paginaAnterior()
-{
-	var frm = document.forms[0];
-	frm.pagina.value = <%=pagina-1%>;
-	frm.submit();
-}
+    function paginaAnterior()
+    {
+	    var frm = document.forms[0];
+	    frm.pagina.value = <%=pagina-1%>;
+	    frm.submit();
+    }
 </script>
-<form action="rel_ativ_B.asp" method="post">
-<input type="hidden" name="total_registros" value="<%=total_registros%>">
-<input type=hidden name="pagina">
-<input type="hidden" name="ssql2" value="<%=ssql%>">
-<br>
-<table border="1" width="100%" cellpadding="2" cellspacing="0" class="table-bordered" style="border: solid thin;">
-<tr>
-	<th width="35px" style="font-size: xx-small;">N&deg; AS</th>
-	<th style="font-size: xx-small;">Atividade</th>
-	<th style="font-size: xx-small;">Situação</th>
-	<th style="font-size: xx-small;">
-		<%if auxClientes = true then%>
-		Cliente
-		<%else%>
-		Atividade
-		<%end if%>
-	</th>
-	<th style="font-size: xx-small;">Solicitante</th>
-	<th style="font-size: xx-small;">Resp. Técnico<br>Coordenação (CRT)</th>
-	<th style="font-size: xx-small;">Dt. Solicitada<br>Início - Término</th>
-	<th width="20">&nbsp;</th>
-</tr>
+<div class="margem-10">
+    <form action="rel_ativ_B.asp" method="post">
+
+    <input type="hidden" name="total_registros" value="<%=total_registros%>">
+    <input type=hidden name="pagina">
+    <input type="hidden" name="ssql2" value="<%=ssql%>">
+
+    <br />
+    <table class="largura-total table-condensed table-bordered table-striped table-hover">
+    <tr>
+	    <th class="texto-centralizado">AS</th>
+	    <th class="texto-justificado">Descrição</th>
+	    <th class="texto-centralizado">Situação</th>
+	    <th class="texto-centralizado">
+		    <%if auxClientes = true then%>
+		    Cliente
+		    <%else%>
+		    Atividade
+		    <%end if%>
+	    </th>
+	    <th class="texto-centralizado">Solicitante</th>
+	    <th>Resp. Técnico<br>Coordenação (CRT)</th>
+	    <th>Dt. Solicitada<br>Início - Término</th>
+	    <th>&nbsp;</th>
+    </tr>
 <%
 If Not(objSiteRS.EOF) Then
 	Dim	auxRES_AS, auxsituacao, auxAG_USERNAME, auxAG_DATAINICIO
@@ -124,23 +127,23 @@ If Not(objSiteRS.EOF) Then
 
 		intrec = intrec + 1
 %>
-<tr valign="middle">
-	<td align="left" valign="middle">
-		&nbsp;<a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=atual%>, 0);"><B> <%=atual%></a>
-	</td>
+    <tr style="vertical-align: top;">
+	    <td class="texto-centralizado" style="vertical-align: top;">
+		    <a title="Clique aqui para ver os dados desta AS" href="javascript: chama_as(<%=atual%>, 0);"><%=atual%></a>
+	    </td>
 
-	<td align="justify">
+	    <td class="texto-justificado">
 <%			if (aux_SIGILO > 0) then%>
-<img align="absmiddle" src="img/Iccadeado.gif" border="0" title="Sigilo de resultado">
+            <img align="absmiddle" src="img/Iccadeado.gif" border="0" title="Sigilo de resultado">
 <%			end if
 
 			if TemArq then
 				If bln_MostraDadoSigiloso Then%>
-		<a href="#" onClick="javascript:NewWindow('rel_ativ_arquivos.asp?selecao=<%=atual%>', '', 400, 200, 'yes');">
+    		<a href="#" onClick="javascript:NewWindow('rel_ativ_arquivos.asp?selecao=<%=atual%>', '', 400, 200, 'yes');">
 <%				End If %>
-			<img align="absmiddle" src="img/icnote.gif" border="0" title="Este agendamento possui arquivo(s) anexo(s)">
+	    		<img align="absmiddle" src="img/icnote.gif" border="0" title="Este agendamento possui arquivo(s) anexo(s)">
 <%				If bln_MostraDadoSigiloso Then%>
-		</a>
+    		</a>
 <%				End If %>
 <%			end if%>
 
@@ -149,11 +152,11 @@ If Not(objSiteRS.EOF) Then
 			'call Env.RecordSet( true, objSiteMail, sSQL, objConn)
 			if ( (not IsNull(objSiteRS("AG_RELAT_RT"))) or _
 				(not IsNull(objSiteRS("AG_RELAT_RT"))) ) and EH_CRT = true then%>
-		<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">
+	    	<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">
 <%			end if
 
 			if auxRepetido = true then%>
-		<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">
+    		<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">
 <%			end if%>
 
 <%
@@ -162,79 +165,82 @@ If Not(objSiteRS.EOF) Then
 			if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 			if aux_DescSigilo <> "" then response.write aux_DescSigilo 
 %>
-	</td>
+	    </td>
 
-	<td align="center">
-		<span font-size: 9px;"><%=auxsituacao%>&nbsp;</span>
-	</td>
+	    <td class="texto-centralizado">
+		    <%=auxsituacao%>&nbsp;
+	    </td>
 
-	<td align="center">
+    	<td class="texto-centralizado">
 <%			if auxClientes = true then response.write auxCliente else response.write aux_Atividade%>&nbsp;
-	</td>
+	    </td>
 
-	<td align="center">
-		<span font-size: 9px;"><%=auxAG_USERNAME%><%if auxorgao <> "" then response.write "<br><i>(" & auxorgao & ")</i>"%>&nbsp;</span>
-	</td>
+	    <td class="texto-centralizado">
+		    <%=auxAG_USERNAME%><%if auxorgao <> "" then response.write "<br><small>(" & auxorgao & ")</small>"%>&nbsp;
+	    </td>
 
-	<td align="center">
-		<span font-size: 9px;"><%=UCase(auxRES_AS)%><br><%=UCase(auxRAT_AG)%>&nbsp;</span>
-	</td>
+	    <td class="texto-centralizado">
+		    <%=UCase(auxRES_AS)%><br><%=UCase(auxRAT_AG)%>&nbsp;
+	    </td>
 	
-	<td align="center">
-		<span font-size: 9px;"><%=auxAG_DATAINICIO_F & "-" & auxAG_DATATERMINO_F %></span>
-	</td>
-	<td width="20px" align="center">
+	    <td class="texto-centralizado">
+		    <span font-size: 9px;"><%=auxAG_DATAINICIO_F & "-" & auxAG_DATATERMINO_F %></span>
+	    </td>
+	    <td class="texto-centralizado">
 <%		If bln_MostraDadoSigiloso Then %>
-		<a class="texto_tabela" href="javascript: showAguarde(); chama_as(<%=atual%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+	    	<a class="texto_tabela" href="javascript: showAguarde(); chama_as(<%=atual%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
 <%		Else%>
-		&nbsp;
+    		&nbsp;
 <%		End If%>
-	</td>
-</tr>
+	    </td>
+    </tr>
 <%		objSiteRS.MoveNext
 	wend
 %>
-</table>
-<script type="text/javascript">
-	var frm = document.forms[0]
-	frm.pagina.value = <%=contpagina%>
-</script>
+    </table>
 
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="table-bordered">
-<tr>
-	<td align="left" width="150px">
-		<%if contpagina > 1 then%>
-			<a href="javascript:paginaAnterior()" class="menu"><span class="cinza1">&laquo;</span> Voltar</a>
-		<%end if%>
-	</td>
-	<td align="center">
-		<B>&nbsp;&nbsp;Página atual: <%=contpagina%></B>&nbsp;&nbsp;&nbsp;&nbsp;
-		<B>&nbsp;&nbsp;Total de Registros: <%=total_registros%></B>&nbsp;&nbsp;&nbsp;&nbsp;
-	</td>
-	<td align="right" width="150px">
-		<%if objsiteRS.eof = false then%>
-			<a href="javascript:proximaPagina()" class="menu">Avançar <span class="cinza1">&raquo;</span></a>
-		<%end if%>
-	</td>
-</tr>
+    <script type="text/javascript">
+        var frm = document.forms[0];
+        frm.pagina.value = <%=contpagina %>;
+    </script>
+
+    <table class="largura-total">
+    <tr>
+	    <td width="150px">
+		    <%if contpagina > 1 then%>
+			    <a href="javascript:paginaAnterior()"><small>&laquo; Voltar</small></a>
+		    <%end if%>
+	    </td>
+	    <td class="texto-centralizado">
+            <small>
+		    Página atual: <%=contpagina%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Total de Registros: <%=total_registros%></small>
+	    </td>
+	    <td class="texto-direito" style="width: 150px;">
+		    <%if objsiteRS.eof = false then%>
+			    <a href="javascript:proximaPagina()"><small>Avançar &raquo;</small></a>
+		    <%end if%>
+	    </td>
+    </tr>
 <%
 else
 %>
-<tr>
-	<td colspan="8" align="center">
-		<b><i>Não existem testes agendados com estes critérios de seleção.
-		<%=auxrt%></i></b>
-	</td>
-</tr>
+    <tr>
+	    <td colspan="8" align="center">
+		    <strong>Não existem testes agendados com estes critérios de seleção.<br />
+		    <%=auxrt%></strong>
+	    </td>
+    </tr>
 <%
 end if
 %>
-</table>
-</form>
+    </table>
+    </form>
 
-<form name="sel" action="ficha_as.asp" method="post">
-<input type="hidden" name="selecao">
-</form>
+    <form name="sel" action="ficha_as.asp" method="post">
+        <input type="hidden" name="selecao">
+    </form>
+</div>
 <%
 Call Tela.MostraRodape()
 

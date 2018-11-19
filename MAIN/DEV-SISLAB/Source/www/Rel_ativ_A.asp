@@ -218,13 +218,20 @@ sSQL_Dados = sSQL_Dados & " " & sSQL & " ORDER BY a.AG_NUMERO DESC; "
 'response.write sSQL_Dados
 'response.end
 %>
+<!DOCTYPE html>
 <html>
-<form method="post" action="rel_ativ_b.asp">
-<input type="hidden" name="ssql" value="<%=sSQL_Dados%>">
-</form>
-<script>
-var frm = document.forms[0]
-frm.submit()
-</script>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+    <form method="post" action="rel_ativ_b.asp">
+        <input type="hidden" name="ssql" value="<%=sSQL_Dados%>">
+    </form>
+    <script type="text/javascript">
+    var frm = document.forms[0]
+    frm.submit()
+    </script>
+    </body>
 </html>
 

@@ -32,7 +32,7 @@ If Env.UsuarioSCE() Then
     end if
 
     'Tem que alterar a view vw_SCE_Equipamentos_Fabricantes
-    ssql =	"SELECT DISTINCT e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_PROPRIEDADE, e.MOD_CODNOME, e.MOD_DESCRICAO, e.EQ_INSTRUMENTAL, " & _
+    ssql =	"SELECT DISTINCT top 30 e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_PROPRIEDADE, e.MOD_CODNOME, e.MOD_DESCRICAO, e.EQ_INSTRUMENTAL, " & _
 		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
 		    "e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, CAST(e1.EQ_OBS AS VARCHAR(8000)) AS EQ_OBS, CAST(e1.EQ_MANUT_PREVENTIVA AS VARCHAR(8000)) AS EQ_MANUT_PREVENTIVA " & _
 		    "FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Equipamentos e1 ON e.EQ_ID = e1.EQ_ID  LEFT JOIN SCE_Equipamentos_Controle ec " & _
@@ -107,26 +107,30 @@ If Env.UsuarioSCE() Then
 
     Set rec = Env.oconn.execute(ssql)
 %>
-<table width="100%"  border="0">
+<div class="margem-10">
+
+<p><strong>Listagem de <%=descricaoeq%></strong></p>
+
+<table class="largura-total">
 <tr>
-	<td colspan="2">
-		<table class="destaque" width="100%" cellpadding="0" cellspacing="0"><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" >&nbsp;</td></tr></table>
-	</td>
+    <td colspan="2" width="40px">&nbsp;</td>
 </tr>
-<tr><td colspan="2" width="40px">&nbsp;</td></tr>
 <%
     If Not (rec.eof and rec.bof) Then
         totRec = 0
 	    While Not rec.eof
 %>
-<tr><td class="titulo" colspan="2"><table width="100%" cellpadding="0" cellspacing="0" style="border-bottom: thin solid gray;"><tr><td><b><%=rec("EQ_CODIGOBARRAS")%></b></td></tr></table></td></tr>
 <tr>
-	<td>&nbsp;</td>
-	<td>
+    <td colspan="2" style="border-bottom: thin solid gray;" class="">
+        <h4 class="text-info"><%=rec("EQ_CODIGOBARRAS")%></h4>
+    </td>
+</tr>
+<tr>
+	<td colspan="2">
 		<table width="100%"  cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="*"><%=rec("MOD_CODNOME")%> <b>-</b> <%=rec("MOD_DESCRICAO")%> <b>-</b> <%=rec("FAB_NOME")%></td>
-			<td align="right">Situa&ccedil;&atilde;o: <%=rec("DESC_STATUS")%></td>
+			<td class="texto-direito">Situa&ccedil;&atilde;o: <%=rec("DESC_STATUS")%></td>
 		</tr>
 		<tr><td></td></tr>
 		<tr>
@@ -136,8 +140,7 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;</td>
-	<td>
+	<td colspan="2">
 		<table  cellpadding="0" cellspacing="0">
 			<tr>
 				<td>Localiza&ccedil;&atilde;o: <%=rec("EQ_LOCALIZACAO")%></td>
@@ -171,21 +174,22 @@ If Env.UsuarioSCE() Then
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><td>&nbsp;</td><td><b>Dados do <%=descricaoeq%></b></td></tr>
+<tr><th colspan="2">Dados do <%=descricaoeq%></th></tr>
+
 <tr>
-	<td>&nbsp;</td>
+	<td style="width: 20px;">&nbsp;</td>
 	<td>
-		<table  cellpadding="0" cellspacing="0">
-			<tr><td colspan="6"><b><i>Opera&ccedil;&atilde;o</i></b></td><td colspan="3"><i><b>Armazenagem</i></b></td></tr>
+		<table>
+			<tr><td colspan="6">Opera&ccedil;&atilde;o</td><td colspan="3">Armazenagem</td></tr>
 			<tr>
 				<td>Delta: <%=rec("EQ_OPER_DELTA")%></td>
-				<td width="40px">&nbsp;</td>
+				<td style="width: 40px;">&nbsp;</td>
 				<td>Umidade: <%=rec("EQ_OPER_UMIDADE")%></td>
-				<td width="40px">&nbsp;</td>
+				<td style="width: 40px;">&nbsp;</td>
 				<td>Warm Up: <%=rec("EQ_OPER_WARMUP")%></td>
-				<td width="60px">&nbsp;</td>
+				<td style="width: 60px;">&nbsp;</td>
 				<td>Delta: <%=rec("EQ_ARMA_DELTA")%></td>
-				<td width="40px">&nbsp;</td>
+				<td style="width: 40px;">&nbsp;</td>
 				<td>Umidade: <%=rec("EQ_ARMA_UMIDADE")%></td>
 			</tr>
 		</table>
@@ -209,11 +213,12 @@ If Env.UsuarioSCE() Then
 
 	    	if not (recInst.eof and recInst.bof) then%>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Controle do <%=descricaoeq%></b></td></tr>
+
+<tr><td colspan="2"><b>Controle do <%=descricaoeq%></b></td></tr>
 <tr>
-	<td>&nbsp;</td>
+    <td>&nbsp;</td>
 	<td>
-		<table  cellpadding="2" cellspacing="0" border="1">
+		<table class="table-bordered table-condensed">
 <%  			controle = ""
 			    nomecontrole = ""
 			    while not recInst.eof
@@ -226,21 +231,21 @@ If Env.UsuarioSCE() Then
 					    else
 						    nomecontrole = "Qualifica&ccedil;&atilde;o"
 					    end if%>
-			<tr><td colspan="5"><b><i><%=nomecontrole%></i></b></td></tr>
+			<tr><th colspan="5"><small><i><%=nomecontrole%></i></small></th></tr>
 			<tr>
-				<td width="80px"><b><i>Data</i></b></td>
-				<td width="80px"><i><b>Prazo (dias)</i></b></td>
-				<td width="80px"><i><b>Vencimento</i></b></td>
-				<td width="200px"><i><b>Registro</i></b></td>
-				<td width="150px"><i><b>Respons&aacute;vel</i></b></td>
+				<th style="width: 80px;"><small>Data</small></th>
+				<th style="width: 80px;"><small>Prazo (dias)</small></th>
+				<th style="width: 80px;"><small>Vencimento</small></th>
+				<th style="width: 200px;"><small>Registro</small></th>
+				<th style="width: 250px;"><small>Respons&aacute;vel</small></th>
 			</tr>
 <%  				end if%>
 			<tr>
-				<td><%=recInst("EQC_DATA")%></td>
-				<td><%if IsNull(recInst("EQC_DIAS")) then response.write "&nbsp;" else response.write recInst("EQC_DIAS")%></td>
-				<td><%if IsNull(recInst("EQC_DATA_VENCIMENTO")) then response.write "&nbsp;" else response.write recInst("EQC_DATA_VENCIMENTO")%></td>
-				<td><%=recInst("EQC_REGISTRO")%></td>
-				<td><%=recInst("EQC_RESPONSAVEL")%></td>
+				<td><small><%=recInst("EQC_DATA")%></small></td>
+				<td><small><%if IsNull(recInst("EQC_DIAS")) then response.write "&nbsp;" else response.write recInst("EQC_DIAS")%></small></td>
+				<td><small><%if IsNull(recInst("EQC_DATA_VENCIMENTO")) then response.write "&nbsp;" else response.write recInst("EQC_DATA_VENCIMENTO")%></small></td>
+				<td><small><%=recInst("EQC_REGISTRO")%></small></td>
+				<td><small><%=recInst("EQC_RESPONSAVEL")%></small></td>
 			</tr>
 <%	    			if not recInst.Eof then controle = recInst("EQC_TIPO")
 				    recInst.MoveNext
@@ -251,36 +256,43 @@ If Env.UsuarioSCE() Then
 <%	    	end if%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Observações:</b></td></tr>
-<tr><td>&nbsp;</td><%If IsNull(rec("EQ_OBS")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td style='border: thin solid gray;'>" & Replace(Trim(rec("EQ_OBS")), VbCrLf, "<BR>") & "</td>"%></tr>
+<%If Not VVVNZ(rec("EQ_OBS")) Then %>
+<tr><th colspan="2">Observações:</th></tr>
+<tr><td>&nbsp;</td><%If VVVNZ(rec("EQ_OBS")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td>" & Replace(Trim(rec("EQ_OBS")), VbCrLf, "<BR>") & "</td>"%></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Dados de manutenção:</b></td></tr>
-<tr><td>&nbsp;</td><%If IsNull(rec("EQ_MANUT_PREVENTIVA")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td style='border: thin solid gray;'>" & Replace(Trim(rec("EQ_MANUT_PREVENTIVA")), VbCrLf, "<BR>") & "</td>"%></tr>
+<%End If %>
+
+<%If Not VVVNZ(rec("EQ_MANUT_PREVENTIVA")) Then %>
+<tr><th colspan="2">Dados de manutenção:</th></tr>
+<tr><td>&nbsp;</td><%If IsNull(rec("EQ_MANUT_PREVENTIVA")) Then Response.Write "<td>&nbsp;</td>" Else Response.write "<td>" & Replace(Trim(rec("EQ_MANUT_PREVENTIVA")), VbCrLf, "<BR>") & "</td>"%></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
+<%End If %>
+
 <%
 		    ssql =	"SELECT Sequencial, Descricao, Status, Conforme " & _
 				    "FROM SCE_Acessorios WHERE EQ_ID = " & rec("EQ_ID") & " " & _
 				    "ORDER BY Sequencial"
 		    set recInst = Env.oConn.execute(ssql)
 
-		    if not (recInst.eof and recInst.bof) then%>
+		    If not (recInst.eof and recInst.bof) then%>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><b>Acessórios do Equipamento</b></td></tr>
+<tr><th colspan="2">Acessórios do Equipamento</th></tr>
 <tr>
 	<td>&nbsp;</td>
 	<td>
-		<table  cellpadding="2" cellspacing="0" border="1" width="550px">
+		<table style="width: 550px;" class="table-bordered table-condensed">
 		<tr>
-			<td width="70px"><b><i>Sequencial</i></b></td>
-			<td width="*"><i><b>Descrição</i></b></td>
-			<td width="70px" align="center"><i><b>Status</i></b></td>
-			<td width="70px" align="center"><i><b>Conforme</i></b></td>
+			<th style="width: 70px;"><small>Sequencial</small></th>
+			<th><small>Descrição</small></th>
+			<th style="width: 70px;" class="texto-centralizado"><small>Status</small></th>
+			<th style="width: 70px;" class="texto-centralizado"><small>Conforme</small></th>
 		</tr>
 <%	    		while not recInst.eof%>
-			<tr>
-				<td><%=recInst("Sequencial")%></td>
-				<td><%if IsNull(recInst("Descricao")) then response.write "&nbsp;" else response.write recInst("Descricao")%></td>
-				<td align="center">
+		<tr>
+			<td><small><%=recInst("Sequencial")%><small></td>
+			<td><small><%if IsNull(recInst("Descricao")) then response.write "&nbsp;" else response.write recInst("Descricao")%></small></td>
+			<td class="texto-centralizado">
+                <small>
 <%  				if CStr(recInst("Status")) = CStr(STATUS_EM_ESTOQUE) then
 					    response.write "Em estoque"
 				    elseIf CStr(recInst("Status")) = CStr(STATUS_EM_USO) then
@@ -292,33 +304,40 @@ If Env.UsuarioSCE() Then
 				    else
 					    response.write "&nbsp;"
 				    end if
-%>				</td>
-				<td align="center"><%=SimNao(recInst("Conforme"))%></td>
-			</tr>
+%>              </small>
+            </td>
+			<td class="texto-centralizado"><small><%=SimNao(recInst("Conforme"))%></small></td>
+		</tr>
 <%	    			recInst.MoveNext
 		    	wend%>
 		</table>
 	</td>
 </tr>
-<%		    end if %>
 <tr><td colspan="2">&nbsp;</td></tr>
+<%		    end if %>
 <%
 		    rec.MoveNext
 		    totRec = totRec + 1
+
+            If totRec Mod 100 Then
+                Response.Flush 
+            End If
 	    WEnd
 %>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td colspan="2" align="right">Total de itens encontrados: <%=totRec%></td></tr>
-<tr><td colspan="2">&nbsp;</td></tr>
+<tr><td colspan="2" class="texto-direito"><small>Total de itens encontrados: <%=totRec%></small></td></tr>
 <%
     Else
 %>
-<tr><td align="center" class="titulo">Nenhum <%=lcase(descricaoeq)%> encontrado !</td></tr>
+<tr><td class="texto-centralizado" class="titulo">Nenhum <%=lcase(descricaoeq)%> encontrado !</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <%
     End if
 %>
 </table>
+
+    <br />
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
