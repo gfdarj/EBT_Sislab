@@ -106,16 +106,9 @@ If Env.UsuarioSCE() Then
 		<%=Combo.Data("Ini")%>&nbsp;&nbsp;até&nbsp;&nbsp;<%=Combo.Data("Fim")%>
 	</td>
 </tr>
-
-<tr ><td>&nbsp;</td></tr>
-
-<tr>
-	<td>&nbsp;</td>
-	<td align="center">
-		<input type="submit" name="buscar" value="próximo &gt;&gt;" >
-	</td>
-</tr>
 </table>
+<br />
+<p><input type="submit" name="buscar" value="Pesquisar" ></p>
 </form>
 </div>
 <%
