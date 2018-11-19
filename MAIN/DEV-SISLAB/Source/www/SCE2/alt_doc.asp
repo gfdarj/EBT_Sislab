@@ -13,22 +13,23 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
+<div class="margem-10">
 <form method=post action="alt_doc2.asp" name="formulario">
-<table width="100%">
+<table class="largura-total">
 	<tr>
-		<td >
+		<td>
 		<%if request("msg")<>"" then 
 			if cint(request("msg")) = 1 then response.write "<br><strong>Documento alterado com sucesso!</strong><br><br>"
 			if cint(request("msg")) = 2 then response.write "<br><strong>Documento excluído com sucesso!</strong><br><br>"
 		end if%></td>
 	</tr>
     <tr>
-	    <td class="destaque">Edição de Documentos</td>
+	    <th>Edição de Documentos</th>
     </tr>
-	<tr><td >&nbsp;</td></tr>
+	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td valign="top" valign="middle" >
 		<%ssql = "select * from sce_documentacao order by doc_id"
@@ -51,6 +52,7 @@ If Env.UsuarioSCE() Then
 	</tr>
  </table>
  </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

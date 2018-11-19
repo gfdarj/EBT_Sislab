@@ -21,8 +21,9 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%"  border="0">
-<%  If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posição consolidada de Movimentações " & Request("ano") & "</td></tr>" End If %>
+<div class="margem-10">
+<table class="largura-total">
+<%  If Request("ano") <> "" Then Response.Write "<tr><th colspan='3'>Posição consolidada de Movimentações " & Request("ano") & "</th></tr>" End If %>
 <tr><td>&nbsp;</td></tr>
 
 <%      If request("ano") = "" Then %>
@@ -39,14 +40,14 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 <tr>
-	<td>&nbsp;&nbsp;<b>(*)</b> <i>Este procedimento poderá levar algum tempo caso haja necessidade de reconstrução a tabela de consultas</i></td>
+	<td><small><strong>(*)</strong> Este procedimento poderá levar algum tempo caso haja necessidade de reconstrução a tabela de consultas</small></td>
 </tr>
 <%
 Else
 %>
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
+		<table class="largura-total table-condensed table-bordered table-striped table-hover">
 <%
     	ano = Request("ano")
 
@@ -377,18 +378,18 @@ Else
 <%	    Else %>
 		<tr style="font-weight: bold;">
 			<td>Movimento</td>
-			<td align="center">Jan</td>
-			<td align="center">Fev</td>
-			<td align="center">Mar</td>
-			<td align="center">Abr</td>
-			<td align="center">Mai</td>
-			<td align="center">Jun</td>
-			<td align="center">Jul</td>
-			<td align="center">Ago</td>
-			<td align="center">Set</td>
-			<td align="center">Out</td>
-			<td align="center">Nov</td>
-			<td align="center">Dez</td>
+			<td class="texto-centralizado">Jan</td>
+			<td class="texto-centralizado">Fev</td>
+			<td class="texto-centralizado">Mar</td>
+			<td class="texto-centralizado">Abr</td>
+			<td class="texto-centralizado">Mai</td>
+			<td class="texto-centralizado">Jun</td>
+			<td class="texto-centralizado">Jul</td>
+			<td class="texto-centralizado">Ago</td>
+			<td class="texto-centralizado">Set</td>
+			<td class="texto-centralizado">Out</td>
+			<td class="texto-centralizado">Nov</td>
+			<td class="texto-centralizado">Dez</td>
 		</tr>
 <%    		conta = 0
 	    	dtt_Criacao = RS("DATAATUALIZACAO")
@@ -403,7 +404,7 @@ Else
 <%	    		RS.MoveNext
 		    	conta = conta + 1
 		    WEnd%>
-		<tr><td colspan="13" align="right"><i>Atualizado em <%=dtt_Criacao%></i></td></tr>
+		<tr><td colspan="13" class="texto-direito"><small>Atualizado em <%=dtt_Criacao%></small></td></tr>
 <%	    End If %>
 		</table>
 	</td>
@@ -411,6 +412,7 @@ Else
 <%    End If %>
 <tr><td>&nbsp;</td></tr>
 </table>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

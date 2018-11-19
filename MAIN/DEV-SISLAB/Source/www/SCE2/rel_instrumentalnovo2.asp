@@ -101,19 +101,25 @@ If Not bln_exportaExcel Then
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%"  border="0">
+<div class="margem-10">
+<table class="largura-total">
 <tr>
 	<td class="detalhe" colspan="2">
-		<table width="100%" cellpadding="0" cellspacing="0" ><tr><td><b>Listagem de <%=descricaoeq%></td><td align="right" ><!--Total de itens encontrados: <%'=rec.recordcount%>--></td></tr></table>
+		<table class="largura-total">
+            <tr>
+                <td><strong>Listagem de <%=descricaoeq%></td>
+                <td class="texto-direito"><!--Total de itens encontrados: <%'=rec.recordcount%>--></td>
+            </tr>
+		</table>
 	</td>
 </tr>
 <tr><td colspan="2" width="40px">&nbsp;</td></tr>
-<tr><td colspan="2"><i>Os itens em destaque (<span class="vencido">&nbsp;&nbsp;</span>) est&atilde;o com vencidos.</i></td></tr>
+<tr><td colspan="2"><small>Os itens em destaque (<span class="bg-danger">&nbsp;&nbsp;</span>) est&atilde;o com vencidos.</small></td></tr>
 <%
 	if not (rec.eof and rec.bof) then%>
 <tr>
 	<td class="detalhe" colspan="2">
-		<table width="100%"  border="1" cellpadding="2" cellspacing="0">
+		<table class="largura-total table-condensed table-bordered table-striped table-hover">
 		<tr>
 			<th>*</th>
 			<th>Cód. Barras</th>
@@ -130,15 +136,15 @@ If Not bln_exportaExcel Then
 			'if (cont mod 2) = 0 then bg = 1 else bg = 0
 			bg = 1  '-- tirei a modificacao das cores devido a cor dos eq´s vencidos
 %>
-	<tr <%if not IsNull(rec("EQC_VENCIMENTO")) then if cdate(rec("EQC_VENCIMENTO")) < date() then response.write "class='vencido'" else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if end if else if bg = 0 then response.write "bgcolor='#C0E0EF'" end if %>>
-			<td align="center"><%=rec("EQC_TIPO")%></td>
+	<tr <%if not IsNull(rec("EQC_VENCIMENTO")) then if cdate(rec("EQC_VENCIMENTO")) < date() then response.write "class='bg-danger'" end if %>>
+			<td class="texto-centralizado"><%=rec("EQC_TIPO")%></td>
 			<td><%=Sce.LinkEquipamento(rec("EQ_ID"), rec("EQ_CODIGOBARRAS"), False)%></td>
 			<td><%=rec("MOD_CODNOME")%></td>
 			<td><%=rec("MOD_DESCRICAO")%></td>
 			<td><%=rec("EQ_NUMEROSERIE")%></td>
 			<td><%=rec("FAB_NOME")%></td>
-			<td align="center"><%=Sce.PegaStatusItem(rec("EQ_ID"), true)%></td>
-			<td align="center"><%if IsNull(rec("EQC_VENCIMENTO")) then response.write "&nbsp;" else response.write rec("EQC_VENCIMENTO")%></td>
+			<td class="texto-centralizado"><%=Sce.PegaStatusItem(rec("EQ_ID"), true)%></td>
+			<td class="texto-centralizado"><%if IsNull(rec("EQC_VENCIMENTO")) then response.write "&nbsp;" else response.write rec("EQC_VENCIMENTO")%></td>
 		</tr>
 <%			rec.MoveNext
             total = total + 1
@@ -148,8 +154,8 @@ If Not bln_exportaExcel Then
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-	<td><i>(*): C - Calibração / M - Manutenção / Q - Qualificação</i></td>
-	<td align="right">Total de itens encontrados: <%=cont%></td>
+	<td><small>(*): C - Calibração / M - Manutenção / Q - Qualificação</small></td>
+	<td class="texto-direito"><small>Total de itens encontrados: <%=cont%></small></td>
 </tr>
 <%
 	else
@@ -160,6 +166,7 @@ If Not bln_exportaExcel Then
 %>
 <tr><td colspan="2">&nbsp;</td></tr>
 </table>
+</div>
 <%
 Else
     ssql =	"SELECT '''' + e.EQ_CODIGOBARRAS as [Código de Barras], e.MOD_CODNOME as [Modelo], e.MOD_DESCRICAO as [Descrição], " & _

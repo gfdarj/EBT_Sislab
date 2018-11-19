@@ -16,16 +16,17 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
-function navselecao()
-{
-    document.formulario.submit();
-}
+<script type="text/javascript">
+    function navselecao()
+    {
+        document.formulario.submit();
+    }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="alt_fab2.asp">
-<table width="100%">
+<table class="largura-total">
 	<tr>
-		<td >
+		<td>
 		<%if request("msg") <> "" then
 			if cint(request("msg")) = 1 then response.write "Fabricante alterado com sucesso<br><br>"
 			if cint(request("msg")) = 2 then response.write "Fabricante excluído com sucesso<br><br>"
@@ -35,7 +36,7 @@ function navselecao()
 	    <td >
 			<table>
 				<tr>
-					<td class="destaque">Editar / Excluir Fabricantes Cadastrados</td>
+					<th>Editar / Excluir Fabricantes Cadastrados</th>
 				</tr>
 				<tr><td >&nbsp;</td></tr>
 				<tr>
@@ -64,6 +65,7 @@ function navselecao()
 	</tr>
  </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -18,8 +18,8 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language="JavaScript" src="includes/bib_obj.js"></script>
-<script language="JavaScript" src="includes/bib_str.js"></script>
+<script type="text/javascript" src="includes/bib_obj.js"></script>
+<script type="text/javascript" src="includes/bib_str.js"></script>
 <%
     '-- CADASTRO / ALTERAÇÃO DE RESERVAS DE EQUIPAMENTOS PARA UMA AS --
     Dim rec, s, ag_numero, ambiente, linha, ehNovo, amb
@@ -127,6 +127,7 @@ function filtraItem() {
 }
 </script>
 
+<div class="margem-10">
 <iframe style="display: none;" name="escondido"></iframe>
 
 <form method="post" name="formulario">
@@ -134,8 +135,7 @@ function filtraItem() {
 <input type="hidden" name="ehnovo" value="<%=ehNovo%>">
 <select name="lista_itens" style="display: none; width:500px" multiple></select>
 
-<table   border="0">
-
+<table class="largura-total">
 <%
 if CStr(Request("cadastrou")) <> "" or CStr(Request("alterou")) <> "" or CStr(Request("excluiu")) <> "" then%>
 <tr>
@@ -156,7 +156,7 @@ end if
 %>
 <tr>
 	<td colspan="2" valign="top">
-	    <p class="destaque">AS</p>
+	    <strong>AS</strong><br />
 		<%'call comboAgendamento("txtAS", "ag_numero", conn, cstr(ag_numero), "N")%>
 		<%RW Combo.MeusAgendamentos(False, "txtAS", "ag_numero", CStr(ag_numero), "N")%>
 		<script type="text/javascript">
@@ -177,7 +177,7 @@ end if
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+		<table class="largura-total">
 		<tr>
 			<td valign="top">
 				Ambiente(s):<br>
@@ -202,21 +202,21 @@ end if
 <!-- Filtros para consulta de itens -->
 <tr>
 	<td colspan="2">
-		<p class="destaque">Filtros:</p>
-		&nbsp;&nbsp;&nbsp;(Selecione os campos abaixo para filtrar os dados do equipamento)
-		<table  width="100%" border="0">
+		<p><strong>Filtros:</strong> <small>(Selecione os campos abaixo para filtrar os dados do equipamento)</small></p>
+		
+		<table class="largura-total">
 			<tr>
 				<td>Modelo:</td>
-				<td><input type="text" name="modelo"  size="50" on></td>
+				<td><input type="text" name="modelo" size="50"></td>
 
 				<td>Descri&ccedil;&atilde;o:</td>
-				<td><input type="text" name="desc_modelo"  size="50"></td>
+				<td><input type="text" name="desc_modelo" size="50"></td>
 			</tr>
 			<tr>
 				<td>Fabricante:&nbsp;</td><td><%RW Combo.PadraoSql("fabricante", "select f.fab_id as VALOR, f.fab_nome as DESCRICAO from sce_fabricantes f order by f.fab_nome", "", "N")%></td>
 				<td>Cod.Barras:</td>
 				<td>
-					<input type="text" name="coditem"  size="25">
+					<input type="text" name="coditem" size="25">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="button" value="Filtrar &gt;&gt;"  onClick="javascript:filtraItem();">
 				</td>
@@ -225,8 +225,8 @@ end if
 				<td>Nota Fiscal:</td>
 				<td colspan="3">
 					<input type="text" name="notafiscal" size="6" >
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.SituacaoEquipamento("status", true, true, true, STATUS_EM_ESTOQUE)%>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%RW Combo.SimNaoInstrumental("instrumental", true)%>
 				</td>
@@ -255,176 +255,175 @@ end if
 
 <tr><td colspan="2">&nbsp;</td></tr>
 <script type="text/javascript">
-var linha = 0;
-var total_linhas = 0;
+    var linha = 0;
+    var total_linhas = 0;
 
-function InsereItem(qtde) {
-	var i, datacontrole, dataag, datahoje, undef;
-	var newrow;	var newtd;	var newtxt;
+    function InsereItem(qtde) {
+	    var i, datacontrole, dataag, datahoje, undef;
+	    var newrow;	var newtd;	var newtxt;
 
-	if( document.all.ag_numero.value == '' ) {
-		alert('Nenhum agendamento foi selecionado.');
-		f.ag_numero.focus();
-		return false
-	}
-	if(qtde > 30) {
-		alert("Só é permitido incluir até 30 itens de uma única vez");
-		return false;
-	}
+	    if( document.all.ag_numero.value == '' ) {
+		    alert('Nenhum agendamento foi selecionado.');
+		    f.ag_numero.focus();
+		    return false
+	    }
+	    if(qtde > 30) {
+		    alert("Só é permitido incluir até 30 itens de uma única vez");
+		    return false;
+	    }
 
-	for(i=0; i< qtde; i++) {
-		linha++;
-		total_linhas++;
+	    for(i=0; i< qtde; i++) {
+		    linha++;
+		    total_linhas++;
 
-		//-- apendo uma nova linha e suas colunas
-		newrow=document.createElement("tr");
+		    //-- apendo uma nova linha e suas colunas
+		    newrow=document.createElement("tr");
 
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode("item"+linha);
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_1");
-		newtd.setAttribute("eq_id","");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtxt=document.createTextNode("item"+linha);
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_1");
+		    newtd.setAttribute("eq_id","");
+		    newrow.appendChild(newtd);
 
-//		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descrição do item --</i></span>";
-		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"');
-		newtd.vAlign = "top";
+    //		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descrição do item --</i></span>";
+		    newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"');
+		    newtd.vAlign = "top";
 
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode("-- descrição do item --");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id", "linha_" + linha + "_col_2");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtxt=document.createTextNode("-- descrição do item --");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id", "linha_" + linha + "_col_2");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode("data ini");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_3");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode("data ini");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_3");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		//
-		dataag = document.all.ag_datainicio.value;
-		datahoje = document.all.dt_hoje.value;
+		    //
+		    dataag = document.all.ag_datainicio.value;
+		    datahoje = document.all.dt_hoje.value;
 
-		if( concatenaData(dataag) >= concatenaData(datahoje) )
-			datacontrole = document.all.ag_datainicio.value;
-		else
-			datacontrole = document.all.dt_hoje.value;
-		//
+		    if( concatenaData(dataag) >= concatenaData(datahoje) )
+			    datacontrole = document.all.ag_datainicio.value;
+		    else
+			    datacontrole = document.all.dt_hoje.value;
+		    //
 
-		newtd.innerHTML = inputText(false, 'dt_ini_'+linha, datacontrole, 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, dt_fim_' + linha + ');"');
+		    newtd.innerHTML = inputText(false, 'dt_ini_'+linha, datacontrole, 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, dt_fim_' + linha + ');"');
 
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode("data fim");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_4");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode("data fim");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_4");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newtd.innerHTML = inputText(false, 'dt_fim_'+linha, document.all.ag_datatermino.value, 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, cmb_setup_' + linha + ');"');
+		    newtd.innerHTML = inputText(false, 'dt_fim_'+linha, document.all.ag_datatermino.value, 13, 10, 'onKeyPress="formataData(this);" onKeyUp="proxCampo(this, cmb_setup_' + linha + ');"');
 
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode("Eq. Setup");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_5");
-		newtd.setAttribute("align","center");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode("Eq. Setup");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_5");
+		    newtd.setAttribute("align","center");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newtd.innerHTML = comboAmostraEq(false, 'cmb_setup_'+linha, 'E');
+		    newtd.innerHTML = comboAmostraEq(false, 'cmb_setup_'+linha, 'E');
 
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode("Ambiente");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_6");
-		newtd.setAttribute("align","center");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode("Ambiente");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_6");
+		    newtd.setAttribute("align","center");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newtd.innerHTML = comboAmbiente(false, 'cmb_amb_'+linha, '');
+		    newtd.innerHTML = comboAmbiente(false, 'cmb_amb_'+linha, '');
 
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode(" ");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_7");
-		newtd.setAttribute("align","center");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode(" ");
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_7");
+		    newtd.setAttribute("align","center");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		//linha 8
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode('x');
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_8");
-		newtd.setAttribute("align","center");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    //linha 8
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode('x');
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_8");
+		    newtd.setAttribute("align","center");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newrow.setAttribute("id","linha_" + linha);
+		    newrow.setAttribute("id","linha_" + linha);
 
-		//linha 9
-		newtd=document.createElement("td");
-		newtd.vAlign = "top";
-		newtxt=document.createTextNode('x');
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_"+linha+"_col_9");
-		newtd.setAttribute("align","center");
-		newtd.setAttribute("class", "texto1");
-		newrow.appendChild(newtd);
+		    //linha 9
+		    newtd=document.createElement("td");
+		    newtd.vAlign = "top";
+		    newtxt=document.createTextNode('x');
+		    newtd.appendChild(newtxt);
+		    newtd.setAttribute("id","linha_"+linha+"_col_9");
+		    newtd.setAttribute("align","center");
+		    newtd.setAttribute("class", "texto1");
+		    newrow.appendChild(newtd);
 
-		newrow.setAttribute("id","linha_" + linha);
+		    newrow.setAttribute("id","linha_" + linha);
 
-		// troca o conteúdo da ultima coluna colocando
-		newtd.innerHTML = '<span onclick="javascript:RemoveItem('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
-		newtd.vAlign = "top";
+		    // troca o conteúdo da ultima coluna colocando
+		    newtd.innerHTML = '<span onclick="javascript:RemoveItem('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
+		    newtd.vAlign = "top";
 
-		document.getElementById("tb_reserva_body").appendChild(newrow);
+		    document.getElementById("tb_reserva_body").appendChild(newrow);
 
-		document.all["item_"+linha].eq_id = "";
-		document.all["item_"+linha].focus();
-	}
-	return linha;
-}
-function RemoveItem(l) {
-	document.getElementById("linha_"+l).removeNode(true);
-	total_linhas--;
-}
-function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barras digitado na tabela de itens
-	//if(codbarras.value.length == codbarras.maxLength) {
-//	 (codbarras.value.length > 0) && 
-//	if( (document.all["item_" + linhaTabela].eq_id == "") ) {
-		document.formulario.action = "busca_item_valido.asp?ag_numero=<%=ag_numero%>&cod_barras=" + codbarras.value + "&linhaTabela=" + linhaTabela;
-		document.formulario.target = "escondido";
-		document.formulario.submit();
-//	}
-//	else {
-		//if( (codbarras.value.length != 0) && (document.all["item_" + linhaTabela].eq_id != "") ) {
-//		if( document.all["item_" + linhaTabela].eq_id != "" ) {
-//			document.all["linha_" + linhaTabela + "_col_2"].innerText = "-- descrição do item --";
-//			document.all["item_" + linhaTabela].eq_id = "";
-//		}
-//	}
-}
+		    document.all["item_"+linha].eq_id = "";
+		    document.all["item_"+linha].focus();
+	    }
+	    return linha;
+    }
+    function RemoveItem(l) {
+	    document.getElementById("linha_"+l).removeNode(true);
+	    total_linhas--;
+    }
+    function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barras digitado na tabela de itens
+	    //if(codbarras.value.length == codbarras.maxLength) {
+    //	 (codbarras.value.length > 0) && 
+    //	if( (document.all["item_" + linhaTabela].eq_id == "") ) {
+		    document.formulario.action = "busca_item_valido.asp?ag_numero=<%=ag_numero%>&cod_barras=" + codbarras.value + "&linhaTabela=" + linhaTabela;
+		    document.formulario.target = "escondido";
+		    document.formulario.submit();
+    //	}
+    //	else {
+		    //if( (codbarras.value.length != 0) && (document.all["item_" + linhaTabela].eq_id != "") ) {
+    //		if( document.all["item_" + linhaTabela].eq_id != "" ) {
+    //			document.all["linha_" + linhaTabela + "_col_2"].innerText = "-- descrição do item --";
+    //			document.all["item_" + linhaTabela].eq_id = "";
+    //		}
+    //	}
+    }
 </script>
 </table>
 
-
-<table  border="0">
+<table class="largura-total">
 <tr>
 	<td colspan="2">
-		<p class="destaque">Itens Reservados:</p>
+		<p><strong>Itens Reservados:</strong></p>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		(qtde:&nbsp;<input type="text" name="qtd_item" value="1" size="3" >&nbsp;
 		<a href="#" onClick="javascript:InsereItem(document.all.qtd_item.value);">novo item</a>)
-		<table width="100%" cellpadding="0" cellspacing="0"  border="1" id="tb_reserva" style="border: thin solid silver;">
+		<table class="largura-total table-condensed table-bordered table-striped table-hover"  border="1" id="tb_reserva">
 		<tr>
 			<th align="left" width="150px">Item</th>
 			<th width="*" align="left">Descrição</th>
@@ -483,11 +482,11 @@ if ag_numero <> "" then
 				<img src="img/btn_branco.gif">
 
 				<script type="text/javascript">
-				document.all.item_<%=linha%>.disabled = true;
-				document.all.dt_ini_<%=linha%>.disabled = true;
-				document.all.dt_fim_<%=linha%>.disabled = true;
-				document.all.cmb_setup_<%=linha%>.disabled = true;
-				document.all.cmb_amb_<%=linha%>.disabled = true;
+				    document.all.item_<%=linha%>.disabled = true;
+				    document.all.dt_ini_<%=linha%>.disabled = true;
+				    document.all.dt_fim_<%=linha%>.disabled = true;
+				    document.all.cmb_setup_<%=linha%>.disabled = true;
+				    document.all.cmb_amb_<%=linha%>.disabled = true;
 				</script>
 
 <%			else %>
@@ -513,31 +512,30 @@ end if
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
 	<td colspan="2">
-	    <p class="destaque">Observações:</p>
+	    Observações:<br />
 		<textarea name="obs"  rows="10" cols="110"><%=obs%></textarea>
 	</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 </table>
 
-<table  border="0" align="center">
-<tr>
-	<td colspan="2" align="right">
-	  	<input type="button" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>"  onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
+<p>
+	<input type="button" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>"  onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if not ehNovo then%>
-	  	<input type="button" name="btnNovo" value="Nova Reserva"  onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
-	  	<input type="button" name="btnExcluir" value="Excluir Reserva"  onClick="javascript:excluirReserva();">&nbsp;&nbsp;
+	<input type="button" name="btnNovo" value="Nova Reserva"  onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
+	<input type="button" name="btnExcluir" value="Excluir Reserva"  onClick="javascript:excluirReserva();">&nbsp;&nbsp;
 		<script type="text/javascript">
 		function excluirReserva() {
 			location.href = 'exc_reserva.asp?ag_numero=<%=ag_numero%>';
 		}
 		</script><%
 end if%>
-	</td>
-</tr>
-</table>
+</p>
+
 </form>
+<br />
+</div>
 
 <script type="text/javascript">
 function validaListaItens() {

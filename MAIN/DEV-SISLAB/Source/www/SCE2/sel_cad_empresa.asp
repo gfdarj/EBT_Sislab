@@ -19,29 +19,30 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
-function filtrar()
-{
-	var f = document.all.formulario;
+<script type="text/javascript">
+    function filtrar()
+    {
+	    var f = document.all.formulario;
 
-	if((f.txtCNPJ.value == '') && (f.txtDescricao.value == ''))
-	{
-		alert('Preencha um dos critérios da pesquisa.');
-		f.txtCNPJ.focus();
-	}
-	else if(isNaN(f.txtCNPJ.value))
-	{
-		alert('O filtro CNPJ deve ser numérico e sem pontuação.');
-		f.txtCNPJ.focus();
-	}
-	else
-	{
-		location.href = 'sel_cad_empresa.asp?CNPJ=' + f.txtCNPJ.value + '&DESC=' + f.txtDescricao.value;
-	}
-}
+	    if((f.txtCNPJ.value == '') && (f.txtDescricao.value == ''))
+	    {
+		    alert('Preencha um dos critérios da pesquisa.');
+		    f.txtCNPJ.focus();
+	    }
+	    else if(isNaN(f.txtCNPJ.value))
+	    {
+		    alert('O filtro CNPJ deve ser numérico e sem pontuação.');
+		    f.txtCNPJ.focus();
+	    }
+	    else
+	    {
+		    location.href = 'sel_cad_empresa.asp?CNPJ=' + f.txtCNPJ.value + '&DESC=' + f.txtDescricao.value;
+	    }
+    }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="alt_empresas.asp">
-  <table width="100%">
+  <table class="largura-total">
 	<tr>
 		<td class=texto>
 		<%if request("msg") <> "" then
@@ -55,10 +56,9 @@ function filtrar()
 	    <td >
 			<table>
 				<tr>
-					<td class="destaque">Editar / Excluir Empresas Cadastradas</td>
+					<th>Editar / Excluir Empresas Cadastradas</th>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
-
 				<tr>
 					<td ><b>Filtro</b></td>
 				</tr>
@@ -71,9 +71,7 @@ function filtrar()
 						<input type="button" value="Filtrar" onclick="javascript:filtrar();" >
 					</td>
 				</tr>
-
 				<tr><td>&nbsp;</td></tr>
-
 <%
 If request("CNPJ") <> "" Or request("Desc") <> "" Then
 %>
@@ -95,10 +93,10 @@ End If
 	</tr>
  </table>
 </form>
-</center>
+</div>
 
 <script type="text/javascript">
-//document.forms(0).enf_id[0].selected = true;
+    //document.forms(0).enf_id[0].selected = true;
 </script>
 <%
 Else

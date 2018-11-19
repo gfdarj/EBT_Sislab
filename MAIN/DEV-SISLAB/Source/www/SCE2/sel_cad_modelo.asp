@@ -18,6 +18,7 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
+<div class="margem-10">
 <form name="formulario" method="post" action="busca_modelo.asp">
 <%  if request("msg") <> "" Then %>
 	<div >
@@ -27,7 +28,7 @@ If Env.UsuarioSCE() Then
 <%	end if %>
 <table>
 <tr valign="top">
-	<td colspan="3" class="destaque">Editar / Excluir Modelo Cadastrado</td>
+	<th colspan="3">Editar / Excluir Modelo Cadastrado</th>
 </tr>
 <tr>
 	<td>
@@ -62,21 +63,23 @@ If Env.UsuarioSCE() Then
 	</table>
 	</td>
 	<td width="50px">&nbsp;</td>
-	<td align="center" valign="middle">
-		<input type="button"  value="Pesquisar &gt;&gt;" onclick="javascript:validaCampos();">
-	</td>
+	<td></td>
 </tr>
 </table>
+<p>
+    <input type="button"  value="Pesquisar" onclick="javascript:validaCampos();">
+</p>
 </form>
+</div>
 <script type="text/javascript">
-var f = document.all.formulario;
-function validaCampos() {
-	if((f.modelo.value == '') && (f.partnumber.value == '') && (f.fab_id.value == '') && (f.descricao.value == ''))
-		alert('Preencha pelo menos um dos campos da pesquisa.');
-	else
-		f.submit();
-}
-f.modelo.focus();
+    var f = document.all.formulario;
+    function validaCampos() {
+	    if((f.modelo.value == '') && (f.partnumber.value == '') && (f.fab_id.value == '') && (f.descricao.value == ''))
+		    alert('Preencha pelo menos um dos campos da pesquisa.');
+	    else
+		    f.submit();
+    }
+    f.modelo.focus();
 </script>
 <%
 Else

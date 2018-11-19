@@ -100,7 +100,7 @@ call Env.RecordSet( false, objRS, null)
 <input type=hidden name=selecao value="<%=auxidagenda%>">
 <input type=hidden name=tipotxt value="-1">
 <input type=hidden name=acao value="-1">
-<table width="100%" cellspacing="0" cellpadding="3" class="table-bordered">
+<table class="table-bordered largura-total">
 <tr>
 	<td width="75px">&nbsp;Título:</td>
 	<td>

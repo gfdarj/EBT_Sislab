@@ -19,12 +19,13 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
+<div class="margem-10">
 <form name="formulario" action="rel_equipamento2.asp" method="post">
-<table >
-<tr><td colspan="2" valign="middle" class="destaque">Selecione o Item:</td></tr>
+<table class="largura-total">
+<tr><th colspan="2">Selecione o Item:</th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td width="40%">
+	<td>
 		Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
 	</td>
 	<td>
@@ -116,7 +117,7 @@ If Env.UsuarioSCE() Then
 </tr>
 </table>
 </form>
-</form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

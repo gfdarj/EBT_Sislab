@@ -23,14 +23,15 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 	<!--#include file="includes/montacnpj.inc"-->
 	<!--#include file="includes/estado.asp"-->
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="sel_cad_reserva2.asp">
 <input type="hidden" name="abrir_como" value="<%=ucase(request("abrir_como"))%>">
-<table width="750px" >
+<table class="largura-total">
 <tr>
 	<td colspan="2">
 <%		if request("msg") <> "" then
@@ -42,24 +43,19 @@ If Env.UsuarioSCE() Then
 		end if%>
 	</td>
 </tr>
-<tr><td colspan="2" valign="middle" class="destaque">Selecione o Item</td></tr>
-
+<tr><th colspan="2">Selecione o Item</th></tr>
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td colspan="2">Agendamento:&nbsp;<%RW Combo.MeusAgendamentos(False, "txtAS", "ag_numero", cstr(ag_numero), "N")%></td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
-	<td colspan="2">Responsável Técnico:&nbsp;
+	<td colspan="2">
+        Responsável Técnico:&nbsp;
 		<%RW Combo.PadraoSql("ag_responsavel", "select upper(USERID) as VALOR, CAST(NOME as VARCHAR(40)) as DESCRICAO from USERCRT where EXIBIR = 1 order by Nome", responsavel, "N")%>
 	</td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td colspan="2" >
 		Per&iacute;odo:&nbsp;
@@ -68,25 +64,20 @@ If Env.UsuarioSCE() Then
 		<%RW Combo.Data("termino")%>
 	</td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td>Código Barras:&nbsp;<input type="text"  name="codbarras" size="25" maxlength="20"></td>
-	<td >Fabricantes:&nbsp;
-	<%RW Combo.PadraoSql( "fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
+	<td>
+        Fabricantes:&nbsp;
+	    <%RW Combo.PadraoSql( "fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 	</td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td>Modelo:&nbsp;<input type="text" name="modelo" ></td>
 	<td>Descri&ccedil;&atilde;o:&nbsp;<input type="text" name="desc_modelo"  size="50"></td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td colspan="2">
 		<%RW Combo.EquipamentoConforme("conforme", true)%>
@@ -98,22 +89,23 @@ If Env.UsuarioSCE() Then
 		<%RW Combo.AmostraEquipamento("amostra", true)%>
 	</td>
 </tr>
-
 <tr><td>&nbsp;</td></tr>
-
 <tr>
 	<td>
 		Número de Série:&nbsp;
 		<input type="text"  name="numeroserie" maxlength="50">
 	</td>
-	<td align="center">
+	<td>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<%RW Combo.PropriedadeEquipamento("propriedade", True)%>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name="buscar" value="próximo &gt;&gt;" >
 	</td>
 </tr>
 </table>
+<br />
+<p><input type="submit" name="buscar" value="Pesquisar"></p>
 </form>
+</div>
+
 <script type="text/javascript">document.formulario.txtAS.focus();</script>
 <%
 Else

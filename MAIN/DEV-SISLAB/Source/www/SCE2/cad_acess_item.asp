@@ -302,8 +302,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		</tr>
 
 		<tr><td colspan="3">&nbsp;</td></tr>
-		<tr><td class="destaque" colspan="3">Dados de Manutenção</td></tr>
-		<tr><td colspan="3">&nbsp;</td></tr>
+		<tr><th colspan="3">Dados de Manutenção</th></tr>
 		<tr>
       			<td colspan="3" >Observações<br>
 				<textarea  name="manutencaopreventiva" cols="140" rows="9"><%=manutencaopreventiva%></textarea>

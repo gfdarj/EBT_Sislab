@@ -51,43 +51,29 @@ If Env.UsuarioSCE() Then
 	    if size <> 1 then rec.movenext
     end if
 %>
-<table width="100%" >
+<div class="margem-10">
+<table class="largura-total">
 	<tr>
-	    <td >
-			<table width="100%"  cellpadding="0" cellspacing="0">
+	    <td>
+			<table class="largura-total table-condensed table-bordered table-striped table-hover">
 			<%if not rec.eof then%>
 				<tr>
-					<th width="200" align="left">Empresa</th>
-					<th width="2" align="left"></td>
-					<th width="140" align="left">CNPJ</th>
-					<th width="2" align="left"></td>
-					<th width="70" align="left">I.E.</th>
-					<th width="2" align="left"></th>
-					<th width="10" align="left">UF</th>
-					<th width="2" align="left"></th>
-					<th width="100" align="left">Cidade</th>
-					<th width="2" align="left"></th>
-					<th width="250" align="left">Endereço</th>
+					<th>Empresa</th>
+					<th>CNPJ</th>
+					<th>I.E.</th>
+					<th>UF</th>
+					<th>Cidade</th>
+					<th>Endereço</th>
 			    </tr>
 			<%while (not rec.eof) and (cont <= rec.pagesize)
-				cont = cont+1
-				if (cont mod 2) = 0 then 
-					bg = 1
-				else
-					bg = 0
-				end if%>
-				<tr  <%if bg = 1 then%>bgcolor="#C0E0EF"<%end if%>>
-					<td ><a href="alt_empresas.asp?enf_id=<%=rec("enf_id")%>"><%=rec("enf_nome")%></a>&nbsp;</td>
-					<td  width="2"></td>										
-					<td ><%=montacnpj(rec("enf_cnpj"))%>&nbsp;</td>
-					<td  width="2"></td>										
-					<td ><%=rec("enf_ie")%>&nbsp;</td>
-					<td  width="2"></td>										
-					<td ><%=retestado(rec("enf_uf"))%>&nbsp;</td>
-					<td  width="2"></td>										
-					<td ><%=rec("enf_cidade")%>&nbsp;</td>
-					<td  width="2"></td>										
-					<td ><%=rec("enf_endereco")%>&nbsp;</td>
+				cont = cont+1 %>
+				<tr>
+					<td><a href="alt_empresas.asp?enf_id=<%=rec("enf_id")%>"><%=rec("enf_nome")%></a>&nbsp;</td>
+					<td style="width: 145px; min-width: 145px;"><%=montacnpj(rec("enf_cnpj"))%>&nbsp;</td>
+					<td><%=rec("enf_ie")%>&nbsp;</td>
+					<td><%=retestado(rec("enf_uf"))%>&nbsp;</td>
+					<td><%=rec("enf_cidade")%>&nbsp;</td>
+					<td><%=rec("enf_endereco")%>&nbsp;</td>
 			    </tr>
 				<%rec.movenext
 			wend
@@ -97,19 +83,22 @@ If Env.UsuarioSCE() Then
 				</tr>
 			<%end if%>
 			</table>
-			<br><br>
+            <br />
 			<%for i = 1 to rec.pagecount
 				if i = cint(size) then
-					response.write "<strong>"&i&"</strong> "
+					Response.Write "<strong>"&i&"</strong> "
 				else%>
 					<a href="imp_emp2.asp?inicio=<%=i%>&enf_nome=<%=request("enf_nome")%>&enf_cnpj=<%=request("enf_cnpj")%>&enf_ie=<%=request("enf_ie")%>&enf_cidade=<%=request("enf_cidade")%>&enf_uf=<%=request("enf_uf")%>"><%=i%>&nbsp;</a>
 				<%end if
-			next%><div align=right class=texto>
-				Para Impressão, clique no botão "Imprimir" e configure a página para ser impressa no formato de Paisagem.&nbsp;&nbsp;&nbsp;&nbsp;
-					<button onclick="window.print();" >Imprimir</button></div>
+			next%>
+            <div class="texto-direito">
+				<small>Para Impressão, clique no botão "Imprimir" e configure a página para ser impressa no formato de Paisagem.</small>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Imprimir" onclick="window.print();"/>
+            </div>
 		</td>
 	</tr>
 </table>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

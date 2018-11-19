@@ -14,7 +14,7 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "LOC"
+	Application("SISLAB_AMBIENTE") = "DES"
 
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
@@ -32,7 +32,8 @@ Sub Application_OnStart()
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
-        Application("SISLAB_HTTP_WEBSERVICE") = "http://rjojurisdev01/sislabsvc/Servicos.asmx"
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Servicos.asmx"
+        'Application("SISLAB_HTTP_WEBSERVICE") = "http://rjojurisdev01/sislabsvc/Servicos.asmx"
 
     ElseIf Application("SISLAB_AMBIENTE") = "DV2" Then '-- RJOJURISDEV01
 

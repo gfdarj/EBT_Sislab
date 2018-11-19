@@ -21,11 +21,12 @@ If Env.UsuarioSCE() Then
 ssql = "select * from sce_nota_fiscal order by nf_numeronota"
 set recnf = Env.oconn.execute(ssql)
 %>
-<script>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
+<div class="margem-10">
 <form method=post action="cad_nf.asp" name="formulario">
-<table width="100%">
+<table class="largura-total">
 	<tr>
 		<td class=texto>
 		<%if request("msg")<>"" then 
@@ -79,7 +80,7 @@ function f(){
 }
 </script>
 	<tr>
-		<td valign="top"  valign="middle" >
+		<td>
 		    Busque por número da nota:&nbsp;<input type=text name=numeronota  size="10">&nbsp;
 		    <input type=submit value="buscar"  onclick="f();"><br><br>Busque por Empresa:<br>
 
@@ -91,16 +92,16 @@ function f(){
 		</td>
     </tr>
 	<tr>
-		<td valign="top"  valign="middle" >
+		<td>
 		<%if not recnf.eof then%>
-			<select name="nf_id" size="5"  style="width:600">
+			<select name="nf_id" size="5"  style="width: 600px;">
 			</select>
 		<%else
 			response.write "Não Existem Notas Fiscais Cadastradas No Momento."
 		end if%>
 		</td>
     </tr>
-	<script>
+	<script type="text/javascript">
 		function f1(){
 			if (document.formulario.nf_id.value == ""){
 				alert('Você deve escolher a nota fiscal');
@@ -113,12 +114,13 @@ function f(){
 	</script>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-	    <td valign="middle">
+	    <td>
 	        <input type=submit value=" Editar "  onclick="f1(); return document.vp;">
 	    </td>
 	</tr>
 </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

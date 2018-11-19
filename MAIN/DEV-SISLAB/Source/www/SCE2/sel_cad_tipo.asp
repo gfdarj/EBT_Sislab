@@ -13,14 +13,15 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
-function navselecao()
-{
-    document.formulario.submit();
-}
+<script type="text/javascript">
+    function navselecao()
+    {
+        document.formulario.submit();
+    }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="alt_tipos.asp">
-<table width="100%">
+<table class="largura-total">
 	<tr>
 		<td class=texto>
 		<%if request("msg") <> "" then
@@ -29,7 +30,7 @@ function navselecao()
 		end if%></td>
 	</tr> 
    <tr>
-	    <td  valign="middle" class="destaque">Editar / Excluir Família Tipo :</td>
+	    <th>Editar / Excluir Família Tipo :</th>
 	</tr>
 	<tr><td >&nbsp;</td></tr>
 	<tr>
@@ -53,7 +54,9 @@ function navselecao()
 		<td valign=top ><input type=submit value=" Editar " ></td>
 	</tr>
   </table>
+    <br />
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

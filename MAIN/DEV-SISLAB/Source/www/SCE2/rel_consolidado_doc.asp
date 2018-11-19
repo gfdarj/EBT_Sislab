@@ -64,44 +64,50 @@ Else
     }
 </script>
 
+<div class="margem-10">
+
 <form name='frm' target='' action=''>
 <input type='hidden' name='exportarExcel' value=''>
 
-<table width="100%"  border="0"><tr><td>&nbsp;</td></tr>
+<br />
+
+<table class="largura-total">
 <tr>
 	<td>
-		<table width="100%" cellpadding="2" cellspacing="0"  border="1">
+		<table class="largura-total table-condensed table-bordered table-striped table-hover">
 <%    	If RS.Eof And RS.Bof Then %>
 		<tr><td align='center'><b><i>Nenhuma informação encontrada !</i></b></td></tr>
 <%	    Else %>
-		<tr style="font-weight: bold;">
-			<td>Ano</td>
-			<td align="center">Jan</td>
-			<td align="center">Fev</td>
-			<td align="center">Mar</td>
-			<td align="center">Abr</td>
-			<td align="center">Mai</td>
-			<td align="center">Jun</td>
-			<td align="center">Jul</td>
-			<td align="center">Ago</td>
-			<td align="center">Set</td>
-			<td align="center">Out</td>
-			<td align="center">Nov</td>
-			<td align="center">Dez</td>
-			<td align="center">Total</td>
+		<tr>
+			<th class="texto-centralizado">Ano</th>
+			<th class="texto-centralizado">Jan</th>
+			<th class="texto-centralizado">Fev</th>
+			<th class="texto-centralizado">Mar</th>
+			<th class="texto-centralizado">Abr</th>
+			<th class="texto-centralizado">Mai</th>
+			<th class="texto-centralizado">Jun</th>
+			<th class="texto-centralizado">Jul</th>
+			<th class="texto-centralizado">Ago</th>
+			<th class="texto-centralizado">Set</th>
+			<th class="texto-centralizado">Out</th>
+			<th class="texto-centralizado">Nov</th>
+			<th class="texto-centralizado">Dez</th>
+			<th class="texto-centralizado">Total</th>
 		</tr>
 <%		    conta = 0
 		    While Not RS.Eof
 %>
-		<tr valign="top" <%If (conta mod 2) = 0 Then Response.Write "class='linha_par'"%>>
-			<td><b><%=RS("ano")%></b></td>
+		<tr>
+			<td class="texto-centralizado">
+                <%=RS("ano")%>
+			</td>
 <%			    int_Total = 0
     			For mes = 1 To 12 %>
-			<td align="center"><%=RS("Total")%></td>
+			<td class="texto-centralizado"><%=RS("Total")%></td>
 <%	    			int_Total = int_Total + RS("Total")
 		    		RS.MoveNext
 			    Next %>
-			<td align="center"><b><%=int_Total%></b></td>
+			<td class="texto-centralizado"><b><%=int_Total%></b></td>
 		</tr>
 <%  			conta = conta + 1
 	    	WEnd %>
@@ -110,9 +116,10 @@ Else
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td align='right'><a  href='#' onclick='javascript:geraExcel();'>Exportar para Excel</a></td></tr>
+<tr><td class="texto-direito"><a  href='#' onclick='javascript:geraExcel();'><small>&lt;Exportar para Excel&gt;</small></a></td></tr>
 </table>
 </form>
+</div>
 <%  Else
         RW Tela.Mensagem.AcessoRestritoSCE()
     End If

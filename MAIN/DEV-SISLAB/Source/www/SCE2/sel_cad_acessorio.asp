@@ -18,16 +18,17 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 	<!--#include file="includes/montacnpj.inc"-->
 	<!--#include file="includes/estado.asp"-->
 </script>
-<form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="vdform('formulario','notafiscal','Nota Fiscal','Number', 'documento','Documento','Number'); return document.ValorPassou;">
-<input type="hidden" name="busca" value="1">
-<table width="780px" >
-	<tr>
-		<td>
+<div class="margem-10">
+    <form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="vdform('formulario','notafiscal','Nota Fiscal','Number', 'documento','Documento','Number'); return document.ValorPassou;">
+        <input type="hidden" name="busca" value="1">
+        <table class="largura-total">
+	    <tr>
+		    <td>
 <%		if request("msg") <> "" then
 			if request("msg") = 1 then response.write " Ítem incluído com sucesso!"
 			if request("msg") = 2 then response.write " Ítem alterado com sucesso!"
@@ -36,98 +37,90 @@ If Env.UsuarioSCE() Then
 			if request("msg") = 5 then response.write " Já existe equipamento cadastrado com este código de barras!"
 			response.write "<BR><BR>"
 		end if%>
-		</td>
-	</tr>
-	<tr><td  valign="middle" class="destaque">Selecione o Item:</td></tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-		<td>
-			Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			Localização:&nbsp;<input type="text"  name="localizacao" size="25">
-		</td>
-	</tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-		<td >
-		Plataforma: <%RW Combo.ServicosPlataformas("plataforma", "N", "P")%>
-		</td>
-	</tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-		<td >
-		Fabricantes:&nbsp;
-		<%RW Combo.PadraoSql("fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
-		</td>
-	</tr>
-	<tr><td>&nbsp;</td></tr>
-	<tr>
-		<td>
-			<table cellpadding="0" cellspacing="0" >
-			<tr>
-				<td>Modelo:&nbsp;<input type="text" name="modelo" ></td>
-				<td width="40px">&nbsp;</td>
-				<td>Descrição:&nbsp;<input type="text" name="desc_modelo"  size="30"></td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-
-	<tr >
-		<td>Família Tipo:&nbsp;<%RW Combo.PadraoSql("idtipo", "select TIPO_ID as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
-	</td>
-
-	<tr ><td>&nbsp;</td></tr>
-	<tr>
-		<td >
-			Fornecedor:&nbsp;
-			<%RW Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr >
-		<td>
-			<table cellpadding="0" cellspacing="0"  width="100%">
-			<tr>
-				<td>Nota Fiscal:&nbsp;<input type="text"  name="notafiscal" size="10"></td>
-				<td width="10px">&nbsp;</td>
-				<td>Documento:&nbsp;<input type="text"  name="documento" size="7" maxlength="10"></td>
-				<td width="10px">&nbsp;</td>
-				<td>Registro/Certificado/CDE/RMA:&nbsp;<input type="text"  name="cde_equip" size="7"></td>
-				<td width="10px">&nbsp;</td>
-				<td>Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="100"></td>
-			</tr>
-			</table>
-		</td>
-	</TR>
-	<tr class="tr"><td>&nbsp;</td></tr>
-
-	<tr ><td>&nbsp;</td></tr>
-
-	<TR >
-		<td>
-			<table cellpadding="0" cellspacing="0" >
-			<tr>
-				<td><%RW Combo.SimNaoInstrumental("instrumental", true)%></td>
-				<td width="40px">&nbsp;</td>
-				<td><%RW Combo.EquipamentoConforme("conforme", true)%></td>
-				<td width="40px">&nbsp;</td>
-				<td><%RW Combo.SituacaoEquipamento("status", true, true, true, "")%></td>
-				<td width="40px">&nbsp;</td>
-				<td><%RW Combo.PropriedadeEquipamento("propriedade", true)%></td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr ><td>&nbsp;</td></tr>
-	<tr>
-		<td  align="right">
-			<input type="submit" name="buscar" value="próximo &gt;&gt;" >
-		</td>
-	</tr>
-  </table>
-</form>
+		    </td>
+	    </tr>
+	    <tr><th>Selecione o Item:</th></tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+			    Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    Localização:&nbsp;<input type="text"  name="localizacao" size="25">
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+    		    Plataforma: <%RW Combo.ServicosPlataformas("plataforma", "N", "P")%>
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+		    Fabricantes:&nbsp;
+		    <%RW Combo.PadraoSql("fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+			    <table>
+			    <tr>
+				    <td>Modelo:&nbsp;<input type="text" name="modelo" ></td>
+				    <td style="width: 40px;">&nbsp;</td>
+				    <td>Descrição:&nbsp;<input type="text" name="desc_modelo"  size="30"></td>
+			    </tr>
+			    </table>
+		    </td>
+	    </tr>
+	    <tr ><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>Família Tipo:&nbsp;<%RW Combo.PadraoSql("idtipo", "select TIPO_ID as VALOR, tipo_descricao as DESCRICAO from sce_tipos order by tipo_descricao", "", "N")%>
+	    </td>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+			    Fornecedor:&nbsp;
+			    <%RW Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+			    <table class="largura-total">
+			    <tr>
+				    <td>Nota Fiscal:&nbsp;<input type="text"  name="notafiscal" size="10"></td>
+				    <td width="10px">&nbsp;</td>
+				    <td>Documento:&nbsp;<input type="text"  name="documento" size="7" maxlength="10"></td>
+				    <td width="10px">&nbsp;</td>
+				    <td>Registro/Certificado/CDE/RMA:&nbsp;<input type="text"  name="cde_equip" size="7"></td>
+				    <td width="10px">&nbsp;</td>
+				    <td>Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="100"></td>
+			    </tr>
+			    </table>
+		    </td>
+	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+	    <tr>
+		    <td>
+			    <table class="largura-total">
+			    <tr>
+				    <td><%RW Combo.SimNaoInstrumental("instrumental", true)%></td>
+				    <td width="40px">&nbsp;</td>
+				    <td><%RW Combo.EquipamentoConforme("conforme", true)%></td>
+				    <td width="40px">&nbsp;</td>
+				    <td><%RW Combo.SituacaoEquipamento("status", true, true, true, "")%></td>
+				    <td width="40px">&nbsp;</td>
+				    <td><%RW Combo.PropriedadeEquipamento("propriedade", true)%></td>
+			    </tr>
+			    </table>
+		    </td>
+	    </tr>
+        </table>
+        <br />
+        <p><input type="submit" name="buscar" value="Pesquisar"></p>
+    </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

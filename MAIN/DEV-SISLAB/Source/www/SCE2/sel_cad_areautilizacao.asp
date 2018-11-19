@@ -13,14 +13,15 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
-function navselecao()
-{
-    document.formulario.submit();
-}
+<script type="text/javascript">
+    function navselecao()
+    {
+        document.formulario.submit();
+    }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="alt_areasutilizacao.asp">
-<table width="100%">
+<table class="largura-total">
 	<tr>
 		<td >
 		<%if request("msg") <> "" then
@@ -30,7 +31,7 @@ function navselecao()
 		</td>
 	</tr>
   	<tr>
-	    <td  valign="middle" class="destaque">Editar Areas de Utilização Cadastradas:</td>
+	    <th>Editar Areas de Utilização Cadastradas:</th>
 	</tr>
 	<tr><td >&nbsp;</td></tr>
 	<tr>
@@ -55,6 +56,7 @@ function navselecao()
 	</tr>
 </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

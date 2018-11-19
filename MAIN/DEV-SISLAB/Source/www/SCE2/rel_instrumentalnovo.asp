@@ -16,11 +16,12 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
+<div class="margem-10">
 <form name="formulario" action="rel_instrumentalnovo2.asp" method="post">
 <input type="hidden" value="" name="exportaExcel">
 
-<table width="750px" >
-<tr><td colspan="2" valign="middle" class="destaque">Selecione as opções de filtro</td></tr>
+<table class="largura-total">
+<tr><th colspan="2">Selecione as opções de filtro</th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
@@ -99,8 +100,6 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 
-<tr ><td>&nbsp;</td></tr>
-
 <tr>
 	<td>&nbsp;</td>
 	<td align="center">
@@ -118,13 +117,16 @@ If Env.UsuarioSCE() Then
 		    document.formulario.submit();
 	    }
 	    </script>
-		<input type="button" name="buscar" value="próximo &gt;&gt;"  onclick='javascript: envia();'>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" name="buscar" value="Exportar para Excel"  onclick="javascript:exportaParaExcel();">
 	</td>
 </tr>
 </table>
+<p>
+   	<input type="button" name="buscar" value="Pesquisar"  onclick='javascript: envia();'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="buscar" value="Exportar para Excel"  onclick="javascript:exportaParaExcel();">
+</p>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

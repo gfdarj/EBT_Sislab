@@ -21,9 +21,10 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<table width="100%"  border="0">
+<div class="margem-10">
+<table class="largura-total">
 
-<%If Request("ano") <> "" Then Response.Write "<tr><td colspan='3' class='destaque'>Posição em <i>" & Request("ano") & "</i></td></tr>" End If %>
+<%If Request("ano") <> "" Then Response.Write "<tr><th colspan='3'>Posição em " & Request("ano") & "</th></tr>" End If %>
 
 <tr><td>&nbsp;</td></tr>
 
@@ -116,20 +117,20 @@ If Env.UsuarioSCE() Then
 <%	    ElseIf RS("MES") > 12 Then %>
 		<center><b><i>Nenhuma informação encontrada !</i></b><center>
 <%	    Else %>
-		<table align="center" cellpadding="2" cellspacing="0"  border="1">
+		<table class="table-condensed table-bordered table-striped table-hover">
 		<tr style="font-weight: bold;">
-			<td align="center">Mês</td>
-			<td align="center">Total Entrada</td>
-			<td align="center">Total Saída</td>
+			<td class="texto-centralizado">Mês</td>
+			<td class="texto-centralizado">Total Entrada</td>
+			<td class="texto-centralizado">Total Saída</td>
 		</tr>
 <%
 		    conta = 0
 		    While Not RS.Eof
 %>
 		<tr valign="top" <%If (conta mod 2) = 0 Then Response.Write "class='linha_par'"%>>
-			<td align="left"><%If RS("MES") > 12 Then Response.Write "<B>Total</B>" Else Response.Write Nome_do_Mes(RS("MES"))%></td>
-			<td align="right"><%If RS("MES") > 12 Then Response.Write "<B>"%><%If IsNull(RS("total_entrada")) Then Response.Write "&nbsp" Else Response.Write FormatCurrency(RS("total_entrada")) End If%></td>
-			<td align="right"><%If RS("MES") > 12 Then Response.Write "<B>"%><%If IsNull(RS("total_saida")) Then Response.Write "&nbsp" Else Response.Write FormatCurrency(RS("total_saida")) End If%></td>
+			<td><%If RS("MES") > 12 Then Response.Write "<B>Total</B>" Else Response.Write Nome_do_Mes(RS("MES"))%></td>
+			<td class="texto-direito"><%If RS("MES") > 12 Then Response.Write "<B>"%><%If IsNull(RS("total_entrada")) Then Response.Write "&nbsp" Else Response.Write FormatCurrency(RS("total_entrada")) End If%></td>
+			<td class="texto-direito"><%If RS("MES") > 12 Then Response.Write "<B>"%><%If IsNull(RS("total_saida")) Then Response.Write "&nbsp" Else Response.Write FormatCurrency(RS("total_saida")) End If%></td>
 		</tr>
 <%	    		RS.MoveNext
 		    	conta = conta + 1

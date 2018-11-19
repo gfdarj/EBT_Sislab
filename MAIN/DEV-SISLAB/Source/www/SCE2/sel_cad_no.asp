@@ -16,14 +16,15 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
-function navselecao()
-{
-    document.formulario.submit();
-}
+<script type="text/javascript">
+    function navselecao()
+    {
+        document.formulario.submit();
+    }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="alt_no.asp">
-<table>
+<table class="largura-total">
 	<tr>
 		<div >
 		<%if request("msg") <> "" then
@@ -33,7 +34,7 @@ function navselecao()
 		%></div></td>
 	</tr> 
     <tr> 
-		<td class="destaque">Editar / Excluir Natureza de Operação</td>
+		<th>Editar / Excluir Natureza de Operação</th>
 	</tr>
 	<tr><td >&nbsp;</td></tr>
 	<tr>
@@ -41,7 +42,7 @@ function navselecao()
 			<%ssql = "select * from sce_natureza_operacao order by no_descricao"
 			set rec = Env.oconn.execute(ssql)
 			if not rec.eof then%>
-				<select name="no_id" size="15"  style="width:600" >
+				<select name="no_id" size="15"  style="width: 500px;" >
 				<%while not rec.eof%>
 					<option value="<%=rec("no_id")%>"><%=rec("no_descricao")%></option>
 					<%rec.movenext
@@ -53,10 +54,11 @@ function navselecao()
 		</td>
 	</tr>
 	<tr>
-		<td  align="left"><br><br><input type=submit value=" Editar " ></td>
+		<td><br><br><input type=submit value=" Editar " ></td>
     </tr>
   </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -15,39 +15,40 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<script language=javascript>
+<script type="text/javascript">
 function navselecao()
 {
     document.formulario.submit();
 }
 </script>
+<div class="margem-10">
 <form name="formulario" method="post" action="imp_emp2.asp">
-<table width="100%" >
+<table class="largura-total">
 	<tr>
 	    <td >
-			<table cellpadding="0" cellspacing="0">
+			<table>
 				<tr>
-					<td valign="top" >
+					<td>
 					Empresa:&nbsp;<input type=text name=enf_nome >
 					</td>
 					<td width="40px"></td>
-					<td valign="top" >
+					<td>
 					CNPJ:&nbsp;<input type=text name=enf_cnpj >
 					</td>
 				<tr>
-				<tr><td >&nbsp;</td></tr>
+				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td valign="top" >
+					<td>
 					Cidade:&nbsp;<input type=text name=enf_cidade >
 					</td>
 					<td width="40px"></td>
-					<td valign="top" >
+					<td>
 					Inscrição Estadual:&nbsp;<input type=text name=enf_ie >
 					</td>
 				<tr>
 				<tr><td >&nbsp;</td></tr>
 				<tr>
-					<td valign="top" >
+					<td>
 					Estado:&nbsp;
 					<select name="enf_uf" >
 						<option value=""></option>
@@ -59,10 +60,12 @@ function navselecao()
 			</table>
 		</td>
 	</tr>
-	<tr><td >&nbsp;</td></tr>
-	<tr><td ><input type=submit value=" Gerar " ></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td><input type=submit value=" Gerar Relatório " ></td></tr>
  </table>
 </form>
+<br />
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
