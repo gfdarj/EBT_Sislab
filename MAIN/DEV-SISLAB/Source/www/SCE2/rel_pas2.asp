@@ -40,9 +40,11 @@ If Env.UsuarioSCE() Then
     s_orig = s_orig & " ORDER BY p.AG_NUMERO_ORIG, p.PAS_DATAPASSAGEM, e.EQ_CODIGOBARRAS"
     s_dest = s_dest & " ORDER BY p.AG_NUMERO_DEST, p.PAS_DATAPASSAGEM, e.EQ_CODIGOBARRAS"
 %>
-<p class="destaque">Listagem de Passagem de Carga</p>
+<div class="margem-10">
 
-<p class="texto1b">Cargas Passadas <%=ImprimePassagemAS(request("ag_numero"))%></p>
+<p><strong>Listagem de Passagem de Carga</strong></p>
+
+<p>Cargas Passadas <%=ImprimePassagemAS(request("ag_numero"))%></p>
 <%
     Set rec = Env.oConn.Execute(s_orig)
     call ImprimeListaPassagem(conn, rec, "ORIG", request("ag_numero"))
@@ -60,9 +62,10 @@ If Env.UsuarioSCE() Then
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
 End If
-
+%>
+</div>
+<%
 Call Tela.MostraRodape()
-
 
 
 '-- Funcoes auxiliares
@@ -72,7 +75,7 @@ End Function
 
 Sub ImprimeListaPassagem(objconn, objRS, tipo, ag)%>
 <%	if not (objRS.Eof and objRS.bof) then%>
-<table width="100%" cellpadding="2" cellspacing="0"  border="1">
+<table class="largura-total">
 <tr>
 <%'		if tipo = "ORIG" or ag <> "" then%>
 	<th align="left" width="65px">AS Origem</th>

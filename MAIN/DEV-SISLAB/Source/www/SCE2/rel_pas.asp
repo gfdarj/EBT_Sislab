@@ -20,24 +20,27 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<form name="formulario" action="rel_pas2.asp" method="post">
-<table width="100%" >
-<tr>
-	<td>Agendamento:<br>
-		<%=Combo.MeusAgendamentos(False, "txtAS", "ag_numero", "", "N")%>
-
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<td>Responsável<br>
-	<%=Combo.UserCRT("ag_responsavel", "N")%>
-	</td>
-</tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td><input type="submit"  value=" Gerar "></td></tr>
-</table>
-</form>
+<div class="margem-10">
+    <form name="formulario" action="rel_pas2.asp" method="post">
+        <table class="largura-total">
+        <tr>
+	        <td>
+                Agendamento:<br>
+		        <%=Combo.MeusAgendamentos(False, "txtAS", "ag_numero", "", "N")%>
+	        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+	        <td>
+                Responsável<br>
+	            <%=Combo.UserCRT("ag_responsavel", "N")%>
+	        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td><input type="submit"  value=" Gerar "></td></tr>
+        </table>
+    </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

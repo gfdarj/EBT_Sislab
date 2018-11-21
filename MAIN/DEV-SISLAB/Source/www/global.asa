@@ -14,7 +14,7 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "DES"
+	Application("SISLAB_AMBIENTE") = "LOC"
 
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento

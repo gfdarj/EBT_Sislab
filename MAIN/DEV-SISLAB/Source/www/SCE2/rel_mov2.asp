@@ -95,27 +95,29 @@ If Env.UsuarioSCE() Then
     If Env.PerfilSce = PERFIL_ADM Then
 %>
 <script type="text/javascript">
-function alteraMovimentacao(mov_id) {
-	var d = document.forms[0];
-	d.mov_id.value = mov_id;
-	d.action = "sel_mov_acessorio.asp";
-	d.target = "_blank";
-	d.submit();
-}
-function excluiMovimentacao(mov_id) {
-	var d = document.forms[0];
-	if( confirm("Deseja realmente apagar este movimento ?" ) ) {
-		d.mov_id.value = mov_id;
-		d.action = "exc_mov.asp";
-		d.target = "";
-		d.submit();
-	}
-}
+    function alteraMovimentacao(mov_id) {
+	    var d = document.forms[0];
+	    d.mov_id.value = mov_id;
+	    d.action = "sel_mov_acessorio.asp";
+	    d.target = "_blank";
+	    d.submit();
+    }
+    function excluiMovimentacao(mov_id) {
+	    var d = document.forms[0];
+	    if( confirm("Deseja realmente apagar este movimento ?" ) ) {
+		    d.mov_id.value = mov_id;
+		    d.action = "exc_mov.asp";
+		    d.target = "";
+		    d.submit();
+	    }
+    }
 </script>
-<form name="formulario" action="sel_mov_acessorio.asp" method="post">
-<input type="hidden" name="mov_id" value="">
-<input type="hidden" name="ssql" value="<%=ssql%>"
-</form>
+
+<div class="margem-10">
+    <form name="formulario" action="sel_mov_acessorio.asp" method="post">
+        <input type="hidden" name="mov_id" value="">
+        <input type="hidden" name="ssql" value="<%=ssql%>"
+    </form>
 <%
 end if
 
@@ -129,64 +131,65 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
 </tr>
 </table>
 <BR>
-<table width='100%' cellpadding='2' cellspacing='0' class='texto1' <%if not (rec.eof and rec.bof) then response.write "border='1'"%>>
+<table class="largura-total table-condensed table-bordered table-striped table-hover">
 <%
     if rec.eof and rec.bof then %>
-	<tr><td align="center" class="titulo"><i>Nenhum registro encontrado !</i></td></tr>
+	<tr><td class="texto-centralizado">Nenhum registro encontrado !</td></tr>
 <%  else %>
 	<tr>
 <%	    if Env.PerfilSce = PERFIL_ADM then%>
-		<th align="center" valign="top"><img src="img/edit_branco.gif" border="0"></th>
-		<th align="center" valign="top"><img src="img/btn_branco.gif" border="0"></th>
+		<th class="texto-centralizado">&nbsp;</th>
+		<th class="texto-centralizado">&nbsp;</th>
 <%	    end if%>
-		<th align="center" valign="top" width="80">Item</th>
-		<th align="center" valign="top" width="200">Modelo</th>
-		<th align="center" valign="top" width="200">Fabricante</th>
-		<th align="center" valign="top" width="50">AS</th>
-		<th align="center" valign="top" width="70">Solicitante</th>
-		<th align="center" valign="top" width="70">CDE</th>
-		<th align="center" valign="top" width="70">NF</th>
-		<th align="center" valign="top" width="70">Doc</th>
-		<th align="center" valign="top" width="600">Data de Movimentação (tipo)</th>
+		<th class="texto-centralizado">Item</th>
+		<th class="texto-centralizado">Modelo</th>
+		<th class="texto-centralizado">Fabricante</th>
+		<th class="texto-centralizado">AS</th>
+		<th class="texto-centralizado">Solicitante</th>
+		<th class="texto-centralizado">CDE</th>
+		<th class="texto-centralizado">NF</th>
+		<th class="texto-centralizado">Doc</th>
+		<th class="texto-centralizado">Data de Movimentação (tipo)</th>
 	</tr>
 <%	    Dim bg, cont
 	    cont = 0
 	    while not rec.eof
 		    cont = cont + 1
-		    if (cont mod 2) = 0 then bg = 1 else bg = 0
 %>
-	<tr <%if bg = 0 then response.write "bgcolor='#C0E0EF'"%>>
+	<tr>
 <%		    if Env.PerfilSce = PERFIL_ADM then%>
-		<td><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação"></a></td>
-		<td><a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a></td>
+		<td class="texto-centralizado"><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação"></a></td>
+		<td class="texto-centralizado">
+            <a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a>
+		</td>
 <%		    end if%>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("eq_codigobarras_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("mod_codnome_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("fab_nome_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("as_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("mov_solicitante_M"))%>
 			<%if rec("MOV_PASSAGEM") then response.write "&nbsp;<b>(*)</b>" end if%>
 		</td>
-		<td  align="center" valign="top" <%=IIf(rec("FL_CALIBRACAO_M"), "title='Envio para Calibração' style='background-color: Silver;'", "")%>>
+		<td class="texto-centralizado <%=IIf(rec("FL_CALIBRACAO_M"), """ bg-danger"" title=""Envio para Calibração""", """")%>>
 			<%=ConverteNuloHTML(rec("cde_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=ConverteNuloHTML(rec("nf_numeronota_M"))%>
 		</td>
-		<td  align="center" valign="top">
+		<td class="texto-centralizado">
 			<%=Zeros(ConverteNuloHTML(rec("DOC_ID_M")),4)%>
 		</td>
-		<td  align="center" valign="top">
-			<%=ConverteNuloHTML(ConcatenaDataHora(rec("data_M"), rec("hora_M")))%><br><%="("&ConverteNuloHTML(rec("no_descricao_M"))&")"%>
+		<td class="texto-centralizado">
+			<%=ConverteNuloHTML(ConcatenaDataHora(rec("data_M"), rec("hora_M")))%><br><small><%="("&ConverteNuloHTML(rec("no_descricao_M"))&")"%></small>
 		</td>
 	</tr>
 <%		    rec.movenext
@@ -194,10 +197,16 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
             If (cont mod 15) Then Response.Flush()
 	    wend
     end if%>
-</table>
-<p align="left" ><i><b>(*)</b> Movimentação de passagem de carga</i></p>
-<p align="left" ><i><b>(**)</b> Os CDE´s em <span style='background-color: Silver;'>cinza</span> indicam envio para calibração</i></p>
-<br>
+    </table>
+    <br />
+    <p>
+        <small>
+            (*) Movimentação de passagem de carga<br />
+            (**) Os CDE´s em <span class="bg-danger">marcados</span> indicam envio para calibração
+        </small>
+    </p>
+    <br />
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

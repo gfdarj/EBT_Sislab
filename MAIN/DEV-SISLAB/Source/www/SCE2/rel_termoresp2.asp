@@ -31,6 +31,7 @@ If Env.UsuarioSCE() Then
 	    ano_doc = "/" & left(rec("DOC_DATADOCUMENTO"), 4)
     end if
 %>
+<div class="margem-10">
 <table width="645px"  cellpadding="4" cellspacing="0" border="0">
 <tr>
 	<td>
@@ -183,6 +184,7 @@ If Env.UsuarioSCE() Then
 
 <tr><td>&nbsp;</td></tr>
 </table>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
