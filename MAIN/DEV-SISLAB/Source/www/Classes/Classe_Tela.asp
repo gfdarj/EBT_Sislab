@@ -203,11 +203,13 @@ Private Sub ImprimeImagemSite()
                     </div>
 
 <%  If Env.Usuario <> "" Then %>
-                    <div style="float: right; text-align:right;">
-                            <p style="line-height: 14px;">&nbsp;</p>
-				            <h6 class="text-warning"><%=Env.nomeAppHtml%><br />
+                    <div style="float: right; text-align:right; top: 0px; vertical-align: top;">
+                        <p style="line-height: 14px;">&nbsp;</p>
+				        <h6>
+                            <%=Env.nomeAppHtml%><br />
 					        <%=Env.Ebt.NomeReduzido%><br />
-					        <%=Env.Usuario%></h6>
+					        <%=Env.Usuario%>
+				        </h6>
                     </div>
 <%  End If %>
                 </div>

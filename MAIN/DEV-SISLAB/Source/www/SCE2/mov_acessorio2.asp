@@ -98,10 +98,12 @@ If Env.UsuarioSCE() Then
 	    if rec.eof then a = "a"
     end if
 %>
+
+<div class="margem-10">
 <form name="formulario" action="sel_mov_acessorio.asp" method="post">
 <input type="hidden" name="status" value="<%=request("status")%>">  <!-- pego o estado dos itens consultados para movimentar -->
 
-<table width="100%" cellpadding="2" cellspacing="0" >
+<table class="largura-total">
 <tr>
 	<td><%
     'if request("eq_id") = "" or a <> "" or isnull(a) then 
@@ -111,53 +113,57 @@ If Env.UsuarioSCE() Then
     else
 %>	</td>
 </tr>
-<tr valign="top">
-    <td class="Destaque" align="center">Escolha um Item</td>
+<tr>
+    <th class="texto-centralizado">Escolha um Item</th>
 </tr>
-<tr valign="top">
+<tr>
     <td >
-		<br><br>
-		<table width="100%" cellpadding="2" cellspacing="0" border="1" >
-  			<tr bgcolor="#C0E0EF">
-			  <th align="center">&nbsp;</th>
-		      <th align="center">Itens</th>
+		<br>
+		<table class="largura-total table-condensed table-bordered table-striped table-hover">
+  			<tr>
+			  <th>&nbsp;</th>
+		      <th>Item</th>
 			  <th>Descrição</th>
-			  <th align="center">Modelo</th>
-			  <th align="center">Número <br>de<br> Série</th>
-			  <th align="center">Fabricante</th>
-			  <th align="center">Status Item</th>
+			  <th class="texto-centralizado">Modelo</th>
+			  <th class="texto-centralizado">Nº de Série</th>
+			  <th class="texto-centralizado">Fabricante</th>
+			  <th class="texto-centralizado">Status Item</th>
 			 </tr>
 <%  'if not rec.eof then
 	    while not rec.eof
 		    ssql = "select fab_nome from sce_fabricantes where fab_id = "& rec("fab_id")
 		    set rec2 = Env.oconn.execute(ssql)%>
-			 <tr bgcolor="#C0E0EF">
-				<td align="center"> <input type=checkbox name=eq_id value="<%=rec("eq_id")%>"></td>
+			 <tr>
+				<td class="texto-centralizado"> <input type=checkbox name=eq_id value="<%=rec("eq_id")%>"></td>
 				<td><%=ConverteNuloHTML(rec("eq_codigobarras"))%></td>
 				<td><%=ConverteNuloHTML(rec("mod_descricao"))%></td>
-				<td align="center"><%=ConverteNuloHTML(rec("mod_codnome"))%></td>
-				<td align="center"><%=ConverteNuloHTML(rec("eq_numeroserie"))%></td>
-				<td align="center"><%=ConverteNuloHTML(rec2("fab_nome"))%></td>
-				<td align="center"><%=Sce.ImprimeStatusItem(rec)%></td>
+				<td class="texto-centralizado"><%=ConverteNuloHTML(rec("mod_codnome"))%></td>
+				<td class="texto-centralizado"><%=ConverteNuloHTML(rec("eq_numeroserie"))%></td>
+				<td class="texto-centralizado"><%=ConverteNuloHTML(rec2("fab_nome"))%></td>
+				<td class="texto-centralizado"><%=Sce.ImprimeStatusItem(rec)%></td>
 			</tr>
-<%	    	rec.movenext
-	    wend
+<%	    	rec.MoveNext
+	    WEnd
     'end if%>
 		 </table>
 	</td>
 </tr>
+<tr><td>&nbsp;</td></tr>
 <tr>
-   	<td  align="center"><br><br>
-	&nbsp;&nbsp;&nbsp;&nbsp;<input type=submit value=" Escolher " >&nbsp;&nbsp;<br><br>
+   	<td class="texto-centralizado">
+	    <input type=submit value=" Escolher " >&nbsp;&nbsp;<br><br>
 	</td>
 </tr>
 <tr>
-      	<td  align="center">
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo Ítem</a>
+   	<td class="texto-centralizado">
+		<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo Ítem</a>
 	</td>
 </tr>
 </table>
 </form>
+<br />
+
+</div>
 <%  End If
 
     Set Sce = Nothing

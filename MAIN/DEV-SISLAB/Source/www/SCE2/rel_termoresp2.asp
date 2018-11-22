@@ -32,10 +32,10 @@ If Env.UsuarioSCE() Then
     end if
 %>
 <div class="margem-10">
-<table width="645px"  cellpadding="4" cellspacing="0" border="0">
+<table cellpadding="4" cellspacing="0" border="0" style="width: 645px;">
 <tr>
 	<td>
-		<table width="100%" cellpadding="0" cellspacing="0" >
+		<table class="largura-total">
 		<tr>
 			<td width="180px"><img src="../img/logoebt.bmp" border="0"></td>
 			<td align="right">

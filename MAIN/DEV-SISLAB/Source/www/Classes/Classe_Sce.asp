@@ -136,7 +136,7 @@ Public Function ImprimeStatusItem(rec)
 
 	elseif status = STATUS_EM_ESTOQUE then
 			'if ehHTML then retorno = "Em Estoque" & "<br>" & local else retorno = "Em Estoque - " & localiz
-            buf = "Em Estoque" & "<br>" & localiz
+            buf = "Em Estoque" & "<br><small>" & localiz & "</small>"
 
 	elseif status = STATUS_EXPEDIDO then
 			buf = "Expedido"
@@ -146,7 +146,7 @@ Public Function ImprimeStatusItem(rec)
 
 	elseif status = STATUS_CADASTRADO then
 			'if ehHTML then buf = "Cadastrado" & "<br>" & localiz else buf = "Cadastrado - " & localiz
-			buf = "Cadastrado" & "<br>" & localiz
+			buf = "Cadastrado" & "<br><small>" & localiz & "</small>"
 	end if
 
 	'if ehHTML then retorno = replace(retorno, " ", "&nbsp;")

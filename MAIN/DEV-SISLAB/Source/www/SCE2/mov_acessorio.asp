@@ -20,7 +20,7 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 
-<script language=javascript>
+<script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
 
@@ -46,19 +46,21 @@ end if
 %>	return ret;
 }
 </script>
+
+<div class="margem-10">
 <form name="formulario" method="post" action="mov_acessorio2.asp" onsubmit="javascript:return movimentaItens();">
 <input type="hidden" name="busca" value="1">
-<table width="750px" >
+<table class="largura-total">
 	<tr><td><%if request("msg") <> "" then response.write " <strong><div align='center'>Movimentação efetuada com sucesso.<br> Foi criado um histórico de movimentação com estes dados.</div></strong><br><br>"%></td></tr>
 	<tr>
-	    <td valign="middle" class="destaque">Selecione o filtro</td>
+	    <th>Selecione o filtro</th>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr><td><%if Env.PerfilSce <> PERFIL_ADM then response.write "<b>"%>Movimentar os itens na<%=Combo.SituacaoEquipamento("status", true, false, true, "")%><%if Env.PerfilSce <> PERFIL_ADM then response.write "</b>"%></td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td> 
-      		<table border="0"  cellpadding="0" cellspacing="0">
+      		<table class="largura-total">
 	  			<tr>
 	    			<td  colspan="2">
 						Código Barras:&nbsp;<input type="text"  name="codbarras" style="width:120px" maxlength="50">
@@ -72,7 +74,7 @@ end if
 				<tr><td  colspan="2"><br></td></tr>
 
 				<tr>
-	    			<td >
+	    			<td>
 						Fabricante:&nbsp;
 						<%=Combo.PadraoSql("fabricante", "select fab_id as VALOR, fab_nome as DESCRICAO from sce_fabricantes order by fab_nome", "", "N")%>
 					</td>
@@ -85,7 +87,7 @@ end if
 				</tr>
 				
 				<tr>
-					<td  colspan=2>	
+					<td colspan=2>	
 					Fornecedor 		
                     <%=Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
 					</td>
@@ -106,7 +108,7 @@ end if
 				<tr ><td>&nbsp;</td></tr>
 
 				<tr>
-	  				<td  colspan="3">
+	  				<td colspan="3">
 						N&deg; AS:&nbsp;<input type="text"  name="as" size="10">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Número de Série:&nbsp;<input type="text"  name="numeroserie" maxlength="50">
@@ -114,17 +116,16 @@ end if
 						Localiza&ccedil;&atilde;o:&nbsp;<input type="text"  name="localizacao" size="25" value="">
 					</td>
 				</tr>
-
+				<tr ><td>&nbsp;</td></tr>
 				<tr>
-					<td  colspan="3" align="right"><input type="submit" name="buscar" value="próximo &gt;&gt;" ></td>
+					<td colspan="3"><input type="submit" name="buscar" value="Pesquisar"></td>
 				</tr>
 			</table>
       	</td>
     </tr>
   </table>
 </form>
-
-</center>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

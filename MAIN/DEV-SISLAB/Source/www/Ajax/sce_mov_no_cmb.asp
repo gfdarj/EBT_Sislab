@@ -1,5 +1,5 @@
-﻿<!--#include file="../sce2/includes/abre.asp" -->
-<!--#inc lude file="../includes/Sislab_Lib.asp"-->
+﻿<!--#incl ude file="../sce2/includes/abre.asp" -->
+<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#incl ude file="../includes/global.asp"-->
 <!--#inc lude file="../includes/funcoes.asp"-->
 <!--#include file="../sce2/includes/controlesHTML_SCE.asp" -->
@@ -28,7 +28,7 @@ If Not VVVNZ(Request("tipo_mov")) Then
 		"where no_tipo = " & Request("tipo_mov") & " " & VbCrLf & _
 		"order by no_descricao asc"
 	'call comboBDSQL("noid", Conn, sSQL, no_id, "N")
-	Set RS = Conn.Execute(sSQL)
+	Set RS = Env.oConn.Execute(sSQL)
 
 	While Not RS.Eof
 		sBuf = sBuf & RS("VALOR") & "[val]" & RS("DESCRICAO") & "[fim]"

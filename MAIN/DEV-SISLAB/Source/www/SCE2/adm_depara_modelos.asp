@@ -14,39 +14,33 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
-<form method="post" action="adm_depara_modelos2.asp" name="formulario" onsubmit="javascript:return executaDePara(this);">
-<table >
+<div class="margem-10">
+    <form method="post" action="adm_depara_modelos2.asp" name="formulario" onsubmit="javascript:return executaDePara(this);">
+        <table>
 <%
-if request("msg")<>"" then%>
-<tr>
-	<td colspan="2"><b>
-<%	if request("msg") = "1" then
+If request("msg")<>"" Then %>
+            <tr>
+	            <td colspan="2">
+                    <b>
+<%	If request("msg") = "1" Then
 		response.write "Modelos atualizados com sucesso !"
-	end if
-%>		</b>
-	</td>
-</tr>
-<tr><td colspan="2">&nbsp;</td></tr><%
-end if
+	End If
+%>		            </b>
+	            </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr><%
+End If
 %>
-<tr><td colspan="2" class="destaque">Modelo antigo: (De)</td></tr>
-<tr>
-	<td>
-		<%=Combo.PadraoSql("mod_id_old", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%>
-	</td>
-	<td>&nbsp;</td>
-</tr>
-<tr><td>&nbsp;</td><td align="center"><input  type="submit" value="Executar !"></td></tr>
-<tr><td colspan="2" class="destaque">Modelo novo: (Para)</td></tr>
-<tr>
-	<td>
-		<%=Combo.PadraoSql("mod_id_new", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%>
-	</td>
-	<td>&nbsp;</td>
-</tr>
+            <tr><td colspan="2">Modelo antigo: (De)</td></tr>
+            <tr><td><%=Combo.PadraoSql("mod_id_old", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%></td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td class="texto-centralizado"><input type="submit" value="Executar !"></td></tr>
+            <tr><td>Modelo novo: (Para)</td></tr>
+            <tr><td><%=Combo.PadraoSql("mod_id_new", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%></td></tr>
+        </table>
+    </form>
+</div>
 
-</table>
-</form>
 <script type="text/javascript">
 	d = document.forms[0];
 	d.mod_id_old.size = 10;

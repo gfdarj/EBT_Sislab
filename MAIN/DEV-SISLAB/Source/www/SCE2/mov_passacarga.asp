@@ -15,29 +15,29 @@ If Env.UsuarioSCE() Then
 
     Call Tela.ImprimeMenuSce()
 %>
+<div class="margem-10">
 <form name="formulario" method="post">
 <input type="hidden" name="qual_agendamento" value="">
-<table  width="100%">
+<table class="largura-total">
 <%
 if request("msg") = "1" then %>
 <tr>
 	<th>
-		Passagem de carga solicitada com sucesso. <br>Aguarde a confirmação
-		pelo RT do agendamento destino !
+		Passagem de carga solicitada com sucesso. <br>Aguarde a confirmação pelo RT do agendamento destino !
 	</th>
 </tr>
+<tr><td>&nbsp;</td></tr>
 <%
 end if
 %>
-<tr><td>&nbsp;</td></tr>
-<tr><td class="destaque">Meus agendamentos: (<i><%=Env.Usuario%></i>)</td></tr>
+<tr><th>Meus agendamentos: (<small><%=Env.Usuario%></small>)</th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
 		<%=Combo.MeusAgendamentos(True, "txtAS_origem", "ag_numero_origem", CStr(ag_numero), "N")%>
 		<%'call comboAgendamento("txtAS_origem", "ag_numero_origem", conn, cstr(ag_numero), "N")%>
 		&nbsp;&nbsp;&nbsp;
-		<span id="responsavel_origem" style="font-weight: bold; font-style: italic;">&nbsp;</span>
+		<span id="responsavel_origem" class="text-info">&nbsp;</span>
 		<script type="text/javascript">
 			var f = document.formulario;
 			f.ag_numero_origem.onchange = BuscaEqOrigem;
@@ -59,10 +59,10 @@ end if
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td class="destaque">Selecione o agendamento de <i><span style="color: red;">destino</span></i></td></tr>
+<tr><th>Selecione o agendamento de <span class="text-danger">destino</span></th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td><br>
+	<td>
 		<%'call comboMeusAgendamentos(false, "txtAS_destino", "ag_numero_destino", conn, cstr(ag_numero), "N")%>
 		<%=Combo.MeusAgendamentos(False, "txtAS_destino", "ag_numero_destino", CStr(ag_numero), "N")%>
 		&nbsp;&nbsp;&nbsp;
@@ -87,16 +87,18 @@ end if
 		<b>*&nbsp;</b>Equipamentos <b>cedidos</b> ao agendamento destino<br>
 		<select multiple name="eq_destino" style="width: 640px;"  size="6"></select>
 		<br>
-		(<a href="#" onclick="javascript:removeSelecionados(0);">clique aqui para remover itens selecionados</a>)
+		<small>(<a href="#" onclick="javascript:removeSelecionados(0);">clique aqui para remover itens selecionados</a>)</small>
 
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td align="center"><button  onclick="javascript:validaPassagem();">&gt;&gt; Passar a carga dos itens selecionados</button></td>
+	<td><input type="button" onclick="javascript:validaPassagem();" value="Passar a carga dos itens selecionados &gt;&gt;"></td>
 </tr>
 </table>
 </form>
+</div>
+
 <script type="text/javascript">
 var d = document.forms[0];
 
