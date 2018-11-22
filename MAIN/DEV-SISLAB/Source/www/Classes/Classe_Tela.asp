@@ -185,7 +185,7 @@ Private Sub ImprimeImagemSite()
     w_princ = p_tamanhoTela
     PathRelativo = p_PathRelativo
 %>
-		<table width="<%=w_princ%>" class="" border="0" cellspacing="0" cellpadding="0" >
+		<table class="" border="0" cellspacing="0" cellpadding="0" style="width: <%=w_princ%>;" >
         <tr>
             <td background="<%=PathRelativo%>img/titulo_bg.jpg" height="70" style="vertical-align: bottom;">
                 <div>
