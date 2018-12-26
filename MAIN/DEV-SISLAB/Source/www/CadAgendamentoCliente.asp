@@ -123,6 +123,7 @@ End If
 		    return false;
 	    }
 
+alert("OI");
 
 	    /* valido data inicial maior que data final */
 	    var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
@@ -142,7 +143,7 @@ End If
 	    }
 
 	    //Optei por participantes externos
-	    if (frmAgendaTeste.cmbPartExternos(0).checked){
+	    if (frmAgendaTeste.cmbPartExternos[0].checked){
 		    if (frm.lstParticipantes.options.length == 0){
 			    alert("Você optou por presenca de participantes externos mas não cadastrou nenhum.")
 			    return false;
@@ -150,7 +151,7 @@ End If
 	    }
 
 	    //Optei por participantes EBT
-	    if (frmAgendaTeste.cmbPartEBT(0).checked){
+	    if (frmAgendaTeste.cmbPartEBT[0].checked){
 		    if (frm.lstParticipantesEBT.options.length == 0){
 			    alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
 			    return false;
@@ -169,7 +170,6 @@ End If
 		    return false;
 	    }
 
-
 	    if (frm.objetivos.value==""){
 		    alert("Objetivos do agendamento não foram informados.");
 	        frm.objetivos.focus();
@@ -182,14 +182,14 @@ End If
 		    return false;	
 	    }
 
-	    if (!(frm.cmbCliExternos(0).checked || frm.cmbCliExternos(1).checked)){
+	    if (!(frm.cmbCliExternos[0].checked || frm.cmbCliExternos[1].checked)){
 		    alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
-	        frm.cmbCliExternos(0).focus();
+	        frm.cmbCliExternos[0].focus();
 		    return false;	
 	    }
 
 	    //Cliente externo
-	    if (frm.cmbCliExternos(0).checked){
+	    if (frm.cmbCliExternos[0].checked){
 		    //Nome Cliente
 		    if (frm.txtNomeCliente.value == ""){
 			    alert("Em Dados do Cliente não foi especificada o Nome do Cliente.")
@@ -210,7 +210,7 @@ End If
 
 	    }
 	    //Cliente EBT
-	    if (frm.cmbCliExternos(1).checked){
+	    if (frm.cmbCliExternos[1].checked){
 		    //Plano de metas
     //		if (frm.cmbItemCliente.value == ""){
     //			alert("Em Dados do Cliente não foi especificada o Item associado ao plano de metas.")
@@ -268,6 +268,7 @@ End If
 	    frm.btn_Salvar.disabled = true;
 	    frm.submit();
     }
+
     function PreparaCamposPART() {
         var frm = document.forms[0];
 
