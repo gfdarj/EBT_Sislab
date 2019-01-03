@@ -70,6 +70,7 @@ End Function
 '-- Envia um email com os parametros selecionados
 '----------------------------------------------------------------------------------------------
 Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, texto)
+    Dim objMail
 
 'rw "de: " & de_nome & "<" & de_email & ">"
 'rw "<br>para:" & para_nome & "<" & para_email & ">"
@@ -77,25 +78,23 @@ Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, text
 'rw "<BR><BR>texto: " & texto
 're
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
-		Exit Sub
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    Set objMail = Server.CreateObject("CDONTS.NewMail") 
+
+	    objMail.from = de_nome & "<" & de_email & ">"
+	    objMail.to = para_nome & "<" & para_email & ">"
+	    objMail.MailFormat = 0  ' formato MIME
+	    objMail.BodyFormat = 0  ' html
+	    objMail.subject = assunto 
+	    objMail.body = _
+			    "<html>" & _
+			    "<head><title>" & assunto & "</title></head>" & _
+			    "<body>" & Replace(texto, VbCrLf, "<BR>") & "</body>" & _
+			    "</html>"
+	    objMail.send
+
+	    Set objmail = nothing
 	End If
-
-	Dim objMail
-	Set objMail = Server.CreateObject("CDONTS.NewMail") 
-	objMail.from = de_nome & "<" & de_email & ">"
-	objMail.to = para_nome & "<" & para_email & ">"
-	objMail.MailFormat = 0  ' formato MIME
-	objMail.BodyFormat = 0  ' html
-	objMail.subject = assunto 
-	objMail.body = _
-			"<html>" & _
-			"<head><title>" & assunto & "</title></head>" & _
-			"<body>" & Replace(texto, VbCrLf, "<BR>") & "</body>" & _
-			"</html>"
-	objMail.send
-
-	set objmail = nothing
 End Sub
 
 
@@ -105,7 +104,7 @@ End Sub
 Sub Enviar_Email(para_email, para_nome, assunto, texto)
 	Dim objMail
 
-	If Application("SISLAB_AMBIENTE") <> "LOC" Then
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
 		Set objMail = Server.CreateObject("CDONTS.NewMail") 
 		objMail.from = EMAILDEENVIODOSISLAB & "<" & EMAILDEENVIODOSISLAB & ">"
 		objMail.to = para_nome & "<" & para_email & ">"
