@@ -228,19 +228,6 @@ namespace Embratel.Sislab.Util
             this.CC.Add(enderecoEMail);
         }
 
-        public void EnviarErro(string listaEmail, Exception exception)
-        {
-            EMailHelper email = new EMailHelper();
-
-            email.Assunto = "ERRO";
-            email.EMailRemetente = ConfigHelper.DestinatarioEmailErro;
-            email.NomeRemetente = "Estudo da Viabilidade de sono nas últimas 24h";
-            email.AdicionarDestinatario(listaEmail);
-            email.CorpoEmHtml = false;
-            email.Corpo = exception.ToString();
-            email.Enviar();
-        }
-
         #endregion
 
         #region Métodos Privados

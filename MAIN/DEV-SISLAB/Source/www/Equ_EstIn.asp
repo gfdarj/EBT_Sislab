@@ -58,17 +58,17 @@ If Not objSiteRS.EOF Then
 			int_Contador = int_Contador - 1
 			If int_Contador = int_Cols Then
 				chr_Buf = chr_Buf & _
-					"	<td width='100%' colspan='" & int_Cols & "'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br>&nbsp;&nbsp;&nbsp;<i><span style='font-weight: normal; font-size: 9px;'>" & Env.Ebt.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
+					"	<td width='100%' colspan='" & int_Cols & "'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br>&nbsp;&nbsp;&nbsp;<i><span style='font-weight: normal; font-size: 9px;'>" & Env.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
 			Else
 				chr_Buf = chr_Buf & _
 					"	<td colspan='" & (int_Cols - int_Contador) & "'>&nbsp;</td>" & _
-					"	<td colspan='" & int_Cols - (int_Cols - int_Contador) & "' width='" & (int_SizeCols * int_Contador) & "%'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br>&nbsp;&nbsp;&nbsp;<i><span style='font-weight: normal; font-size: 9px;'>" & Env.Ebt.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
+					"	<td colspan='" & int_Cols - (int_Cols - int_Contador) & "' width='" & (int_SizeCols * int_Contador) & "%'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br>&nbsp;&nbsp;&nbsp;<i><span style='font-weight: normal; font-size: 9px;'>" & Env.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
 			End If
 			bln_Primeiro = False
 		Else
 			chr_Buf = chr_Buf & _
 				"	<td colspan='" & (int_Cols - int_Contador) & "'>&nbsp;</td>" & _
-				"	<td colspan='" & int_Cols - (int_Cols - int_Contador) & "' width='" & (int_SizeCols * int_Contador) & "%'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br><i>&nbsp;&nbsp;&nbsp;<span style='font-weight: normal; font-size: 9px;'>" & Env.Ebt.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
+				"	<td colspan='" & int_Cols - (int_Cols - int_Contador) & "' width='" & (int_SizeCols * int_Contador) & "%'><span class='vermelho2'><b>*</span>&nbsp;<span style='font-size: 11px; color: Navy;'>" & objSiteRS("ORGA_DESCRICAO") & "</span><br>&nbsp;&nbsp;&nbsp;<i>" & objSiteRS("ORGA_USERIDCHEFE") & "</i><br><i>&nbsp;&nbsp;&nbsp;<span style='font-weight: normal; font-size: 9px;'>" & Env.AchaNomeEmbratel(objSiteRS("ORGA_USERIDCHEFE")) & "</span></i></td>"
 		End If
 
 		chr_Buf = chr_Buf & _

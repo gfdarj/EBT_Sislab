@@ -20,7 +20,7 @@ sSQL = "select * from usercrt where rat=1 and exibir=1"
 Call Env.RecordSet(true, rsRATs, sSQL)
 While not rsRATs.eof
 
-	If Env.Ebt.ExisteUsuario(rsRATs(0)) then
+	If Env.ExisteUsuario(rsRATs(0)) then
 		Call Enviar_EmailGenerico(auxusername, auxusername, rsRATs("userid"), rsRATs("userid"), "SISLAB - Fale Conosco", vTexto)
 	End If
 

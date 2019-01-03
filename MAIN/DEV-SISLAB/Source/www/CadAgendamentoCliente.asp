@@ -411,22 +411,22 @@ end if
 <tr class="espaco-minimo-35">
 	<td colspan="6">
 		Nome do Responsável: &nbsp;
-		<input type="text" READONLY name="txtResponsavel" size="55" tabindex="2" maxlength="200">
+		<input type="text" readonly name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
 	</td>
 	<td colspan="4">Matrícula:&nbsp;
-		<input readonly name="txtMatricula" size="15" tabindex="3">
+		<input readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
 	</td>
 </tr>
 <tr class="espaco-minimo-35">
 	<td  colspan="3">
-		Órgão:&nbsp;<input  READONLY name="txtOrgao" size="20" tabindex="4" maxlength="50">
+		Órgão:&nbsp;<input type="text" readonly name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
 	</td>
 	<td  colspan="4">E-mail:&nbsp;
 		<input type=hidden name="Username">
-		<input readonly name="txtEMail" size="30" tabindex="5" maxlength="200">
+		<input readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
 	</td>
 	<td  colspan="3">Ramal:&nbsp;
-		<input name="txtRamal" size="20" tabindex="6" maxlength="10" >
+		<input name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
 	</td>
 </tr>
 
@@ -772,11 +772,6 @@ end if
 	var frmAll = document.all;
 	var ultimo_da_lista;
 
-	frm.txtResponsavel.style.backgroundColor = '#EEEEEE';
-	frm.txtMatricula.style.backgroundColor = '#EEEEEE';
-	frm.txtOrgao.style.backgroundColor = '#EEEEEE';
-	frm.txtEMail.style.backgroundColor = '#EEEEEE';
-	frm.txtRamal.style.backgroundColor = '#EEEEEE';
 <%
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 'Pego dados do agendamento jah existente
@@ -785,7 +780,7 @@ if num_ag <> "" then
 
 	Set Ebt = New TEbt
 
-	Call Ebt.BuscaDadosEmbratel(objSiteRS("ag_username"))
+	Call Ebt.LoginUsuario(objSiteRS("ag_username"))
 
 	Nome_Reduzido = Ebt.NomeReduzido
 	Matricula = Ebt.Matricula
@@ -800,13 +795,13 @@ if num_ag <> "" then
 	<%if bln_AchouEBT then%>
 		frm.txtResponsavel.value = '<%=NomeReduzido%>';
 		frm.txtMatricula.value = '<%=Matricula%>';
-		frm.txtOrgao.value = '<%=SiglaOrgao%>';
+		frm.txtOrgao.value = '1<%=SiglaOrgao%>';
 		frm.txtRamal.value='<%=TEL1_COM%>';
 	<%else
 		'Usuario não existe mais na base embratel%>
 		frm.txtResponsavel.value = '<%=objSiteRS("ag_username")%>';
 		frm.txtMatricula.value = '--';
-		frm.txtOrgao.value = '<%=chr_OrgaoSQL%>';
+		frm.txtOrgao.value = '2<%=chr_OrgaoSQL%>';
 		frm.txtRamal.value='--';
 	<%end if%>
 	frm.txtTitulo.value='<%=objSiteRS("ag_titulo")%>';
@@ -934,12 +929,12 @@ if as_referencia <> "" then
 	if solicitante <> "" then
 		Set Ebt = New TEbt
 
-		Call Ebt.BuscaDadosEmbratel(solicitante)
+		Call Ebt.LoginUsuario(solicitante)
 
 		If Ebt.ehFuncionario Then%>
 			frm.txtResponsavel.value = '<%=Ebt.NomeReduzido%>';
 			frm.txtMatricula.value = '<%=Ebt.Matricula%>';
-			frm.txtOrgao.value = '<%=Ebt.SiglaOrgao()%>';
+			frm.txtOrgao.value = '4<%=Ebt.SiglaOrgao()%>';
 			frm.txtRamal.value='<%=Ebt.Ramal%>';
 			frm.Username.value='<%=Ebt.Usuario%>';
 			frm.txtEMail.value='<%=Ebt.Usuario%>';

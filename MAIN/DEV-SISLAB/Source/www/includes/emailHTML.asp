@@ -142,41 +142,43 @@ End Function
 
 'FUNÇÃO QUE DADA UMA AS E UM TEXTO ENVIA UM EMAIL PARA AS PESSOAS RELACIONADAS A ESTA AS
 Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
-	dim Rat, Rt, rsAgendamento,sSQL,rsRATs,Solicitante:Solicitante=""
+	dim Rat, Rt, rsAgendamento, sSQL, rsRATs, Solicitante:Solicitante = ""
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
-		Exit Function
-	End If
+'	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    If Not isnull(numAS) then
+		    sSQL = "select * from agendamento where ag_numero=" & numAS
+		    call Env.RecordSet( true, rsAgendamento, sSQL)
+		    if not (rsAgendamento.eof and rsAgendamento.bof) then
+			    Rat = rsAgendamento("AG_RAT") & ""
+			    Rt = rsAgendamento("AG_RESPONSAVEL") & ""
+			    if rsAgendamento("AG_RECEBEMAIL") then
+				    Solicitante = rsAgendamento("AG_USERNAME")
+			    end if
 
-	if not isnull(numAS) then
-		sSQL = "select * from agendamento where ag_numero=" & numAS
-		call Env.RecordSet( true, rsAgendamento, sSQL)
-		if not (rsAgendamento.eof and rsAgendamento.bof) then
-			Rat = rsAgendamento("AG_RAT") & ""
-			Rt = rsAgendamento("AG_RESPONSAVEL") & ""
-			if rsAgendamento("AG_RECEBEMAIL") then
-				Solicitante = rsAgendamento("AG_USERNAME")
-			end if
+			    'Modificação para enviar e-mail a todos os rats do sistema
+			    'if Rat <> "" then
+			    '	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat,Rat, Titulo, Texto
+			    'end if
 
-			'Modificação para enviar e-mail a todos os rats do sistema
-			'if Rat <> "" then
-			'	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat,Rat, Titulo, Texto
-			'end if
+			    if (Not VVVNZ(Rt)) And Env.ExisteUsuario(Rt) then
+				    Call enviar_email(Rt, Rt, Titulo, Texto)
+			    end if
 
-			if Rt <> "" And Env.Ebt.ExisteUsuario(Rt) then
-				Call enviar_email(Rt, Rt, Titulo, Texto)
-			end if
+			    if (Not VVVNZ(Solicitante)) And Env.ExisteUsuario(Solicitante) then
+				    Call enviar_email(Solicitante, Solicitante, Titulo, Texto)
+			    end if
 
-			if Solicitante <> "" And Env.Ebt.ExisteUsuario(Solicitante) then
-				Call enviar_email(Solicitante, Solicitante, Titulo, Texto)
-			end if
+'response.write "enviar_email: " & Solicitante
+'response.write "<BR>now: " & now
+'response.end
 
-			'Modificação para enviar e-mail a todos os rats do sistema
-			'if Rat = "" then
-			call enviaEmailRATsGQs(objConn,Titulo,texto)
-			'end if
-		end if
-	end if
+			    'Modificação para enviar e-mail a todos os rats do sistema
+			    'if Rat = "" then
+			    call enviaEmailRATsGQs(objConn,Titulo,texto)
+			    'end if
+		    end if
+	    end if
+'	End If
 	'RESPONSE.END
 End Function
 
@@ -197,17 +199,17 @@ Function enviaEmailsASFinalizada(objConn, numAS, Titulo, Texto)
 				Solicitante = rsAgendamento("AG_USERNAME")
 			end if
 
-			if Rt <> "" And Env.Ebt.ExisteUsuario(Rt) then
+			if Rt <> "" And Env.ExisteUsuario(Rt) then
 				Call enviar_email(Rt, Rt, Titulo, Texto)
 			end if
 
-			if Solicitante <> "" And Env.Ebt.ExisteUsuario(Solicitante) then
+			if Solicitante <> "" And Env.ExisteUsuario(Solicitante) then
 				'Envia o email ao solicitante como se fosse o RT
 				Call Enviar_EmailGenerico( _
 						Rt, _
-						Env.Ebt.AchaNomeEmbratel(Rt), _
+						Env.AchaNomeEmbratel(Rt), _
 						Solicitante, _
-						Env.Ebt.AchaNomeEmbratel(Solicitante), _
+						Env.AchaNomeEmbratel(Solicitante), _
 						Titulo, _
 						Texto _
 				)
@@ -289,15 +291,17 @@ End Function
 Function enviaEmailGQs( Titulo, Texto)
 	Dim rsRATs
 
-	sSQL = "select * from usercrt where exibir=1 or gq=1"
-	call Env.RecordSet( true, rsRATs, sSQL)
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    sSQL = "select * from usercrt where exibir=1 or gq=1"
+	    Call Env.RecordSet( true, rsRATs, sSQL)
 
-	while not rsRATs.eof
-		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
-		End If
-		rsRATs.movenext
-	wend
+	    While Not rsRATs.eof
+		    If Env.ExisteUsuario(rsRATs("userid")) Then
+			    Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
+		    End If
+		    rsRATs.movenext
+	    WEnd
+	End If
 End Function
 
 
@@ -305,15 +309,17 @@ End Function
 Function EnviaEmailRATs(Titulo, Texto)
 	Dim rsRATs
 
-	sSQL = "select * from usercrt where rat=1 and exibir=1"
-	call Env.RecordSet( true, rsRATs, sSQL)
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    sSQL = "select * from usercrt where rat=1 and exibir=1"
+	    call Env.RecordSet( true, rsRATs, sSQL)
 
-	while not rsRATs.eof
-		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
-		End If
-		rsRATs.movenext
-	wend
+	    while not rsRATs.eof
+		    If Env.ExisteUsuario(rsRATs("userid")) Then
+			    Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
+		    End If
+		    rsRATs.movenext
+	    wend
+	End If
 End Function
 
 
@@ -321,31 +327,35 @@ End Function
 Function enviaEmailRATsGQs(objConn, Titulo, Texto)
 	Dim rsRATs
 
-	sSQL = "select * from usercrt where rat=1 or gq=1"
-	call Env.RecordSet( true, rsRATs, sSQL)
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    sSQL = "select * from usercrt where rat=1 or gq=1"
+	    call Env.RecordSet( true, rsRATs, sSQL)
 
-	while not rsRATs.eof
-		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
-		End If
-		rsRATs.movenext
-	wend
+	    while not rsRATs.eof
+		    If Env.ExisteUsuario(rsRATs("userid")) Then
+			    Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
+		    End If
+		    rsRATs.movenext
+	    wend
 
-    Set rsRATs = Nothing
+        Set rsRATs = Nothing
+    End If
 End Function
 
 
 'Envia e-mails para todos os usuarios do CRT
 Function enviaEmailUserCRT(objConn,Titulo,Texto)
-	sSQL = "select * from usercrt where exibir=1"
-	call Env.RecordSet( true, rsRATs, sSQL)
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    sSQL = "select * from usercrt where exibir=1"
+	    call Env.RecordSet( true, rsRATs, sSQL)
 
-	While not rsRATs.eof
-		If Env.Ebt.ExisteUsuario(rsRATs("userid")) Then
-			Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
-		End If
-		rsRATs.movenext
-	Wend
+	    While not rsRATs.eof
+		    If Env.ExisteUsuario(rsRATs("userid")) Then
+			    Call enviar_email(rsRATs("userid"), rsRATs("userid"), Titulo, Texto)
+		    End If
+		    rsRATs.movenext
+	    Wend
+    End If
 End Function
 
 
@@ -356,22 +366,24 @@ Sub EnviaEmailRespostaPesquisa(objConn, int_AS)
 	Dim chr_Titulo
 	Dim RS
 
-	chr_Titulo = "SISLAB - Resposta à Pesquisa de Satisfação " & int_AS
-	chr_Texto = "A pesquisa de satisfação foi respondida pelo usuário do agendamento " & int_AS & "</b>.<br><br>"
+	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
+	    chr_Titulo = "SISLAB - Resposta à Pesquisa de Satisfação " & int_AS
+	    chr_Texto = "A pesquisa de satisfação foi respondida pelo usuário do agendamento " & int_AS & "</b>.<br><br>"
 
-	chr_SQL = _
-		"SELECT AG_RESPONSAVEL FROM vw_Agendamento WHERE AG_NUMERO = " & int_AS & " " & _
-		"UNION " & _
-		"SELECT USERID from UserCRT where GQ = 1"
+	    chr_SQL = _
+		    "SELECT AG_RESPONSAVEL FROM vw_Agendamento WHERE AG_NUMERO = " & int_AS & " " & _
+		    "UNION " & _
+		    "SELECT USERID from UserCRT where GQ = 1"
 
-	call Env.RecordSet(True, RS, chr_SQL)
-	While Not RS.Eof
-		If Env.Ebt.ExisteUsuario(RS(0)) Then
-			Call Enviar_email(RS(0), RS(0), chr_Titulo, chr_Texto)
-		End If
-		RS.MoveNext
-	WEnd
-	call Env.RecordSet(False, RS, chr_SQL)
+	    call Env.RecordSet(True, RS, chr_SQL)
+	    While Not RS.Eof
+		    If Env.ExisteUsuario(RS(0)) Then
+			    Call Enviar_email(RS(0), RS(0), chr_Titulo, chr_Texto)
+		    End If
+		    RS.MoveNext
+	    WEnd
+	    call Env.RecordSet(False, RS, chr_SQL)
+    End If
 End Sub
 
 
@@ -381,7 +393,7 @@ Function EnviaEmailRespondaPesquisa(numAS)
 	Dim Rat, Rt, NomeRT, rsAgendamento, sSQL, rsRATs, Solicitante : Solicitante = ""
 	Dim RS, Titulo, Texto
 
-	If Application("SISLAB_AMBIENTE") = "LOC" Then
+	If Application("SISLAB_ENVIA_EMAIL") = "F" Then
 		Exit Function
 	End If
 
@@ -408,7 +420,7 @@ Function EnviaEmailRespondaPesquisa(numAS)
 					Rt, _
 					NomeRT, _
 					Solicitante, _
-					Env.Ebt.AchaNomeEmbratel(Solicitante), _
+					Env.AchaNomeEmbratel(Solicitante), _
 					Titulo, _
 					Texto _
 				)
@@ -427,9 +439,9 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 	Dim Titulo, Texto
 	Dim Rt, NomeRT, NomeRat, Rat
 
-	'If Application("SISLAB_AMBIENTE") = "LOC" Then
-	'	Exit Function
-	'End If
+	If Application("SISLAB_ENVIA_EMAIL") = "F" Then
+		Exit Function
+	End If
 
 	ssql = "SELECT A.AG_NUMERO, a.AG_RESPONSAVEL, UResp.NOME AS NOME_RESP, a.AG_RAT, URat.NOME AS NOME_RAT, "
 	ssql = ssql & "	a.AG_USERNAME, ISNULL(Terc.Total, 0) AS Total "

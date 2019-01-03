@@ -107,7 +107,7 @@ Class TEnvironment
     End Property
 
     Public Property Get SiglaOrgao()
-	    Sigla_Orgao = Ebt.SiglaOrgao
+	    SiglaOrgao = Ebt.SiglaOrgao
     End Property
 
     Public Property Get ehGerente()
@@ -295,6 +295,49 @@ Class TEnvironment
     Public Function ArmazenaCaminhoAnterior()
 	    chr_CaminhoAnt = Request.ServerVariables("HTTP_REFERER")
     End Function
+
+
+
+	' Métodos trazidos da Classe_Ebt 
+    Public Function ExisteUsuario(chr_Usuario)
+	    Dim objUser
+
+        ExisteUsuario = False
+
+        If Not VVVNZ(chr_Usuario) Then
+			Set objUser = New TEbt
+
+			Call objUser.LoginUsuario(chr_Usuario)
+
+            If Not VVVNZ(objUser.Matricula) Then
+	            ExisteUsuario = True
+            End If
+
+    	    Set objUser = Nothing
+        End If
+    End Function
+
+
+	' Métodos trazidos da Classe_Ebt 
+    Public Function AchaNomeEmbratel(chr_Usuario)
+	    Dim objUser
+
+		AchaNomeEmbratel = ""
+
+        If Not VVVNZ(chr_Usuario) Then
+			Set objUser = New TEbt
+
+			Call objUser.LoginUsuario(chr_Usuario)
+
+            If Not VVVNZ(objUser.NomeReduzido) Then
+	            AchaNomeEmbratel = objUser.NomeReduzido
+            End If
+
+    	    Set objUser = Nothing
+        End If
+	End Function
+
+
 
 
     '---------------------------------------------------------------------------------------------------------------------

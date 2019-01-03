@@ -168,11 +168,11 @@ if request("resp") = "1" then
 	'Call enviar_email("gilberto.rj@ig.com.br", "Gilberto", assunto, msg)
 	Call enviaEmailRATsGQs(Env.oConn, assunto, msg)
 
-	If Env.Ebt.ExisteUsuario(auxusername) Then
-		call Enviar_Email(auxusername, auxusername, assunto, msg)
+	If Env.ExisteUsuario(auxusername) Then
+		Call Enviar_Email(auxusername, auxusername, assunto, msg)
 	End If
 
-	If Env.Ebt.ExisteUsuario(auxrespexecucao) Then
+	If Env.ExisteUsuario(auxrespexecucao) Then
 		call Enviar_Email(auxrespexecucao, auxrespexecucao, assunto, msg)
 	End If
 

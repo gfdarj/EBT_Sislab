@@ -37,6 +37,7 @@ Class TEbt
     Private chr_Lotacao
     Private chr_DataNascimento
     Private chr_Empresa
+	Private chr_RetornoWS
 
     Private oSql
     Private ws
@@ -160,11 +161,17 @@ Class TEbt
 	    SiglaOrgaoGerente = chr_Sigla_Orgao_Gerente
     End Property
 
+    Public Property Get RetornoWebService()
+	    RetornoWebService = chr_RetornoWS
+    End Property
+	
+	
     '-INIT------------------------------------------------------------------------'
 
     Private Sub Class_Initialize()
         Set oSql = New TSql
 
+		chr_RetornoWS = ""
         chr_Login = ""
         bln_TemErro = False
         chr_MsgErro = ""
@@ -240,6 +247,7 @@ Class TEbt
                   "WHERE LOWER(USERID) = '" & chr_Login & "'"
 	    Set objRS = oSQL.Executar(chr_SQL)
 
+		
 	    If objRS.BOF And objRS.EOF Then 
 		    bln_usuarioCRT = False
 		    bln_ehRT = False
@@ -248,10 +256,6 @@ Class TEbt
 		    bln_usuarioCRT_Cadastrado = False
 		    bln_UsuarioSCE = False
 		    int_PerfilSCE = 0
-		    chr_Sigla_Orgao = ""
-            chr_Ramal = ""
-            chr_Celular = ""
-            chr_Matricula = ""
 	    Else
 		    bln_usuarioCRT = True
 		    bln_ehRT = CBool(objRS("RT"))
@@ -288,7 +292,7 @@ Class TEbt
 
 
     'Busca os dados do AD
-    Public Sub BuscaDadosEmbratelAD(chr_Usuario)
+    Public Sub BuscaDadosEmbratelAD(ByVal chr_Usuario)
         Dim objSysInfo
 	    Dim objUser
         Dim strNTUser, strUser
@@ -351,6 +355,7 @@ Class TEbt
 
         'Faz requisição para o WebService
         xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
+		chr_RetornoWS = xmlResult
 
         If Left(xmlResult, 4) <> "ERRO" Then
             Dim oXml ', nodes
@@ -428,29 +433,6 @@ Class TEbt
 'response.Write "<BR>----<BR>"
     End Function
 
-
-    Public Function ExisteUsuario(chr_Usuario)
-	    Dim objUser
-
-        Set objUser = GetObject("LDAP://" & chr_Usuario)
-
-        If VVVNZ(objUser.FullName) Then
-	        ExisteUsuario = False
-        Else
-	        ExisteUsuario = True
-        End If
-
-	    Set objUser = Nothing
-    End Function
-
-
-    Public Function AchaNomeEmbratel(chr_Usuario)
-	    Dim objUser
-
-        Set objUser = GetObject("LDAP://" & chr_Usuario)
-        AchaNomeEmbratel = objUser.FullName
-	    Set objUser = Nothing
-    End Function
 
 End Class
 %>

@@ -91,6 +91,7 @@ else	'-- novo agendamento
 	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Agendamento - Cliente", "location.href='CadAgendamentoCliente.asp?selecao=" & objrs(0) & "'", "")
 
 	chr_Buf = _
+		"<div class='margem-10'>" & _
 		"<table border='0' width='100%' class='tabela1'>" & _
 		"<tr><td>&nbsp;</td></tr>" & _
 		"<tr>" & _
@@ -110,7 +111,8 @@ else	'-- novo agendamento
 		"	<input type='Button' value='Voltar' onclick=javascript:location.href='CadAgendamentoCliente.asp?selecao=" & objrs(0) & "';>" & _
 		"	</td>" & _
 		"</tr>" & _
-		"</table>"
+		"</table>" & _
+		"</div>"
 	Response.Write chr_Buf
 
     Call Tela.MostraRodape()
