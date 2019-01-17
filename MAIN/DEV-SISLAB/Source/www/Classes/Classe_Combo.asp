@@ -442,7 +442,7 @@ End Function
 Private Function MeusAgendamentosJS(nomeText, nomeCombo)
 
     buffer = _
-        "<script l" & "anguage='JavaSc" & "ript'>" & VbCrLf & _
+        "<script l" & "anguage='javasc" & "ript'>" & VbCrLf & _
 	    "function comboAgendamentoBuscaAS" & nomeText & "() {" & VbCrLf & _
 		"    var frm = document.forms[0];" & VbCrLf & _
 		"    var combo = frm." & nomeCombo & ";" & VbCrLf & _

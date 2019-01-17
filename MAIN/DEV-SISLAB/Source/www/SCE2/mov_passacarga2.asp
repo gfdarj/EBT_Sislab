@@ -17,9 +17,10 @@ if ag_destino = "" then ag_destino = null
 ag_origem = request("ag_numero_origem")
 if ag_origem = "" then ag_origem = null
 
-'response.write eq_destino & " 1 <BR>"
-'response.write ag_destino & "<BR>"
-'response.write ag_origem & "<BR>"
+'response.write "eq_destino: " & eq_destino & " <BR>"
+'response.write "ag_destino: " & ag_destino & "<BR>"
+'response.write "ag_origem: " & ag_origem & "<BR>"
+'response.write "Env.Usuario: " & Env.Usuario & "<BR>"
 'response.end
 
 Call Env.StoredProcedure(True, objSP, "sp_SCE_PASSA_CARGA")

@@ -46,6 +46,9 @@ Dim usuarioCRT, chr_SQL, RS,conta, navegador
 navegador = MeuNavegador()
 usuarioCRT = Env.UsuarioCRT
 
+'Response.write Env.EhRat & "<BR>" & Now
+'Response.End
+
 'O SISTEMA VERIFICA SE EXISTEM DOCUMENTOS FORA DA VIGENCIA E ENVIA E-MAIL PARA RAT'S GQ'S PARA QUE POSSAM VALIDAR
 'call VerificaVigenciaArquivos()
 Call Tela.MostraCabecalho()

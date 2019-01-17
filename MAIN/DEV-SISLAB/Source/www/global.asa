@@ -17,10 +17,10 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "DV2"
+	Application("SISLAB_AMBIENTE") = "DES"
 
 
-	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento
+	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento Local
 
     	Application("SISLAB_ENVIA_EMAIL") = "F"    ' Define se cada passo do sistema que envia e-mail irá enviar ou não. Útil para casos de ambiente de 
                                                    ' desenvolvimento onde não temos como enviar e-mail de teste. Valores "T" (true) ou "F" (False)
@@ -29,17 +29,20 @@ Sub Application_OnStart()
 		Application("SISLAB_PROTOCS") = "http://"
 		Application("SISLAB_SiteFolder") = "W7RJO069255/sislab"
 		Application("SISLAB_InitialCatalog") = "sislab"
-		Application("SISLAB_DataSource") = "NTSPO930"
-		Application("SISLAB_DataUser") = "sislab_dsv"
-		Application("SISLAB_DataUserPwd") = "Embratel@21"
+		'''---> Application("SISLAB_DataSource") = "NTSPO930"
+		'''---> Application("SISLAB_DataUser") = "sislab_dsv"
+		'''---> Application("SISLAB_DataUserPwd") = "Embratel@21"
+		Application("SISLAB_DataSource") = "ntspo006"
+		Application("SISLAB_DataUser") = "sislab1"
+		Application("SISLAB_DataUserPwd") = "sislab1001"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
-        Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Servicos.asmx"
-        'Application("SISLAB_HTTP_WEBSERVICE") = "http://rjojurisdev01/sislabsvc/Servicos.asmx"
+        '''---> Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Servicos.asmx"
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://rjojurisdev01/sislabsvc/Servicos.asmx"
 
     ElseIf Application("SISLAB_AMBIENTE") = "DV2" Then '-- RJOJURISDEV01
 
@@ -77,7 +80,7 @@ Sub Application_OnStart()
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
-        Application("SISLAB_HTTP_WEBSERVICE") = ""
+        Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Servicos.asmx"
 
 	ElseIf Application("SISLAB_AMBIENTE") = "LOC" Then	'--Local
 
@@ -106,8 +109,8 @@ Sub Application_OnStart()
 	Application("SISLAB_FolderArquivos") = "\Arquivos"
 	Application("SISLAB_FolderArquivosLB") = "\ArquivosLB"
 
-	'Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
-	Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
+	Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
+	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
 
 End Sub
 

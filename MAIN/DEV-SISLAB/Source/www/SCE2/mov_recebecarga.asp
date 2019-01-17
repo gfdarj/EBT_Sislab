@@ -32,7 +32,7 @@ If Env.UsuarioSCE() Then
 	            </td>
             </tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td class="destaque">Meus agendamentos: (<small><%=Env.Usuario%></small>)</td></tr>
+            <tr><td><strong>Meus agendamentos: (<small><%=Env.Usuario%></small>)</strong></td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr>
 	            <td>
@@ -43,10 +43,7 @@ If Env.UsuarioSCE() Then
 			            f.ag_numero_destino.onchange = BuscaEq;
 			            f.txtAS.onblur = BuscaEq;
 			            function BuscaEq() {
-				            f.qual_agendamento.value = "DESTINO";
-				            f.target = "escondido";
-				            f.action = "mov_passacarga_buscaeq.asp";
-				            f.submit();
+                            atualizarEQ(f.eq_destino, "DESTINO", f.ag_numero_destino.value);
 			            }
 		            </script>
 	            </td>
@@ -69,30 +66,47 @@ If Env.UsuarioSCE() Then
     </form>
 </div>
 
-<iframe src="" name="escondido" style="display: none;"></iframe>
+<script type="text/javascript" src="../includes/anexo.js" ></script>
+<script type="text/javascript" src="../ajax/max_ajax_ref.js" ></script>
+<script type="text/javascript" src="../ajax/montaCombo.js" ></script>
 
 <script type="text/javascript">
-var d = document.forms[0];
-function validaRecepcao() {
-	var i;
-	if(d.ag_numero_destino.value == "") {
-		alert("Nenhum agendamento selecionado");
-		d.ag_numero_destino.focus();
-	}
-	else if(d.eq_destino.length==0) {
-		alert("Não existe nenhum equipamento para ser recebido");
-		d.ag_numero_destino.focus();
-	}
-	else {
-		for(i=0; i<d.eq_destino.length; i++)
-			d.eq_destino.options[i].selected = true;
+    var d = document.forms[0];
 
-		d.target = "";
-		d.method = "post";
-		d.action = "mov_recebecarga2.asp";
-		d.submit();
+	/*** FUNÇÕES DO AJAX ***/
+    function atualizarEQ(objCombo, qual_agendamento, agendamento)
+    {
+		var url = "../ajax/sce_passacarga_buscaeq.asp";
+		url += "?agendamento=" + agendamento + "&qual_agendamento=" + qual_agendamento;
+
+		var maxAjaxObj = new max.Ajax(url,{update:"",onComplete:
+			function(texto,xml){
+				montaComboSemVazio(objCombo, texto);
+			}
+		});
+		maxAjaxObj.get();
 	}
-}
+
+    function validaRecepcao() {
+	    var i;
+	    if(d.ag_numero_destino.value == "") {
+		    alert("Nenhum agendamento selecionado");
+		    d.ag_numero_destino.focus();
+	    }
+	    else if(d.eq_destino.length==0) {
+		    alert("Não existe nenhum equipamento para ser recebido");
+		    d.ag_numero_destino.focus();
+	    }
+	    else {
+		    for(i=0; i<d.eq_destino.length; i++)
+			    d.eq_destino.options[i].selected = true;
+
+		    d.target = "";
+		    d.method = "post";
+		    d.action = "mov_recebecarga2.asp";
+		    d.submit();
+	    }
+    }
 </script>
 <%
     Set Combo = Nothing

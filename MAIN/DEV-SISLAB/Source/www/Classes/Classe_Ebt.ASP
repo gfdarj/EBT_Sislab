@@ -233,12 +233,15 @@ Class TEbt
 
         chr_Login = ""
 
-        Call BuscaDadosEmbratelAD(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
+        If Application("SISLAB_DEBUG") <> "SIM" Then
+            Call BuscaDadosEmbratelAD(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
+        End If
 
         '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
         If chr_Login = "" Then
-            chr_Login = "josesp@embratel.com.br"
+            chr_Login = "josesp"
         End If
+
 
 	    '-- Pega os dados do usuario se for do CRT
 	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _

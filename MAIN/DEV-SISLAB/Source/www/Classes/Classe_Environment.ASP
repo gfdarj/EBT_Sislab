@@ -156,6 +156,7 @@ Class TEnvironment
 
         Call Ebt.LoginUsuario("")
 
+
 	    'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
 	    chr_Usuario = Ebt.Usuario()
 
