@@ -16,7 +16,8 @@ If Env.UsuarioSCE() Then
     Dim Sce
     Set Sce = New TSce
 
-    Call Tela.ImprimeMenuSce()
+	Call Tela.ImprimeMenuSce()
+
 %>
 <script type="text/javascript" src="includes/bib_obj.js"></script>
 <script type="text/javascript" src="includes/bib_str.js"></script>
@@ -73,7 +74,7 @@ If ag_numero <> "" Then
 	//---- cria os combos de ambiente ---
 	function comboAmbiente(escreve, id_combo, padrao) {
 		var str = '';
-		str += '<select name="' + id_combo + '" >';
+		str += '<select name="' + id_combo + '" id="' + id_combo + '" >';
 <%
 	chr_SQL = _
 				"select a.AMB_ID as VALOR, a.AMB_NOME as DESCRICAO " & _
@@ -393,25 +394,16 @@ end if
 	    }
 	    return linha;
     }
-    function RemoveItem(l) {
-	    document.getElementById("linha_"+l).removeNode(true);
+
+	function RemoveItem(l) {
+		document.getElementById("linha_"+l).remove();
 	    total_linhas--;
-    }
+	}
+
     function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barras digitado na tabela de itens
-	    //if(codbarras.value.length == codbarras.maxLength) {
-    //	 (codbarras.value.length > 0) && 
-    //	if( (document.all["item_" + linhaTabela].eq_id == "") ) {
-		    document.formulario.action = "busca_item_valido.asp?ag_numero=<%=ag_numero%>&cod_barras=" + codbarras.value + "&linhaTabela=" + linhaTabela;
-		    document.formulario.target = "escondido";
-		    document.formulario.submit();
-    //	}
-    //	else {
-		    //if( (codbarras.value.length != 0) && (document.all["item_" + linhaTabela].eq_id != "") ) {
-    //		if( document.all["item_" + linhaTabela].eq_id != "" ) {
-    //			document.all["linha_" + linhaTabela + "_col_2"].innerText = "-- descrição do item --";
-    //			document.all["item_" + linhaTabela].eq_id = "";
-    //		}
-    //	}
+		document.formulario.action = "busca_item_valido.asp?ag_numero=<%=ag_numero%>&cod_barras=" + codbarras.value + "&linhaTabela=" + linhaTabela;
+		document.formulario.target = "escondido";
+		document.formulario.submit();
     }
 </script>
 </table>
@@ -628,71 +620,69 @@ function validaReserva(frm) {
 	return ret;
 }
 
-function cadastraReserva() {
+	function cadastraReserva() {
 <%
 if (not ehAgValido) and (Env.PerfilSCE = PERFIL_RAT) then
 %>
-	alert("ATENÇÂO !\n\nEste agendamento não pode mais ser alterado por um RT em razão\nda proximidade do seu início.");
+		alert("ATENÇÂO !\n\nEste agendamento não pode mais ser alterado por um RT em razão\nda proximidade do seu início.");
 <%
 else
 %>
-	var frm = document.forms[0];
-	var oOption, i, tb;
-	//var separa_campo = "¿?¿";		//mudei o separador para ","
-	var separa_campo = ",";
+		var frm = document.forms[0];
+		var oOption, i, tb;
+		//var separa_campo = "¿?¿";		//mudei o separador para ","
+		var separa_campo = ",";
 
-	if(validaReserva(frm)) {
+		if(validaReserva(frm)) {
 
-		// pega os itens e concatena a lista
-		if(total_linhas > 0) {
-			frm.lista_itens.length = 0;  // limpa o select
+			// pega os itens e concatena a lista
+			if(total_linhas > 0) {
+				frm.lista_itens.length = 0;  // limpa o select
 
-			// varre a tabela concatenando seus valores no VALUE do select
-			tb = document.getElementById("tb_reserva_body");
-			for(i=1; i<=linha; i++) {
-				if(document.getElementById("linha_" + i) != null) {
-					oOption = document.createElement("OPTION");
-					frm.lista_itens.options.add(oOption);
-					oOption.innerText = document.all["item_"+i].eq_id;  // ID do registro na tabela, caso exista
-					oOption.innerText += separa_campo;
-					//oOption.innerText += document.getElementById("item_" + i).value;  // cod barras
-					//oOption.innerText += separa_campo;
-					oOption.innerText += document.getElementById("dt_ini_" + i).value;
-					oOption.innerText += separa_campo;
-					oOption.innerText += document.getElementById("dt_fim_" + i).value;
-					oOption.innerText += separa_campo;
-					oOption.innerText += document.getElementById("cmb_setup_" + i).value;
-					oOption.innerText += separa_campo;
-					oOption.innerText += document.getElementById("cmb_amb_" + i).value;
-					oOption.innerText += separa_campo;
-					oOption.innerText += aceitoSimNao(document.getElementById("linha_" + i + "_col_7").innerText);
-					oOption.value = oOption.innerText;
-					oOption.selected = true;
+				// varre a tabela concatenando seus valores no VALUE do select
+				tb = document.getElementById("tb_reserva_body");
+				for(i=1; i<=linha; i++) {
+					if(document.getElementById("linha_" + i) != null) {
+						oOption = document.createElement("OPTION");
+						frm.lista_itens.options.add(oOption);
+						oOption.innerText = document.all["item_"+i].eq_id;  // ID do registro na tabela, caso exista
+						oOption.innerText += separa_campo;
+						oOption.innerText += document.getElementById("dt_ini_" + i).value;
+						oOption.innerText += separa_campo;
+						oOption.innerText += document.getElementById("dt_fim_" + i).value;
+						oOption.innerText += separa_campo;
+						oOption.innerText += document.getElementById("cmb_setup_" + i).value;
+						oOption.innerText += separa_campo;
+						oOption.innerText += document.getElementById("cmb_amb_" + i).value;
+						oOption.innerText += separa_campo;
+						oOption.innerText += aceitoSimNao(document.getElementById("linha_" + i + "_col_7").innerText);
+						oOption.value = oOption.innerText;
+						oOption.selected = true;
+					}
 				}
 			}
-		}
-		frm.target = "";
-		frm.action = "cad_reserva2.asp";
-		frm.submit();
-	} // valida reserva
+			frm.target = "";
+			frm.action = "cad_reserva2.asp";
+			frm.submit();
+		} // valida reserva
 <%
 end if
 %>
-}
+	}
 
-function aceitoSimNao(valor) {
-	if( (valor == "Sim") || (valor == "SIM"))
-		return 1;
-	else if((valor == "Não") || (valor == "N&atilde;o"))
-		return 0;
-	else 
-		return 9; // no banco de dados este valor sera transformado em NULL
-}
+	function aceitoSimNao(valor) {
+		if( (valor == "Sim") || (valor == "SIM"))
+			return 1;
+		else if((valor == "Não") || (valor == "N&atilde;o"))
+			return 0;
+		else 
+			return 9; // no banco de dados este valor sera transformado em NULL
+	}
 
-f.ag_datainicio.value = "<%=dt_inicio%>";
-f.ag_datatermino.value = "<%=dt_termino%>";
-f.ag_responsavel.value = "<%=responsavel%>";
-f.conforme.value = "1";
+	f.ag_datainicio.value = "<%=dt_inicio%>";
+	f.ag_datatermino.value = "<%=dt_termino%>";
+	f.ag_responsavel.value = "<%=responsavel%>";
+	f.conforme.value = "1";
 </script>
 <%
     Set Sce = Nothing

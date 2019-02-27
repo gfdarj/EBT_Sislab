@@ -27,20 +27,22 @@ If Env.UsuarioSCE() Then
     '-- movimentacao
     lista_itens = replace(replace(replace(request("lista_itens"), "__", ""), "1_", ""), "0_", "")
 %>
+<div class="margem-10">
+
 <form name="formulario" action="mov_acessorios.asp">
 <input type="hidden" name="retornar_para" value="sel_cad_reserva.asp">
 <input type="hidden" name="ag_numero" value="<%=request("ag_numero")%>">
 <input type="hidden" name="eq_id" value="<%=lista_itens%>">
 <input type="hidden" name="ehReserva" value="SIM">
 
-<table width="100%" >
+<table class="largura-total">
 <tr><th class="destaque">Lista de itens selecionados para movimentação pela Reserva/AG <%=request("ag_numero")%></th></tr>
 <tr><td>&nbsp;</td></tr>
 <tr id="tr_data_movimento"><td>Data da Movimentação:&nbsp;<%RW Combo.Data("Mov")%></td></tr>
 <tr id="tr_data_movimento_branco"><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" >
+		<table class="largura-total table-condensed table-bordered table-striped table-hover">
 		<tr>
 			<th width="120px">Cód Barras</th>
 			<th>Modelo</th>
@@ -73,14 +75,16 @@ wend%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td align="center">
-		<input type="button" name="btnNovaConsulta" value="Nova Consulta"  onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 100px;  display: inline;">
+		<input type="button" name="btnNovaConsulta" value="Nova Consulta"  onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 120px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnImprimir" value="Imprimir"  onclick="javascript:imprimirLista();" style="width: 100px;  display: inline;">
+		<input type="button" name="btnImprimir" value="Imprimir"  onclick="javascript:imprimirLista();" style="width: 120px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();"  style="width: 100px; display: inline;">
+		<input type="button" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();"  style="width: 120px; display: inline;">
 	</td></tr>
 </table>
 </form>
+
+</div>
 
 <script type="text/javascript">
 function movimentarReserva() {

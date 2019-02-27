@@ -123,8 +123,6 @@ End If
 		    return false;
 	    }
 
-alert("OI");
-
 	    /* valido data inicial maior que data final */
 	    var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
 	    var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;

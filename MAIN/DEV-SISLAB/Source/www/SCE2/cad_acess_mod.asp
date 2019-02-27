@@ -124,7 +124,7 @@ If Env.UsuarioSCE() Then
 	    url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Consulta de Item&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
 
 	    chr_Buf = _
-		    "<div align='center'>" & VbCRLf & _
+		    "<div class='margem-10'><div align='center'>" & VbCRLf & _
 		    "<table width='100%' cellpadding='0' cellspacing='0'>" & VbCRLf & _
 		    "<tr valign='top'>" & VbCRLf & _
 		    "	<td class='destaque' align='center'>Escolha um Item</td>" & VbCRLf & _
@@ -132,17 +132,17 @@ If Env.UsuarioSCE() Then
 		    "</tr>" & VbCRLf & _
 		    "</table>" & VbCRLf & _
 		    "<br>" & VbCRLf & _
-		    "<table width='100%' cellpadding='0' cellspacing='0'>" & VbCRLf & _
+		    "<table class='largura-total'>" & VbCRLf & _
 		    "<tr valign='top'>" & VbCRLf & _
 		    "	<td class='titulo' align='center'>" & VbCRLf & _
-		    "		<table width='100%' cellpadding='2' cellspacing='0' bgcolor='#008080' border='1'>" & VbCRLf & _
-		    "			<tr bgcolor='#c0c0c0'>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Item</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Núm. de Série</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Modelo / Fab.</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Descrição</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Situação Item</th>" & VbCRLf & _
-		    "				<th bgcolor='#C0E0EF' class='texto1' align='center'>Acess.</th>" & VbCRLf & _
+		    "		<table class='largura-total table-condensed table-bordered table-striped table-hover'>" & VbCRLf & _
+		    "			<tr>" & VbCRLf & _
+		    "				<th align='center'>Item</th>" & VbCRLf & _
+		    "				<th align='center'>Núm. de Série</th>" & VbCRLf & _
+		    "				<th align='center'>Modelo / Fab.</th>" & VbCRLf & _
+		    "				<th align='center'>Descrição</th>" & VbCRLf & _
+		    "				<th align='center'>Situação Item</th>" & VbCRLf & _
+		    "				<th align='center'>Acess.</th>" & VbCRLf & _
 		    "			</tr>" & VbCRLf
 
 	    response.write chr_Buf
@@ -154,23 +154,23 @@ If Env.UsuarioSCE() Then
 			    nserie = InsereBR(rec("eq_numeroserie_M"), 20)
 
 			    chr_Buf = _
-			    "			<tr bgcolor='#c0c0c0' valign='top'>" & VbCrLf & _
-			    "				<td bgcolor='#C0E0EF' class='texto1' align='center'><a href='cad_acess_item.asp?mod_id=" & rec("mod_id") & "&eq_id=" & rec("eq_id") & "'>" & rec("eq_codigobarras_M") & "</a>&nbsp;</td>" & VbCrLf & _
-			    "				<td bgcolor='#C0E0EF' class='texto1' align='center'>" & nserie & "&nbsp;</td>" & VbCrLf
+			    "			<tr valign='top'>" & VbCrLf & _
+			    "				<td align='center'><a href='cad_acess_item.asp?mod_id=" & rec("mod_id") & "&eq_id=" & rec("eq_id") & "'>" & rec("eq_codigobarras_M") & "</a>&nbsp;</td>" & VbCrLf & _
+			    "				<td align='center'>" & nserie & "&nbsp;</td>" & VbCrLf
 
 			    if rec("mod_id") <> 0 then
 				    chr_Buf = chr_Buf & _
-					    "			<td bgcolor='#C0E0EF' class='texto1' align='center'>" & rec("mod_codnome_M") & "<BR>" & rec("fab_nome_M") & "&nbsp;</td>" & VbCrLf & _
-					    "			<td bgcolor='#C0E0EF' class='texto1' align='center'>" & rec("mod_descricao_M") & "&nbsp;</td>" & VbCrLf & _
-					    "			<td bgcolor='#C0E0EF' class='texto1' align='center'>" & Sce.ImprimeStatusItem(rec) & "&nbsp;</td>" & VbCrLf
+					    "			<td align='center'>" & rec("mod_codnome_M") & "<BR>" & rec("fab_nome_M") & "&nbsp;</td>" & VbCrLf & _
+					    "			<td align='center'>" & rec("mod_descricao_M") & "&nbsp;</td>" & VbCrLf & _
+					    "			<td align='center'>" & Sce.ImprimeStatusItem(rec) & "&nbsp;</td>" & VbCrLf
 			    else
 				    chr_Buf = chr_Buf & _
-					    "			<td bgcolor='#C0E0EF' class='texto1' align='center'>&nbsp;</td>" & VbCrLf & _
-					    "			<td bgcolor='#C0E0EF' class='texto1' align='center'>&nbsp;</td>" & VbCrLf
+					    "			<td align='center'>&nbsp;</td>" & VbCrLf & _
+					    "			<td align='center'>&nbsp;</td>" & VbCrLf
 			    end if
 
 			    chr_Buf = chr_Buf & _
-				    "				<td bgcolor='#C0E0EF' class='texto1' align='center'>" & rec("EQ_TEMACESSORIO_M") & "</td>" & VbCrLf & _
+				    "				<td align='center'>" & rec("EQ_TEMACESSORIO_M") & "</td>" & VbCrLf & _
 				    "		</tr>"
 
 			    Response.Write chr_Buf
@@ -178,7 +178,7 @@ If Env.UsuarioSCE() Then
 		 	    rec.movenext
 		    wend
 	    else
-		    Response.Write "<td bgcolor='#C0E0EF' class='texto1' align='center' colspan='8'>Não existem equipamentos cadastrados com esses parâmetros.</td>"
+		    Response.Write "<td align='center' colspan='8'>Não existem equipamentos cadastrados com esses parâmetros.</td>"
 	    end if
 
 	    chr_Buf = _
@@ -189,7 +189,7 @@ If Env.UsuarioSCE() Then
 		    "	<td class='texto1' align='left'><br></td>" & VbCrLf & _
 		    "</tr>" & VbCrLf & _
 		    "</table>" & VbCrLf & _
-		    "</div><br><br>" & VbCrLf
+		    "</div></div><br><br>" & VbCrLf
 
 	    Response.Write chr_Buf
 	    Response.Flush
