@@ -19,22 +19,29 @@ Call Env.StoredProcedure(False, objSP, "sp_SCE_CADASTRA_ACEITE_RESERVA")
 %>
 <html>
 <body>
-	<script type="text/javascript">
+    <form method="post" action="sel_cad_reserva2_mov.asp">
+
+        <input type="hidden" name="ag_numero" value="<%=request("ag_numero")%>" />
+        <input type="hidden" name="lista_itens" value="<%=request("lista_itens")%>" />
+
+    	<script type="text/javascript">
 <%
 If Env.oconn.Errors.Count > 0 Then%>
-	alert("ERRO DE GRAVAÇÂO:\n\n<%=Env.oconn.Errors(0).Description%>");
+	        alert("ERRO DE GRAVAÇÂO:\n\n<%=Env.oconn.Errors(0).Description%>");
 <%
 else%>
 <%
 	'-- gravou o aceite, nao verifico se existe algum nao aceito pois na tela SEL_CAD_RESERVA2.ASP
 	'-- o mesmo já é verificado, entao eu apenas verifico o parametro que indica tal situacao
-	if UCase(request("tudoAceitoOK")) = "SIM" then%>
-		window.parent.location.href = "sel_cad_reserva2_mov.asp?ag_numero=<%=request("ag_numero")%>&lista_itens=<%=request("lista_itens")%>";
+    if UCase(request("tudoAceitoOK")) = "SIM" then %>
+        //window.parent.location.href = "sel_cad_reserva2_mov.asp?ag_numero=<%=request("ag_numero")%>&lista_itens=<%=request("lista_itens")%>";
+            document.forms[0].submit();
 <%	else%>
-		alert("Os itens foram gravados com sucesso");
+		    alert("Os itens foram gravados com sucesso");
 <%	end if
 End If
 %>
-	</script>
+    	</script>
+    </form>
 </body>
 </html>
