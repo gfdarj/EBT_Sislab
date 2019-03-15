@@ -49,75 +49,76 @@ Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
 	if titulo1 = "" then titulo1 = "Dados dos Participantes Embratel"
 	if titulo2 = "" then titulo2 = "Participantes Embratel"
 %>
-<script type="text/javascript">
-    function adiciona_retira_participantes<%=nome%>(tipo)
-    {
-	    var frm = document.forms[0];
-	    var nome = frm.txtNome<%=nome%>;
-	    var motivo = frm.txtMotivo<%=nome%>;
-	    var lista = frm.lst<%=nome%>;
+    <script type="text/javascript">
+        function adiciona_retira_participantes<%=nome%>(tipo)
+        {
+	        var frm = document.forms[0];
+	        var nome = frm.txtNome<%=nome%>;
+	        var motivo = frm.txtMotivo<%=nome%>;
+	        var lista = frm.lst<%=nome%>;
 
-	    if (tipo == 0)
-	    {
-		    if (lista.selectedIndex != -1) {
-			    lista.options[lista.selectedIndex] = null;
-		    }
-	    }
-	    else{
-		    if (nome.value == ""){
-			    alert("O campo 'Matricula ou UserName' deve ser preenchido.");
-			    nome.focus();		
-		    }
-		    else if (motivo.value == ""){
-			    alert("O campo 'Motivo da Participação' deve ser preenchido.");
-			    motivo.focus();		
-		    }
-		    else{
-			    submitFormEscondido();
-		    }
-	    }
-    }
+	        if (tipo == 0)
+	        {
+		        if (lista.selectedIndex != -1) {
+			        lista.options[lista.selectedIndex] = null;
+		        }
+	        }
+	        else{
+		        if (nome.value == ""){
+			        alert("O campo 'Matricula ou UserName' deve ser preenchido.");
+			        nome.focus();		
+		        }
+		        else if (motivo.value == ""){
+			        alert("O campo 'Motivo da Participação' deve ser preenchido.");
+			        motivo.focus();		
+		        }
+		        else{
+			        submitFormEscondido();
+		        }
+	        }
+        }
+        function submitFormEscondido()
+        {
+	        var frm = document.forms[0]
+	        var nome = frm.txtNome<%=nome%>;
+	        frm.action = "eventosInternos.asp?hdnevento=<%=7%>&nome="+nome.value+"&nomeControle=<%=nome%>&ag_numero=<%=ag_numero%>";
+	        frm.method = "post";
+	        frm.target = "escondido";
+	        frm.submit();
+        }
+    </script>
 
-    function submitFormEscondido()
-    {
-	    var frm = document.forms[0]
-	    var nome = frm.txtNome<%=nome%>;
-	    frm.action = "eventosInternos.asp?hdnevento=<%=7%>&nome="+nome.value+"&nomeControle=<%=nome%>&ag_numero=<%=ag_numero%>";
-	    frm.method = "post";
-	    frm.target = "escondido";
-	    frm.submit();
-    }
-</script>
-<input type="hidden" name="txtNomeCompleto<%=nome%>">
+    <input type="hidden" name="txtNomeCompleto<%=nome%>">
 
-<table id="tab<%=Nome%>" border="1" style="width: 100px;">
-<tr>
-	<th class="linha-fundo">&nbsp;<%=titulo1%></th>
-</tr>
-<tr>
-    <td>
-        Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
+    <div id="tab<%=Nome%>" style="width: 100%; display: block;">
+        <div class="linha-fundo" style="width:100%;"><strong><%=titulo1%></strong></div>
         <br />
-		<input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+3%>" title="Adiciona um participante Embratel na lista">
-		&nbsp;
-		<input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+4%>" title="Remove um participante Embratel na lista">
+        <div>
+            Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
+        </div>
         <br />
+        <div>
+            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+3%>" title="Adiciona um participante Embratel na lista">
+		    &nbsp;
+		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+4%>" title="Remove um participante Embratel na lista">
+        </div>
+        <br />
+        <div>
 		<%=titulo2%>
-        <br>
-	    <select name="lst<%=nome%>"  size="4"
-			style="LINE-HEIGHT: 30px; PADDING-TOP: 3px; WIDTH: 640px; overflow: auto;"
-			multiple tabindex="<%=index+5%>">
-        </select>
-        <p>&nbsp;</p>
-    </td>
-</tr>
-</table>
+        <br />
+	        <select name="lst<%=nome%>"  size="4"
+			    style="LINE-HEIGHT: 30px; PADDING-TOP: 3px; WIDTH: 640px; overflow: auto;"
+			    multiple tabindex="<%=index+5%>">
+            </select>
+        </div>
+        <br />
+    </div>
 
-<script type="text/javascript">
-    document.getElementById("tab<%=nome%>").style.display = 'none';
-</script>
+    <script type="text/javascript">
+        document.getElementById("tab<%=nome%>").style.display = 'none';
+    </script>
 <%
 End Function
 

@@ -60,6 +60,7 @@ If num_ag <> "" Then
 	End If
 End If
 %>
+<script type="text/javascript" src="includes/formataMoeda.js"></script>
 <script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
     function areaRAT(){
@@ -272,7 +273,7 @@ End If
 
         if (frm.cmbPartEBT[0].checked)
         {
-            document.getElementById("tabParticipantesEBT").style.display = 'inline';
+            document.getElementById("tabParticipantesEBT").style.display = 'block';
         }
         else
         {
@@ -301,35 +302,36 @@ End If
     {
         var frm = document.forms[0];
         if (frm.cmbPartExternos[0].checked)
-	        document.getElementById("tabParticipantes").style.display = 'inline';
+	        document.getElementById("tabParticipantes").style.display = 'block';
 	    else
             document.getElementById("tabParticipantes").style.display = 'none';
     }
 </script>
 
 <div class="margem-10">
-<form method="post" action="CadAgendamentoClienteA.asp" name="frmAgendaTeste">
 
-<input type="hidden" name="hdAG">
-<input type="hidden" name="strParticipantesExternos">
-<input type="hidden" name="strParticipantesEBT">
-<input type="hidden" name="cmbEmail" value="1" id="cmbEmail1">
+    <form method="post" action="CadAgendamentoClienteA.asp" name="frmAgendaTeste">
 
-<table class="largura-total">
-<tr valign="middle">
-	<td>
-		&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b>
-	</td>
-	<td align="right">
-		<b>
+        <input type="hidden" name="hdAG">
+        <input type="hidden" name="strParticipantesExternos">
+        <input type="hidden" name="strParticipantesEBT">
+        <input type="hidden" name="cmbEmail" value="1" id="cmbEmail1">
+
+        <table class="largura-total">
+        <tr valign="middle">
+	        <td>
+		        &nbsp;<strong><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</strong>
+	        </td>
+	        <td align="right">
+        		<b>
 		<%if num_ag <> "" then%>
-		Agendamento Nº &nbsp;<%=num_ag%> (<%=situacao_ag_desc%>)
+		            Agendamento Nº &nbsp;<%=num_ag%> (<%=situacao_ag_desc%>)
 		<%else%>
-		<a href="javascript:;" title="Utiliza os dados de agendamentos anteriores como referência para um novo">
+            		<a href="javascript:;" title="Utiliza os dados de agendamentos anteriores como referência para um novo">
 		Novo Agendamento&nbsp;&nbsp;-&nbsp;&nbsp;Usar uma AS como modelo</a>
-		</b>
-		<select name="asRef">
-		<option value="">--</option>
+		        </b>
+		        <select name="asRef">
+		        <option value="">--</option>
 		<%
 		if bln_usuarioCRT then
 			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento order by ag_numero desc"
@@ -337,161 +339,138 @@ End If
 			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento where ag_username = '" & Env.Usuario & "' order by ag_numero desc"
 		end if
 		call comboBD(objConn,ssql)%>
-		</select>
-		<input type="button" value="Ok" onclick="usarReferencia();">
+		        </select>
+		        <input type="button" value="Ok" onclick="usarReferencia();">
 	<%end if%>
-	</td>
-</tr>
-</table>
+	        </td>
+        </tr>
+        </table>
 
-<table border="0">
-<tr>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-</tr>
+
+        <table border="0">
+        <tr>
+	        <td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>
+	        <td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>
+        </tr>
 <%
 if num_ag <> "" then
 	sSQL = "Select VW.* From vw_ArquivosTeste VW "
 	sSQL = sSQL & " WHERE VW.AG_NUMERO=" & num_ag
 	call Env.RecordSet( true, rsArquivos, sSQL)
 	if Not rsArquivos.eof then%>
-<tr>
-	<th colspan="10">Arquivos Associados</th>
-</tr>
-<tr>
-	<td colspan="10">
+        <tr>
+	        <th colspan="10">Arquivos Associados</th>
+        </tr>
+        <tr>
+	        <td colspan="10">
 <%		If MostraDadoSigiloso(int_Sigilo, chr_Username) Then %>
-		<table class="largura-total">
+		        <table class="largura-total">
 <%			rsArquivos.MoveFirst
 			Do while Not rsArquivos.eof%>
-		<tr>
-			<td>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></td>
-		</tr>
+		        <tr>
+			        <td>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></td>
+		        </tr>
 <%			rsArquivos.MoveNext
 			Loop%>
-		</table>
+        		</table>
 <%		Else
 			Response.Write ExibeMensagemSigiloAS(0)
 		End If%>
-	</td>
-</tr>
+	        </td>
+        </tr>
 <%	End if
 End if
 %>
-<tr><td>&nbsp;</td></tr>
+        </table>
+
+        <br />
 <%
 if Env.EhRat() then
 %>
-<tr>
-	<th colspan="10" class="linha-fundo">Solicitar Agendamento pelo Cliente</th>
-</tr>
-<tr>
-	<td colspan="10">Nome do Solicitante: &nbsp;
-		<input type="text"  name="txtSolicitante" size="25"  maxlength="80">
-		<input type="button" value="Buscar" onclick="BuscarSolicitante();">
-	</td>
-</tr>
+        <div style="width: 100%">
+	        <div class="linha-fundo" style="width: 100%"><strong>Solicitar Agendamento pelo Cliente</strong></div><br />
+            Nome do Solicitante: &nbsp;
+            <input type="text"  name="txtSolicitante" size="25"  maxlength="80">
+		    <input type="button" value="Buscar" onclick="BuscarSolicitante();">
+        </div>
+
+        <br />
 <%
 end if
 %>
-<tr><td>&nbsp;</td></tr>
-<tr>
-	<th align="left" colspan="10" class="linha-fundo">Dados do Solicitante</th>
-</tr>
-<tr class="espaco-minimo-35">
-	<td colspan="6">
-		Nome do Responsável: &nbsp;
-		<input type="text" readonly name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
-	</td>
-	<td colspan="4">Matrícula:&nbsp;
-		<input readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
-	</td>
-</tr>
-<tr class="espaco-minimo-35">
-	<td  colspan="3">
-		Órgão:&nbsp;<input type="text" readonly name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
-	</td>
-	<td  colspan="4">E-mail:&nbsp;
-		<input type=hidden name="Username">
-		<input readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
-	</td>
-	<td  colspan="3">Ramal:&nbsp;
-		<input name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
-	</td>
-</tr>
+        <div style="width: 100%">
+	        <div class="linha-fundo" style="width: 100%"><strong>Dados do Solicitante</strong></div><br />
+                <div>
+		            Nome do Responsável: &nbsp;
+		            <input type="text" readonly name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Matrícula:&nbsp;
+		            <input readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
+                </div>
+                <br />
+                <div>
+                    Órgão:&nbsp;<input type="text" readonly name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            E-mail:&nbsp;
+                    <input type=hidden name="Username">
+		            <input readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            Ramal:&nbsp;<input name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
+                </div>
+        </div>
 
-<tr><td>&nbsp;</td></tr>
+        <br />
 
-<tr>
-	<th colspan="10" class="linha-fundo">Dados do Agendamento</th>
-</tr>
+        <div class="linha-fundo"><strong>Dados do Agendamento</strong></div>
 
-<tr class="espaco-minimo-35">
-    <td colspan="10"><span class="texto-vermelho-bold"><b>*</b></span>
-		<u title="Nome de referência associada a atividade.">Título do agendamento:</u>&nbsp;
-		<input  name="txtTitulo" size="70" tabindex="7" maxlength="50" title="Nome de referência associada a atividade">
-	</td>
-</tr>
+        <br />
 
-<tr class="espaco-minimo-35">
-    <td colspan="10">Período previsto para a atividade:&nbsp;
-		&nbsp;&nbsp;
-		<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Início:&nbsp;
-		<%call comboData("INICIO")%>
-		&nbsp;&nbsp;&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Fim:&nbsp;
-		<%call comboData("FIM")%>
-	</td>
-</tr>
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>
+		    <u title="Nome de referência associada a atividade.">Título do agendamento:</u>&nbsp;
+		    <input  name="txtTitulo" size="70" tabindex="7" maxlength="50" title="Nome de referência associada a atividade">
+        </div>
+        
+        <br />
 
-<tr class="espaco-minimo-35">
-	<td colspan="10">
+        <div>
+            Período previsto para a atividade:&nbsp;&nbsp;&nbsp;
+		    <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Início:&nbsp;
+		    <%call comboData("INICIO")%>
+		    &nbsp;&nbsp;&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Fim:&nbsp;
+		    <%call comboData("FIM")%>
+        </div>
+
+        <br />
+
+        <div>
 			<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;
             <u title="Selecionar a principal tecnologia associada a atividade">Tecnologia:</u>&nbsp;
 			<%call comboTecnologia("cmbTec",objConn,"N")%>
-	</td>
-</tr>
+        </div>
 
-<tr class="espaco-minimo-35">
-	<td colspan="10">
-		<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Tipo de Sigilo:
-        <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">Sigilo de Resultado&nbsp;
-        <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">Sigilo de Ambiente e Resultado&nbsp;
-		<input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>Sem Sigilo&nbsp;
-	</td>
-</tr>
+        <br />
 
-<!--
-<tr>
-	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Receber e-mail de acompanhamento da situação da AS: &nbsp;
-        <input type="radio" name="cmbEmail" value="1" id="cmbEmail1">
-        Sim&nbsp;
-        <input type="radio" name="cmbEmail"  value="0" checked id="cmbEmail0">
-	    Não&nbsp;
-	</td>
-</tr>
--->
+        <div>
+		    <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Tipo de Sigilo:
+            <input type="radio" name="cmbSigilo"  value="1" id="cmbSigilo1">Sigilo de Resultado&nbsp;
+            <input type="radio" name="cmbSigilo"  value="2" id="cmbSigilo2">Sigilo de Ambiente e Resultado&nbsp;
+		    <input type="radio" name="cmbSigilo"  value="0" id="cmbSigilo0" checked>Sem Sigilo&nbsp;
+        </div>
 
-<tr class="espaco-minimo-35">
-	<td colspan="10"> 
-        <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes externos a Embratel: &nbsp;
-        <input type="radio" name="cmbPartExternos" onClick="PreparaCamposPARTEXT()" value="1" tabindex="13" ID="cmbPartExternos1">
-        Sim&nbsp;
-        <input type="radio" name="cmbPartExternos"  onClick="PreparaCamposPARTEXT()" value="0" tabindex="14" ID="cmbPartExternos0" checked>
-	    Não&nbsp;
-	</td>
-</tr>
+        <br />
 
-<tr class="espaco-minimo-35" id="tabParticipantes" style="display: none;">
-	<td colspan="10" style="width: 100%;">
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes externos a Embratel: &nbsp;
+            <input type="radio" name="cmbPartExternos" onClick="PreparaCamposPARTEXT()" value="1" tabindex="13" ID="cmbPartExternos1">
+            Sim&nbsp;
+            <input type="radio" name="cmbPartExternos"  onClick="PreparaCamposPARTEXT()" value="0" tabindex="14" ID="cmbPartExternos0" checked>
+	        Não&nbsp;
+        </div>
+
+        <br />
+
+        <div id="tabParticipantes" style="display: none; width: 100%;">
 
 			<script type="text/javascript">
 				function adiciona_retira_participantesParticipantes(tipo)
@@ -533,12 +512,10 @@ end if
 					}
 				}
 			</script>
-	
+
+            <div style="width: 100%;" class="linha-fundo"><strong>Dados dos participantes externos</strong></div><br />
+
 			<table border="0" style="width: 100px;">
-			<tr><td></td><td></td><td></td><td></td></tr>
-			<tr>
-				<th colspan="4" class="linha-fundo">Dados dos participantes externos</th>
-			</tr>
 			<tr>
 				<td style="vertical-align: top;">
 					<table border="0" style="width: 500px;">
@@ -546,189 +523,149 @@ end if
 						<td>Nome:</td>
 						<td><input name="txtNomeParticipantes" size="40" tabindex="15" maxlength="50"></td>
 					</tr>
-					<tr>
+					<tr class="espaco-minimo-35">
 						<td>Empresa:</td>
-						<td><input  name="txtEmpresaParticipantes" size="30" tabindex="19" maxlength="50"></td>
+						<td><input  name="txtEmpresaParticipantes" size="30" tabindex="16" maxlength="50"></td>
 					</tr>
-					<tr> 
+					<tr class="espaco-minimo-35"> 
 						<td>Motivo da participação:</td>
-						<td><input  name="txtMotivoParticipantes" size="40" tabindex="20" maxlength="200"></td>
+						<td><input  name="txtMotivoParticipantes" size="40" tabindex="17" maxlength="200"></td>
 					</tr>
 					</table>
 				</td>
+				<td>&nbsp;&nbsp;</td>
 				<td>
 					&nbsp;
-					<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="16">
+					<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="18">
 					<br />
 					&nbsp;
-					<input  type="button" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="17">
+					<input  type="button" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="19">
 					&nbsp;
 				</td>
-				<td>&nbsp;</td>
-				<td>
+				<td>&nbsp;&nbsp;</td>
+				<td class="espaco-minimo-35">
 					Participantes Externos:<br />
 					<select name="lstParticipantes" size="6" 
-						style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 400px;"
-						multiple tabindex="18">
+						style="LINE-HEIGHT: 40px; PADDING-TOP: 3px; WIDTH: 400px;"
+						multiple tabindex="20">
 					</select>
 				</td>
 			</tr>
 			</table>
 
+            <br />
+
 			<script type="text/javascript">
 				document.getElementById("tabParticipantes").style.display = 'none';
 			</script>
-	</td>
-</tr>
 
-<tr class="espaco-minimo-35">
-	<td colspan="10"> 
-        <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes Embratel: &nbsp;
-        <input type="radio" name="cmbPartEBT" onClick="PreparaCamposPART(this.form)" value="1" tabindex="21" ID="cmbPartEBT1">
-        Sim&nbsp;
-        <input type="radio" name="cmbPartEBT"  onClick="PreparaCamposPART(this.form)" value="0" tabindex="22" checked ID="cmbPartEBT0">
-	    Não&nbsp;
-	</td>
-</tr>
+        </div>
 
-<tr class="espaco-minimo-351" id="tr_externo_ParticipantesEBT" style="display: block;">
-	<td colspan="10"> 
-		<%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
-	</td>
-</tr>
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes Embratel: &nbsp;
+            <input type="radio" name="cmbPartEBT" onClick="PreparaCamposPART(this.form)" value="1" tabindex="21" ID="cmbPartEBT1">
+            Sim&nbsp;
+            <input type="radio" name="cmbPartEBT"  onClick="PreparaCamposPART(this.form)" value="0" tabindex="22" checked ID="cmbPartEBT0">
+	        Não&nbsp;
+        </div>
 
-<tr class="espaco-minimo-35">
-	<td colspan="10">
-        <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar uma breve descrição e seu objetivo.">Breve descrição do objetivo principal da atividade:</u><br>
-		<textarea name="objetivos"  cols="120" rows="4"></textarea>
-	</td>
-</tr>
+        <br />
 
-<tr class="espaco-minimo-35">
-	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a Embratel: &nbsp;
-        <input type="radio" name="cmbCliExternos" onClick="PreparaCamposCLI()" id ="cmbCliExternos1" value="1" tabindex="27">
-        Sim&nbsp;
-        <input type="radio" name="cmbCliExternos"  onClick="PreparaCamposCLI()" id ="cmbCliExternos0" value="0" tabindex="28">
-	    Não&nbsp;
-	</td>
-</tr>
+        <%call ControleParticipantesInternos("ParticipantesEBT",22, "", "", num_ag)%>
 
-<tr class="espaco-minimo-35" id="tabClienteEBT">
-	<td colspan="10">
-        <table border="0" style="width: 800px;">
-        <tr>
-	        <th class="linha-fundo">&nbsp;Dados do Cliente</th>
-        </tr>
-        <tr>
-            <td>
-		        <table class="largura-total">
-		        <tr>
-                    <td>
-						<span class="texto-vermelho-bold"><b>*</b></span>
-					</td>
-			        <td style="width: 180px;">
-                        <u title="Informar o nome do Cliente ou Razão Social.">Nome do Cliente:</u>
-			        </td>
-			        <td>
-	        	        <input  name="txtNomeCliente" size="40" tabindex="30" maxlength="200" title="Informar o nome do Cliente ou Razão Social.">
-			        </td>
-		        </tr>
-		        <tr> 
-                    <td>&nbsp;</td>
-			        <td>
-				        <u title="Informar expectativa de retorno associado à atividade ou valor de carteira envolvido.">Retorno Estimado(R$):</u>
-			        </td>
-			        <td>
-				        <input type="text" value="0,00" name="txtRetornoCliente" size="15" tabindex="31" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar a expectativa de retorno associado à atividade ou valor de carteira envolvido.">
-				        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				        <u title="Informar o valor do contrato associado à atividade.">Valor do Contrato (R$):</u>
-				        &nbsp;
-				        <input type="text" value="0,00" name="txtValorContratoCliente" size="15" tabindex="32" maxlength="200" onKeyPress="onlynum(this)" onKeyDown="formatarOnKeyDown(this);" onKeyUp="formatarOnKeyUp(this);" title="Informar o valor do contrato associado à atividade.">
-			        </td>
-		        </tr>
-				</table>
-			</td>
-		</tr>
-        </table>
-	</td>
-</tr>
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar uma breve descrição e seu objetivo.">Breve descrição do objetivo principal da atividade:</u><br>
+		    <textarea name="objetivos" cols="120" rows="4" tabindex="28"></textarea>
+	    </div>
 
-<tr class="espaco-minimo-35" id="tabCliente">
-	<td colspan="10">
+        <br />
 
-        <table border="0" style="width: 800px; font-weight: normal;" class="linha-fundo">
-        <tr>
-	        <th>&nbsp;Dados do Cliente</th>
-        </tr>
-        <tr>
-            <td>
-		        <table border="0">
-		        <tr> 
-			        <td>
-				        <span class="texto-vermelho-bold">*</span>&nbsp;
-                        <u title="Informar o principal objetivo do plano de metas associado a atividade.">Item associado ao plano de metas:</u>
-			        </td>
-			        <td>
-        		        <%'call comboTecnologia("cmbItem" & nome,objConn,"N")%>
-				        &nbsp;&nbsp;--
-				        <input type="hidden" name="cmbItem" value="">
-			        </td>
-		        </tr>
-	            </table>
-            </td>
-        </tr>
-        </table>
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a Embratel: &nbsp;
+            <input type="radio" name="cmbCliExternos" onClick="PreparaCamposCLI()" id ="cmbCliExternos1" value="1" tabindex="29">
+            Sim&nbsp;
+            <input type="radio" name="cmbCliExternos"  onClick="PreparaCamposCLI()" id ="cmbCliExternos0" value="0" tabindex="30">
+	        Não&nbsp;
+        </div>
 
-        <script type="text/javascript">
-            document.getElementById("tabCliente").style.display = 'none';
-            document.getElementById("tabClienteEBT").style.display = 'none';
-        </script>
+        <br />
 
-	</td>
-</tr>
+        <div style="width: 100%" id="tabClienteEBT">
+	        <div class="linha-fundo" style="width: 100%"><strong>Dados do Cliente</strong></div><br />
+            <div>
+                <span class="texto-vermelho-bold"><b>*</b></span><u title="Informar o nome do Cliente ou Razão Social.">Nome do Cliente:</u>
+                <input  name="txtNomeCliente" size="40" tabindex="31" maxlength="200" title="Informar o nome do Cliente ou Razão Social.">
+            </div>
+            <br />
 
-<tr class="espaco-minimo-35">
-	<td colspan="10">
-        <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais.">Ambiente Necessário:</u><br>
-		<textarea name="ambiente"  cols="120" rows="4" title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais."></textarea>
-	</td>
-</tr>
+            <div>
+                <u title="Informar expectativa de retorno associado à atividade ou valor de carteira envolvido.">Retorno Estimado(R$):</u>
+                &nbsp;
+				<input type="text" value="0,00" name="txtRetornoCliente" size="15" tabindex="32" maxlength="200" onKeyUp="FormataMoeda(this);" title="Informar a expectativa de retorno associado à atividade ou valor de carteira envolvido.">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<u title="Informar o valor do contrato associado à atividade.">Valor do Contrato (R$):</u>
+				&nbsp;
+				<input type="text" value="0,00" name="txtValorContratoCliente" size="15" tabindex="33" maxlength="200" onKeyUp="FormataMoeda(this);" title="Informar o valor do contrato associado à atividade.">
+            </div>
+            <br />
+        </div>
 
-<tr class="espaco-minimo-100">
-	<td colspan="10"><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW).">Recursos Necessários:</u><br>
-		<textarea name="recursos"  cols="120" rows="4" title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW)."></textarea>
-	</td>
-</tr>
+        <div style="width: 100%" id="tabCliente">
+	        <div class="linha-fundo" style="width: 100%"><strong>Dados do Cliente</strong></div><br />
+            <div>
+				<span class="texto-vermelho-bold">*</span>&nbsp;
+                <u title="Informar o principal objetivo do plano de metas associado a atividade.">Item associado ao plano de metas:</u>
+        		&nbsp;
+                <%'call comboTecnologia("cmbItem" & nome,objConn,"N")%>
+				&nbsp;&nbsp;--
+				<input type="hidden" name="cmbItem" value="" tabindex="34">
+            </div>
+            <br />
 
-<tr class="espaco-minimo-100">
-	<td colspan="10">
-        <u title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</u><br>
-		<textarea name="obs"  cols="120" rows="4" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento."></textarea>
-	</td>
-</tr>
+            <script type="text/javascript">
+                document.getElementById("tabCliente").style.display = 'none';
+                document.getElementById("tabClienteEBT").style.display = 'none';
+            </script>
+        </div>
 
-<tr>
-	<td colspan="10">&nbsp;</td>
-</tr>
+        <div>
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais.">Ambiente Necessário:</u><br>
+	        <textarea name="ambiente"  cols="120" rows="4" tabindex="35" title="Informar a necessidade de área util (m2), sala de apoio, mesa adicional ou rack para equipamento,pontos de energia e telefônicos (qtde/tipo), aterramento, armazenamento de materiais."></textarea>
+        </div>
 
-<tr>
-	<td colspan="10">
+        <br />
+
+        <div>
+	        <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;<u title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW).">Recursos Necessários:</u><br>
+	        <textarea name="recursos"  cols="120" rows="4" tabindex="36" title="Informar instrumentos, cabos, conectores, facilidades, interfaces, apoio técnico p/ execução, equipamento (HW/SW)."></textarea>
+        </div>
+
+        <br />
+
+        <div>
+            <u title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</u><br>
+		    <textarea name="obs"  cols="120" rows="4" tabindex="37" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento."></textarea>
+        </div>
+
+        <br />
+
+        <div>
+
 <%		if num_ag = "" then %>
-		<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
+		    <input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="38">
 <%		else
 			if bln_ehRAT then 'or bln_ehRT then%>
-		<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;">
+	    	<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="38">
 <%			else %>
-		<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled>
+    		<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="38">
 <%			end if
 			if bln_usuarioCRT then %>
-		<input  type="button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;">
-		<input  type="button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;">
+		    <input  type="button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;" tabindex="39">
+		    <input  type="button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;" tabindex="40">
 <%			end if %>
 <%		end if %>
 <%		If Env.Usuario = chr_Username Or bln_usuarioCRT Then %>
-		<input  type="button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento">
+		    <input  type="button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento" tabindex="41">
 <%		End If %>
 
 <%'if not SolicitouCancela then%>
@@ -741,13 +678,14 @@ end if
 		</script>
 -->
 <%'end if%>
-	</td>
-</tr>
-</table>
-</form>
-<br />
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-</div>
+        </div>
+
+    </form>
+
+    <br />
+    <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
+
+</div> <!--margem-->
 
 <script type="text/javascript">
 	function uploadArquivo() {
