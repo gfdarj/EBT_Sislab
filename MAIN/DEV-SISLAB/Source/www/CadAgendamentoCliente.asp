@@ -703,11 +703,9 @@ end if
 <%end if%>
 	}
 
-
 	var frm = document.forms[0];
 	var frmAll = document.all;
 	var ultimo_da_lista;
-
 <%
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 'Pego dados do agendamento jah existente
@@ -729,15 +727,15 @@ if num_ag <> "" then
 	%>
 	frm.hdAG.value = '<%=num_ag%>';
 	<%if bln_AchouEBT then%>
-		frm.txtResponsavel.value = '<%=NomeReduzido%>';
+		frm.txtResponsavel.value = '<%=Nome_Reduzido%>';
 		frm.txtMatricula.value = '<%=Matricula%>';
-		frm.txtOrgao.value = '1<%=SiglaOrgao%>';
+		frm.txtOrgao.value = '<%=SiglaOrgao%>';
 		frm.txtRamal.value='<%=TEL1_COM%>';
 	<%else
 		'Usuario não existe mais na base embratel%>
 		frm.txtResponsavel.value = '<%=objSiteRS("ag_username")%>';
 		frm.txtMatricula.value = '--';
-		frm.txtOrgao.value = '2<%=chr_OrgaoSQL%>';
+		frm.txtOrgao.value = '<%=chr_OrgaoSQL%>';
 		frm.txtRamal.value='--';
 	<%end if%>
 	frm.txtTitulo.value='<%=objSiteRS("ag_titulo")%>';
