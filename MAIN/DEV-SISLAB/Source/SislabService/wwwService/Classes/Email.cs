@@ -24,7 +24,20 @@ namespace Embratel.Sislab.Classes
             entEmail.EMailDestinatario = destinatario;
             entEmail.Corpo = mensagem;
 
-            Enviar(entEmail);
+            this.Enviar(entEmail);
+        }
+
+        public void EnviarGenerico(String smtpServer, String numeroPorta, Boolean habilitarSSL, String emailRemetente, String senha, String emailDestinatario, String assunto, String mensagem)
+        {
+            EmailENT entEmail = new EmailENT();
+
+            entEmail.Assunto = assunto;
+            entEmail.EMailRemetente = emailRemetente;
+            entEmail.EMailDestinatario = emailDestinatario;
+            entEmail.Corpo = mensagem;
+
+            EMailHelper sendMail = new EMailHelper();
+            sendMail.EnviarGenerico(entEmail, smtpServer, numeroPorta, habilitarSSL, emailRemetente, senha);
         }
 
     }

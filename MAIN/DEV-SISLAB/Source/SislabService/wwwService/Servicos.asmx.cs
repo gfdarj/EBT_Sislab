@@ -28,7 +28,7 @@ namespace Embratel.Sislab.Servico
             }
             catch (Exception ex)
             {
-                ret = "ERRO: " + ex.Message;
+                ret = "ERRO[ObtemUsuario]: " + ex.Message;
             }
             return ret;
         }
@@ -44,7 +44,23 @@ namespace Embratel.Sislab.Servico
             }
             catch (Exception ex)
             {
-                ret = "ERRO: " + ex.Message;
+                ret = "ERRO[EnviaEmail]: " + ex.Message;
+            }
+            return ret;
+        }
+
+        [WebMethod]
+        public string EnviaEmailGenerico(String smtpServer, String numeroPorta, Boolean habilitarSSL, String remetente, String senha, String destinatario, String assunto, String mensagem)
+        {
+            string ret = "OK";
+            try
+            {
+                Email email = new Email();
+                email.EnviarGenerico(smtpServer, numeroPorta, habilitarSSL, remetente, senha, destinatario, assunto, mensagem);
+            }
+            catch (Exception ex)
+            {
+                ret = "ERRO[EnviaEmailGenerico]: " + ex.Message;
             }
             return ret;
         }

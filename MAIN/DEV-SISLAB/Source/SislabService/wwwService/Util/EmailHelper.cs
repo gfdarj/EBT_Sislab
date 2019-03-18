@@ -228,6 +228,26 @@ namespace Embratel.Sislab.Util
             this.CC.Add(enderecoEMail);
         }
 
+
+        public bool EnviarGenerico(EmailENT entEmail, String smtpServer, String numeroPorta, Boolean habilitarSSL, String emailRemetente, String senha)
+        {
+            //CARREGA OS PARAMETROS DE SMTP
+            clientSmtp.Host = smtpServer;
+
+            //Porta de Segurança
+            if (numeroPorta != null)
+                clientSmtp.Port = Convert.ToInt32(numeroPorta);
+
+            //SSL
+            clientSmtp.EnableSsl = habilitarSSL;
+
+            //Credencial
+            if ((!string.IsNullOrEmpty(emailRemetente)) && (!string.IsNullOrEmpty(senha)))
+                clientSmtp.Credentials = new System.Net.NetworkCredential(emailRemetente, senha);
+
+            return this.Enviar(entEmail, true);
+        }
+
         #endregion
 
         #region Métodos Privados
