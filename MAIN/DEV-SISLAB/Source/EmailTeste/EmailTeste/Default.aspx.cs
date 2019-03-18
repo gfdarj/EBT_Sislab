@@ -19,7 +19,23 @@ namespace EmailTeste
             try
             {
                 svcSislab.UsuariosSoapClient email = new svcSislab.UsuariosSoapClient();
-                email.EnviaEmail(txtRemetente.Text, txtDestinatario.Text, txtAssunto.Text, txtMensagem.Text);
+                String ret = email.EnviaEmail(txtRemetente.Text, txtDestinatario.Text, txtAssunto.Text, txtMensagem.Text);
+                lblMensagem.Text = ret;
+            }
+            catch (Exception ex)
+            {
+                lblMensagem.Text = ex.Message;
+            }
+        }
+
+        protected void txtEnviarGenerico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                svcSislab.UsuariosSoapClient email = new svcSislab.UsuariosSoapClient();
+                String ret = email.EnviaEmailGenerico(txtSmtp.Text, txtPorta.Text, (txtSSL.Text == "T" ? true : false), txtRemetente.Text, txtSenha.Text, txtDestinatario.Text, txtAssunto.Text, txtMensagem.Text);
+                lblMensagem.Text = ret;
             }
             catch (Exception ex)
             {

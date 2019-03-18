@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="66da0470-92d6-4684-8cd3-fa7acb1367a8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0ee44126-7a02-4c6e-a9ac-5e25662c80ce" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,11 +18,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://rjojurisdev01/sislabsvc/servicos.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/sislabsvc/servicos.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="servicos.wsdl" MetadataType="Wsdl" ID="d20c1b4a-8622-4996-8380-6c5c1d962173" SourceId="1" SourceUrl="http://rjojurisdev01/sislabsvc/servicos.asmx?wsdl" />
-    <MetadataFile FileName="servicos.disco" MetadataType="Disco" ID="2e57caeb-88ba-4e80-8bac-c4bea419b08b" SourceId="1" SourceUrl="http://rjojurisdev01/sislabsvc/servicos.asmx?disco" />
+    <MetadataFile FileName="servicos.disco" MetadataType="Disco" ID="759be606-9620-44a2-a501-23c43471ae8d" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?disco" />
+    <MetadataFile FileName="servicos.wsdl" MetadataType="Wsdl" ID="a0517e18-9b68-451f-a710-a529b501cfbf" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

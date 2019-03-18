@@ -22,6 +22,10 @@ namespace EmailTeste.svcSislab {
         // CODEGEN: Generating message contract since element name remetente from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmail", ReplyAction="*")]
         EmailTeste.svcSislab.EnviaEmailResponse EnviaEmail(EmailTeste.svcSislab.EnviaEmailRequest request);
+        
+        // CODEGEN: Generating message contract since element name smtpServer from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmailGenerico", ReplyAction="*")]
+        EmailTeste.svcSislab.EnviaEmailGenericoResponse EnviaEmailGenerico(EmailTeste.svcSislab.EnviaEmailGenericoRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -176,6 +180,102 @@ namespace EmailTeste.svcSislab {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class EnviaEmailGenericoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmailGenerico", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.EnviaEmailGenericoRequestBody Body;
+        
+        public EnviaEmailGenericoRequest() {
+        }
+        
+        public EnviaEmailGenericoRequest(EmailTeste.svcSislab.EnviaEmailGenericoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class EnviaEmailGenericoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string smtpServer;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string numeroPorta;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public bool habilitarSSL;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string remetente;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string senha;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string destinatario;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string assunto;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string mensagem;
+        
+        public EnviaEmailGenericoRequestBody() {
+        }
+        
+        public EnviaEmailGenericoRequestBody(string smtpServer, string numeroPorta, bool habilitarSSL, string remetente, string senha, string destinatario, string assunto, string mensagem) {
+            this.smtpServer = smtpServer;
+            this.numeroPorta = numeroPorta;
+            this.habilitarSSL = habilitarSSL;
+            this.remetente = remetente;
+            this.senha = senha;
+            this.destinatario = destinatario;
+            this.assunto = assunto;
+            this.mensagem = mensagem;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class EnviaEmailGenericoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmailGenericoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.EnviaEmailGenericoResponseBody Body;
+        
+        public EnviaEmailGenericoResponse() {
+        }
+        
+        public EnviaEmailGenericoResponse(EmailTeste.svcSislab.EnviaEmailGenericoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class EnviaEmailGenericoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string EnviaEmailGenericoResult;
+        
+        public EnviaEmailGenericoResponseBody() {
+        }
+        
+        public EnviaEmailGenericoResponseBody(string EnviaEmailGenericoResult) {
+            this.EnviaEmailGenericoResult = EnviaEmailGenericoResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface UsuariosSoapChannel : EmailTeste.svcSislab.UsuariosSoap, System.ServiceModel.IClientChannel {
     }
@@ -231,6 +331,26 @@ namespace EmailTeste.svcSislab {
             inValue.Body.mensagem = mensagem;
             EmailTeste.svcSislab.EnviaEmailResponse retVal = ((EmailTeste.svcSislab.UsuariosSoap)(this)).EnviaEmail(inValue);
             return retVal.Body.EnviaEmailResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        EmailTeste.svcSislab.EnviaEmailGenericoResponse EmailTeste.svcSislab.UsuariosSoap.EnviaEmailGenerico(EmailTeste.svcSislab.EnviaEmailGenericoRequest request) {
+            return base.Channel.EnviaEmailGenerico(request);
+        }
+        
+        public string EnviaEmailGenerico(string smtpServer, string numeroPorta, bool habilitarSSL, string remetente, string senha, string destinatario, string assunto, string mensagem) {
+            EmailTeste.svcSislab.EnviaEmailGenericoRequest inValue = new EmailTeste.svcSislab.EnviaEmailGenericoRequest();
+            inValue.Body = new EmailTeste.svcSislab.EnviaEmailGenericoRequestBody();
+            inValue.Body.smtpServer = smtpServer;
+            inValue.Body.numeroPorta = numeroPorta;
+            inValue.Body.habilitarSSL = habilitarSSL;
+            inValue.Body.remetente = remetente;
+            inValue.Body.senha = senha;
+            inValue.Body.destinatario = destinatario;
+            inValue.Body.assunto = assunto;
+            inValue.Body.mensagem = mensagem;
+            EmailTeste.svcSislab.EnviaEmailGenericoResponse retVal = ((EmailTeste.svcSislab.UsuariosSoap)(this)).EnviaEmailGenerico(inValue);
+            return retVal.Body.EnviaEmailGenericoResult;
         }
     }
 }
