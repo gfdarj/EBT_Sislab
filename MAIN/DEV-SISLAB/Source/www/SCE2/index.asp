@@ -28,6 +28,96 @@ If Env.UsuarioSCE() Then
     Set Sce = New TSce
 
     Call Tela.ImprimeMenuSce()
+
+    Dim sqlSaidaParaManutencao, sqlSaidaCalibracao, sqlControles2, sqlNotaFiscalVencida
+
+    sqlSaidaCalibracao = _
+			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, E.EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M, M.CDE AS CDE_M, " & _
+			"		CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) AS DT_PROX_CALIBRACAO_M " & _
+			"FROM SCE_Equipamentos e INNER JOIN SCE_Movimentacao m ON e.EQ_ID = m.EQ_ID  INNER JOIN ( " & _
+			"	SELECT m1.EQ_ID, MAX(m1.MOV_ID) AS MOV_ID FROM SCE_Movimentacao m1 " & _
+			"	INNER JOIN ( " & _
+			"	SELECT EQ_ID, MAX(MOV_DATA) AS MOV_DATA FROM SCE_Movimentacao " & _
+			"		WHERE (CDE IS NOT NULL OR LTRIM(RTRIM(CDE)) <> '' OR CDE <> ' ') AND FL_CALIBRACAO = 1 AND TIPO = " & MOV_ENTRADA & " " & _
+			"		GROUP BY EQ_ID) m2 ON (m1.EQ_ID = m2.EQ_ID AND m1.MOV_DATA = m2.MOV_DATA) " & _
+			"   WHERE m1.CDE IS NOT NULL AND LTRIM(RTRIM(m1.CDE)) <> '' AND m1.CDE <> ' ' AND m1.FL_CALIBRACAO = 1 AND m1.TIPO = " & MOV_ENTRADA & " " & _
+			"   GROUP BY m1.EQ_ID) mm ON (m.MOV_ID = mm.MOV_ID) " & _
+			"WHERE ((m.MOV_DATA + e.EQ_FREQ_CALIBRACAO) <= GETDATE() + 90) AND e.EQ_FREQ_CALIBRACAO IS NOT NULL " & _
+			"ORDER BY CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) ASC"
+
+    sqlSaidaParaManutencao = _
+			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, M.CDE AS CDE_M, CONVERT(VARCHAR, M.MOV_DATA, 103) AS DT_SAIDA_M, " & _
+			"	DATEDIFF(day, M.MOV_DATA, GETDATE()) AS QTD_DIAS_M, FL_CALIBRACAO " & _
+			"FROM vw_SCE_Movimentacao_Atual AS M INNER JOIN SCE_Equipamentos AS E ON M.EQ_ID = E.EQ_ID " & _
+			"     LEFT JOIN SCE_Equipamentos AS EAnt ON E.EQ_CODIGOBARRAS = EAnt.EQ_CODIGOBARRASANTERIOR " & _
+			"WHERE EAnt.EQ_CODIGOBARRASANTERIOR IS NULL AND M.CDE IS NOT NULL AND LTRIM(RTRIM(M.CDE)) <> '' AND LTRIM(RTRIM(M.CDE)) <> ' ' AND (M.TIPO = " & MOV_EXPEDICAO & ") " & _
+			"      AND GETDATE() > m.MOV_DATA + 90"
+
+    sqlControles2 = "SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M " & _
+		            "FROM vw_SCE_Equipamentos_Fabricantes " & _
+		            "WHERE STATUS <> " & STATUS_EXPEDIDO & _
+		            " AND STATUS <> " & STATUS_EXPEDIDO_SUBST & _
+		            " AND EQ_CONFORME = 0 " & _
+	                "ORDER BY DESC_STATUS, EQ_CODIGOBARRAS"
+
+	sqlNotaFiscalVencida = ""
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "SELECT DISTINCT " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	e.EQ_ID, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	ag.AG_NUMERO AS [AG_NUMERO_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	ag.AG_RESPONSAVEL AS [AG_RESPONSAVEL_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	nf.nf_id, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	m.mov_id, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	nf.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	e.EQ_CODIGOBARRAS AS [EQ_CODIGOBARRAS_M], e.EQ_LOCALIZACAO AS [EQ_LOCALIZACAO_M], md.MOD_CODNOME AS [MOD_CODNOME_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CONVERT(varchar, nf.nf_dataemissao, 103) AS nf_dataemissao_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CONVERT(varchar, nf.nf_recebimento, 103) AS nf_recebimento_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CASE WHEN nf.NF_VALIDADE IS NULL THEN NULL ELSE CONVERT(varchar, nf.nf_dataemissao + CAST(nf.nf_validade AS INT), 103) END AS nf_datavencimento_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	emp.enf_nome AS [ENF_NOME_M] " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "FROM " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	sce_nota_fiscal nf " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "INNER JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	sce_Natureza_Operacao no on nf.no_id = nf.no_id " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "LEFT JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	sce_empresa_nota_fiscal emp on nf.enf_id = emp.enf_id " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "LEFT JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	SCE_Movimentacao m ON m.NF_ID = nf.NF_ID " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "LEFT JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	Agendamento ag ON ag.AG_NUMERO = m.ASA " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "INNER JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	SCE_Equipamentos e ON m.EQ_ID = e.EQ_ID " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "INNER JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	SCE_Modelos md ON e.MOD_ID = md.MOD_ID " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "WHERE " & VbCrLf
+	'# Notas Vencidas
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	( ((nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) <= GETDATE()) " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	OR ((nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) <= GETDATE()+30)) " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "AND " & VbCrLf
+	'# Notas de Entrada
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	nf.NF_TIPO = 1 " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "AND " & VbCrLf
+	'# Natureza de Operação Possui prazo para retorno
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	no.PRAZO = 1 " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "AND " & VbCrLf
+	'# Nao existe nota de Saída com devolucao completa
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	NOT EXISTS ( " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "		SELECT " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "			nf1.nf_id " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "		FROM " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "			sce_nota_fiscal nf1 " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "		WHERE " & VbCrLf
+	'# Nota Pai é a de entrada
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "			nf1.nf_id_pai = nf.nf_id " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "		AND " & VbCrLf
+	'# Saida
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "			nf1.NF_TIPO = 2 " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "		AND " & VbCrLf
+	'# devolucao completa
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "			NF_DEVOLUCAOCOMPLETA = 1 " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	) " & VbCrLf
+    '#Order by
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "ORDER BY " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	ag.AG_RESPONSAVEL, ag.AG_NUMERO DESC, emp.ENF_NOME, nf.NF_NUMERONOTA, e.EQ_CODIGOBARRAS" & VbCrLf
+
 %>
 <table class="largura-total table-condensed">
 <tr>
@@ -47,7 +137,6 @@ If Env.UsuarioSCE() Then
 		</table>
 	</td>
 </tr>
-<tr><td>&nbsp;</td></tr>
 <tr>
 	<td style="vertical-align: top;">
 		<table class="largura-total table-condensed">
@@ -58,6 +147,37 @@ If Env.UsuarioSCE() Then
 	</td>
 </tr>
 </table>
+
+<form name="formulario" method="post" action="../excel.asp">
+    <input type="hidden" name="titulo" value="" />
+    <input type="hidden" name="sql" value="" />
+    <input type="hidden" name="sqlSaidaParaManutencao" value="<%=sqlSaidaParaManutencao%>" />
+    <input type="hidden" name="sqlSaidaCalibracao" value="<%=sqlSaidaCalibracao%>" />
+    <input type="hidden" name="sqlControles2" value="<%=sqlControles2%>" />
+    <input type="hidden" name="sqlNotaFiscalVencida" value="<%=sqlNotaFiscalVencida%>" />
+</form>
+
+<script>
+    function GerarXLS(titulo, qualSQL)
+    {
+        var f = document.forms[0];
+
+        f.titulo.value = titulo;
+
+        if (qualSQL == "SaidaParaManutencao")
+            f.sql.value = f.sqlSaidaParaManutencao.value;
+        else if (qualSQL == "SaidaCalibracao")
+            f.sql.value = f.sqlSaidaCalibracao.value;
+        else if (qualSQL == "Controles2")
+            f.sql.value = f.sqlControles2.value;
+        else if (qualSQL == "NotaFiscalVencida")
+            f.sql.value = f.sqlNotaFiscalVencida.value;
+
+        f.submit();
+    }
+</script>
+
+
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
@@ -76,27 +196,15 @@ Sub ImprimeControlesSaidaCalibracao()
  
 	sTitulo = "Próximas Calibrações (Venc. até 90 dias)"
 
-	sSql = _
-			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, E.EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M, M.CDE AS CDE_M, " & _
-			"		CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) AS DT_PROX_CALIBRACAO_M " & _
-			"FROM SCE_Equipamentos e INNER JOIN SCE_Movimentacao m ON e.EQ_ID = m.EQ_ID  INNER JOIN ( " & _
-			"	SELECT m1.EQ_ID, MAX(m1.MOV_ID) AS MOV_ID FROM SCE_Movimentacao m1 " & _
-			"	INNER JOIN ( " & _
-			"	SELECT EQ_ID, MAX(MOV_DATA) AS MOV_DATA FROM SCE_Movimentacao " & _
-			"		WHERE (CDE IS NOT NULL OR LTRIM(RTRIM(CDE)) <> '' OR CDE <> ' ') AND FL_CALIBRACAO = 1 AND TIPO = " & MOV_ENTRADA & " " & _
-			"		GROUP BY EQ_ID) m2 ON (m1.EQ_ID = m2.EQ_ID AND m1.MOV_DATA = m2.MOV_DATA) " & _
-			"   WHERE m1.CDE IS NOT NULL AND LTRIM(RTRIM(m1.CDE)) <> '' AND m1.CDE <> ' ' AND m1.FL_CALIBRACAO = 1 AND m1.TIPO = " & MOV_ENTRADA & " " & _
-			"   GROUP BY m1.EQ_ID) mm ON (m.MOV_ID = mm.MOV_ID) " & _
-			"WHERE ((m.MOV_DATA + e.EQ_FREQ_CALIBRACAO) <= GETDATE() + 90) AND e.EQ_FREQ_CALIBRACAO IS NOT NULL " & _
-			"ORDER BY CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) ASC"
+    sSql = sqlSaidaCalibracao
 	Set RS = Env.oConn.Execute(sSql)
 
-	url_xls = Link2Xls(sTitulo, Server.UrlEncode(sSql))
+	url_xls = Link2Xls(sTitulo, "SaidaCalibracao")
 %>
-				<table class="largura-total table-condensed table-bordered">
+				<table class="largura-total table-condensed table-bordered fonte px11">
 				<tr>
 					<td>
-						<table class="largura-total table-condensed">
+						<table class="largura-total table-condensed fonte px11">
 						<tr>
                             <td><strong class="text-info"><%=sTitulo%></strong></td>
                             <td class="texto-direito"><%=url_xls%></td>
@@ -142,18 +250,12 @@ Sub ImprimeControleSaidaParaManutencao()
 	sTitulo = "Pendencias de retorno Manut./Calibração (90 dias)"
 
     'sinalizar os items com mais de 90 dias
-	sSql = _
-			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, M.CDE AS CDE_M, CONVERT(VARCHAR, M.MOV_DATA, 103) AS DT_SAIDA_M, " & _
-			"	DATEDIFF(day, M.MOV_DATA, GETDATE()) AS QTD_DIAS_M, FL_CALIBRACAO " & _
-			"FROM vw_SCE_Movimentacao_Atual AS M INNER JOIN SCE_Equipamentos AS E ON M.EQ_ID = E.EQ_ID " & _
-			"     LEFT JOIN SCE_Equipamentos AS EAnt ON E.EQ_CODIGOBARRAS = EAnt.EQ_CODIGOBARRASANTERIOR " & _
-			"WHERE EAnt.EQ_CODIGOBARRASANTERIOR IS NULL AND M.CDE IS NOT NULL AND LTRIM(RTRIM(M.CDE)) <> '' AND LTRIM(RTRIM(M.CDE)) <> ' ' AND (M.TIPO = " & MOV_EXPEDICAO & ") " & _
-			"      AND GETDATE() > m.MOV_DATA + 90"
+	sSql = sqlSaidaParaManutencao
 	Set RS = Env.oConn.Execute(sSql)
 
-	url_xls = Link2Xls(sTitulo, Server.UrlEncode(sSql))
+	url_xls = Link2Xls(sTitulo, "SaidaParaManutencao")
 %>
-				<table class="largura-total table-condensed table-bordered">
+				<table class="largura-total table-condensed table-bordered fonte px11">
 				<tr>
 					<td>
 						<table class="largura-total table-condensed">
@@ -239,9 +341,9 @@ Sub ImprimeControles(tipo, chr_Titulo1, chr_Titulo2)
 	'exit sub
 	Set rec = Env.oConn.Execute(s)
 
-	url_xls = Link2Xls(Titulo, Server.UrlEncode(s))
+	url_xls = Link2Xls(sTitulo, "Controles")
 %>
-				<table class="largura-total table-condensed table-bordered">
+				<table class="largura-total table-condensed table-bordered fonte px11">
 				<tr>
 					<td>
 						<table class="largura-total table-condensed">
@@ -291,17 +393,11 @@ Sub ImprimeControles2(chr_Titulo1, chr_Titulo2, chr_Titulo3, chr_Titulo4)
 
 	Titulo = "Não Conformidades"
 
-	s =	"SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], EQ_LOCALIZACAO AS EQ_LOCALIZACAO_M " & _
-		"FROM vw_SCE_Equipamentos_Fabricantes " & _
-		"WHERE STATUS <> " & STATUS_EXPEDIDO & _
-		" AND STATUS <> " & STATUS_EXPEDIDO_SUBST & _
-		" AND EQ_CONFORME = 0"
-	s = s & "ORDER BY DESC_STATUS, EQ_CODIGOBARRAS"
-
-	url_xls = Link2Xls(Titulo, Server.UrlEncode(s))
+    s = sqlControles2
+	url_xls = Link2Xls(sTitulo, "Controles2")
 
 	'response.write s
-%>				<table class="largura-total table-condensed table-bordered">
+%>				<table class="largura-total table-condensed table-bordered fonte px11">
 				<tr>
 					<td>
 						<table class="largura-total table-condensed">
@@ -356,67 +452,10 @@ Sub ImprimeControlesNotaFiscalVencida()
 	int_TotalNota = 0
 
 'vinculacao de equipamento com a nota é pela movimentacao - entrada logistica
-	s = ""
-	s = s & "SELECT DISTINCT " & VbCrLf
-	s = s & "	e.EQ_ID, " & VbCrLf
-	s = s & "	ag.AG_NUMERO AS [AG_NUMERO_M], " & VbCrLf
-	s = s & "	ag.AG_RESPONSAVEL AS [AG_RESPONSAVEL_M], " & VbCrLf
-	s = s & "	nf.nf_id, " & VbCrLf
-	s = s & "	m.mov_id, " & VbCrLf
-	s = s & "	nf.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
-	s = s & "	e.EQ_CODIGOBARRAS AS [EQ_CODIGOBARRAS_M], e.EQ_LOCALIZACAO AS [EQ_LOCALIZACAO_M], md.MOD_CODNOME AS [MOD_CODNOME_M], " & VbCrLf
-	s = s & "	CONVERT(varchar, nf.nf_dataemissao, 103) AS nf_dataemissao_M, " & VbCrLf
-	s = s & "	CONVERT(varchar, nf.nf_recebimento, 103) AS nf_recebimento_M, " & VbCrLf
-	s = s & "	CASE WHEN nf.NF_VALIDADE IS NULL THEN NULL ELSE CONVERT(varchar, nf.nf_dataemissao + CAST(nf.nf_validade AS INT), 103) END AS nf_datavencimento_M, " & VbCrLf
-	s = s & "	emp.enf_nome AS [ENF_NOME_M] " & VbCrLf
-	s = s & "FROM " & VbCrLf
-	s = s & "	sce_nota_fiscal nf " & VbCrLf
-	s = s & "INNER JOIN " & VbCrLf
-	s = s & "	sce_Natureza_Operacao no on nf.no_id = nf.no_id " & VbCrLf
-	s = s & "LEFT JOIN " & VbCrLf
-	s = s & "	sce_empresa_nota_fiscal emp on nf.enf_id = emp.enf_id " & VbCrLf
-	s = s & "LEFT JOIN " & VbCrLf
-	s = s & "	SCE_Movimentacao m ON m.NF_ID = nf.NF_ID " & VbCrLf
-	s = s & "LEFT JOIN " & VbCrLf
-	s = s & "	Agendamento ag ON ag.AG_NUMERO = m.ASA " & VbCrLf
-	s = s & "INNER JOIN " & VbCrLf
-	s = s & "	SCE_Equipamentos e ON m.EQ_ID = e.EQ_ID " & VbCrLf
-	s = s & "INNER JOIN " & VbCrLf
-	s = s & "	SCE_Modelos md ON e.MOD_ID = md.MOD_ID " & VbCrLf
-	s = s & "WHERE " & VbCrLf
-	'# Notas Vencidas
-	s = s & "	( ((nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) <= GETDATE()) " & VbCrLf
-	s = s & "	OR ((nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) <= GETDATE()+30)) " & VbCrLf
-	s = s & "AND " & VbCrLf
-	'# Notas de Entrada
-	s = s & "	nf.NF_TIPO = 1 " & VbCrLf
-	s = s & "AND " & VbCrLf
-	'# Natureza de Operação Possui prazo para retorno
-	s = s & "	no.PRAZO = 1 " & VbCrLf
-	s = s & "AND " & VbCrLf
-	'# Nao existe nota de Saída com devolucao completa
-	s = s & "	NOT EXISTS ( " & VbCrLf
-	s = s & "		SELECT " & VbCrLf
-	s = s & "			nf1.nf_id " & VbCrLf
-	s = s & "		FROM " & VbCrLf
-	s = s & "			sce_nota_fiscal nf1 " & VbCrLf
-	s = s & "		WHERE " & VbCrLf
-	'# Nota Pai é a de entrada
-	s = s & "			nf1.nf_id_pai = nf.nf_id " & VbCrLf
-	s = s & "		AND " & VbCrLf
-	'# Saida
-	s = s & "			nf1.NF_TIPO = 2 " & VbCrLf
-	s = s & "		AND " & VbCrLf
-	'# devolucao completa
-	s = s & "			NF_DEVOLUCAOCOMPLETA = 1 " & VbCrLf
-	s = s & "	) " & VbCrLf
+	s = sqlNotaFiscalVencida
+    s_xls = sqlNotaFiscalVencida
 
-	s_xls = s
-
-	s = s & "ORDER BY " & VbCrLf
-	s = s & "	ag.AG_RESPONSAVEL, ag.AG_NUMERO DESC, emp.ENF_NOME, nf.NF_NUMERONOTA, e.EQ_CODIGOBARRAS" & VbCrLf
-
-	url_xls = Link2Xls(Titulo, Server.UrlEncode(s_xls))
+	url_xls = Link2Xls(Titulo, "NotaFiscalVencida")
 %>
 				<table class="largura-total table-condensed table-bordered">
 				<tr>
@@ -432,7 +471,7 @@ Sub ImprimeControlesNotaFiscalVencida()
 				<tr>
 					<td>
 						<div style="overflow: auto; height: 190px;">
-							<table class="largura-total table-condensed">
+							<table class="largura-total table-bordered table-striped table-hover table-condensed">
 <%	'response.write s
 	Set rec = Env.oConn.Execute(s)
 	if not (rec.eof and rec.bof) then
@@ -518,7 +557,10 @@ Function ImprimeTipoManutencaoHTML(tipo)
 End Function
 
 
-Function Link2Xls(titulo, sql)
-    Link2Xls = "<div class='texto-direito'><a class='text-success' href='../excel.asp?titulo=" & titulo & "&sql=" & Server.UrlEncode(sql) & "' target='_blank' alt='Exporta esta listagem para o Excel'><strong>XLS</strong></a></div>"
+Function Link2Xls(titulo, qualSQL)
+    'Link2Xls = "<div class='texto-direito'><a class='text-success' href='../excel.asp?titulo=" & titulo & "&sql=" & Server.UrlEncode(sql) & "' target='_blank' alt='Exporta esta listagem para o Excel'><strong>XLS</strong></a></div>"
+    Link2Xls = "<div class='texto-direito'>" & _
+               "     <a class='text-success' onclick='GerarXLS(""" & titulo & """, """ & qualSQL & """);' target='_blank' alt='Exporta esta listagem para o Excel'><strong>XLS</strong></a>" & _
+               "</div>"
 End Function
 %>

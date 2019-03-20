@@ -73,7 +73,7 @@ function MostraDFD()%>
 	<html>
 		<head>
 		<title>DTE - SISLAB</title>
-		<script>
+		<script type="text/javascript">
 		function jczResetWindow(bmp) {
 			self.moveTo(2,2); 
 			self.resizeTo(bmp.width+50,bmp.height+70);
@@ -96,7 +96,7 @@ function apagaOrdemdeServico()
 	Set rs = Env.oConn.execute(ssql)
 	%>
 	<html><body><form>
-	<script>
+	<script type="text/javascript">
 <%	if not (rs.Eof and rs.Bof) then
 		if rs(0) < 0 then%>
 		alert("Não foi possível excluir a OS solicitada");
@@ -246,13 +246,13 @@ Function SalvaMensagemEmail()
 	'mensagem = replace(request("mensagem"),chr(34),"")	
 	msSQL = "update situacoes set s_mensagem = '" & mensagem  & "' where s_descricao = '" & s_descricao & "' and s_os = " & s_os
 	call Env.RecordSet(true, AUXrs, msSQL)%>
-	<script>
+	<script type="text/javascript">
 		alert("Mensagem alterada com sucesso!");
 	</script>
 <%
 end function
 
-function  recuperaMensagemsAS(popUp)
+Function  recuperaMensagemsAS(popUp)
 	dim auxAs
 	auxAs = request("txAS")
 	sSQL = _
@@ -272,7 +272,7 @@ function  recuperaMensagemsAS(popUp)
 
 		if not popUp then
 %>	
-		<script>
+		<script type="text/javascript">
 			var frm = parent.document.forms[0];
 			frm.RelatRAT.disabled = false;
 			frm.RelatRT.disabled = false;
@@ -288,7 +288,8 @@ function  recuperaMensagemsAS(popUp)
 		</script><%
 		else
 %>
-		<html><title><%=TITULO_SITE%></title>
+		<html>
+            <title><%=TITULO_SITE%></title>
 		<%if auxrelatrat <> "" then%>
 			<font face="verdana" size="2" color="#000000">
 			<b>Mensagem do RAT</b><br>
@@ -301,14 +302,15 @@ function  recuperaMensagemsAS(popUp)
 				<%=replace(auxrelatrt & "",vbcrlf,"<BR>")%><br><br>
 		<%end if%>
 
-			<div align="right">
-		<a href="javascript:window.close()">Fechar</a></div>
+			<div style="text-align: center">
+		        <a href="javascript:window.close()">Fechar</a>
+			</div>
 		</html>
 <%		end if
 	ELSE
 		if not popUp then
 %>	
-		<script>
+		<script type="text/javascript">
 			var frm = parent.document.forms[0];
 				frm.RelatRAT.value = "AS INEXISTENTE";
 				frm.RelatRT.value = "AS INEXISTENTE";
@@ -326,7 +328,7 @@ function recuperaMensagemsEmail()
 	msSQL = "Select s_mensagem from situacoes where s_descricao = '" & s_descricao & "' and s_os = " & s_os
 	call Env.RecordSet( true, AUXrs, msSQL)
 %>
-	<script>
+	<script type="text/javascript">
 		<%if not (AUXrs.eof and AUXrs.bof) then%>
 			var frm = parent.document.forms[0];
 			frm.mensagem.value = '<%=replace(AUXrs("s_mensagem"),vbcrlf,"\n")%>';
@@ -352,7 +354,7 @@ function recuperaInformacoesOSUpload()
 	msSQL3 = "SELECT COUNT(A.AG_NUMERO)+1 AS CONTADOR FROM AGENDAMENTO A INNER JOIN DIAGRAMAS D ON A.AG_NUMERO = D.AG_NUMERO INNER JOIN ARQUIVOS F ON F.ARQ_CODARQ = D.ARQ_CODARQ WHERE A.AG_NUMERO = " & auxas & " AND F.ARQ_CODARQTIPO = 8"
 	call Env.RecordSet( true, AUXrs3, msSQL3)
 		%>
-		<script>
+		<script type="text/javascript">
 			var frm = parent.document.forms[0];
 			frm.contdia.value = "<%=AUXrs3("CONTADOR")%>";
 			<%if combo then%>
@@ -385,7 +387,7 @@ function recuperaInfomacoesASUpload()
 	call Env.RecordSet( true, AUXrs3, msSQL3)
 
 	%>
-		<script>
+		<script type="text/javascript">
 			var frm = parent.document.forms[0];
 				<%if AUXrs2("AG_SIGILO") <> "0" then%>
 					frm.chkconfidencial.checked = true;
@@ -421,7 +423,7 @@ Function RecuperaMensagem()
 	msSQL = "Select TextoMensagem FROM Mensagem WHERE CodMensagem = " & id_msg & ""
 	Set RS = Env.oConn.Execute(msSQL)
 %>
-	<script>
+	<script type="text/javascript">
 		<%if not (RS.eof and RS.bof) then%>
 			var frm = parent.document.forms[0];
 			frm.mensagem.value = '<%=Replace(IIf(IsNull(RS("TextoMensagem")), "", RS("TextoMensagem")), vbcrlf, "\n")%>';
@@ -453,7 +455,7 @@ Function SalvaMensagem()
 
 	msSQL = "UPDATE Mensagem SET TextoMensagem = " & mensagem  & " WHERE CodMensagem = " & id_msg & ""
 	Set RS = Env.oConn.Execute(msSQL) %>
-	<script>
+	<script type="text/javascript">
 		alert("Mensagem alterada com sucesso!");
 	</script>
 <%

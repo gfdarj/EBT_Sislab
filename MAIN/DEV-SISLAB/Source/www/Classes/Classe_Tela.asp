@@ -337,12 +337,14 @@ Private Sub ImprimeNomeTela()
 						&nbsp;
 <%				End If
                 if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+                        <!--
                         <button id="btn_imprimeTelaPrincipalSistema" style="border: none; background-color: transparent;"
                             onclick="javascript:imprimeTelaPrincipalSistema();">
                             <a href="#" style="background-color: transparent;">
                                 <img width="20px" src="<%=p_PathRelativo%>img/impressora1.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela">
                             </a>
 						</button>
+                        -->
 <%			    End If
 			End If%>
 						&nbsp;&nbsp;

@@ -254,7 +254,7 @@ Class TEbt
 	    If objRS.BOF And objRS.EOF Then 
 		    bln_usuarioCRT = False
 		    bln_ehRT = False
-		    bln_ehRAT = true
+		    bln_ehRAT = False
 		    bln_ehGQ = False
 		    bln_usuarioCRT_Cadastrado = False
 		    bln_UsuarioSCE = False

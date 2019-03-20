@@ -21,8 +21,8 @@
     <MetadataSource Address="http://localhost/sislabsvc/servicos.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="servicos.disco" MetadataType="Disco" ID="759be606-9620-44a2-a501-23c43471ae8d" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?disco" />
-    <MetadataFile FileName="servicos.wsdl" MetadataType="Wsdl" ID="a0517e18-9b68-451f-a710-a529b501cfbf" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?wsdl" />
+    <MetadataFile FileName="servicos.disco" MetadataType="Disco" ID="78c324f7-9a79-482e-9bf5-f90bd6b84eb8" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?disco" />
+    <MetadataFile FileName="servicos.wsdl" MetadataType="Wsdl" ID="6c0422f4-d94d-400a-b21a-d4fe8bd9aa7a" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

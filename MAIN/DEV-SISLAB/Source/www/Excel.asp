@@ -19,10 +19,13 @@ Titulo = Request("Titulo")
 ordenacao = Request("ordenacao")
 
 'rw Titulo & "<BR><BR>"
-'rw chr_sql
+'rw Session("XLS_EXPORTA_SQL") & "<BR><BR>"
+'rw Server.URLEncode(chr_sql)& "<BR><BR>"
+'rw Server.HTMLEncode(chr_sql)& "<BR><BR>"
 're
+
 Set RS = Env.oConn.Execute(chr_SQL)
 
-Call criaExcel(Titulo, RS, ordenacao)
+Call CriaExcel(Titulo, RS, ordenacao)
 %>
 

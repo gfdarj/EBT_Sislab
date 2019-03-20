@@ -90,8 +90,13 @@ Call Env.RecordSet(True, objSiteRS, sSQL)
 if not(objSiteRS.EOF) Then
 	objSiteRS.MoveFirst
 %>
-			    <b>Pesquisa Satisfação</b>: Total de <%=objSiteRS("TIPO")%>: <span class="text-info"><%=objSiteRS("Indice")%></span>
+                <small>
+			        <b>Pesquisa Satisfação</b>: Total de <%=objSiteRS("TIPO")%>: <span class="text-info"><%=objSiteRS("Indice")%></span>
+                </small>
+
                 <br>
+
+                <small>
 <%
 	indice = objSiteRS("Indice")
 	objSiteRS.MoveNext %>
@@ -101,13 +106,16 @@ if not(objSiteRS.EOF) Then
 <%		objSiteRS.MoveNext
 		If Not objSiteRS.Eof Then Response.Write "&nbsp;&nbsp;"
 	Wend %>
+                </small>
 <%
 End If%>
 	        </td>
 
 		    <td style="text-align: right;">
-	            <div style="text-align: right;">Agendamentos em andamento: <b><span id="tot_agenda" class="text-info">0</span></b>&nbsp;
-                <strong>l</strong>&nbsp; Agendamentos futuros: <b><%
+	            <div style="text-align: right;">
+                    <small>
+                        Agendamentos em andamento: <b><span id="tot_agenda" class="text-info">0</span></b>&nbsp;
+                            <strong>l</strong>&nbsp; Agendamentos futuros: <b><%
 s = "select count(*) as Total_Futuros From vw_Agendamento "
 s = s & "where ID_SITUACAO = 1 or (ID_SITUACAO=3 and AG_DATAINICIO > getDate())"
 Call Env.RecordSet( true, objRS, s)
@@ -115,6 +123,7 @@ if not IsNull( objRS(0) ) then Response.write "<span class='text-info'>" & objRS
 Call Env.RecordSet( false, objRS, s )
 %>
 					    </b>
+                    </small>
 	            </div>
             </td>
 

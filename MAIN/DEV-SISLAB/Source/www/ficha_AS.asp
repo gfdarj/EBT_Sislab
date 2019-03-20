@@ -4,6 +4,7 @@
 <!--#include file="includes/controleshtml.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/bib_str.asp" -->
+
 <%
 Dim objSiteRS, objRES, cont, sSQL, tot, auxtipoteste, auxtitulo
 Dim AuxRamal,AuxUsername,AuxOrgao,AuxDataInicio,AuxDataTermino
@@ -45,15 +46,13 @@ AuxUsername = objSiteRS("AG_USERNAME")
 'Response.Write "AQUI"
 'response.End
 
-'Call Ebt.BuscaDadosEmbratel("wsaddi@alerj.gov.br")
-Call Ebt.BuscaDadosEmbratel(objSiteRS("AG_USERNAME"))
+Call Ebt.BuscaDadosEmbratel(AuxUsername)
 
 'response.Write Now & "<BR>"
 'response.Write ebt.EhFuncionario & "<BR>"
 'response.Write ebt.NomeReduzido  & "<BR>"
 'response.Write ebt.Usuario & "<BR>"
 'response.end 
-
 
 If Ebt.EhFuncionario Then
 	AuxResponsavel = Ebt.NomeReduzido
@@ -91,13 +90,15 @@ AuxSigilo = ucase(objSiteRS("TS_DESCRICAO"))
 AuxTipoTesteint=objSiteRS("TA_ID")
 %>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
 <br>
 
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Histórico de Eventos</th>
-</tr>
-</table>
+<h4>Histórico de Eventos</h4>
 
 <table border="1" width="100%" cellpadding="2" cellspacing="1">
 <tr>
@@ -106,11 +107,11 @@ AuxTipoTesteint=objSiteRS("TA_ID")
 	<td width="23%"></td>
 	<td width="38%"></td>
 </tr>
-<tr class="realce1">
-	<td align="center">SITUAÇÃO</td>
-	<td align="center">DATA DE INÍCIO</td>
-	<td align="center">DATA DE TÉRNINO</td>
-	<td align="center">OBSERVAÇÂO</td>
+<tr>
+	<td style="text-align: center;">SITUAÇÃO</td>
+	<td style="text-align: center;">DATA DE INÍCIO</td>
+	<td style="text-align: center;">DATA DE TÉRMINO</td>
+	<td style="text-align: center;">OBSERVAÇÂO</td>
 </tr>
 <%
 sSQL = _
@@ -123,8 +124,8 @@ objSiteRS.MoveFirst
 Do while Not objSiteRS.eof%>
 <tr >
 	<td>&nbsp;&nbsp;<b><%=objSiteRS("S_Descricao")%></b>&nbsp;</td>
-	<td align="center"><%=(objSiteRS("HE_DataInicio"))%>&nbsp;</td>
-	<td align="center"><%=(objSiteRS("HE_DataTermino"))%>&nbsp;</td>
+	<td style="text-align: center;"><%=(objSiteRS("HE_DataInicio"))%>&nbsp;</td>
+	<td style="text-align: center;"><%=(objSiteRS("HE_DataTermino"))%>&nbsp;</td>
 	<td><%=objSiteRS("HE_MOTIVO")%>&nbsp;</td>
 </tr>
 <%	objSiteRS.MoveNext
@@ -147,15 +148,12 @@ sSQL = _
 call Env.RecordSet( true, objSiteRS, sSQL)
 if Not objSiteRS.eof then 
 	objSiteRS.MoveFirst%>
+
 <br>
 
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Histórico de Eventos - Ordem de Serviço</th>
-</tr>
-</table>
+<h4>Histórico de Eventos - Ordem de Serviço</h4>
 
-<table border="1" width="100%" cellpadding="2" cellspacing="1">
+<table border="1" width="100%" cellpadding="2" cellspacing="1" >
 <tr>
 	<td width="30%"></td>
 	<td width="14%"></td>
@@ -163,12 +161,12 @@ if Not objSiteRS.eof then
 	<td width="15%"></td>
 	<td width="26%"></td>
 </tr>
-<tr class="realce1">
-	<td align="center">Nº OS</td>
-	<td align="center">SITUAÇÃO</td>
-	<td align="center">DATA DE INÍCIO</td>
-	<td align="center">DATA DE TÉRMINO</td>
-	<td align="center"><b>OBSERVAÇÃO</td>
+<tr>
+	<th style="text-align: center;">Nº OS</th>
+	<th style="text-align: center;">SITUAÇÃO</th>
+	<th style="text-align: center;">DATA DE INÍCIO</th>
+	<th style="text-align: center;">DATA DE TÉRMINO</th>
+	<th style="text-align: center;">OBSERVAÇÃO</th>
 </tr>
 <%	Dim auxOS
 	Do while Not objSiteRS.eof
@@ -178,10 +176,10 @@ if Not objSiteRS.eof then
 			auxOS="0"&auxOS
 		loop%>
 <tr >
-	<td>&nbsp;&nbsp;<b><%=auxselecao%>/<%=auxOS%>&nbsp;-&nbsp;<%=objSiteRS("T_Titulo")%></b></td>
-	<td align="center"><b><%=objSiteRS("S_Descricao")%>&nbsp;</b></td>
-	<td align="center"><%=(objSiteRS("HEOS_DataInicio"))%>&nbsp;</td>
-	<td align="center"><%=(objSiteRS("HEOS_DataTermino"))%>&nbsp;</td>
+	<td>&nbsp;&nbsp;<%=auxselecao%>/<%=auxOS%>&nbsp;-&nbsp;<%=objSiteRS("T_Titulo")%></td>
+	<td style="text-align: center;"><%=objSiteRS("S_Descricao")%>&nbsp;</td>
+	<td style="text-align: center;"><%=(objSiteRS("HEOS_DataInicio"))%>&nbsp;</td>
+	<td style="text-align: center;"><%=(objSiteRS("HEOS_DataTermino"))%>&nbsp;</td>
 	<td><%=objSiteRS("HEOS_MOTIVO")%>&nbsp;</td>
 </tr>
 <%		objSiteRS.MoveNext
@@ -198,28 +196,26 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 if not (objSiteRS.Eof and objSiteRS.Bof) then
 %>
 <br>
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Histórico de Alterações de Datas</th>
-</tr>
-</table>
+
+<h4>Histórico de Alterações de Datas</h4>
+
 <table border="1" width="100%" cellpadding="2" cellspacing="1">
 <tr>
 	<td width="23%"></td>
 	<td width="23%"></td>
 	<td width="*"></td>
 </tr>
-<tr class="realce1">
-	<td align="center">DATA DE INÍCIO</td>
-	<td align="center">DATA DE TÉRNINO</td>
-	<td align="center">OBSERVAÇÂO</td>
+<tr>
+	<th style="text-align: center;">DATA DE INÍCIO</th>
+	<th style="text-align: center;">DATA DE TÉRNINO</th>
+	<th style="text-align: center;">OBSERVAÇÂO</th>
 </tr>
 <%
 objSiteRS.MoveFirst
 Do while Not objSiteRS.eof%>
 <tr >
-	<td align="center"><%=(objSiteRS("HD_DataInicio"))%>&nbsp;</td>
-	<td align="center"><%=(objSiteRS("HD_DataTermino"))%>&nbsp;</td>
+	<td style="text-align: center;"><%=Left(objSiteRS("HD_DataInicio"), 10)%>&nbsp;</td>
+	<td style="text-align: center;"><%=Left(objSiteRS("HD_DataTermino"), 10)%>&nbsp;</td>
 	<td><%=objSiteRS("HD_MOTIVO")%>&nbsp;</td>
 </tr>
 <%	objSiteRS.MoveNext
@@ -236,11 +232,8 @@ sSQL = sSQL & " WHERE VW.AG_NUMERO="&AuxSelecao&"; "
 call Env.RecordSet( true, objSiteRS, sSQL)
 if Not objSiteRS.eof then%>
 <br>
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Arquivos Associados</th>
-</tr>
-</table>
+
+<h4>Arquivos Associados</h4>
 <%
 	If MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then
 %>
@@ -249,9 +242,9 @@ if Not objSiteRS.eof then%>
 	<td width="30%"></td>
 	<td width="70%"></td>
 </tr>
-<tr class="realce1">
-	<td align="center">TIPO DE ARQUIVO</td>
-	<td align="center">ARQUIVO</td>
+<tr>
+	<td style="text-align: center;">TIPO DE ARQUIVO</td>
+	<td style="text-align: center;">ARQUIVO</td>
 </tr>
 <%		objSiteRS.MoveFirst
 		Do while Not objSiteRS.eof%>
@@ -272,11 +265,8 @@ End If%>
 
 <br>
 
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Dados do Agendamento</th>
-</tr>
-</table>
+
+<h4>Dados do Agendamento</h4>
 
 <table width="100%" border="1" cellpadding="2" cellspacing="1">
 <tr>
@@ -291,162 +281,91 @@ End If%>
 	<td width="10%"></td>
 	<td width="10%"></td>
 </tr>
-<tr class="realce1">
+<tr>
+	<th colspan="10">TÍTULO DO AGENDAMENTO</th>
+</tr>
+<tr>
 	<td colspan="10">
-	&nbsp;&nbsp;TÍTULO DO AGENDAMENTO
+	<%=auxtitulo%>
 	</td>
+</tr>
+<tr>
+	<th colspan="6">TIPO DE TESTE</th>
+	<th colspan="2" style="text-align: center;">DATA DE INÍCIO</th><th colspan="2" style="text-align: center;">DATA DE TÉRMINO</th>
+</tr>
+<tr>
+	<td colspan="6"><%=auxtipoteste%>&nbsp;&nbsp;<%=auxdadosteste%></td>
+	<td colspan="2" style="text-align: center;">&nbsp;<%=AuxDataInicio%></td>
+	<td colspan="2" style="text-align: center;">&nbsp;<%=AuxDataTermino%></td>
+</tr>
+<tr>
+	<th colspan="6">TECNOLOGIA UTILIZADA (PRINCIPAL)</th>
+	<th colspan="2" style="text-align: center;">DATA DA SOLICITAÇÃO</th>
+	<th colspan="2" style="text-align: center;">CONFIDENCIALIDADE</th>
 </tr>
 <tr >
-	<td colspan="10">
-	&nbsp;<%=auxtitulo%>
-	</td>
-</tr>
-<tr class="realce1">
-	<td colspan="6">
-	&nbsp;&nbsp;TIPO DE TESTE
-	</td>
-	<td align="center" colspan="2">
-	<B>DATA DE INÍCIO</B>
-	</td>
-	<td align="center" colspan="2">
-	<B>DATA DE TÉRMINO</B>
-	</td>
-</tr>
-<tr >
-	<td colspan="6">
-	&nbsp;<%=auxtipoteste%>&nbsp;&nbsp;<%=auxdadosteste%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AuxDataInicio%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AuxDataTermino%>
-	</td>
-</tr>
-<tr class="realce1">
-	<td colspan="6">
-	&nbsp;&nbsp;TECNOLOGIA UTILIZADA (PRINCIPAL)
-	</td>
-	<td colspan="2" align="center">
-	DATA DA SOLICITAÇÃO
-	</td>
-	<td align="center" colspan="2">
-	CONFIDENCIALIDADE
-	</td>
-</tr>
-<tr >
-	<td colspan="6">
-	&nbsp;&nbsp;<%=auxTec%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AuxDataSolicita%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AuxSigilo%>
-	</td>
+	<td colspan="6"><%=auxTec%></td>
+	<td style="text-align: center;" colspan="2">&nbsp;<%=AuxDataSolicita%></td>
+	<td style="text-align: center;" colspan="2">&nbsp;<%=AuxSigilo%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="10">
-	&nbsp;&nbsp;OBJETIVO DO TESTE
-	</td>
+<tr>
+	<th colspan="10">OBJETIVO DO TESTE</th>
 </tr>
 <tr >
-	<td colspan="10">
-	&nbsp;&nbsp;<%=auxobjteste%>
-	</td>
+	<td colspan="10"><%=auxobjteste%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="10">
-	&nbsp;&nbsp;AMBIENTE NECESSÁRIO
-	</td>
+<tr>
+	<th colspan="10">AMBIENTE NECESSÁRIO</th>
 </tr>
 <tr >
-	<td colspan="10">
-	&nbsp;&nbsp;<%=auxambiente%>
-	</td>
+	<td colspan="10"><%=auxambiente%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="10">
-	&nbsp;&nbsp;RECURSOS NECESSÁRIOS
-	</td>
+<tr>
+	<th colspan="10">RECURSOS NECESSÁRIOS</th>
 </tr>
 <tr >
-	<td colspan="10">
-	&nbsp;&nbsp;<%=auxrecursos%>
-	</td>
+	<td colspan="10"><%=auxrecursos%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="10">
-	&nbsp;&nbsp;OBSERVAÇÕES
-	</td>
+<tr>
+	<th colspan="10">OBSERVAÇÕES</th>
 </tr>
 <tr >
-	<td colspan="10">
-	&nbsp;&nbsp;<%=auxObs%>
-	</td>
+	<td colspan="10"><%=auxObs%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="6">
-	&nbsp;&nbsp;SOLICITANTE (USERNAME - MATRÍCULA)
-	</td>
-	<td align="center" colspan="2">
-	RAMAL
-	</td>
-	<td align="center" colspan="2">
-	ÓRGÃO
-	</td>
+<tr>
+	<th colspan="6">SOLICITANTE (USERNAME - MATRÍCULA)</th>
+	<th colspan="2" style="text-align: center;">RAMAL</th>
+	<th colspan="2" style="text-align: center;">ÓRGÃO</th>
 </tr>
 <tr >
-	<td colspan="6">
-	&nbsp;&nbsp;<%=AuxResponsavel%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=AuxMatricula%>)
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AUXRAMAL%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=AUXORGAO%>
-	</td>
+	<td colspan="6"><%=AuxResponsavel%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=AuxMatricula%>)</td>
+	<td colspan="2" style="text-align: center;"><%=AUXRAMAL%></td>
+	<td colspan="2" style="text-align: center;"><%=AUXORGAO%></td>
 </tr>
 
-<tr class="realce1">
-	<td colspan="3">
-	&nbsp;&nbsp;CLIENTES EXTERNOS
-	</td>
-	<td colspan="4">
-	&nbsp;&nbsp;RETIFICAÇÃO
-	</td>
-	<td colspan="3">
-	&nbsp;&nbsp;RETORNO DO CLIENTE (R$)
-	</td>
+<tr>
+	<th colspan="3">CLIENTES EXTERNOS</th>
+	<th colspan="4">RETIFICAÇÃO</th>
+	<th colspan="3">RETORNO DO CLIENTE (R$)</th>
 </tr>
 <tr >
-	<td colspan="3">
-	&nbsp;&nbsp;<%=auxamostra%>
-	</td>
-	<td colspan="4">
-	&nbsp;&nbsp;<%=auxretificacao%>
-	</td>
-	<td colspan="3" align="right">
-	<%=FormatCurrency(AuxRetornoCliente)%>&nbsp;&nbsp;
-	</td>
+	<td colspan="3"><%=auxamostra%></td>
+	<td colspan="4"><%=auxretificacao%></td>
+	<td colspan="3" style="text-align: right;"><%=FormatCurrency(AuxRetornoCliente)%>&nbsp;&nbsp;</td>
 </tr>
 
 <%
 if not IsNull(AuxMetas) then%>
-<tr class="realce1">
-	<td colspan="10" align="center">
-	&nbsp;&nbsp;PLANO DE METAS DA EMBRATEL
-	</td>
+<tr>
+	<th colspan="10" style="text-align: center;">PLANO DE METAS DA EMBRATEL</th>
 </tr>
 <tr >
-	<td colspan="4">
-	&nbsp;&nbsp;<%=AuxMetas%>
-	</td>
+	<td colspan="4"><%=AuxMetas%></td>
 </tr>
 <%
 end if
@@ -473,7 +392,7 @@ Set ebt1 = New TEbt
 Call ebt1.LoginUsuario(AuxUsername)
 
 Matricula = Ebt1.Matricula()
-vNome = Ebt1.NomeReduzido")
+vNome = Ebt1.NomeReduzido()
 vSiglaOrgao = Ebt1.SiglaOrgao
 vRIT =  ebt1.Ramal
 
@@ -481,27 +400,15 @@ Set ebt1  = nothing
 
 '=============================================================================%>
 
-<tr class="realce1">
-	<td colspan="6">
-	&nbsp;&nbsp;RESPONSÁVEL TÉCNICO (USERNAME - MATRÍCULA)
-	</td>	
-	<td align="center" colspan="2">
-	RAMAL
-	</td>		
-	<td align="center" colspan="2">
-	ÓRGÃO
-	</td>
+<tr>
+	<th colspan="6">RESPONSÁVEL TÉCNICO (USERNAME - MATRÍCULA)</th>	
+	<th colspan="2" style="text-align: center;">RAMAL</th>
+	<th colspan="2" style="text-align: center;">ÓRGÃO</th>
 </tr>
 <tr >
-	<td colspan="6">
-	&nbsp;&nbsp;<%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=vRIT%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=vSiglaORGAO%>
-	</td>
+	<td colspan="6"><%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)</td>
+	<td colspan="2" style="text-align: center;"><%=vRIT%></td>
+	<td colspan="2" style="text-align: center;"><%=vSiglaORGAO%></td>
 </tr>
 
 <%'=============================================================================
@@ -528,28 +435,15 @@ Set ebt1 = Nothing
 
 '=============================================================================%>
 
-<tr class="realce1">
-	<td colspan="6">
-	&nbsp;&nbsp;RAT (USERNAME - MATRÍCULA)
-	</td>
-	<td align="center" colspan="2">
-	RAMAL
-	</td>	
-	<td align="center" colspan="2">
-	ÓRGÃO
-	</td>
+<tr>
+	<th colspan="6">RAT (USERNAME - MATRÍCULA)</th>
+	<th colspan="2" style="text-align: center;">RAMAL</th>	
+	<th colspan="2" style="text-align: center;">ÓRGÃO</th>
 </tr>
-
 <tr >
-	<td colspan="6">
-	&nbsp;&nbsp;<%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=vRIT%>
-	</td>
-	<td align="center" colspan="2">
-	&nbsp;<%=vSiglaORGAO%>
-	</td>
+	<td colspan="6"><%=vNome%>&nbsp;(<%=AuxUsername%>&nbsp;-&nbsp;<%=Matricula%>)</td>
+	<td colspan="2" style="text-align: center;"><%=vRIT%></td>
+	<td colspan="2" style="text-align: center;"><%=vSiglaORGAO%></td>
 </tr>
 
 <%
@@ -560,10 +454,8 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 if Not(objSIteRS.EOF) then
 	objSiteRS.MoveFirst
 %>
-<tr class="realce1">
-	<td colspan="10">
-	&nbsp;&nbsp;PARTICIPANTES EXTERNOS
-	</td>
+<tr>
+	<th colspan="10">PARTICIPANTES EXTERNOS</th>
 </tr>
 <tr >
 	<td colspan="10">
@@ -584,11 +476,11 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 if objSiteRS(0) > 0 then
 	call Env.RecordSet( false, objSiteRS, null)
 %>
-<tr class="realce1">
-	<td align="center" colspan="5">
+<tr>
+	<td style="text-align: center;" colspan="5">
 	SERVIÇOS EMBRATEL UTILIZADOS
 	</td>
-	<td align="center" colspan="5">
+	<td style="text-align: center;" colspan="5">
 	SISTEMAS UTILIZADOS
 	</td>
 </tr>
@@ -646,17 +538,16 @@ If not (objRes.EOF and objRes.BOF) then
 
 <table width="100%" border="1" cellpadding="2" cellspacing="2">
 <tr>
-<tr class="realce1">
-	<td align="center">Nº OS</td>
-	<td align="center">TESTE</td>
-<!--	<td align="center">DADOS GERAIS DOS TESTES</td> -->
-	<td align="center">SERVIÇO</td>
-	<td align="center">PLATAFORMA</td>
-	<td align="center">AMOSTRA</td>
+<tr>
+	<td style="text-align: center;">Nº OS</td>
+	<td style="text-align: center;">TESTE</td>
+	<td style="text-align: center;">SERVIÇO</td>
+	<td style="text-align: center;">PLATAFORMA</td>
+	<td style="text-align: center;">AMOSTRA</td>
 </tr>
 <%	While not objRes.EOF%>
 <tr  valign="top">
-	<td align="center"><%=Zeros(objRes("OS_ID"),3)%></td>
+	<td style="text-align: center;"><%=Zeros(objRes("OS_ID"),3)%></td>
 	<td>
 		<%=objRes("T_TITULO")%>
 <%
@@ -701,15 +592,11 @@ if Env.usuarioCRT then
 	if cint(objSiteRS("Valor")) > 0 then%>
 <br>
 
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Histórico de Comunicações deste Agendamento</th>
-</tr>
-</table>
+<h4>Histórico de Comunicações deste Agendamento</h4>
 
 <table class="table-bordered" width="100%" border="1" cellpadding="2" cellspacing="1">
 <tr>
-	<td align="center">
+	<td style="text-align: center;">
 		<font face="arial" class="item"  color="#000000">
 		<A href="javascript:visualizarMSG();">Clique aqui para visualizar</font></A>
 	</td>
@@ -718,19 +605,25 @@ if Env.usuarioCRT then
 <%	end if
 end if
 %>
+        </div>
+    </div>
+</div>
 
-<br>
+<br />
+<br />
 
-<script>
-function visualizarMSG(){
-	var janela;
-	janela = window.open("eventosinternos.asp?hdnevento=6&txAS=<%=AuxSelecao%>", "cad_contato", "width=480, height=450, toolbar=no, status=yes, menubar=no, scrollbars=yes");
-}
-function abreArquivo(nome){
-	var janela;
-	janela = window.open(nome, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
-	janela.focus();
-}
+<script type="text/javascript">
+    function visualizarMSG()
+    {
+	    var janela;
+	    janela = window.open("eventosinternos.asp?hdnevento=6&txAS=<%=AuxSelecao%>", "cad_contato", "width=480, height=450, toolbar=no, status=yes, menubar=no, scrollbars=yes");
+    }
+    function abreArquivo(nome)
+    {
+	    var janela;
+	    janela = window.open(nome, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+	    janela.focus();
+    }
 </script>
 <%
 Call Tela.MostraRodape()

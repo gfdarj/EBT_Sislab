@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EmailTeste</RootNamespace>
     <AssemblyName>EmailTeste</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -52,12 +52,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -74,15 +73,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\svcSislab\servicos.disco" />
     <None Include="Connected Services\svcSislab\configuration91.svcinfo" />
     <None Include="Connected Services\svcSislab\configuration.svcinfo" />
     <None Include="Connected Services\svcSislab\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\svcSislab\servicos.disco" />
     <Content Include="Default.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
