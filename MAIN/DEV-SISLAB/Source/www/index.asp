@@ -62,19 +62,61 @@ Call Tela.MostraCabecalho()
         <br />
 
         <div class="container">
+
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h4 class="linha-destaque">Serviços e Agendamentos</h4>
-	                <h5><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h5>
-                    <h5><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h5>
-                    <h5><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h5>
-                    <h5><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h5>
-                    <h5><a href="fale.asp" target="_parent">Sugestões (Fale Conosco)</a></h5>
-                </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="linha-destaque">Acha Fácil CRT</h4>
+
+                        <h5><a href="CadAgendamentoCliente.asp">Agende um servi&ccedil;o no CRT</a><br />
+						&nbsp;&nbsp;&nbsp;<small>Cadastre o seu servi&ccedil;o, uma visita ou uma palestra no CRT</small></h5>
+
+						<h5><a href="rel_ativ.asp" class="menu">Acompanhamento e Resultados</a><br />
+						&nbsp;&nbsp;&nbsp;<small>Informações dos agendamentos no CRT</small></h5>
+
+						<h5><a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a><br />
+						&nbsp;&nbsp;&nbsp;<small>Veja os agendamentos do dia</small></h5>
+
+						<h5><a href="sit_crt.asp" class="menu"><%=indicador%>Lista de Atividades no CRT</a><br />
+						&nbsp;&nbsp;&nbsp;<small>Servi&ccedil;os em andamento no CRT</small></h5>
+
+						<h5><a href="pesqscr.asp?emjanela=1" class="menu" target="_blank"><%=indicador%>Pesquisa de Satisfa&ccedil;&atilde;o</a><br />
+				    		&nbsp;&nbsp;&nbsp;<small>D&egrave; a sua opini&atilde;o sobre nossos servi&ccedil;os</small></h5>
+
+						<h5><a href="form_remarca_teste_sel.asp" class="menu"><%=indicador%>Remarcar Agendamento</a><br />
+			    			&nbsp;&nbsp;&nbsp;<small>Altere a data do seu agendamento no CRT</small></h5>
+
+                <% If usuarioCRT Then %>
+						<h5><a href="rel_tecnologia_fabricante.asp?index=1" class="menu" target="_blank"><%=indicador%>Tecnologias empregadas</a><br />
+		    				&nbsp;&nbsp;&nbsp;<small>Tecnologias utilizadas nos agendamentos e seus fabricantes</small></h5>
+
+						<h5><a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>&Oacute;rg&atilde;os Clientes</a><br />
+	    					&nbsp;&nbsp;&nbsp;<small>Veja as atividades executadas no CRT pelos &oacute;g&atilde;os Embratel</small></h5>
+
+						<h5><a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>Servi&ccedil;os para Clientes</a><br />
+    						&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes Embratel</small></h5>
+                <% End If %>
+
+                </div>
+
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4 class="linha-destaque">Serviços e Agendamentos</h4>
+	                        <h5><a href="cadAgendamentoCliente.asp" target="_parent">Agendamento de serviço</a></h5>
+                            <h5><a href="rel_ativ.asp" target="_parent">Acompanhamento de agendamento</a></h5>
+                            <h5><a href="form_remarca_teste_sel.asp" target="_parent">Remarcar/Cancelar agendamento</a></h5>
+                            <h5><a href="sel_cad_logbook.asp" target="_parent">Log Book</a></h5>
+                            <h5><a href="fale.asp" target="_parent">Sugestões (Fale Conosco)</a></h5>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <h4 class="linha-destaque">Informações de LogBook</h4>
 
 							<script type="text/javascript">
@@ -179,9 +221,12 @@ Call Tela.MostraCabecalho()
 
 <%							End If %>
 
-						</div>
-                    </div>
+                        </div>
+
+                    </div> <!-- row -->
+
                 </div>
+
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="row">
@@ -226,82 +271,11 @@ Call Tela.MostraCabecalho()
                                 </div>
 
                         </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <br />
-
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <h4 class="linha-destaque">Acha Fácil CRT</h4>
+                    </div> <!-- row -->
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                            <h5><a href="CadAgendamentoCliente.asp">Agende um servi&ccedil;o no CRT</a><br />
-							&nbsp;&nbsp;&nbsp;<small>Cadastre o seu servi&ccedil;o, uma visita ou uma palestra no CRT</small></h5>
 
-                        </div>
-
-                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
-						    <h5><a href="rel_ativ.asp" class="menu">Acompanhamento e Resultados</a><br />
-						    &nbsp;&nbsp;&nbsp;<small>Informações dos agendamentos no CRT</small></h5>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-							<h5><a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a><br />
-							&nbsp;&nbsp;&nbsp;<small>Veja os agendamentos do dia</small></h5>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
-							<h5><a href="sit_crt.asp" class="menu"><%=indicador%>Lista de Atividades no CRT</a><br />
-							&nbsp;&nbsp;&nbsp;<small>Servi&ccedil;os em andamento no CRT</small></h5>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-							<h5><a href="pesqscr.asp?emjanela=1" class="menu" target="_blank"><%=indicador%>Pesquisa de Satisfa&ccedil;&atilde;o</a><br />
-				    			&nbsp;&nbsp;&nbsp;<small>D&egrave; a sua opini&atilde;o sobre nossos servi&ccedil;os</small></h5>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
-							<h5><a href="form_remarca_teste_sel.asp" class="menu"><%=indicador%>Remarcar Agendamento</a><br />
-			    				&nbsp;&nbsp;&nbsp;<small>Altere a data do seu agendamento no CRT</small></h5>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-							<h5><a href="rel_tecnologia_fabricante.asp?index=1" class="menu" target="_blank"><%=indicador%>Tecnologias empregadas</a><br />
-		    					&nbsp;&nbsp;&nbsp;<small>Tecnologias utilizadas nos agendamentos e seus fabricantes</small></h5>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
-							<h5><a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>&Oacute;rg&atilde;os Clientes</a><br />
-	    						&nbsp;&nbsp;&nbsp;<small>Veja as atividades executadas no CRT pelos &oacute;g&atilde;os Embratel</small></h5>
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<h5><a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>Servi&ccedil;os para Clientes</a><br />
-    							&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes Embratel</small></h5>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h4 class="linha-destaque">Fotos</h4>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
 <%
 If navegador = "MSIE" Then
 %>
@@ -317,51 +291,55 @@ Else %>
                   "ORDER BY NEWID()"
 	    Call Env.RecordSet(True, RS, chr_SQL)
         While Not RS.Eof %>
-                                <a href="arquivos/<%=RS("ARQ_NOMEARQ")%>" data-fancybox="gallery" data-caption="<%=RS("ARQ_LINK")%>" class="fancybox">
-                                    <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:300px; height: 190px; border: solid;" >
-                                </a>
+                            <a href="arquivos/<%=RS("ARQ_NOMEARQ")%>" data-fancybox="gallery" data-caption="<%=RS("ARQ_LINK")%>" class="fancybox">
+                                <img class="mySlides" title="<%=RS("ARQ_LINK")%>" src="arquivos/<%=RS("ARQ_NOMEARQ")%>" style="width:300px; height: 190px; border: solid;" >
+                            </a>
 <%          RS.MoveNext
         WEnd
         Call Env.RecordSet(False, RS, "")
 %>
-                            </div>
-
                             <script type="text/javascript">
-								//Faz a troca das imagens em um intervalo pré-definido
-								var myIndex = 0;
-								carousel();
+						        //Faz a troca das imagens em um intervalo pré-definido
+						        var myIndex = 0;
+						        carousel();
 
-								function carousel() {
-									var i;
-									var x = document.getElementsByClassName("mySlides");
-									for (i = 0; i < x.length; i++) {
-										x[i].style.display = "none";
-									}
-									myIndex++;
-									if (myIndex > x.length) { myIndex = 1 }
-									x[myIndex - 1].style.display = "block";
-									setTimeout(carousel, 5000); // Change image every 5 seconds
-								}
+						        function carousel() {
+							        var i;
+							        var x = document.getElementsByClassName("mySlides");
+							        for (i = 0; i < x.length; i++) {
+								        x[i].style.display = "none";
+							        }
+							        myIndex++;
+							        if (myIndex > x.length) { myIndex = 1 }
+							        x[myIndex - 1].style.display = "block";
+							        setTimeout(carousel, 5000); // Change image every 5 seconds
+						        }
 
-								//fancybox
-								$('[data-fancybox="gallery"]').fancybox({
-									// Options will go here
-									slideShow : {
-										autoStart : true,
-										playSpeed: 3000
-									}
-								});
+						        //fancybox
+						        $('[data-fancybox="gallery"]').fancybox({
+							        // Options will go here
+							        slideShow : {
+								        autoStart : true,
+								        playSpeed: 3000
+							        }
+						        });
                             </script>
 <%
 End If
 %>
-                    </div>
+                        </div>
 
-                </div>
+                    </div>  <!-- row -->
+
+                </div> <!-- 3a coluna -->
 
             </div>
 
-        </div>
+        </div>  <!-- container -->
+
+
+        <br />
+
 
 <%
 If navegador <> "MSIE" Then
