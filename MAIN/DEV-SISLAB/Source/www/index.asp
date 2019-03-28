@@ -46,6 +46,7 @@ Dim usuarioCRT, chr_SQL, RS,conta, navegador
 navegador = MeuNavegador()
 usuarioCRT = Env.UsuarioCRT
 
+'usuarioCRT = false
 'Response.write Env.EhRat & "<BR>" & Now
 'Response.End
 
@@ -66,6 +67,7 @@ Call Tela.MostraCabecalho()
             <div class="row">
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
                     <h4 class="linha-destaque">Acha Fácil CRT</h4>
 
                         <h5><a href="CadAgendamentoCliente.asp">Agende um servi&ccedil;o no CRT</a><br />
@@ -74,8 +76,10 @@ Call Tela.MostraCabecalho()
 						<h5><a href="rel_ativ.asp" class="menu">Acompanhamento e Resultados</a><br />
 						&nbsp;&nbsp;&nbsp;<small>Informações dos agendamentos no CRT</small></h5>
 
+                <% If usuarioCRT Then %>
 						<h5><a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a><br />
 						&nbsp;&nbsp;&nbsp;<small>Veja os agendamentos do dia</small></h5>
+                <% End If %>
 
 						<h5><a href="sit_crt.asp" class="menu"><%=indicador%>Lista de Atividades no CRT</a><br />
 						&nbsp;&nbsp;&nbsp;<small>Servi&ccedil;os em andamento no CRT</small></h5>
@@ -96,10 +100,9 @@ Call Tela.MostraCabecalho()
 						<h5><a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>Servi&ccedil;os para Clientes</a><br />
     						&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes Embratel</small></h5>
                 <% End If %>
-
                 </div>
 
-
+<% If usuarioCRT Then %>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 
                     <div class="row">
@@ -227,13 +230,81 @@ Call Tela.MostraCabecalho()
 
                 </div>
 
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <% Call MostraNoticias() %>
+                        </div>
+                    </div> <!-- row -->
+
+                    <br />
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <% Call MostraFotos() %>
+                        </div>
+
+                    </div>  <!-- row -->
+
+                </div> <!-- 3a coluna -->
+
+<% Else '--> If usuarioCRT %>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <% Call MostraNoticias() %>
+                        </div>
+                    </div> <!-- row -->
+
+                </div> <!-- 2a coluna -->
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <% Call MostraFotos() %>
+                        </div>
+
+                    </div>  <!-- row -->
+
+                </div> <!-- 3a coluna -->
+
+<% End If '--> If usuarioCRT %>
+
+            </div>
+
+        </div>  <!-- container -->
+
+
+        <br />
+
+
+<%
+If navegador <> "MSIE" Then
+%>
+		<!-- javascript do fancybox -->
+		<script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
+<%
+End If
+%>
+
+<%
+Call Tela.MostraRodape()
+
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+' Funções para ajudar a montar os "quadros" da tela
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Private Sub MostraNoticias %>
+
                             <h4 class="linha-destaque">Notícias</h4>
 
-                                <div class="" id="datamain" style="max-width:300px; max-height: 150px; text-align: justify; word-wrap: break-word;">
+                                <div class="" id="datamain" style="max-width:300px; height: 100px; max-height: 100px; text-align: justify; word-wrap: break-word;">
                                     <script type="text/javascript">
                                         var pausecontent = new Array();
 <%
@@ -269,21 +340,21 @@ Call Tela.MostraCabecalho()
                                         }
                                     </script>
                                 </div>
-
-                        </div>
-                    </div> <!-- row -->
-
-                    <div class="row">
-
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <%
-If navegador = "MSIE" Then
+End Sub
+
+
+Private Sub MostraFotos %>
+
+                            <h4 class="linha-destaque">Fotos</h4>
+<%
+    If navegador = "MSIE" Then
 %>
                             <iframe src="fotos_crt.asp" frameborder="0" width="300" style="border: solid;" height="190" scrolling="no" name="teste_iframe">
                                 Sorry your browser does not support IFRAMES.
 						    </iframe>
 <%
-Else %>
+    Else %>
 <%
      	chr_SQL = "SELECT TOP 15 ARQ_NOMEARQ, ARQ_LINK, ARQ_CODARQ " & _
 		          "FROM Arquivos " & _
@@ -325,32 +396,9 @@ Else %>
 						        });
                             </script>
 <%
-End If
+    End If
 %>
-                        </div>
-
-                    </div>  <!-- row -->
-
-                </div> <!-- 3a coluna -->
-
-            </div>
-
-        </div>  <!-- container -->
-
-
-        <br />
-
-
 <%
-If navegador <> "MSIE" Then
-%>
-		<!-- javascript do fancybox -->
-		<script type="text/javascript" src="includes/jquery/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="includes/fancybox-3.5.2-dist/jquery.fancybox.min.js"></script>
-<%
-End If
-%>
+End Sub
 
-<%
-Call Tela.MostraRodape()
 %>

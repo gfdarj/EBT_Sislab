@@ -17,7 +17,7 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 
-	Application("SISLAB_AMBIENTE") = "LOC"
+	Application("SISLAB_AMBIENTE") = "DES"
 
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento Local
@@ -37,6 +37,9 @@ Sub Application_OnStart()
 		Application("SISLAB_DataUserPwd") = "sislab1001"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
+	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
+	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
@@ -58,6 +61,10 @@ Sub Application_OnStart()
 		Application("SISLAB_DataUserPwd") = "Embratel@21"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
+	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
+	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
+
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
 
         Application("SISLAB_HTTP_WEBSERVICE") = "http://rjojurisdev01/sislabsvc/Servicos.asmx"
@@ -76,6 +83,9 @@ Sub Application_OnStart()
 		Application("SISLAB_DataUserPwd") = "sislab1001"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
+	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
+	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
@@ -96,6 +106,9 @@ Sub Application_OnStart()
 		Application("SISLAB_DataUserPwd") = "adm123"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
+	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
+	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"

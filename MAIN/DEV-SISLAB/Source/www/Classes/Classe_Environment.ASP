@@ -64,18 +64,22 @@ Class TEnvironment
 
     Public Property Get ehRT()
 	    ehRT = Ebt.ehRT
+	    'ehRT = False
     End Property
 
     Public Property Get ehRAT()
 	    ehRAT = Ebt.ehRAT
+	    'ehRAT = False
     End Property
 
     Public Property Get ehGQ()
 	    ehGQ = Ebt.ehGQ
+	    'ehGQ = False
     End Property
 
     Public Property Get UsuarioCRT()
 	    UsuarioCRT = Ebt.UsuarioCRT
+	    'UsuarioCRT = False
     End Property
 
     Public Property Get UsuarioSCE()
@@ -419,6 +423,32 @@ Class TEnvironment
         p_moduloLog = "SCE"
         Call Me.Log(mensagem)
     End Function
+
+
+    Public Function ObtemLinkCodigoEtica()
+	    Dim RS
+
+	    '-- Pega os dados de Configuracao da aplicacao SISLAB
+	    Set RS = oConn.Execute("SELECT top 1 ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO"))
+        If RS.Eof And RS.Bof Then
+            ObtemLinkCodigoEtica = "#"
+        Else
+            ObtemLinkCodigoEtica = "Arquivos/" & RS("ARQ_NOMEARQ")
+        End If
+    End Function
+
+    Public Function ObtemLinkManualSistemaGestao()
+	    Dim RS
+
+	    '-- Pega os dados de Configuracao da aplicacao SISLAB
+	    Set RS = oConn.Execute("SELECT top 1 ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO"))
+        If RS.Eof And RS.Bof Then
+            ObtemLinkManualSistemaGestao = "#"
+        Else
+            ObtemLinkManualSistemaGestao = "Arquivos/" & RS("ARQ_NOMEARQ")
+        End If
+    End Function
+
 
 End Class
 %>

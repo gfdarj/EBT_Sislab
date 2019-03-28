@@ -96,21 +96,21 @@ If VVVNZ(auxag) Then
 
 	'### escolher multiplos itens se forem agendamentos sem resposta !!!
 %>
-<br>
-<form name="formulario" method="post" >
-<p><b>Selecione um ou mais agendamento(s):</b><%=IIf(VVVN(RQ("exibir")), "&nbsp;<i>(Para selecionar mais de um agendamento utilize a tecla <u>Shift</u> ou <u>Ctrl</u>)</i>", "")%></p>
-<p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag"  size="15" style="width: 700px;">
+<div class="margem-10">
+    <form name="formulario" method="post" >
+    <p><b>Selecione um ou mais agendamento(s):</b><%=IIf(VVVN(RQ("exibir")), "&nbsp;<i>(Para selecionar mais de um agendamento utilize a tecla <u>Shift</u> ou <u>Ctrl</u>)</i>", "")%></p>
+    <p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag"  size="15" style="width: 700px;">
 <%	while not objRS.Eof%>
-<option value="<%=objRS("AG_NUMERO")%>"><%=objRS("AG_NUMERO")%> (<%=UCase(objRS("AG_USERNAME"))%>) - <%=left(objRS("AG_OBJETIVO"),100)%></option>
+        <option value="<%=objRS("AG_NUMERO")%>"><%=objRS("AG_NUMERO")%> (<%=UCase(objRS("AG_USERNAME"))%>) - <%=left(objRS("AG_OBJETIVO"),100)%></option>
 <%		objRS.MoveNext
 	wend%>
-</select></p>
-<p>
-	<b>Exibir:</b>&nbsp;<select name="exibir"  onchange="javascript:trocaAS();">
-	<option value="" <%=IIf(VVVN(RQ("exibir")), "selected", "")%>>Somente Agendamentos sem Respostas</option>
-	<option value="T" <%=IIf(RQ("exibir") = "T", "selected", "")%>>Todos os Agendamentos</option>
-	<option value="R" <%=IIf(RQ("exibir") = "R", "selected", "")%>>Somente Agendamentos com Respostas</option>
-	</select>
+    </select></p>
+    <p>
+	    <b>Exibir:</b>&nbsp;<select name="exibir"  onchange="javascript:trocaAS();">
+	    <option value="" <%=IIf(VVVN(RQ("exibir")), "selected", "")%>>Somente Agendamentos sem Respostas</option>
+	    <option value="T" <%=IIf(RQ("exibir") = "T", "selected", "")%>>Todos os Agendamentos</option>
+	    <option value="R" <%=IIf(RQ("exibir") = "R", "selected", "")%>>Somente Agendamentos com Respostas</option>
+	    </select>
 <%	If ehCRT Then
 		sSQL = "SELECT DISTINCT AG_USERNAME " & _
 			"FROM vw_Agendamento a " & _
@@ -126,36 +126,38 @@ If VVVNZ(auxag) Then
 
 		If Not objRS.Eof Then 
 %>
-	&nbsp;&nbsp;&nbsp;
-	<b>Exibir Solicitante:</b>
-	<select name="solicitante"  onchange="javascript:trocaAS();">
-	<option value="">Todos os Solicitantes</option>
-	<option value="--">-----------------------</option>
-	<option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>
-	<option value="--">-----------------------</option>
+	    &nbsp;&nbsp;&nbsp;
+	    <b>Exibir Solicitante:</b>
+	    <select name="solicitante"  onchange="javascript:trocaAS();">
+	    <option value="">Todos os Solicitantes</option>
+	    <option value="--">-----------------------</option>
+	    <option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>
+	    <option value="--">-----------------------</option>
 <%			While Not objRS.Eof
                 Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
 
 				If objRS("AG_USERNAME") <> Env.Usuario Then %>
-	<option value="<%=objRS("AG_USERNAME")%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
+    	<option value="<%=objRS("AG_USERNAME")%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
 <%				End If
 
 				objRS.MoveNext
 			WEnd %>
-	</select>
-    <script type="text/javascript" language="javascript">
-        document.all.solicitante.value = '<%=solicitante_procurado%>';
-    </script>
+	    </select>
+        <script type="text/javascript" language="javascript">
+            document.all.solicitante.value = '<%=solicitante_procurado%>';
+        </script>
 <%
 		End If
 	Else %>
-	<input type="hidden" name="solicitante" value="<%=auxusername%>">
+    	<input type="hidden" name="solicitante" value="<%=auxusername%>">
 <%	End If '### EhCRT %>
-</p>
-<p><input type="button"  value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
-</form>
+    </p>
+    <p><input type="button"  value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
+    </form>
+</div>
+
 <script type="text/javascript">
-	function trocaAS()
+    function trocaAS()
 	{
 		var f = document.formulario;
 		if (f.solicitante.value != '--')

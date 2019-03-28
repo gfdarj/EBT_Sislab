@@ -17,7 +17,6 @@ Class TEbt
 	Private bln_ehRT
 	Private bln_ehRAT
 	Private bln_ehGQ
-	Private bln_usuarioCRT_Cadastrado
 	Private bln_UsuarioSCE
 	Private int_PerfilSCE
 	Private chr_Sigla_Orgao
@@ -134,7 +133,7 @@ Class TEbt
     End Property
 
     Public Property Get UsuarioCRTCadastrado()
-	    UsuarioCRTCadastrado = bln_usuarioCRT_Cadastrado
+	    UsuarioCRTCadastrado = bln_usuarioCRT
     End Property
 
     Public Property Get Matricula()
@@ -264,7 +263,6 @@ Class TEbt
 		    bln_ehRT = CBool(objRS("RT"))
 		    bln_ehRAT = CBool(objRS("RAT"))
 		    bln_ehGQ = CBool(objRS("GQ"))
-		    bln_usuarioCRT_Cadastrado = True
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
 

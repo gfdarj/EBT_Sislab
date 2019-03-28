@@ -15,15 +15,15 @@ else
 	auxselecao = CInt(trim(request("sel")))
 End if
 %>
-<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
+
+<div class="margem-10">
+
+<p style="font-weight: bold;"><span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span></p>
+
+<table border="0" width="100%" class="table-condensed" cellpadding="3" cellspacing="3">
 <tr>
 	<td>
-		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="table-bordered">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="table-condensed">
 		<tr>
 <%
 s = "SELECT Reserva_ambientes.RAM_id, RAM_descricao, RAM_Titulo, RAM_horario, RAM_contato, Ambientes.AMB_ID, RAM_AS, RAM_Responsavel, CONVERT(VARCHAR, RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, RAM_datafim, 103) AS RAM_datafim, AMB_NOME " & _
@@ -62,13 +62,13 @@ If Not objRS.EOF Then
 		<tr>
 <%			end if%>
 			<td valign="top">
-			<b><%=auxlocalizacao%></b>
+			    <%=auxlocalizacao%>
 			</td>
 			<td align="justify">
 <%		end if%>
 
 <%		if Not(IsNull(auxIDagenda) or auxIDagenda="")  then%>
-				<table width="100%" class="table-bordered">
+				<table width="100%" class="table-condensed">
 				<tr valign="top">
 					<td width="7px"><span class="cinza1">&raquo;</span></td>
 					<td>
@@ -122,6 +122,9 @@ end if%>
 </tr>
 </table>
 <br>
+
+</div>
+
 <%
 call Env.RecordSet( false, objRS, null)
 

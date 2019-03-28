@@ -124,7 +124,13 @@ End If
         <input type="hidden" name="acao" value="">
         <input type="hidden" name="horario" value="">
 
-        <table class="table-bordered table-condensed" id="tb_horarios" style="margin-left: auto; margin-right: auto;">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <table class="table-bordered table-condensed" id="tb_horarios" >
         <tr>
 	        <th>Sede > Ilha do Fundão (CRT)</th>
 	        <th>Ilha do Fundão (CRT) > Sede</th>
@@ -177,6 +183,24 @@ While Not RS.Eof
 WEnd
 %>
     </table>
+
+                </div> <!-- 1a coluna -->
+
+                <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h3>Transporte Campinas</h3>
+                </div>--> <!-- 2a coluna -->
+
+                <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h3>Transporte Morumbi</h3>
+                </div>--> <!-- 3a coluna -->
+
+            </div>
+        </div>
+
+
+
+
+
 <%
 If bln_EhRat And bln_Alteracao And (Not bln_Imprime) Then
 %>

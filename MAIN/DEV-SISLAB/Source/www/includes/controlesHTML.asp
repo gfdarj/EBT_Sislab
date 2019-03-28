@@ -45,7 +45,7 @@
 </script>
 
 <%
-Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
+Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
 	if titulo1 = "" then titulo1 = "Dados dos Participantes Embratel"
 	if titulo2 = "" then titulo2 = "Participantes Embratel"
 %>
@@ -94,15 +94,15 @@ Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
         <div class="linha-fundo" style="width:100%;"><strong><%=titulo1%></strong></div>
         <br />
         <div>
-            Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index+1%>" maxlength="50">
+            Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index%>" maxlength="50">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index+2%>" maxlength="200">
+            Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index + 1%>" maxlength="200">
         </div>
         <br />
         <div>
-            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index+3%>" title="Adiciona um participante Embratel na lista">
+            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index + 2%>" title="Adiciona um participante Embratel na lista">
 		    &nbsp;
-		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index+4%>" title="Remove um participante Embratel na lista">
+		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index + 3%>" title="Remove um participante Embratel na lista">
         </div>
         <br />
         <div>
@@ -110,7 +110,7 @@ Function ControleParticipantesInternos(nome,index, titulo1, titulo2, ag_numero)
         <br />
 	        <select name="lst<%=nome%>"  size="4"
 			    style="LINE-HEIGHT: 30px; PADDING-TOP: 3px; WIDTH: 640px; overflow: auto;"
-			    multiple tabindex="<%=index+5%>">
+			    multiple tabindex="<%=index + 4%>">
             </select>
         </div>
         <br />
