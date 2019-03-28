@@ -16,6 +16,8 @@ Sub Application_OnStart()
     Application("SISLAB_CHARSET") = "utf-8"
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
+	Application("SISLAB_NOME_EMPRESA") = "Claro"
+
 
 	Application("SISLAB_AMBIENTE") = "DES"
 

@@ -46,8 +46,8 @@
 
 <%
 Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
-	if titulo1 = "" then titulo1 = "Dados dos Participantes Embratel"
-	if titulo2 = "" then titulo2 = "Participantes Embratel"
+	if titulo1 = "" then titulo1 = "Dados dos Participantes " & Application("SISLAB_NOME_EMPRESA")
+	if titulo2 = "" then titulo2 = "Participantes " & Application("SISLAB_NOME_EMPRESA")
 %>
     <script type="text/javascript">
         function adiciona_retira_participantes<%=nome%>(tipo)
@@ -65,7 +65,7 @@ Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
 	        }
 	        else{
 		        if (nome.value == ""){
-			        alert("O campo 'Matricula ou UserName' deve ser preenchido.");
+			        alert("O campo 'E-mail' deve ser preenchido.");
 			        nome.focus();		
 		        }
 		        else if (motivo.value == ""){
@@ -94,15 +94,15 @@ Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
         <div class="linha-fundo" style="width:100%;"><strong><%=titulo1%></strong></div>
         <br />
         <div>
-            Matricula ou Username:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index%>" maxlength="50">
+            E-mail:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index%>" maxlength="50">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index + 1%>" maxlength="200">
         </div>
         <br />
         <div>
-            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index + 2%>" title="Adiciona um participante Embratel na lista">
+            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index + 2%>" title="Adiciona um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
 		    &nbsp;
-		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index + 3%>" title="Remove um participante Embratel na lista">
+		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index + 3%>" title="Remove um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
         </div>
         <br />
         <div>
@@ -508,7 +508,7 @@ function SubstituiComboCScript(LabelCampo,NomeControle,NomeControleASubstituir,V
 <html>
 <script type="text/javascript" src="includes/manipulaObj.js"></script>
 <head>
-	<title>Embratel</title>
+	<title><%=Application("SISLAB_NOME_EMPRESA")%></title>
 <%Response.Write "<script language=""JavaScript"">"%>
 var str = "<font class='Fonttit3Cad'><b><%=LabelCampo%></B></FONT><BR>"
 str += "<select name='<%=NomeControle%>' class='combo' ";

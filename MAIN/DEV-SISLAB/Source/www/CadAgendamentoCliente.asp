@@ -152,7 +152,7 @@ End If
 	    //Optei por participantes EBT
 	    if (frmAgendaTeste.cmbPartEBT[0].checked){
 		    if (frm.lstParticipantesEBT.options.length == 0){
-			    alert("Você optou por presenca de participantes embratel mas não cadastrou nenhum.")
+			    alert("Você optou por presenca de participantes <%=Application("SISLAB_NOME_EMPRESA")%> mas não cadastrou nenhum.")
 			    return false;
 		    }
 	    }
@@ -182,7 +182,7 @@ End If
 	    }
 
 	    if (!(frm.cmbCliExternos[0].checked || frm.cmbCliExternos[1].checked)){
-		    alert("É necessário explicitar se Atividade visa atender a cliente externo a Embratel ou não.");
+		    alert("É necessário explicitar se Atividade visa atender a cliente externo a <%=Application("SISLAB_NOME_EMPRESA")%> ou não.");
 	        frm.cmbCliExternos[0].focus();
 		    return false;	
 	    }
@@ -346,51 +346,44 @@ End If
         </tr>
         </table>
 
+        <br />
 
-        <table border="0">
-        <tr>
-	        <td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>
-	        <td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>	<td width="10%"></td>
-        </tr>
 <%
 if num_ag <> "" then
 	sSQL = "Select VW.* From vw_ArquivosTeste VW "
 	sSQL = sSQL & " WHERE VW.AG_NUMERO=" & num_ag
 	call Env.RecordSet( true, rsArquivos, sSQL)
 	if Not rsArquivos.eof then%>
-        <tr>
-	        <th colspan="10">Arquivos Associados</th>
-        </tr>
-        <tr>
-	        <td colspan="10">
+
+        <div style="width: 100%">
+	        <div class="linha-fundo" style="width: 100%"><strong>Arquivos Associados</strong></div><br />
+
 <%		If MostraDadoSigiloso(int_Sigilo, chr_Username) Then %>
-		        <table class="largura-total">
+		        <div>
 <%			rsArquivos.MoveFirst
 			Do while Not rsArquivos.eof%>
-		        <tr>
-			        <td>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></td>
-		        </tr>
+			        <p>&nbsp;&nbsp;<span class="cinza">&raquo;</span>&nbsp;<b><%=rsArquivos("TAR_TipoArquivo")%>:&nbsp;</b><a href="arquivos/<%=rsArquivos("Arq_nomeArq")%>" target="_blank"><%=rsArquivos("Arq_Link")%></a></p>
 <%			rsArquivos.MoveNext
 			Loop%>
-        		</table>
+        		</div>
 <%		Else
 			Response.Write ExibeMensagemSigiloAS(0)
 		End If%>
-	        </td>
-        </tr>
+        </div>
+
+        <br />
+
 <%	End if
 End if
 %>
-        </table>
 
-        <br />
 <%
 if Env.EhRat() then
 %>
         <div style="width: 100%">
 	        <div class="linha-fundo" style="width: 100%"><strong>Solicitar Agendamento pelo Cliente</strong></div><br />
-            Nome do Solicitante: &nbsp;
-            <input type="text"  name="txtSolicitante" size="25"  maxlength="80">
+            E-mail do Solicitante: &nbsp;
+            <input type="text"  name="txtSolicitante" size="35"  maxlength="80">
 		    <input type="button" value="Buscar" onclick="BuscarSolicitante();">
         </div>
 
@@ -415,7 +408,7 @@ end if
                     <input type=hidden name="Username">
 		            <input readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Ramal:&nbsp;<input name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
+		            Ramal:&nbsp;<input name="txtRamal" readonly size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
                 </div>
         </div>
 
@@ -428,7 +421,7 @@ end if
         <div>
             <span class="texto-vermelho-bold"><b>*</b></span>
 		    <u title="Nome de referência associada a atividade.">Título do agendamento:</u>&nbsp;
-		    <input  name="txtTitulo" size="70" tabindex="7" maxlength="50" title="Nome de referência associada a atividade">
+		    <input  name="txtTitulo" tabindex="7" size="60" maxlength="50" title="Nome de referência associada a atividade">
         </div>
 
         <br />
@@ -472,7 +465,7 @@ end if
         <br />
 
         <div>
-            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes externos a Embratel: &nbsp;
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes externos a <%=Application("SISLAB_NOME_EMPRESA")%>: &nbsp;
             <input type="radio" name="cmbPartExternos" onClick="PreparaCamposPARTEXT()" value="1" tabindex="18" ID="cmbPartExternos1">
             Sim&nbsp;
             <input type="radio" name="cmbPartExternos"  onClick="PreparaCamposPARTEXT()" value="0" tabindex="19" ID="cmbPartExternos0" checked>
@@ -573,7 +566,7 @@ end if
         </div>
 
         <div>
-            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes Embratel: &nbsp;
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Participantes <%=Application("SISLAB_NOME_EMPRESA")%>: &nbsp;
             <input type="radio" name="cmbPartEBT" onClick="PreparaCamposPART(this.form)" value="1" tabindex="26" ID="cmbPartEBT1">
             Sim&nbsp;
             <input type="radio" name="cmbPartEBT"  onClick="PreparaCamposPART(this.form)" value="0" tabindex="27" checked ID="cmbPartEBT0">
@@ -592,7 +585,7 @@ end if
         <br />
 
         <div>
-            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a Embratel: &nbsp;
+            <span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Atividade visa atender a cliente externo a <%=Application("SISLAB_NOME_EMPRESA")%>: &nbsp;
             <input type="radio" name="cmbCliExternos" onClick="PreparaCamposCLI()" id ="cmbCliExternos1" value="1" tabindex="33">
             Sim&nbsp;
             <input type="radio" name="cmbCliExternos"  onClick="PreparaCamposCLI()" id ="cmbCliExternos0" value="0" tabindex="34">

@@ -165,8 +165,8 @@ auxPadronizado = (request("chkPadronizado")="on")
 		</tr>
 		<tr>
 			<td colspan="3">
-				Username do Solicitante:&nbsp;
-				<input type="text" size="9" name="solicitante" >
+				Nome ou E-mail do Solicitante:&nbsp;
+				<input type="text" size="30" maxlength="50" name="solicitante" >
 			</td>
 			<td colspan="7">
 				Situação do Agendamento:&nbsp;
@@ -190,8 +190,8 @@ auxPadronizado = (request("chkPadronizado")="on")
 		</tr>
 		<tr>
 			<td colspan="6">
-				Username ou nome do participante:&nbsp;
-				<input type="text" size="50" maxlength="60" name="participante" >
+				Nome ou E-mail do participante:&nbsp;
+				<input type="text" size="30" maxlength="50" name="participante" >
 			</td>
 			<td colspan="4">
 				Sigilo:&nbsp;

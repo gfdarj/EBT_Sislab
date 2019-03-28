@@ -61,25 +61,39 @@ tot=0
 
 sSQL = ""
 sSQL_Dados = _
-	"Select *, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F From vw_Agendamento a Where AG_NUMERO = AG_NUMERO "
+	"Select a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & VbCrLf & _
+    "From vw_Agendamento a " & VbCrLf
+
+if auxParticipante <> "" then
+	sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT pes.AG_NUMERO FROM Participantes_Externos pes WHERE UPPER(pes.PE_NOME) LIKE '%" & auxParticipante & "%' OR UPPER(pes.PE_USERNAME) LIKE '%" & auxParticipante & "%') AS pes ON pes.AG_NUMERO = a.AG_NUMERO " & VbCrLf
+end if
+
+if auxTeste <> "" then
+	sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT AG_NUMERO FROM Ordem_de_Servico WHERE T_ID = " & auxTeste & ") AS os ON os.AG_NUMERO = a.AG_NUMERO "
+end if
 
 If auxcmbTipoTeste <> "" Then
-	sSQL = sSQL & " AND ((" & _
-		"SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN Testes t " & _
-		"ON os.T_ID = t.T_ID WHERE t.TIT_ID = " & auxcmbTipoTeste & " AND os.AG_NUMERO = a.AG_NUMERO) > 0" & _
-		")"
+	sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT AG_NUMERO FROM Ordem_de_Servico os INNER JOIN Testes t ON os.T_ID = t.T_ID WHERE t.TIT_ID = " & auxcmbTipoTeste & ") AS os1 ON os1.AG_NUMERO = a.AG_NUMERO "
 End If
+
+If auxcodigobarras <> "" Then
+	'sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT os.AG_NUMERO FROM Ordem_de_Servico os INNER JOIN SCE_Equipamentos eq1 " & _
+	'	"ON os.EQ_ID_AMOSTRA = eq1.EQ_ID WHERE eq1.EQ_CODIGOBARRAS = '" & auxcodigobarras & "') AS os2 ON os2.AG_NUMERO = a.AG_NUMERO "
+	sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT ASA FROM SCE_Movimentacao m INNER JOIN SCE_Equipamentos e ON m.EQ_ID = e.EQ_ID WHERE ASA IS NOT NULL AND e.EQ_CODIGOBARRAS = '" & auxcodigobarras & "') AS Eq1 ON Eq1.ASA = a.AG_NUMERO  "
+End If
+
+If auxAmbiente <> "" Then
+	sSQL_Dados = sSQL_Dados & " INNER JOIN (SELECT DISTINCT RAM_AS FROM Reserva_Ambientes WHERE AMB_ID = " & auxAmbiente & ") AS ram ON ram.RAM_AS = a.AG_NUMERO "
+End If
+
+
+sSQL = "Where 1 = 1 "
+
 
 if auxdiasteste <> "" then
 	sSQL = sSQL & " AND DATEDIFF(day, AG_DATASOLICITACAO, getDate()-" & auxdiasteste & ") < 0 "
 end if
 
-if auxTeste <> "" then
-	sSQL = sSQL & " AND ((" & _
-		"SELECT COUNT(*) FROM Ordem_de_Servico os " & _
-		"WHERE T_ID = " & auxTeste & " AND os.AG_NUMERO = a.AG_NUMERO) > 0" & _
-		")"
-end if
 
 If auxTemOS = True then
 	sSQL = sSQL & " AND a.AG_NECESSITA_OS = 1"
@@ -151,23 +165,7 @@ If auxClientes = True Then
 	End If
 End If
 
-if auxParticipante <> "" then
-	sSQL = sSQL & " AND EXISTS (SELECT DISTINCT pes.AG_NUMERO FROM Participantes_Externos pes WHERE UPPER(pes.PE_NOME) LIKE '%" & auxParticipante & "%' OR UPPER(pes.PE_USERNAME) LIKE '%" & auxParticipante & "%' AND pes.AG_NUMERO = a.AG_NUMERO) "
-end if
-
 '----->>>>>> PARAMETROS INCLUIDOS EM 24/01/2006 	AQUI !!!
-
-If auxAmbiente <> "" Then
-	sSQL = sSQL & " AND ((SELECT COUNT(*) FROM Reserva_Ambientes WHERE AMB_ID = " & auxAmbiente & " AND RAM_AS = a.AG_NUMERO) > 0)"
-End If
-
-If auxcodigobarras <> "" Then
-	sSQL = sSQL & " AND ((" & _
-		"SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN SCE_Equipamentos eq1 " & _
-		"ON os.EQ_ID_AMOSTRA = eq1.EQ_ID " & _
-		"WHERE os.AG_NUMERO = a.AG_NUMERO AND eq1.EQ_CODIGOBARRAS = '" & auxcodigobarras & "') > 0" & _
-		")"
-End If
 
 If auxPlataforma <> "" Then
 	sSQL = sSQL & " AND (" & _
@@ -229,8 +227,8 @@ sSQL_Dados = sSQL_Dados & " " & sSQL & " ORDER BY a.AG_NUMERO DESC; "
         <input type="hidden" name="ssql" value="<%=sSQL_Dados%>">
     </form>
     <script type="text/javascript">
-    var frm = document.forms[0]
-    frm.submit()
+        var frm = document.forms[0]
+        frm.submit()
     </script>
     </body>
 </html>

@@ -4,6 +4,8 @@
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/controleshtml.asp" -->
 <%
+Server.ScriptTimeout = 100000
+
 dim objConn, rsArquivos
 Dim objSiteRS, objSiteMail, contat, sSQL, tot, objsiteCRT
 Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
@@ -24,7 +26,10 @@ else	'-- veio do form Rel_Ativ_A.asp
 	pagina = 1
 end if
 
-call Env.RecordSet( true, objSiteRS, sSQL)
+'response.Write sSQL
+'response.End
+
+Call Env.RecordSet( true, objSiteRS, sSQL)
 
 total_registros = objSiteRS.RecordCount
 
