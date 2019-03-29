@@ -249,6 +249,8 @@ Call Tela.MostraCabecalho()
 
                 </div> <!-- 3a coluna -->
 
+            </div> <!-- row -->
+
 <% Else '--> If usuarioCRT %>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -272,9 +274,17 @@ Call Tela.MostraCabecalho()
 
                 </div> <!-- 3a coluna -->
 
+            </div> <!-- row -->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <h4 class="linha-destaque">Acontecendo no CRT</h4>
+                    <% Call MostraEmExecucao() %>
+                </div>
+            </div>
+
 <% End If '--> If usuarioCRT %>
 
-            </div>
 
         </div>  <!-- container -->
 
@@ -399,6 +409,48 @@ Private Sub MostraFotos %>
     End If
 %>
 <%
+End Sub
+
+Private Sub MostraEmExecucao()
+    Dim objRS, s
+%>
+<%
+	s = "SELECT TOP 10 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+		"FROM vw_Agendamento a  " & _
+		"WHERE a.ID_SITUACAO in (3, 6, 7) AND (a.AG_DATAINICIO <= getDate()) " & _
+	    "ORDER BY a.AG_NUMERO DESC"
+	Call Env.RecordSet( true, objRS, s)
+	If Not (objRS.EOF and objRS.BOF) Then %>
+        <table class="table-bordered table-striped table-hover table-condensed" style="width: 100%;">
+        <tr>
+            <th>AS</th>
+            <th>Prioridade</th>
+            <th>Atividade</th>
+            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
+            <th style="text-align: center;">Salas</th>
+            <th style="text-align: center; width: 30px;">&nbsp;</th>
+        </tr> <%
+
+        While Not objRS.Eof %>
+
+        <tr>
+            <td><%=objRS("AG_NUMERO") %></td>
+            <td>Prioridade</td>
+            <td>Atividade</td>
+            <td style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</td>
+            <td style="text-align: center;">Salas</td>
+            <td style="text-align: center; width: 30px;">&nbsp;</td>
+        </tr>
+
+
+<%          objRS.MoveNext
+        WEnd
+    Else %>
+        <div>Opa! Nao tem nada por aqui...</div>
+<%  End If
+
+
+
 End Sub
 
 %>

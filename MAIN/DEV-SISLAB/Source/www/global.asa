@@ -19,7 +19,7 @@ Sub Application_OnStart()
 	Application("SISLAB_NOME_EMPRESA") = "Claro"
 
 
-	Application("SISLAB_AMBIENTE") = "DES"
+	Application("SISLAB_AMBIENTE") = "LOC"
 
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento Local
