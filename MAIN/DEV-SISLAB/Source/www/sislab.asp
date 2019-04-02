@@ -25,7 +25,7 @@ ehRat = Env.EhRat
     }
 </style>
 
-
+<% If Env.UsuarioCRT Then %>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -52,8 +52,10 @@ ehRat = Env.EhRat
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <h4 class="linha-destaque">Remarcando um Agendamento</h4>
+<% If ehRAT Then%>
 	        <h5><a href="form_remarca_teste_sel.asp?tipo_remarca=S" target="_parent">Solicitar Remarcação de um Serviço</a></h5>
             <h5><a href="form_valida_remarca_sel.asp" target="_parent">Validar Remarcação do Serviço</a></h5>
+<% End If %>
             <h5><a href="cons_indicadoresNC.asp" target="_parent">Indicadores de Não Conformidades</a></h5>
         </div>
 
@@ -126,6 +128,10 @@ End If%>
 
     </div>
 </div>
+
+<% Else %>
+    <%="<br />" & Env.MensagemAcessoExclusivo() %>
+<% End If %>
 
 <%
 Call Tela.MostraRodape()

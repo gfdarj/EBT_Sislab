@@ -64,26 +64,26 @@ Class TEnvironment
 
     Public Property Get ehRT()
 	    'ehRT = Ebt.ehRT
-	    ehRT = True
-	    'ehRT = False
+	    'ehRT = True
+	    ehRT = False
     End Property
 
     Public Property Get ehRAT()
 	    'ehRAT = Ebt.ehRAT
-	    ehRAT = True
-	    'ehRAT = False
+	    'ehRAT = True
+	    ehRAT = False
     End Property
 
     Public Property Get ehGQ()
 	    'ehGQ = Ebt.ehGQ
-	    ehGQ = True
-	    'ehGQ = False
+	    'ehGQ = True
+	    ehGQ = False
     End Property
 
     Public Property Get UsuarioCRT()
 	    'UsuarioCRT = Ebt.UsuarioCRT
-	    UsuarioCRT = True
-	    'UsuarioCRT = False
+	    'UsuarioCRT = True
+	    UsuarioCRT = False
     End Property
 
     Public Property Get UsuarioSCE()
@@ -453,6 +453,18 @@ Class TEnvironment
         End If
     End Function
 
+    Public Function MensagemAcessoExclusivo()
+        Dim s
+        s = ""
+        s = s & "<div class='container'>"
+        s = s & "   <div class='row'>"
+        s = s & "       <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>"
+        s = s & "           Desculpe, esta página é de acesso exclusivo à Equipe do CRT."
+        s = s & "       </div>"
+        s = s & "   </div>"
+        s = s & "</div>"
+        MensagemAcessoExclusivo = s
+    End Function
 
 End Class
 %>

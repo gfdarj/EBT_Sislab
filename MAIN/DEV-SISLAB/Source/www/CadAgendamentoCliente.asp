@@ -654,19 +654,19 @@ end if
 
         <div>
 
-<%		if num_ag = "" then %>
+<%		If num_ag = "" then %>
 		    <input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
-<%		else
-			if bln_ehRAT then 'or bln_ehRT then%>
+<%		Else
+			If bln_ehRAT then 'or bln_ehRT then%>
 	    	<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
-<%			else %>
-    		<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="41">
+<%			Else %>
+    		<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="41" style="color:grey;">
 <%			end if
 			if bln_usuarioCRT then %>
 		    <input  type="button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;" tabindex="42">
 		    <input  type="button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;" tabindex="43">
 <%			end if %>
-<%		end if %>
+<%		End If %>
 <%		If Env.Usuario = chr_Username Or bln_usuarioCRT Then %>
 		    <input  type="button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento" tabindex="44">
 <%		End If %>

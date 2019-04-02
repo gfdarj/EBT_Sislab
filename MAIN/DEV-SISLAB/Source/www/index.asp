@@ -95,10 +95,10 @@ Call Tela.MostraCabecalho()
 		    				&nbsp;&nbsp;&nbsp;<small>Tecnologias utilizadas nos agendamentos e seus fabricantes</small></h5>
 
 						<h5><a href="rel_orgao_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>&Oacute;rg&atilde;os Clientes</a><br />
-	    					&nbsp;&nbsp;&nbsp;<small>Veja as atividades executadas no CRT pelos &oacute;g&atilde;os Embratel</small></h5>
+	    					&nbsp;&nbsp;&nbsp;<small>Veja as atividades executadas no CRT pelos &oacute;g&atilde;os <%=Application("SISLAB_NOME_EMPRESA")%></small></h5>
 
 						<h5><a href="rel_clienteexterno_atividade.asp?index=1" class="menu" target="_blank"><%=indicador%>Servi&ccedil;os para Clientes</a><br />
-    						&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes Embratel</small></h5>
+    						&nbsp;&nbsp;&nbsp;<small>Trabalhos voltados para clientes <%=Application("SISLAB_NOME_EMPRESA")%></small></h5>
                 <% End If %>
                 </div>
 

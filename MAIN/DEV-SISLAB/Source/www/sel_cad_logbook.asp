@@ -21,16 +21,18 @@ Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Log Book"
 Call Tela.MostraCabecalho()
 
-Dim objSiteRS, cont, sSQL, AuxOrgao
-Dim objSiteRSTipoArquivo
+If Env.UsuarioCRT Then
 
-cont=0
+    Dim objSiteRS, cont, sSQL, AuxOrgao
+    Dim objSiteRSTipoArquivo
 
-Descricao = replace(request("Descricao"),"*","")
-tipoOcorrencia = request("tipoOcorrencia")
+    cont=0
 
-sSQL = "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo order by tar_tipoarquivo asc"
-call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
+    Descricao = replace(request("Descricao"),"*","")
+    tipoOcorrencia = request("tipoOcorrencia")
+
+    sSQL = "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo order by tar_tipoarquivo asc"
+    call Env.RecordSet( true, objSiteRSTipoArquivo, sSQL)
 %>
 <div class="margem-10">
 
@@ -102,6 +104,12 @@ If Request("enviei") = "SIM" Then
 End If %>
     </form>
 </div>
+
+<%
+Else
+    Response.Write "<br />" & Env.MensagemAcessoExclusivo()
+End If %>
+
 <%
 Call Tela.MostraRodape()
 %>

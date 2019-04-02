@@ -21,7 +21,10 @@ else
 	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório de Órgão por Atividade", "", "")
 end if
 %>
-<table  border="1" width="100%" cellpadding="2" cellspacing="0" style="border: thin solid #000000;">
+
+<div class="margem-10">
+
+<table  border="0" class="table-bordered table-condensed table-striped table-hover" style="width: 100%;">
 <tr class="realce">
 	<th>&Oacute;rg&atilde;o / Tipo Atividade</th>
 <%
@@ -46,10 +49,10 @@ call Env.Recordset(false, objRS, null)
 </tr>
 
 <%
-s = "SELECT * FROM vw_Total_Orgao_Atividade ---- WHERE AG_ORGAO <> '' OR AG_ORGAO IS NOT NULL"
+s = "SELECT top 30 * FROM vw_Total_Orgao_Atividade ---- WHERE AG_ORGAO <> '' OR AG_ORGAO IS NOT NULL"
 call Env.Recordset(true, objRS, s)
 if not (objRS.Eof and objRS.Bof) then
-	while not objRS.Eof%>
+	While not objRS.Eof %>
 <tr>
 <%		total_org = 0
 		orgao = objRS("AG_ORGAO")
@@ -59,10 +62,9 @@ if not (objRS.Eof and objRS.Bof) then
 
 <%		while (ehRepetido) and (not objRS.Eof)
 			total_org = total_org + objRS("TOTAL_POR_ATIVIDADE")
-			call SomaColunas(objRS("TOTAL_POR_ATIVIDADE"), objRS("TA_DESCRICAO"))%>
+			Call SomaColunas(objRS("TOTAL_POR_ATIVIDADE"), objRS("TA_DESCRICAO"))%>
 
-	<td align="right"><%=objRS("TOTAL_POR_ATIVIDADE")%>&nbsp;</td>
-
+	<td align="right"><%=objRS("TOTAL_POR_ATIVIDADE")%></td>
 <%			objRS.MoveNext
 			if not objRS.Eof then
 				if orgao <> objRS("AG_ORGAO") then
@@ -77,7 +79,7 @@ if not (objRS.Eof and objRS.Bof) then
 
 <%		total_geral = total_geral + total_org
 		if not objRS.Eof then objRS.MoveNext
-	wend
+	WEnd
 else%>
 <tr><td colspan="<%=total_colunas + 2%>" align="center"><i>Nenhum registro encontrado</i></td></tr><%
 end if
@@ -87,13 +89,15 @@ call Env.Recordset(false, objRS, null)
 	<td><b>TOTAL</b></td>
 <%
 for col = 1 to total_colunas
-	Response.write "<td align='right'><b>" & total_por_coluna(col) & "</b>&nbsp;</td>"
+	Response.write "<td align='right'><b>" & total_por_coluna(col) & "</b></td>"
 next
 %>
 	<td align="right"><b><%=total_geral%></b></td>
 </tr>
 
 </table>
+</div>
+
 <%
 if request("index") = "1" then
 	Call Tela.MostraRodape()
