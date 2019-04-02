@@ -94,7 +94,7 @@ Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
         <div class="linha-fundo" style="width:100%;"><strong><%=titulo1%></strong></div>
         <br />
         <div>
-            E-mail:&nbsp;<input  name="txtNome<%=nome%>" size="20" tabindex="<%=index%>" maxlength="50">
+            E-mail:&nbsp;<input  name="txtNome<%=nome%>" size="40" tabindex="<%=index%>" maxlength="80">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Motivo da participação:&nbsp;<input  name="txtMotivo<%=nome%>" size="40" tabindex="<%=index + 1%>" maxlength="200">
         </div>
@@ -258,14 +258,15 @@ Function ControleComboMultiplo(nome,titulo,nomeCampo1,sql,index)%>
         fac.focus();
     }
 </script>
-<input type="hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" border="0" class="table-bordered" style="width: 100%;">
-<tr>
-	<th align="left" colspan="2"><%=titulo%></td>
-</tr>
+
+<input type="hidden" name="str<%=Nome%>" />
+
+<div style="width: 100%;" class="linha-fundo"><strong><%=titulo%></strong></div>
+
+<table id="tab<%=Nome%>" border="0" class="table-condensed" style="width: 100%;">
 <tr>
     <td>
-		<table width="100%" border="0" class="table-bordered">
+		<table width="100%" border="0" class="table-condensed">
         <tr> 
 			<td width="12%">
 				<%=nomeCampo1%>:</td>
@@ -404,79 +405,79 @@ End Function
 '-- tive que colocar este pq o paulo fez uma zona complicando uma coisa
 '-- que deveria ser fácil - nas outras combos ele poe o VALUE combinado com 
 '-- o ID + DESCRICAO (Gilberto)
-function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index)%>
-<script>
-function adiciona_retira_<%=nome%>(tipo) {
-	var frm = document.forms[0]
-	var fac = frm.cmb<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	var str1 = frm.str<%=nome%>;
+function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index) %>
+<script type="text/javascript">
+    function adiciona_retira_<%=nome%>(tipo) {
+	    var frm = document.forms[0]
+	    var fac = frm.cmb<%=nome%>;
+	    var lista = frm.lst<%=nome%>;
+	    var str1 = frm.str<%=nome%>;
 
-	if (tipo == 0){
-		if (lista.selectedIndex != -1){
-			str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].value + '<%=SEPARADOR_REGISTRO%>', "");
-			lista.options[lista.selectedIndex]=null;
-		}
-	}
-	else{
-		if (fac.value == ""){
-			alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
-			fac.focus();		
-		}
-		else{
-			adiciona<%=nome%>()
-		}
-	}
-}
+	    if (tipo == 0){
+		    if (lista.selectedIndex != -1){
+			    str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].value + '<%=SEPARADOR_REGISTRO%>', "");
+			    lista.options[lista.selectedIndex]=null;
+		    }
+	    }
+	    else{
+		    if (fac.value == ""){
+			    alert("O combo de <%=nomeCampo1%> deve ser preenchido.");
+			    fac.focus();		
+		    }
+		    else{
+			    adiciona<%=nome%>()
+		    }
+	    }
+    }
 
-function adiciona<%=nome%>(){
-	var frm = document.forms[0];
-	var last, cont, exists = false;
-	var fac = frm.cmb<%=nome%>;
-	var lista = frm.lst<%=nome%>;
-	var str1 = frm.str<%=nome%>;
+    function adiciona<%=nome%>(){
+	    var frm = document.forms[0];
+	    var last, cont, exists = false;
+	    var fac = frm.cmb<%=nome%>;
+	    var lista = frm.lst<%=nome%>;
+	    var str1 = frm.str<%=nome%>;
 	
-	last = lista.options.length;
+	    last = lista.options.length;
 
-	// nao insere registros repetidos
-	for(cont=0; cont < last; cont++) {
-		if(lista.options[cont].value == fac.value) {
-			exists = true;
-			cont = last; //paro a procura
-		}
-	}
-	if(!exists) {
-		lista.options[last] = new Option(fac.options[fac.selectedIndex].text);
-		lista.options[last].value = fac.value;
+	    // nao insere registros repetidos
+	    for(cont=0; cont < last; cont++) {
+		    if(lista.options[cont].value == fac.value) {
+			    exists = true;
+			    cont = last; //paro a procura
+		    }
+	    }
+	    if(!exists) {
+		    lista.options[last] = new Option(fac.options[fac.selectedIndex].text);
+		    lista.options[last].value = fac.value;
 
-		str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
-		fac.value = "";
-	}
-	else {
-		alert('Este item já existe na lista');
-	}
-	fac.focus();
-}
-
+		    str1.value = str1.value + fac.value + '<%=SEPARADOR_REGISTRO%>';
+		    fac.value = "";
+	    }
+	    else {
+		    alert('Este item já existe na lista');
+	    }
+	    fac.focus();
+    }
 </script>
+
 <input type="hidden" name="str<%=Nome%>"/>
-<table id="tab<%=Nome%>" width="100%" border="0" class="table-bordered">
-<tr>
-	<th align="left" colspan="2"><%=titulo%></td>
-</tr>
+
+<div class="linha-fundo"><strong><%=titulo%></strong></div>
+
+<table id="tab<%=Nome%>" width="100%" border="0" class="table-condensed">
 <tr>
     <td>
-		<table width="100%" border="0" class="table-bordered">
+		<table width="100%">
         <tr> 
 			<td width="12%">
 				&nbsp;<%=nomeCampo1%>:</td>
 			<td width="33%"> 
-			<select  name="cmb<%=nome%>" tabindex="<%=index+1%>">
-				<%'call comboBD(objConn,sql)%>
-				<%call comboBDpadrao(objConn,sql,"null")%>
-			</SELECT>
+			    <select  name="cmb<%=nome%>" tabindex="<%=index+1%>">
+				    <%call comboBDpadrao(objConn,sql,"null")%>
+			    </SELECT>
+            </td>
             <td rowspan="3" width="9%"> 
-                <table width="30%" border="0" class="table-bordered">
+                <table>
                 <tr>
 		            <td>
 						<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
@@ -492,7 +493,7 @@ function adiciona<%=nome%>(){
 		</tr>
         </table>
 	</td>
-    <td  rowspan="3" width="46%"> 
+    <td rowspan="3" width="46%" style="vertical-align: top;">
 		<%=titulo%>:
         <select name="lst<%=nome%>" size="4" 
 	       style="LINE-HEIGHT: 50px; PADDING-TOP: 3px; WIDTH: 250px" 
@@ -501,10 +502,11 @@ function adiciona<%=nome%>(){
 	</td>
 </tr>
 </table>
-<%end function
+<%
+End Function
 
 
-function SubstituiComboCScript(LabelCampo,NomeControle,NomeControleASubstituir,ValorSelecionado,TextoSelecao,CampoValor,CampoDescricao,rsGenerico,script)%>
+Function SubstituiComboCScript(LabelCampo,NomeControle,NomeControleASubstituir,ValorSelecionado,TextoSelecao,CampoValor,CampoDescricao,rsGenerico,script)%>
 <html>
 <script type="text/javascript" src="includes/manipulaObj.js"></script>
 <head>

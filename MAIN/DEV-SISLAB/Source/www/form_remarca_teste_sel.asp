@@ -33,12 +33,13 @@ tipo_remarca = request("tipo_remarca")
 	</tr>
 <%
 	strSQL = _
-		"SELECT * FROM vw_Agendamento a " & _
-		"WHERE EXISTS (SELECT he.AG_NUMERO FROM Historico_Eventos he WHERE he.AG_NUMERO = a.AG_NUMERO AND he.HE_DATATERMINO is NULL) " & _
-		"AND (a.AG_SOLICITOUCANCELAMENTO = 0 AND a.AG_FLAGREMARCACAO = 0)"
-
+		"SELECT a.* FROM vw_Agendamento a " & _
+        "   INNER JOIN Historico_Eventos he ON he.AG_NUMERO = a.AG_NUMERO " & _
+		"WHERE 1 = 1 " & _
+        "   AND he.HE_DATATERMINO is NULL " & _
+		"   AND (a.AG_SOLICITOUCANCELAMENTO = 0 AND a.AG_FLAGREMARCACAO = 0)"
 	If tipo_remarca <> "S" Then
-		strSQL = strSQL & " AND A.AG_USERNAME = '" & Env.Usuario & "'"
+		strSQL = strSQL & " AND a.AG_USERNAME = '" & Env.Usuario & "'"
 	End If
 	strSQL = strSQL & " ORDER BY a.AG_Numero"
 	Call Env.RecordSet(True, rs_numteste, strSQL)

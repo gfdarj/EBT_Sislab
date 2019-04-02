@@ -205,7 +205,7 @@ Sub MontaVisaoPorSituacao
             <th style="text-align: center; width: 30px;">&nbsp;</th>
         </tr>
 <%
-	s = "SELECT TOP 50 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
 		"FROM vw_Agendamento a  " & _
 		"WHERE a.ID_SITUACAO in "
 

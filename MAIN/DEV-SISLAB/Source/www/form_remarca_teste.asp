@@ -93,7 +93,6 @@ End If
 
 Set Ebt = nothing
 
-
 orgao = rs_agendamento("AG_ORGAO")
 email = rs_agendamento("AG_USERNAME")
 
@@ -102,123 +101,124 @@ set rs_agendamento = nothing
 %>
 
 <script type="text/javascript">
-var msgMotivo,remarca
-msgMotivo = "O campo 'Motivo do Cancelamento' deve ser preenchido."
-remarca = 0
-//=========================================================================================
-function montaInicio()
-{
-	var frm = document.frmRemarcaTeste
-	if(frm.cmbInicio_dia.value != "0" && frm.cmbInicio_mes.value != "0" && frm.cmbInicio_ano.value != "0")
-		frm.txtInicio.value = frm.cmbInicio_dia.value +"/"+ frm.cmbInicio_mes.value +"/"+ frm.cmbInicio_ano.value;
-	else
-		frm.txtInicio.value = "";
-}
-//=========================================================================================
-function montaFim()
-{
-	var frm = document.frmRemarcaTeste
-	if(frm.cmbFim_dia.value != "0" && frm.cmbFim_mes.value != "0" && frm.cmbFim_ano.value != "0")
-		frm.txtFim.value = frm.cmbFim_dia.value +"/"+ frm.cmbFim_mes.value +"/"+ frm.cmbFim_ano.value;
-	else
-		frm.txtFim.value = "";
-}
-//=========================================================================================
-function isDate(pdata)
-{
-	var dia, mes, ano;
-	var meses = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-	dia = pdata.substr(0, 2);
-	mes = pdata.substr(3, 2);
-	ano = pdata.substr(6, 4);
-	if (ano%4 == 0)
-		meses[1] = 29;
-	return(mes>=1 && mes<=12 && dia>=1 && dia<=meses[mes-1]);
-}
-//=========================================================================================
-function InicioMaiorFim()
-{
-	var frm = document.frmRemarcaTeste
-	var inicio = new Date(frm.cmbInicio_ano.value, frm.cmbInicio_mes.value-1, frm.cmbInicio_dia.value)
-	var fim = new Date(frm.cmbFim_ano.value, frm.cmbFim_mes.value-1 , frm.cmbFim_dia.value)
-	return(inicio>fim)
-}
-//=========================================================================================
-function validaDataInicio()
-{
-	var frm = document.frmRemarcaTeste
-	var hoje = new Date();
-	var inicio = new Date(frm.cmbInicio_ano.value, frm.cmbInicio_mes.value-1, frm.cmbInicio_dia.value)
-	var limite = new Date()
-	limite.setMonth(6) //limite de seis meses
-	return(hoje<inicio && inicio<=limite)
-}
-//=========================================================================================
-function validaCampos(form)
-//Valida os campos quando o formulário é submetido
-{
-	if (form.txtInicio.value == "" &&  remarca == 1) 
-	{
-		alert("O campo 'Período previsto para teste/Início' deve ser preenchido.");
-		form.cmbInicio_dia.focus();
-		return(false);
-	}
-	else if (!isDate(form.txtInicio.value) &&  remarca == 1) 
-	{
-		alert("O campo 'Período previsto para teste/Início' deve ser preenchido com uma data válida.");
-		form.cmbInicio_dia.focus();
-		return(false);
-	}
-	else if (form.txtFim.value == "" && remarca == 1) 
-	{
-		alert("O campo 'Período previsto para teste/Fim' deve ser preenchido.");
-		form.cmbFim_dia.focus();
-		return(false);
-	}
+    var msgMotivo,remarca
+    msgMotivo = "O campo 'Motivo do Cancelamento' deve ser preenchido."
+    remarca = 0
+    //=========================================================================================
+    function montaInicio()
+    {
+	    var frm = document.frmRemarcaTeste
+	    if(frm.cmbInicio_dia.value != "0" && frm.cmbInicio_mes.value != "0" && frm.cmbInicio_ano.value != "0")
+		    frm.txtInicio.value = frm.cmbInicio_dia.value +"/"+ frm.cmbInicio_mes.value +"/"+ frm.cmbInicio_ano.value;
+	    else
+		    frm.txtInicio.value = "";
+    }
+    //=========================================================================================
+    function montaFim()
+    {
+	    var frm = document.frmRemarcaTeste
+	    if(frm.cmbFim_dia.value != "0" && frm.cmbFim_mes.value != "0" && frm.cmbFim_ano.value != "0")
+		    frm.txtFim.value = frm.cmbFim_dia.value +"/"+ frm.cmbFim_mes.value +"/"+ frm.cmbFim_ano.value;
+	    else
+		    frm.txtFim.value = "";
+    }
+    //=========================================================================================
+    function isDate(pdata)
+    {
+	    var dia, mes, ano;
+	    var meses = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+	    dia = pdata.substr(0, 2);
+	    mes = pdata.substr(3, 2);
+	    ano = pdata.substr(6, 4);
+	    if (ano%4 == 0)
+		    meses[1] = 29;
+	    return(mes>=1 && mes<=12 && dia>=1 && dia<=meses[mes-1]);
+    }
+    //=========================================================================================
+    function InicioMaiorFim()
+    {
+	    var frm = document.frmRemarcaTeste
+	    var inicio = new Date(frm.cmbInicio_ano.value, frm.cmbInicio_mes.value-1, frm.cmbInicio_dia.value)
+	    var fim = new Date(frm.cmbFim_ano.value, frm.cmbFim_mes.value-1 , frm.cmbFim_dia.value)
+	    return(inicio>fim)
+    }
+    //=========================================================================================
+    function validaDataInicio()
+    {
+	    var frm = document.frmRemarcaTeste
+	    var hoje = new Date();
+	    var inicio = new Date(frm.cmbInicio_ano.value, frm.cmbInicio_mes.value-1, frm.cmbInicio_dia.value)
+	    var limite = new Date()
+	    limite.setMonth(6) //limite de seis meses
+	    return(hoje<inicio && inicio<=limite)
+    }
+    //=========================================================================================
+    function validaCampos(form)
+    //Valida os campos quando o formulário é submetido
+    {
+	    if (form.txtInicio.value == "" &&  remarca == 1) 
+	    {
+		    alert("O campo 'Período previsto para teste/Início' deve ser preenchido.");
+		    form.cmbInicio_dia.focus();
+		    return(false);
+	    }
+	    else if (!isDate(form.txtInicio.value) &&  remarca == 1) 
+	    {
+		    alert("O campo 'Período previsto para teste/Início' deve ser preenchido com uma data válida.");
+		    form.cmbInicio_dia.focus();
+		    return(false);
+	    }
+	    else if (form.txtFim.value == "" && remarca == 1) 
+	    {
+		    alert("O campo 'Período previsto para teste/Fim' deve ser preenchido.");
+		    form.cmbFim_dia.focus();
+		    return(false);
+	    }
 
-	else if (!isDate(form.txtFim.value) && remarca == 1) 
-	{
-		alert("O campo 'Período previsto para teste/Fim' deve ser preenchido com uma data válida.");
-		form.cmbFim_dia.focus();
-		return(false);
-	}
-	else if (InicioMaiorFim() && remarca == 1) 
-	{
-		alert("O campo 'Período previsto para teste/Inicio' deve ser preenchido com a data de 'Inicio' anterior a data de 'Fim'.");
-		form.cmbInicio_dia.focus();
-		return(false);
-	}
-	else if (form.txaMotivo.value == "") 
-	{
-		alert(msgMotivo);
-		form.txaMotivo.focus();
-		return(false);
-	}
-	else
-		return(true);
-}
-//=========================================================================================
+	    else if (!isDate(form.txtFim.value) && remarca == 1) 
+	    {
+		    alert("O campo 'Período previsto para teste/Fim' deve ser preenchido com uma data válida.");
+		    form.cmbFim_dia.focus();
+		    return(false);
+	    }
+	    else if (InicioMaiorFim() && remarca == 1) 
+	    {
+		    alert("O campo 'Período previsto para teste/Inicio' deve ser preenchido com a data de 'Inicio' anterior a data de 'Fim'.");
+		    form.cmbInicio_dia.focus();
+		    return(false);
+	    }
+	    else if (form.txaMotivo.value == "") 
+	    {
+		    alert(msgMotivo);
+		    form.txaMotivo.focus();
+		    return(false);
+	    }
+	    else
+		    return(true);
+    }
+    //=========================================================================================
 
-function voltar()
-{
-<%if Env.ehRAT then%>
-	location.href = 'sislab.ASP';
-<%else%>
-	location.href = 'index.ASP';
-<%end if%>
-}
+    function voltar()
+    {
+    <%if Env.ehRAT then%>
+	    location.href = 'sislab.ASP';
+    <%else%>
+	    location.href = 'index.ASP';
+    <%end if%>
+    }
 
-function PreparaCampos(f)
-{
-	frm1 = document.forms[0];
-	//frm1.tabAgendamento.style.display = 'block';
-	//frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da Remarcação:&nbsp;";
-	msgMotivo = "O campo 'Motivo da Remarcação' deve ser preenchido.";
-	remarca = 1;
-}
-//=========================================================================================
-
+    function PreparaCampos(f)
+    {
+	    frm1 = document.forms[0];
+	    //frm1.tabAgendamento.style.display = 'block';
+	    //frm1.TabMotivo.innerHTML = "&nbsp;&nbsp;Motivo da Remarcação:&nbsp;";
+	    msgMotivo = "O campo 'Motivo da Remarcação' deve ser preenchido.";
+	    remarca = 1;
+    }
+    //=========================================================================================
 </script>
+
+<div class="margem-10">
 
 <form method="post" action="form_remarca_testeA.asp" name="frmRemarcaTeste" onSubmit="return validaCampos(this);">
     <input type="hidden" name="txtInicioAnt" value="<%=data_inicio%>">
@@ -228,20 +228,20 @@ function PreparaCampos(f)
     <input type="hidden" name="txtUsernameSol" value="<%=email%>">
     <input type="hidden" name="txtNomeSol" value="<%=nome_Responsavel%>">
 
-    <p style="margin-left: 10px;">
+    <p >
         <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="1" tabindex="13" checked /><font class="opcao">Cancelamento&nbsp;-->
         <!--<input type="radio" name="cmbCancelar" onClick="PreparaCampos(this.form)" value="0" tabindex="14" checked/><font class="opcao">Remarcação&nbsp;-->
         <input type="radio" name="cmbCancelar" value="0" tabindex="13" checked/><font class="opcao">Remarcação</fonte>
     </p>
 
 <%If remarcado Then%>
-    <p>&nbsp;&nbsp;<b>Este teste está aguardando validação de remarcação</b></p>
+    <p><b>Este teste está aguardando validação de remarcação</b></p>
 <%End If%>
 
-    <p style="margin-left: 10px;">
+    <p>
         <div id="tabAgendamento">
-			    &nbsp;&nbsp;Período previsto para teste:&nbsp;
-			    &nbsp;&nbsp;Início:&nbsp;
+			    Período previsto para teste:&nbsp;
+			    Início:&nbsp;
 			    <input type="hidden" name="txtInicio" size="10" value="<%=formataData(data_inicio)%>">
 			    <select name="cmbInicio_dia"  tabindex="7" onchange="montaInicio()" <%'if data_inicio < date() then response.write "disabled"%>>
 				    <option value="0" selected></option>
@@ -302,23 +302,23 @@ function PreparaCampos(f)
     </p>
 
     <p>
-        <div style="width: 400px; display:inline-block; margin-left: 10px;"><b>Nº do Agendamento:&nbsp;<%= num_agendamento%></b></div>
-	    <div style="display:inline-block; margin-left: 10px;">Tecnologia:&nbsp;<%=tecnologia%></div>
+        <div style="width: 400px; display:inline-block; "><b>Nº do Agendamento:&nbsp;<%= num_agendamento%></b></div>
+	    <div style="display:inline-block; ">Tecnologia:&nbsp;<%=tecnologia%></div>
     </p>
 
     <p>
-        <div style="width: 400px; display:inline-block; margin-left: 10px;">Nome do Responsável: &nbsp; <%= nome_responsavel%></div>
-	    <div style="display:inline-block; margin-left: 10px;">Matrícula:&nbsp; <%=matricula%></div>
+        <div style="width: 400px; display:inline-block; ">Nome do Responsável: &nbsp; <%= nome_responsavel%></div>
+	    <div style="display:inline-block; ">Matrícula:&nbsp; <%=matricula%></div>
     </p>
 
     <p>
-        <div style="width: 400px; display:inline-block; margin-left: 10px;">E-mail:&nbsp; <%= email%></div>
-	    <div style="width: 200px; display:inline-block; margin-left: 10px;">Órgão:&nbsp; <%= orgao%></div>
-	    <div style="width: 200px; display:inline-block; margin-left: 10px;">Ramal:&nbsp; <%= ramal%></div>
+        <div style="width: 400px; display:inline-block; ">E-mail:&nbsp; <%= email%></div>
+	    <div style="width: 200px; display:inline-block; ">Órgão:&nbsp; <%= orgao%></div>
+	    <div style="width: 200px; display:inline-block; ">Ramal:&nbsp; <%= ramal%></div>
     </p>
 
     <p >
-        <div style="vertical-align: top; margin-left: 10px;">
+        <div style="vertical-align: top; ">
             <div style="display:inline-block; vertical-align:top;">Motivo do Cancelamento:</div>
 	        <div style="display:inline-block; vertical-align: top;"><TEXTAREA  cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA></div>
         </div>
@@ -326,12 +326,14 @@ function PreparaCampos(f)
 
     <br>
 
-    <p align="center"> 
+    <p >
         <input  type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
         <input  type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
     </p>
 
 </form>
+
+</div>
 
 <script type="text/javascript">
 	/*** O cancelamento pelo usuario foi retirado em 29/01/2007 ***/

@@ -76,128 +76,121 @@ else
 %>
 
 <script type="text/javascript">
-function anyChecked(radioSet)
-{
-	for (i = 0; i < radioSet.length; i++)
-		if (radioSet[i].checked)
-			return true;
-	return false;
-}
-//=========================================================================================
-
-function validaCampos(form)
-//Valida os campos quando o formulário é submetido
-{
-	if (!anyChecked(form.cmbRemarca)) 
-	{
-<%	if not cancelou then%>
-		alert("O campo 'Remarca o teste/ensaio' deve ser selecionado.");
-<%	else%>
-		alert("O campo 'Aceitar pedido de cancelamento' deve ser selecionado.");
-<%	end if%>
-		form.cmbRemarca[0].focus();
-		return(false);
-	}
-	else
-		return(true);
-}
-//=========================================================================================
-
-function voltar()
-{
-	location.href = 'SISLAB.ASP';
-}
-function Cancelar()
-{
-	document.forms[0].chr_CancelarSolicitacao = 'S';
-	document.forms[0].submit();
-}
-//=========================================================================================
-
+    function anyChecked(radioSet)
+    {
+	    for (i = 0; i < radioSet.length; i++)
+		    if (radioSet[i].checked)
+			    return true;
+	    return false;
+    }
+    //=========================================================================================
+    function validaCampos(form)
+    //Valida os campos quando o formulário é submetido
+    {
+	    if (!anyChecked(form.cmbRemarca)) 
+	    {
+    <%	if not cancelou then%>
+		    alert("O campo 'Remarca o teste/ensaio' deve ser selecionado.");
+    <%	else%>
+		    alert("O campo 'Aceitar pedido de cancelamento' deve ser selecionado.");
+    <%	end if%>
+		    form.cmbRemarca[0].focus();
+		    return(false);
+	    }
+	    else
+		    return(true);
+    }
+    //=========================================================================================
+    function voltar()
+    {
+	    location.href = 'SISLAB.ASP';
+    }
+    function Cancelar()
+    {
+	    document.forms[0].chr_CancelarSolicitacao = 'S';
+	    document.forms[0].submit();
+    }
+    //=========================================================================================
 </script>
 
-<body>
-<form method="post" action="form_valida_remarcaA.asp" name="frmValidaRemarca" onSubmit="return validaCampos(this);">
-<input type="hidden" name="txtNum_agendamento" value="<%= num_agendamento%>">
-<input type="hidden" name="chr_CancelarSolicitacao" value="N">
-<TABLE border=0 cellSpacing=0 width="100%" class="table-bordered">
-	<TR>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-		<TD></TD>
-	</TR>
-	<TR height="34">
-		<TD colSpan=3>&nbsp;&nbsp;Tecnologia:&nbsp;<%=tecnologia%></TD>
-		<TD colSpan=3><b>Número do Agendamento:&nbsp;<%= num_agendamento%></b></TD>
-		<TD colSpan=4><b>&nbsp;&nbsp;Situação:&nbsp;<%= situacao%></b></TD>
-	</TR>
-	<TR height="34"> 
-		<td colspan="7">
-			&nbsp;&nbsp;Nome do Responsável: &nbsp; <%= nome_responsavel%>
-	    </td>
-	    <td colspan="3">
-			&nbsp;&nbsp;Matrícula:&nbsp; <%=matricula%>
-		</td>
-	</tr>
-	<tr height="34">	
-		<td  colspan="3">&nbsp;&nbsp;Órgão:&nbsp; <%= orgao%></td>
-		<td  colspan="4">&nbsp;&nbsp;E-mail:&nbsp; <%= email%></td>
-		<td  colspan="3">&nbsp;&nbsp;Ramal:&nbsp; <%= ramal%></td>
-	</tr>
-	<tr height="34"> 
-		<td  colspan="10">
-			&nbsp;&nbsp;Período previsto para teste:&nbsp;
-			&nbsp;&nbsp;Início:&nbsp;<%=data_inicio%>
-			&nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino%>
-		</td>
-	</tr>
-	<tr height="34"> 
-		<td  colspan="10">
-			&nbsp;&nbsp;Novo período pedido para teste:&nbsp;
-			&nbsp;&nbsp;Início:&nbsp;<%=data_inicio_ped%>
-			&nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino_ped%>
-		</td>
-	</tr>
-    <tr height="34"> 
-        <td valign="top" colspan="10">
-			&nbsp;&nbsp;Motivo da Mudança:&nbsp;<BR>
-			<table cellpadding="0" cellspacing="0" class="table-bordered">
-			<tr>
-				<td>&nbsp;&nbsp;</td>
-				<td><%=replace(motivo, vbCrLf, "<BR>")%></td>
-			</tr>
-			</table>
-        </td>
-    </tr>
-	<tr height="34"> 
-		<td colspan="10">
-			<b>
-<%	if not cancelou then %>    
-              <p>&nbsp;&nbsp;Remarca o teste/ensaio: &nbsp;
-<%	else %>
-              <p>&nbsp;&nbsp;Aceitar pedido de cancelamento: &nbsp;
-<%	end if %>
-			</b>
-              <input type="radio" name="cmbRemarca" value="1" tabindex="13">
-				Sim&nbsp;
-              <input type="radio" name="cmbRemarca" value="0" tabindex="14">
-				Não&nbsp;
-		</td>
-    </tr>
-</TABLE>
-<br>
-<p align="center"> 
-    <input  type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
-    <input  type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
-</p>
-<input type="hidden" name="solicitouCancelamento" value="<%=cancelou%>">
+<div class="margem-10">
+
+    <form method="post" action="form_valida_remarcaA.asp" name="frmValidaRemarca" onSubmit="return validaCampos(this);">
+
+        <input type="hidden" name="txtNum_agendamento" value="<%= num_agendamento%>">
+        <input type="hidden" name="chr_CancelarSolicitacao" value="N">
+
+        <table border=0 cellSpacing=0 width="100%" class="table-condensed">
+	        <TR>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+		        <TD></TD>
+	        </TR>
+	        <TR height="34">
+		        <TD colSpan=3><b>Número do Agendamento:&nbsp;<%= num_agendamento%></b></TD>
+		        <TD colSpan=4><b>Situação:&nbsp;<%= situacao%></b></TD>
+		        <TD colSpan=3>Tecnologia:&nbsp;<%=tecnologia%></TD>
+	        </TR>
+	        <TR height="34"> 
+		        <td colspan="7">
+			        Nome do Responsável: &nbsp; <%= nome_responsavel%>
+	            </td>
+	            <td colspan="3">
+			        Matrícula:&nbsp; <%=matricula%>
+		        </td>
+	        </tr>
+	        <tr height="34">	
+		        <td  colspan="3">Órgão:&nbsp; <%= orgao%></td>
+		        <td  colspan="4">E-mail:&nbsp; <%= email%></td>
+		        <td  colspan="3">Ramal:&nbsp; <%= ramal%></td>
+	        </tr>
+	        <tr height="34"> 
+		        <td  colspan="10">
+			        Período previsto para teste:&nbsp;
+			        Início:&nbsp;<%=data_inicio%>
+			        &nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino%>
+		        </td>
+	        </tr>
+	        <tr height="34"> 
+		        <td  colspan="10">
+			        Novo período pedido para teste:&nbsp;
+			        Início:&nbsp;<%=data_inicio_ped%>
+			        &nbsp;&nbsp;&nbsp;&nbsp;Fim:&nbsp;<%=data_termino_ped%>
+		        </td>
+	        </tr>
+            <tr height="34"> 
+                <td valign="top" colspan="10">
+			        Motivo da Mudança:&nbsp;<BR>
+				    <%=replace(motivo, vbCrLf, "<BR>")%>
+                </td>
+            </tr>
+	        <tr height="34"> 
+		        <td colspan="10">
+			        <b>
+        <%	if not cancelou then %>    
+                      <p>Remarca o teste/ensaio: &nbsp;
+        <%	else %>
+                      <p>Aceitar pedido de cancelamento: &nbsp;
+        <%	end if %>
+			        </b>
+                      <input type="radio" name="cmbRemarca" value="1" tabindex="13">
+				        Sim&nbsp;
+                      <input type="radio" name="cmbRemarca" value="0" tabindex="14">
+				        Não&nbsp;
+		        </td>
+            </tr>
+        </table>
+            <input  type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
+            <input  type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
+        <input type="hidden" name="solicitouCancelamento" value="<%=cancelou%>">
+    </div>
 </form>
 
 <%

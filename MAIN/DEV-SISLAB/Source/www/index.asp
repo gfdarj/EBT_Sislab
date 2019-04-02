@@ -412,39 +412,41 @@ Private Sub MostraFotos %>
 End Sub
 
 Private Sub MostraEmExecucao()
-    Dim objRS, s
-%>
-<%
-	s = "SELECT TOP 10 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+    Dim objRS, s, conta
+
+    conta = 1
+	s = "SELECT TOP 15 a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO " & _
 		"FROM vw_Agendamento a  " & _
-		"WHERE a.ID_SITUACAO in (3, 6, 7) AND (a.AG_DATAINICIO <= getDate()) " & _
+		"WHERE a.ID_SITUACAO in (6) AND (a.AG_DATAINICIO <= getDate()) " & _
 	    "ORDER BY a.AG_NUMERO DESC"
 	Call Env.RecordSet( true, objRS, s)
 	If Not (objRS.EOF and objRS.BOF) Then %>
+        <small>
         <table class="table-bordered table-striped table-hover table-condensed" style="width: 100%;">
         <tr>
             <th>AS</th>
-            <th>Prioridade</th>
-            <th>Atividade</th>
-            <th style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</th>
-            <th style="text-align: center;">Salas</th>
-            <th style="text-align: center; width: 30px;">&nbsp;</th>
+            <th>Título</th>
+            <th style="text-align: center;">Data In&iacute;cio</th>
+            <th style="text-align: center;">Data T&eacute;rmino</th>
         </tr> <%
 
-        While Not objRS.Eof %>
-
+        While (Not objRS.Eof) And (conta < 11) %>
         <tr>
             <td><%=objRS("AG_NUMERO") %></td>
-            <td>Prioridade</td>
-            <td>Atividade</td>
-            <td style="text-align: center;">Data solicitada<br>In&iacute;cio-T&eacute;rmino</td>
-            <td style="text-align: center;">Salas</td>
-            <td style="text-align: center; width: 30px;">&nbsp;</td>
+            <td><%=objRS("AG_TITULO") %></td>
+            <td style="text-align: center;"><%=objRS("AG_DATAINICIO")%></td>
+            <td style="text-align: center;"><%=objRS("AG_DATATERMINO")%></td>
         </tr>
 
+<%          conta = conta + 1
+            objRS.MoveNext
+        WEnd %>
+        </table>
+        </small>
+<%      If conta > 10 Then %>
+        <div style="text-align: center;"><small><a href="sit_crt.asp">Opa! Encontramos mais agendamentos, clique aqui!</a></small></div>
 
-<%          objRS.MoveNext
-        WEnd
+<%      End If
     Else %>
         <div>Opa! Nao tem nada por aqui...</div>
 <%  End If

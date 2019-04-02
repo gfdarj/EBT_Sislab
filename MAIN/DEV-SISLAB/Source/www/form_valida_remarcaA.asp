@@ -41,7 +41,8 @@ If Err.number <> 0 then
 	Call MsgGravacaoDados(True, False, "<span class='vermelho2'><b>Erro ao gravar remarcação !</b></span>", "form_valida_remarca_sel.asp", "")
 else
 	'=====================================================================================
-	vTexto = "Número da AS: " & vNum_agendamento & "<BR><BR>"
+	vTexto = "<div class='margem-10'>" & VbCrLf
+	vTexto = vTexto & "Número da AS: " & vNum_agendamento & "<BR><BR>"
 
 	if vCancelou then
 		If Request("cmbRemarca") = "0" Then
@@ -55,7 +56,9 @@ else
 	end if
 	
 	vTexto = vTexto & "<BR>"
+	vTexto = vTexto & "</div>"
 	vTexto = replace(vTexto, VbCrLf, "<BR>")
+
 
 	'call enviaEmailsAS(Env.oConn,vNum_agendamento,"Validação de Cancelamento/Remarcação de Testes/Ensaios",vTexto)
 	call enviaEmailsAS(Env.oConn,vNum_agendamento,"Validação de Remarcação de Agendamento",vTexto)

@@ -398,7 +398,7 @@ end if
 		            <input type="text" readonly name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Matrícula:&nbsp;
-		            <input readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
+		            <input type="text" readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
                 </div>
                 <br />
                 <div>
@@ -406,9 +406,9 @@ end if
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            E-mail:&nbsp;
                     <input type=hidden name="Username">
-		            <input readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
+		            <input type="text" readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Ramal:&nbsp;<input name="txtRamal" readonly size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
+		            Ramal:&nbsp;<input type="text" name="txtRamal" readonly size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
                 </div>
         </div>
 
@@ -421,7 +421,7 @@ end if
         <div>
             <span class="texto-vermelho-bold"><b>*</b></span>
 		    <u title="Nome de referência associada a atividade.">Título do agendamento:</u>&nbsp;
-		    <input  name="txtTitulo" tabindex="7" size="60" maxlength="50" title="Nome de referência associada a atividade">
+		    <input type="text" name="txtTitulo" tabindex="7" size="60" maxlength="50" title="Nome de referência associada a atividade">
         </div>
 
         <br />
@@ -562,7 +562,6 @@ end if
 			<script type="text/javascript">
 				document.getElementById("tabParticipantes").style.display = 'none';
 			</script>
-
         </div>
 
         <div>

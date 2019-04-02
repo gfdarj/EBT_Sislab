@@ -63,22 +63,26 @@ Class TEnvironment
 
 
     Public Property Get ehRT()
-	    ehRT = Ebt.ehRT
+	    'ehRT = Ebt.ehRT
+	    ehRT = True
 	    'ehRT = False
     End Property
 
     Public Property Get ehRAT()
-	    ehRAT = Ebt.ehRAT
+	    'ehRAT = Ebt.ehRAT
+	    ehRAT = True
 	    'ehRAT = False
     End Property
 
     Public Property Get ehGQ()
-	    ehGQ = Ebt.ehGQ
+	    'ehGQ = Ebt.ehGQ
+	    ehGQ = True
 	    'ehGQ = False
     End Property
 
     Public Property Get UsuarioCRT()
-	    UsuarioCRT = Ebt.UsuarioCRT
+	    'UsuarioCRT = Ebt.UsuarioCRT
+	    UsuarioCRT = True
 	    'UsuarioCRT = False
     End Property
 

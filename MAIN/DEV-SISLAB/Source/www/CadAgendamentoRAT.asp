@@ -82,122 +82,127 @@ Else
 End If
 %>
 <script language="javascript" src="includes/anexo.js"></script>
-<script>
-function areaCliente(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoCliente.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
-function areaRT(){
-	var frm = document.forms[0];
-	frm.action = "CadAgendamentoRT.asp";
-	frm.method = "POST";
-	frm.target = "";
-	frm.submit();
-}
-function Historico(){
-	var strurl
-	strurl = "eventosinternos.asp?hdnEvento=12&num_ag=" + '<%=num_ag%>'
-	window.open(strurl,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=400,height=300,top=0,left=0');
-}
+<script type="text/javascript">
+    function areaCliente(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoCliente.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
+    function areaRT(){
+	    var frm = document.forms[0];
+	    frm.action = "CadAgendamentoRT.asp";
+	    frm.method = "POST";
+	    frm.target = "";
+	    frm.submit();
+    }
+    function Historico(){
+	    var strurl
+	    strurl = "eventosinternos.asp?hdnEvento=12&num_ag=" + '<%=num_ag%>'
+	    window.open(strurl,'','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=400,height=300,top=0,left=0');
+    }
 
-function ValidaCampos(){
-	var frm = document.forms[0];
+    function ValidaCampos(){
+	    var frm = document.forms[0];
 
-	if (frm.tipoatividade.value==""){
-		alert("Informe o Tipo da atividade do agendamento.");
-	    frm.tipoatividade.focus();
-		return false;
-	}
+	    if (frm.tipoatividade.value==""){
+		    alert("Informe o Tipo da atividade do agendamento.");
+	        frm.tipoatividade.focus();
+		    return false;
+	    }
 	
-	if (frm.hdnSituacao.value != frm.cmbSituacao.value){
+	    if (frm.hdnSituacao.value != frm.cmbSituacao.value){
 
-		if ((frm.cmbSituacao.value=="") || (frm.cmbSituacao.value=="0")) {
-			alert("Informe a Situação do agendamento.");
-	    	frm.cmbSituacao.focus();
-			return false;
-		}
+		    if ((frm.cmbSituacao.value=="") || (frm.cmbSituacao.value=="0")) {
+			    alert("Informe a Situação do agendamento.");
+	    	    frm.cmbSituacao.focus();
+			    return false;
+		    }
 
-		if (frm.motivo.value==""){
-			alert("O Motivo da mudança não foi informado.");
-	    	frm.motivo.focus();
-			return false;
-		}
+		    if (frm.motivo.value==""){
+			    alert("O Motivo da mudança não foi informado.");
+	    	    frm.motivo.focus();
+			    return false;
+		    }
 
-		if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
-			alert("A data de inicio da situação atual deve ser uma uma data válida.");
-			frm.diaINICIO.focus();
-			return false;
-		}
+		    if (!(isDate(frm.diaINICIO.value+"/"+frm.mesINICIO.value+"/"+frm.anoINICIO.value))){
+			    alert("A data de inicio da situação atual deve ser uma uma data válida.");
+			    frm.diaINICIO.focus();
+			    return false;
+		    }
 
-		if ((frm.horaINICIO.value=="")||(frm.minutoINICIO.value=="")){
-			alert("Hora e/ou minuto do início não informada.");
-	    	frm.horaINICIO.focus();
-			return false;
-		}
+		    if ((frm.horaINICIO.value=="")||(frm.minutoINICIO.value=="")){
+			    alert("Hora e/ou minuto do início não informada.");
+	    	    frm.horaINICIO.focus();
+			    return false;
+		    }
 
-		if (AchaAspas(frm.motivo.value)){
-			alert("O Motivo da mudança não pode conter Aspas ou apóstrofes.");
-	    	frm.motivo.focus();
-			return false;	
-		}
-	}
+		    if (AchaAspas(frm.motivo.value)){
+			    alert("O Motivo da mudança não pode conter Aspas ou apóstrofes.");
+	    	    frm.motivo.focus();
+			    return false;	
+		    }
+	    }
 
 <%if tem_os then%>
-	if (frm.cmbOS[1].checked) { // NAO NECESSITA OS
-			alert("ATENÇÃO !\n\nEste agendamento possui Ordem de Serviço.\n\nNáo é permitido retirar a necessidade de OS sem antes o\nRAT/RT remover as mesmas.");
-	    	frm.cmbOS1.focus();
-			return false;
-	}
+	    if (frm.cmbOS[1].checked) { // NAO NECESSITA OS
+			    alert("ATENÇÃO !\n\nEste agendamento possui Ordem de Serviço.\n\nNáo é permitido retirar a necessidade de OS sem antes o\nRAT/RT remover as mesmas.");
+	    	    frm.cmbOS1.focus();
+			    return false;
+	    }
 <%end if%>
 
-	if (frm.cmbRATRESP.value==""){
-		alert("Informe RAT responsável pelo agendamento.");
-	    frm.cmbRATRESP.focus();
-		return false;
-	}
+	    if (frm.cmbRATRESP.value==""){
+		    alert("Informe RAT responsável pelo agendamento.");
+	        frm.cmbRATRESP.focus();
+		    return false;
+	    }
 	
-	if (frm.cmbRESP.value==""){
-		alert("Informe RT responsável pelo agendamento.");
-	    frm.cmbRESP.focus();
-		return false;
-	}
+	    if (frm.cmbRESP.value==""){
+		    alert("Informe RT responsável pelo agendamento.");
+	        frm.cmbRESP.focus();
+		    return false;
+	    }
 
-	/* --- preencho a lista de participantes */
-	var i;
-	var separador = '<%=SEPARADOR_REGISTRO%>';
+	    /* --- preencho a lista de participantes */
+	    var i;
+	    var separador = '<%=SEPARADOR_REGISTRO%>';
 
-	var listaEBT = frm.lstParticipantesEBT;
-	frm.strParticipantesEBT.value = '';
-	for(i=0; i<listaEBT.options.length; i++) {
-		frm.strParticipantesEBT.value += listaEBT.options[i].value + separador;
-	}
-	/* --- fim do preenchimento das lista */
+	    var listaEBT = frm.lstParticipantesEBT;
+	    frm.strParticipantesEBT.value = '';
+	    for(i=0; i<listaEBT.options.length; i++) {
+		    frm.strParticipantesEBT.value += listaEBT.options[i].value + separador;
+	    }
+	    /* --- fim do preenchimento das lista */
 
-	frm.action = "CadAgendamentoRatA.asp";
-	frm.method = "POST";
-	frm.target = "_parent";
-	frm.submit();
-}
+	    frm.action = "CadAgendamentoRatA.asp";
+	    frm.method = "POST";
+	    frm.target = "_parent";
+	    frm.submit();
+    }
 </script>
+
+<div class="margem-10">
+
 <form method="post" action="CadAgendamentoRatA.asp" name="frmAgendaTeste">
+
 <input type="hidden" name="hdnSituacao">
 <input type="hidden" name="hdAG" value="<%=num_ag%>">
 <input type="hidden" name="strParticipantesEBT">
 <input type="hidden" name="strAmbientesOriginal">
 <input type="hidden" name="rat_original" value="<%=UCase(objSiteRS("ag_rat"))%>">
 <input type="hidden" name="rt_original" value="<%=UCase(objSiteRS("ag_responsavel"))%>">
-<table border="0" width="100%" class="table-bordered">
+
+<table border="0" width="100%" class="table-condensed">
 <tr> 
 	<td>
-		&nbsp;&nbsp;<b><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
+		<b><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</b></td>
 		<td align="right"><b><span class="menu">Agendamento Nº &nbsp;<%=num_ag%></span></b></td>
 </tr>
 </table>
 
-<table border="0" width="100%%" cellspacing="0" class="table-bordered">
+<table border="0" width="100%" cellspacing="0" class="table-condensed">
 <tr>
 	<td width="10%"></td>
 	<td width="10%"></td>
@@ -212,13 +217,13 @@ function ValidaCampos(){
 </tr>
 <tr height="34"> 
    	<td colspan="10">
-		&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;</b>Tipo de Atividade:
+		<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Tipo de Atividade:
 		<%call comboBDSQL( "tipoatividade", objConn,"Select ta_ID as valor,ta_descricao as descricao from TIPO_ATividade order by ta_ID asc;", "", "N")%>
 	</td>
 </tr>
 <tr height="34">
 	<td  colspan="2">
-		&nbsp;&nbsp;&nbsp;Situação:&nbsp;
+		Situação:&nbsp;
 		<select name="cmbSituacao"  onchange="avaliaSituacao();">
          		<option value="0" selected></option>
 			<%	strSQL = "select distinct s.ID_SITUACAO as valor  , s.S_DESCRICAO as descricao"
@@ -231,23 +236,23 @@ function ValidaCampos(){
 		</select> 
 	</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Data Início:&nbsp;
+			<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Data Início:&nbsp;
 			<%call comboData("INICIO")%>
 		</td>
 	<td  colspan="4">
-			&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Hora Início:&nbsp;
+			<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Hora Início:&nbsp;
 			<%call comboHorario("INICIO")%>
 	</td>
 </tr>
 <tr>
 	<td colspan="10">
-		&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudança de Situação ):</a><br>
-		&nbsp;&nbsp;<textarea name="motivo"  cols=147 rows=4 ></textarea>
+		<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Motivo ( Somente em caso de mudança de Situação ):</a><br>
+		<textarea name="motivo"  cols=147 rows=4 ></textarea>
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="10"> 
-        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;RAT Responsável : &nbsp;
+        <p><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;RAT Responsável : &nbsp;
 		<%
 		If bln_RAT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRATRESP",objConn,"N")
@@ -260,12 +265,8 @@ function ValidaCampos(){
 			End If
 		End If
 		%>
-		<br></p>
-	</td>
-</tr>
-<tr height="34">
-	<td colspan="10">
-        <p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Responsável Técnico : &nbsp;
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Responsável Técnico : &nbsp;
 		<%
 		If bln_RT_TodosUsuarios Then
 			Call comboUserCRTVivoEMortos("cmbRESP",objConn,"N")
@@ -278,7 +279,8 @@ function ValidaCampos(){
 			End If
 		End If
 		%>
-		</p>
+		<br>
+        </p>
 	</td>
 </tr>
 <tr>
@@ -291,18 +293,18 @@ function ValidaCampos(){
 </tr>
 <tr height="34">
 	<td colspan="10">
-		<p>&nbsp;&nbsp;<span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de Serviço (OS): &nbsp;
+		<p><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Agendamento Necessita de Ordem de Serviço (OS): &nbsp;
 		<input type="radio" name="cmbOS" value="1" id = "cmbOS1">Sim&nbsp;
 		<input type="radio" name="cmbOS" value="0"  id = "cmbOS0">Não
 	</td>
 </tr>
 <tr height="34">
 	<td colspan="3">
-		&nbsp;&nbsp;Teste tem repetição:&nbsp;
+		Teste tem repetição:&nbsp;
 		<input type="Checkbox" name="chkRepeticao" >
 	</td>
 	<td colspan="7">
-		&nbsp;&nbsp;Tem Executante do CRT:&nbsp;
+		Tem Executante do CRT:&nbsp;
 		<input type="Checkbox" name="chkExecutante" >
 	</td>
 </tr>
@@ -311,22 +313,22 @@ function ValidaCampos(){
 <tr>
 	<td colspan="10">
 <%	strSQL = "Select AMB_ID as valor , AMB_NOME as descricao from Ambientes WHERE AMB_USADOPORAG = 1 ORDER BY AMB_NOME"
-	call ControleComboMultiplo3("Ambientes","&nbsp;&nbsp;Ambientes Utilizados","Ambientes", strSQL, "10")%>
+	Call ControleComboMultiplo3("Ambientes","Ambientes Utilizados","Ambientes", strSQL, "10")%>
 	</td>
 </tr>
 
 <tr>
 	<th align="left" colspan="10">
-		&nbsp;&nbsp;Relatório de andamento de agendamentos (interno CRT)
+		Relatório de andamento de agendamentos (interno CRT)
 	</th>
 </tr>
 <tr>
-	<td colspan="10">&nbsp;&nbsp;Relatório de Agendamento:<br>
-		&nbsp;&nbsp;<textarea name="relatAS"  cols="147" rows="12"></textarea>
+	<td colspan="10">Relatório de Agendamento:<br>
+		<textarea name="relatAS"  cols="147" rows="12"></textarea>
 	</td>
 </tr>
 <tr height="34">
-	<td colspan="10" align="left"> &nbsp;&nbsp;
+	<td colspan="10" align="left">
 		<%if Env.ehRAT then%>
 			<input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
@@ -340,41 +342,50 @@ function ValidaCampos(){
 </table>
 </form>
 <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
-<script>
-function avaliaSituacao(){
-var frm = document.forms[0]
-if (frm.hdnSituacao.value == frm.cmbSituacao.value){
-	frm.motivo.style.backgroundColor = "#EEEEEE";	
-	frm.horaINICIO.style.backgroundColor = "#EEEEEE";	
-	frm.minutoINICIO.style.backgroundColor = "#EEEEEE";	
-	frm.diaINICIO.style.backgroundColor = "#EEEEEE";	
-	frm.mesINICIO.style.backgroundColor = "#EEEEEE";	
-	frm.anoINICIO.style.backgroundColor = "#EEEEEE";	
 
-	frm.motivo.disabled = true;
-	frm.horaINICIO.disabled = true;
-	frm.minutoINICIO.disabled = true;
-	frm.diaINICIO.disabled = true;
-	frm.mesINICIO.disabled = true;
-	frm.anoINICIO.disabled = true;
-} else {
-	frm.motivo.style.backgroundColor = "#FFFFFF";	
-	frm.horaINICIO.style.backgroundColor = "#FFFFFF";	
-	frm.minutoINICIO.style.backgroundColor = "#FFFFFF";	
-	frm.diaINICIO.style.backgroundColor = "#FFFFFF";	
-	frm.mesINICIO.style.backgroundColor = "#FFFFFF";	
-	frm.anoINICIO.style.backgroundColor = "#FFFFFF";	
+    <br />
+</div>
 
-	frm.motivo.disabled = false;
-	frm.horaINICIO.disabled = false;
-	frm.minutoINICIO.disabled = false;
-	frm.diaINICIO.disabled = false;
-	frm.mesINICIO.disabled = false;
-	frm.anoINICIO.disabled = false;
-}
-}
-var frm = document.forms[0]
-var frmAll = document.all
+
+<script type="text/javascript">
+    function avaliaSituacao()
+    {
+        var frm = document.forms[0]
+        if (frm.hdnSituacao.value == frm.cmbSituacao.value){
+	        frm.motivo.style.backgroundColor = "#EEEEEE";	
+	        frm.horaINICIO.style.backgroundColor = "#EEEEEE";	
+	        frm.minutoINICIO.style.backgroundColor = "#EEEEEE";	
+	        frm.diaINICIO.style.backgroundColor = "#EEEEEE";	
+	        frm.mesINICIO.style.backgroundColor = "#EEEEEE";	
+	        frm.anoINICIO.style.backgroundColor = "#EEEEEE";	
+
+	        frm.motivo.disabled = true;
+	        frm.horaINICIO.disabled = true;
+	        frm.minutoINICIO.disabled = true;
+	        frm.diaINICIO.disabled = true;
+	        frm.mesINICIO.disabled = true;
+	        frm.anoINICIO.disabled = true;
+        }
+        else
+        {
+	        frm.motivo.style.backgroundColor = "#FFFFFF";	
+	        frm.horaINICIO.style.backgroundColor = "#FFFFFF";	
+	        frm.minutoINICIO.style.backgroundColor = "#FFFFFF";	
+	        frm.diaINICIO.style.backgroundColor = "#FFFFFF";	
+	        frm.mesINICIO.style.backgroundColor = "#FFFFFF";	
+	        frm.anoINICIO.style.backgroundColor = "#FFFFFF";	
+
+	        frm.motivo.disabled = false;
+	        frm.horaINICIO.disabled = false;
+	        frm.minutoINICIO.disabled = false;
+	        frm.diaINICIO.disabled = false;
+	        frm.mesINICIO.disabled = false;
+	        frm.anoINICIO.disabled = false;
+        }
+    }
+
+    var frm = document.forms[0]
+    var frmAll = document.all
 <%if num_ag <> "" then%>
 	frm.hdAG.value = '<%=num_ag%>'
 	frm.cmbRATRESP.value='<%=Ucase(objSiteRS("ag_rat"))%>'
@@ -437,6 +448,7 @@ var frmAll = document.all
 End If
 %>
 </script>
+
 <%
 Call Tela.MostraRodape()
 %>
