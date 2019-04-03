@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
 using System.Web.Services;
 using System.Configuration;
 using Embratel.Sislab.Classes;
@@ -67,15 +68,21 @@ namespace Embratel.Sislab.Servico
         }
 
         [WebMethod]
-        public string UploadArquivo(string nomeDoArquivo, byte[] arquivoByte)
+        public string UploadArquivo(string numeroAS, string nomeDoArquivo, byte[] arquivoByte)
         {
             string ret = "OK";
             try
             {
-                String arquivo = Server.MapPath(Convert.ToString(ConfigurationManager.AppSettings["SislabPastaArquivos"])) + nomeDoArquivo;
+                String path = Path.GetDirectoryName(nomeDoArquivo);
+                //ret = path;
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
 
                 /*CRIANDO UM NOVO ARQUIVO E SALVANDO NO DIRETÓRIO ARQUIVOS*/
-                System.IO.File.WriteAllBytes(arquivo, arquivoByte);
+                File.WriteAllBytes(nomeDoArquivo, arquivoByte);
             }
             catch (Exception ex)
             {
@@ -88,10 +95,10 @@ namespace Embratel.Sislab.Servico
         public byte[] DownloadArquivo(string nomeDoArquivo)
         {
             /*PEGA O CAMINHO DO ARQUIVO*/
-            String arquivo = Server.MapPath(Convert.ToString(ConfigurationManager.AppSettings["SislabPastaArquivos"])) + nomeDoArquivo;
+            String arquivo = nomeDoArquivo;
 
             /*ACESSANDO O ARQUIVO*/
-            System.IO.FileStream fileStream = System.IO.File.Open(arquivo, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            FileStream fileStream = File.Open(arquivo, FileMode.Open, FileAccess.Read);
 
             /*CRIANDO E DEFININDO O TAMANHO DO OBJETO QUE VAMOS RETORNAR*/
             byte[] arquivoByte = new byte[fileStream.Length];
