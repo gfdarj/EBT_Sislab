@@ -33,6 +33,17 @@
             <br />
             <br />
             <asp:Label runat="server" ID="lblMensagem" Text="" style="color: red; font-weight: bold;"></asp:Label>
+
+
+            <br />
+            <br />
+            <br />
+            <br />
+            Arquivo UPLOAD: <asp:TextBox ID="txtUpload" runat="server" Text="Assunto do e-mail"></asp:TextBox><br />
+            <br />
+            <asp:Button ID="btnUpload" runat="server" Text="Fazer Upload" OnClick="btnUpload_Click" />
+
+
         </div>
     </form>
 </body>

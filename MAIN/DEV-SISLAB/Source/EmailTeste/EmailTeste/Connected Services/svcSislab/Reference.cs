@@ -26,6 +26,14 @@ namespace EmailTeste.svcSislab {
         // CODEGEN: Generating message contract since element name smtpServer from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmailGenerico", ReplyAction="*")]
         EmailTeste.svcSislab.EnviaEmailGenericoResponse EnviaEmailGenerico(EmailTeste.svcSislab.EnviaEmailGenericoRequest request);
+        
+        // CODEGEN: Generating message contract since element name numeroAS from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UploadArquivo", ReplyAction="*")]
+        EmailTeste.svcSislab.UploadArquivoResponse UploadArquivo(EmailTeste.svcSislab.UploadArquivoRequest request);
+        
+        // CODEGEN: Generating message contract since element name nomeDoArquivo from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DownloadArquivo", ReplyAction="*")]
+        EmailTeste.svcSislab.DownloadArquivoResponse DownloadArquivo(EmailTeste.svcSislab.DownloadArquivoRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -276,6 +284,150 @@ namespace EmailTeste.svcSislab {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UploadArquivoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UploadArquivo", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.UploadArquivoRequestBody Body;
+        
+        public UploadArquivoRequest() {
+        }
+        
+        public UploadArquivoRequest(EmailTeste.svcSislab.UploadArquivoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UploadArquivoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string numeroAS;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string nomeDoArquivo;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public byte[] arquivoByte;
+        
+        public UploadArquivoRequestBody() {
+        }
+        
+        public UploadArquivoRequestBody(string numeroAS, string nomeDoArquivo, byte[] arquivoByte) {
+            this.numeroAS = numeroAS;
+            this.nomeDoArquivo = nomeDoArquivo;
+            this.arquivoByte = arquivoByte;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UploadArquivoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UploadArquivoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.UploadArquivoResponseBody Body;
+        
+        public UploadArquivoResponse() {
+        }
+        
+        public UploadArquivoResponse(EmailTeste.svcSislab.UploadArquivoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UploadArquivoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string UploadArquivoResult;
+        
+        public UploadArquivoResponseBody() {
+        }
+        
+        public UploadArquivoResponseBody(string UploadArquivoResult) {
+            this.UploadArquivoResult = UploadArquivoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class DownloadArquivoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="DownloadArquivo", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.DownloadArquivoRequestBody Body;
+        
+        public DownloadArquivoRequest() {
+        }
+        
+        public DownloadArquivoRequest(EmailTeste.svcSislab.DownloadArquivoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class DownloadArquivoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string nomeDoArquivo;
+        
+        public DownloadArquivoRequestBody() {
+        }
+        
+        public DownloadArquivoRequestBody(string nomeDoArquivo) {
+            this.nomeDoArquivo = nomeDoArquivo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class DownloadArquivoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="DownloadArquivoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public EmailTeste.svcSislab.DownloadArquivoResponseBody Body;
+        
+        public DownloadArquivoResponse() {
+        }
+        
+        public DownloadArquivoResponse(EmailTeste.svcSislab.DownloadArquivoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class DownloadArquivoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public byte[] DownloadArquivoResult;
+        
+        public DownloadArquivoResponseBody() {
+        }
+        
+        public DownloadArquivoResponseBody(byte[] DownloadArquivoResult) {
+            this.DownloadArquivoResult = DownloadArquivoResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface UsuariosSoapChannel : EmailTeste.svcSislab.UsuariosSoap, System.ServiceModel.IClientChannel {
     }
@@ -351,6 +503,34 @@ namespace EmailTeste.svcSislab {
             inValue.Body.mensagem = mensagem;
             EmailTeste.svcSislab.EnviaEmailGenericoResponse retVal = ((EmailTeste.svcSislab.UsuariosSoap)(this)).EnviaEmailGenerico(inValue);
             return retVal.Body.EnviaEmailGenericoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        EmailTeste.svcSislab.UploadArquivoResponse EmailTeste.svcSislab.UsuariosSoap.UploadArquivo(EmailTeste.svcSislab.UploadArquivoRequest request) {
+            return base.Channel.UploadArquivo(request);
+        }
+        
+        public string UploadArquivo(string numeroAS, string nomeDoArquivo, byte[] arquivoByte) {
+            EmailTeste.svcSislab.UploadArquivoRequest inValue = new EmailTeste.svcSislab.UploadArquivoRequest();
+            inValue.Body = new EmailTeste.svcSislab.UploadArquivoRequestBody();
+            inValue.Body.numeroAS = numeroAS;
+            inValue.Body.nomeDoArquivo = nomeDoArquivo;
+            inValue.Body.arquivoByte = arquivoByte;
+            EmailTeste.svcSislab.UploadArquivoResponse retVal = ((EmailTeste.svcSislab.UsuariosSoap)(this)).UploadArquivo(inValue);
+            return retVal.Body.UploadArquivoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        EmailTeste.svcSislab.DownloadArquivoResponse EmailTeste.svcSislab.UsuariosSoap.DownloadArquivo(EmailTeste.svcSislab.DownloadArquivoRequest request) {
+            return base.Channel.DownloadArquivo(request);
+        }
+        
+        public byte[] DownloadArquivo(string nomeDoArquivo) {
+            EmailTeste.svcSislab.DownloadArquivoRequest inValue = new EmailTeste.svcSislab.DownloadArquivoRequest();
+            inValue.Body = new EmailTeste.svcSislab.DownloadArquivoRequestBody();
+            inValue.Body.nomeDoArquivo = nomeDoArquivo;
+            EmailTeste.svcSislab.DownloadArquivoResponse retVal = ((EmailTeste.svcSislab.UsuariosSoap)(this)).DownloadArquivo(inValue);
+            return retVal.Body.DownloadArquivoResult;
         }
     }
 }
