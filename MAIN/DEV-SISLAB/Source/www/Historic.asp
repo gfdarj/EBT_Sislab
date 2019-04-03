@@ -20,12 +20,12 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Histórico do CRT",
 
 <p>No conceito original o LAB destinava-se à qualificação e Certificação de Produtos dentro das Normas Telebrás.  Na visão atual o CRT tem como função prover ambientes para testes de Produtos e Integração de Sistemas da Planta Ativa.</p>
 
-<p>O CRT tem como clientes internos a área de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, Telefonia e Transporte), Diretorias Regionais, Diretoria de Serviços, Operações Centralizadas e Planejamento, provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para Embratel e comprometendo-se na garantia da qualidade de serviços oferecidos pela Embratel.</p>
+<p>O CRT tem como clientes internos a área de Engenharia de Projetos de Redes ( Acesso , Dados, Internet, Telefonia e Transporte), Diretorias Regionais, Diretoria de Serviços, Operações Centralizadas e Planejamento, provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para <%=Application("SISLAB_NOME_EMPRESA")%> e comprometendo-se na garantia da qualidade de serviços oferecidos pela Embratel.</p>
 
 <p>A Estrutura interna do CRT possui 3 ger&ecirc;ncias:</p>
 
 <b>Automação de Ensaios</b><br>
-Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta Embratel e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.
+Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta <%=Application("SISLAB_NOME_EMPRESA")%> e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.
 <br><br>
 <b>Integração de Sistemas</b><br>
 Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviços prestados, provendo e mantendo estrutura voltada a testes e simulações de desempenho, integração de  produtos e sistemas de telecomunicações.

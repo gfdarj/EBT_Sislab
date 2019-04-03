@@ -2,7 +2,7 @@
 <%
 '------------------------------------------------------------------------------------------------------
 '
-'   CLASSE EMBRATEL - AQUI PEGA OS DADOS DO USUÁRIO LOGADO NO AD (Active Directory)
+'   CLASSE DE BUSCA NO AD - AQUI PEGA OS DADOS DO USUÁRIO LOGADO NO AD (Active Directory)
 '
 '------------------------------------------------------------------------------------------------------
 
@@ -337,7 +337,7 @@ Class TEbt
         Else
 
             If InStr(1, chr_Usuario, "@") = 0 Then
-                chr_Usuario = Trim(chr_Usuario) & SUFIXOEMAIL
+                chr_Usuario = Trim(chr_Usuario) & Application("SISLAB_EMAIL_SUFIXO")
             End If
 
             email = Split(chr_Usuario, "@")

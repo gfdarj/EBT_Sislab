@@ -43,7 +43,7 @@ auxClientes = (request.form("chkClientes")="on")
     <table border="0" width="100%" class="table-condensed" cellpadding="3" cellspacing="3">
     <tr>
 	    <td>
-		    &nbsp;<span class="texto-vermelho-bold" >&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px; font-weight: bold;">
+		    &nbsp;<span class="texto-vermelho-bold" >&raquo;</span>&nbsp;<span style="font-size: 12px; font-weight: bold;">
 			    Selecione uma das opções de filtro para consulta
 		    </span></b>
 	    </td>
@@ -89,7 +89,7 @@ auxClientes = (request.form("chkClientes")="on")
     </tr>
     <tr>
 	    <td>
-		    Cliente Embratel:&nbsp;<input type="Checkbox" name="chkClientes">
+		    Cliente <%=Application("SISLAB_NOME_EMPRESA")%>:&nbsp;<input type="Checkbox" name="chkClientes">
 	    </td>
     </tr>
     <tr>

@@ -17,78 +17,74 @@ if agendamento = "" then%>
 <%
 end if
 %>
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
-function validaArquivos()
-{
-	var f = document.forms[0];
-	var msg = "O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.";
+    function validaArquivos()
+    {
+	    var f = document.forms[0];
+	    var msg = "O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.";
 
-	if((f.FILE1.value == '') && (f.FILE2.value == '') && (f.FILE3.value == ''))
-	{
-		alert('Selecione um arquivo para upload.');
-		return false;
-	}
-	if(f.FILE1.value != '')
-	{
-		if( !validaNomeArquivo(extractFileName(f.FILE1.value)) ) {
-			alert(msg);
-			f.FILE1.focus();
-			return false;
-		}
-	}
-	if(f.FILE2.value != '')
-	{
-		if( !validaNomeArquivo(extractFileName(f.FILE2.value)) ) {
-			alert(msg);
-			f.FILE2.focus();
-			return false;
-		}
-	}
-	if(f.FILE3.value != '')
-	{
-		if( !validaNomeArquivo(extractFileName(f.FILE3.value)) ) {
-			alert(msg);
-			f.FILE3.focus();
-			return false;
-		}
-	}
-    return true;
-}
+	    if((f.FILE1.value == '') && (f.FILE2.value == '') && (f.FILE3.value == ''))
+	    {
+		    alert('Selecione um arquivo para upload.');
+		    return false;
+	    }
+	    if(f.FILE1.value != '')
+	    {
+		    if( !validaNomeArquivo(extractFileName(f.FILE1.value)) ) {
+			    alert(msg);
+			    f.FILE1.focus();
+			    return false;
+		    }
+	    }
+	    if(f.FILE2.value != '')
+	    {
+		    if( !validaNomeArquivo(extractFileName(f.FILE2.value)) ) {
+			    alert(msg);
+			    f.FILE2.focus();
+			    return false;
+		    }
+	    }
+	    if(f.FILE3.value != '')
+	    {
+		    if( !validaNomeArquivo(extractFileName(f.FILE3.value)) ) {
+			    alert(msg);
+			    f.FILE3.focus();
+			    return false;
+		    }
+	    }
+        return true;
+    }
 </script>
 
-<form method="Post" enctype="multipart/form-data" OnSubmit="return validaArquivos();" name="frmEnviarArq" action="uploaddiag.asp">
-    <input type="hidden" name="vezes" value="0">
-    <input type="hidden" name="cod_AS" value=<%=agendamento%>>
-    <input type="hidden" name="username" value="<%=UCase(trim(mid(Request.ServerVariables("REMOTE_USER"),10)))%>">
-    <input type="hidden" name="ip" value="<%=UCase(request.ServerVariables("REMOTE_ADDR"))%>">
+<div class="margem-10">
+    <form method="Post" enctype="multipart/form-data" OnSubmit="return validaArquivos();" name="frmEnviarArq" action="uploaddiag.asp">
 
-    <table border="0" cellpadding="3" cellspacing="3" style="width: 100%;">
-    <tr>
-	    <td>
-		    &nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;Selecione até 3 diagramas associados ao teste
-	    </td>
-    </tr>
-    <tr>
-	    <td>Arquivo 1:&nbsp;<INPUT TYPE=FILE SIZE=40 NAME="FILE1"></td>
-    </tr>
-    <tr>
-	    <td>Arquivo 2:&nbsp;<INPUT TYPE=FILE SIZE=40 NAME="FILE2"></td>
-    </tr>
-    <tr>
-	    <td>Arquivo 3:&nbsp;<INPUT TYPE=FILE SIZE=40 NAME="FILE3"></td>
-    </tr>
-    <tr>
-	    <td><INPUT type="submit" VALUE="Enviar Arquivo(s)"></td>
-    </tr>
-    </table>
-</form>
+        <input type="hidden" name="vezes" value="0">
+        <input type="hidden" name="cod_AS" value="<%=agendamento%>">
+        <input type="hidden" name="username" value="<%=UCase(trim(mid(Request.ServerVariables("REMOTE_USER"),10)))%>">
+        <input type="hidden" name="ip" value="<%=UCase(request.ServerVariables("REMOTE_ADDR"))%>">
 
-<p align="justify">
-    <span class="texto-vermelho-bold">
-        O Upload de arquivo pode demorar alguns minutos.  Não recomendamos o upload de arquivos maiores de 2MBytes.  Neste caso, por favor envie o arquivo compactado.
-    </span>
-</p>
+        <br />
+        <p><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Selecione até 3 diagramas associados ao teste</p>
+        <br />
+	    <p>Arquivo 1:&nbsp;<input type="file" size="80" name="FILE1"></p>
+        <br />
+	    <p>Arquivo 2:&nbsp;<input type="file" size="80" name="FILE2"></p>
+        <br />
+	    <p>Arquivo 3:&nbsp;<input type="file" size="80" name="FILE3"></p>
+        <br />
+	    <p><input type="submit" value="Enviar Arquivo(s)"></p>
+    </form>
+
+    <br />
+
+    <p align="justify">
+        <span class="texto-vermelho-bold">
+            <small>O Upload de arquivo pode demorar alguns minutos.  Não recomendamos o upload de arquivos maiores de 2MBytes.  Neste caso, por favor envie o arquivo compactado.</small>
+        </span>
+    </p>
+</div>
 <%
 Call Tela.MostraRodape()
 %>

@@ -18,7 +18,7 @@ Set objFolder = objFSO.GetFolder(chr_Path)
 int_Conta = 0
 
 chr_Buf = _
-	"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span class='texto1b' style='font-size: 12px;'>Selecione o vídeo desejado</span><br><br>" & VbCrLf & _
+	"&nbsp;<span class='vermelho2'>&raquo;</span>&nbsp;<span style='font-size: 12px;'>Selecione o vídeo desejado</span><br><br>" & VbCrLf & _
 	"<table align='center' class='tabela1' border='1' cellpadding='3' cellspacing='0'>" & VbCrLf & _
 	"<tr>" & VbCrLf & _
 	"	<td><b>Arquivo</b></td><td><b>Tamanho</b><td>&nbsp;</td></td>" & VbCrLf & _

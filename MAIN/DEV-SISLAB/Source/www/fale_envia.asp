@@ -28,7 +28,7 @@ While not rsRATs.eof
 WEnd
 Call Env.RecordSet(false, rsRATs, sSQL)
 
-'enviar_email auxusername, auxusername, "ilab@embratel.com.br", "Site CRT - " & request.form("assunto") ,  "Site CRT - " & request.form("assunto"), vTexto
+'enviar_email auxusername, auxusername, Application("SISLAB_EMAIL_AUTOMATICO"), "Site CRT - " & request.form("assunto") ,  "Site CRT - " & request.form("assunto"), vTexto
 
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Fale Conosco - Email enviado !", "", "")
 %>

@@ -31,7 +31,7 @@ sub ImprimeCabecalho(titulo, imprimeMenu)
 </head>
 
 <map name="Map"> 
-  <area shape="rect" coords="671,18,741,46" href="http://pegasus" target="_top" alt="Site da Embratel" title="Site da Embratel">
+  <area shape="rect" coords="671,18,741,46" href="http://pegasus" target="_top" alt="Site da <%=Application("SISLAB_NOME_EMPRESA")%>" title="Site da <%=Application("SISLAB_NOME_EMPRESA")%>">
   <area shape="poly" coords="11,1" href="#">
   <area shape="poly" coords="135,34" href="#">
   <area shape="poly" coords="10,4,175,4,175,43,221,43,235,43,235,62,10,62,10,4" href="<%=retornaInicio()%>" alt="P&aacute;gina Inicial" title="P&aacute;gina Inicial">

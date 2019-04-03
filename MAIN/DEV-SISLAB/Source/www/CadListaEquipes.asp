@@ -4,9 +4,13 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
-Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes da Embratel ", "location.href='sislab.asp'", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Lista das Equipes " & Application("SISLAB_NOME_EMPRESA"), "location.href='sislab.asp'", "")
 
-if not Env.ehRAT then response.redirect "index.asp"
+If not Env.ehRAT Then 
+    Response.Write "<br />" & Env.MensagemAcessoExclusivo()
+    Call Tela.MostraRodape()
+    Response.End
+End If
 
 Dim gerente, lista, RS, bEof
 gerente = Request("gerente")
@@ -18,7 +22,7 @@ bEof = True
 <script type="text/javascript">
     function BuscarGerente(){
 	    var frm = document.forms[0];
-	    frm.action = "CadListaEquipesEmbratel.asp";
+	    frm.action = "CadListaEquipes.asp";
 	    frm.target = "_parent";
 	    frm.submit();
 	    frm.btnSalvar.disabled = false;
@@ -47,7 +51,7 @@ bEof = True
 		    if(i != frm.lista.length-1) frm.lista_participante.value += ','; 
 	    }
 
-	    frm.action = "CadListaEquipesEmbratelA.asp";
+	    frm.action = "CadListaEquipesA.asp";
 	    //frm.target = "_parent";
 	    frm.submit();
     }
@@ -72,7 +76,7 @@ bEof = True
 	    }
 	    else {
 		    frm.excluir.value = '1';
-		    frm.action = "CadListaEquipesEmbratelA.asp";
+		    frm.action = "CadListaEquipesA.asp";
 		    frm.target = "_parent";
 		    frm.submit();
 	    }
@@ -80,7 +84,7 @@ bEof = True
 </script>
 
 <div class="margem-10">
-    <form method="post" action="CadListaEquipesEmbratelA.asp" name="frm">
+    <form method="post" action="CadListaEquipesA.asp" name="frm">
         <input type="hidden" name="excluir" value="0">
         <input type="hidden" name="lista_participante" value="">
 
@@ -95,7 +99,7 @@ bEof = True
 
         <tr><td colspan="2">&nbsp;</td></tr>
 
-        <tr><td colspan="2"><span class="texto-vermelho-bold">Cadastro de equipes da embratel para que o gerente possa ter acesso à dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</span></td></tr>
+        <tr><td colspan="2"><span class="texto-vermelho-bold">Cadastro de equipes da <%=Application("SISLAB_NOME_EMPRESA")%> para que o gerente possa ter acesso à dados sigilosos dos agendamentos que foram criados pelos membros da sua equipe.</span></td></tr>
 
         <tr><td colspan="2">&nbsp;</td></tr>
 

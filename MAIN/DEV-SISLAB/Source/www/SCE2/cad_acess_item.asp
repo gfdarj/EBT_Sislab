@@ -831,9 +831,9 @@ function RemoveAcessorio(linha) {
 		Case EQ_PROPRIEDADE_TER
 			Response.write "Terceiros"
 		Case EQ_PROPRIEDADE_EBT
-			Response.write "Embratel"
+			Response.write Application("SISLAB_NOME_EMPRESA")
 		Case EQ_PROPRIEDADE_CRT
-			Response.write "Embratel CRT"
+			Response.write Application("SISLAB_NOME_EMPRESA") & " CRT"
 		Case EQ_PROPRIEDADE_COM
 			Response.write "Comodato"
 		End Select
@@ -841,9 +841,9 @@ function RemoveAcessorio(linha) {
 			<input type="hidden" name="propriedade" value="<%=propriedade%>">
 <%Else %>
 			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_TER%>" <%if propriedade = EQ_PROPRIEDADE_TER or propriedade = "" then response.write "checked"%>>&nbsp;Terceiros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_EBT%>" <%if propriedade = EQ_PROPRIEDADE_EBT then response.write "checked"%>>&nbsp;Embratel - Outros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_CRT%>" <%if propriedade = EQ_PROPRIEDADE_CRT then response.write "checked"%>>&nbsp;Embratel - CRT&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_COM%>" <%if propriedade = EQ_PROPRIEDADE_COM then response.write "checked"%>>&nbsp;Embratel - Comodato
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_EBT%>" <%if propriedade = EQ_PROPRIEDADE_EBT then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - Outros&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_CRT%>" <%if propriedade = EQ_PROPRIEDADE_CRT then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - CRT&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_COM%>" <%if propriedade = EQ_PROPRIEDADE_COM then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - Comodato
 <%End If %>
 		</td>
 	</tr>

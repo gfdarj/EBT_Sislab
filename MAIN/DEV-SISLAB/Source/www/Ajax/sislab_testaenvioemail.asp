@@ -22,7 +22,7 @@ If Not (VVVNZ(Request("ID")) And VVVNZ(Request("Email"))) Then
 
 		'Envia o email ao solicitante como se fosse o RT
 		Call Enviar_EmailGenerico( _
-			"ilab@embratel.com.br", _
+			Application("SISLAB_EMAIL_AUTOMATICO"), _
 			"iLab", _
 			Request("Email"), _
 			"Teste Sislab", _

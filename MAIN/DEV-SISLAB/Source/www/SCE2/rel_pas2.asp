@@ -51,7 +51,7 @@ If Env.UsuarioSCE() Then
     rec.Close
 
     if request("ag_numero") <> "" or request("ag_responsavel") <> "" then%>
-	<p class="texto1b">Cargas Recebidas <%=ImprimePassagemAS(request("ag_numero"))%></p>
+	<p>Cargas Recebidas <%=ImprimePassagemAS(request("ag_numero"))%></p>
 <%
 	    Set rec = Env.oConn.Execute(s_dest)
 	    call ImprimeListaPassagem(conn, rec, "DEST", request("ag_numero"))

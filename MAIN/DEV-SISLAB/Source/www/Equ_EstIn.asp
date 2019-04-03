@@ -22,7 +22,7 @@ call Env.RecordSet(False, objSiteRS, sSQL)
 <table border="0" cellpadding="2" cellspacing="4" class="table-bordered" width="100%">
 <tr>
 	<td colspan="<%=int_Cols%>" class='texto1' align="center">
-		<span class='texto1b' style='font-size: 15px;'>ESTRUTURA INTERNA</span><br>
+		<span style='font-size: 15px;'>ESTRUTURA INTERNA</span><br>
 		<a href="http://ntspo901/portalrh/organograma/embrapar.htm" target="_blank"><i>(veja o organograma da empresa aqui)</i></a>
 	</td>
 </tr>
@@ -52,7 +52,7 @@ If Not objSiteRS.EOF Then
 	While Not objSiteRS.Eof
 
 		chr_Buf = chr_Buf & _
-				"<tr class='texto1b'>"
+				"<tr>"
 
 		If (int_Hierarq <> objSiteRS("ORGA_HIERARQUIA")) Or (bln_Primeiro) Then
 			int_Contador = int_Contador - 1
@@ -97,11 +97,11 @@ Call Env.RecordSet(False, objSiteRS, sSQL)
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<span class='texto1b' style='font-size: 15px;'>EQUIPE CRT</span><br>
+		<span style='font-size: 15px;'>EQUIPE CRT</span><br>
 		<a target="_blank" href="http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/arquivos/DO%205.2-002_09%20-%20DESIGNAÇÃO%20DE%20FUNCOES%2010-07-06.pdf"><i>(veja o quadro com a designação de funções)</i></a>
 	</td>
 </tr>
-<tr class="texto1b">
+<tr>
 	<td bgcolor="#FFFFBB">&nbsp;Matrícula</td>
 	<td bgcolor="#FFFFBB">&nbsp;Empregado</td>
 	<td bgcolor="#FFFFBB">&nbsp;Ramal</td>

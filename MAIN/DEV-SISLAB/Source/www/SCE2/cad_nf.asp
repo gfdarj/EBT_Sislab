@@ -234,7 +234,7 @@ end if
 
 				<tr><td>&nbsp;</td></tr>
 
-				<tr id="tr_fornecedor" style="display:none;"><TD><b>Fornecedor: Embratel CRT</b><BR><BR></td></tr>
+				<tr id="tr_fornecedor" style="display:none;"><TD><b>Fornecedor: <%=Application("SISLAB_NOME_EMPRESA")%> CRT</b><BR><BR></td></tr>
 
 				<tr>
 					<TD><span id='sp_fornecedor'>Fornecedor</span>:&nbsp;
@@ -243,7 +243,7 @@ end if
 					</td>
 				</tr>
 
-				<tr id="tr_destino" style="display:block;"><TD><BR><b>Destino: Embratel CRT</b></td></tr>
+				<tr id="tr_destino" style="display:block;"><TD><BR><b>Destino: <%=Application("SISLAB_NOME_EMPRESA")%> CRT</b></td></tr>
 
 				<tr>
 					<td>

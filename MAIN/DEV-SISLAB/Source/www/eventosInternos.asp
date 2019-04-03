@@ -185,7 +185,7 @@ function BuscaUserNameEBT()
 
 	If Not Ebt1.ehFuncionario() Then%>
 		<script type="text/javascript">
-			alert("Funcionário inexistente na Embratel.");
+			alert("Funcionário inexistente na <%=Application("SISLAB_NOME_EMPRESA")%>.");
 		</script>
 <%	Else
 		if ag_numero <> "" then

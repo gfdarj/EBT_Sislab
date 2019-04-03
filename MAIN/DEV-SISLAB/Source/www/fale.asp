@@ -70,7 +70,7 @@ auxusername = Env.Usuario
 			        <option value="Avaliação de Serviços do CRT">Avaliação de Serviços do CRT</option>
 			        <option value="CRT e Área de Operações e Rede">CRT e Área de Operações e Rede</option>
 			        <option value="CRT e Área de Serviços">CRT e Área de Serviços</option>
-			        <option value="CRT e Clientes da EMBRATEL">CRT e Clientes da EMBRATEL</option>
+			        <option value="CRT e Clientes da <%=Application("SISLAB_NOME_EMPRESA")%>">CRT e Clientes da <%=Application("SISLAB_NOME_EMPRESA")%>"</option>
 			        <option value="CRT e Gerência de Programas">CRT e Gerência de Programas</option>
 			        <option value="Infra-estrutura do CRT">Infra-estrutura do CRT</option>
 			        <option value="Integração de Sistemas">Integração de Sistemas</option>

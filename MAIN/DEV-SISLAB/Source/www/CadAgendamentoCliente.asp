@@ -127,6 +127,7 @@ End If
 	    /* valido data inicial maior que data final */
 	    var dI = frm.anoINICIO.value + '' + frm.mesINICIO.value + '' + frm.diaINICIO.value;
 	    var dF = frm.anoFIM.value + '' + frm.mesFIM.value + '' + frm.diaFIM.value;
+	    var dH = '<%=Year(Date) & Right("0" & Month(Date), 2) & Right("0" & Day(Date), 2)%>';
 
 	    if(dI > dF) {
 		    alert('Data inicial é maior que a data final');
@@ -134,6 +135,11 @@ End If
 		    return false;
 	    }
 
+	    if(dI < dH) {
+		    alert('Data inicial não pode ser menor que a data de hoje.');
+		    frm.diaINICIO.focus();
+		    return false;
+	    }
 
 	    if (frm.cmbTec.value==""){
 		    alert("Informe a tecnologia usada no agendamento.");
@@ -646,8 +652,8 @@ end if
         <br />
 
         <div>
-            <u title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento.">Observações:</u><br>
-		    <textarea name="obs"  cols="120" rows="4" tabindex="40" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para ilab@embratel.com.br com a identificação do agendamento."></textarea>
+            <u title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para <%=Application("SISLAB_EMAIL_AUTOMATICO")%> com a identificação do agendamento.">Observações:</u><br>
+		    <textarea name="obs"  cols="120" rows="4" tabindex="40" title="Informar documentos ou links de referência associadas a atividade ou informações complementares. Diagramas e arquivos podem ser anexados na próxima fase do cadastro ou enviado por e-mail para <%=Application("SISLAB_EMAIL_AUTOMATICO")%> com a identificação do agendamento."></textarea>
         </div>
 
         <br />

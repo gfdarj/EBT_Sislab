@@ -64,7 +64,7 @@ function montaExcel()
 
         <p>
 		    <span class="texto-vermelho-bold">&raquo;</span>&nbsp;
-            <span class="texto1b" style="font-size: 12px; font-weight: bold;">
+            <span style="font-size: 12px; font-weight: bold;">
 			Selecione uma das opções de filtro para consulta
         </p>
 

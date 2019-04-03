@@ -202,7 +202,7 @@ function envia(){
 		return false;
 	}
 	if (frm.responsavel.value==""){
-		alert("Informe o responsável Embratel da Ação.");
+		alert("Informe o responsável <%=Application("SISLAB_NOME_EMPRESA")%> da Ação.");
 	    frm.responsavel.focus();
 		return false;
 	}

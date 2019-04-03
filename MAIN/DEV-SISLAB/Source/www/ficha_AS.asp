@@ -362,7 +362,7 @@ End If%>
 <%
 if not IsNull(AuxMetas) then%>
 <tr>
-	<th colspan="10" style="text-align: center;">PLANO DE METAS DA EMBRATEL</th>
+	<th colspan="10" style="text-align: center;">PLANO DE METAS DA <%=UCase(Application("SISLAB_NOME_EMPRESA"))%></th>
 </tr>
 <tr >
 	<td colspan="4"><%=AuxMetas%></td>
@@ -478,7 +478,7 @@ if objSiteRS(0) > 0 then
 %>
 <tr>
 	<td style="text-align: center;" colspan="5">
-	SERVIÇOS EMBRATEL UTILIZADOS
+	SERVIÇOS <%=UCase(Application("SISLAB_NOME_EMPRESA"))%> UTILIZADOS
 	</td>
 	<td style="text-align: center;" colspan="5">
 	SISTEMAS UTILIZADOS

@@ -37,7 +37,7 @@ if return > 0 then '-- ok
 %>
 <table border="0" width="100%" class="table-bordered">
 <tr> 
-	<td width="100%" class="texto1B">
+	<td width="100%">
 		Dados exclu&iacute;dos com sucesso !! <br><br>
 <%	if Isnull(os_id) or os_id <> "" then
 		if isnull(os_id) then _
@@ -57,7 +57,7 @@ else '-- ocorreu um erro
 %>
 <table border="0" width="100%" class="table-bordered">
 <tr> 
-	<td width="100%" class="texto1B">
+	<td width="100%">
 		N&atilde;o foi poss&iacute;vel excluir os dados solicitados !!!<br><br>
 <%	if Isnull(os_id) or os_id <> "" then
 		if isnull(os_id) then _

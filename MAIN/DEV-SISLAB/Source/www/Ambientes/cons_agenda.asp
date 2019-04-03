@@ -18,7 +18,7 @@ End if
 
 <div class="margem-10">
 
-<p style="font-weight: bold;"><span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span></p>
+<p style="font-weight: bold;"><span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span></p>
 
 <table border="0" width="100%" class="table-condensed" cellpadding="3" cellspacing="3">
 <tr>

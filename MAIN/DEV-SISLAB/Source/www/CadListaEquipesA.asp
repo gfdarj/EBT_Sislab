@@ -12,7 +12,7 @@ if Request("excluir") = "1" Then 'exclusao
 Else
 	gerente = UCase(request("novo_gerente"))
 End If
-chr_URL = "CadListaEquipesEmbratel.asp?gerente=" & gerente
+chr_URL = "CadListaEquipes.asp?gerente=" & gerente
 
 If VVVNZ(gerente) = "" Then Response.Redirect chr_URL
 

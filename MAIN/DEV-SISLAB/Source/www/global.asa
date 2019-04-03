@@ -3,6 +3,12 @@
 Sub Application_OnStart()
 	'Session.Timeout = 30
 
+	Application("SISLAB_AMBIENTE") = "DES"
+
+    Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
+	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
+
+
     '---------------------------------------------------------------------------------------------------------
     ' Define os parâmetros necessários ao sistema
     '---------------------------------------------------------------------------------------------------------
@@ -17,9 +23,13 @@ Sub Application_OnStart()
     'Application("SISLAB_CHARSET") = "WINDOWS-1252"
 
 	Application("SISLAB_NOME_EMPRESA") = "Claro"
+	Application("SISLAB_EMAIL_AUTOMATICO") = "ilab@embratel.com.br"
+	Application("SISLAB_EMAIL_SUFIXO") = "@embratel.com.br"
 
+	Application("SISLAB_Tempo_Troca_Imagens") = 10
 
-	Application("SISLAB_AMBIENTE") = "DES"
+	Application("SISLAB_FolderArquivos") = "\Arquivos"
+	Application("SISLAB_FolderArquivosLB") = "\ArquivosLB"
 
 
 	If Application("SISLAB_AMBIENTE") = "DES" Then '-- Desenvolvimento Local
@@ -119,14 +129,6 @@ Sub Application_OnStart()
         Application("SISLAB_HTTP_WEBSERVICE") = "http://localhost/sislabsvc/Servicos.asmx"
 
 	End If
-
-	Application("SISLAB_Tempo_Troca_Imagens") = 10
-
-	Application("SISLAB_FolderArquivos") = "\Arquivos"
-	Application("SISLAB_FolderArquivosLB") = "\ArquivosLB"
-
-	Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
-	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
 
 End Sub
 

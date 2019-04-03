@@ -14,6 +14,10 @@ Set Arquivo = New TArquivo
 Arquivo.SetOverwrite = False
 
 Call Arquivo.Init_UP()
+
+response.Write "AQUI 3: " & Arquivo.Campo(0)
+response.end
+
 Call Arquivo.Upload()
 
 auxnumAS = Arquivo.Campo("cod_AS")
@@ -72,15 +76,16 @@ Response.Clear
 
 Call Tela.ImprimeCabecalho2("Cadastro de Agendamento - Upload de Arquivos", MENU_OFF, false, "100%", "Agendamento " & auxnumAS & " - Upload de Arquivos e Diagramas", "NENHUM", "")
 %>
-<table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
-<tr>
-	<td>
-		&nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span class="texto1b" style="font-size: 12px;">Arquivos Gravados (Total: <%=Arquivo.TotalArquivos%>)</span>
-	</td>
-</tr>
-<tr><td>S: <%=s %></td></tr>
-<tr>
-	<td>
+<div class="margem-10">
+    <table border="0" width="100%" class="table-bordered" cellpadding="3" cellspacing="3">
+    <tr>
+	    <td>
+		    <span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span style="font-size: 12px;">Arquivos Gravados (Total: <%=Arquivo.TotalArquivos%>)</span>
+	    </td>
+    </tr>
+    <tr><td>S: <%=s %></td></tr>
+    <tr>
+	    <td>
 <%
 For Each file In Arquivo.Arquivos
 	Response.Write file.path & "<br>"
@@ -89,15 +94,16 @@ For Each file In Arquivo.Arquivos
 	Response.Write File.ExtractFileName & "<br><br>"
 Next
 %>
-	</td>
-</tr>
-<tr>
-	<td class="cinza1"><i>Gravado por: <%=auxusername%>&nbsp;&nbsp;&nbsp;IP: <%=auxip%></i></td>
-</tr>
-<tr>
-	<td align="center"><input type="button"  value="Fechar" onclick="javascript:window.close();"></td>
-</tr>
-</table>
+	    </td>
+    </tr>
+    <tr>
+	    <td class="cinza1"><i>Gravado por: <%=auxusername%>&nbsp;&nbsp;&nbsp;IP: <%=auxip%></i></td>
+    </tr>
+    <tr>
+	    <td align="center"><input type="button"  value="Fechar" onclick="javascript:window.close();"></td>
+    </tr>
+    </table>
+</div>
 <%
 Set Arquivo = Nothing
 

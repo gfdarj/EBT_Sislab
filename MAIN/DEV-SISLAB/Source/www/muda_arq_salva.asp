@@ -42,7 +42,7 @@ end if
 function Erro( msg )
 	Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "Erro na alteração de arquivo !", "NENHUM", "")
 %>
-<p class="erro" class="texto1b"><%= msg %></p>
+<p class="erro"><%= msg %></p>
 <p align="center">
 	<button  onclick="javascript:reload();">Tentar&nbsp;Novamente</button>&nbsp;&nbsp;&nbsp;&nbsp;
 	<button  onclick="javascript:window.close();">&nbsp;&nbsp;Fechar&nbsp;&nbsp;</button>
@@ -58,7 +58,7 @@ function Terminar( nome_arq )
 		window.setTimeout( "window.close()", 3000 );
 	</script>
 	<p align="center">
-		<span class="texto1B" style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
+		<span style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
 		<button onclick="javascript:window.close()" >&nbsp;Fechar&nbsp;</button>
 	</p>
 <%	Call Tela.MostraRodape()

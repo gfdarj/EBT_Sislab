@@ -60,7 +60,7 @@ dim ws
         Else
 
             If InStr(1, chr_Usuario, "@") = 0 Then
-                chr_Usuario = Trim(chr_Usuario) & SUFIXOEMAIL
+                chr_Usuario = Trim(chr_Usuario) & Application("SISLAB_EMAIL_SUFIXO")
             End If
 
             email = Split(chr_Usuario, "@")

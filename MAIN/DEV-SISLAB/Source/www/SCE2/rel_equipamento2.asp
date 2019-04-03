@@ -151,11 +151,11 @@ If Env.UsuarioSCE() Then
 		    If rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_TER Then
 			    Response.Write "Terceiros"
 		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_COM Then
-			    Response.Write "Embratel - Comodato"
+			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - Comodato"
 		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_CRT Then
-			    Response.Write "Embratel - CRT"
+			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - CRT"
 		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_EBT Then
-			    Response.Write "Embratel - Outros"
+			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - Outros"
 		    Else
 			    Response.Write "&nbsp;"
 		    End If

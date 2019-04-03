@@ -106,7 +106,7 @@ Sub Enviar_Email(para_email, para_nome, assunto, texto)
 
 	If Application("SISLAB_ENVIA_EMAIL") = "T" Then
 		Set objMail = Server.CreateObject("CDONTS.NewMail") 
-		objMail.from = EMAILDEENVIODOSISLAB & "<" & EMAILDEENVIODOSISLAB & ">"
+		objMail.from = Application("SISLAB_EMAIL_AUTOMATICO") & "<" & Application("SISLAB_EMAIL_AUTOMATICO") & ">"
 		objMail.to = para_nome & "<" & para_email & ">"
 		objMail.MailFormat = 0  ' formato MIME
 		objMail.BodyFormat = 0  ' html
@@ -157,7 +157,7 @@ Function enviaEmailsAS(objConn, numAS, Titulo, Texto)
 
 			    'Modificação para enviar e-mail a todos os rats do sistema
 			    'if Rat <> "" then
-			    '	enviar_email NOMEDEENVIODOSISLAB, EMAILDEENVIODOSISLAB, Rat,Rat, Titulo, Texto
+			    '	enviar_email Application("SISLAB_EMAIL_AUTOMATICO"), Application("SISLAB_EMAIL_AUTOMATICO"), Rat,Rat, Titulo, Texto
 			    'end if
 
 			    if (Not VVVNZ(Rt)) And Env.ExisteUsuario(Rt) then
@@ -476,9 +476,9 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 			Texto = "Este agendamento possuí " & RS("Total") & " equipamento(s) de terceiros que deram entrada no CRT.<BR><BR>Verifique se os mesmos já deram saída na logística.<BR><BR>Grato.<BR>Equipe CRT.<BR>"
 
 			'Envia o email ao RT, ao LogFund e aos RATs
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", Rt, NomeRT, Titulo, Texto)
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund1" & SUFIXOEMAIL, "Logfund 1", Titulo, Texto)
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund2" & SUFIXOEMAIL, "Logfund 2", Titulo, Texto)
+			Call Enviar_EmailGenerico(Application("SISLAB_EMAIL_AUTOMATICO"), "SISLAB", Rt, NomeRT, Titulo, Texto)
+			Call Enviar_EmailGenerico(Application("SISLAB_EMAIL_AUTOMATICO"), "SISLAB", "logfund1" & Application("SISLAB_EMAIL_SUFIXO"), "Logfund 1", Titulo, Texto)
+			Call Enviar_EmailGenerico(Application("SISLAB_EMAIL_AUTOMATICO"), "SISLAB", "logfund2" & Application("SISLAB_EMAIL_SUFIXO"), "Logfund 2", Titulo, Texto)
 			Call EnviaEmailRATs(Titulo, Texto)
 		Else
 			Titulo = "SISLAB/SCE - AS " & num_ag & " foi Finalizada"
@@ -488,8 +488,8 @@ Function EnviaEmailTemEquipamentoTerceiro(num_ag)
 					"Equipe CRT.<BR>"
 
 			'Envia o email ao RT, ao LogFund e aos RATs
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund1" & SUFIXOEMAIL, "Logfund 1", Titulo, Texto)
-			Call Enviar_EmailGenerico("ilab@embratel.com.br", "SISLAB", "logfund2" & SUFIXOEMAIL, "Logfund 2", Titulo, Texto)
+			Call Enviar_EmailGenerico(Application("SISLAB_EMAIL_AUTOMATICO"), "SISLAB", "logfund1" & Application("SISLAB_EMAIL_SUFIXO"), "Logfund 1", Titulo, Texto)
+			Call Enviar_EmailGenerico(Application("SISLAB_EMAIL_AUTOMATICO"), "SISLAB", "logfund2" & Application("SISLAB_EMAIL_SUFIXO"), "Logfund 2", Titulo, Texto)
 		End If
 	End If
 

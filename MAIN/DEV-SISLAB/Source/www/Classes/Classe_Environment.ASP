@@ -64,26 +64,26 @@ Class TEnvironment
 
     Public Property Get ehRT()
 	    'ehRT = Ebt.ehRT
-	    'ehRT = True
-	    ehRT = False
+	    ehRT = True
+	    'ehRT = False
     End Property
 
     Public Property Get ehRAT()
 	    'ehRAT = Ebt.ehRAT
-	    'ehRAT = True
-	    ehRAT = False
+	    ehRAT = True
+	    'ehRAT = False
     End Property
 
     Public Property Get ehGQ()
 	    'ehGQ = Ebt.ehGQ
-	    'ehGQ = True
-	    ehGQ = False
+	    ehGQ = True
+	    'ehGQ = False
     End Property
 
     Public Property Get UsuarioCRT()
 	    'UsuarioCRT = Ebt.UsuarioCRT
-	    'UsuarioCRT = True
-	    UsuarioCRT = False
+	    UsuarioCRT = True
+	    'UsuarioCRT = False
     End Property
 
     Public Property Get UsuarioSCE()
@@ -188,7 +188,7 @@ Class TEnvironment
 	    siglaCrt = "CRT"
 	    nomeCrt = "Centro de Referência Tecnológica"
 	    ramalContato = "521-8297"
-	    emailContato = "ilab@embratel.com.br"
+	    emailContato = Application("SISLAB_EMAIL_AUTOMATICO")
 	    periodoValidacaoDocumento = 6
 
 	    Call ConectaBD()

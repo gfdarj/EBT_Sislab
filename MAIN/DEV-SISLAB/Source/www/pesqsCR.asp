@@ -204,8 +204,8 @@ Else
 
 	ta_descricao = "<table border='0' class='texto1' width='100%'>"
 	ta_descricao = ta_descricao & _
-		"<td colspan='2'><span class='texto1b' style='font-size:12px;'>1.1 Serviço Utilizado</span></td>" & _
-		"<td><span class='texto1b' style='font-size:12px;'>1.2 Tecnologia Empregada</span></td>"
+		"<td colspan='2'><span style='font-size:12px;'>1.1 Serviço Utilizado</span></td>" & _
+		"<td><span style='font-size:12px;'>1.2 Tecnologia Empregada</span></td>"
 
 	While Not RS.Eof
 		ta_descricao = ta_descricao & _
@@ -279,7 +279,7 @@ Else
 <input type="hidden" name="Data" value="<%=Right("0"&day(date()),2) & "/" & Right("0"&month(date()),2) & "/" & year(date())%>">
 <input type="hidden" name="pesqID" value="">
 
-<p align="left" class="texto1b" style="font-size: 12px;">
+<p align="left" style="font-size: 12px;">
 	Pesquisa do Grau de Satisfação com o Serviço do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
 </p>
 
@@ -325,7 +325,7 @@ Else
 	</th>
 </tr>
 <tr>
-	<td width="100%" valign="middle" colspan="2" class="texto1b" style="font-size:12px;">
+	<td width="100%" valign="middle" colspan="2" style="font-size:12px;">
 		2.1 Facilidade de Comunicação (meios de acesso) com a área responsável pela atividade
 	</td>
 </tr>
@@ -334,70 +334,70 @@ Else
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.2 Atenção e cortesia das pessoas</td>
+	<td colspan="2" style="font-size:12px;">2.2 Atenção e cortesia das pessoas</td>
 </tr>
 	<%Call TR_Opcoes("cortesia", "com_cortesia", com_cortesia)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.3 Interesse em atender a sua solicitação</td>
+	<td colspan="2" style="font-size:12px;">2.3 Interesse em atender a sua solicitação</td>
 </tr>
 	<%Call TR_Opcoes("presteza", "com_presteza", com_presteza)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.4 Flexibilidade no atendimento e execução</td>
+	<td colspan="2" style="font-size:12px;">2.4 Flexibilidade no atendimento e execução</td>
 </tr>
 	<%Call TR_Opcoes("flexibilidade", "com_flexibilidade", com_flexibilidade)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.5 Atendimento no prazo combinado</td>
+	<td colspan="2" style="font-size:12px;">2.5 Atendimento no prazo combinado</td>
 </tr>
 	<%Call TR_Opcoes("rapidez", "com_rapidez", com_rapidez)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.6 Iniciativa / pró-atividade</td>
+	<td colspan="2" style="font-size:12px;">2.6 Iniciativa / pró-atividade</td>
 </tr>
 	<%Call TR_Opcoes("iniciativa", "com_iniciativa", com_iniciativa)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.7 Exatidão e confiabilidade no serviço</td>
+	<td colspan="2"  style="font-size:12px;">2.7 Exatidão e confiabilidade no serviço</td>
 </tr>
 	<%Call TR_Opcoes("confiabilidade", "com_confiabilidade", com_confiabilidade)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.8 Infra-estrutura do Laboratório</td>
+	<td colspan="2" style="font-size:12px;">2.8 Infra-estrutura do Laboratório</td>
 </tr>
 	<%Call TR_Opcoes("infraestrutura", "com_infraestrutura", com_infraestrutura)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.9 Ambiente do Centro de Referência Tecnológica (Salas de Apoio, Refeição, Nível de Ruído, Bem-estar no ambiente...)</td>
+	<td colspan="2" style="font-size:12px;">2.9 Ambiente do Centro de Referência Tecnológica (Salas de Apoio, Refeição, Nível de Ruído, Bem-estar no ambiente...)</td>
 </tr>
 	<%Call TR_Opcoes("ambiente", "com_ambiente", com_ambiente)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.10 Facilidade de Acesso ao Centro de Referência Tecnológica</td>
+	<td colspan="2" style="font-size:12px;">2.10 Facilidade de Acesso ao Centro de Referência Tecnológica</td>
 </tr>
 	<%Call TR_Opcoes("acesso", "com_acesso", com_acesso)%>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
 <tr>
-	<td colspan="2" class="texto1b" style="font-size:12px;">2.11 Seu grau de satisfação geral com os serviços do Centro de Referência Tecnológica</td>
+	<td colspan="2" style="font-size:12px;">2.11 Seu grau de satisfação geral com os serviços do Centro de Referência Tecnológica</td>
 </tr>
 	<%Call TR_Opcoes("geral", "com_geral", com_geral)%>
 </table>
@@ -433,7 +433,7 @@ Else
 <tr>
 	<td valign="top">
 		<blockquote><p>
-			<input type=radio name="opttipousu" value="E">Empregado da Embratel ou Unidade de Negócios<br>
+			<input type=radio name="opttipousu" value="E">Empregado <%=Application("SISLAB_NOME_EMPRESA")%> ou Unidade de Negócios<br>
 			<input type=radio name="opttipousu" value="V">Visitante Externo<br>
 		</blockquote>
 	</td>

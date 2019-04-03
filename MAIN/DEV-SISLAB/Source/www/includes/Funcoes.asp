@@ -337,7 +337,7 @@ Function ExibeMensagemSigiloAS(int_Border)
 		"<tr>" & VbCrLf & _
 		"	<td align='left'>" & VbCrLf & _
 		"		&nbsp;<img align='absmiddle' src='img/Iccadeado.gif' border=0>&nbsp;" & VbCrLf & _
-		"		<B>O Teste é Sigiloso. Se desejar uma consulta a este(s) documento(s) envie um e-mail para <a href='mailto:ilab@embratel.com.br'>ilab@embratel.com.br</b></a-->&nbsp;" & VbCrLf & _
+		"		<B>O Teste é Sigiloso. Se desejar uma consulta a este(s) documento(s) envie um e-mail para <a href='mailto:" & Application("SISLAB_EMAIL_AUTOMATICO") & "'>" & Application("SISLAB_EMAIL_AUTOMATICO") & "</b></a-->&nbsp;" & VbCrLf & _
 		"	</td>" & VbCrLf & _
 		"</tr>" & VbCrLf & _
 		"</table>" & VbCrLf

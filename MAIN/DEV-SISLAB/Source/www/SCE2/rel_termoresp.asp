@@ -56,7 +56,7 @@ end if%>
 	    <td colspan="2">
 		    Descrição:<br>
 		    <textarea name="descricao" rows="12" cols="90">
-	    Declaro para os devidos fins que, o(s) material(is) abaixo relacionado(s) encontra(m)-se sob a minha responsabilidade e uso, estando "<b>NÃO CONFORME</b>" relativo ao <b>PR.5.8-004/DO.5.8-001</b> do <b>Manual da Qualidade do CRT</b>, e através deste, responsabilizo-me pela sua regularização no prazo de 03 dias úteis a contar desta data junto ao <b>Setor de Logística do CRT</b>, no que concerne a confecção da Nota Fiscal do(s) material(is), isentando a EMBRATEL S/A durante o período em que este se encontrar nas suas instalações, de toda e qualquer responsabilidade sobre pagamento de sinistros e/ou problemas técnicos que possam ocorrer no equipamento.
+	    Declaro para os devidos fins que, o(s) material(is) abaixo relacionado(s) encontra(m)-se sob a minha responsabilidade e uso, estando "<b>NÃO CONFORME</b>" relativo ao <b>PR.5.8-004/DO.5.8-001</b> do <b>Manual da Qualidade do CRT</b>, e através deste, responsabilizo-me pela sua regularização no prazo de 03 dias úteis a contar desta data junto ao <b>Setor de Logística do CRT</b>, no que concerne a confecção da Nota Fiscal do(s) material(is), isentando a <%=UCase(Application("SISLAB_NOME_EMPRESA"))%> S/A durante o período em que este se encontrar nas suas instalações, de toda e qualquer responsabilidade sobre pagamento de sinistros e/ou problemas técnicos que possam ocorrer no equipamento.
 		    </textarea>
 	    </td>
     </tr>

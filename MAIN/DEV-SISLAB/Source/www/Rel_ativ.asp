@@ -129,7 +129,7 @@ auxPadronizado = (request("chkPadronizado")="on")
 		</tr>
 		<tr>
 			<td colspan="6">
-				Cliente Embratel:&nbsp;<input  type="Checkbox" name="chkClientes" onclick="javascript:controleClientes(this);">
+				Cliente <%=Application("SISLAB_NOME_EMPRESA")%>":&nbsp;<input  type="Checkbox" name="chkClientes" onclick="javascript:controleClientes(this);">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<select name="clientes"  disabled>
 					<option value="">Todo os Clientes</option>

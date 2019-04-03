@@ -105,7 +105,7 @@ End Property
 Public Sub Init_FS()	'Objeto File System
 	chr_Obj = "FS"
 
-	On Error Resume Next
+	'On Error Resume Next
 	Set objUpload = Server.CreateObject("Scripting.FileSystemObject")
 
 	If Err.Number <> 0 Then bln_TemErro = True
@@ -115,8 +115,11 @@ End Sub
 Public Sub Init_UP()	'Objeto Persists Upload
 	chr_Obj = "UP"
 
-	On Error Resume Next
+    response.BinaryWrite
+
+	'On Error Resume Next
 	Set objUpload = Server.CreateObject("Persits.Upload.1")
+'	Set objUpload = Server.CreateObject("Scripting.FileSystemObject")
 
 	objUpload.OverwriteFiles = bln_OverWrite
 

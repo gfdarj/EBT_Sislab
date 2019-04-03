@@ -548,10 +548,10 @@ Public Function PropriedadeEquipamento(nome, mesmalinha)
 	    "<select name='" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 	    "	<option value=''>Todos</option>" & VbCrLf & _
 	    "	<option value='" & EQ_PROPRIEDADE_TER & "'>Terceiros</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_COM & "'>Embratel - Comodato</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_CRT & "'>Embratel - CRT</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_EBT & "'>Embratel - Outros</option>" & VbCrLf & _
-	    "	<option value=""'" & EQ_PROPRIEDADE_COM & "','" & EQ_PROPRIEDADE_EBT & "','" & EQ_PROPRIEDADE_CRT & "'"">Embratel - Todos</option>" & VbCrLf & _
+	    "	<option value='" & EQ_PROPRIEDADE_COM & "'>" & Application("SISLAB_NOME_EMPRESA") & " - Comodato</option>" & VbCrLf & _
+	    "	<option value='" & EQ_PROPRIEDADE_CRT & "'>" & Application("SISLAB_NOME_EMPRESA") & " - CRT</option>" & VbCrLf & _
+	    "	<option value='" & EQ_PROPRIEDADE_EBT & "'>" & Application("SISLAB_NOME_EMPRESA") & " - Outros</option>" & VbCrLf & _
+	    "	<option value=""'" & EQ_PROPRIEDADE_COM & "','" & EQ_PROPRIEDADE_EBT & "','" & EQ_PROPRIEDADE_CRT & "'"">" & Application("SISLAB_NOME_EMPRESA") & " - Todos</option>" & VbCrLf & _
 	    "</select>" & VbCrLf
 	PropriedadeEquipamento = buffer
 End Function

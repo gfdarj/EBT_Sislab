@@ -72,9 +72,9 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inv
 				        Propriedade:
 				        <select name="propriedade" >
 					        <option value="">Todos</option>
-					        <option value="M">Comodato (Embratel)</option>
+					        <option value="M">Comodato (<%=Application("SISLAB_NOME_EMPRESA")%>)</option>
 					        <option value="C">CRT</option>
-					        <option value="O">Outros (Embratel)</option>
+					        <option value="O">Outros (<%=Application("SISLAB_NOME_EMPRESA")%>)</option>
 					        <option value="T">Terceiros</option>
 				        </select>
 			        </td>

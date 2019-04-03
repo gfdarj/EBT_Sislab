@@ -78,7 +78,7 @@ function chama_as(cod_as)
 <tr>
 <td>
 <font class="faqask">
-&nbsp;1) Porque a Embratel pensou em ter um laboratório?
+&nbsp;1) Porque a <%=Application("SISLAB_NOME_EMPRESA")%> pensou em ter um laboratório?
  <br>
 </font>
 <div align=justify>
@@ -120,7 +120,7 @@ Na visão atual o CRT tem como função prover ambientes para testes de Produtos
 <u>Projetos Especiais</u><br>	
 Assegurar o cumprimento das metas e cronogramas relativos à Consultorias Técnicas para o Cliente, através do planejamento e gestão dos recursos necessários à elaboração dos respectivos Projetos Especiais, bem como da disponibilização de estrutura para demonstrações de produtos e soluções customizadas.<br>
 <u>Automação de Ensaios</u><br>
-Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta Embratel e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.<br>
+Implantar e desenvolver de forma contínua, estrutura para automação de ensaios e testes,  capacitada a ofertar soluções tecnológicas para a planta <%=Application("SISLAB_NOME_EMPRESA")%> e de seus Clientes dentro dos padrões de qualidade, aos menores custos possíveis e nos prazos exigidos.<br>
 <u>Integração de Sistemas</u><br>
 Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegurar junto aos seus Clientes a confiabilidade da qualidade dos serviços prestados, provendo e mantendo estrutura voltada a testes e simulações de desempenho, integração de  produtos e sistemas de telecomunicações.
  <br><br>
@@ -138,7 +138,7 @@ Suportar as áreas de Engenharia, Operações e Vendas no propósito de assegura
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-Provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para Embratel e comprometendo-se na garantia da qualidade de serviços oferecidos pela Embratel.
+Provendo meios para o desenvolvimento de novos produtos e ou Serviços de Telecomunicações para Embratel e comprometendo-se na garantia da qualidade de serviços oferecidos pela <%=Application("SISLAB_NOME_EMPRESA")%>.
  <br><br>
 </div>
 </font>
@@ -184,7 +184,7 @@ Veja neste Site o <a href="loc_area.asp">mapa de acesso</a> ao CRT ou ainda os <
 <div align=justify>
 <font class="faqans">
 &nbsp;&nbsp;&nbsp;- 
-Você deve solicitar um agendamento de testes / serviços do laboratório através de um dos <a href="forms.asp">formulários disponível neste site</a> ou caso seja uma solicitação específica que tenha a necessidade da utilização dos recursos do CRT entre em contato conosco pelo endereço <a href="mailto: ilab@embratel.com.br">ilab@embratel.com.br</a>.<br><br>
+Você deve solicitar um agendamento de testes / serviços do laboratório através de um dos <a href="forms.asp">formulários disponível neste site</a> ou caso seja uma solicitação específica que tenha a necessidade da utilização dos recursos do CRT entre em contato conosco pelo endereço <a href="mailto: <%=Application("SISLAB_EMAIL_AUTOMATICO")%>"><%=Application("SISLAB_EMAIL_AUTOMATICO")%></a>.<br><br>
 </div>
 </font>
 </td>

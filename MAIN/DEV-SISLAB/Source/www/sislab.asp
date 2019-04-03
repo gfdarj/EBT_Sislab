@@ -108,7 +108,7 @@ End If%>
             <h5><a href="CadTipoTeste.asp" target="_parent">Cadastro de Tipos de Teste (Especificação)</a></h5>
             <h5><a href="CadLbTipoOcorrencia.asp" target="_parent">Cadastro de Tipos de Ocorrência LogBook</a></h5>
             <h5><a href="Cadusercrt.asp" target="_parent">Cadastro de Usuário CRT</a></h5>
-            <h5><a href="CadListaEquipesEmbratel.asp" target="_parent">Lista de equipes para acesso a dados sigilosos</a></h5>
+            <h5><a href="CadListaEquipes.asp" target="_parent">Lista de equipes para acesso a dados sigilosos</a></h5>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">

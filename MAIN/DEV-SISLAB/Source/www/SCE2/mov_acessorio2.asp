@@ -156,7 +156,7 @@ If Env.UsuarioSCE() Then
 </tr>
 <tr>
    	<td class="texto-centralizado">
-		<a href="cad_acess_item.asp" class="texto1b">Cadastrar Novo Ítem</a>
+		<a href="cad_acess_item.asp">Cadastrar Novo Ítem</a>
 	</td>
 </tr>
 </table>

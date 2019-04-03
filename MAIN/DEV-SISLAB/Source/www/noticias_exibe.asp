@@ -48,7 +48,7 @@ If Not VVVNZ(id_Noticia) Then
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _
 				"<tr>" & VbCrLf & _
 				"	<td width='100%' align='center'>" & VbCrLf & _
-				"		<br><br><span class='texto1b'><i>" & chr_Noticia & "</i></span>" & VbCrLf & _
+				"		<br><br><span><i>" & chr_Noticia & "</i></span>" & VbCrLf & _
 				"		<br><br>" & VbCrLf & _
 				"	</td>" & VbCrLf & _
 				"</tr>" & VbCrLf & _
@@ -68,7 +68,7 @@ Else
 				"<table class='tabela1' border='0' width='100%' height='100%'>" & VbCrLf & _
 				"<tr>" & VbCrLf & _
 				"	<td width='100%' align='center'>" & VbCrLf & _
-				"		<br><br><span class='texto1b'><i>" & chr_Noticia & "</i></span>" & VbCrLf & _
+				"		<br><br><span><i>" & chr_Noticia & "</i></span>" & VbCrLf & _
 				"		<br><br>" & VbCrLf & _
 				"	</td>" & VbCrLf & _
 				"</tr>" & VbCrLf & _
