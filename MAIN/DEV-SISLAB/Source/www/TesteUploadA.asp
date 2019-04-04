@@ -8,7 +8,7 @@ Dim Form : Set Form = New ASPForm
 
 Server.ScriptTimeout = 1440 ' Limite de 24 minutos de execução de código, o upload deve acontecer dentro deste tempo ou então ocorre erro de limite de tempo.
 
-Const MaxFileSize = 1200000 ' Limite de 1,2 Mb de arquivo.
+Const MaxFileSize = 25200000 ' Limite de 25,2 Mb de arquivo.
 
 If Form.State = 0 Then
  For each Field in Form.Files.Items
