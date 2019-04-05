@@ -1,4 +1,4 @@
-<!--Crie uma página que contém o formulário onde existem os elementos do tio "File" como abaixo: -->
+﻿<!--Crie uma página que contém o formulário onde existem os elementos do tio "File" como abaixo: -->
  
 <!DOCTYPE html>
 <head>
@@ -18,7 +18,10 @@
 -->
 
 	<form action="TesteUploadA.asp" method="post" enctype="multipart/form-data">
-		<input type="file" name="arquivo" />
+        Teste: <input type="text" name="texto" /><br />
+		<input type="file" name="arquivo1" /><br />
+		<input type="file" name="arquivo2" /><br />
+		<input type="file" name="arquivo3" /><br />
 		<input type="submit" value="Upload" />
 	</form>
 

@@ -276,15 +276,14 @@ Call Tela.MostraCabecalho()
 
             </div> <!-- row -->
 
+<% End If '--> If usuarioCRT %>
+
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <h4 class="linha-destaque">Acontecendo no CRT</h4>
                     <% Call MostraEmExecucao() %>
                 </div>
             </div>
-
-<% End If '--> If usuarioCRT %>
-
 
         </div>  <!-- container -->
 
