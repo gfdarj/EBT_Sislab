@@ -58,7 +58,7 @@ end if
 </script>
 
 <div class="margem-10">
-    <form method="Post" enctype="multipart/form-data" OnSubmit="return validaArquivos();" name="frmEnviarArq" action="uploaddiag.asp">
+    <form method="Post" enctype="multipart/form-data" OnSubmit="return validaArquivos();" name="frmEnviarArq" action="CadAgendamentoUploadClienteA.asp">
 
         <input type="hidden" name="vezes" value="0">
         <input type="hidden" name="cod_AS" value="<%=agendamento%>">

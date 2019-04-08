@@ -19,13 +19,15 @@ Dim auxaltera,auxselecao,cbano,auxidsituacao, auxo1, auxo2, auxo3,auxAS,auxOS
 
 auxselecao = 0
 
-if request("Arquivos") <> "0" and request("Arquivos") <> "" and IsNumeric(request("Arquivos")) then _
+If request("Arquivos") <> "0" and request("Arquivos") <> "" and IsNumeric(request("Arquivos")) Then
 	auxselecao = CInt(trim(request("Arquivos")))
+End If
 
 
 sSQL = "Select * from vw_ARQRes Where ARQ_CodArq = " & trim(auxselecao)
 ' trazer os dados de Informacoes do arquivo selecionado
-call Env.RecordSet( true, objSiteRS, sSQL)
+Call Env.RecordSet( true, objSiteRS, sSQL)
+
 If Not objSiteRS.EOF Then
 	objSiteRS.Movefirst
 
@@ -80,7 +82,7 @@ else
 End if
 
 %>
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
     function adiciona(chave, item1, lista) {
     // funcao que acrescenta um item em uma lista
@@ -110,26 +112,9 @@ End if
     }
 
     //===================================================================================================
-    function PreparaCampos(form)
+
+    function montaAtualiza()
     {
-	    if( formulario.cmbAgendamento[ 0 ].checked ){
-		    tabAgendamento.style.display = 'block';
-		    form.txAS.value ='';
-		    form.tipoarquivo.value = '';
-		    BuscaAS();
-		    frm1 = document.all;
-		    frm1.OSCelula.innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>"
-
-	    }
-	    else{
-		    tabAgendamento.style.display = 'none';
-		    form.titulo.value = '';
-		    form.titulo.readOnly = false;
-		    form.titulo.style.backgroundColor = "#FFFFFF";
-
-	    }
-    }
-    function montaAtualiza() {
 	    var frm = document.formulario;
 	    if( frm.diaatualiz.value != "0" && frm.mesatualiz.value != "0" && frm.anoatualiz.value != "0" )
 		    frm.txtatualiza.value = completa(frm.diaatualiz.value,2) + "/" + completa(frm.mesatualiz.value,2) + "/" + completa(frm.anoatualiz.value,4);
@@ -376,7 +361,7 @@ End if
 	    frm.titulo.readOnly = false;
 	    frm.titulo.style.backgroundColor = "#FFFFFF";
 	    frm1 = document.all;
-	    frm1.OSCelula.innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>"
+	    document.getElementById("OSCelula").innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>"
     }
 
     function atualizaTipoDoc(){
@@ -396,10 +381,12 @@ End if
 	    frm = document.forms[0];
 	    frm1 = document.all;
 	    var combo = frm.agendamento
-	    var lista = frm.lstAgendamento
+	    //var lista = frm.lstAgendamento
 	    //alert(lista[lsta.selectedIndex].value)
 	    //alert(lista[lista.selected].value);
-	    frm1.OSCelula.innerHTML = "<font face='verdana, arial' style='font-size:12px;'><b>Processando... </b></font>"
+
+	    document.getElementById("OSCelula").innerHTML = "<font face='verdana, arial' style='font-size:12px;'><b>Processando... </b></font>";
+
 	    frm.action = "eventosInternos.asp?hdnevento=<%=1%>&label="+ labelCampo +"&as="+combo[combo.selectedIndex].value+"&campo="+campo;
 	    frm.method = "post";
 	    frm.target = "escondido";
@@ -413,7 +400,7 @@ End if
 	    frm1 = document.all;
 
 	    if (auxas == ""){
-		    frm1.tabAgendamento.style.display = "none";
+	        document.getElementById("tabAgendamento").style.display = "none";
 		    frm1.cmbAgendamento[1].checked = true;
 		    //frm1.cmbAgendamento.value = 0;
 		    return false;
@@ -421,7 +408,8 @@ End if
 	
 	    //alert(lista[lsta.selectedIndex].value)
 	    //alert(lista[lista.selected].value);
-	    frm1.OSCelula.innerHTML = "<h6>Processando... </h6>"
+	    document.getElementById("OSCelula").innerHTML = "<h6>Processando... </h6>"
+
 	    frm.action = "eventosInternos.asp?hdnevento=<%=2%>&label="+ labelCampo +"&os=" + auxOS + "&as="+ auxas + "&campo="+campo;
 	    frm.method = "post";
 	    frm.target = "escondido";
@@ -439,103 +427,78 @@ End if
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
 %>
 <div class="margem-10">
-<form method="post" action="insCad_arquivo.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
-<!--
-	Preciso deste campo para saber pra onde vou redirecionar quando der o submit,
-	porque este form é usado tanto para validar quanto para editar um arquivo.
--->
-<input type="hidden" name="eh_validacao" value="<%=ehValidacao%>">
+    <form method="post" action="insCad_arquivo.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
+    <!--
+	    Preciso deste campo para saber pra onde vou redirecionar quando der o submit,
+	    porque este form é usado tanto para validar quanto para editar um arquivo.
+    -->
+    <input type="hidden" name="eh_validacao" value="<%=ehValidacao%>">
 
-<input type="hidden" name="username" value="<%=Env.usuario()%>" />
-<input type="hidden" name="ip" value=" <%= UCase( request.ServerVariables( "REMOTE_ADDR" ) ) %>" />
-<input type="hidden" name="tipocomando" value="<%=auxaltera%>" />
-<input type="hidden" name="codArquivo" value="<%=auxselecao%>" />
-<input type="hidden" name="txtatualiza" size="20" />
-<input type="hidden" name="contdia" value="0"/>
-<input type="hidden" name="resp" value="0" />
-<input type="hidden" name="auxAS">
-<input type="hidden" name="auxOS">
-<input type="hidden" name="auxTipo">
+    <input type="hidden" name="username" value="<%=Env.usuario()%>" />
+    <input type="hidden" name="ip" value=" <%= UCase( request.ServerVariables( "REMOTE_ADDR" ) ) %>" />
+    <input type="hidden" name="tipocomando" value="<%=auxaltera%>" />
+    <input type="hidden" name="codArquivo" value="<%=auxselecao%>" />
+    <input type="hidden" name="txtatualiza" size="20" />
+    <input type="hidden" name="contdia" value="0"/>
+    <input type="hidden" name="resp" value="0" />
+    <input type="hidden" name="auxAS">
+    <input type="hidden" name="auxOS">
+    <input type="hidden" name="auxTipo">
 
-<table width="100%" height="236" >
-	<tr> 
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-		<td width="10%" height="0"></td>
-	</tr>
-	<tr valign="middle">
-		<th align="left" colspan="10">&nbsp;Agendamento</th>
-	</tr>
-	<tr valign="middle"> 
-		<td colspan="10" align="center">
-			<table width="90%" >
-			<tr>
-				<td colspan="10">
-					&nbsp;Agendamento vinculado:&nbsp;
-					<input type="radio" name="cmbAgendamento" onClick="PreparaCampos(this.form)" value="1" tabindex="13" checked>Sim&nbsp;
-					<input type="radio" name="cmbAgendamento" onClick="PreparaCampos(this.form)" value="0" tabindex="14">N&atilde;o
-				</td>
-			</tr>
-			</table>
+    <table width="100%" height="236" >
+	    <tr> 
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+		    <td width="10%" height="0"></td>
+	    </tr>
+	    <tr valign="middle">
+		    <th align="left" colspan="10">&nbsp;Agendamento</th>
+	    </tr>
+	    <tr valign="middle"> 
+		    <td colspan="10" align="center">
+			    <table width="90%" >
+			    <tr>
+				    <td colspan="10">
+					    Agendamento vinculado:&nbsp;
+					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="1" tabindex="13" checked>&nbsp;Sim&nbsp;&nbsp;
+					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="0" tabindex="14">&nbsp;N&atilde;o
+                        <script type="text/javascript">
+                            function PreparaCampos()
+                            {
+                                if( document.forms[0].cmbAgendamento[0].checked )
+                                {
+                                    alert("AQUI 222 1");
+                                    alert(document.forms[0].tabAgendamento);
 
-			<table id="tabAgendamento" width="90%" border="0" style="display: none;" >
-			<tr> 
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-			</tr>
-			<tr>
-				<td colspan="6">
-					<b>Agendamento:</b><br>
-	
-		<script type="text/javascript">
-    	    function adicionaAgendamento()
-			{
-				var combo = document.formulario.agendamento
-				var lista = document.formulario.lstAgendamento
-				var chave = combo[combo.selectedIndex].value
-				var item1 = combo[combo.selectedIndex].text
-				if (combo.value == "")
-				{
-					alert("O campo 'Agendamento' deve ser preenchido.");
-					combo.focus();		
-				}
-				else if (verificaLista(item1, lista))
-				{
-					alert("Este agendamento já se encontra na lista.");
-					combo.focus();		
-				}
-				else
-				{
-					adiciona(chave, item1, lista)
-					combo.value = ""
-				}
-			}
-		
-			function retiraAgendamento()
-			{
-			var lista = document.formulario.lstAgendamento
-			retira(document.formulario.lstAgendamento)
-			}
-		</script>
-					<input type="text" name="txAS" size="4"/ onKeyUp="BuscaAS();" onfocus="limpaTipo();">
-					<select name="agendamento" onFocus='limpaTipo()' onBlur="mudaAS('Os','OS Associada:')" onchange="preencheAS()">
-						<option value="">Escolha uma AS...</option><%
+                                    document.getElementById("tabAgendamento").style.display = 'block';
+                                    document.forms[0].txAS.value ='';
+                                    document.forms[0].tipoarquivo.value = '';
+                                    BuscaAS();
+                                    document.getElementById("OSCelula").innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>";
+                                }
+                                else{
+                                    document.getElementById("tabAgendamento").style.display = 'none';
+                                    document.forms[0].titulo.value = '';
+                                    document.forms[0].titulo.readOnly = false;
+                                    document.forms[0].titulo.style.backgroundColor = "#FFFFFF";
+                                }
+                            }
+                        </script>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+                        <div id="tabAgendamento"style="display: none;">
+                            <br />
+                            Agendamento:&nbsp;
+    					    <input type="text" name="txAS" size="4"/ onKeyUp="BuscaAS();" onfocus="limpaTipo();">
+	    				    <select name="agendamento" onFocus='limpaTipo()' onBlur="mudaAS('Os','OS Associada:')" onchange="preencheAS()">
+		    				    <option value="">Escolha uma AS...</option><%
 				sSQL = "Select A.AG_NUMERO, a.AG_TITULO, A.AG_DATAINICIO, A.AG_DATATERMINO, A.AG_USERNAME "
 				sSQL = sSQL & " from vw_Agendamento a "
 				sSQL = sSQL & " ORDER BY A.AG_NUMERO DESC"	' trazer os dados de Informacoes dos usuarios
@@ -544,202 +507,204 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 				If Not objSiteRS.EOF Then 
 						objSiteRS.Movefirst
 					Do while not( objSiteRS.EOF ) %>
-						<option value="<%= objSiteRS( "AG_Numero" ) %>">N<sup>o</sup>&nbsp;AS:&nbsp;<%= objSiteRS( "AG_NUMERO" ) %>&nbsp;-&nbsp;<%= Left( objSiteRS( "AG_TITULO" ), 50 ) %></option><%
+    						    <option value="<%= objSiteRS( "AG_Numero" ) %>">N<sup>o</sup>&nbsp;AS:&nbsp;<%= objSiteRS( "AG_NUMERO" ) %>&nbsp;-&nbsp;<%= Left( objSiteRS( "AG_TITULO" ), 50 ) %></option><%
 					objSiteRS.MoveNext
 					Loop
-
 					'Fechar Objetos abertos
 					objSiteRS.Close
 					Set objSiteRS = Nothing
-				end if
+				End If
 				%>
-				</select>
-				</td>
-				<td colspan="4" id="OSCelula">
-				<input type="hidden" name="cmbOs" value="-1"/>
-				</td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    				        <span id="OSCelula">
+	            		        <input type="hidden" name="cmbOs" value="-1"/>
+				            </span>
+                        </div>
 
-				</tr>
-			</table>
-		</td>
-	</tr>
+				    </td>
+			    </tr>
+			    </table>
 
-    <tr><td>&nbsp;</td></tr>
+		    </td>
+	    </tr>
 
-	<tr valign="middle">
-		<th colspan="10" align="left">&nbsp;Dados do Arquivo</th>
-	</tr>
-	<tr valign="middle"> 
-		<td colspan="10" align="center"> 
-			<table width="90%">
-			<tr> 
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-				<td width="10%" height="0"></td>
-			</tr>
+        <tr><td>&nbsp;</td></tr>
+
+	    <tr valign="middle">
+		    <th colspan="10" align="left">&nbsp;Dados do Arquivo</th>
+	    </tr>
+	    <tr valign="middle"> 
+		    <td colspan="10" align="center"> 
+			    <table width="90%">
+			    <tr> 
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+				    <td width="10%" height="0"></td>
+			    </tr>
 
 			<%if ehValidacao then%>
-				<tr> 
-					<td colspan="5">
-						<b>Data Validação :</b><br>
-						<%call comboData("validacao")%>
-					</td>
-					<td colspan="5">
-						<b>Responsável Validação :</b><br>
-						<%call comboUSERCRTcDefault("validador", Env.oConn, Env.usuario(),false)%>
-					</td>
-				</tr>
+				    <tr> 
+					    <td colspan="5">
+						    <b>Data Validação :</b><br>
+						    <%call comboData("validacao")%>
+					    </td>
+					    <td colspan="5">
+						    <b>Responsável Validação :</b><br>
+						    <%call comboUSERCRTcDefault("validador", Env.oConn, Env.usuario(),false)%>
+					    </td>
+				    </tr>
 			<%end if%>
 
-			<tr> 
-				<td colspan="10">
-					<b>Tipo de Arquivo:</b><br>
-					<select name="tipoarquivo" onchange="atualizaTipoDoc();sugereNome();">
-					<%call comboBD(Env.oConn,"Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo where tar_codtipoarquivo <> " & Application("SISLAB_id_TipoArquivo_Imagem") & " order by tar_tipoarquivo asc")%>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="10">
-					<b>Título do Link do arquivo:</b><br>
-					<input type="text" name="titulo" size="60" maxlength="200" value="<%= auxlink %>" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="10">
-					<b>Nome do arquivo:</b><br>
-					<div id="arqatu">
-						<input type="text" name="nome" size="80" maxlength="90" readonly value="<%=auxnomearq%>">&nbsp;
-						<button onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=120, width=450, toolbars=1no, directory=1no' );">&nbsp;Alterar&nbsp;</button>&nbsp;&nbsp;
-						<button onclick="javascript:visualizaArquivo();">Visualizar Arquivo</button>
-					</div>
-					<input id="arqcad" TYPE="File" size="60" name="FILE1">
-					<script type="text/javascript">
-					<% if auxselecao = 0 then %>
-						document.all.arqatu.style.display="none";
-						formulario.arqcad.style.display="block";
-					<% else %>
-						document.all.arqatu.style.display="block";
-						formulario.arqcad.style.display="none";
-						function muda_arq( novo )
-						{
-							if( novo != "" )
-								formulario.nome.value = novo;
-						}
-					<% end if %>
+			    <tr> 
+				    <td colspan="10">
+					    <b>Tipo de Arquivo:</b><br>
+					    <select name="tipoarquivo" onchange="atualizaTipoDoc();sugereNome();">
+					    <%call comboBD(Env.oConn,"Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo where tar_codtipoarquivo <> " & Application("SISLAB_id_TipoArquivo_Imagem") & " order by tar_tipoarquivo asc")%>
+					    </select>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td colspan="10">
+					    <b>Título do Link do arquivo:</b><br>
+					    <input type="text" name="titulo" size="60" maxlength="200" value="<%= auxlink %>" />
+				    </td>
+			    </tr>
+			    <tr>
+				    <td colspan="10">
+					    <b>Nome do arquivo:</b><br>
+					    <div id="arqatu">
+						    <input type="text" name="nome" size="80" maxlength="90" readonly value="<%=auxnomearq%>">&nbsp;
+						    <button onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=120, width=450, toolbars=1no, directory=1no' );">&nbsp;Alterar&nbsp;</button>&nbsp;&nbsp;
+						    <button onclick="javascript:visualizaArquivo();">Visualizar Arquivo</button>
+					    </div>
+					    <input id="arqcad" TYPE="File" size="60" name="FILE1">
+					    <script type="text/javascript">
+					    <% if auxselecao = 0 then %>
+						    document.all.arqatu.style.display="none";
+						    formulario.arqcad.style.display="block";
+					    <% else %>
+						    document.all.arqatu.style.display="block";
+						    formulario.arqcad.style.display="none";
+						    function muda_arq( novo )
+						    {
+							    if( novo != "" )
+								    formulario.nome.value = novo;
+						    }
+					    <% end if %>
 
-						/* abro uma janela para visualizar o arquivo */
-						function visualizaArquivo() {
-							janelaespecial('arquivos/' + document.all.nome.value);
-						}
-					</script>
-				</td>
-			</tr>
-			<tr> 
-				<td colspan="5">
-					<b> Data de Aprovação do arquivo:</b><br>
-					<select name="diaatualiz" onchange="montaAtualiza()">
-						<option value="">Dia</option><%
-								for i = 1 to 31
-									if i < 10 then
-										auxi = "0" & i
-									else
-										auxi = i
-									end if %>
-						<option value="<%=auxi%>"><%=auxi%></option><%
-								next %>
-					</select>
-					<select name="mesatualiz" onchange="montaAtualiza()">
-						<option value="">Mês</option>
-						<option value=01>Janeiro</option>
-						<option value=02>Fevereiro</option>
-						<option value=03>Março</option>
-						<option value=04>Abril</option>
-						<option value=05>Maio</option>
-						<option value=06>Junho</option>
-						<option value=07>Julho</option>
-						<option value=08>Agosto</option>
-						<option value=09>Setembro</option>
-						<option value=10>Outubro</option>
-						<option value=11>Novembro</option>
-						<option value=12>Dezembro</option>
-					</select>
-					<select name="anoatualiz" onchange="montaAtualiza()">
-						<option value="">Ano</option><%
-							for i = -1 to 5 '-- pego o ano seguinte e 5 anos para trás
-								cbano = year( now ) - i %>
-						<option value="<%=cbano%>"><%=cbano%></option><%
-							next%>
-					</select>
-				</td>
-				<td colspan="1">
-					<b>Revis&atilde;o:</b><br>
-					<input type="text" name="versao" size="5" />
-				</td>
-				<td colspan="3" align="right">
-					<b>Confidencial:</b><br>
-				</td>
-				<td colspan="2">
-					&nbsp;&nbsp;<input type="checkbox" name="chkconfidencial" value="1"><br>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" valign="top">
-					<b>Vers&atilde;o do Documento:</b><br>
-					<input type="text" name="o1" value="<%=auxo1%>" maxlength="2" size="2" >&nbsp;.&nbsp;
-					<input type="text" name="o2" value="<%=auxo2%>" maxlength="2" size="2" >&nbsp;.&nbsp;
-					<input type="text" name="o3" value="<%=auxo3%>" maxlength="3" size="3" >
-				</td>
-				<td>&nbsp;</td>
+						    /* abro uma janela para visualizar o arquivo */
+						    function visualizaArquivo() {
+							    janelaespecial('arquivos/' + document.all.nome.value);
+						    }
+					    </script>
+				    </td>
+			    </tr>
+			    <tr> 
+				    <td colspan="5">
+					    <b> Data de Aprovação do arquivo:</b><br>
+					    <select name="diaatualiz" onchange="montaAtualiza()">
+						    <option value="">Dia</option><%
+								    for i = 1 to 31
+									    if i < 10 then
+										    auxi = "0" & i
+									    else
+										    auxi = i
+									    end if %>
+						    <option value="<%=auxi%>"><%=auxi%></option><%
+								    next %>
+					    </select>
+					    <select name="mesatualiz" onchange="montaAtualiza()">
+						    <option value="">Mês</option>
+						    <option value=01>Janeiro</option>
+						    <option value=02>Fevereiro</option>
+						    <option value=03>Março</option>
+						    <option value=04>Abril</option>
+						    <option value=05>Maio</option>
+						    <option value=06>Junho</option>
+						    <option value=07>Julho</option>
+						    <option value=08>Agosto</option>
+						    <option value=09>Setembro</option>
+						    <option value=10>Outubro</option>
+						    <option value=11>Novembro</option>
+						    <option value=12>Dezembro</option>
+					    </select>
+					    <select name="anoatualiz" onchange="montaAtualiza()">
+						    <option value="">Ano</option><%
+							    for i = -1 to 5 '-- pego o ano seguinte e 5 anos para trás
+								    cbano = year( now ) - i %>
+						    <option value="<%=cbano%>"><%=cbano%></option><%
+							    next%>
+					    </select>
+				    </td>
+				    <td colspan="1">
+					    <b>Revis&atilde;o:</b><br>
+					    <input type="text" name="versao" size="5" />
+				    </td>
+				    <td colspan="3" align="right">
+					    <b>Confidencial:</b><br>
+				    </td>
+				    <td colspan="2">
+					    &nbsp;&nbsp;<input type="checkbox" name="chkconfidencial" value="1"><br>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td colspan="2" valign="top">
+					    <b>Vers&atilde;o do Documento:</b><br>
+					    <input type="text" name="o1" value="<%=auxo1%>" maxlength="2" size="2" >&nbsp;.&nbsp;
+					    <input type="text" name="o2" value="<%=auxo2%>" maxlength="2" size="2" >&nbsp;.&nbsp;
+					    <input type="text" name="o3" value="<%=auxo3%>" maxlength="3" size="3" >
+				    </td>
+				    <td>&nbsp;</td>
 
-				<td colspan="2" valign="top">
-					<b>Situa&ccedil;&atilde;o:</b><br>
-					<select name="situacao">
-						<option value="">--</option>
-						<%call comboBD(Env.oConn,"Select SAR_CodSitArquivo as valor,left(SAR_SitArquivo,40) as descricao from situacaoarquivo order by SAR_CodSitArquivo asc;")%>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="10">
-					<b>Responsável:</b><br>
-					<%call comboUSERCRT("responsavel",Env.oConn,false)%>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="5" valign="top">
-					<b>Descri&ccedil;&atilde;o:</b><br>
-					<textarea name="descricao" cols="45" rows="3"><%= auxdescricao %></textarea>
-				</td>
-				<td colspan="5" valign="top">
-					<b>Observa&ccedil;&atilde;o:</b><br>
-					<textarea  name="observacao" cols="45" rows="3"><%= auxobservacao %></textarea>
-				</td>
-			</tr>
-			<tr><td colspan="10">&nbsp;</td></tr>
-		    <tr valign="middle">
-				<td colspan="10"> 
-					<input type="submit" name="Submit" value=" Atualizar " />
-					&nbsp;&nbsp;&nbsp;<%
+				    <td colspan="2" valign="top">
+					    <b>Situa&ccedil;&atilde;o:</b><br>
+					    <select name="situacao">
+						    <option value="">--</option>
+						    <%call comboBD(Env.oConn,"Select SAR_CodSitArquivo as valor,left(SAR_SitArquivo,40) as descricao from situacaoarquivo order by SAR_CodSitArquivo asc;")%>
+					    </select>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td colspan="10">
+					    <b>Responsável:</b><br>
+					    <%call comboUSERCRT("responsavel",Env.oConn,false)%>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td colspan="5" valign="top">
+					    <b>Descri&ccedil;&atilde;o:</b><br>
+					    <textarea name="descricao" cols="45" rows="3"><%= auxdescricao %></textarea>
+				    </td>
+				    <td colspan="5" valign="top">
+					    <b>Observa&ccedil;&atilde;o:</b><br>
+					    <textarea  name="observacao" cols="45" rows="3"><%= auxobservacao %></textarea>
+				    </td>
+			    </tr>
+			    <tr><td colspan="10">&nbsp;</td></tr>
+		        <tr valign="middle">
+				    <td colspan="10"> 
+					    <input type="submit" name="Submit" value=" Atualizar " />
+					    &nbsp;&nbsp;&nbsp;<%
 		if auxaltera="Alterar" then %>
-					<input type="button" name="Excluir" value="  Excluir  " onclick="selexcluir();" />
-					&nbsp;&nbsp;<%
+    					<input type="button" name="Excluir" value="  Excluir  " onclick="selexcluir();" />
+	    				&nbsp;&nbsp;<%
 		end if %>
-				</td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</form>
-<iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
+				    </td>
+			    </tr>
+			    </table>
+		    </td>
+	    </tr>
+    </table>
+    </form>
+
+    <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
 </div>
 
 <script type="text/javascript">
@@ -760,16 +725,16 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     frm.situacao.value="<%=auxidsituacao%>";
 
     <% if auxAS <> "" then%>
-	    //PreparaCampos(this)
-	    frm1.tabAgendamento.style.display = "block";
+	    //PreparaCampos()
+	    document.getElementById("tabAgendamento").style.display = "block";
 	    frm1.cmbAgendamento[0].checked = true;
 	    frm.txAS.value = "<%=auxAS%>";
 	    BuscaAS();
 	    mudaAS2('Os','OS Associada:',frm.txAS.value,'<%=auxOS%>')
     <%else%>
-	    frm1.tabAgendamento.style.display = "none";
+	    document.getElementById("tabAgendamento").style.display = "none";
 	    frm1.cmbAgendamento[1].checked = true;
-	    //PreparaCampos(this)
+	    //PreparaCampos()
     <%end if%>
 
     frm.responsavel.value="<%=ucase(auxarqresponsavel)%>"

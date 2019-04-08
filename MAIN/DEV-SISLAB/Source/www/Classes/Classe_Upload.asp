@@ -171,6 +171,7 @@ Class ASPForm
     Private Sub Class_Initialize()
         ChunkReadSize = &H10000 '64 kB
         'SizeLimit = &H100000 '1MB
+        m_SubFolder = ""
         SizeLimit = MaxLicensedLimit
         BytesRead = 0
         m_State = xfsNone
@@ -292,11 +293,20 @@ Class cFormFields
 
     Public Sub Save(Path)
         Dim Item
+        Dim fso
+        Set fso = CreateObject("Scripting.FileSystemObject")
+
         For Each Item In m_Items
-        If Item.isFile Then
-        Item.Save Path
-        End If
+            If Item.isFile Then
+				If Not fso.FolderExists(fso.GetParentFolderName(Path)) Then
+					Call fso.CreateFolder(Path)
+				End If
+
+                Item.Save Path
+            End If
         Next
+
+        Set fso = Nothing
     End Sub
 
     Public Property Get ItemCount(ByVal Key)
@@ -335,19 +345,24 @@ Class cFormFields
             Dim HeaderContent, bFieldContent
             Dim Content_Disposition, FormFieldName, SourceFileName, Content_Type
             Dim TwoCharsAfterEndBoundary
+
             PosEndOfHeader = InStrB(PosOpenBoundary + Len(Boundary), Binary, StringToBinary(vbCrLf + vbCrLf))
             HeaderContent = MidB(Binary, PosOpenBoundary + LenB(Boundary) + 2, PosEndOfHeader - PosOpenBoundary - LenB(Boundary) - 2)
             bFieldContent = MidB(Binary, (PosEndOfHeader + 4), PosCloseBoundary - (PosEndOfHeader + 4) - 2)
             GetHeadFields BinaryToString(HeaderContent), FormFieldName, SourceFileName, Content_Disposition, Content_Type
+
             Dim Field
             Set Field = New cFormField
+
             Field.ByteArray = MultiByteToBinary(bFieldContent)
             Field.Name = FormFieldName
             Field.ContentDisposition = Content_Disposition
+
             if len(SourceFileName) > 0 then
                 Field.FilePath = SourceFileName
                 Field.FileName = GetFileName(SourceFileName)
             End If
+
             Field.ContentType = Content_Type
             Add FormFieldName, Field
             TwoCharsAfterEndBoundary = BinaryToString(MidB(Binary, PosCloseBoundary + LenB(Boundary), 2))

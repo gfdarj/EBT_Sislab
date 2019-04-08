@@ -241,15 +241,15 @@ End Sub
 
 
 Sub MensagemErro(chr_Msg)
-	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastrar Fotos", "", "")
+	Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, True, "", "Cadastrar Fotos", "", "")
 
 	chr_Buf = _
 			"<scr" & "ipt type='text/javascript'>" & VbCrLf & _
 			"hideAguarde()" & VbCrLf & _
 			"</scr" & "ipt>" & VbCrLf & _
-			"<table align='center' class='tabela1' border='0' cellpadding='3' cellspacing='0'>" & VbCrLf & _
+			"<table align='center' class='table-condensed' border='0' cellpadding='3' cellspacing='0'>" & VbCrLf & _
 			"<tr>" & VbCrLf & _
-			"	<td align='center' class='texto1'><b><i>" & chr_Msg & "</i></b></td>" & VbCrLf & _
+			"	<td align='center'><b><i>" & chr_Msg & "</i></b></td>" & VbCrLf & _
 			"</tr>" & VbCrLf & _
 			"<tr><td>&nbsp;</td></tr>" & VbCrLf & _
 			"<tr>" & VbCrLf & _
@@ -262,5 +262,4 @@ Sub MensagemErro(chr_Msg)
 
     Call Tela.MostraRodape()
 End Sub
-
 %>
