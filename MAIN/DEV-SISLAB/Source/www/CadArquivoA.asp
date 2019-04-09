@@ -4,118 +4,115 @@
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/bib_str.asp" -->
-<!--#include file="Classes/Classe_Arquivo.asp" -->
+<!--#include file="Classes/Classe_Upload.asp" -->
 <%
 ' On Error Resume Next
-
-' Se Sessão expirou enviar para novo logon
 
 If not Env.usuarioCRT Then
 	response.redirect "msgAcessoNA.asp"
 End if
 
-Server.ScriptTimeout = 100000
+Response.Charset = Application("SISLAB_CHARSET")
+
 
 Dim objSiteRS, sSQL
 Dim auxnomearq,auxcodarquivo,auxorgao, auxagendamento
 Dim auxtipocomando, auxusername, auxresponsavel
-'Dim Upload
 Dim Count,auxip,auxtitulo,auxdatahoraatualiza
 Dim auxSitArquivo,auxversao,i
 Dim auxtipoarquivo,auxobservacao,auxdescricao
 Dim auxconfidencial, File, auxlistaAgendamento, eh_validacao
 Dim o1, o2, o3
-Dim Arquivo
 
-Set Arquivo = New TArquivo
+Dim Form : Set Form = New ASPForm
 
-Arquivo.SetOverwrite = False
+Server.ScriptTimeout = 1440 ' Limite de 24 minutos de execução de código, o upload deve acontecer dentro deste tempo ou então ocorre erro de limite de tempo.
 
-Call Arquivo.Init_UP()
-If Arquivo.TemErro Then
+Const MaxFileSize = 25200000 ' Limite de 25,2 Mb de arquivo
+
+If Form.State = 0 Then
+
+    auxtipocomando = Form.Item("tipocomando")
+    if Form.Item("cmbAgendamento") = "1" then
+	    auxagendamento = Form.Item("lstagendamento")
+    else
+	    auxagendamento = "0"
+    end if
+
+    auxcodarquivo = Form.Item("codarquivo")
+    if IsNumeric(auxcodarquivo) then auxcodarquivo = CInt(auxcodarquivo) else auxcodarquivo = 0
+    auxtitulo = Form.Item("titulo")
+    auxip = UCase(request.ServerVariables("REMOTE_ADDR"))
+    auxsitArquivo = Form.Item("situacao")
+    auxtipoArquivo = Form.Item("tipoarquivo")
+    auxversao = Form.Item("versao")
+    auxobservacao = Form.Item("observacao")
+    auxdescricao = Form.Item("descricao")
+    auxdatahoraatualiza = Form.Item("txtatualiza")
+    auxAS = Form.Item("agendamento")
+    auxOS = Form.Item("cmbOs")
+    vincula = Form.Item("cmbAgendamento")
+    auxresponsavel = Form.Item("responsavel")
+
+    eh_validacao = CBool(Form.Item("eh_validacao"))
+
+    If eh_validacao Then
+	    auxusername = Form.Item("validador")
+    Else
+	    auxusername = Form.Item("username")
+    End If
+
+    auxdatahoraatualiza = Form.Item("diaatualiz") & "/" & Form.Item("mesatualiz") & "/" & Form.Item("anoatualiz")
+    DataValidacao =  Form.Item("diaValidacao") & "/" & Form.Item("mesValidacao") & "/" & Form.Item("AnoValidacao")
+
+    'expira = ehDocumentoComExpiracao(auxtipoArquivo,objConn)
+
+
+Else
     Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
-    RW "<BR>"
-    RW "<p class='texto-vermelho-bold'>Ocorreu um erro ao criar o objeto de Upload.</p>"
-    RW "<p class='texto-vermelho-bold'>Mensagem: " & Arquivo.MensagemErro() & "</p>"
-    RE
-End If
-Call Arquivo.Upload()
-If Arquivo.TemErro Then
-    Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "", "")
-    RW "<BR>"
-    RW "<p class='texto-vermelho-bold'>Ocorreu um erro ao tentar salvar o arquivo.</p>"
-    RW "<p class='texto-vermelho-bold'>Mensagem: " & Arquivo.MensagemErro() & "</p>"
-    RE
+    RW "<br />"
+    RW "<div class='margem-10'>"
+    RW "    <p class='texto-vermelho-bold'>Ocorreu um erro ao criar o objeto de Upload.</p>"
+    RW "</div>"
+    Call Tela.MostraRodape()
 End If
 
-'rw "<BR>lstagendamento: " & Arquivo.Campo("lstagendamento")
-'rw "<BR>cmbAgendamento: " & Arquivo.Campo("cmbAgendamento")
+
+
+'rw "<BR>lstagendamento: " & Form.Item("lstagendamento")
+'rw "<BR>cmbAgendamento: " & Form.Item("cmbAgendamento")
 'rw "<BR>ArquivosCarregados: " & Arquivo.ArquivosCarregados
-'rw "<BR>" & Arquivo.Campo("codarquivo")
-'rw "<BR>" & Arquivo.Campo("titulo")
-'rw "<BR>" & Arquivo.Campo("REMOTE_ADDR")
-'rw "<BR>" & Arquivo.Campo("situacao")
-'rw "<BR>" & Arquivo.Campo("tipoarquivo")
-'rw "<BR>" & Arquivo.Campo("versao")
-'rw "<BR>" & Arquivo.Campo("observacao")
-'rw "<BR>" & Arquivo.Campo("descricao")
-'rw "<BR>" & Arquivo.Campo("txtatualiza")
-'rw "<BR>" & Arquivo.Campo("agendamento")
-'rw "<BR>" & Arquivo.Campo("cmbOs")
-'rw "<BR>" & Arquivo.Campo("cmbAgendamento")
-'rw "<BR>" & Arquivo.Campo("responsavel")
-'rw "<BR>" & Arquivo.Campo("eh_validacao")
+'rw "<BR>" & Form.Item("codarquivo")
+'rw "<BR>" & Form.Item("titulo")
+'rw "<BR>" & Form.Item("REMOTE_ADDR")
+'rw "<BR>" & Form.Item("situacao")
+'rw "<BR>" & Form.Item("tipoarquivo")
+'rw "<BR>" & Form.Item("versao")
+'rw "<BR>" & Form.Item("observacao")
+'rw "<BR>" & Form.Item("descricao")
+'rw "<BR>" & Form.Item("txtatualiza")
+'rw "<BR>" & Form.Item("agendamento")
+'rw "<BR>" & Form.Item("cmbOs")
+'rw "<BR>" & Form.Item("cmbAgendamento")
+'rw "<BR>" & Form.Item("responsavel")
+'rw "<BR>" & Form.Item("eh_validacao")
 're
 
 '-- Endereço nos servidor  onde ira cair o arquivo
 ''Count = Upload.Save("d:\inetpub\wwwroot\Sislab1\arquivos")
 'Count = Upload.Save( Server.MapPath(".") & "\Arquivos" )
 
-auxtipocomando = Arquivo.Campo("tipocomando")
-if Arquivo.Campo("cmbAgendamento") = "1" then
-	auxagendamento = Arquivo.Campo("lstagendamento")
-else
-	auxagendamento = "0"
-end if
 
-auxcodarquivo = Arquivo.Campo("codarquivo")
-if IsNumeric(auxcodarquivo) then auxcodarquivo = CInt(auxcodarquivo) else auxcodarquivo = 0
-auxtitulo = Arquivo.Campo("titulo")
-auxip = UCase(request.ServerVariables("REMOTE_ADDR"))
-auxsitArquivo = Arquivo.Campo("situacao")
-auxtipoArquivo = Arquivo.Campo("tipoarquivo")
-auxversao = Arquivo.Campo("versao")
-auxobservacao = Arquivo.Campo("observacao")
-auxdescricao = Arquivo.Campo("descricao")
-auxdatahoraatualiza = Arquivo.Campo("txtatualiza")
-auxAS = Arquivo.Campo("agendamento")
-auxOS = Arquivo.Campo("cmbOs")
-vincula = Arquivo.Campo("cmbAgendamento")
-auxresponsavel = Arquivo.Campo("responsavel")
-
-eh_validacao = CBool(Arquivo.Campo("eh_validacao"))
-
-If eh_validacao Then
-	auxusername = Arquivo.Campo("validador")
-Else
-	auxusername = Arquivo.Campo("username")
-End If
-
-auxdatahoraatualiza = Arquivo.Campo("diaatualiz") & "/" & Arquivo.Campo("mesatualiz") & "/" & Arquivo.Campo("anoatualiz")
-DataValidacao =  Arquivo.Campo("diaValidacao") & "/" & Arquivo.Campo("mesValidacao") & "/" & Arquivo.Campo("AnoValidacao")
-
-'expira = ehDocumentoComExpiracao(auxtipoArquivo,objConn)
-
-if Arquivo.Campo("chkconfidencial") <> "1" then
+if Form.Item("chkconfidencial") <> "1" then
   auxconfidencial = 0
 else
   auxconfidencial = -1
 end if
-o1 = Arquivo.Campo("o1")
+o1 = Form.Item("o1")
 if o1 = "" then o1 = "null"
-o2 = Arquivo.Campo("o2")
+o2 = Form.Item("o2")
 if o2 = "" then o2 = "null"
-o3 = Arquivo.Campo("o3")
+o3 = Form.Item("o3")
 if o3 = "" then o3 = "null"
 
 '	SALVA O ARQUIVO NO DISCO
@@ -135,7 +132,7 @@ auxorgao = objSiteRS1("Orga_ID")
 
 '-- se ja existir o arquivo apenas pego o nome do arquivo
 if auxcodarquivo > 0 then
-	auxnomearq = Arquivo.Campo("nome")
+	auxnomearq = Form.Item("nome")
 else
 	'auxnomearq = Upload.Files(1).ExtractFileName
 	auxnomearq = Arquivo.ArquivoSubPasta(1)
@@ -170,7 +167,7 @@ If RETORNO <> "-1" then
 		Arquivo.Exclui(auxnomearq)
 	end if
 
-	if Arquivo.Campo("resp") = "1" then
+	if Form.Item("resp") = "1" then
 		msg = "Foi executada a seguinte ação ( " & auxtipocomando & " ) sobre o documento " & auxtitulo & "<br><BR>" & _
 			  "<u>Dados do Documento</u>" & "<BR><br>" & _ 
 			  "Revisão : " & auxversao & "<br>" & _
@@ -187,7 +184,7 @@ If RETORNO <> "-1" then
 	<title>CRT - Cadastro de Arquivos</title>
 	<meta http-equiv="refresh" content="4; url=<%if eh_validacao then response.write "arq_disp.asp" else response.write "sel_cad_arquivo.asp"%>">
 	</head>
-	<body bgcolor="#FFFFFF">
+	<body>
 
 	<div align="center">
 	  <table width="90%" bgcolor="#88BBBB">

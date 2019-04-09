@@ -83,6 +83,7 @@ End if
 
 %>
 <script type="text/javascript" src="includes/anexo.js"></script>
+
 <script type="text/javascript">
     function adiciona(chave, item1, lista) {
     // funcao que acrescenta um item em uma lista
@@ -215,26 +216,10 @@ End if
 
 	    frm.chkconfidencial.disabled = false;
 	    frm.responsavel.disabled = false;
-	    frm.action = "insCad_arquivo.asp"
+	    frm.action = "CadArquivoA.asp"
 	    frm.method = "post";
 	    frm.target = "";
 	    return true;
-    }
-
-    function BuscaAS(){
-	    var frm = document.forms[0];
-	    var combo = frm.agendamento
-	    indice = -1;
-	    for(i=0; i<combo.length; i++)
-		    if (combo[i].value == frm.txAS.value)
-			    indice = i;
-
-	    if (indice != -1)
-  		    combo.options[indice].selected = true
-	    else
-		    combo.options[0].selected = true
-    //		combo.selectedindex = indice;
-    //		alert(indice);
     }
 
     function sugereNome()
@@ -354,16 +339,6 @@ End if
 	    sugereNome();
     }
 
-    function limpaTipo(){
-	    var frm = document.forms[0];
-	    frm.tipoarquivo.value = '';
-	    frm.titulo.value = '';
-	    frm.titulo.readOnly = false;
-	    frm.titulo.style.backgroundColor = "#FFFFFF";
-	    frm1 = document.all;
-	    document.getElementById("OSCelula").innerHTML = "<input type='Hidden' name = 'cmbOs' value ='-1'/>"
-    }
-
     function atualizaTipoDoc(){
 	    var frm = document.forms[0];
 	    var comboTipo = frm.tipoarquivo;
@@ -376,47 +351,6 @@ End if
 	    var combo = frm.agendamento
 	    frm.txAS.value = combo[combo.selectedIndex].value
     }
-    function mudaAS(campo,labelCampo)
-    {
-	    frm = document.forms[0];
-	    frm1 = document.all;
-	    var combo = frm.agendamento
-	    //var lista = frm.lstAgendamento
-	    //alert(lista[lsta.selectedIndex].value)
-	    //alert(lista[lista.selected].value);
-
-	    document.getElementById("OSCelula").innerHTML = "<font face='verdana, arial' style='font-size:12px;'><b>Processando... </b></font>";
-
-	    frm.action = "eventosInternos.asp?hdnevento=<%=1%>&label="+ labelCampo +"&as="+combo[combo.selectedIndex].value+"&campo="+campo;
-	    frm.method = "post";
-	    frm.target = "escondido";
-	    frm.auxAS.value = combo[combo.selectedIndex].value;
-	    frm.submit();
-    }
-
-    function mudaAS2(campo,labelCampo,auxas,auxOS)
-    {
-	    frm = document.forms[0];
-	    frm1 = document.all;
-
-	    if (auxas == ""){
-	        document.getElementById("tabAgendamento").style.display = "none";
-		    frm1.cmbAgendamento[1].checked = true;
-		    //frm1.cmbAgendamento.value = 0;
-		    return false;
-	    }
-	
-	    //alert(lista[lsta.selectedIndex].value)
-	    //alert(lista[lista.selected].value);
-	    document.getElementById("OSCelula").innerHTML = "<h6>Processando... </h6>"
-
-	    frm.action = "eventosInternos.asp?hdnevento=<%=2%>&label="+ labelCampo +"&os=" + auxOS + "&as="+ auxas + "&campo="+campo;
-	    frm.method = "post";
-	    frm.target = "escondido";
-	    frm.auxAS.value = auxas;
-	    frm.submit();
-    }
-
     function janelaespecial(link1)
     {
         window.open(link1,'Arquivos_CRT','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
@@ -427,7 +361,7 @@ End if
 Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
 %>
 <div class="margem-10">
-    <form method="post" action="insCad_arquivo.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
+    <form method="post" action="CadArquivoA.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
     <!--
 	    Preciso deste campo para saber pra onde vou redirecionar quando der o submit,
 	    porque este form é usado tanto para validar quanto para editar um arquivo.
@@ -470,13 +404,77 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="1" tabindex="13" checked>&nbsp;Sim&nbsp;&nbsp;
 					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="0" tabindex="14">&nbsp;N&atilde;o
                         <script type="text/javascript">
+                            function BuscaAS()
+                            {
+                                var frm = document.forms[0];
+                                var combo = frm.agendamento
+
+                                indice = -1;
+                                for(i=0; i<combo.length; i++)
+                                    if (combo[i].value == frm.txAS.value)
+                                        indice = i;
+
+                                if (indice != -1)
+                                    combo.options[indice].selected = true
+                                else
+                                    combo.options[0].selected = true
+                                //		combo.selectedindex = indice;
+                                //		alert(indice);
+                            }
+
+                            function mudaAS(campo,labelCampo)
+                            {
+                                frm = document.forms[0];
+                                frm1 = document.all;
+                                var combo = frm.agendamento;
+
+                                document.getElementById("OSCelula").style.display = "block";
+                                document.getElementById("OSCelula").innerHTML = "<font face='verdana, arial' style='font-size:12px;'><b>Processando... </b></font>";
+
+                                frm.action = "eventosInternos.asp?hdnevento=<%=1%>&label="+ labelCampo +"&as="+combo[combo.selectedIndex].value+"&campo="+campo;
+                                frm.method = "post";
+                                frm.target = "escondido";
+                                frm.auxAS.value = combo[combo.selectedIndex].value;
+                                frm.submit();
+                            }
+
+                            function mudaAS2(campo,labelCampo,auxas,auxOS)
+                            {
+                                frm = document.forms[0];
+                                frm1 = document.all;
+
+                                if (auxas == ""){
+                                    document.getElementById("tabAgendamento").style.display = "none";
+                                    frm1.cmbAgendamento[1].checked = true;
+                                    //frm1.cmbAgendamento.value = 0;
+                                    return false;
+                                }
+	
+                                //alert(lista[lsta.selectedIndex].value)
+                                //alert(lista[lista.selected].value);
+                                document.getElementById("OSCelula").innerHTML = "<h6>Processando... </h6>"
+
+                                frm.action = "eventosInternos.asp?hdnevento=<%=2%>&label="+ labelCampo +"&os=" + auxOS + "&as="+ auxas + "&campo="+campo;
+                                frm.method = "post";
+                                frm.target = "escondido";
+                                frm.auxAS.value = auxas;
+                                frm.submit();
+                            }
+
+                            function limpaTipo()
+                            {
+                                var frm = document.forms[0];
+                                frm.tipoarquivo.value = '';
+                                frm.titulo.value = '';
+                                frm.titulo.readOnly = false;
+                                frm.titulo.style.backgroundColor = "#FFFFFF";
+                                document.getElementById("OSCelula").innerHTML = "<input type='Hidden' name='cmbOs' value ='-1'/>";
+                            }
+
                             function PreparaCampos()
                             {
                                 if( document.forms[0].cmbAgendamento[0].checked )
                                 {
-                                    alert("AQUI 222 1");
-                                    alert(document.forms[0].tabAgendamento);
-
                                     document.getElementById("tabAgendamento").style.display = 'block';
                                     document.forms[0].txAS.value ='';
                                     document.forms[0].tipoarquivo.value = '';
@@ -495,9 +493,9 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 
                         <div id="tabAgendamento"style="display: none;">
                             <br />
-                            Agendamento:&nbsp;
+                            <strong>Agendamento:</strong><br />
     					    <input type="text" name="txAS" size="4"/ onKeyUp="BuscaAS();" onfocus="limpaTipo();">
-	    				    <select name="agendamento" onFocus='limpaTipo()' onBlur="mudaAS('Os','OS Associada:')" onchange="preencheAS()">
+	    				    <select name="agendamento" onFocus='limpaTipo();' onBlur="mudaAS('Os','OS Associada:');" onchange="preencheAS()">
 		    				    <option value="">Escolha uma AS...</option><%
 				sSQL = "Select A.AG_NUMERO, a.AG_TITULO, A.AG_DATAINICIO, A.AG_DATATERMINO, A.AG_USERNAME "
 				sSQL = sSQL & " from vw_Agendamento a "
@@ -515,16 +513,16 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 					Set objSiteRS = Nothing
 				End If
 				%>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    				        <span id="OSCelula">
-	            		        <input type="hidden" name="cmbOs" value="-1"/>
-				            </span>
+                            </select>
                         </div>
+
+    				    <div id="OSCelula" style="display: none;">
+	            		    <input type="hidden" name="cmbOs" value="-1"/>
+				        </div>
 
 				    </td>
 			    </tr>
 			    </table>
-
 		    </td>
 	    </tr>
 
@@ -573,7 +571,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			    <tr>
 				    <td colspan="10">
 					    <b>Título do Link do arquivo:</b><br>
-					    <input type="text" name="titulo" size="60" maxlength="200" value="<%= auxlink %>" />
+					    <input type="text" name="titulo" size="60" maxlength="200" value="<%= auxlink %>" style="display: block;" />
 				    </td>
 			    </tr>
 			    <tr>
@@ -707,6 +705,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
 </div>
 
+
 <script type="text/javascript">
     var frm = document.forms[0]
     var	frm1 = document.all;
@@ -785,7 +784,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 		    frm.resp.value = "1";
 
         frm.tipocomando.value="Excluir";
-  	    frm.action = "insCad_arquivo.asp";
+  	    frm.action = "CadArquivoA.asp";
 	    frm.method = "post";
 	    frm.target = "";
 	    frm.submit();

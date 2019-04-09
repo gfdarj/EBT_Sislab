@@ -41,7 +41,7 @@ end if
     function Valida(arquivo)
     {
 	    frm = document.forms[0];
-	    frm.action = "cad_arquivo.asp?ehValidacao=1&arquivos="+ arquivo;
+	    frm.action = "CadArquivo.asp?ehValidacao=1&arquivos=" + arquivo;
 	    frm.method = "post";
 	    frm.submit();
     }
@@ -63,7 +63,7 @@ end if
 </script>
 
 <div class="margem-10">
-<form method="post" action="cad_arquivo.asp">
+<form method="post" action="CadArquivo.asp">
 <%
 tot=0
 

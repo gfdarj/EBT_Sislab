@@ -345,15 +345,17 @@ function recuperaMensagemsEmail()
 <%
 end function
 
-function recuperaInformacoesOSUpload()
+Function recuperaInformacoesOSUpload()
 	auxas = request("as")
+    If auxas = "" Then auxas = "0"
 	auxos = request("os")
+    If auxos = "" Then auxos = "0"
+
 	msSQL = "Select os_id as valor, os_id as descricao from ordem_de_servico where ag_numero = '" & auxas & "'"
 	call Env.RecordSet( true, AUXrs, msSQL)
-	combo = SubstituiComboCScript(request("label"),"cmbOs","OSCelula","","-------","valor","descricao",AUXrs,"atualizaOS()")
+	combo = SubstituiComboCScript(request("label"),"cmbOs","OSCelula","", "-------", "valor", "descricao", AUXrs, "atualizaOS()")
 	msSQL3 = "SELECT COUNT(A.AG_NUMERO)+1 AS CONTADOR FROM AGENDAMENTO A INNER JOIN DIAGRAMAS D ON A.AG_NUMERO = D.AG_NUMERO INNER JOIN ARQUIVOS F ON F.ARQ_CODARQ = D.ARQ_CODARQ WHERE A.AG_NUMERO = " & auxas & " AND F.ARQ_CODARQTIPO = 8"
-	call Env.RecordSet( true, AUXrs3, msSQL3)
-		%>
+	call Env.RecordSet( true, AUXrs3, msSQL3) %>
 		<script type="text/javascript">
 			var frm = parent.document.forms[0];
 			frm.contdia.value = "<%=AUXrs3("CONTADOR")%>";
@@ -367,25 +369,29 @@ function recuperaInformacoesOSUpload()
 			<%end if%>
 		</script>
 	<%
-end function
+End Function
 
 function recuperaInfomacoesASUpload()
 	auxas = request("as")
+    If auxas = "" Then auxas = "0"
 	auxos = request("os")
-	msSQL = "Select os_id as valor, os_id as descricao from ordem_de_servico where ag_numero = '" & auxas & "'"
+    If auxos = "" Then auxos = "0"
+
+	msSQL = "Select os_id as valor, os_id as descricao from ordem_de_servico where ag_numero = " & auxas & ""
 	call Env.RecordSet( true, AUXrs, msSQL)
 
 'response.write mssql
 'response.end
 
-	combo = SubstituiComboCScript(request("label"),"cmbOs","OSCelula","","-------","valor","descricao",AUXrs,"atualizaOS()")
+	combo = SubstituiComboCScript(request("label"), "cmbOs", "OSCelula", "", "-------", "valor", "descricao", AUXrs, "atualizaOS()")
 
 	msSQL2 = "Select * from agendamento where ag_numero = " & auxas & ""
 	call Env.RecordSet( true, AUXrs2, msSQL2)
 
-	msSQL3 = "SELECT COUNT(A.AG_NUMERO)+1 AS CONTADOR FROM AGENDAMENTO A INNER JOIN DIAGRAMAS D ON A.AG_NUMERO = D.AG_NUMERO INNER JOIN ARQUIVOS F ON F.ARQ_CODARQ = D.ARQ_CODARQ WHERE A.AG_NUMERO = " & auxas & " AND F.ARQ_CODARQTIPO = 8"
-	call Env.RecordSet( true, AUXrs3, msSQL3)
+    If Not (AUXrs2.Bof And AUXrs2.Eof) Then
 
+    	msSQL3 = "SELECT COUNT(A.AG_NUMERO)+1 AS CONTADOR FROM AGENDAMENTO A INNER JOIN DIAGRAMAS D ON A.AG_NUMERO = D.AG_NUMERO INNER JOIN ARQUIVOS F ON F.ARQ_CODARQ = D.ARQ_CODARQ WHERE A.AG_NUMERO = " & auxas & " AND F.ARQ_CODARQTIPO = 8"
+	    call Env.RecordSet( true, AUXrs3, msSQL3)
 	%>
 		<script type="text/javascript">
 			var frm = parent.document.forms[0];
@@ -411,7 +417,8 @@ function recuperaInfomacoesASUpload()
 					frm.tipoarquivo.focus();
 				<%end if%>
 		</script>
-		<%
+<%
+    End If
 end function
 
 Function RecuperaMensagem()

@@ -28,14 +28,14 @@ nomeArquivo = replace(request("txNomeArq"),"*","%")
 tipoArquivo = request("sbtipoarquivo")
 %>
 <div class="margem-10">
-    <form name="formulario" method="post" action="cad_arquivo.asp">
+    <form name="formulario" method="post" action="CadArquivo.asp">
         <input type="hidden" name="arquivos" value="">
         <input type="hidden" name="Pesquisou" value="S">
         
         <table >
         <tr>
 	        <td colspan="2">
-		        <a href="cad_arquivo.asp"><b>&lt;Cadastrar Novo Arquivo&gt;</b></a>
+		        <a href="CadArquivo.asp"><b>&lt;Cadastrar Novo Arquivo&gt;</b></a>
 	        </td>
         </tr>
         <tr><td>&nbsp;</td></tr>
