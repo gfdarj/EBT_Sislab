@@ -203,6 +203,24 @@ Class ASPForm
         End If
     End Property
 
+    '-- Adicionada por Gilberto
+    Public Function SubPastaAS(ag_numero)
+        If ag_numero = "" Then
+            SubPastaAS = ""
+        Else
+            SubPastaAS = "AS_" &  Right("00000" & ag_numero, 5)
+        End If
+    End Function
+
+    Public Sub DeleteFile(fileName)
+        Dim fso
+        Set fso = CreateObject("Scripting.FileSystemObject")
+        fso.DeleteFile fileName
+        Set fso = Nothing
+    End Sub
+    '-- Adicionada por Gilberto - FIM
+
+
     Public Boundary
     Private m_Items
     Private m_State

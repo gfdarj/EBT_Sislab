@@ -81,287 +81,12 @@ else
 	auxaltera = "Inserir"
 End if
 
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
 %>
 <script type="text/javascript" src="includes/anexo.js"></script>
 
-<script type="text/javascript">
-    function adiciona(chave, item1, lista) {
-    // funcao que acrescenta um item em uma lista
-	    lista.options[lista.options.length] = new Option(item1, chave);
-    }
-
-    function retira(lista) {
-    // funcao que retira um item que esteja selecionado em uma lista
-	    if (lista.selectedIndex != -1)
-		    lista.options[lista.selectedIndex]=null;
-    }
-
-    function selecionaItens(lista) {
-    //Seleciona todos os itens de uma lista
-	    var i
-	    for(i=0; i<lista.length; i++)  
-  		    lista.options[i].selected = true
-    }
-
-    function verificaLista(valor, lista) {
-    //Verifica se um valor j� se encontra na lista
-	    var i;
-	    for(i=0; i<lista.length; i++)
-		    if (lista[i].text.indexOf(valor) != -1)
-			    return(true);
-	    return(false);
-    }
-
-    //===================================================================================================
-
-    function montaAtualiza()
-    {
-	    var frm = document.formulario;
-	    if( frm.diaatualiz.value != "0" && frm.mesatualiz.value != "0" && frm.anoatualiz.value != "0" )
-		    frm.txtatualiza.value = completa(frm.diaatualiz.value,2) + "/" + completa(frm.mesatualiz.value,2) + "/" + completa(frm.anoatualiz.value,4);
-	    else
-		    frm.txtatualiza.value = "";
-    }
-    function ValidaCampos() {
-    <% if  ehValidacao then%>
-    if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/" + completa(document.formulario.mesvalidacao.value,2) + "/" + completa(document.formulario.anovalidacao.value,4), "Data Valida��o" ) ) ) {
-		    return false;
-	    }
-    <%end if%>
-    <% if not ehValidacao then%>
-	    if( document.formulario.titulo.value == "" ) {
-		    alert( "Título do arquivo não informado.\nInforme o título do arquivo." );
-		    document.formulario.titulo.focus();
-		    return false;
-	    }
-	    if( AchaAspas( document.formulario.titulo.value ) )
-	    {
-		    alert( "Título do arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Título do arquivo." );
-		    document.formulario.titulo.focus();
-		    return false;
-	    }
-	    if( !( ValidaDataMesAno( completa(document.formulario.diaatualiz.value,2) + "/" + completa(document.formulario.mesatualiz.value,2) + "/" + completa(document.formulario.anoatualiz.value,4), "Data Atualiza��o" ) ) ) {
-		    return false;
-	    }
-	    if( document.formulario.tipoarquivo.value == "" ) {
-		    alert( "Tipo de arquivo não informado.\nInforme o tipo de arquivo." );
-		    document.formulario.tipoarquivo.focus();
-		    return false;
-	    }
-	    if( document.formulario.situacao.value == "" ) {
-		    alert( "Situação do arquivo não informada.\nInforme a situação do arquivo." );
-		    document.formulario.situacao.focus();
-		    return false;
-	    }
-	    if( document.formulario.responsavel.value == "" ) {
-		    alert( "Responsável pelo arquivo não informado.\nInforme o Responsável pelo o arquivo." );
-		    document.formulario.responsavel.focus();
-		    return false;
-	    }
-	    if( (document.formulario.o1.value != "") && (isNaN(document.formulario.o1.value)) ) {
-		    alert( "Valor da Versão incorreto." );
-		    document.formulario.o1.focus();
-		    return false;
-	    }
-	    if( (document.formulario.o2.value != "") && (isNaN(document.formulario.o2.value)) ) {
-		    alert( "Valor da Versão incorreto." );
-		    document.formulario.o2.focus();
-		    return false;
-	    }
-	    if( (document.formulario.o3.value != "") && (isNaN(document.formulario.o3.value)) ) {
-		    alert( "Valor da Versão incorreto." );
-		    document.formulario.o3.focus();
-		    return false;
-	    }
-
-	    if( formulario.cmbAgendamento[ 0 ].checked ){
-		    if(document.formulario.auxOS.value == "0"){
-			    var resp
-			    resp=confirm("Você não selecionou nenhuma OS, deseja realmente vincular o arquivo somente ao Agendamento?");
-			    if (!resp){
-				    document.formulario.cmbOs.focus();
-				    return resp;
-			    }
-		    }
-	    }
-	    //selecionaItens(document.formulario.lstAgendamento);
-    <%end if%>	
-
-    //	alert(document.formulario.FILE1.value);
-    //	alert(extractFileName(document.formulario.FILE1.value));
-    //	alert(validaNomeArquivo(extractFileName(document.formulario.FILE1.value)));
-    //	return false;
-
-    <% if auxselecao = 0 then %>
-	    if( document.formulario.FILE1.value == '' ) {
-		    alert( 'Nome do arquivo não informado. Informe o nome do arquivo.' );
-		    document.formulario.FILE1.focus();
-		    return false;
-	    }
-	    if( AchaAspas( document.formulario.FILE1.value ) ) {
-		    alert("Nome do Arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Nome do arquivo.");
-		    document.formulario.FILE1.focus();
-		    return false;
-	    }
-	    if( !validaNomeArquivo(extractFileName(document.formulario.FILE1.value)) ) {
-		    alert("O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.");
-		    document.formulario.FILE1.focus();
-		    return false;
-	    }
-    <% end if%>
-
-	    resposta = confirm("Deseja que este upload seja comunicado via e-mail aos usuarios CRT?")
-	    if (resposta)
-		    frm.resp.value = "1";
-
-	    frm.chkconfidencial.disabled = false;
-	    frm.responsavel.disabled = false;
-	    frm.action = "CadArquivoA.asp"
-	    frm.method = "post";
-	    frm.target = "";
-	    return true;
-    }
-
-    function sugereNome()
-    {
-	    var frm = document.forms[0];
-
-	    if( formulario.cmbAgendamento[ 0 ].checked )
-	    {
-		    var numAS = frm.auxAS.value;
-		    var numOS = frm.auxOS.value;
-		    var tipoDoc = frm.auxTipo.value;
-
-		    if ( tipoDoc == ''){
-			    frm.tipoarquivo.value = '';
-			    frm.titulo.value = '';
-			    frm.titulo.readOnly = false;
-			    frm.titulo.style.backgroundColor = "#FFFFFF";
-		    }
-
-		    if (numAS == ''){
-			    alert('Escolha primeiro a AS');
-			    frm.tipoarquivo.value = '';
-			    frm.txAS.focus();		
-			    return false;
-		    }
-	    }
-	    frm.titulo.value = '';
-	    frm.titulo.readOnly = false;
-	    frm.titulo.style.backgroundColor = "#FFFFFF";
-
-	    if( formulario.cmbAgendamento[ 0 ].checked ){
-		    if (numOS != '0')
-			    numOS = '-' + completa(numOS,2);
-		    else
-			    numOS = '';
-	    }
-
-	    //Este tipo � para Relat�rio de Ensaios
-	    if (tipoDoc == '33'){
-		    if(formulario.cmbAgendamento[ 0 ].checked)
-			    frm.titulo.value = 'REL-' + completa(numAS,4) + numOS;
-		    frm.versao.value = '00';
-		    frm.o1.value = '0';
-		    frm.o2.value = '0';
-		    frm.o3.value = '0';
-		    frm.mesatualiz.value = completa('<%=month(date)%>',2);
-		    frm.diaatualiz.value = completa('<%=day(date)%>',2);
-		    frm.anoatualiz.value = completa('<%=year(date)%>',4);
-		    montaAtualiza();
-		    frm.situacao.value = 2;
-		    frm.titulo.readOnly = true;
-		    frm.titulo.style.backgroundColor = "#EEEEEE";
-	    }
-	    //Laudo
-	    if (tipoDoc == '7'){
-		    if(formulario.cmbAgendamento[ 0 ].checked)
-			    frm.titulo.value = 'LD-' + completa(numAS,4) + numOS
-		    frm.versao.value = '00';
-		    frm.o1.value = '0';
-		    frm.o2.value = '0';
-		    frm.o3.value = '0';
-		    frm.mesatualiz.value = completa('<%=month(date)%>',2);
-		    frm.diaatualiz.value = completa('<%=day(date)%>',2);
-		    frm.anoatualiz.value = completa('<%=year(date)%>',4);
-		    montaAtualiza();
-		    frm.situacao.value = 2;
-		    frm.titulo.readOnly = true;
-		    frm.titulo.style.backgroundColor = "#EEEEEE";
-	    }
-	    //Roteiros
-	    if (tipoDoc == '20'){
-		    if( formulario.cmbAgendamento[ 0 ].checked )
-			    frm.titulo.value = 'ROE-' + completa(numAS,4) + numOS;
-		    frm.versao.value = '00';
-		    frm.o1.value = '0';
-		    frm.o2.value = '0';
-		    frm.o3.value = '0';
-		    frm.mesatualiz.value = completa('<%=month(date)%>',2);
-		    frm.diaatualiz.value = completa('<%=day(date)%>',2);
-		    frm.anoatualiz.value = completa('<%=year(date)%>',4);
-		    montaAtualiza();
-		    frm.situacao.value = 2;
-		    frm.titulo.readOnly = true;
-		    frm.titulo.style.backgroundColor = "#EEEEEE";
-	    }
-	    //Diagramas
-	    if (tipoDoc == '8'){
-		    if( formulario.cmbAgendamento[ 0 ].checked )
-			    frm.titulo.value = 'DIAGRAMA-' + completa(numAS,4) + ' (' + completa(frm.contdia.value,2) + ')'
-		    frm.versao.value = '00';
-		    frm.o1.value = '0';
-		    frm.o2.value = '0';
-		    frm.o3.value = '0';
-		    frm.mesatualiz.value = completa('<%=month(date)%>',2);
-		    frm.diaatualiz.value = completa('<%=day(date)%>',2);
-		    frm.anoatualiz.value = completa('<%=year(date)%>',4);
-		    montaAtualiza();
-		    frm.situacao.value = 2;
-		    frm.titulo.readOnly = true;
-		    frm.titulo.style.backgroundColor = "#EEEEEE";
-	    }
-    }
-
-    function completa(valor,tam){
-	    var i=0,buf=''
-	    for(;i < tam - valor.length ; i++){
-		    buf = '0' + buf
-	    }
-	    valor = buf + valor;
-	    return valor
-    }
-    function atualizaOS(){
-	    var frm = document.forms[0];
-	    var comboOS = frm.cmbOs;
-	    var numOS = comboOS.selectedIndex;
-	    frm.auxOS.value = numOS;
-	    sugereNome();
-    }
-
-    function atualizaTipoDoc(){
-	    var frm = document.forms[0];
-	    var comboTipo = frm.tipoarquivo;
-	    var tipoDoc = comboTipo[comboTipo.selectedIndex].value;	
-	    //alert(tipoDoc);
-	    frm.auxTipo.value = tipoDoc;
-    }
-    function preencheAS(){
-	    frm = document.forms[0];
-	    var combo = frm.agendamento
-	    frm.txAS.value = combo[combo.selectedIndex].value
-    }
-    function janelaespecial(link1)
-    {
-        window.open(link1,'Arquivos_CRT','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
-    }
-</script>
-
-<% 
-Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
-%>
 <div class="margem-10">
-    <form method="post" action="CadArquivoA.asp"  ENCTYPE="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
+    <form method="post" action="CadArquivoA.asp" enctype="multipart/form-data" name="formulario"  onsubmit="return ValidaCampos();">
     <!--
 	    Preciso deste campo para saber pra onde vou redirecionar quando der o submit,
 	    porque este form é usado tanto para validar quanto para editar um arquivo.
@@ -392,14 +117,15 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 		    <td width="10%" height="0"></td>
 		    <td width="10%" height="0"></td>
 	    </tr>
-	    <tr valign="middle">
-		    <th align="left" colspan="10">&nbsp;Agendamento</th>
+	    <tr>
+		    <th colspan="10" class="linha-fundo">Agendamento</th>
 	    </tr>
-	    <tr valign="middle"> 
-		    <td colspan="10" align="center">
-			    <table width="90%" >
+	    <tr> 
+            <td colspan="1"></td>
+		    <td colspan="9">
+			    <table>
 			    <tr>
-				    <td colspan="10">
+				    <td>
 					    Agendamento vinculado:&nbsp;
 					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="1" tabindex="13" checked>&nbsp;Sim&nbsp;&nbsp;
 					    <input type="radio" name="cmbAgendamento" onClick="PreparaCampos();" value="0" tabindex="14">&nbsp;N&atilde;o
@@ -528,12 +254,12 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 
         <tr><td>&nbsp;</td></tr>
 
-	    <tr valign="middle">
-		    <th colspan="10" align="left">&nbsp;Dados do Arquivo</th>
+	    <tr>
+		    <th colspan="10" class="linha-fundo">Dados do Arquivo</th>
 	    </tr>
-	    <tr valign="middle"> 
-		    <td colspan="10" align="center"> 
-			    <table width="90%">
+	    <tr> 
+		    <td colspan="10"> 
+			    <table class="table-condensed">
 			    <tr> 
 				    <td width="10%" height="0"></td>
 				    <td width="10%" height="0"></td>
@@ -549,11 +275,11 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 
 			<%if ehValidacao then%>
 				    <tr> 
-					    <td colspan="5">
+					    <td colspan="3">
 						    <b>Data Validação :</b><br>
 						    <%call comboData("validacao")%>
 					    </td>
-					    <td colspan="5">
+					    <td colspan="7">
 						    <b>Responsável Validação :</b><br>
 						    <%call comboUSERCRTcDefault("validador", Env.oConn, Env.usuario(),false)%>
 					    </td>
@@ -561,15 +287,14 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			<%end if%>
 
 			    <tr> 
-				    <td colspan="10">
+				    <td colspan="3">
 					    <b>Tipo de Arquivo:</b><br>
 					    <select name="tipoarquivo" onchange="atualizaTipoDoc();sugereNome();">
-					    <%call comboBD(Env.oConn,"Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo where tar_codtipoarquivo <> " & Application("SISLAB_id_TipoArquivo_Imagem") & " order by tar_tipoarquivo asc")%>
+                            <option value="">--</option>
+    					    <%call comboBD(Env.oConn, "Select tar_codtipoarquivo as valor,tar_tipoarquivo as descricao from tipoarquivo where tar_codtipoarquivo <> " & Application("SISLAB_id_TipoArquivo_Imagem") & " order by tar_tipoarquivo asc")%>
 					    </select>
 				    </td>
-			    </tr>
-			    <tr>
-				    <td colspan="10">
+				    <td colspan="7">
 					    <b>Título do Link do arquivo:</b><br>
 					    <input type="text" name="titulo" size="60" maxlength="200" value="<%= auxlink %>" style="display: block;" />
 				    </td>
@@ -605,7 +330,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 				    </td>
 			    </tr>
 			    <tr> 
-				    <td colspan="5">
+				    <td colspan="3">
 					    <b> Data de Aprovação do arquivo:</b><br>
 					    <select name="diaatualiz" onchange="montaAtualiza()">
 						    <option value="">Dia</option><%
@@ -641,14 +366,12 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 							    next%>
 					    </select>
 				    </td>
-				    <td colspan="1">
+				    <td colspan="2">
 					    <b>Revis&atilde;o:</b><br>
 					    <input type="text" name="versao" size="5" />
 				    </td>
-				    <td colspan="3" align="right">
+				    <td colspan="5">
 					    <b>Confidencial:</b><br>
-				    </td>
-				    <td colspan="2">
 					    &nbsp;&nbsp;<input type="checkbox" name="chkconfidencial" value="1"><br>
 				    </td>
 			    </tr>
@@ -672,15 +395,15 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			    <tr>
 				    <td colspan="10">
 					    <b>Responsável:</b><br>
-					    <%call comboUSERCRT("responsavel",Env.oConn,false)%>
+					    <%call comboUSERCRT("responsavel", Env.oConn, "N")%>
 				    </td>
 			    </tr>
 			    <tr>
-				    <td colspan="5" valign="top">
+				    <td colspan="4" valign="top">
 					    <b>Descri&ccedil;&atilde;o:</b><br>
 					    <textarea name="descricao" cols="45" rows="3"><%= auxdescricao %></textarea>
 				    </td>
-				    <td colspan="5" valign="top">
+				    <td colspan="6" valign="top">
 					    <b>Observa&ccedil;&atilde;o:</b><br>
 					    <textarea  name="observacao" cols="45" rows="3"><%= auxobservacao %></textarea>
 				    </td>
@@ -688,7 +411,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			    <tr><td colspan="10">&nbsp;</td></tr>
 		        <tr valign="middle">
 				    <td colspan="10"> 
-					    <input type="submit" name="Submit" value=" Atualizar " />
+					    <input type="submit" name="btnEnviar" value=" Atualizar " />
 					    &nbsp;&nbsp;&nbsp;<%
 		if auxaltera="Alterar" then %>
     					<input type="button" name="Excluir" value="  Excluir  " onclick="selexcluir();" />
@@ -705,12 +428,288 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     <iframe width="770" height="200" name="escondido" style="display: none;"></iframe>
 </div>
 
+<script type="text/javascript">
+    function ValidaCampos() 
+    {
+        alert("AQUI !");
+
+        <% if  ehValidacao then%>
+        if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/" + completa(document.formulario.mesvalidacao.value,2) + "/" + completa(document.formulario.anovalidacao.value,4), "Data Valida��o" ) ) ) {
+            return false;
+        }
+        <%end if%>
+        <% if not ehValidacao then%>
+            if( document.formulario.titulo.value == "" ) {
+                alert( "Título do arquivo não informado.\nInforme o título do arquivo." );
+                document.formulario.titulo.focus();
+                return false;
+            }
+        if( AchaAspas( document.formulario.titulo.value ) )
+        {
+            alert( "Título do arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Título do arquivo." );
+            document.formulario.titulo.focus();
+            return false;
+        }
+        if( !( ValidaDataMesAno( completa(document.formulario.diaatualiz.value,2) + "/" + completa(document.formulario.mesatualiz.value,2) + "/" + completa(document.formulario.anoatualiz.value,4), "Data Atualiza��o" ) ) ) {
+            return false;
+        }
+        if( document.formulario.tipoarquivo.value == "" ) {
+            alert( "Tipo de arquivo não informado.\nInforme o tipo de arquivo." );
+            document.formulario.tipoarquivo.focus();
+            return false;
+        }
+        if( document.formulario.situacao.value == "" ) {
+            alert( "Situação do arquivo não informada.\nInforme a situação do arquivo." );
+            document.formulario.situacao.focus();
+            return false;
+        }
+        if( document.formulario.responsavel.value == "" ) {
+            alert( "Responsável pelo arquivo não informado.\nInforme o Responsável pelo o arquivo." );
+            document.formulario.responsavel.focus();
+            return false;
+        }
+        if( (document.formulario.o1.value != "") && (isNaN(document.formulario.o1.value)) ) {
+            alert( "Valor da Versão incorreto." );
+            document.formulario.o1.focus();
+            return false;
+        }
+        if( (document.formulario.o2.value != "") && (isNaN(document.formulario.o2.value)) ) {
+            alert( "Valor da Versão incorreto." );
+            document.formulario.o2.focus();
+            return false;
+        }
+        if( (document.formulario.o3.value != "") && (isNaN(document.formulario.o3.value)) ) {
+            alert( "Valor da Versão incorreto." );
+            document.formulario.o3.focus();
+            return false;
+        }
+
+        if( formulario.cmbAgendamento[ 0 ].checked ){
+            if(document.formulario.auxOS.value == "0"){
+                var resp
+                resp=confirm("Você não selecionou nenhuma OS, deseja realmente vincular o arquivo somente ao Agendamento?");
+                if (!resp){
+                    document.formulario.cmbOs.focus();
+                    return resp;
+                }
+            }
+        }
+        //selecionaItens(document.formulario.lstAgendamento);
+        <%end if%>	
+
+            //	alert(document.formulario.FILE1.value);
+            //	alert(extractFileName(document.formulario.FILE1.value));
+            //	alert(validaNomeArquivo(extractFileName(document.formulario.FILE1.value)));
+            //	return false;
+
+        <% if auxselecao = 0 then %>
+            if( document.formulario.FILE1.value == '' ) {
+                alert( 'Nome do arquivo não informado. Informe o nome do arquivo.' );
+                document.formulario.FILE1.focus();
+                return false;
+            }
+        if( AchaAspas( document.formulario.FILE1.value ) ) {
+            alert("Nome do Arquivo não pode conter Aspas ou apóstrofes.\nCorrija o Nome do arquivo.");
+            document.formulario.FILE1.focus();
+            return false;
+        }
+        if( !validaNomeArquivo(extractFileName(document.formulario.FILE1.value)) ) {
+            alert("O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.");
+            document.formulario.FILE1.focus();
+            return false;
+        }
+        <% end if%>
+
+            resposta = confirm("Deseja que este upload seja comunicado via e-mail aos usuarios CRT?")
+            if (resposta)
+                frm.resp.value = "1";
+
+        frm.chkconfidencial.disabled = false;
+        frm.responsavel.disabled = false;
+        frm.action = "CadArquivoA.asp"
+        frm.method = "post";
+        frm.target = "";
+        return true;
+    }
+
+    function adiciona(chave, item1, lista) {
+        // funcao que acrescenta um item em uma lista
+        lista.options[lista.options.length] = new Option(item1, chave);
+    }
+
+    function retira(lista) {
+        // funcao que retira um item que esteja selecionado em uma lista
+        if (lista.selectedIndex != -1)
+            lista.options[lista.selectedIndex]=null;
+    }
+
+    function selecionaItens(lista) {
+        //Seleciona todos os itens de uma lista
+        var i
+        for(i=0; i<lista.length; i++)  
+            lista.options[i].selected = true
+    }
+
+    function verificaLista(valor, lista) {
+        //Verifica se um valor j� se encontra na lista
+        var i;
+        for(i=0; i<lista.length; i++)
+            if (lista[i].text.indexOf(valor) != -1)
+                return(true);
+        return(false);
+    }
+
+    //===================================================================================================
+
+    function montaAtualiza()
+    {
+        var frm = document.formulario;
+        if( frm.diaatualiz.value != "0" && frm.mesatualiz.value != "0" && frm.anoatualiz.value != "0" )
+            frm.txtatualiza.value = completa(frm.diaatualiz.value,2) + "/" + completa(frm.mesatualiz.value,2) + "/" + completa(frm.anoatualiz.value,4);
+        else
+            frm.txtatualiza.value = "";
+    }
+
+    function sugereNome()
+    {
+        var frm = document.forms[0];
+
+        if( formulario.cmbAgendamento[ 0 ].checked )
+        {
+            var numAS = frm.auxAS.value;
+            var numOS = frm.auxOS.value;
+            var tipoDoc = frm.auxTipo.value;
+
+            if ( tipoDoc == ''){
+                frm.tipoarquivo.value = '';
+                frm.titulo.value = '';
+                frm.titulo.readOnly = false;
+                frm.titulo.style.backgroundColor = "#FFFFFF";
+            }
+
+            if (numAS == ''){
+                alert('Escolha primeiro a AS');
+                frm.tipoarquivo.value = '';
+                frm.txAS.focus();		
+                return false;
+            }
+        }
+        frm.titulo.value = '';
+        frm.titulo.readOnly = false;
+        frm.titulo.style.backgroundColor = "#FFFFFF";
+
+        if( formulario.cmbAgendamento[ 0 ].checked ){
+            if (numOS != '0')
+                numOS = '-' + completa(numOS,2);
+            else
+                numOS = '';
+        }
+
+        //Este tipo � para Relat�rio de Ensaios
+        if (tipoDoc == '33'){
+            if(formulario.cmbAgendamento[ 0 ].checked)
+                frm.titulo.value = 'REL-' + completa(numAS,4) + numOS;
+            frm.versao.value = '00';
+            frm.o1.value = '0';
+            frm.o2.value = '0';
+            frm.o3.value = '0';
+            frm.mesatualiz.value = completa('<%=month(date)%>',2);
+            frm.diaatualiz.value = completa('<%=day(date)%>',2);
+            frm.anoatualiz.value = completa('<%=year(date)%>',4);
+            montaAtualiza();
+            frm.situacao.value = 2;
+            frm.titulo.readOnly = true;
+            frm.titulo.style.backgroundColor = "#EEEEEE";
+        }
+        //Laudo
+        if (tipoDoc == '7'){
+            if(formulario.cmbAgendamento[ 0 ].checked)
+                frm.titulo.value = 'LD-' + completa(numAS,4) + numOS
+            frm.versao.value = '00';
+            frm.o1.value = '0';
+            frm.o2.value = '0';
+            frm.o3.value = '0';
+            frm.mesatualiz.value = completa('<%=month(date)%>',2);
+            frm.diaatualiz.value = completa('<%=day(date)%>',2);
+            frm.anoatualiz.value = completa('<%=year(date)%>',4);
+            montaAtualiza();
+            frm.situacao.value = 2;
+            frm.titulo.readOnly = true;
+            frm.titulo.style.backgroundColor = "#EEEEEE";
+        }
+        //Roteiros
+        if (tipoDoc == '20'){
+            if( formulario.cmbAgendamento[ 0 ].checked )
+                frm.titulo.value = 'ROE-' + completa(numAS,4) + numOS;
+            frm.versao.value = '00';
+            frm.o1.value = '0';
+            frm.o2.value = '0';
+            frm.o3.value = '0';
+            frm.mesatualiz.value = completa('<%=month(date)%>',2);
+            frm.diaatualiz.value = completa('<%=day(date)%>',2);
+            frm.anoatualiz.value = completa('<%=year(date)%>',4);
+            montaAtualiza();
+            frm.situacao.value = 2;
+            frm.titulo.readOnly = true;
+            frm.titulo.style.backgroundColor = "#EEEEEE";
+        }
+        //Diagramas
+        if (tipoDoc == '8'){
+            if( formulario.cmbAgendamento[ 0 ].checked )
+                frm.titulo.value = 'DIAGRAMA-' + completa(numAS,4) + ' (' + completa(frm.contdia.value,2) + ')'
+            frm.versao.value = '00';
+            frm.o1.value = '0';
+            frm.o2.value = '0';
+            frm.o3.value = '0';
+            frm.mesatualiz.value = completa('<%=month(date)%>',2);
+            frm.diaatualiz.value = completa('<%=day(date)%>',2);
+            frm.anoatualiz.value = completa('<%=year(date)%>',4);
+            montaAtualiza();
+            frm.situacao.value = 2;
+            frm.titulo.readOnly = true;
+            frm.titulo.style.backgroundColor = "#EEEEEE";
+        }
+    }
+
+    function completa(valor,tam){
+        var i=0,buf=''
+        for(;i < tam - valor.length ; i++){
+            buf = '0' + buf
+        }
+        valor = buf + valor;
+        return valor
+    }
+    function atualizaOS(){
+        var frm = document.forms[0];
+        var comboOS = frm.cmbOs;
+        var numOS = comboOS.selectedIndex;
+        frm.auxOS.value = numOS;
+        sugereNome();
+    }
+
+    function atualizaTipoDoc(){
+        var frm = document.forms[0];
+        var comboTipo = frm.tipoarquivo;
+        var tipoDoc = comboTipo[comboTipo.selectedIndex].value;	
+        //alert(tipoDoc);
+        frm.auxTipo.value = tipoDoc;
+    }
+    function preencheAS(){
+        frm = document.forms[0];
+        var combo = frm.agendamento
+        frm.txAS.value = combo[combo.selectedIndex].value
+    }
+    function janelaespecial(link1)
+    {
+        window.open(link1,'Arquivos_CRT','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=800,height=600,top=0,left=0');
+    }
+</script>
 
 <script type="text/javascript">
     var frm = document.forms[0]
     var	frm1 = document.all;
     <% if auxaltera = "Inserir" then %>
-	    document.formulario.Submit.value="  Cadastrar  " ;         
+	    document.formulario.btnEnviar.value="  Cadastrar  " ;         
     <% end if %>
 
     frm.diaatualiz.value="<%=auxdiaatualiz%>";
@@ -743,7 +742,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     <%end if%>
 
     <%if ehValidacao then%>
-	    document.formulario.Submit.value="  Validar  " ;         
+	    document.formulario.btnEnviar.value="  Validar  " ;         
 	    frm1.cmbAgendamento[1].disabled = true;
 	    frm1.cmbAgendamento[0].disabled = true;
 	    frm1.tipoarquivo.disabled = true;

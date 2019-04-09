@@ -25,7 +25,7 @@ If Form.State = 0 Then
     auxusername = Form.Item("username")
     auxip = Form.Item("ip")
     cont = 1
-    subPasta = "AS_" &  Zeros(auxnumAS, 5)
+    subPasta = Form.SubPastaAS(auxnumAS)
 
     'Faz o upload dos arquivos
     For each Field in Form.Files.Items
