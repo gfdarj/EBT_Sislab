@@ -81,12 +81,13 @@ If Form.State = 0 Then
     if o3 = "" then o3 = "null"
 
     subPasta = Form.SubPastaAS(auxAs)
+    If subPasta <> "" Then subPasta = subPasta & "\" 
 
     'Faz o upload dos arquivos
     For each Field in Form.Files.Items
         ' # Field.Filename : Nome do Arquivo que chegou.
         ' # Field.ByteArray : Dados binários do arquivo, útil para subir em blobstore (MySQL).
-        Field.SaveAs Server.MapPath(".") & "\" & Application("SISLAB_FolderArquivos") & "\" &  subPasta & "\" & Field.FileName
+        Field.SaveAs Server.MapPath(".") & "\" & Application("SISLAB_FolderArquivos") & "\" &  subPasta & Field.FileName
 
 
         if auxAs = "" then auxAs = null
@@ -110,8 +111,7 @@ If Form.State = 0 Then
 	        auxnomearq = Form.Item("nome")
         else
 	        'auxnomearq = Upload.Files(1).ExtractFileName
-            If subPasta <> "" Then auxnomearq = subPasta & "\" Else auxnomearq = "" End If
-	        auxnomearq = auxnomearq & Field.FileName
+	        auxnomearq = subPasta & Field.FileName
         end if
 
         'RW "<BR><b>auxnomearq:</b> " & auxnomearq
@@ -139,9 +139,9 @@ If Form.State = 0 Then
         If RETORNO <> "-1" then
 
 	        '-- tenho que apagar o arquivo caso o mesmo tenha sido excluído
-	        if ucase(auxtipocomando) = "EXCLUIR" then
+	        If ucase(auxtipocomando) = "EXCLUIR" then
 		        Call Form.DeleteFile(auxnomearq)
-	        end if
+	        End If
 
 		    msg = "Foi executada a seguinte ação ( " & auxtipocomando & " ) sobre o documento " & auxtitulo & "<br><BR>" & _
 			        "<u>Dados do Documento</u>" & "<BR><br>" & _ 
@@ -157,19 +157,20 @@ If Form.State = 0 Then
 	        End if
 
             Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Upload", "location.href='sel_cad_Arquivo.asp'", "")
-            RW "<br />"
             RW "<div class='margem-10'>"
+            RW "    <br />"
             RW "    " & msg
-            RW "<br />"
-            RW "<input type='button' value=' Voltar ' onclick='location.href=""sel_cad_arquivo.asp"";' />"
+            RW "    <br />"
+            RW "    <br />"
+            RW "    <input type='button' value=' Voltar ' onclick='location.href=""sel_cad_arquivo.asp"";' />"
             RW "</div>"
             Call Tela.MostraRodape()
-
         Else
             Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "location.href='cadArquivo.asp'", "")
-            RW "<br />"
             RW "<div class='margem-10'>"
+            RW "    <br />"
             RW "    <p class='texto-vermelho-bold'>Ocorreu um erro ao salvar os dados do Upload.</p>"
+            RW "    <br />"
             RW "</div>"
             Call Tela.MostraRodape()
         End If
@@ -178,9 +179,10 @@ If Form.State = 0 Then
 
 Else
     Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - Erro de Upload", "location.href='cadArquivo.asp'", "")
-    RW "<br />"
     RW "<div class='margem-10'>"
+    RW "    <br />"
     RW "    <p class='texto-vermelho-bold'>Ocorreu um erro ao criar o objeto de Upload.</p>"
+    RW "    <br />"
     RW "</div>"
     Call Tela.MostraRodape()
 End If

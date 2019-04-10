@@ -26,15 +26,16 @@ If Form.State = 0 Then
     auxip = Form.Item("ip")
     cont = 1
     subPasta = Form.SubPastaAS(auxnumAS)
+    If subPasta <> "" Then subPasta = subPasta & "\" 
 
     'Faz o upload dos arquivos
     For each Field in Form.Files.Items
         ' # Field.Filename : Nome do Arquivo que chegou.
         ' # Field.ByteArray : Dados binários do arquivo, útil para subir em blobstore (MySQL).
-        Field.SaveAs Server.MapPath(".") & "\" & Application("SISLAB_FolderArquivos") & "\" &  subPasta & "\" & Field.FileName
+        Field.SaveAs Server.MapPath(".") & "\" & Application("SISLAB_FolderArquivos") & "\" &  subPasta & Field.FileName
 
         str_ListaArquivos = str_ListaArquivos & cont & " - " & Field.FileName & "<br />"
-        str_Arquivo = subPasta & "\" & Field.FileName
+        str_Arquivo = subPasta & Field.FileName
 
 	    Auxtit = "DIAGRAMA-" & Zeros(auxnumAS,4) & "-" & _
 		         year(date) & Zeros(month(date),2) & Zeros(Day(date),2) & "-" & _

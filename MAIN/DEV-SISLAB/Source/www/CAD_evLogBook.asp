@@ -221,27 +221,23 @@ end if
 </tr>
 <tr>
 	<td colspan="10">
-		<table width="100%">
-		<tr>
-			<td width="10px">&nbsp;</td>
-			<td>
-				<div class="largura-total" style="height:90px; border: solid thin silver; marginheight:0; marginwidth:0;">
-				<iframe id="frame_LB_acao" width="100%" height="90px" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="cad_evLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>"  frameborder="0" scrolling="Auto"></iframe>
-				</div>
-			</td>
-		</tr>
-		</table>
+	    <div class="largura-total" style="height:90px; border: solid thin silver; marginheight:0; marginwidth:0;">
+	    <iframe id="frame_LB_acao" style="width: 100%; height: 200px;" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="cad_evLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>" frameborder="0" scrolling="Auto"></iframe>
+	    </div>
 	</td>
 </tr>
 
+<tr><td>&nbsp;</td></tr>
 
 <tr valign="middle"> 
-	<td colspan="10" >
+	<td colspan="10">
 		Ocorrência Finalizada : <input type="Checkbox" name="chkConcGQ" onclick="mudaDataFim()">
 		<br>Data e Hora da Finalização: <%call comboData("dtFim")%>&nbsp;&nbsp;&nbsp;<%call comboHorario("dtFim")%>
 	</td>
 </tr>
 <%end if%>
+
+<tr><td>&nbsp;</td></tr>
 <tr valign="middle" height=45>
 		<td colspan="10">
 			&nbsp;
@@ -363,13 +359,16 @@ end if
 
     <%end if%>
 
-    function NovaAcao(){
-	    if('<%=ocorrencia%>' == '') {
+    function NovaAcao()
+    {
+	    if('<%=ocorrencia%>' == '') 
+        {
 		    alert('ATENÇÃO !\n\nPara criar uma nova ação é necessário salvar os dados\ndesta nova ocorrência.');
 	    }
-	    else {
+        else
+        {
 		    var janela;
-		    janela = window.open("CAD_acLogBook.asp?acao=cadastrar&ocorrencia=<%=ocorrencia%>", "cad_contato", "width=600, height=410, toolbar=no, status=yes, menubar=no, scrollbars=auto");
+		    janela = window.open("cad_acLogBook.asp?acao=cadastrar&ocorrencia=<%=ocorrencia%>", "cad_contato", "width=780, height=500, toolbar=no, status=yes, menubar=no, scrollbars=auto");
 		    janela.focus();
 	    }
     }

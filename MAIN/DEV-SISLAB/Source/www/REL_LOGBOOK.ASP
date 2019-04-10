@@ -187,7 +187,7 @@ If Not ObjSiteRS.EOF Then
 <%              if isnull(ObjSiteRS2("ACT_DATACONCLUSAO")) then response.write "&nbsp;" else response.write ObjSiteRS2("ACT_DATACONCLUSAO") %>
         </td>
 		<td style="text-align: justify; vertical-align: top;" colspan="2">
-<%              if isnull(ObjSiteRS2("act_obs")) then response.write "&nbsp;" else response.write ObjSiteRS2("act_obs") %>
+<%              if isnull(ObjSiteRS2("act_obs")) then response.write "&nbsp;" Else response.Write "<small>" & Replace(ObjSiteRS2("act_obs"), VbCrLf, "<br />") & "</small>"%>
 		</td>
     </tr>
 <%              objSiteRS2.movenext

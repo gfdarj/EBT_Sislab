@@ -19,7 +19,7 @@ s = _
 	"ON TAT_ID = ACT_TIPOACAO WHERE ACT_LB = " & oc
 call Env.RecordSet(true, objRS, s)
 %>
-<table class="table-bordered" width="100%" cellpadding="2" cellspacing="0" border="0" style="border-bottom: solid thin;">
+<table class="table-condensed table-bordered" width="100%" cellpadding="2" cellspacing="0" border="0" style="border-bottom: solid thin;">
 <%
 if objRS.Eof and objRS.Bof then
 %>
@@ -30,12 +30,12 @@ if objRS.Eof and objRS.Bof then
 else
 %>
 <tr>
-	<th style="font-size: xx-small;" align="center">Ação</th>
-	<th style="font-size: xx-small;" align="left">Descrição</th>
-	<th style="font-size: xx-small;">Executante</th>
-	<th style="font-size: xx-small;">Prazo</th>
-	<th style="font-size: xx-small;">Conclusão</th>
-	<th style="font-size: xx-small;">Eficácia</th>
+	<th style="text-align: center;">Ação</th>
+	<th>Descrição</th>
+	<th>Executante</th>
+	<th style="text-align: center;">Prazo</th>
+	<th style="text-align: center;">Conclusão</th>
+	<th style="text-align: center;">Eficácia</th>
 	<th>&nbsp;</th>
 <%	if Env.ehRAT then%>
 	<th>&nbsp;</th>
@@ -54,15 +54,15 @@ else
 		<%=objRS("ACT_DESCRICAO")%>&nbsp;
 	</td>
 	<td><%=objRS("ACT_EXECUTANTE")%>&nbsp;</td>
-	<td align="center"><%=objRS("ACT_PRAZO")%>&nbsp;</td>
-	<td align="center"><%=objRS("ACT_DATACONCLUSAO")%>&nbsp;</td>
-	<td align="center"><%if objRS("ACT_EFICACIA") = "1" then response.write "Sim" else if objRS("ACT_EFICACIA") = "0" then response.write "Não" else response.write "--" %></td>
+	<td style="text-align: center;"><%=objRS("ACT_PRAZO")%>&nbsp;</td>
+	<td style="text-align: center;"><%=objRS("ACT_DATACONCLUSAO")%>&nbsp;</td>
+	<td style="text-align: center;"><%if objRS("ACT_EFICACIA") = "1" then response.write "Sim" else if objRS("ACT_EFICACIA") = "0" then response.write "Não" else response.write "--" %></td>
 <%		if Env.ehRAT then%>
-	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'editar');"><b>Alterar</b></a></td>
-	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:remover(<%=objRS("ACT_ID")%>);"><b>Remover</b></a></td>
-	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'finalizar');"><b>Finalizar</b></a></td>
+	<td class="azul1Bg" style="text-align: center;"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'editar');"><b>Alterar</b></a></td>
+	<td class="azul1Bg" style="text-align: center;"><a href="#" onclick="javascript:remover(<%=objRS("ACT_ID")%>);"><b>Remover</b></a></td>
+	<td class="azul1Bg" style="text-align: center;"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'finalizar');"><b>Finalizar</b></a></td>
 <%		else%>
-	<td class="azul1Bg" align="center"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'visualizar');"><b>Visualizar</b></a></td>
+	<td class="azul1Bg" style="text-align: center;"><a href="#" onclick="javascript:alterar(<%=objRS("ACT_ID")%>, 'visualizar');"><b>Visualizar</b></a></td>
 <%		end if%>
 </tr>
 <%		objRS.MoveNExt
@@ -72,17 +72,19 @@ end if
 <table>
 
 <form name="form_exclui_acao" action="INSCAD_acLogBook.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
-<input type="hidden" name="remover" value="1">
-<input type="hidden" name="idacao" value="">
-<input type="hidden" name="ocorrencia" value="<%=oc%>">
+    <input type="hidden" name="remover" value="1">
+    <input type="hidden" name="idacao" value="">
+    <input type="hidden" name="ocorrencia" value="<%=oc%>">
 </form>
 
 <script type="text/javascript">
-	function remover(idacao) {
+    function remover(idacao)
+    {
 		document.form_exclui_acao.idacao.value = idacao;
 		document.form_exclui_acao.submit();
 	}
-	function alterar(idacao, acao) {
+    function alterar(idacao, acao)
+    {
 		var param='';
 		if(acao == 'editar') {
 			param = "?acao=editar&ocorrencia=<%=oc%>&idacao=" + idacao;
@@ -93,7 +95,7 @@ end if
 		else {
 			param = "?acao=finalizar&ocorrencia=<%=oc%>&idacao=" + idacao;
 		}
-		janela = window.open("CAD_acLogBook.asp" + param, "cad_contato", "width=600, height=410, toolbar=no, status=yes, menubar=no, scrollbars=yes");
+		janela = window.open("cad_acLogBook.asp" + param, "cad_contato", "width=780, height=500, toolbar=no, status=yes, menubar=no, scrollbars=yes");
 		janela.focus();
 	}
 	document.marginheight = 0;

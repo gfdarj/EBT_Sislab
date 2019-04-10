@@ -212,6 +212,14 @@ Class ASPForm
         End If
     End Function
 
+    Public Function SubPastaLB(lb_numero)
+        If lb_numero = "" Then
+            SubPastaLB = ""
+        Else
+            SubPastaLB = "LB_" &  Right("00000" & lb_numero, 5)
+        End If
+    End Function
+
     Public Sub DeleteFile(fileName)
         Dim fso
         Set fso = CreateObject("Scripting.FileSystemObject")

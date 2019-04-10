@@ -15,7 +15,7 @@ Dim auxnomearq,auxlink,auxcodtipo
 Dim auxarqresponsavel,auxidorgao,auxobservacao,auxvinculado
 Dim auxdataatualiz, auxdescricao,auxversao,auxdataatual
 Dim auxdiaatualiz,auxmesatualiz,auxanoatualiz
-Dim auxaltera,auxselecao,cbano,auxidsituacao, auxo1, auxo2, auxo3,auxAS,auxOS
+Dim auxaltera,auxselecao,cbano,auxidsituacao, auxo1, auxo2, auxo3, auxAS, auxOS
 
 auxselecao = 0
 
@@ -81,7 +81,7 @@ else
 	auxaltera = "Inserir"
 End if
 
-Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "", "")
+Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivos - " & auxaltera & " " & auxlink, "location.href='sel_cad_arquivo.asp'", "")
 %>
 <script type="text/javascript" src="includes/anexo.js"></script>
 
@@ -101,7 +101,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     <input type="hidden" name="contdia" value="0"/>
     <input type="hidden" name="resp" value="0" />
     <input type="hidden" name="auxAS">
-    <input type="hidden" name="auxOS">
+    <input type="hidden" name="auxOS" value="<%=auxOS%>">
     <input type="hidden" name="auxTipo">
 
     <table width="100%" height="236" >
@@ -169,7 +169,8 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
                                 frm = document.forms[0];
                                 frm1 = document.all;
 
-                                if (auxas == ""){
+                                if (auxas == "")
+                                {
                                     document.getElementById("tabAgendamento").style.display = "none";
                                     frm1.cmbAgendamento[1].checked = true;
                                     //frm1.cmbAgendamento.value = 0;
@@ -178,8 +179,8 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 	
                                 //alert(lista[lsta.selectedIndex].value)
                                 //alert(lista[lista.selected].value);
+                                document.getElementById("OSCelula").style.display = "block";
                                 document.getElementById("OSCelula").innerHTML = "<h6>Processando... </h6>"
-
                                 frm.action = "eventosInternos.asp?hdnevento=<%=2%>&label="+ labelCampo +"&os=" + auxOS + "&as="+ auxas + "&campo="+campo;
                                 frm.method = "post";
                                 frm.target = "escondido";
@@ -304,8 +305,8 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 					    <b>Nome do arquivo:</b><br>
 					    <div id="arqatu">
 						    <input type="text" name="nome" size="80" maxlength="90" readonly value="<%=auxnomearq%>">&nbsp;
-						    <button onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=120, width=450, toolbars=1no, directory=1no' );">&nbsp;Alterar&nbsp;</button>&nbsp;&nbsp;
-						    <button onclick="javascript:visualizaArquivo();">Visualizar Arquivo</button>
+						    <input type="button" onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=150, width=500, toolbars=1no, directory=1no' );" value="&nbsp;Alterar&nbsp;" />&nbsp;&nbsp;
+						    <input type="button" onclick="javascript:visualizaArquivo();" value="Visualizar Arquivo" />
 					    </div>
 					    <input id="arqcad" TYPE="File" size="60" name="FILE1">
 					    <script type="text/javascript">
@@ -431,8 +432,6 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 <script type="text/javascript">
     function ValidaCampos() 
     {
-        alert("AQUI !");
-
         <% if  ehValidacao then%>
         if( !( ValidaDataMesAno( completa(document.formulario.diavalidacao.value,2) + "/" + completa(document.formulario.mesvalidacao.value,2) + "/" + completa(document.formulario.anovalidacao.value,4), "Data Valida��o" ) ) ) {
             return false;
@@ -485,7 +484,8 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
         }
 
         if( formulario.cmbAgendamento[ 0 ].checked ){
-            if(document.formulario.auxOS.value == "0"){
+            if ((document.formulario.auxOS.value == "0") || (document.formulario.auxOS.value == ""))
+            {
                 var resp
                 resp=confirm("Você não selecionou nenhuma OS, deseja realmente vincular o arquivo somente ao Agendamento?");
                 if (!resp){
@@ -496,11 +496,6 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
         }
         //selecionaItens(document.formulario.lstAgendamento);
         <%end if%>	
-
-            //	alert(document.formulario.FILE1.value);
-            //	alert(extractFileName(document.formulario.FILE1.value));
-            //	alert(validaNomeArquivo(extractFileName(document.formulario.FILE1.value)));
-            //	return false;
 
         <% if auxselecao = 0 then %>
             if( document.formulario.FILE1.value == '' ) {
@@ -679,6 +674,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
         valor = buf + valor;
         return valor
     }
+
     function atualizaOS(){
         var frm = document.forms[0];
         var comboOS = frm.cmbOs;
@@ -708,9 +704,10 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 <script type="text/javascript">
     var frm = document.forms[0]
     var	frm1 = document.all;
-    <% if auxaltera = "Inserir" then %>
-	    document.formulario.btnEnviar.value="  Cadastrar  " ;         
-    <% end if %>
+
+<% if auxaltera = "Inserir" then %>
+    document.formulario.btnEnviar.value="  Cadastrar  " ;         
+<% end if %>
 
     frm.diaatualiz.value="<%=auxdiaatualiz%>";
     frm.mesatualiz.value="<%=auxmesatualiz%>";
@@ -722,61 +719,62 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
     frm.versao.value="<%=auxversao%>";
     frm.situacao.value="<%=auxidsituacao%>";
 
-    <% if auxAS <> "" then%>
-	    //PreparaCampos()
-	    document.getElementById("tabAgendamento").style.display = "block";
-	    frm1.cmbAgendamento[0].checked = true;
-	    frm.txAS.value = "<%=auxAS%>";
-	    BuscaAS();
-	    mudaAS2('Os','OS Associada:',frm.txAS.value,'<%=auxOS%>')
-    <%else%>
-	    document.getElementById("tabAgendamento").style.display = "none";
-	    frm1.cmbAgendamento[1].checked = true;
-	    //PreparaCampos()
-    <%end if%>
+<% if auxAS <> "" then%>
+	//PreparaCampos()
+	document.getElementById("tabAgendamento").style.display = "block";
+	frm1.cmbAgendamento[0].checked = true;
+	frm.txAS.value = "<%=auxAS%>";
+	BuscaAS();
+    mudaAS2('Os','OS Associada:',frm.txAS.value,'<%=auxOS%>')
+<%else%>
+	document.getElementById("tabAgendamento").style.display = "none";
+	frm1.cmbAgendamento[1].checked = true;
+	//PreparaCampos()
+<%end if%>
 
-    frm.responsavel.value="<%=ucase(auxarqresponsavel)%>"
+    frm.responsavel.value="<%=ucase(auxarqresponsavel)%>";
 
-    <%if auxconfidencial then%>
+<%if auxconfidencial then%>
     frm.chkconfidencial.checked = true;
-    <%end if%>
+<%end if%>
 
-    <%if ehValidacao then%>
-	    document.formulario.btnEnviar.value="  Validar  " ;         
-	    frm1.cmbAgendamento[1].disabled = true;
-	    frm1.cmbAgendamento[0].disabled = true;
-	    frm1.tipoarquivo.disabled = true;
-	    frm1.titulo.disabled = true;
-	    frm1.diaatualiz.disabled = true;
-	    frm1.mesatualiz.disabled = true;
-	    frm1.anoatualiz.disabled = true;	
-	    frm1.o1.disabled = true;	
-	    frm1.o2.disabled = true;	
-	    frm1.o3.disabled = true;		
-	    frm1.situacao.disabled = true;
-	    frm1.responsavel.disabled = true;
-	    frm1.descricao.disabled = true;
-	    frm1.observacao.disabled = true;
-	    frm1.chkconfidencial.disabled = true;
-	    frm1.versao.disabled = true;
+<%if ehValidacao then%>
+	document.formulario.btnEnviar.value="  Validar  " ;         
+	frm1.cmbAgendamento[1].disabled = true;
+	frm1.cmbAgendamento[0].disabled = true;
+	frm1.tipoarquivo.disabled = true;
+	frm1.titulo.disabled = true;
+	frm1.diaatualiz.disabled = true;
+	frm1.mesatualiz.disabled = true;
+	frm1.anoatualiz.disabled = true;	
+	frm1.o1.disabled = true;	
+	frm1.o2.disabled = true;	
+	frm1.o3.disabled = true;		
+	frm1.situacao.disabled = true;
+	frm1.responsavel.disabled = true;
+	frm1.descricao.disabled = true;
+	frm1.observacao.disabled = true;
+	frm1.chkconfidencial.disabled = true;
+	frm1.versao.disabled = true;
 
-	    frm1.tipoarquivo.style.backgroundColor = "#EEEEEE";	
-	    frm1.titulo.style.backgroundColor = "#EEEEEE";	
-	    frm1.diaatualiz.style.backgroundColor = "#EEEEEE";	
-	    frm1.mesatualiz.style.backgroundColor = "#EEEEEE";	
-	    frm1.anoatualiz.style.backgroundColor = "#EEEEEE";	
-	    frm1.o1.style.backgroundColor = "#EEEEEE";	
-	    frm1.o2.style.backgroundColor = "#EEEEEE";	
-	    frm1.o3.style.backgroundColor = "#EEEEEE";	
-	    frm1.situacao.style.backgroundColor = "#EEEEEE";	
-	    frm1.responsavel.style.backgroundColor = "#EEEEEE";	
-	    frm1.descricao.style.backgroundColor = "#EEEEEE";	
-	    frm1.observacao.style.backgroundColor = "#EEEEEE";	
-	    frm1.chkconfidencial.style.backgroundColor = "#EEEEEE";	
-	    frm1.versao.style.backgroundColor = "#EEEEEE";	
-    <%end if%>
+	frm1.tipoarquivo.style.backgroundColor = "#EEEEEE";	
+	frm1.titulo.style.backgroundColor = "#EEEEEE";	
+	frm1.diaatualiz.style.backgroundColor = "#EEEEEE";	
+	frm1.mesatualiz.style.backgroundColor = "#EEEEEE";	
+	frm1.anoatualiz.style.backgroundColor = "#EEEEEE";	
+	frm1.o1.style.backgroundColor = "#EEEEEE";	
+	frm1.o2.style.backgroundColor = "#EEEEEE";	
+	frm1.o3.style.backgroundColor = "#EEEEEE";	
+	frm1.situacao.style.backgroundColor = "#EEEEEE";	
+	frm1.responsavel.style.backgroundColor = "#EEEEEE";	
+	frm1.descricao.style.backgroundColor = "#EEEEEE";	
+	frm1.observacao.style.backgroundColor = "#EEEEEE";	
+	frm1.chkconfidencial.style.backgroundColor = "#EEEEEE";	
+	frm1.versao.style.backgroundColor = "#EEEEEE";	
+<%end if%>
 
-    function selexcluir() {
+    function selexcluir()
+    {
 	    var frm = document.forms[0]
 	    resposta = confirm("Deseja que a exclusão deste arquivo seja comunicado via e-mail aos usuarios CRT?")
 	    if (resposta)
