@@ -222,7 +222,7 @@ end if
 <tr>
 	<td colspan="10">
 	    <div class="largura-total" style="height:90px; border: solid thin silver; marginheight:0; marginwidth:0;">
-	    <iframe id="frame_LB_acao" style="width: 100%; height: 200px;" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="cad_evLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>" frameborder="0" scrolling="Auto"></iframe>
+	    <iframe id="frame_LB_acao" style="width: 100%; height: 200px; border: none;" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="cad_evLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>" frameborder="0" scrolling="Auto"></iframe>
 	    </div>
 	</td>
 </tr>

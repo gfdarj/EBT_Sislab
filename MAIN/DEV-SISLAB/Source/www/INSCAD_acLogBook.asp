@@ -26,7 +26,6 @@ If Form.State = 0 Then
     subPasta = Form.SubPastaLB(Form.Item("ocorrencia"))
     If subPasta <> "" Then subPasta = subPasta & "\" 
 
-
     '-- Excluir um arquivo anexo da ação
     If Form.Item("id_ArquivoExclusao") <> "" Then
 
@@ -42,7 +41,7 @@ If Form.State = 0 Then
 
 	    If idacao > -1 Then
 		    'On Error Resume Next
-		    Form.DeleteFile(pastaArquivos & subPasta & Form.Item("id_ArquivoExclusaoNome"))
+		    Call Form.DeleteFile(pastaArquivos & subPasta & Form.Item("id_ArquivoExclusaoNome"))
 		    'On Error Goto 0
 	    End If
 
@@ -71,13 +70,13 @@ If Form.State = 0 Then
 		    End With
 		    Call Env.StoredProcedure(false, objSP, "sp_ApagaLogBookAcaoTomada")
 
-		    On Error Resume Next
+		    'On Error Resume Next
 		    While Not RS.Eof
-		        Form.DeleteFile(pastaArquivos & subPasta & RS(0))
+		        Call Form.DeleteFile(pastaArquivos & RS(0))
 			    RS.MoveNext
 		    WEnd
 		    RS.Close
-		    On Error Goto 0
+		    'On Error Goto 0
 		    Set RS = Nothing
 
 	    Else
@@ -98,18 +97,6 @@ If Form.State = 0 Then
 		    If obs = "" Then obs = Null
 		    tipoacao = Form.Item("cmbAcao")
 		    If tipoacao = "" Then tipoacao = Null Else tipoacao = cint(tipoacao)
-
-    'response.write "<BR>idacao: " & idacao
-    'response.write "<BR>ocorrencia: " & Form.Item("ocorrencia")
-    'response.write "<BR>descricao: " & descricao
-    'response.write "<BR>executante: " & executante
-    'response.write "<BR>prazo: " & prazo
-    'response.write "<BR>conclusao: " & conclusao
-    'response.write "<BR>eficacia: " & eficacia
-    'response.write "<BR>obs: " & obs
-    'response.write "<BR>tipoacao: " & tipoacao
-    'response.write "<BR>arquivo: " & arquivo
-    'response.write "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
 
             For each Field in Form.Files.Items
                 If Not VVVNZ(Field.FileName) Then

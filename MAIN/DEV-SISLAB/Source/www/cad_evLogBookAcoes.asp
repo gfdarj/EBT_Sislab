@@ -66,12 +66,12 @@ else
 <%		end if%>
 </tr>
 <%		objRS.MoveNExt
-	wend
-end if
+	WEnd
+End If
 %>
 <table>
 
-<form name="form_exclui_acao" action="INSCAD_acLogBook.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
+<form name="form_exclui_acao" action="insCad_acLogBook.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
     <input type="hidden" name="remover" value="1">
     <input type="hidden" name="idacao" value="">
     <input type="hidden" name="ocorrencia" value="<%=oc%>">
