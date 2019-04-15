@@ -405,18 +405,21 @@ End Function
 '-- tive que colocar este pq o paulo fez uma zona complicando uma coisa
 '-- que deveria ser fácil - nas outras combos ele poe o VALUE combinado com 
 '-- o ID + DESCRICAO (Gilberto)
-function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index) %>
+Function ControleComboMultiplo3(nome, titulo, nomeCampo1, sql, index) %>
 <script type="text/javascript">
-    function adiciona_retira_<%=nome%>(tipo) {
-	    var frm = document.forms[0]
+    function adiciona_retira_<%=nome%>(tipo)
+    {
+        var frm = document.forms[0];
 	    var fac = frm.cmb<%=nome%>;
 	    var lista = frm.lst<%=nome%>;
 	    var str1 = frm.str<%=nome%>;
 
-	    if (tipo == 0){
-		    if (lista.selectedIndex != -1){
-			    str1.value = replaceSubstring(str1.value, lista.options[lista.selectedIndex].value + '<%=SEPARADOR_REGISTRO%>', "");
-			    lista.options[lista.selectedIndex]=null;
+        if (tipo == 0)
+        {
+            if (lista.selectedIndex != -1)
+            {
+                str1.value = str1.value.replace(lista.options[lista.selectedIndex].value + "<%=SEPARADOR_REGISTRO%>", "");
+                lista.remove(lista.selectedIndex);
 		    }
 	    }
 	    else{
@@ -425,12 +428,13 @@ function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index) %>
 			    fac.focus();		
 		    }
 		    else{
-			    adiciona<%=nome%>()
+                adiciona<%=nome %>();
 		    }
 	    }
     }
 
-    function adiciona<%=nome%>(){
+    function adiciona<%=nome%> ()
+    {
 	    var frm = document.forms[0];
 	    var last, cont, exists = false;
 	    var fac = frm.cmb<%=nome%>;
@@ -460,7 +464,7 @@ function ControleComboMultiplo3(nome,titulo,nomeCampo1,sql,index) %>
     }
 </script>
 
-<input type="hidden" name="str<%=Nome%>"/>
+<input type="hidden" name="str<%=Nome%>" value=""/>
 
 <div class="linha-fundo"><strong><%=titulo%></strong></div>
 

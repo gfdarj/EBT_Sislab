@@ -165,7 +165,7 @@ auxPadronizado = (request("chkPadronizado")="on")
 		</tr>
 		<tr>
 			<td colspan="3">
-				Nome ou E-mail do Solicitante:&nbsp;
+				E-mail do Solicitante:&nbsp;
 				<input type="text" size="30" maxlength="50" name="solicitante" >
 			</td>
 			<td colspan="7">
@@ -190,7 +190,7 @@ auxPadronizado = (request("chkPadronizado")="on")
 		</tr>
 		<tr>
 			<td colspan="6">
-				Nome ou E-mail do participante:&nbsp;
+				E-mail do participante:&nbsp;
 				<input type="text" size="30" maxlength="50" name="participante" >
 			</td>
 			<td colspan="4">

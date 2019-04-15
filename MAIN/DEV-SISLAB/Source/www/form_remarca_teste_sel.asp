@@ -24,7 +24,8 @@ tipo_remarca = request("tipo_remarca")
 <div class="margem-10">
     <table class="table-bordered table-condensed table-striped table-hover" style="width: 100%;">
 	<tr>
-		<th>N<sup>o</sup> Agendamento - Tipo de Teste</th>
+        <th>AS</th>
+		<th>Tipo de Teste</th>
 		<th style="text-align: center;">Situação</th>
 		<th style="text-align: center;">Tecnologia</th>
 		<th style="text-align: center;">Solicitante</th>
@@ -41,13 +42,14 @@ tipo_remarca = request("tipo_remarca")
 	If tipo_remarca <> "S" Then
 		strSQL = strSQL & " AND a.AG_USERNAME = '" & Env.Usuario & "'"
 	End If
-	strSQL = strSQL & " ORDER BY a.AG_Numero"
+	strSQL = strSQL & " ORDER BY a.AG_Numero DESC"
 	Call Env.RecordSet(True, rs_numteste, strSQL)
 
 	While Not rs_numteste.EOF %>
 	<tr>
-		<td style="text-align: justify;">
-			<a href="javascript:abre(<%=rs_numteste("AG_NUMERO")%>)">N<sup>o</sup> AS: <%=rs_numteste("AG_NUMERO")%> - <%=rs_numteste("TA_DESCRICAO")%>  - <%=rs_numteste("AG_TITULO")%></a>
+        <td><a href="javascript:abre(<%=rs_numteste("AG_NUMERO")%>)"><%=rs_numteste("AG_NUMERO")%></a></td>
+		<td style="text-align: left;">
+			<%=IIf(VVVNZ(rs_numteste("TA_DESCRICAO")), "", rs_numteste("TA_DESCRICAO") & " - ") & rs_numteste("AG_TITULO")%>
 		</td>
 <!--
         1	Cadastrado
@@ -79,7 +81,7 @@ tipo_remarca = request("tipo_remarca")
             <span class="<%=cor%>"><%=rs_numteste("S_DESCRICAO")%>&nbsp;</span>
 		</td>
 		<td style="text-align: center;"><%=rs_numteste("TEC_NOME")%>&nbsp;</td>
-		<td style="text-align: justify;">
+		<td style="text-align: left;">
 <%		Call Ebt.BuscaDadosEmbratel(rs_numteste("ag_username"))
 
 	    If Ebt.EhFuncionario Then

@@ -706,7 +706,7 @@ end if
 	if situacao_ag <> AS_Cadastrado and not (bln_ehRAT or bln_ehRT) then%>
 		alert('ATENÇÃO !\n\nEste agendamento não pode mais sofrer alterações, por favor\nentre em contato com o Responsável Técnico.');
 <%	else%>
-		var jan = window.open('cadAgendamentoUploadCliente.asp?agendamento=<%=num_ag%>', 'cadAgendamentoUploadCliente', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=460,height=300,top=5,left=5');
+		var jan = window.open('cadAgendamentoUploadCliente.asp?agendamento=<%=num_ag%>', 'cadAgendamentoUploadCliente', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=730,height=530,top=5,left=5');
 		jan.focus();
 <%	end if%>
 <%end if%>

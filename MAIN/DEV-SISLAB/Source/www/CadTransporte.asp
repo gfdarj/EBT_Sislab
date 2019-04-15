@@ -117,7 +117,6 @@ End If
 </script>
 
 <div class="margem-10">
-    <br />
     <h2 style="text-align: center;">TRANSPORTES DO CRT</h2>
 
     <form name="frm" action="" method="post" target="escondido">
@@ -128,7 +127,7 @@ End If
 
             <div class="row">
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
 
         <table class="table-bordered table-condensed" id="tb_horarios" >
         <tr>
@@ -149,7 +148,7 @@ While Not RS.Eof
 		chr_Buf =  chr_Buf & _
 				"		<input name='ida" & RS(0) & "' type='text' size='6' maxlength='5' value='" & Left(rs(1), 5) & "'>"
 	Else
-		chr_Buf =  chr_Buf & "<h3>" & Left(rs(1), 5) & "</h3>"
+		chr_Buf =  chr_Buf & "<h4>" & Left(rs(1), 5) & "</h4>"
 	End If
 
 	chr_Buf =  chr_Buf & _
@@ -160,7 +159,7 @@ While Not RS.Eof
 		chr_Buf =  chr_Buf & _
 				"		<input name='volta" & RS(0) & "' type='text' size='6' maxlength='5'  value='" & Left(rs(2), 5) & "'>"
 	Else
-		chr_Buf =  chr_Buf & "<h3>" & Left(rs(2), 5) & "</h3>"
+		chr_Buf =  chr_Buf & "<h4>" & Left(rs(2), 5) & "</h4>"
 	End If
 
 	chr_Buf =  chr_Buf & _
@@ -186,19 +185,92 @@ WEnd
 
                 </div> <!-- 1a coluna -->
 
-                <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h3>Transporte Campinas</h3>
-                </div>--> <!-- 2a coluna -->
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                    <table class="table-condensed table-bordered">
+                        <tr>
+                            <th style="text-align: center;">Morumbi > Verbo</th>
+                            <th style="text-align: center;">Henri Dunant > Verbo</th>
+                            <th style="text-align: center;">Verbo > Morumbi</th>
+                            <th style="text-align: center;">Henri Dunant > Morumbi</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>09:15</h4></td>
+                            <td style="text-align: center;"><h4>09:35</h4></td>
+                            <td style="text-align: center;"><h4>09:15</h4></td>
+                            <td style="text-align: center;"><h4>09:30</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>09:55</h4></td>
+                            <td style="text-align: center;"><h4>10:15</h4></td>
+                            <td style="text-align: center;"><h4>09:55</h4></td>
+                            <td style="text-align: center;"><h4>10:10</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>10:35</h4></td>
+                            <td style="text-align: center;"><h4>10:55</h4></td>
+                            <td style="text-align: center;"><h4>10:35</h4></td>
+                            <td style="text-align: center;"><h4>10:50</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>11:15</h4></td>
+                            <td style="text-align: center;"><h4>11:35</h4></td>
+                            <td style="text-align: center;"><h4>11:15</h4></td>
+                            <td style="text-align: center;"><h4>11:30</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>11:55</h4></td>
+                            <td style="text-align: center;"><h4>12:15</h4></td>
+                            <td style="text-align: center;"><h4>11:55</h4></td>
+                            <td style="text-align: center;"><h4>12:10</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>12:35</h4></td>
+                            <td style="text-align: center;"><h4>12:55</h4></td>
+                            <td style="text-align: center;"><h4>12:35</h4></td>
+                            <td style="text-align: center;"><h4>12:50</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>14:00</h4></td>
+                            <td style="text-align: center;"><h4>14:20</h4></td>
+                            <td style="text-align: center;"><h4>14:00</h4></td>
+                            <td style="text-align: center;"><h4>14:15</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>14:40</h4></td>
+                            <td style="text-align: center;"><h4>15:00</h4></td>
+                            <td style="text-align: center;"><h4>14:40</h4></td>
+                            <td style="text-align: center;"><h4>14:55</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>15:20</h4></td>
+                            <td style="text-align: center;"><h4>15:40</h4></td>
+                            <td style="text-align: center;"><h4>15:20</h4></td>
+                            <td style="text-align: center;"><h4>15:35</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>16:00</h4></td>
+                            <td style="text-align: center;"><h4>16:20</h4></td>
+                            <td style="text-align: center;"><h4>16:00</h4></td>
+                            <td style="text-align: center;"><h4>16:15</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>16:40</h4></td>
+                            <td style="text-align: center;"><h4>17:00</h4></td>
+                            <td style="text-align: center;"><h4>16:40</h4></td>
+                            <td style="text-align: center;"><h4>16:55</h4></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><h4>17:20</h4></td>
+                            <td style="text-align: center;"><h4>17:40</h4></td>
+                            <td style="text-align: center;"><h4>17:20</h4></td>
+                            <td style="text-align: center;"><h4>17:35</h4></td>
+                        </tr>
+                    </table>
 
-                <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h3>Transporte Morumbi</h3>
-                </div>--> <!-- 3a coluna -->
+                </div> <!-- 3a coluna -->
 
             </div>
         </div>
-
-
-
 
 
 <%
@@ -214,13 +286,13 @@ If bln_EhRat And bln_Alteracao And (Not bln_Imprime) Then
         </tr>
         <tr>
 	        <td align='center'>
-		        <input name='ida' type='text' class='texto1' size='6' maxlength='5' value=''>
+		        <input name='ida' type='text' size='6' maxlength='5' value=''>
 	        </td>
 	        <td align='center'>
-		        <input name='volta' type='text' class='texto1' size='6' maxlength='5'  value=''>
+		        <input name='volta' type='text' size='6' maxlength='5'  value=''>
 	        </td>
 	        <td align='center'>
-		        <input name='btn_novo' type='button' class='texto1' value='Adicionar' onClick="javascript:novo();">
+		        <input name='btn_novo' type='button' value='Adicionar' onClick="javascript:novo();">
 	        </td>
         </tr>
         </table>

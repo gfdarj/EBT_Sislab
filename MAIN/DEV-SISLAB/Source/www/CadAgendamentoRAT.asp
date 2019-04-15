@@ -187,10 +187,10 @@ End If
 
 <form method="post" action="CadAgendamentoRatA.asp" name="frmAgendaTeste">
 
-<input type="hidden" name="hdnSituacao">
+<input type="hidden" name="hdnSituacao" value="">
 <input type="hidden" name="hdAG" value="<%=num_ag%>">
-<input type="hidden" name="strParticipantesEBT">
-<input type="hidden" name="strAmbientesOriginal">
+<input type="hidden" name="strParticipantesEBT" value="">
+<input type="hidden" name="strAmbientesOriginal" value="">
 <input type="hidden" name="rat_original" value="<%=UCase(objSiteRS("ag_rat"))%>">
 <input type="hidden" name="rt_original" value="<%=UCase(objSiteRS("ag_responsavel"))%>">
 
