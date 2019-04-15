@@ -203,4 +203,23 @@ Function InsereBR(valor, tamanho)
 
 	InsereBR = chr_Buf
 End Function
+
+
+'ORDENA UM ARRAY
+Function sortArray(arrShort)
+    Dim i, j, temp
+
+    For i = UBound(arrShort) - 1 To 0 Step -1
+        for j= 0 to i
+            if arrShort(j)>arrShort(j+1) then
+                temp=arrShort(j+1)
+                arrShort(j+1)=arrShort(j)
+                arrShort(j)=temp
+            end if
+        next
+    next
+
+    sortArray = arrShort
+End Function
+
 %>

@@ -3,6 +3,8 @@
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <%
+Server.ScriptTimeout = 36000
+
 Dim RS, objRS, cont, sSQL, auxusername, objRS_Servico
 Dim auxidservico, auxag, auxnome, auxOrgao, chr_NomeReduzido
 Dim auxRamal, matricula, rst, obj1, linkVoltar, auxEmail
@@ -37,7 +39,7 @@ Set Ebt = New TEbt
 bln_ExistePesquisa = False
 
 auxidservico = 0
-auxusername = Env.Usuario
+auxusername = LCase(Env.Usuario)
 auxEmail = Env.Usuario
 auxag = ""
 
@@ -67,20 +69,20 @@ end if
 If VVVNZ(auxag) Then
 
 	sSQL = _
-		"SELECT a.* " & _
+		"SELECT a.AG_NUMERO, a.AG_USERNAME, a.AG_OBJETIVO " & _
 		"FROM vw_Agendamento a " & _
 		"LEFT JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & _
 		"WHERE ID_SITUACAO = " & AS_Finalizado & " "
 
 	'### Filtros de quem é o usuario entrando na pagina
 	If Not ehCRT Then
-		sSQL = sSQL & "and AG_USERNAME = '" & auxusername & "' "
+		sSQL = sSQL & "and LOWER(AG_USERNAME) = '" & LCase(auxusername) & "' "
         solicitante_procurado = auxusername
     Else
 	    If Not VVVN(RQ("solicitante")) Then
-		    sSQL = sSQL & "and AG_USERNAME = '" & RQ("solicitante") & "' "
+		    sSQL = sSQL & "and LOWER(AG_USERNAME) = '" & LCase(RQ("solicitante")) & "' "
 	    End If
-        solicitante_procurado = RQ("solicitante")
+        solicitante_procurado = LCase(RQ("solicitante"))
 	End If
 	If RQ("exibir") = "" Then
 		sSQL = sSQL & "and p.PSQ_NAg IS NULL "
@@ -97,13 +99,19 @@ If VVVNZ(auxag) Then
 	'### escolher multiplos itens se forem agendamentos sem resposta !!!
 %>
 <div class="margem-10">
+<%  
+    If (objRS.Eof And objRS.Bof) Then %>
+
+    <p>Opa! Não existem agendamentos disponíveis.</p>
+
+<%  Else %>
     <form name="formulario" method="post" >
     <p><b>Selecione um ou mais agendamento(s):</b><%=IIf(VVVN(RQ("exibir")), "&nbsp;<i>(Para selecionar mais de um agendamento utilize a tecla <u>Shift</u> ou <u>Ctrl</u>)</i>", "")%></p>
     <p><select <%=IIf(VVVN(RQ("exibir")), "multiple", "")%> name="num_ag"  size="15" style="width: 700px;">
-<%	while not objRS.Eof%>
-        <option value="<%=objRS("AG_NUMERO")%>"><%=objRS("AG_NUMERO")%> (<%=UCase(objRS("AG_USERNAME"))%>) - <%=left(objRS("AG_OBJETIVO"),100)%></option>
-<%		objRS.MoveNext
-	wend%>
+<%	    While Not objRS.Eof %>
+        <option value="<%=objRS("AG_NUMERO")%>"><%=objRS("AG_NUMERO")%> (<%=LCase(objRS("AG_USERNAME"))%>) - <%=left(objRS("AG_OBJETIVO"),100)%></option>
+<%		    objRS.MoveNext
+    	WEnd %>
     </select></p>
     <p>
 	    <b>Exibir:</b>&nbsp;<select name="exibir"  onchange="javascript:trocaAS();">
@@ -111,20 +119,22 @@ If VVVNZ(auxag) Then
 	    <option value="T" <%=IIf(RQ("exibir") = "T", "selected", "")%>>Todos os Agendamentos</option>
 	    <option value="R" <%=IIf(RQ("exibir") = "R", "selected", "")%>>Somente Agendamentos com Respostas</option>
 	    </select>
-<%	If ehCRT Then
-		sSQL = "SELECT DISTINCT AG_USERNAME " & _
-			"FROM vw_Agendamento a " & _
-			"LEFT JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & _
-			"WHERE ID_SITUACAO = " & AS_Finalizado & " "
+<%      Response.Flush
 
-		If (not ehRAT) Or (ehCRT And RQ("exibir") = "") Then sSQL = sSQL & "and p.PSQ_NAg IS NULL "
-		If ehCRT And RQ("exibir") = "R" Then sSQL = sSQL & "and p.PSQ_NAg IS NOT NULL "
+        If ehCRT Then
+		    sSQL = "SELECT DISTINCT AG_USERNAME " & _
+			    "FROM vw_Agendamento a " & _
+			    "LEFT JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & _
+			    "WHERE ID_SITUACAO = " & AS_Finalizado & " "
 
-		sSQL = sSQL & "ORDER BY AG_USERNAME"
+		    If (not ehRAT) Or (ehCRT And RQ("exibir") = "") Then sSQL = sSQL & "and p.PSQ_NAg IS NULL "
+		    If ehCRT And RQ("exibir") = "R" Then sSQL = sSQL & "and p.PSQ_NAg IS NOT NULL "
 
-		Call Env.RecordSet(true, objRS, sSQL)
+		    sSQL = sSQL & "ORDER BY AG_USERNAME"
 
-		If Not objRS.Eof Then 
+		    Call Env.RecordSet(true, objRS, sSQL)
+
+    		If Not objRS.Eof Then 
 %>
 	    &nbsp;&nbsp;&nbsp;
 	    <b>Exibir Solicitante:</b>
@@ -133,27 +143,29 @@ If VVVNZ(auxag) Then
 	    <option value="--">-----------------------</option>
 	    <option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>
 	    <option value="--">-----------------------</option>
-<%			While Not objRS.Eof
-                Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
+<%  			While Not objRS.Eof
+                    Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
 
-				If objRS("AG_USERNAME") <> Env.Usuario Then %>
-    	<option value="<%=objRS("AG_USERNAME")%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
-<%				End If
+		    		If LCase(objRS("AG_USERNAME")) <> LCase(Env.Usuario) Then %>
+    	<option value="<%=LCase(objRS("AG_USERNAME"))%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
+<%  				End If
 
-				objRS.MoveNext
-			WEnd %>
+				    objRS.MoveNext
+			    WEnd %>
 	    </select>
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             document.all.solicitante.value = '<%=solicitante_procurado%>';
         </script>
 <%
-		End If
-	Else %>
+		    End If
+	    Else %>
     	<input type="hidden" name="solicitante" value="<%=auxusername%>">
-<%	End If '### EhCRT %>
+<%	    End If '### EhCRT %>
     </p>
     <p><input type="button"  value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
     </form>
+<%  End If %>
+
 </div>
 
 <script type="text/javascript">

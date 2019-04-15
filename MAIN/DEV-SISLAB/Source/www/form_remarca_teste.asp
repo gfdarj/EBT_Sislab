@@ -102,7 +102,7 @@ set rs_agendamento = nothing
 
 <script type="text/javascript">
     var msgMotivo,remarca
-    msgMotivo = "O campo 'Motivo do Cancelamento' deve ser preenchido."
+    msgMotivo = "O campo 'Motivo' deve ser preenchido."
     remarca = 0
     //=========================================================================================
     function montaInicio()
@@ -319,7 +319,7 @@ set rs_agendamento = nothing
 
     <p >
         <div style="vertical-align: top; ">
-            <div style="display:inline-block; vertical-align:top;">Motivo do Cancelamento:</div>
+            <div style="display:inline-block; vertical-align:top;">Motivo:</div>
 	        <div style="display:inline-block; vertical-align: top;"><TEXTAREA  cols=80 name=txaMotivo rows=3 tabIndex=28></TEXTAREA></div>
         </div>
     </p>

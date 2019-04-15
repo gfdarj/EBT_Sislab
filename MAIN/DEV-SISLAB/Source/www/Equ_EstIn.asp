@@ -19,16 +19,15 @@ int_Cols = objSiteRS(0)
 call Env.RecordSet(False, objSiteRS, sSQL)
 %>
 
-<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" width="100%">
-<tr>
-	<td colspan="<%=int_Cols%>" class='texto1' align="center">
-		<span style='font-size: 15px;'>ESTRUTURA INTERNA</span><br>
-		<a href="http://ntspo901/portalrh/organograma/embrapar.htm" target="_blank"><i>(veja o organograma da empresa aqui)</i></a>
-	</td>
-</tr>
-</table>
-<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" align="center">
-<tr>
+<div class="margem-10">
+    <div style="text-align: center;">
+		    <h3>ESTRUTURA INTERNA</h3>
+		    <a href="http://ntspo901/portalrh/organograma/embrapar.htm" target="_blank"><i>(veja o organograma da empresa aqui)</i></a>
+    </div>
+    <br />
+
+    <table border="0" cellpadding="2" cellspacing="4" class="table-condended" align="center">
+    <tr>
 <%
 	int_Cols = int_Cols * 1.5
 	int_SizeCols = Round(100/int_Cols)
@@ -37,7 +36,7 @@ call Env.RecordSet(False, objSiteRS, sSQL)
 	Next
 	RW "<td width='*'></td>"
 %>
-</tr>
+    </tr>
 <%
 sSQL="Select * from Orgao WHERE ORGA_EXIBIR = 1 ORDER BY ORGA_HIERARQUIA ASC;"
 call Env.RecordSet( true, objSiteRS, sSQL)
@@ -84,31 +83,23 @@ End If
 
 Call Env.RecordSet(False, objSiteRS, sSQL)
 %>
-</table>
+    </table>
 
-<br>
-
-<table border="0" cellpadding="2" cellspacing="4" class="table-bordered" align="center">
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td colspan="4" align="center">
-		<span style='font-size: 15px;'>EQUIPE CRT</span><br>
-		<a target="_blank" href="http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/arquivos/DO%205.2-002_09%20-%20DESIGNAÇÃO%20DE%20FUNCOES%2010-07-06.pdf"><i>(veja o quadro com a designação de funções)</i></a>
-	</td>
-</tr>
-<tr>
-	<td bgcolor="#FFFFBB">&nbsp;Matrícula</td>
-	<td bgcolor="#FFFFBB">&nbsp;Empregado</td>
-	<td bgcolor="#FFFFBB">&nbsp;Ramal</td>
-	<td bgcolor="#FFFFBB">&nbsp;Username</td>
-</tr>
+    <table border="0" cellpadding="2" cellspacing="4" class="table-bordered table-condensed" align="center">
+    <tr>
+	    <td colspan="4" align="center">
+		    <h4>EQUIPE CRT</h4>
+		    <a target="_blank" href="http://ntspo901/PORTALVPR/ProjetosEAdmRede/EstrategiaPortifTec/SISLAB1/arquivos/DO%205.2-002_09%20-%20DESIGNAÇÃO%20DE%20FUNCOES%2010-07-06.pdf"><i>(veja o quadro com a designação de funções)</i></a>
+	    </td>
+    </tr>
+    <tr>
+	    <th bgcolor="#FFFFBB">&nbsp;Matrícula</th>
+	    <th bgcolor="#FFFFBB">&nbsp;Empregado</th>
+	    <th bgcolor="#FFFFBB">&nbsp;Ramal</th>
+	    <th bgcolor="#FFFFBB">&nbsp;Username</th>
+    </tr>
 <%
-sSQL="Select * from UserCRT where exibir=1 and not matricula is null order by nome asc ;"
+sSQL="SELECT * FROM UserCRT WHERE exibir=1 AND NOT matricula is null ORDER BY nome asc ;"
 call Env.RecordSet( true, objSiteRS, sSQL)
 
 If Not objSiteRS.EOF Then
@@ -116,12 +107,12 @@ If Not objSiteRS.EOF Then
 
 	Do while not(objSiteRS.eof)
 %>
-<tr>
-	<td>&nbsp;<%=objSiteRS("MATRICULA")%></td>
-	<td>&nbsp;<%=objSiteRS("NOME")%></td>
-	<td>&nbsp;<%=objSiteRS("RAMAL")%></td>
-	<td>&nbsp;<%=Ucase(objSiteRS("UserID"))%></td>
-</tr>
+    <tr>
+	    <td>&nbsp;<%=objSiteRS("MATRICULA")%></td>
+	    <td>&nbsp;<%=objSiteRS("NOME")%></td>
+	    <td>&nbsp;<%=objSiteRS("RAMAL")%></td>
+	    <td>&nbsp;<%=Ucase(objSiteRS("UserID"))%></td>
+    </tr>
 <%
 	objSiteRS.MoveNext
 	Loop
@@ -132,8 +123,9 @@ If Not objSiteRS.EOF Then
 
 End If
 %>
-</table>
-<br><br>
+    </table>
+    <br><br>
+</div>
 <%
 Call Tela.MostraRodape()
 %>

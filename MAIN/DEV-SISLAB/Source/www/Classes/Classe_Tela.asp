@@ -146,7 +146,10 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 		"<script language='JavaScript' src='" & PathRelativo & "includes/relogio.js'></script>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
-		"<body onunload='javascript: hideAguarde();'>"
+		"<body onunload='javascript: hideAguarde();' style='margin-right: 18px;'>"
+
+	'chr_Buffer = chr_Buffer & _
+    '    "<div class='container'>"
 
 	chr_Buffer = chr_Buffer & _
 		"<div id='divAguarde' class='tempo' style='display: none;'><table><tr><td><img src='" & PathRelativo & "img/tempo.gif' alt='Aguarde'></td><td>&nbsp;&nbsp;Aguarde...</td></tr></table></div>" & VbCrLf

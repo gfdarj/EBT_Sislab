@@ -234,7 +234,7 @@ Sub MontaVisaoPorSituacao
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
 			auxAG_DATATERMINO_F = objRS("AG_DATATERMINO_F")
-			auxRT = objRS("AG_RESPONSAVEL")
+			auxRT = LCase(objRS("AG_RESPONSAVEL"))
 			auxTEC = objRS("TEC_NOME")
 			if IsNull(auxTEC) then auxTEC = ""
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
@@ -406,7 +406,7 @@ Sub MontaVisaoPorSalas
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
 			auxAG_DATATERMINO_F = objRS("AG_DATATERMINO_F")
-			auxRT = objRS("AG_RESPONSAVEL")
+			auxRT = LCase(objRS("AG_RESPONSAVEL"))
 			auxTEC = objRS("TEC_NOME")
 			auxSala = objRS("AMB_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
@@ -583,7 +583,7 @@ Sub MontaVisaoPorPrioridade
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
 			auxAG_DATATERMINO_F = objRS("AG_DATATERMINO_F")
-			auxRT = objRS("AG_RESPONSAVEL")
+			auxRT = LCase(objRS("AG_RESPONSAVEL"))
 			auxTEC = objRS("TEC_NOME")
 			auxSala = objRS("AMB_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
@@ -756,7 +756,7 @@ Sub MontaVisaoPorDataTermino
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
 			auxAG_DATATERMINO_F = objRS("AG_DATATERMINO_F")
-			auxRT = objRS("AG_RESPONSAVEL")
+			auxRT = LCase(objRS("AG_RESPONSAVEL"))
 			auxTEC = objRS("TEC_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
@@ -925,7 +925,7 @@ Sub MontaVisaoPorRT
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
 			auxAG_DATATERMINO_F = objRS("AG_DATATERMINO_F")
-			auxRT = objRS("AG_RESPONSAVEL")
+			auxRT = LCase(objRS("AG_RESPONSAVEL"))
 			auxTEC = objRS("TEC_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
@@ -936,9 +936,9 @@ Sub MontaVisaoPorRT
 			    auxRespTec = "Nenhum RT definido"
             Else
                 If VVVN(objRS("NOME_RT")) Then
-    			    auxRespTec = objRS("AG_RESPONSAVEL")
+    			    auxRespTec = LCase(objRS("AG_RESPONSAVEL"))
                 Else
-    			    auxRespTec = objRS("NOME_RT") & " (" & objRS("AG_RESPONSAVEL") & ")"
+    			    auxRespTec = objRS("NOME_RT") & " (" & LCase(objRS("AG_RESPONSAVEL")) & ")"
                 End If
             End If
 
