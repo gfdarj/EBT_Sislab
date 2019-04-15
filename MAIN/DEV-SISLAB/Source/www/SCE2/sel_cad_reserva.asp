@@ -9,6 +9,8 @@
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
+Server.ScriptTimeout = 360000
+
 if UCase(request("abrir_como")) = "REL" then _
 	Tela.SetNomeTela = "SCE > Relatório > Reserva de Equipamento" _
 else _

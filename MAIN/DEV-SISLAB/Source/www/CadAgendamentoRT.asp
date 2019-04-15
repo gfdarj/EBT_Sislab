@@ -93,13 +93,13 @@ Call Tela.MostraCabecalho()
 	</td>
 	<td colspan="3" valign="top">
 		<%if Env.ehRAT or Env.ehRT then%>
-			<input type="button"  name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:150px;"/><br><br>
-			<input type="button"  name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:150px;"/><br><br>
-			<input type="button"  name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:150px;"/><br><br>
+			<input type="button" name="btAcao" value="Criar Nova OS" onClick="NovaOS()" style="width:150px;"/><br><br>
+			<input type="button" name="btAlterar" value="Alterar OS" onClick="AbreOS()" style="width:150px;"/><br><br>
+			<input type="button" name="btAcaoRem" value="Remover OS" onClick="RemoveOS()" style="width:150px;"/><br><br>
 		<%else%>
-			<input type="button"  name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
-			<input type="button"  name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
-			<input type="button"  name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
+			<input type="button" name="btAcao" value="Criar Nova OS" onClick="" disabled/><br><br>
+			<input type="button" name="btAlterar" value="Visualizar OS" onClick="AbreOS()"/><br><br>
+			<input type="button" name="btAcaoRem" value="Remover OS" onClick="" disabled/><br><br>
 		<%end if%>			
 	</td>
 </tr>
@@ -253,19 +253,13 @@ end if
 	    var janela = window.open("scc/selCadConsumivel.asp?Acao=CAD_RES_RT&ag_numero=<%=num_ag%>", "cad_reserva_acessorio_rt", "width=770, height=550, left=5, top=5, toolbar=no, status=yes, menubar=no, scrollbars=yes");
 	    janela.focus();
     }
-    function NovaOS(){
-    <%if necessita_os then%>
-	    var janela;
-	    janela = window.open("CadAgendamentoOS.asp?num_ag=<%=num_ag%>&num_os=<%=ultima0S+1%>&novaOS=1", "cad_contato", "width=690, height=550, toolbar=no, status=yes, menubar=no, scrollbars=yes");
-	    janela.focus();
-    <%else%>
-	    alert("ATENÇÃO !\n\nEste agendamento não necessita de OS. Veja com o seu RAT a necessidade de criação de OS´s.");
-    <%end if%>
-    }
-    function Recarrega(){
+
+    function Recarrega() {
 	    window.location.replace("CadAgendamentoRT.asp?hdAG=<%=num_ag%>")
     }
-    function RemoveOS(){
+
+    function RemoveOS()
+    {
 	    var janela;
 	    var frm = document.forms[0]
 	    var lista = frm.lstdisposicao
@@ -301,9 +295,25 @@ end if
 	        return;
         }
         else{
-	        janela = window.open("CadAgendamentoOS.asp?num_ag=<%=num_ag%>&num_os=" + lista[cta_id].value + "&novaOS=0", "cad_contato", "width=690, height=550, toolbar=no, status=yes, menubar=no, scrollbars=yes");
+            janela = window.open("CadAgendamentoOS.asp?num_ag=<%=num_ag%>&num_os=" +
+                lista[cta_id].value + "&novaOS=0",
+                "cad_contato",
+                "width=830, height=700, resizable=yes, toolbar=no, status=yes, menubar=no, scrollbars=yes");
 	        janela.focus();
         }
+    }
+
+    function NovaOS()
+    {
+    <%if necessita_os then%>
+	    var janela;
+        janela = window.open("CadAgendamentoOS.asp?num_ag=<%=num_ag%>&num_os=<%=ultima0S+1%>&novaOS=1",
+            "cad_contato",
+            "width=830, height=700, resizable=yes, toolbar=no, status=yes, menubar=no, scrollbars=yes");
+	    janela.focus();
+    <%else%>
+	    alert("ATENÇÃO !\n\nEste agendamento não necessita de OS. Veja com o seu RAT a necessidade de criação de OS´s.");
+    <%end if%>
     }
 </script>
 <%

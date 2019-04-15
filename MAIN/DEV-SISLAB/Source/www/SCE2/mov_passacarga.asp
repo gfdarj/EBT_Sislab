@@ -4,9 +4,11 @@
 <!--#include file="../includes/bib_str.asp"-->
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
-
 <%
+Server.ScriptTimeout = 360000
+
 Tela.SetNomeTela = "SCE > Movimentação > Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
+
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -28,7 +30,7 @@ if request("msg") = "1" then %>
 </tr>
 <tr><td>&nbsp;</td></tr>
 <%
-end if
+End If
 %>
 <tr><th>Meus agendamentos: (<small><%=Env.Usuario%></small>)</th></tr>
 <tr><td>&nbsp;</td></tr>
@@ -42,7 +44,8 @@ end if
 			var f = document.formulario;
             f.ag_numero_origem.onchange = BuscaEqOrigem;
 			f.txtAS_origem.onblur = BuscaEqOrigem;
-            function BuscaEqOrigem() {
+            function BuscaEqOrigem()
+            {
                 atualizarEQ(f.eq_origem, "ORIGEM", f.ag_numero_origem.value);
 			}
 		</script>

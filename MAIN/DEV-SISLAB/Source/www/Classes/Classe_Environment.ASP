@@ -61,7 +61,6 @@ Class TEnvironment
         p_moduloLog = UCase(modulo)
     End Property
 
-
     Public Property Get ehRT()
 	    'ehRT = Ebt.ehRT
 	    ehRT = True
@@ -87,11 +86,13 @@ Class TEnvironment
     End Property
 
     Public Property Get UsuarioSCE()
-        UsuarioSCE = Ebt.UsuarioSCE
+        'UsuarioSCE = Ebt.UsuarioSCE
+        UsuarioSCE = True
     End Property
 
     Public Property Get PerfilSCE()
-        PerfilSCE = Ebt.PerfilSCE
+        'PerfilSCE = Ebt.PerfilSCE
+        PerfilSCE = 1
     End Property
 
     Public Property Get UsuarioCRT_Cadastrado()

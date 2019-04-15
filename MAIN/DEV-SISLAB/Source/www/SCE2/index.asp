@@ -13,8 +13,10 @@ Dim chr_agrespon
 Dim chr_nf
 Dim chr_dtvenc
 Dim chr_empresa
+Dim chr_UsuarioSCE
 
 chr_User = Env.Usuario
+chr_UsuarioSCE = Env.UsuarioSCE()
 
 'response.write "<BR><BR><BR><BR>" & env.UsuarioSCE() & "<BR>"
 'response.write env.PerfilSCE()
@@ -22,7 +24,7 @@ chr_User = Env.Usuario
 Tela.SetNomeTela = "SCE"
 Call Tela.MostraCabecalho()
 
-If Env.UsuarioSCE() Then
+If chr_UsuarioSCE Then
     Dim Sce
 
     Set Sce = New TSce

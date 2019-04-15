@@ -6,6 +6,8 @@
 <!--#include file="../Classes/Classe_SCE.asp"-->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
+Server.ScriptTimeout = 360000
+
 Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 

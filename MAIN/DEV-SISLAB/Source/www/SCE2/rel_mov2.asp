@@ -115,8 +115,8 @@ If Env.UsuarioSCE() Then
 
 <div class="margem-10">
     <form name="formulario" action="sel_mov_acessorio.asp" method="post">
-        <input type="hidden" name="mov_id" value="">
-        <input type="hidden" name="ssql" value="<%=ssql%>"
+        <input type="hidden" name="mov_id" value="" />
+        <input type="hidden" name="ssql" value="<%=ssql%>" />
     </form>
 <%
 end if
@@ -124,7 +124,7 @@ end if
 Dim url_xls
 url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movimentação de Item&SQL=" & Server.UrlEncode(ssql) & """ target='_blank' alt='Exporta esta listagem para o Excel'><font color='#008000'><b>XLS</b></font></a></div>"
 %>
-<table width="100%" cellpadding="2" cellspacing="0" class="destaque">
+<table width="100%" cellpadding="2" cellspacing="0" >
 <tr>
 	<td>Listagem do relatório de movimentação de itens</td>
 	<td align="right"><%=url_xls%></td>

@@ -87,31 +87,32 @@ wend%>
 </div>
 
 <script type="text/javascript">
-function movimentarReserva() {
-	document.formulario.submit();
-}
-function imprimirLista() {
-	document.all.btnNovaConsulta.style.display = "none";
-	document.all.btnImprimir.style.display = "none";
-	document.all.btnMovimentar.style.display = "none";
+    function movimentarReserva()
+    {
+    	document.formulario.submit();
+    }
+    function imprimirLista() {
+	    document.all.btnNovaConsulta.style.display = "none";
+	    document.all.btnImprimir.style.display = "none";
+	    document.all.btnMovimentar.style.display = "none";
 
-	document.all.tr_data_movimento.style.display = "none";
-	document.all.tr_data_movimento_branco.style.display = "none";
+	    document.all.tr_data_movimento.style.display = "none";
+	    document.all.tr_data_movimento_branco.style.display = "none";
 
-	//imprimeConteudoSCE();
-	window.print();
+	    //imprimeConteudoSCE();
+	    window.print();
 
-	document.all.tr_data_movimento.style.display = "inline";
-	document.all.tr_data_movimento_branco.style.display = "inline";
+	    document.all.tr_data_movimento.style.display = "inline";
+	    document.all.tr_data_movimento_branco.style.display = "inline";
 
-	document.all.btnNovaConsulta.style.display = "inline";
-	document.all.btnImprimir.style.display = "inline";
-	document.all.btnMovimentar.style.display = "inline";
-}
+	    document.all.btnNovaConsulta.style.display = "inline";
+	    document.all.btnImprimir.style.display = "inline";
+	    document.all.btnMovimentar.style.display = "inline";
+    }
 
-document.formulario.diaMov.value = '<%=Zeros(Day(Date()),2)%>';
-document.formulario.mesMov.value = '<%=Zeros(Month(Date()),2)%>';
-document.formulario.anoMov.value = '<%=Year(Date())%>';
+    document.formulario.diaMov.value = '<%=Zeros(Day(Date()),2)%>';
+    document.formulario.mesMov.value = '<%=Zeros(Month(Date()),2)%>';
+    document.formulario.anoMov.value = '<%=Year(Date())%>';
 </script>
 <%
 Else

@@ -101,22 +101,26 @@ If Env.UsuarioSCE() Then
     Set objRS = Env.oconn.execute(s)
 %>
 <script type="text/javascript">
-var total_linhas = 0;
-var checkedAll = false;
-function checkAll() {
-	var f = document.forms[0]; var i;
-	var undef;
-	checkedAll = !checkedAll;
-	for(i=1; i<=total_linhas; i++)
-		f["eq_id_"+i].checked = checkedAll;
-}
+    var total_linhas = 0;
+    var checkedAll = false;
+    function checkAll() {
+	    var f = document.forms[0]; var i;
+	    var undef;
+	    checkedAll = !checkedAll;
+	    for(i=1; i<=total_linhas; i++)
+		    f["eq_id_"+i].checked = checkedAll;
+    }
 </script>
+
+<div class="margem-10">
+
 <form name="formulario">
-<table width="100%" border="0" >
+
+<table width="100%" >
 <tr>
 	<td>
 		<!--<div style="width: 100%; height: 200; overflow: auto; border: thin silver solid;">-->
-		<table  width="100%" border="1" cellpadding="2" cellspacing="0" style="border: thin silver solid;">
+		<table  width="100%" class="table-bordered table-condensed">
 		<tr valign="top">
 			<th><a href="#" onClick="javascript:checkAll();"><img src="img/checked.gif" border="0"></a></th>
 			<th align="left">C&oacute;digo de Barras</th>
@@ -183,48 +187,50 @@ end if%>
 	</td>
 </tr>
 </table>
+
 <script type="text/javascript">
-var w = window.opener;
-/* verifica se ja existe o equipamento na lista */
-function ExisteItemLista(eq_id) {
-	var linha = 1;
-	while (w.document.all["linha_"+linha] != null) {
-		if(w.document.all["item_"+linha].eq_id == eq_id)
-			return true;
-		linha++;
-	}
-	return false;
-}
+    var w = window.opener;
+    /* verifica se ja existe o equipamento na lista */
+    function ExisteItemLista(eq_id) {
+	    var linha = 1;
+	    while (w.document.all["linha_"+linha] != null) {
+		    if(w.document.all["item_"+linha].eq_id == eq_id)
+			    return true;
+		    linha++;
+	    }
+	    return false;
+    }
 
-/* inclui o item na janela pai */
-function IncluiListaItens() {
-	var f = document.all;
-	var i = 1, linha = 1;
-	linha = 0;
-	for(i=1; i <= total_linhas; i++) {
-		if( f["eq_id_"+i].checked ) {
-			if(ExisteItemLista(f["eq_id_"+i].value) ) 
-			//{
-				alert("O item " + f['linha_' + i + '_col_2'].innerText + ' já existe na lista !');
-			//}
-			//else {
-				/* insere o item e pega o numero da linha inserida na janela pai */
-				linha = w.InsereItem(1);
+    /* inclui o item na janela pai */
+    function IncluiListaItens() {
+	    var f = document.all;
+	    var i = 1, linha = 1;
+	    linha = 0;
+	    for(i=1; i <= total_linhas; i++) {
+		    if( f["eq_id_"+i].checked ) {
+			    if(ExisteItemLista(f["eq_id_"+i].value) ) 
+			    //{
+				    alert("O item " + f['linha_' + i + '_col_2'].innerText + ' já existe na lista !');
+			    //}
+			    //else {
+				    /* insere o item e pega o numero da linha inserida na janela pai */
+				    linha = w.InsereItem(1);
 
-				w.document.all["item_"+linha].eq_id = f["eq_id_"+i].value; // equip ID
-				w.document.all["item_"+linha].value = f["linha_"+(i)+"_col_2"].innerText; //cod barras
-				w.document.all["linha_"+linha+"_col_2"].innerText = f["linha_"+(i)+"_col_3"].innerText + ' <==> ' + f["linha_"+(i)+"_col_4"].innerText; //cod barras
-			//}
-			f["eq_id_"+i].disabled = true; f["eq_id_"+i].checked = false;
-		}
-	}
-}
-function avisoReserva(reservado, valor) {
-	if( (reservado != "") && (valor) )
-		alert("ATENÇÂO !\n\nEste item já está reservado.\n\nReserva(s): " + reservado);
-}
+				    w.document.all["item_"+linha].eq_id = f["eq_id_"+i].value; // equip ID
+				    w.document.all["item_"+linha].value = f["linha_"+(i)+"_col_2"].innerText; //cod barras
+				    w.document.all["linha_"+linha+"_col_2"].innerText = f["linha_"+(i)+"_col_3"].innerText + ' <==> ' + f["linha_"+(i)+"_col_4"].innerText; //cod barras
+			    //}
+			    f["eq_id_"+i].disabled = true; f["eq_id_"+i].checked = false;
+		    }
+	    }
+    }
+    function avisoReserva(reservado, valor) {
+	    if( (reservado != "") && (valor) )
+		    alert("ATENÇÂO !\n\nEste item já está reservado.\n\nReserva(s): " + reservado);
+    }
 </script>
 </form>
+</div>
 <br>
 <%
 Else

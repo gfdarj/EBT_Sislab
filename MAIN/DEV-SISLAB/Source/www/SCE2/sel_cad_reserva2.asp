@@ -295,8 +295,10 @@ While Not rec.eof
 <%	    ReservaOK = Sce.ReservaFechada(agnumero)
 
 		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
+            <br />
 		    <p class="texto-direito"><input type="button"  value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <%	    Elseif ReservaOK then%>
+            <br />
     		<p class="texto-direito"><small>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</small></p>
 <%		End if%>
         </td>
@@ -318,7 +320,7 @@ WEnd
 
     </center>
 
-    <iframe style="display: none;" name="escondido"></iframe>
+    <iframe name="escondido" style="display: none;"></iframe>
 
     <form name="formulario" action="sel_cad_reserva2_aceite.asp">
         <input type="hidden" name="ag_numero" value="">
@@ -335,11 +337,13 @@ WEnd
 
 	    document.all.lista_itens.length = 0;  // limpa o select
 	    document.all.ag_numero.value = ag_numero;
-	    for(i=1; i<= total_itens; i++)
+
+        for (i = 1; i <= total_itens; i++)
 	    {	// CONCATENO O SELECT COM O ACEITE + O ID DO EQUIPAMENTO, APENAS SE TODOS OS EQUIPAMENTOS
 		    // ESTIVEREM MARCADOS COMO ACEITO É CHAMADA A TELA DE MOVIMENTACAO
 		    // "1_" para ACEITO, "0_" para NAO ACEITO e "__" para nao escolhido
-		    if(document.all["aceite_" + ag_numero + "_"+i].value.substr(0,1) != "1") {
+            if (document.all["aceite_" + ag_numero + "_" + i].value.substr(0, 1) != "1")
+            {
 			    itemOK = false;  // algum item esta como Não ou sem aceite
 		    }
 		    oOption = document.createElement("OPTION");
@@ -350,7 +354,10 @@ WEnd
 		    oOption.selected = true;
 	    }
 
-	    if( !itemOK ) {
+//        alert("AQUI 1");
+
+        if (!itemOK)
+        {
 		    document.all.tudoAceitoOK.value = "NAO";
 		    if(!confirm("ATENÇÂO !\n\nExistem itens não aceitos ou não verificados.\n\nDeseja mesmo assim gravar a aceitação ?")) {
 			    return false;
@@ -359,8 +366,10 @@ WEnd
 	    else
 		    document.all.tudoAceitoOK.value = "SIM";
 
+//        alert("AQUI 2");
+
 	    if(document.all.lista_itens.length > 0) {
-		    document.formulario.target = "escondido";
+		    //document.formulario.target = "escondido";
 		    document.formulario.submit();
 	    }
 	    else
