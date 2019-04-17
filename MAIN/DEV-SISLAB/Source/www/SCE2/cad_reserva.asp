@@ -30,7 +30,7 @@ If Env.UsuarioSCE() Then
     Dim ehAgValido : ehAgValido = true
     Dim chr_SQL
 
-    ag_numero = trim(cstr(request("ag_numero")))
+    ag_numero = Trim(CStr(Request("ag_numero")))
     ''ag_numero = 968
 
     ambiente = ""
@@ -159,22 +159,28 @@ end if
 %>
 <tr>
 	<td colspan="2" valign="top">
-	    <strong>AS</strong><br />
-		<%'call comboAgendamento("txtAS", "ag_numero", conn, cstr(ag_numero), "N")%>
+	    <strong>Agendamento</strong><br />
 		<%RW Combo.MeusAgendamentos(False, "txtAS", "ag_numero", CStr(ag_numero), "N")%>
 		<script type="text/javascript">
 			var f = document.formulario;
-			f.ag_numero.onblur = BuscaDadosAS;
-			f.ag_numero.onchange = BuscaDadosAS;
-			f.txtAS.onblur = BuscaDadosAS;
-			function BuscaDadosAS() {
+			//f.ag_numero.onblur = BuscaDadosAS;
+			//f.ag_numero.onchange = BuscaDadosAS;
+			//f.txtAS.onblur = BuscaDadosAS;
+			function BuscaDadosAS()
+			{
 				//f.action = "busca_dados_AS.asp?ag_numero=" + f.ag_numero.value;
 				//f.target = "escondido";
 				f.action = "cad_reserva.asp";
 				f.target = "";
 				f.submit();
 			}
+<%      If ag_numero <> "" Then %>
+            //Chama as funções AJAX da combo MeusAgendamentos para fixar a AS selecionada
+            f.txtAS.value = "<%=ag_numero%>";
+			ajax_comboAgendamentoBuscaAStxtAS(f.txtAS.value);
+<%      End If %>
 		</script>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Buscar AS" onclick="BuscaDadosAS();"/>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
