@@ -148,8 +148,8 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 	chr_Buffer = chr_Buffer & _
 		"<body onunload='javascript: hideAguarde();' style='margin-right: 18px;'>"
 
-	'chr_Buffer = chr_Buffer & _
-    '    "<div class='container'>"
+	chr_Buffer = chr_Buffer & _
+        "<div class='XXXcontainer' style='XXXbackground-color: silver;'>"
 
 	chr_Buffer = chr_Buffer & _
 		"<div id='divAguarde' class='tempo' style='display: none;'><table><tr><td><img src='" & PathRelativo & "img/tempo.gif' alt='Aguarde'></td><td>&nbsp;&nbsp;Aguarde...</td></tr></table></div>" & VbCrLf
@@ -158,13 +158,13 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 
 	If p_imprimeImagem Then
 	    Call ImprimeImagemSite()
-	end if	'Imprime Tela   
+	End If	'Imprime Tela   
 %>
 
 <!--------------------- Imprime o nome do formulÃ¡rio na tela --------------------->
-<%		if p_nomeTela <> "" And usuario <> "" then
-            Call ImprimeNomeTela
-		end if
+<%  If p_nomeTela <> "" And usuario <> "" then
+        Call ImprimeNomeTela
+	End If
 %>
 <!--------------------- Imprime a tela Principal --------------------->
 
@@ -188,11 +188,11 @@ Private Sub ImprimeImagemSite()
     w_princ = p_tamanhoTela
     PathRelativo = p_PathRelativo
 %>
-		<table class="" border="0" cellspacing="0" cellpadding="0" style="width: <%=w_princ%>;" >
+		<table style="width: <%=w_princ%>;" >
         <tr>
             <td background="<%=PathRelativo%>img/titulo_bg.jpg" height="70" style="vertical-align: bottom;">
-                <div>
-                    <div style="float:left;">
+                <div style="width: 100%;">
+                    <div style="float:left; ">
                             <img src="<%=PathRelativo%>img/titulo_esquerda.jpg" border="0" 
                                 id="imgTituloEsquerda"  vertical-align: top;">
                             <img src="<%=PathRelativo%>img/titulo_centro.jpg" height="70"
@@ -219,10 +219,10 @@ Private Sub ImprimeImagemSite()
             </td>
         </tr>
         </table>
-
-<%			If p_imprimeMenu And Env.Usuario <> "" Then
-                Call ImprimeMenu()
-			end if%>
+<%
+    If p_imprimeMenu And Env.Usuario <> "" Then
+        Call ImprimeMenu()
+    end if%>
 
 <%
 End Sub
@@ -233,7 +233,7 @@ Private Sub ImprimeMenu() %>
     var st_path = "<%=p_PathRelativo%>includes/";
     var st_lib = "stm31.js";
     document.open();
-    document.write("<" + "script type='text/javascript' language='JavaScript1.2' src='" + st_path + st_lib + "'><" + "/script>");
+    document.write("<" + "script type='text/javascript' src='" + st_path + st_lib + "'><" + "/script>");
     document.close();
 	//-->
 </script>
@@ -241,7 +241,7 @@ Private Sub ImprimeMenu() %>
 <script type="text/javascript">
     <!--
     stm_bm(["tubtehr",400,"","<%=p_PathRelativo%>img/blank.gif",1,"0","stgct()",0,0,250,0,1000,1,0,0,"","",0],this);
-    stm_bp("p0",[0,4,0,0,0,2,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
+    stm_bp("p0",[0,4,0,0,0,2/*Height*/,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
     stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=p_PathRelativo%>index.asp","_self","","Retorna à página principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
     stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
     stm_aix("p0i1","p0i0",[0,"Serviços","","",-1,-1,0,"","_self","","Serviços e Agendamentos","","",0,0,0,"<%=p_PathRelativo%>img/arrow_r.gif","<%=p_PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
@@ -421,6 +421,7 @@ Public Sub MostraRodape()
 
 	chr_Buffer = chr_Buffer & VbCrLf & _
 		"</table>" & VbCrLf & _
+		"</div>" & VbCrLf & _
 		"</body>" & VbCrLf & _
 		"</html>"
 
