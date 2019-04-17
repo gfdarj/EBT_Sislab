@@ -10,8 +10,7 @@
 Response.Clear()
 
 '# Evitar problemas com acentuação no ajax
-'Response.Charset="ISO-8859-1"
-Response.Charset="utf-8"
+Response.Charset = Application("SISLAB_CHARSET")
 
 '#####
 '#	Atualiza o inventário do equipamento com a data de hoje

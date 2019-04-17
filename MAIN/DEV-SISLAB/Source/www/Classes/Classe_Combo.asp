@@ -440,24 +440,37 @@ End Function
 'antiga comboAgendamentoJS
 'cria a busca em javascript de uma combo
 Private Function MeusAgendamentosJS(nomeText, nomeCombo)
-
     buffer = _
-        "<script l" & "anguage='javasc" & "ript'>" & VbCrLf & _
-	    "function comboAgendamentoBuscaAS" & nomeText & "() {" & VbCrLf & _
-		"    var frm = document.forms[0];" & VbCrLf & _
-		"    var combo = frm." & nomeCombo & ";" & VbCrLf & _
-		"    indice = -1;" & VbCrLf & _
-		"    for(i=0; i<combo.length; i++)" & VbCrLf & _
-		"	    if (combo[i].value == frm." & nomeText & ".value)" & VbCrLf & _
-		"	    indice = i;" & VbCrLf & _
+        "<script type='text/javascript' src='../ajax/max_ajax_ref.js' ></script>" & VbCrLf & _
+        "<script t" & "ype='text" & "/jav" & "ascript'>" & VbCrLf & _
+	    "   function comboAgendamentoBuscaAS" & nomeText & "()" & VbCrLf & _
+        "   {" & VbCrLf & _
+		"       var frm = document.forms[0];" & VbCrLf & _
+		"       var combo = frm." & nomeCombo & ";" & VbCrLf & _
+		"       indice = -1;" & VbCrLf & _
+		"       for(i=0; i<combo.length; i++)" & VbCrLf & _
+		"	        if (combo[i].value == frm." & nomeText & ".value)" & VbCrLf & _
+		"	            indice = i;" & VbCrLf & _
         "" & VbCrLf & _
-		"    if (indice != -1)" & VbCrLf & _
-	  	"	    combo.options[indice].selected = true" & VbCrLf & _
-		"    else" & VbCrLf & _
-		"	    combo.options[0].selected = true" & VbCrLf & _
-	    "}" & VbCrLf & _
+		"       if (indice != -1)" & VbCrLf & _
+	  	"	        combo.options[indice].selected = true" & VbCrLf & _
+		"       else" & VbCrLf & _
+		"	        combo.options[0].selected = true" & VbCrLf & _
+	    "   }" & VbCrLf & _
+        "" & VbCrLf & _
+        "" & VbCrLf & _
+	    "   function ajax_comboAgendamentoBuscaAS" & nomeText & "(ag_numero)" & VbCrLf & _
+        "   {" & VbCrLf & _
+        "       var url = '../ajax/sce_combo_meusAgendamentos.asp?AS=' + ag_numero;" & VbCrLf & _
+        "       var maxAjaxObj = new max.Ajax(url,{update:'',onComplete:" & VbCrLf & _
+        "           function(texto,xml) {" & VbCrLf & _
+        "               document.all." & nomeCombo & ".innerHTML = texto;" & VbCrLf & _
+        "           }" & VbCrLf & _
+        "       });" & VbCrLf & _
+        "       maxAjaxObj.get();" & VbCrLf & _
+        "   }" & VbCrLf & _
 	    "</scr" & "ipt>" & VbCrLf & _
-	    "<input class='" & p_classe & "' type='Text' name='" & nomeText & "' size='4' onKeyUp='comboAgendamentoBuscaAS" & nomeText & "();'>&nbsp;" & VbCrLf
+	    "<input class='" & p_classe & "' type='Text' name='" & nomeText & "' size='4' onKeyUp='ajax_comboAgendamentoBuscaAS" & nomeText & "(this.value);'>&nbsp;" & VbCrLf
 
     MeusAgendamentosJS = buffer
 End Function
@@ -468,7 +481,7 @@ Public Function MeusAgendamentos(meuAgendamento, nomeText, nomeCombo, padrao, to
 	Dim where
 
 	If meuAgendamento Then
-		where = "UPPER(AG_RESPONSAVEL) = '" & Env.Usuario & "' "
+		where = "LOWER(AG_RESPONSAVEL) = '" & LCase(Env.Usuario) & "' "
 	Else
 		'where = "UPPER(AG_RESPONSAVEL) <> '" & Env.Usuario & "' "
 		where = "1 = 1 "
@@ -476,10 +489,14 @@ Public Function MeusAgendamentos(meuAgendamento, nomeText, nomeCombo, padrao, to
 
 	MeusAgendamentos = MeusAgendamentosJS(nomeText, nomeCombo)
 
-	MeusAgendamentos = MeusAgendamentos & Me.PadraoSql(nomeCombo, _
-		"select AG_NUMERO as VALOR, Cast(AG_NUMERO as VARCHAR(10)) + '-' + AG_TITULO AS DESCRICAO " & _
-		"from Agendamento where " & where & " order by AG_NUMERO desc", padrao, todos)
-		'"CASE WHEN AG_OBJETIVO IS NULL THEN '' ELSE ' - ' + SUBSTRING(AG_OBJETIVO, 1, 50) END as DESCRICAO "
+	MeusAgendamentos = MeusAgendamentos & VbCrLf & _
+        "<select class='' name='" & nomeCombo & "' id='ID_" & nomeCombo & "'>" & VbCrLf & _
+        "   <option value=''>--</option>" & VbCrLf & _
+        "</select>" & VbCrLf
+
+	'MeusAgendamentos = MeusAgendamentos & Me.PadraoSql(nomeCombo, _
+	'	"select AG_NUMERO as VALOR, CASE WHEN AG_TITULO IS NULL THEN Cast(AG_NUMERO as VARCHAR(10)) ELSE Cast(AG_NUMERO as VARCHAR(10)) + '-' + AG_TITULO END AS DESCRICAO " & _
+	'	"from Agendamento where " & where & " order by AG_NUMERO desc", padrao, todos)
 End Function
 
 '-- monta combo de Nota Fiscal
