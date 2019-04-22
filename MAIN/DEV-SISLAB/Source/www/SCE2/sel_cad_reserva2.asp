@@ -322,7 +322,7 @@ WEnd
 
     <iframe name="escondido" style="display: none;"></iframe>
 
-    <form name="formulario" action="sel_cad_reserva2_aceite.asp">
+    <form name="formulario" action="sel_cad_reserva2_aceite.asp" target="escondido">
         <input type="hidden" name="ag_numero" value="">
         <select name="lista_itens" style="display: none; width:500px" multiple></select>
         <input type="hidden" name="tudoAceitoOK" value="SIM">

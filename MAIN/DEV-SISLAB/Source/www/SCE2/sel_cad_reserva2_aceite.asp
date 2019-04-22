@@ -19,7 +19,7 @@ Call Env.StoredProcedure(False, objSP, "sp_SCE_CADASTRA_ACEITE_RESERVA")
 %>
 <html>
 <body>
-    <form method="post" action="sel_cad_reserva2_mov.asp">
+    <form method="post" action="sel_cad_reserva2_mov.asp" target="_parent">
 
         <input type="hidden" name="ag_numero" value="<%=request("ag_numero")%>" />
         <input type="hidden" name="lista_itens" value="<%=request("lista_itens")%>" />

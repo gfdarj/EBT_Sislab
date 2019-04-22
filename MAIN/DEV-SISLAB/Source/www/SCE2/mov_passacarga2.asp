@@ -9,9 +9,17 @@
 <%
 Dim s, objSP
 Dim eq_Destino, ag_origem, ag_destino
+Dim erroID, erroMSG
 
 eq_destino = request("eq_destino")
-if eq_Destino = "" then eq_destino = null
+If VVVNZ(eq_Destino) Then 
+    eq_destino = null
+Else
+    eq_destino = Replace(Replace(Replace(eq_destino, VbCrLf, ""), VbCr, ""), vbTab, "")
+    eq_destino = Replace(eq_destino, " ", "")
+    eq_destino = RetiraCaracteres(eq_destino)
+End If
+
 ag_destino = request("ag_numero_destino")
 if ag_destino = "" then ag_destino = null 
 ag_origem = request("ag_numero_origem")
@@ -31,19 +39,31 @@ With objSP
 	.Parameters.item("@user_id") = Env.Usuario
 	on error resume next
 	.Execute
+    erroID = Err.number
+    erroMSG = Err.Description
 	on error goto 0
 End With
 Call Env.StoredProcedure(False, objSP, Null)
 
 If Env.oConn.Errors.Count > 0 Then
-    Tela.SetNomeTela = "SCE > Movimentação > Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
+    Tela.SetNomeTela = "SCE > Movimentação > Erro na Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
-	Call Tela.Mensagem.ErroSql()
+    erroID = Err.number
+    erroMSG = Err.Description
     Call Tela.MostraRodape()
     Response.End
-else
-	Response.Redirect "mov_passacarga.asp?msg=1"
+Else
+    Tela.SetNomeTela = "SCE > Movimentação > Recepção de Carga" : Tela.SetCaminhoRelativo = "../"
+    Call Tela.MostraCabecalho()
+    Call Tela.ImprimeMenuSce()
+	RW "<div class='margem-10'>"
+	RW "    <br />Carga passada com sucesso."
+	RW "    <br /><br />"
+	RW "    <input type='button' value='Voltar' onclick='location.href=""mov_passacarga.asp"";' />"
+	RW "    <br />"
+	RW "</div>"
+    Call Tela.MostraRodape()
+	'Response.Redirect "./mov_passacarga.asp?msg=1"
 End If
-
 %>

@@ -4,6 +4,21 @@
 '-- coppetec
 '--------------------------------------------------------------------------------------------
 
+'RETIRA QUALQUER CARACTERE QUE NÃO SEJA NUMERO E VÍRGULA
+'   usado para passar a lista de ID´s separada por vírgula
+Function RetiraCaracteres(valor)
+    Dim i, temp
+
+    temp = ""
+    For i = 1 To Len(valor)
+        If IsNumeric(Mid(valor, i, 1)) Or Mid(valor, i, 1) = "," Then
+            temp = temp & Mid(valor, i, 1)
+        End If
+    Next
+
+    RetiraCaracteres = temp
+End Function
+
 function FormataNumero(numero)
 	if trim(numero) = "" Then Exit function
 

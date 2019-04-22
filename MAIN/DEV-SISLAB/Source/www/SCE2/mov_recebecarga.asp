@@ -15,8 +15,9 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
-    <form name="formulario" method="post">
-        <input type="hidden" name="qual_agendamento" value="">
+    <form name="formulario" method="post" action="mov_recebecarga2.asp">
+        <input type="hidden" name="qual_agendamento" value="" />
+        <input type="hidden" name="listaEquipamentos" value="" />
 
         <table class="largura-total">
 <%  if request("msg") = "1" then %>
@@ -87,7 +88,8 @@ If Env.UsuarioSCE() Then
 		maxAjaxObj.get();
 	}
 
-    function validaRecepcao() {
+    function validaRecepcao()
+    {
 	    var i;
 	    if(d.ag_numero_destino.value == "") {
 		    alert("Nenhum agendamento selecionado");
@@ -98,12 +100,17 @@ If Env.UsuarioSCE() Then
 		    d.ag_numero_destino.focus();
 	    }
 	    else {
-		    for(i=0; i<d.eq_destino.length; i++)
-			    d.eq_destino.options[i].selected = true;
-
-		    d.target = "";
-		    d.method = "post";
-		    d.action = "mov_recebecarga2.asp";
+            for (i = 0; i < d.eq_destino.length; i++)
+            {
+                d.listaEquipamentos.value += d.eq_destino.options[i].value;
+                if (i < d.eq_destino.length-1)
+                {
+                    d.listaEquipamentos.value += ",";
+                }
+            }
+			    //d.eq_destino.options[i].selected = true;
+            //alert(d.listaEquipamentos.value);
+            //alert("TESTE QTAS X");
 		    d.submit();
 	    }
     }

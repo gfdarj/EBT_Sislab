@@ -84,6 +84,8 @@ wend%>
 </table>
 </form>
 
+<br />
+
 </div>
 
 <script type="text/javascript">

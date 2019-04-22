@@ -18,23 +18,31 @@ If Env.UsuarioSCE() Then
     '-- recarregada
     if trim(request("ssql")) = "" then
 
-	    ssql = "SELECT a.eq_id, a.eq_codigobarras as [EQ_CODIGOBARRAS_M], d.ASA AS [AS_M], "
-	    ssql = ssql & "CONVERT(VARCHAR, d.MOV_DATA, 103) AS [DATA_M], "
-	    ssql = ssql & "LEFT(CONVERT(VARCHAR, d.MOV_DATA, 114),8) AS [HORA_M], "
-	    ssql = ssql &"d.MOV_ID, c.fab_nome AS [FAB_NOME_M], b.MOD_CODNOME AS [MOD_CODNOME_M], "
-	    ssql = ssql &"d.MOV_SOLICITANTE AS [MOV_SOLICITANTE_M], d.MOV_PASSAGEM, h.nf_numeronota AS [NF_NUMERONOTA_M], "
-	    ssql = ssql &"d.CDE AS [CDE_M], doc.DOC_ID AS [DOC_ID_M], no_descricao as [NO_DESCRICAO_M], d.FL_CALIBRACAO AS [FL_CALIBRACAO_M] "
-	    ssql = ssql &"FROM SCE_Equipamentos a "
-	    ssql = ssql &"INNER JOIN SCE_Modelos b ON a.MOD_ID = b.MOD_ID INNER JOIN "
-	    ssql = ssql &"SCE_Fabricantes c ON b.FAB_ID = c.fab_id INNER JOIN "
-	    ssql = ssql &"SCE_Movimentacao d ON a.EQ_ID = d.EQ_ID "
-	    ssql = ssql &"LEFT OUTER JOIN SCE_Natureza_Operacao f ON d.NO_ID = f.NO_ID "
-	    ssql = ssql &"LEFT JOIN SCE_Nota_Fiscal h ON d.nf_id = h.nf_id "
-	    ssql = ssql &"LEFT JOIN SCE_Documentacao doc ON doc.doc_id = d.doc_id "
+	    ssql = "SELECT a.eq_id, a.eq_codigobarras as [EQ_CODIGOBARRAS_M], d.ASA AS [AS_M], " & VbCrLf
+	    ssql = ssql & "CONVERT(VARCHAR, d.MOV_DATA, 103) AS [DATA_M], " & VbCrLf
+	    ssql = ssql & "LEFT(CONVERT(VARCHAR, d.MOV_DATA, 114),8) AS [HORA_M], " & VbCrLf
+	    ssql = ssql & "d.MOV_ID, c.fab_nome AS [FAB_NOME_M], b.MOD_CODNOME AS [MOD_CODNOME_M], " & VbCrLf
+	    ssql = ssql & "d.MOV_SOLICITANTE AS [MOV_SOLICITANTE_M], d.MOV_PASSAGEM, h.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
+	    ssql = ssql & "d.CDE AS [CDE_M], doc.DOC_ID AS [DOC_ID_M], no_descricao as [NO_DESCRICAO_M], d.FL_CALIBRACAO AS [FL_CALIBRACAO_M] " & VbCrLf
+	    ssql = ssql & "FROM SCE_Equipamentos a " & VbCrLf
+	    ssql = ssql & "  INNER JOIN SCE_Modelos b ON a.MOD_ID = b.MOD_ID " & VbCrLf
+	    ssql = ssql & "  INNER JOIN SCE_Fabricantes c ON b.FAB_ID = c.fab_id " & VbCrLf
+	    ssql = ssql & "  INNER JOIN SCE_Movimentacao d ON a.EQ_ID = d.EQ_ID " & VbCrLf
+	    ssql = ssql & "  LEFT OUTER JOIN SCE_Natureza_Operacao f ON d.NO_ID = f.NO_ID " & VbCrLf
+	    ssql = ssql & "  LEFT JOIN SCE_Nota_Fiscal h ON d.nf_id = h.nf_id " & VbCrLf
+	    ssql = ssql & "  LEFT JOIN SCE_Documentacao doc ON doc.doc_id = d.doc_id " & VbCrLf
 
 	    if request("enf_id") <> "" then
-		    ssql = ssql &" and h.enf_id = "& request("enf_id")
+		    ssql = ssql &" and h.enf_id = " & request("enf_id") & VbCrLf
 	    end if
+
+	    If request("plataforma") <> "" Then
+		    ssql = ssql &  "  INNER JOIN PLATAFORMA_EQUIPAMENTOS plat ON plat.S_ID = " & request("plataforma") & " AND plat.EQ_ID = a.EQ_ID " & VbCrLf
+	    End If
+'			    " AND EXISTS (SELECT plat.EQ_ID FROM PLATAFORMA_EQUIPAMENTOS plat " & _
+'			    "WHERE plat.S_ID = " & request("plataforma") & " AND plat.EQ_ID = a.EQ_ID) "
+
+
 	    '-- estava como: d.RESERVA = 0 , como eu nao sabia o motivo e para nao alterar muito
 	    '-- o codigo, entao coloquei este 1 = 1
 	    ssql = ssql &" WHERE 1 = 1 "
@@ -47,11 +55,6 @@ If Env.UsuarioSCE() Then
 	    if request("codbarras") <> "" then
 		    ssql = ssql &" and a.eq_codigobarras like '%"& request("codbarras") &"%'"
 	    end if
-	    If request("plataforma") <> "" Then
-		    ssql = ssql & _
-			    " AND EXISTS (SELECT plat.EQ_ID FROM PLATAFORMA_EQUIPAMENTOS plat " & _
-			    "WHERE plat.S_ID = " & request("plataforma") & " AND plat.EQ_ID = a.EQ_ID) "
-	    End If
 	    if request("localizacao") <> "" then
 		    ssql = ssql &" and a.eq_localizacao like '%"& request("localizacao") &"%'"
 	    end if
@@ -87,8 +90,8 @@ If Env.UsuarioSCE() Then
 	    ssql = request("ssql")
     end if
 
-    ''response.write ssql
-    ''response.end
+    'response.write ssql
+    'response.end
 
     Set rec = Env.oconn.execute(ssql)
 
