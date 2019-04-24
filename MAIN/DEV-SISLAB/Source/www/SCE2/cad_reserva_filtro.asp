@@ -8,7 +8,11 @@
 <%
 Server.ScriptTimeout = 10000
 
-Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos > Filtro de Seleção" : Tela.SetCaminhoRelativo = "../"
+Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos > Filtro de Seleção"
+Tela.SetCaminhoRelativo = "../"
+Tela.SetMostraMenu = False
+Tela.SetTitulo = False
+Tela.SetMostraImagem = False
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
