@@ -72,11 +72,9 @@ If Request("enviou") = "1" Then
 		objRS.MoveFirst
 		do while not objRS.EOF 
 %>
-str='<%=objRS("psq_id")%>***<%=objRS("PSQ_TipoAtiv")%>***<%=Replace(objRS("psq_C1")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C2")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C3")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C4")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C5")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C6")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C7")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C8")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C9")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C10")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C11")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C_3")&" ",vbCRLF,"<BR>")%>***<%=Replace(objRS("psq_C_4")&" ",vbCRLF,"<BR>")%>***';
-matriz[x]=str.split('***');
+str='<%=objRS("psq_id")%>*!@!*<%=objRS("PSQ_TipoAtiv")%>*!@!*<%=Replace(objRS("psq_C1")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C2")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C3")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C4")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C5")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C6")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C7")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C8")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C9")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C10")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C11")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C_3")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C_4")&" ",vbCRLF,"<BR>")%>*!@!*';
+matriz[x++]=str.split('*!@!*'); // x varia em colunas... matriz(x,y)
 
-// x varia em colunas... matriz(x,y)
-x++;
 <%		objRS.MoveNext
 		Loop
 	End If
@@ -89,79 +87,84 @@ End If
     }
     function janelacoment(partipo,parag,paritem, parserv, pardataini, pardatafim)
     {
-        window.open("janelaComentariosGR.asp?tipo="+partipo+"&ag="+parag+"&it="+paritem+"&ser="+parserv+"&dataIni="+pardataini+"&dataFim="+pardatafim,'Comentarios','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,width=321,height=300, top=0, left=0');
+        window.open("janelaComentariosGR.asp?tipo="+partipo+"&ag="+parag+"&it="+paritem+"&ser="+parserv+"&dataIni="+pardataini+"&dataFim="+pardatafim
+            , '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
     }
     function respostas(nag)
     {
-	    //formulario.numag.value=nag;
-	    //document.formulario.action="Cons_Resp_pesqsCRSem.asp";
-	    //formulario.submit();
-	    var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+        var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag + '&di=<%=dataIni%>&df=<%=dataFim%>'
+            , '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
 	    jan.focus();
     }
-    function contC(parag, paritem, parativ, pardataini, pardatafim)
+    function contC(parAG, parItem, parAtiv, parDataIni, parDataFim)
     {
 	    var cont=0;
-	    for (m=0;m<=matriz.length-1;m++) {	 
-		    if (matriz[m][1]==parag) {
-			    if (matriz[m][paritem]!='' & matriz[m][paritem]!=' ') {
-				    cont=cont+1;
+	    for (m=0; m <= matriz.length-1; m++)
+        {
+	        if (matriz[m][1] == parAG)
+	        {
+	            if ((matriz[m][parItem] != '') && (matriz[m][parItem] != ' '))
+	            {
+				    cont++;
 			    }
 		    } 
 	    }
 	    if (cont!=0)
-		    return('<a href="javascript: janelacoment(-6,'+parag+','+paritem+',\''+parativ+'\',\''+pardataini+'\',\''+pardatafim+'\');">Coment.:'+cont+'</a>');
+	    {
+	        cont++;
+	        return('<a href="javascript: janelacoment(-6,' + parAG + ',' + parItem + ',\'' + parAtiv + '\',\'' + parDataIni + '\',\'' + parDataFim + '\');">Coment.:'+cont+'</a>');
+	    }
 	    else
-		    return('-');
+	        return('-');
     }
 </script>
 <!--SQL:<%=sSQL%>-->
 <div class="margem-10">
-<form method="post" action="Cons_Ind_pesqsCRSem.asp" name="formulario">
-<input type="hidden" name="numag">
-<input type="hidden" name="enviou" value="1">
+    <form method="post" action="Cons_Ind_pesqsCRSem.asp" name="formulario">
+        <input type="hidden" name="numag" />
+        <input type="hidden" name="enviou" value="1" />
 
-<table style="width: 100%;">
-<tr>
-	<td colspan="2">
-		<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<strong>
-			Análise Periódica dos Formulários de Satisfação
-		</strong>
-	</td>
-</tr>
-<tr><td colspan="2">&nbsp;</td></tr>
-<tr>
-	<td colspan="2"><strong>Período:</strong></td>
-</tr>
-<tr> 
-	<td colspan="2">
-		De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="Pesquisar" onclick="retornavalor();">
-		<script type="text/javascript">
+            <table style="width: 100%;">
+            <tr>
+	            <td colspan="2">
+		            <span class="texto-vermelho-bold">&raquo;</span>&nbsp;<strong>
+			            Análise Periódica dos Formulários de Satisfação
+		            </strong>
+	            </td>
+            </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+	            <td colspan="2"><strong>Período:</strong></td>
+            </tr>
+            <tr> 
+	            <td colspan="2">
+		            De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
+		            &nbsp;&nbsp;&nbsp;&nbsp;
+		            <input type="button" value="Pesquisar" onclick="retornavalor();">
+		            <script type="text/javascript">
 <%
 If dataIni <> "" Then%>
-			document.all.diadataIni.value = '<%=left(dataIni,2)%>';
-			document.all.mesdataIni.value = '<%=mid(dataIni,4,2)%>';
-			document.all.anodataIni.value = '<%=right(dataIni,4)%>';
+			            document.all.diadataIni.value = '<%=left(dataIni,2)%>';
+			            document.all.mesdataIni.value = '<%=mid(dataIni,4,2)%>';
+			            document.all.anodataIni.value = '<%=right(dataIni,4)%>';
 <%
 End If
 If dataFim <> "" Then%>
-			document.all.diadataFim.value = '<%=left(dataFim,2)%>';
-			document.all.mesdataFim.value = '<%=mid(dataFim,4,2)%>';
-			document.all.anodataFim.value = '<%=right(dataFim,4)%>';
+			            document.all.diadataFim.value = '<%=left(dataFim,2)%>';
+			            document.all.mesdataFim.value = '<%=mid(dataFim,4,2)%>';
+			            document.all.anodataFim.value = '<%=right(dataFim,4)%>';
 <%
 End If%>
-		</script>
-	 </td>
-</tr>
-<tr><td>&nbsp;</td></tr>
+		            </script>
+	             </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
 <%
 if request("enviou") = "1" then
 %>
-<tr>
-	<td colspan="2">
-		<table border="1" style="border: solid thin; width: 100%;">
+            <tr>
+	            <td colspan="2">
+		            <table border="1" style="border: solid thin; width: 100%;">
 <%
 '		"FROM PesquisaSatisfacao p RIGHT JOIN vw_Agendamento a ON p.PSQ_NAg = a.AG_NUMERO " & VbCrLf & 
 '		"  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID " & VbCrLf & 
@@ -180,16 +183,15 @@ if request("enviou") = "1" then
 		"	AND A.id_situacao = " & AS_Finalizado & " " & VbCrLf
 
 	If dataIni <> "" and dataFim = "" Then
-		sSQL = sSQL & " AND a.AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) "
+		sSQL = sSQL & " AND a.AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) " & VbCrLf
 	ElseIf dataIni = "" and dataFim <> "" Then
-		sSQL = sSQL & " AND (a.AG_DATATERMINO < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 "
+		sSQL = sSQL & " AND (a.AG_DATATERMINO < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 " & VbCrLf
 	ElseIf dataIni <> "" and dataFim <> "" Then
-		sSQL = sSQL & " AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
+		sSQL = sSQL & " AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) " & VbCrLf
 	End If
 
 	'sSQL = sSQL & "group by a.TA_ID, a.TA_Descricao;"
 	sSQL = sSQL & "group by t.TA_ID, t.TA_Descricao;"
-
 
 	rw "<!--AQUI SQL: " & sSQL & "-->"
 

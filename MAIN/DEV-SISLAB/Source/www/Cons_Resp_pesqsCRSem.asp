@@ -17,8 +17,8 @@ Dim parnag, partadesc, tipopesquisa, auxAg_Numero
 
 tipopesquisa = UCase(request("tipopesquisa"))	'-- Analitico / Consolidado
 parnag = request("numag")
-dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
-dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))
+dataIni = Trim(request("di"))
+dataFim= Trim(request("df"))
 
 If TipoPesquisa = "A" Then
 	sSQL="Select TA_DESCRICAO from Tipo_Atividade where TA_ID = (SELECT TA_ID FROM Agendamento WHERE AG_NUMERO = " & parnag & ")"
@@ -68,30 +68,27 @@ function retornaopcao1(opcao)
 end function
 %>
 <script type="text/javascript">
-function parafrente()
-{
-	formulario.operacao.value=1;
-	formulario.submit();
-}
+    function parafrente()
+    {
+	    formulario.operacao.value=1;
+	    formulario.submit();
+    }
 
-function paratras()
-{
-//move para tras
-	formulario.operacao.value=0
-	formulario.submit();
-}
+    function paratras()
+    {
+    //move para tras
+	    formulario.operacao.value=0
+	    formulario.submit();
+    }
 </script>
 
-<FONT style="font-size:10pt">
-<BR>
-</font>
-<table width="580" border="1" cellpadding="2" cellspacing="2" class="table-bordered" style="border: solid thin;">
-<tr>
-	<td class="azul3bg" style="color:#FFFFFF; font-size: 12px;">
-	<b>&nbsp;&nbsp;Análise Individual dos Formulários de Satisfação</b><br>
-	&nbsp;&nbsp;Tipo de Atividade: <%=partadesc%>
-	</td>
-</tr>
+<div class="margem-10">
+
+    <div>
+        <h4>Análise Individual dos Formulários de Satisfação</h4>
+	    <h5>Tipo de Atividade: <%=partadesc%></h5>
+    </div>
+
 <%
 sSQL = "Select * "
 sSQL = sSQL&"  from PesquisaSatisfacao p INNER JOIN Agendamento a ON p.PSQ_NAg = a.AG_NUMERO "
@@ -116,13 +113,14 @@ End If
 sSQL=sSQL&" order by AG_NUMERO asc; "
 'response.write ssql
 'response.end
-call Env.Recordset(true, objSiteRS, sSQL)
+Call Env.Recordset(true, objSiteRS, sSQL)
 
 objSiteRS.MoveFirst
 prireg = objSiteRS("psq_id")
 contreg = objSiteRS.RecordCount
 
-do while not(objSiteRS.eof)
+Do While Not (objSiteRS.Eof)
+
 	auxAG = objSiteRS("AG_NUMERO")
 	auxusernameCadastro=UCase(objSiteRS("PSQ_UsernameCadastro"))
 	auxIPCadastro=objSiteRS("PSQ_IPCAdastro")
@@ -172,113 +170,93 @@ do while not(objSiteRS.eof)
 	auxC_4=objSiteRS("PSQ_C_4")
 	auxAg_Numero = objSiteRS("AG_NUMERO")
 %>
-<tr>
-	<td>
-		<table border="0" width="100%" class="table-bordered" cellpadding="0" cellspacing="8">
+		<table border="0" class="table-bordered table-condensed table-striped table-hover" style="width: 100%;">
 
 		<tr valign="top">
-			<td width="120px"><b>N. Agendamento:</b></td>
-			<td width="*"><b><%=auxAg_Numero%></b></td>
+			<td style="width: 150px;"><b>N. Agendamento:</b></td>
+			<td><b><%=auxAg_Numero%></b></td>
 		</tr>
-
-
 		<tr valign="top">
-			<td width="120px"><b>Nome:</b></td>
-			<td width="*"><%=auxnome%></td>
+			<td><b>Nome:</b></td>
+			<td><%=auxnome%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Telefone:</b></td>
 			<td><%=auxtelefone%></td>
 		</tr>
 		<tr valign="top">
-			<td><b>Email:</b></td>
+			<td><b>E-mail:</b></td>
 			<td><%=auxemail%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Comunicação:</b></td>
-			<td><%=retornaopcao(auxR1) & "<br>" & retornacomentario(auxC1)%></td>
+			<td><%=retornaopcao(auxR1) & "<br><small>" & retornacomentario(auxC1) & "</small>"%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Cortesia:</b></td>
-			<td><%=retornaopcao(auxR2) & "<br>" & retornacomentario(auxC2)%></td>
+			<td><%=retornaopcao(auxR2) & "<br><small>" & retornacomentario(auxC2) & "</small>"%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Presteza:</b></td>
-			<td><%=retornaopcao(auxR3) & "<br>" & retornacomentario(auxC3)%></td>
+			<td><%=retornaopcao(auxR3) & "<br><small>" & retornacomentario(auxC3) & "</small>"%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Flexibilidade:</b></td>
-			<td><%=retornaopcao(auxR4) & "<br>" & retornacomentario(auxC4)%></td>
+			<td><%=retornaopcao(auxR4) & "<br><small>" & retornacomentario(auxC4) & "</small>"%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Rapidez:</b></td>
-			<td><%=retornaopcao(auxR5) & "<br>" & retornacomentario(auxC5) %></td>
+			<td><%=retornaopcao(auxR5) & "<br><small>" & retornacomentario(auxC5) & "</small>"%></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Iniciativa:</b></td>
-			<td><%=retornaopcao(auxR6) & "<br>" & retornacomentario(auxC6) %></td>
+			<td><%=retornaopcao(auxR6) & "<br><small>" & retornacomentario(auxC6) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Confiabilidade:</b></td>
-			<td><%=retornaopcao(auxR7) & "<br>" & retornacomentario(auxC7) %></td>
+			<td><%=retornaopcao(auxR7) & "<br><small>" & retornacomentario(auxC7) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Infraestrutura:</b></td>
-			<td><%=retornaopcao(auxR8) & "<br>" & retornacomentario(auxC8) %></td>
+			<td><%=retornaopcao(auxR8) & "<br><small>" & retornacomentario(auxC8) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Ambiente:</b></td>
-			<td><%=retornaopcao(auxR9) & "<br>" & retornacomentario(auxC9) %></td>
+			<td><%=retornaopcao(auxR9) & "<br><small>" & retornacomentario(auxC9) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Acesso:</b></td>
-			<td><%=retornaopcao(auxR10) & "<br>" & retornacomentario(auxC10) %></td>
+			<td><%=retornaopcao(auxR10) & "<br><small>" & retornacomentario(auxC10) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Geral:</b></td>
-			<td><%=retornaopcao(auxR11) & "<br>" & retornacomentario(auxC11) %></td>
+			<td><%=retornaopcao(auxR11) & "<br><small>" & retornacomentario(auxC11) & "</small>" %></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Sugestões adicionais <br>nos itens Citados:</b></td>
-			<td><%=retornacomentario(auxC_3) %></td>
+			<td><small><%=retornacomentario(auxC_3) %></small></td>
 		</tr>
 		<tr valign="top">
 			<td><b>Outras sugestões:</b></td>
-			<td><%=retornacomentario(auxC_4) %></td>
+			<td><small><%=retornacomentario(auxC_4) %></small></td>
 		</tr>
 		</table>
-		<!--
-		<span style="font-size:10pt">
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Nome:</b>&nbsp;<%=auxnome%><b>, Telefone:</b><%=auxtelefone%> <b>, Email </b><%=auxemail%><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Comunicação: </b><%=retornaopcao(auxR1) &" - " & retornacomentario(auxC1)  %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Cortesia: </b><%=retornaopcao(auxR2) &" - " & retornacomentario(auxC2) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Presteza: </b><%=retornaopcao(auxR3) &" - " & retornacomentario(auxC3) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Flexibilidade: </b><%=retornaopcao(auxR4) &" - " & retornacomentario(auxC4) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Rapidez: </b><%=retornaopcao(auxR5) &" - " & retornacomentario(auxC5) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Iniciativa: </b><%=retornaopcao(auxR6) &" - " & retornacomentario(auxC6) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Confiabilidade: </b><%=retornaopcao(auxR7) &" - " & retornacomentario(auxC7) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Infraestrutura: </b><%=retornaopcao(auxR8) &" - " & retornacomentario(auxC8) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Ambiente: </b><%=retornaopcao(auxR9) &" - " & retornacomentario(auxC9) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Acesso: </b><%=retornaopcao(auxR10) &" - " & retornacomentario(auxC10) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Geral: </b><%=retornaopcao(auxR11) &" - " & retornacomentario(auxC11) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Sugestões adicionais nos itens Citados: </b><%=retornacomentario(auxC_3) %><br>
-		<b>&nbsp;&nbsp;&nbsp;&nbsp;Outras sugestões: </b><%=retornacomentario(auxC_4) %><br>
-		</span>
-		-->
+        <br />
 <%
-	objSiteRS.MoveNext
+	    objSiteRS.MoveNext
 	Loop
 %>
-	</td>
-</tr>
-</table>
-<form name="formulario" action="Cons_Ind_pesqsCR.asp" method="post">
-<input type="hidden" name="regprimeiro" value="<%=prireg%>">
-<input type="hidden" name="regultimo" value="<%=ultreg%>">
-<input type="hidden" name="regatual"  value="<%=atureg%>">
-<input type="hidden" name="operacao">
-</form>
-<br>
+        <div style="text-align: center;"><input type="button" value=" Fechar " onclick="javascript: window.close();" /></div>
+
+        <form name="formulario" action="Cons_Ind_pesqsCR.asp" method="post">
+            <input type="hidden" name="regprimeiro" value="<%=prireg%>">
+            <input type="hidden" name="regultimo" value="<%=ultreg%>">
+            <input type="hidden" name="regatual"  value="<%=atureg%>">
+            <input type="hidden" name="operacao">
+        </form>
+    <br>
+</div>
+
 <%
 call Env.Recordset(false, objSiteRS, null)
 
