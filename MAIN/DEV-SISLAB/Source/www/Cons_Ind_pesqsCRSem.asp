@@ -54,7 +54,7 @@ If Request("enviou") = "1" Then
 	sSQL = sSQL & "psq_C7,psq_C8,psq_C9,psq_C10,psq_C11,psq_C_3,psq_C_4 "
 	sSQL = sSQL & " From PesquisaSatisfacao p INNER JOIN vw_Agendamento a ON p.PSQ_NAg = a.AG_NUMERO "
 	sSQL = sSQL & "WHERE 1 = 1 "
-	sSQL = sSQL & "AND A.id_situacao = " & AS_Finalizado & " "
+	'sSQL = sSQL & "AND A.id_situacao IN (" & AS_Finalizado & ", " & AS_Cancelado & ") "     '-- Não preciso usar a situação já que deve estar Finalizado ou Cancelado
 	if dataIni <> "" and dataFim = "" then
 		'sSQL=sSQL&" AND PSQ_DataHoraCadastro >= CONVERT(DATETIME, '" & dataIni & "', 103) "
 		sSQL=sSQL&" AND a.AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) "
@@ -65,15 +65,17 @@ If Request("enviou") = "1" Then
 		'sSQL=sSQL&" AND PSQ_DataHoraCadastro BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
 		sSQL=sSQL&" AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
 	end if
-	sSQL=sSQL&"  ORDER by a.TA_ID ; "
+	sSQL = sSQL & "  ORDER by a.TA_ID ; "
+
+    Response.write "/* SQL: " & sSQL & " */" & VbCrLf
 
 	call Env.RecordSet(true, objRS, sSQL)
 	if Not objRS.EOF Then 
 		objRS.MoveFirst
 		do while not objRS.EOF 
 %>
-str='<%=objRS("psq_id")%>*!@!*<%=objRS("PSQ_TipoAtiv")%>*!@!*<%=Replace(objRS("psq_C1")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C2")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C3")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C4")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C5")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C6")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C7")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C8")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C9")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C10")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C11")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C_3")&" ",vbCRLF,"<BR>")%>*!@!*<%=Replace(objRS("psq_C_4")&" ",vbCRLF,"<BR>")%>*!@!*';
-matriz[x++]=str.split('*!@!*'); // x varia em colunas... matriz(x,y)
+str = '<%=objRS("psq_id")%>**z**<%=objRS("PSQ_TipoAtiv")%>**z**<%=Replace(objRS("psq_C1")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C2")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C3")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C4")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C5")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C6")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C7")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C8")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C9")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C10")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C11")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C_3")&" ",vbCRLF,"<BR>")%>**z**<%=Replace(objRS("psq_C_4")&" ",vbCRLF,"<BR>")%>**z**';
+matriz[x++] = str.split('**z**'); // x varia em colunas... matriz(x,y)
 
 <%		objRS.MoveNext
 		Loop
@@ -85,40 +87,325 @@ End If
 	    document.formulario.action="Cons_Ind_pesqsCRSem.asp";
 	    document.formulario.submit();
     }
-    function janelacoment(partipo,parag,paritem, parserv, pardataini, pardatafim)
+
+    function janelacoment(parAG, parItem, parServ, parDataIni, parDataFim)
     {
-        window.open("janelaComentariosGR.asp?tipo="+partipo+"&ag="+parag+"&it="+paritem+"&ser="+parserv+"&dataIni="+pardataini+"&dataFim="+pardatafim
-            , '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+        window.open(
+                "janelaComentariosGR.asp?ag=" + parAG + "&it=" + parItem + "&ser=" + parServ + "&dataIni=" + parDataIni + "&dataFim=" + parDataFim
+                , ''
+                , 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no'
+        );
     }
+
     function respostas(nag)
     {
-        var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag + '&di=<%=dataIni%>&df=<%=dataFim%>'
-            , '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+        var jan = window.open(
+            'Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag + '&di=<%=dataIni%>&df=<%=dataFim%>'
+            , ''
+            , 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no'
+        );
 	    jan.focus();
     }
+
+    function notNull(a)
+    {
+        if(a!="" && !(a.match(/^\s+$/)))
+            return true;
+        else
+            return false;
+    }
+
     function contC(parAG, parItem, parAtiv, parDataIni, parDataFim)
     {
 	    var cont=0;
 	    for (m=0; m <= matriz.length-1; m++)
-        {
+	    {
 	        if (matriz[m][1] == parAG)
 	        {
-	            if ((matriz[m][parItem] != '') && (matriz[m][parItem] != ' '))
+	            //alert(matriz[m][parItem] + ' <-------------> ' + parItem);
+	            //if ((matriz[m][parItem] != '') && (matriz[m][parItem] != ' ') && (matriz[m][parItem] != '  '))
+	            if (notNull(matriz[m][parItem]))
 	            {
-				    cont++;
+	                //alert(matriz[m][1] + " <=====> " + matriz[m][parItem]);
+	                cont++;
 			    }
 		    } 
 	    }
 	    if (cont!=0)
 	    {
-	        cont++;
-	        return('<a href="javascript: janelacoment(-6,' + parAG + ',' + parItem + ',\'' + parAtiv + '\',\'' + parDataIni + '\',\'' + parDataFim + '\');">Coment.:'+cont+'</a>');
+	        return('<a href="javascript: janelacoment(' + parAG + ',' + parItem + ',\'' + parAtiv + '\',\'' + parDataIni + '\',\'' + parDataFim + '\');">Coment.:'+cont+'</a>');
 	    }
 	    else
 	        return('-');
     }
 </script>
 <!--SQL:<%=sSQL%>-->
+
+<!--
+<div class="margem-10">
+
+	<span class="texto-vermelho-bold">&raquo;</span>&nbsp;<strong>Análise Periódica dos Formulários de Satisfação</strong>
+    <br />
+    <br />
+	<p><strong>Período:</strong></p>
+	De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Pesquisar" onclick="retornavalor();">
+	<script type="text/javascript">
+<%
+If dataIni <> "" Then%>
+			document.all.diadataIni.value = '<%=left(dataIni,2)%>';
+			document.all.mesdataIni.value = '<%=mid(dataIni,4,2)%>';
+			document.all.anodataIni.value = '<%=right(dataIni,4)%>';
+<%
+End If
+If dataFim <> "" Then%>
+			document.all.diadataFim.value = '<%=left(dataFim,2)%>';
+			document.all.mesdataFim.value = '<%=mid(dataFim,4,2)%>';
+			document.all.anodataFim.value = '<%=right(dataFim,4)%>';
+<%
+End If%>
+	</script>
+</div>
+
+
+<div class="container">
+
+    <small>
+    <div class="row">
+<%
+'if request("enviou") = "1" then
+
+	'sSQL = _
+	'	"SET ANSI_WARNINGS OFF;" & VbCrLf & _
+	'	"Select T.TA_Descricao, T.TA_ID AS PSQ_TipoAtiv, count(psq_id) as totresp, COALESCE(avg(psq_r1),0) as medr1, COALESCE(avg(psq_r2),0) as medr2, COALESCE(avg(psq_r3),0) as medr3, " & VbCrLf & _
+	'	"  COALESCE(avg(psq_r4),0) as medr4, COALESCE(avg(psq_r5),0) as medr5, COALESCE(avg(psq_r6),0) as medr6, " & VbCrLf & _
+	'	"  COALESCE(avg(psq_r7),0) as medr7, COALESCE(avg(psq_r8),0) as medr8, COALESCE(avg(psq_r9),0) as medr9, " & VbCrLf & _
+	'	"  COALESCE(avg(psq_r10),0) as medr10, COALESCE(avg(psq_r11),0) as medr11 " & VbCrLf & _
+	'	"FROM " & VbCrLf & _
+	'	"	Tipo_atividade t " & VbCrLf & _
+	'	"	left JOIN vw_Agendamento a ON t.TA_ID = a.TA_ID " & VbCrLf & _
+	'	"	left JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & VbCrLf & _
+	'	"WHERE 1 = 1 " & VbCrLf & _
+	'	"	AND A.id_situacao = " & AS_Finalizado & " " & VbCrLf
+
+	'If dataIni <> "" and dataFim = "" Then
+	'	sSQL = sSQL & " AND a.AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) " & VbCrLf
+	'ElseIf dataIni = "" and dataFim <> "" Then
+	'	sSQL = sSQL & " AND (a.AG_DATATERMINO < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 " & VbCrLf
+	'ElseIf dataIni <> "" and dataFim <> "" Then
+	'	sSQL = sSQL & " AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) " & VbCrLf
+	'End If
+
+	'sSQL = sSQL & "group by t.TA_ID, t.TA_Descricao;"
+
+	'rw "<!--AQUI SQL: " & sSQL & "-->"
+
+	'Call Env.RecordSet(true, objRS, sSQL)
+
+	'Do While Not (objRS.eof)
+	'	totresp = objRS("totresp")
+	'	numag = objRS("PSQ_TipoAtiv")
+	'	auxatividade = objRS("TA_Descricao")
+	'	If Not(IsNull(objRS("medr1"))) Then auxR1=objRS("medR1")
+	'	If Not(IsNull(objRS("medr2"))) Then auxR2=objRS("medR2")
+	'	If Not(IsNull(objRS("medr3"))) Then auxR3=objRS("medR3")
+	'	If Not(IsNull(objRS("medr4"))) Then auxR4=objRS("medR4")
+	'	If Not(IsNull(objRS("medr5"))) Then auxR5=objRS("medR5")
+	'	If Not(IsNull(objRS("medr6"))) Then auxR6=objRS("medR6")
+	'	If Not(IsNull(objRS("medr7"))) Then auxR7=objRS("medR7")
+	'	If Not(IsNull(objRS("medr8"))) Then auxR8=objRS("medR8")
+	'	If Not(IsNull(objRS("medr9"))) Then auxR9=objRS("medR9")
+	'	If Not(IsNull(objRS("medr10"))) Then auxR10=objRS("medR10")
+	'	If Not(IsNull(objRS("medr11"))) Then auxR11=objRS("medR11")
+
+		'-- faz a media por tipo de atividade
+		'sSQL= _
+		'		"SET ANSI_WARNINGS OFF; " & VbCrLf & _
+		'		"Select a.TA_Descricao, t.TA_ID AS PSQ_TipoAtiv, count(psq_id) as totresp, COALESCE(avg(psq_r1),0) as medr1, avg(psq_r2) as medr2, COALESCE(avg(psq_r3),0) as medr3, " & VbCrLf & _
+		'		"  COALESCE(avg(psq_r4),0) as medr4, COALESCE(avg(psq_r5),0) as medr5, COALESCE(avg(psq_r6),0) as medr6, " & VbCrLf & _
+		'		"  COALESCE(avg(psq_r7),0) as medr7, COALESCE(avg(psq_r8),0) as medr8, COALESCE(avg(psq_r9),0) as medr9, " & VbCrLf & _
+		'		"  COALESCE(avg(psq_r10),0) as medr10, COALESCE(avg(psq_r11),0) as medr11 " & VbCrLf & _
+		'		"FROM PesquisaSatisfacao p INNER JOIN vw_Agendamento a ON p.PSQ_NAg = a.AG_NUMERO " & VbCrLf & _
+		'		"  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID " & VbCrLf & _
+		'		"WHERE t.TA_ID = " & numag & " " & VbCrLf & _
+		'		"  AND A.id_situacao = " & AS_Finalizado & " " & VbCrLf
+
+		'If dataIni <> "" and dataFim = "" Then
+		'	sSQL = sSQL & " AND a.AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) "
+		'ElseIf dataIni = "" and dataFim <> "" Then
+		'	sSQL = sSQL & " AND (a.AG_DATATERMINO < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 "
+		'ElseIf dataIni <> "" and dataFim <> "" Then
+		'	sSQL = sSQL & " AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
+		'End If
+
+		'sSQL = sSQL & "GROUP BY t.TA_ID, a.TA_Descricao;"
+
+		'Call Env.RecordSet(true, objRSAnt, sSQL)
+
+		'If Not objRSAnt.eof Then
+		'	auxR1Ant=objRSAnt("medR1")
+		'	auxR2Ant=objRSAnt("medR2")
+		'	auxR3Ant=objRSAnt("medR3")
+		'	auxR4Ant=objRSAnt("medR4")
+		'	auxR5Ant=objRSAnt("medR5")
+		'	auxR6Ant=objRSAnt("medR6")
+		'	auxR7Ant=objRSAnt("medR7")
+		'	auxR8Ant=objRSAnt("medR8")
+		'	auxR9Ant=objRSAnt("medR9")
+		'	auxR10Ant=objRSAnt("medR10")
+		'	auxR11Ant=objRSAnt("medR11")
+		'Else
+		'	auxR1Ant=auxR1
+		'	auxR2Ant=auxR2
+		'	auxR3Ant=auxR3
+		'	auxR4Ant=auxR4
+		'	auxR5Ant=auxR5
+		'	auxR6Ant=auxR6
+		'	auxR7Ant=auxR7
+		'	auxR8Ant=auxR8
+		'	auxR9Ant=auxR9
+		'	auxR10Ant=auxR10
+		'	auxR11Ant=auxR11
+		'End If
+
+		'Set RS = Env.oConn.Execute("dbo.sp_IndiceRetornoSatisfacao " & _
+		'			objRS("PSQ_TipoAtiv") & _
+		'			", NULL, NULL, NULL, " & chr_DataIni & ", " & chr_DataFim _
+		'		)
+
+		'If RS("ERRO") = 0 Then
+		'	chr_Indice = Replace(RS("INDICE"), ".", ",")
+		'	int_TotalAgendamento = RS("TOTALPESQUISA")
+		'Else
+		'	chr_Indice = ""
+		'	int_TotalAgendamento = 0
+		'End If
+%>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	        <b>Total de respostas:</b> <%'=totresp%>
+            &nbsp;&nbsp;&nbsp;
+	        <b>Total de Agendamentos Finalizados:</b> <%'=rs("totalagendamento")%>
+	        &nbsp;&nbsp;&nbsp;
+	        <b>Índice de retorno:</b> <%'=chr_Indice%>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        <b><a href="javascript:respostas(<%'=numag%>)">Ver Respostas</a></b><br>
+	        <b>Serviço:</b> <%'=objRS("TA_Descricao")%>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Comunicação</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+	        <b>Cortesia</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Presteza</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+	        <b>Flexibilidade</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Rapidez</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Iniciativa</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Confiabilidade</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Infraestrutura</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Ambiente</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+	        <b>Acesso</b>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <b>Geral</b>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR1)&"<br>"&retornaopcao1(auxR1)&"<br>"&retornaopcaoAnt(auxR1, auxR1Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,2,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR2)&"<br>"&retornaopcao1(auxR2)&"<br>"&retornaopcaoAnt(auxR2,auxR2Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,3,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR3)&"<br>"&retornaopcao1(auxR3)&"<br>"&retornaopcaoAnt(auxR3,auxR3Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,4,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR4)&"<br>"&retornaopcao1(auxR4)&"<br>"&retornaopcaoAnt(auxR4,auxR4Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,5,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR5)&"<br>"&retornaopcao1(auxR5)&"<br>"&retornaopcaoAnt(auxR5,auxR5Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,6,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR6)&"<br>"&retornaopcao1(auxR6)&"<br>"&retornaopcaoAnt(auxR6,auxR6Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,7,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR7)&"<br>"&retornaopcao1(auxR7)&"<br>"&retornaopcaoAnt(auxR7,auxR7Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,8,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR8)&"<br>"&retornaopcao1(auxR8)&"<br>"&retornaopcaoAnt(auxR8,auxR8Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,9,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR9)&"<br>"&retornaopcao1(auxR9)&"<br>"&retornaopcaoAnt(auxR9,auxR9Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,10,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR10)&"<br>"&retornaopcao1(auxR10)&"<br>"&retornaopcaoAnt(auxR10,auxR10Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,11,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+    	    <%'=retornaaprox(auxR11)&"<br>"&retornaopcao1(auxR11)&"<br>"&retornaopcaoAnt(auxR11,auxR11Ant)%><br><script type="text/javascript">document.write(contC(<%=numag%>,12,'<%=auxatividade%>','<%=dataIni%>','<%=dataFim%>'))</script>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:red;">
+        </div>
+    </div>
+<%	'	objRS.moveNext
+	'Loop
+%>
+
+    </small>
+</div>
+<%
+'End If
+%>
+-->
+
+
+<!-- O CÓDIGO COMEÇA AQUI REALMENTE, ANTES FOI UM ENSAIO PARA USAR AS COLUNAS DO BOOTSTRAP -->
+
+
 <div class="margem-10">
     <form method="post" action="Cons_Ind_pesqsCRSem.asp" name="formulario">
         <input type="hidden" name="numag" />
@@ -166,11 +453,10 @@ if request("enviou") = "1" then
 	            <td colspan="2">
 		            <table border="1" style="border: solid thin; width: 100%;">
 <%
-'		"FROM PesquisaSatisfacao p RIGHT JOIN vw_Agendamento a ON p.PSQ_NAg = a.AG_NUMERO " & VbCrLf & 
-'		"  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID " & VbCrLf & 
-
+    ' FAZ A MÉDIA POR TIPO DE ATIVIDADE (TODAS)
 	sSQL = _
 		"SET ANSI_WARNINGS OFF;" & VbCrLf & _
+        "" & VbCrLf & _
 		"Select T.TA_Descricao, T.TA_ID AS PSQ_TipoAtiv, count(psq_id) as totresp, COALESCE(avg(psq_r1),0) as medr1, COALESCE(avg(psq_r2),0) as medr2, COALESCE(avg(psq_r3),0) as medr3, " & VbCrLf & _
 		"  COALESCE(avg(psq_r4),0) as medr4, COALESCE(avg(psq_r5),0) as medr5, COALESCE(avg(psq_r6),0) as medr6, " & VbCrLf & _
 		"  COALESCE(avg(psq_r7),0) as medr7, COALESCE(avg(psq_r8),0) as medr8, COALESCE(avg(psq_r9),0) as medr9, " & VbCrLf & _
@@ -190,7 +476,6 @@ if request("enviou") = "1" then
 		sSQL = sSQL & " AND a.AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) " & VbCrLf
 	End If
 
-	'sSQL = sSQL & "group by a.TA_ID, a.TA_Descricao;"
 	sSQL = sSQL & "group by t.TA_ID, t.TA_Descricao;"
 
 	rw "<!--AQUI SQL: " & sSQL & "-->"
@@ -213,9 +498,10 @@ if request("enviou") = "1" then
 		If Not(IsNull(objRS("medr10"))) Then auxR10=objRS("medR10")
 		If Not(IsNull(objRS("medr11"))) Then auxR11=objRS("medR11")
 
-		'-- faz a media por tipo de atividade
+		'-- faz a media por tipo de atividade (especificado)
 		sSQL= _
 				"SET ANSI_WARNINGS OFF; " & VbCrLf & _
+                "" & VbCrLf & _
 				"Select a.TA_Descricao, t.TA_ID AS PSQ_TipoAtiv, count(psq_id) as totresp, COALESCE(avg(psq_r1),0) as medr1, avg(psq_r2) as medr2, COALESCE(avg(psq_r3),0) as medr3, " & VbCrLf & _
 				"  COALESCE(avg(psq_r4),0) as medr4, COALESCE(avg(psq_r5),0) as medr5, COALESCE(avg(psq_r6),0) as medr6, " & VbCrLf & _
 				"  COALESCE(avg(psq_r7),0) as medr7, COALESCE(avg(psq_r8),0) as medr8, COALESCE(avg(psq_r9),0) as medr9, " & VbCrLf & _
@@ -276,7 +562,7 @@ if request("enviou") = "1" then
 			int_TotalAgendamento = 0
 		End If
 %>
-<tr class="azul1bg">
+<tr>
 	<td colspan="11">
 	<FONT face="tahoma" color="#000050" style="font-size:7pt">
 	<b>Total de respostas:</b> <%=totresp%>
@@ -286,7 +572,7 @@ if request("enviou") = "1" then
 	&nbsp;&nbsp;&nbsp;
 	<b>Índice de retorno:</b> <%=chr_Indice%>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b> - <b>Comentário Adicional</b> - <b>Outros Comentários</b><br>
+	<b><a href="javascript:respostas(<%=numag%>)">Ver Respostas</a></b><br>
 	<b>Serviço:</b> <%=objRS("TA_Descricao")%>
 	</font>
 <!--
@@ -296,7 +582,7 @@ if request("enviou") = "1" then
 -->
 	</td>
 </tr>
-<tr class="destaque titulo">
+<tr>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
 	    <b>Comunicação</b></font>
@@ -493,7 +779,7 @@ if request("enviou") = "1" then
 			auxR11Ant=auxR11
 		End If
 %>
-<tr class="azul1bg">
+<tr>
 	<td colspan=11>
 		<FONT face="tahoma" color="#000050" style="font-size:7pt">
 		<b>Total de respostas:</b> <%=totresp%>
@@ -519,7 +805,7 @@ End If
 	</td>
 </tr>
 
-<tr class="destaque titulo">
+<tr>
 	<td align="center">
 	    <FONT face="tahoma" color="#000050" style="font-size:7pt">
 	    <b>Comunicação</b></font>

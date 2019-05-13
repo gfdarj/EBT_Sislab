@@ -115,9 +115,10 @@ sSQL=sSQL&" order by AG_NUMERO asc; "
 'response.end
 Call Env.Recordset(true, objSiteRS, sSQL)
 
-objSiteRS.MoveFirst
-prireg = objSiteRS("psq_id")
-contreg = objSiteRS.RecordCount
+If Not (objSiteRS.Bof Or objSiteRS.Eof) Then
+    objSiteRS.MoveFirst
+    prireg = objSiteRS("psq_id")
+    contreg = objSiteRS.RecordCount
 
 Do While Not (objSiteRS.Eof)
 
@@ -245,6 +246,12 @@ Do While Not (objSiteRS.Eof)
 <%
 	    objSiteRS.MoveNext
 	Loop
+Else %>
+    <br />
+    <p>Nenhum comentário encontrado.</p>
+
+<%
+End If
 %>
         <div style="text-align: center;"><input type="button" value=" Fechar " onclick="javascript: window.close();" /></div>
 
