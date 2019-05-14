@@ -94,7 +94,8 @@ if modo = "CADASTRAR" then
 	sSQL = sSQL & "Convert(smalldatetime,'" & auxdatahoraocorrencia & "',103)," & auxconcluido & ",'" & auxexecutor & "',"
 	sSQL = sSQL & "'" & auxdocassociado & "'," & AUXConqGQ & ",'" & auxrespexecucao & "'," & tipoOcorrencia & ",'" & norma & "','" & observacoesgq & "','" & analisegq & "'," & AUXOPM & "," & ratresp & "," & lb_crit & ");"
 	sSQL = sSQL & "Set @identificar = @@identity;"
-elseif modo = "ALTERAR" then
+
+ElseIf modo = "ALTERAR" then
 	SQLACOES = replace(SQLACOES,SEPARADOR,ocorrencia)
 	SSQL = "UPDATE LB_LogBook SET " & _
 			" lb_prazo = " & auxprazo & ", " & _
@@ -126,8 +127,8 @@ end if
 'por isso tive de fazer um bacalhau
 'SSQL = SSQL & SQLACOES '& "Select  @identificar as Numero_da_Ocorrencia;"
 
-'response.write ssql & "<BR>--------------------<BR>"
-'response.write sqlacoes & "<BR>"
+'response.write "SQL: " & ssql & "<BR>--------------------<BR>"
+'response.write "sqlacoes: " & sqlacoes & "<BR>"
 'response.end
 
 call Env.RecordSet( true, objSiteRS, sSQL & " " & SQLACOES )
@@ -191,6 +192,6 @@ If Err Then %>
 <%
 else
 	if ocorrencia = "" then ocorrencia = objSiteRS("Numero_da_Ocorrencia")
-	response.redirect "cad_evLogBook.asp?ocorrencia=" & ocorrencia
+	response.redirect "CadEvLogBook.asp?ocorrencia=" & ocorrencia
 end if
 %>

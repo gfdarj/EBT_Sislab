@@ -40,7 +40,7 @@ If Env.UsuarioCRT Then
         <input type="hidden" name="enviei" value="SIM">
         <input type="hidden" name="ocorrencia" value="">
 
-        <p><a href="cad_evLogBook.asp"><b>&lt;Cadastrar Nova Ocorrência&gt;</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="rel_logbook_filtro.ASP"><b>&lt;Consultar andamento das Ocorrências (OCs)&gt;</b></a></p>
+        <p><a href="CadEvLogBook.asp"><b>&lt;Cadastrar Nova Ocorrência&gt;</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="rel_logbook_filtro.ASP"><b>&lt;Consultar andamento das Ocorrências (OCs)&gt;</b></a></p>
 
         <p><b>Tipo de Ocorrência :</b><%call comboBDSQL( "tipoOcorrencia", objConn,"select LBTO_ID AS VALOR,lBTO_DESCRICAO AS DESCRICAO from LB_TipoOcorrencia", tipoOcorrencia, true)%></p>
 

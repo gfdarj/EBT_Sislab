@@ -71,7 +71,7 @@ End If
 %>
 <table>
 
-<form name="form_exclui_acao" action="insCad_acLogBook.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
+<form name="form_exclui_acao" action="CadAcLogBookA.asp" method="post" style="display: none;" ENCTYPE="multipart/form-data">
     <input type="hidden" name="remover" value="1">
     <input type="hidden" name="idacao" value="">
     <input type="hidden" name="ocorrencia" value="<%=oc%>">
@@ -95,7 +95,7 @@ End If
 		else {
 			param = "?acao=finalizar&ocorrencia=<%=oc%>&idacao=" + idacao;
 		}
-		janela = window.open("cad_acLogBook.asp" + param, "cad_contato", "width=780, height=500, toolbar=no, status=yes, menubar=no, scrollbars=yes");
+		janela = window.open("CadAcLogBook.asp" + param, "cad_contato", "width=850, height=650, toolbar=no, status=yes, menubar=no, scrollbars=yes");
 		janela.focus();
 	}
 	document.marginheight = 0;

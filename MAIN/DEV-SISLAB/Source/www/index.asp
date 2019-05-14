@@ -130,7 +130,7 @@ Call Tela.MostraCabecalho()
 								selOC.submit();
 							}
 							</script>
-							<form name="seloc" id="id_selOC" target="_parent" action="cad_evLogBook.asp" method="post">
+							<form name="seloc" id="id_selOC" target="_parent" action="CadEvLogBook.asp" method="post">
 								<input type="hidden" name="ocorrencia" value="">
 							</form>
 	

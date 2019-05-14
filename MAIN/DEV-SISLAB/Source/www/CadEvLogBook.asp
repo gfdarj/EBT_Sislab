@@ -59,7 +59,7 @@ end if
 
 <div class="margem-10">
 
-<form method="post" action="insCad_evLogBook.asp" name="formulario">
+<form method="post" action="CadEvLogBookA.asp" name="formulario">
 <input type="hidden" name="modo" value="CADASTRAR">
 <input type="hidden" name="resp" value="0">
 <input type="hidden" name="concluidoGQ" value="0">
@@ -222,7 +222,7 @@ end if
 <tr>
 	<td colspan="10">
 	    <div class="largura-total" style="height:90px; border: solid thin silver; marginheight:0; marginwidth:0;">
-	    <iframe id="frame_LB_acao" style="width: 100%; height: 200px; border: none;" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="cad_evLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>" frameborder="0" scrolling="Auto"></iframe>
+	    <iframe id="frame_LB_acao" style="width: 100%; height: 200px; border: none;" vspace="0" hspace="0" marginheight="0" marginwidth="0" src="CadEvLogBookAcoes.asp?ocorrencia=<%=ocorrencia%>" frameborder="0" scrolling="Auto"></iframe>
 	    </div>
 	</td>
 </tr>
@@ -368,7 +368,7 @@ end if
         else
         {
 		    var janela;
-		    janela = window.open("cad_acLogBook.asp?acao=cadastrar&ocorrencia=<%=ocorrencia%>", "cad_contato", "width=780, height=500, toolbar=no, status=yes, menubar=no, scrollbars=auto");
+		    janela = window.open("CadAcLogBook.asp?acao=cadastrar&ocorrencia=<%=ocorrencia%>", "cad_contato", "width=850, height=650, toolbar=no, status=yes, menubar=no, scrollbars=auto");
 		    janela.focus();
 	    }
     }

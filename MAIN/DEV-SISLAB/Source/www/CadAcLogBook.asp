@@ -50,7 +50,7 @@ if idacao <> "" then
 end if
 %>
 <div class="margem-10">
-    <form name="frm" method="post" action="insCad_acLogBook.asp" enctype="multipart/form-data">
+    <form name="frm" method="post" action="CadAcLogBookA.asp" enctype="multipart/form-data">
         <input type="hidden" name="idacao" value="<%=idacao%>">
         <input type="hidden" name="ocorrencia" value="<%=oc%>">
         <input type="hidden" name="id_ArquivoExclusao" value="">

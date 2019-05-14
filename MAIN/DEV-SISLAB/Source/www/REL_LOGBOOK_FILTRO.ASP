@@ -39,10 +39,12 @@ EH_CRT = Env.UsuarioCRT()
 		            <B>N&deg; OC</B><br>
 		            <input type="text"  name="ocorrencia" size="5">
 	            </td>
+                <!-- Retirado em 2019-05-13
 	            <td colspan=1  align=left valign=top>
 		            <B>OPM <br><input type="Checkbox" name="chkOPM"></B>
 	            </td>
-	            <td colspan=8  align=left valign=top>
+                -->
+	            <td colspan=9  align=left valign=top>
 		            <B>Possui Ações...</B><BR>
 		            <input type="Checkbox" name="chkAI"> Imediatas
 		            &nbsp;&nbsp;&nbsp;

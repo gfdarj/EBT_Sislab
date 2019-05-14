@@ -22,6 +22,16 @@ pastaArquivos = Server.MapPath(".") & "\" & Application("SISLAB_FolderArquivosLB
 
 Const MaxFileSize = 25200000 ' Limite de 25,2 Mb de arquivo
 
+'response.write "<br>aqui !" & now
+'response.write "<br>Form.State = " & Form.State 
+'response.write "<br>Form.id_ArquivoExclusao = " & Form.Item("id_ArquivoExclusao")
+'response.write "<br>Form.remover = " & Form.Item("remover")
+'response.write "<br>Form.idacao = " & Form.Item("idacao")
+''response.write "SQL: " & ssql & "<BR>--------------------<BR>"
+''response.write "sqlacoes: " & sqlacoes & "<BR>"
+''response.end
+
+
 If Form.State = 0 Then
     subPasta = Form.SubPastaLB(Form.Item("ocorrencia"))
     If subPasta <> "" Then subPasta = subPasta & "\" 
@@ -80,7 +90,6 @@ If Form.State = 0 Then
 		    Set RS = Nothing
 
 	    Else
-
 		    descricao = Form.Item("descricao")
 		    if descricao = "" then descricao = null
 		    executante = Form.Item("executor")
@@ -98,6 +107,11 @@ If Form.State = 0 Then
 		    tipoacao = Form.Item("cmbAcao")
 		    If tipoacao = "" Then tipoacao = Null Else tipoacao = cint(tipoacao)
 
+'response.write "<br>aqui dentro:: " & Form.Files.Items.count
+'response.end
+
+            chr_Arquivo = Null
+
             For each Field in Form.Files.Items
                 If Not VVVNZ(Field.FileName) Then
                     ' # Field.Filename : Nome do Arquivo que chegou.
@@ -108,63 +122,62 @@ If Form.State = 0 Then
                 Else
                     chr_Arquivo = Null
                 End If
-
-		        Call Env.StoredProcedure(true, objSP, "sp_CadLogBookAcaoTomada")
-		        With objSP
-			        .Parameters.item("@pACT_ID") = idacao
-			        .Parameters.item("@pACT_LB") = Form.Item("ocorrencia")
-			        .Parameters.item("@pACT_DESCRICAO") = descricao
-			        .Parameters.item("@pACT_EXECUTANTE") = executante
-			        .Parameters.item("@pACT_PRAZO") = prazo
-			        .Parameters.item("@pACT_DATACONCLUSAO") = conclusao
-			        .Parameters.item("@pACT_EFICACIA") = eficacia
-			        .Parameters.item("@pACT_OBS") = obs
-			        .Parameters.item("@pACT_TIPOACAO") = tipoacao
-			        .Parameters.item("@pACT_ARQUIVO") = chr_arquivo
-			        .Parameters.item("@pACT_USUARIOCADASTROU") = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
-			        .Parameters.item("@pACT_RESPONSAVEL") = responsavel
-		        '	on error resume next
-			        .Execute
-		        '	on error goto 0
-			        idacao = .Parameters.item("@pACT_ID")
-		        End With
-		        Call Env.StoredProcedure(false, objSP, "sp_CadLogBookAcaoTomada")
-
-		        '-- Usuario selecionou para responder por email ao Responsavel pela acao
-		        If Form.Item("resposta") = "S" Then
-
-			        assunto = "Gerenciamento do LogBook - Elaboração de Ações Tomadas"
-
-			        If EhnovaAcao Then msg = "criada." Else msg = "alterada."
-
-			        If Cstr(TipoAcao) = Cstr(LB_Acao_Imediata) Then
-				        msg = "<b>imediata</b> foi " & msg
-			        ElseIf Cstr(TipoAcao) = Cstr(LB_Acao_Corretiva) Then
-				        msg = "<b>corretiva</b> foi " & msg
-			        Else
-				        msg = "<b>preventiva</b> foi " & msg
-			        End If
-
-			        msg = _
-				        "Uma ação do logbook tipo " & msg & "<br><br>" & _
-				        "Nº da Ocorrência : " & Form.Item("ocorrencia") &  "<br>" & _
-				        "Prazo de conclusão: " & conclusao & "<br>" & _
-				        "Responsável pela Ação: " & responsavel &  "<br>" & _
-				        "Executor: " & executante & "<br>" & _
-				        "Descrição da ação: " & descricao &  "<br>"
-
-
-			        '###
-			        '### houve uma reclamacao de que o email nao estava sendo enviado, entao comentei
-			        '### a linha que verifica o usuário
-			        '###									Gilberto (06/09/2010)
-			        If Env.ExisteUsuario(responsavel) then
-				        Call Enviar_Email(responsavel, responsavel, assunto, msg)
-    				    Call Enviar_Email("gilbertorjo@gmail.com", "GILBERTO", assunto, msg)
-			        End If
-		        End If
             Next
 
+		    Call Env.StoredProcedure(true, objSP, "sp_CadLogBookAcaoTomada")
+		    With objSP
+			    .Parameters.item("@pACT_ID") = idacao
+			    .Parameters.item("@pACT_LB") = Form.Item("ocorrencia")
+			    .Parameters.item("@pACT_DESCRICAO") = descricao
+			    .Parameters.item("@pACT_EXECUTANTE") = executante
+			    .Parameters.item("@pACT_PRAZO") = prazo
+			    .Parameters.item("@pACT_DATACONCLUSAO") = conclusao
+			    .Parameters.item("@pACT_EFICACIA") = eficacia
+			    .Parameters.item("@pACT_OBS") = obs
+			    .Parameters.item("@pACT_TIPOACAO") = tipoacao
+			    .Parameters.item("@pACT_ARQUIVO") = chr_arquivo
+			    .Parameters.item("@pACT_USUARIOCADASTROU") = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+			    .Parameters.item("@pACT_RESPONSAVEL") = responsavel
+		    '	on error resume next
+			    .Execute
+		    '	on error goto 0
+			    idacao = .Parameters.item("@pACT_ID")
+		    End With
+		    Call Env.StoredProcedure(false, objSP, "sp_CadLogBookAcaoTomada")
+
+		    '-- Usuario selecionou para responder por email ao Responsavel pela acao
+		    If Form.Item("resposta") = "S" Then
+
+			    assunto = "Gerenciamento do LogBook - Elaboração de Ações Tomadas"
+
+			    If EhnovaAcao Then msg = "criada." Else msg = "alterada."
+
+			    If Cstr(TipoAcao) = Cstr(LB_Acao_Imediata) Then
+				    msg = "<b>imediata</b> foi " & msg
+			    ElseIf Cstr(TipoAcao) = Cstr(LB_Acao_Corretiva) Then
+				    msg = "<b>corretiva</b> foi " & msg
+			    Else
+				    msg = "<b>preventiva</b> foi " & msg
+			    End If
+
+			    msg = _
+				    "Uma ação do logbook tipo " & msg & "<br><br>" & _
+				    "Nº da Ocorrência : " & Form.Item("ocorrencia") &  "<br>" & _
+				    "Prazo de conclusão: " & conclusao & "<br>" & _
+				    "Responsável pela Ação: " & responsavel &  "<br>" & _
+				    "Executor: " & executante & "<br>" & _
+				    "Descrição da ação: " & descricao &  "<br>"
+
+
+			    '###
+			    '### houve uma reclamacao de que o email nao estava sendo enviado, entao comentei
+			    '### a linha que verifica o usuário
+			    '###									Gilberto (06/09/2010)
+			    If Env.ExisteUsuario(responsavel) then
+				    Call Enviar_Email(responsavel, responsavel, assunto, msg)
+    				Call Enviar_Email("gilbertorjo@gmail.com", "GILBERTO", assunto, msg)
+			    End If
+		    End If
 
 	    End if
 
@@ -180,19 +193,19 @@ If Form.State = 0 Then
 
 	    '-- Excluiu um arquivo anexo à ação
 	    If Form.Item("id_ArquivoExclusao") <> "" Then
-		    Response.Write "opener.location.href = 'cad_evLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
-		    Response.Write "location.href = 'cad_acLogBook.asp?idacao=" & Form.Item("idacao") & "&ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
+		    Response.Write "opener.location.href = 'CadEvLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
+		    Response.Write "location.href = 'CadAcLogBook.asp?idacao=" & Form.Item("idacao") & "&ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
 	    Else
 		    '-- Remove uma acao tomada
 		    if Form.Item("remover") = "1" then
-			    Response.Write "location.href = 'cad_evLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
+			    Response.Write "location.href = 'CadEvLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
 		    else
 			    '-- se for nova acao chamo do form de ocorrencias! caso contrario
 			    '-- chamo do form de acoes
 			    if EhnovaAcao then
-				    Response.Write "opener.frame_LB_acao.location.href = 'cad_evLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
+				    Response.Write "opener.frame_LB_acao.location.href = 'CadEvLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
 			    else
-				    Response.Write "opener.location.href = 'cad_evLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
+				    Response.Write "opener.location.href = 'CadEvLogBookAcoes.asp?ocorrencia=" & Form.Item("ocorrencia") & "';" & VbCrLf
 			    end if
 			    Response.Write "window.close();" & VbCrLf
 		    end if

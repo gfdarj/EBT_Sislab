@@ -116,7 +116,7 @@ If Not ObjSiteRS.EOF Then
 		%>
 	<tr class="<%=cor%>">
 		<td style="text-align: center; vertical-align: top;">
-			<a href="CAD_evLogBook.asp?ocorrencia=<%=ObjSiteRS("LB_ID")%>"><%=ObjSiteRS("LB_ID")%></a>&nbsp;
+			<a href="CadEvLogBook.asp?ocorrencia=<%=ObjSiteRS("LB_ID")%>"><%=ObjSiteRS("LB_ID")%></a>&nbsp;
 		</td>
 		<td style="text-align: center; vertical-align:top;">
 			<%=estado%>&nbsp;
