@@ -53,7 +53,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -61,7 +61,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="navbar-brand" href="#">Claro CRT</a>
+          <a class="navbar-brand" href="#" style="background-color: red;">SISLAB</a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
@@ -121,7 +121,18 @@
                 <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
               </ul>  
           </ul>
+
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">AQUI !!!</a></li>
+                    </ul>
+                </ul>
+            </div>
+
         </div>
+
+
       </div>
     </nav>
 

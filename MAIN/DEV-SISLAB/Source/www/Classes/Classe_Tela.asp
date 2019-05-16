@@ -139,6 +139,9 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
         "       <meta name='viewport' content='width=device-width, initial-scale==1.0'>" & VbCrLf & _
         "       <link rel='stylesheet' href='" & PathRelativo & "includes/bootstrap-3.3.7-dist/css/bootstrap.min.css' media='screen'>" & VbCrLf & _
 		"       <link rel='stylesheet' type='text/css' href='" & PathRelativo & "estilos/" & p_estilo & "' />" & VbCrLf & _
+		"       <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>" & VbCrLf & _
+		"       <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>" & VbCrLf & _
+		"       <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" & VbCrLf & _
 		"   </head>" & VbCrLf
 
 	chr_Buffer = chr_Buffer & _
@@ -188,6 +191,12 @@ Private Sub ImprimeImagemSite()
     w_princ = p_tamanhoTela
     PathRelativo = p_PathRelativo
 %>
+<%
+    If p_imprimeMenu And Env.Usuario <> "" Then
+        Call ImprimeMenu()
+    end if
+%>
+<!--
 		<table style="width: <%=w_princ%>;" >
         <tr>
             <td background="<%=PathRelativo%>img/titulo_bg.jpg" height="70" style="vertical-align: bottom;">
@@ -219,15 +228,11 @@ Private Sub ImprimeImagemSite()
             </td>
         </tr>
         </table>
-<%
-    If p_imprimeMenu And Env.Usuario <> "" Then
-        Call ImprimeMenu()
-    end if%>
-
+-->
 <%
 End Sub
 
-Private Sub ImprimeMenu2() %>
+Private Sub ImprimeMenu() %>
 
     <style type="text/css">
         .dropdown-submenu{ position: relative; }
@@ -274,8 +279,7 @@ Private Sub ImprimeMenu2() %>
         */
     </style>
 
-
-    <nav class="navbar navbar-btn navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -283,13 +287,15 @@ Private Sub ImprimeMenu2() %>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="navbar-brand" href="#">Claro CRT</a>
+            <a class="navbar-brand" href="#" style="background-color: darkblue; color: white;">
+                <span class="glyphicon glyphicon-menu-hamburger"></span> Centro de Referência Tecnológica
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
           <ul class="nav navbar-nav navbar-left">
                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">PRINCIPAL</a></li>
+                    <!-- <li class="active"><a href="#">PRINCIPAL</a></li> -->
 
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS<span class="caret"></span></a>
                       <ul class="dropdown-menu">
@@ -336,13 +342,30 @@ Private Sub ImprimeMenu2() %>
                       </ul>
                     </li>
 
-                    <li class="#"><a href="#">ADMINISTRAÇÃO DO SITE</a></li>
+                    <li class="#"><a href="<%'=PathRelativo%>sislab.asp">ADMINISTRAÇÃO DO SITE</a></li>
 
-                    <li class="#"><a href="#">FALE CONOSCO</a></li>
+                    <li class="#"><a href="<%'=PathRelativo%>fale.asp">FALE CONOSCO</a></li>
 
-                <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
-              </ul>  
+                    <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+               </ul>
           </ul>
+
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="#">
+                            <small>
+                                <span style="color: darkblue; font-weight:bold;">
+                                    <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;<br />
+					                <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)&nbsp;
+                                </span>
+                            </small>
+                        </li>
+                        
+                    </ul>
+                </ul>
+            </div>
+
         </div>
       </div>
     </nav>
@@ -364,7 +387,7 @@ Private Sub ImprimeMenu2() %>
 <%
 End Sub
 
-Private Sub ImprimeMenu() %>
+Private Sub ImprimeMenu1() %>
 <script type="text/javascript" language="JavaScript1.2">
 	<!--
     var st_path = "<%=p_PathRelativo%>includes/";
@@ -476,28 +499,50 @@ Private Sub ImprimeNomeTela()
     PathRelativo = p_PathRelativo
     linkVoltar = p_linkVoltar
 
-	if p_linkVoltar = "" then p_linkVoltar = "history.go(-1)"%>
-		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" 
-            style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
-        <tr>
-			<td class="destaque titulo">
+	If p_linkVoltar = "" Then p_linkVoltar = "history.go(-1)" %>
 
-				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="menu" id="tbl_principal_nomeform" >
-				<tr valign="middle">
-					<td valign="middle">
-                        <h4 class="text-primary">
-						<!--<span style="font-family: Verdana, Arial, Helvetica, sans-serif; color: Navy; font-weight: bolder; font-size: 10pt;">-->
-                            &nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;
-							<i><%=p_nomeTela%></i>
-						<!--</span>-->
-                        </h4>
-					</td>
+        <div id="tbl_principal_nomeform" style="display: inline;">
 
-					<td align="right" id="td2_tbl_principal_nomeform" >
+            <div  style="display: inline; vertical-align: middle; float: left; padding-left: 10px; margin-bottom: 15px;" >
+                <h4>
+                    <span class="texto-vermelho-bold">&raquo;</span>&nbsp;
+			        <span style="color: darkblue;"><strong><%=p_nomeTela%></strong></span>
+                </h4>
+            </div>
+
+            <div style="text-align: right; vertical-align: middle; margin-right: 10px; float: right; margin-bottom: 15px;">
+                <p>
 <%			If ucase(linkVoltar) <> "NENHUM" then
 				If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
-						<a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
-						&nbsp;
+                    <a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
+<%				End If
+                if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+<%			    End If
+			End If%>
+                </p>
+            </div>
+        </div>
+
+        <br />
+
+        <!--
+		<table width="<%=p_tamanhoTela%>" style="/*border-top: thin dotted Gray; border-bottom: thin dotted Gray;*/">
+        <tr>
+			<td class="destaque titulo">
+				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="menu" id="tbl_principal_nomeform" >
+				    <tr valign="middle">
+					    <td valign="middle">
+                            <p>
+                                &nbsp;<span class="texto-vermelho-bold">&raquo;</span>&nbsp;
+							    <span style="color: darkblue;"><strong><%=p_nomeTela%></strong></span>
+                            </p>
+					    </td>
+
+    					<td align="right" id="td2_tbl_principal_nomeform" >
+<%			If ucase(linkVoltar) <> "NENHUM" then
+				If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
+						    <a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
+						    &nbsp;
 <%				End If
                 if ucase(p_linkVoltar) <> "SO_LINK" Then %>
                         <!--
@@ -510,17 +555,18 @@ Private Sub ImprimeNomeTela()
                         -->
 <%			    End If
 			End If%>
-						&nbsp;&nbsp;
-					</td>
-				</tr>
+<!--        			    &nbsp;&nbsp;
+					    </td>
+				    </tr>
 				</table>
-
 			</td>
 		</tr>
 		</table>
+        -->
 
 		<script type="text/javascript">
-		    function imprimeTelaPrincipalSistema() {
+		    function imprimeTelaPrincipalSistema()
+		    {
 		        var d = document.all;
 		        var undef;
 
