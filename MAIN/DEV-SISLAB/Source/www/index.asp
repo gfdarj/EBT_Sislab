@@ -60,8 +60,6 @@ Call Tela.MostraCabecalho()
 <!-- Scroller do notícias -->
 <script type="text/javascript" src="includes/pauseScroller.js"></script>
 
-        <br />
-
         <div class="container">
 
             <div class="row">

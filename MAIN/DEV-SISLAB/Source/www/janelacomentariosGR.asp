@@ -132,7 +132,7 @@ if Not ObjSiteRS.EOF Then
 %>
     <tr>
         <td>
-            <u><b>Comentário <%=cont%> - <%=objSiteRS("psq_id")%></b></u>
+            <u><b>Comentário <%=cont%></b></u>
         </td>
     </tr>
     <tr>

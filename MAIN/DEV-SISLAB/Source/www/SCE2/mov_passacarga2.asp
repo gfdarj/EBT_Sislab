@@ -58,7 +58,8 @@ Else
     Call Tela.MostraCabecalho()
     Call Tela.ImprimeMenuSce()
 	RW "<div class='margem-10'>"
-	RW "    <br />Carga passada com sucesso."
+	RW "    <br />Passagem de carga solicitada com sucesso."
+	RW "    <br /><br />Aguarde a confirmação pelo RT do agendamento destino."
 	RW "    <br /><br />"
 	RW "    <input type='button' value='Voltar' onclick='location.href=""mov_passacarga.asp"";' />"
 	RW "    <br />"

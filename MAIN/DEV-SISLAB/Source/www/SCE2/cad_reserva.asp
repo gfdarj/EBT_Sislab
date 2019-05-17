@@ -403,9 +403,12 @@ end if
 	    return linha;
     }
 
-	function RemoveItem(l) {
-		document.getElementById("linha_"+l).remove();
-	    total_linhas--;
+    function RemoveItem(l)
+    {
+        var row = document.getElementById("linha_" + l);
+        var parent = row.parentNode;
+        parent.removeChild(row);
+        total_linhas--;
 	}
 
     function validaCodBarras(codbarras, linhaTabela) {  // valida um codigo de barras digitado na tabela de itens

@@ -5,7 +5,7 @@
 <!--#include file="includes/funcoes.asp" -->
 <%
 Dim ssql, motivo, num_ag, num_os, nova_os, servico, plataforma, eq_id
-Dim int_Repetido, os_observacoes, hora, id_situacao
+Dim int_Repetido, os_observacoes, hora, id_situacao, dataAS
 
 num_ag = request("num_ag")
 num_os = request("num_os")
@@ -15,7 +15,7 @@ id_situacao = ""
 situacao_atual = "null"
 int_Repetido = 0
 os_observacoes = ""
-hora = ""
+hora = Now
 
 If nova_os = "0" then
 	ssql = "select * from vw_OrdemDeServico where ag_numero = " & num_ag & " and os_id = " & num_os
@@ -43,9 +43,20 @@ If nova_os = "0" then
 	End If
 End If
 
+If num_ag <> "" Then
+    sSQL = "SELECT AG_DATAINICIO FROM Agendamento WHERE ag_numero = " & num_ag 
+	Call Env.RecordSet(true, objSiteRS, sSQL)
+
+	If Not (objSiteRS.Eof And objSiteRS.Bof) Then
+        dataAS = objSiteRS("AG_DATAINICIO")
+    End If
+Else
+    dataAS = Now
+End If
+
 Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de Serviço", "window.close()", "")
 %>
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 
 <script type="text/javascript">
     function Historico(){
@@ -109,8 +120,8 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
     function envia()
     {
         var frm = document.forms[0];
-        var dataHoje = "<%=Year(Now) & Right("0" & Month(Now), 2) & Right("0" & Day(Now), 2)%>";
-        var horaHoje = "<%=Right("0" & Hour(Now), 2) & Right("0" & Minute(Now), 2)%>";
+        var dataHoje = "<%=Year(dataAS) & Right("0" & Month(dataAS), 2) & Right("0" & Day(dataAS), 2)%>";
+        var horaHoje = "<%=Right("0" & Hour(dataAS), 2) & Right("0" & Minute(dataAS), 2)%>";
 
 	    if( (frm.cmbSituacao.value == "") || (frm.cmbSituacao.value == "0") )
 	    {
@@ -134,7 +145,7 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
         }
         else if (frm.anoINICIO.value + frm.mesINICIO.value + frm.diaINICIO.value < dataHoje)
 	    {
-		    alert("Selecione uma Data de Início maior ou igual a Hoje" + frm.anoINICIO.value + frm.mesINICIO.value + frm.diaINICIO.value + " -- " + dataHoje);
+		    alert("Selecione uma Data de Início maior ou igual ao Agendamento");
 		    frm.diaINICIO.focus();
 	    }
         else if (frm.horaINICIO.value == "")
@@ -149,7 +160,7 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
         }
         else if (frm.horaINICIO.value + frm.minutoINICIO.value < horaHoje)
 	    {
-		    alert("Selecione uma Hora de Início maior ou igual a Hoje");
+		    alert("Selecione uma Hora de Início maior ou igual ao Agendamento");
 		    frm.horaINICIO.focus();
 	    }
 	    else if(frm.cmbTeste.value == "")
@@ -192,21 +203,21 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
 <%End If%>
     </div>
 
-    <table class="table-condensed">
+    <table class="table-condensed" border="0" style="width: 100%;">
     <tr valign="middle">
 	    <th align="left">
 		    Controle da Situação da Ordem de Serviço
 	    </th>
-	    <th width="100px">
+	    <th width="200px" style="text-align: right; margin-right: 20px;">
 		<%if nova_os = "0" then%>
 			<a href="javascript:Historico();">Histórico</a>
 		<%else%>
-			Sem Histórico
+			<small>Sem Histórico</small>
 		<%end if%>
 	    </th>
     </tr>
     <tr>
-	    <td>
+	    <td colspan="2">
 		    Situação:&nbsp;
 		    <select name="cmbSituacao"  onchange="avaliaSituacao();">
 <%		if nova_os <> "1" then
@@ -225,7 +236,7 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
 	    </td>
     </tr>
     <tr>
-	    <td height="34" id="dadosSituacao1">
+	    <td colspan="2" height="34" id="dadosSituacao1">
 		    Data Início:&nbsp;<%call comboData("INICIO")%>
             <span id="dadosSituacao2">
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -234,7 +245,7 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
 	    </td>
     </tr>
     <tr>
-	    <td id="dadosSituacao3">Motivo ( Somente em caso de mudança de Situação ):</font><br>
+	    <td colspan="2" id="dadosSituacao3">Motivo ( Somente em caso de mudança de Situação ):</font><br>
 		    <textarea name="motivo"  cols="110" rows="4"><%=motivo%></textarea>
 		    <textarea name="motivo_old"  style="display:none;"><%=motivo%></textarea>
 	    </td>

@@ -21,7 +21,9 @@ chr_UsuarioSCE = Env.UsuarioSCE()
 'response.write "<BR><BR><BR><BR>" & env.UsuarioSCE() & "<BR>"
 'response.write env.PerfilSCE()
 
-Tela.SetNomeTela = "SCE"
+Tela.SetNomeTela = ""
+Tela.SetCaminhoRelativo = "../"
+
 Call Tela.MostraCabecalho()
 
 If chr_UsuarioSCE Then
@@ -127,12 +129,12 @@ If chr_UsuarioSCE Then
 		<table class="largura-total table-condensed">
 		<tr style="vertical-align: top;">
 			<td>
-				<%'Call ImprimeControles(CONTROLE_CALIBRACAO, "Cód. Barras", "Vencimento")%>
 				<%Call ImprimeControleSaidaParaManutencao()%>
+				<%'Call ImprimeControles(CONTROLE_CALIBRACAO, "Cód. Barras", "Vencimento")%>
 			</td>
 			<td>
-				<%'Call ImprimeControles(CONTROLE_MANUTENCAO, "Cód. Barras", "Vencimento")%>
 				<%Call ImprimeControlesSaidaCalibracao()%>
+				<%'Call ImprimeControles(CONTROLE_MANUTENCAO, "Cód. Barras", "Vencimento")%>
 			</td>
 			<td><%Call ImprimeControles2("Cód. Barras", "Modelo", "Status", "Local")%></td>
 		</tr>
