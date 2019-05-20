@@ -283,7 +283,22 @@ Private Sub ImprimeMenu()
         */
     </style>
 
-    <nav class="navbar navbar-default navbar-static-top">
+    <div style="border: none; color: red; width: 100%; height:90px; ">
+        <div>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /></a>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-net.png" /></a>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-embratel.png" /></a>
+        </div>
+        <div style="margin-top: 0px; margin-left: 0px;">
+            <span style="color: darkblue; font-weight:bold; font-size: 17px;">
+                <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;<br />
+				<%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)&nbsp;
+            </span>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default "> <!--navbar-static-top-->
       <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">

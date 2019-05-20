@@ -57,11 +57,14 @@
       <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
-                <span class="icon-bar"></span>
+                <span class="icon-bar"><img src="img/novo/logo-claro.png" /></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="navbar-brand" href="#">SCE</a>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /></a>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-net.png" /></a>
+            <a class="navbar-brand" href="#"><img src="img/novo/logo-embratel.png" /></a>
+            <!--<a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /><img src="img/novo/logo-net.png" /><img src="img/novo/logo-embratel.png" /></a>-->
         </div>
 
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
