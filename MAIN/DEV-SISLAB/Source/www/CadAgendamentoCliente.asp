@@ -18,6 +18,7 @@ Dim bln_AchouEBT
 Dim Ebt
 Dim int_sigilo
 Dim chr_Username
+Dim usernameMatricula, usernameNome, usernameTelefone
 
 chr_Username = ""
 bln_AchouEBT = False
@@ -57,6 +58,9 @@ If num_ag <> "" Then
 		chr_Username = objSiteRS("AG_USERNAME")
 		chr_OrgaoSQL = objSiteRS("AG_ORGAO")
 		If IsNull(chr_OrgaoSQL) Then chr_OrgaoSQL = "--" Else chr_OrgaoSQL = Trim(chr_OrgaoSQL)
+        usernameMatricula = objSiteRS("AG_USERNAME_MATRICULA")
+        usernameNome = objSiteRS("AG_USERNAME_NOME")
+        usernameTelefone = objSiteRS("AG_USERNAME_TELEFONE")
 	End If
 End If
 %>
@@ -382,7 +386,6 @@ if num_ag <> "" then
 <%	End if
 End if
 %>
-
 <%
 if Env.EhRat() then
 %>
@@ -399,23 +402,23 @@ end if
 %>
         <div style="width: 100%">
 	        <div class="linha-fundo" style="width: 100%"><strong>Dados do Solicitante</strong></div><br />
-                <div>
-		            Nome do Responsável: &nbsp;
-		            <input type="text" readonly name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Matrícula:&nbsp;
-		            <input type="text" readonly name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
-                </div>
-                <br />
-                <div>
-                    Órgão:&nbsp;<input type="text" readonly name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            E-mail:&nbsp;
-                    <input type=hidden name="Username">
-		            <input type="text" readonly name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Ramal:&nbsp;<input type="text" name="txtRamal" readonly size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
-                </div>
+            <div>
+		        Nome do Responsável: &nbsp;
+		        <input type="text" name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Matrícula:&nbsp;
+		        <input type="text" name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
+            </div>
+            <br />
+            <div>
+                Órgão:&nbsp;<input type="text" name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        E-mail:&nbsp;
+                <input type=hidden name="Username">
+		        <input type="text" name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        Ramal:&nbsp;<input type="text" name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
+            </div>
         </div>
 
         <br />

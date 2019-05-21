@@ -5,6 +5,7 @@
 <!--#include file="includes/emailHTML.ASP" -->
 <%
 Dim chr_Buf
+Dim usernameMatricula, usernameNome, usernameTelefone
 
 '-- redireciona caso expirado
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
@@ -51,11 +52,17 @@ else  '-- cliente externo embratel
 	planodemetas = request("cmbItem")
 end if
 
+usernameMatricula = Request("AG_USERNAME_MATRICULA")
+usernameNome = Request("AG_USERNAME_NOME")
+usernameTelefone = Request("AG_USERNAME_TELEFONE")
+
 if ag = "" then ag = "null"
 
-ssql = "exec sp_CadAgendamento '" & SEPARADOR_CAMPO & "','" & SEPARADOR_REGISTRO & "'," & ag & ",'" & titulo & "'," & receber_email & "," & tecnologia & ",'" & _
+ssql = "EXEC sp_CadAgendamento '" & SEPARADOR_CAMPO & "','" & SEPARADOR_REGISTRO & "'," & ag & ",'" & titulo & "'," & receber_email & "," & tecnologia & ",'" & _
 	   data_inicio & "','" & data_fim & "','" & sigilo & "','" & objetivos & "','" & _
-	   ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & Cliente_Nome & "'," & Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & listaParticipantesExternos & "'"
+	   ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & Cliente_Nome & "'," & _
+       Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & _
+       listaParticipantesExternos & "'"
 ssql = replace(ssql,",,",",null,")
 ssql = replace(ssql,"''","null")
 ssql = replace(ssql,"'//'","null")
