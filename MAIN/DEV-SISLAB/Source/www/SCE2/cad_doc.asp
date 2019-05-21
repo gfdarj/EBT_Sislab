@@ -9,11 +9,12 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > Documento" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Cadastro > Documento" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Dim Combo
     Set Combo = New TCombo

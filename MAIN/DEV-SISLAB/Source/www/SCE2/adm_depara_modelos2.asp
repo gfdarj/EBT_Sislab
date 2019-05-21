@@ -20,9 +20,10 @@ End With
 Call Env.StoredProcedure(False, objSP, "sp_SCE_DEPARA_MODELOS")
 
 If Env.oConn.Errors.Count > 0 Then
-    Tela.SetNomeTela = "SCE > Movimentação > Recepção de Carga" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Movimentação > Recepção de Carga" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 	Call Tela.Mensagem.ErroSql()
     Call Tela.MostraRodape()
     Response.End

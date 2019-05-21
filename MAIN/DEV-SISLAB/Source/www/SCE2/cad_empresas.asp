@@ -4,11 +4,12 @@
 <!------- SISLAB ---->
 <!--#include file="../includes/bib_str.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > Empresa" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Cadastro > Empresa" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
-    Call Tela.ImprimeMenuSce()
+'    Call Tela.ImprimeMenuSce()
 %>
 <script type="text/javascript">
     function ValidaCampos()

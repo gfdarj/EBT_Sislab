@@ -9,14 +9,15 @@
 <%
 Dim s_orig, s_dest, w, rec, s
 
-Tela.SetNomeTela = "SCE > Relatório > Passagem de Carga"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Passagem de Carga"
 Tela.SetCaminhoRelativo = "../"
 
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     s =	"SELECT p.AG_NUMERO_ORIG, p.AG_NUMERO_DEST, ao.AG_RESPONSAVEL AS AG_RESPONSAVEL_ORIG, " & _
 	    "ad.AG_RESPONSAVEL AS AG_RESPONSAVEL_DEST, CONVERT(VARCHAR, PAS_DATAPASSAGEM, 103) AS " & _

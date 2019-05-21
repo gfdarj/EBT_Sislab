@@ -10,11 +10,12 @@
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Cadastro > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Cadastro > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Dim valor, nf_id
     Dim nf_numeronota : nf_numeronota = ""

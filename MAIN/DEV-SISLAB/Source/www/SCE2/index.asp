@@ -23,6 +23,7 @@ chr_UsuarioSCE = Env.UsuarioSCE()
 
 Tela.SetNomeTela = ""
 Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
 
 Call Tela.MostraCabecalho()
 
@@ -31,7 +32,7 @@ If chr_UsuarioSCE Then
 
     Set Sce = New TSce
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Dim sqlSaidaParaManutencao, sqlSaidaCalibracao, sqlControles2, sqlNotaFiscalVencida
 

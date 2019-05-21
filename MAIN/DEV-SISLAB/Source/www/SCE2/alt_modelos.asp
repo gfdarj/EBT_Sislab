@@ -9,14 +9,15 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Alterar Modelo" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Alterar Modelo" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Dim ssql, recm
 

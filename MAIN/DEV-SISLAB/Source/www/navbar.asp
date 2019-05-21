@@ -53,7 +53,93 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-collapse navbar-fixed-top">
+
+    <div id="menu1">
+        <nav class="navbar navbar-collapse navbar-fixed-top navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
+                    <span class="icon-bar"><img src="img/novo/logo-claro.png" /></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /></a>
+                <a class="navbar-brand" href="#"><img src="img/novo/logo-net.png" /></a>
+                <a class="navbar-brand" href="#"><img src="img/novo/logo-embratel.png" /></a>
+                <!--<a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /><img src="img/novo/logo-net.png" /><img src="img/novo/logo-embratel.png" /></a>-->
+            </div>
+
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+              <ul class="nav navbar-nav navbar-left">
+                   <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">PRINCIPAL</a></li>
+
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamentos</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Novo</a></li>
+                                    <li><a href="#">Acompanhamento de Resultados</a></li>
+                                    <li><a href="#">Remarcar</a></li>
+                                    <li><a href="#">Relatório de Acompanhamento</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Conhecendo o CRT</a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Ambientes</a></li>
+                                  <li><a href="#">Código de Ética</a></li>
+                                  <li><a href="#">Equipe / Infra-estrutura interna</a></li>
+                                  <li><a href="#">Espaço CRT</a></li>
+                                  <li><a href="#">Histórico</a></li>
+                                  <li><a href="#">Localização / Área</a></li>
+                                  <li><a href="#">Manual do Sistema de Gestão</a></li>
+                                  <li><a href="#">Vídeos do CRT</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Controle de Equipamentos (SCE)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Sistemas de Gestão</a></li>
+                            <li><a href="#">Lista de Atividades do CRT</a></li>
+                            <li><a href="#">Log Book</a></li>
+                            <li><a href="#">Ocupação dos Ambientes</a></li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesquisa de Satisfação</a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Cadastrar</a></li>
+                                  <li><a href="#">Consultar por AS</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos Disponíveis</a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Logística</a></li>
+                                  <li><a href="#">Sala de Apoio</a></li>
+                                  <li><a href="#">Transporte para o CRT</a></li>
+                                </ul>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li class="#"><a href="#">ADMINISTRAÇÃO DO SITE</a></li>
+
+                        <li class="#"><a href="#">FALE CONOSCO</a></li>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                  </ul>  
+              </ul>
+
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">AQUI !!!</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+          </div>
+        </nav>
+    </div>
+
+    <nav class="navbar navbar-btn navbar-header navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
             <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -70,9 +156,9 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
           <ul class="nav navbar-nav navbar-left">
                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">PRINCIPAL</a></li>
+                    <li class="active"><a href="#">PRINCIPAL 2</a></li>
 
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS<span class="caret"></span></a>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS 2<span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamentos</a>
                             <ul class="dropdown-menu">
@@ -117,9 +203,9 @@
                       </ul>
                     </li>
 
-                    <li class="#"><a href="#">ADMINISTRAÇÃO DO SITE</a></li>
+                    <li class="#"><a href="#">ADMINISTRAÇÃO DO SITE 2</a></li>
 
-                    <li class="#"><a href="#">FALE CONOSCO</a></li>
+                    <li class="#"><a href="#">FALE CONOSCO 2</a></li>
 
                 <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
               </ul>  
@@ -139,6 +225,9 @@
       </div>
     </nav>
 
+
+
+
     <script type="text/javascript">
         /* PRECISA DISSO PARA FUNCIONAR O SUBMENU */
         (function ($) {
@@ -157,92 +246,13 @@
 
 
 
-
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    AQUI
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    AQUI    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
+    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />    <br />
 
 
 

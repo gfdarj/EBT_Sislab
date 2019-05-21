@@ -9,14 +9,15 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
 ssql = "select * from sce_nota_fiscal order by nf_numeronota"
 set recnf = Env.oconn.execute(ssql)

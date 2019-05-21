@@ -4,14 +4,15 @@
 <!------- SCE ------->
 <!--#include file="includes/SCE_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Controle de Equipamento e Instrumental"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Controle de Equipamento e Instrumental"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
 <form name="formulario" action="rel_instrumental2.asp" method="post">

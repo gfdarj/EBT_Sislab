@@ -14,14 +14,15 @@
 <!--#inc lude file="includes/padraoHTML.asp"-->
 <!--#INC LUDE FILE="includes/abre.asp" -->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <script>
 <!--#include file="includes/vform.js"-->

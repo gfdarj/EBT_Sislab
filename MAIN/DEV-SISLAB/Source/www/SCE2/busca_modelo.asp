@@ -7,11 +7,12 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Modelo" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Modelo" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Dim ssql, rec, where
 %>

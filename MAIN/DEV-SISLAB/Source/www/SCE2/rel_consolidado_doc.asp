@@ -42,17 +42,19 @@ If request("ExportarExcel") = "S" Then
     If Env.UsuarioSCE() Then
     	Call CriaExcelGeral("Relatório Consolidado de Documentos Gerados", RS, null)
     Else
-RW "AQUI 2"
-RE
+'RW "AQUI 2"
+'RE
+        Tela.SCE = True
         Call Tela.MostraCabecalho()
-        Call Tela.ImprimeMenuSce()
+        'Call Tela.ImprimeMenuSce()
         RW Tela.Mensagem.AcessoRestritoSCE()
         Call Tela.MostraRodape()
     End If
 
 Else
+    Tela.SCE = True
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     If Env.UsuarioSCE() Then
 %>

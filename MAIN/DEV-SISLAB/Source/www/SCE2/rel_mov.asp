@@ -9,7 +9,8 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Movimentação de Item" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Movimentação de Item" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -17,7 +18,7 @@ If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <script type="text/javascript">
 	<!--#include file="includes/vform.js"-->

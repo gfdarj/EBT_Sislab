@@ -8,7 +8,8 @@
 <%
 Server.ScriptTimeout = 360000
 
-Tela.SetNomeTela = "SCE > Cadastro > Reserva de Equipamentos" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Cadastro > Reserva de Equipamentos" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -18,7 +19,7 @@ If Env.UsuarioSCE() Then
     Dim Sce
     Set Sce = New TSce
 
-	Call Tela.ImprimeMenuSce()
+	'Call Tela.ImprimeMenuSce()
 
 %>
 <script type="text/javascript" src="includes/bib_obj.js"></script>

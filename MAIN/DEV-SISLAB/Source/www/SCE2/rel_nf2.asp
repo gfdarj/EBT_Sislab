@@ -7,14 +7,15 @@
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
     Server.ScriptTimeout = 10000
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     ssql =	"select nf.NF_VALORTOTAL AS [NF_VALORTOTAL_M], nf.NF_DEVOLUCAOCOMPLETA AS [NF_DEVOLUCAOCOMPLETA_M], " & _
 		    "nf.nf_id, nf.nf_numeronota AS [NF_NUMERONOTA_M], nf.nf_cfop AS [NF_CFOP_M], " & _

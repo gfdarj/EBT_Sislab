@@ -21,6 +21,7 @@ Else
     Tela.SetNomeTela = "SCE > Movimentação > Item" & tipousuario
 End If
 
+Tela.SCE = True
 Tela.SetCaminhoRelativo = "../"
 
 Call Tela.MostraCabecalho()
@@ -30,7 +31,7 @@ If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 
 <script type="text/javascript" src="../includes/anexo.js" ></script>

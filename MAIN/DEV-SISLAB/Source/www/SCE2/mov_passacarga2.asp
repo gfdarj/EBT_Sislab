@@ -46,17 +46,19 @@ End With
 Call Env.StoredProcedure(False, objSP, Null)
 
 If Env.oConn.Errors.Count > 0 Then
-    Tela.SetNomeTela = "SCE > Movimentação > Erro na Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Movimentação > Erro na Passagem de Carga" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
     erroID = Err.number
     erroMSG = Err.Description
     Call Tela.MostraRodape()
     Response.End
 Else
-    Tela.SetNomeTela = "SCE > Movimentação > Recepção de Carga" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Movimentação > Recepção de Carga" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 	RW "<div class='margem-10'>"
 	RW "    <br />Passagem de carga solicitada com sucesso."
 	RW "    <br /><br />Aguarde a confirmação pelo RT do agendamento destino."

@@ -149,9 +149,10 @@ Call Env.StoredProcedure(False, objSP, Null)
 If int_Erro <> 0 Then
 'response.Write "AQUI" & int_Erro
 'response.end
-    Tela.SetNomeTela = "SCE > Cadastro > Item" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Cadastro > Item" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 	Call Tela.Mensagem.ObjetoErroSql(oErro)
     Call Tela.MostraRodape()
     Response.End
@@ -247,9 +248,10 @@ on error Goto 0
 ''	response.write "ERROS: " & conn.Errors.Count & "<BR><BR>"
 
 If oErro.Count <> 0 Then
-    Tela.SetNomeTela = "SCE > Cadastro > Item" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Cadastro > Item" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 	Call Tela.Mensagem.ErroSql()
     Call Tela.MostraRodape()
     Response.End

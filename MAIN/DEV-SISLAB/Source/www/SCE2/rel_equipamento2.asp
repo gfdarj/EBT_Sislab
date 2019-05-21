@@ -10,14 +10,15 @@
 '-- GERA UMA LISTAGEM DE EQUIPAMENTOS
 '-- RELATORIO DE EQUIPAMENTOS
 
-Tela.SetNomeTela = "SCE > Relatório > Equipamento" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Equipamento" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
     Server.ScriptTimeout = 10000
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     dim ssql, where, dt_ini, dt_fim, rec, recInst, totRec
     dim descricaoeq : descricaoeq = "Equipamento"

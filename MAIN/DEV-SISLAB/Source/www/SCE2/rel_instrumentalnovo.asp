@@ -7,14 +7,15 @@
 '-- GERA UMA LISTAGEM DE EQUIPAMENTOS
 '-- RELATORIO DE EQUIPAMENTOS/INSTRUMENTAIS COM BASE NA NOVA FORMA DE GERENCIAR AS CALIBRAÇÔES E MANUTENÇÔES
 
-Tela.SetNomeTela = "SCE > Relatório > Controle de Equipamento e Instrumental (NOVO)"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Controle de Equipamento e Instrumental (NOVO)"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
 <form name="formulario" action="rel_instrumentalnovo2.asp" method="post">

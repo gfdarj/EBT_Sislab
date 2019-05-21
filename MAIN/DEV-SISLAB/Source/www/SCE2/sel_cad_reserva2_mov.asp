@@ -14,14 +14,15 @@
 
 Dim lista_itens, item
 
-Tela.SetNomeTela = "SCE > Consulta > Movimentação de Itens Reservados - AS: " & request("ag_numero") : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Movimentação de Itens Reservados - AS: " & request("ag_numero") : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     '-- retiro as marcacoes de aceito/nao aceito pois auqi so vao entrar itens aceitos para realizarem a
     '-- movimentacao

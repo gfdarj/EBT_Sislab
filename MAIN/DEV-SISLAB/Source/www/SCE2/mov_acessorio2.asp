@@ -12,7 +12,8 @@
 Dim tipousuario : tipousuario = ""
 if Env.PerfilSce = PERFIL_ADM then tipousuario = " <span style='color:#800000;'>(Administrador)</span>"
 
-Tela.SetNomeTela = "SCE > Movimentação > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Movimentação > Item" & tipousuario : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
@@ -20,7 +21,7 @@ If Env.UsuarioSCE() Then
     Dim Sce
     Set Sce = New TSce
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     Server.ScriptTimeout = 100000
 

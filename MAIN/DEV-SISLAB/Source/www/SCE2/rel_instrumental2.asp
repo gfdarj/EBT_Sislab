@@ -102,9 +102,10 @@ If Not bln_exportaExcel Then
 
 	Set rec = Env.oconn.execute(ssql)
 
-    Tela.SetNomeTela = "SCE > Relatório > Controle de Equipamento e Instrumental" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Relatório > Controle de Equipamento e Instrumental" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
 <table class="largura-total">

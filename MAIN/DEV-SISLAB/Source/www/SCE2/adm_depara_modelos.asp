@@ -5,14 +5,15 @@
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Movimentação > Administração de Dados > De/Para de Modelos" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Movimentação > Administração de Dados > De/Para de Modelos" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
     <form method="post" action="adm_depara_modelos2.asp" name="formulario" onsubmit="javascript:return executaDePara(this);">

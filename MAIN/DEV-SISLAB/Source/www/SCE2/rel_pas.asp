@@ -9,7 +9,8 @@
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Relatório > Passagem de Carga"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Passagem de Carga"
 Tela.SetCaminhoRelativo = "../"
 
 Call Tela.MostraCabecalho()
@@ -18,7 +19,7 @@ If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
     <form name="formulario" action="rel_pas2.asp" method="post">

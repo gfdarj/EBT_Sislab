@@ -10,14 +10,15 @@
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
-Tela.SetNomeTela = "SCE > Consulta > Empresa" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Empresa" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <script type="text/javascript">
     function filtrar()

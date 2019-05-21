@@ -12,10 +12,11 @@
 Server.ScriptTimeout = 360000
 
 if UCase(request("abrir_como")) = "REL" then _
-	Tela.SetNomeTela = "SCE > Relatório > Reserva de Equipamento" _
+	Tela.SetNomeTela = "Relatório > Reserva de Equipamento" _
 else _
-	Tela.SetNomeTela = "SCE > Consulta > Reserva de Equipamento"
+	Tela.SetNomeTela = "Consulta > Reserva de Equipamento"
 
+Tela.SCE = True
 Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
@@ -23,7 +24,7 @@ If Env.UsuarioSCE() Then
     Dim Combo
     Set Combo = New TCombo
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <script type="text/javascript">
 	<!--#include file="includes/vform.js"-->

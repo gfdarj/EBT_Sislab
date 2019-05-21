@@ -21,6 +21,7 @@ Private p_tamanhoTela
 Private p_nomeTela
 Private p_linkVoltar
 Private p_PathRelativo
+Private p_EhSCE
 Public Mensagem
 
 '-------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Private Sub Class_Initialize()
     bln_TemErro = False
     chr_MsgErro = ""
 
+    p_EhSCE = False
     p_titulo = TITULO_SITE
     p_imprimeMenu = True
     p_imprimeImagem = True
@@ -50,6 +52,10 @@ Private Sub Class_Terminate()
 End Sub
 
 '-------------------------------------------------------------------------
+
+Public Property Let SCE(valor)
+	p_EhSCE = valor
+End Property
 
 Public Property Let SetTitulo(titulo)
 	p_titulo = titulo
@@ -152,7 +158,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 		"<body onunload='javascript: hideAguarde();' style='margin-right: 18px;'>"
 
 	chr_Buffer = chr_Buffer & _
-        "<div class='XXXcontainer' style='XXXbackground-color: silver;'>"
+        "<!--<div class='container' style='background-color: silver;'>-->"
 
 	chr_Buffer = chr_Buffer & _
 		"<div id='divAguarde' class='tempo' style='display: none;'><table><tr><td><img src='" & PathRelativo & "img/tempo.gif' alt='Aguarde'></td><td>&nbsp;&nbsp;Aguarde...</td></tr></table></div>" & VbCrLf
@@ -165,9 +171,15 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 %>
 
 <!--------------------- Imprime o nome do formulÃ¡rio na tela --------------------->
-<%  If p_nomeTela <> "" And usuario <> "" then
+<%
+    If p_EhSCE Then
+        ImprimeMenuSce()
+	End If
+
+    If p_nomeTela <> "" And usuario <> "" then
         Call ImprimeNomeTela
 	End If
+
 %>
 <!--------------------- Imprime a tela Principal --------------------->
 
@@ -283,129 +295,119 @@ Private Sub ImprimeMenu()
         */
     </style>
 
-    <div style="border: none; color: red; width: 100%; height:90px; ">
-        <div>
-            <a class="navbar-brand" href="#"><img src="img/novo/logo-claro.png" /></a>
-            <a class="navbar-brand" href="#"><img src="img/novo/logo-net.png" /></a>
-            <a class="navbar-brand" href="#"><img src="img/novo/logo-embratel.png" /></a>
-        </div>
-        <div style="margin-top: 0px; margin-left: 0px;">
-            <span style="color: darkblue; font-weight:bold; font-size: 17px;">
-                <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;<br />
-				<%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)&nbsp;
-            </span>
-        </div>
-    </div>
-
-
-    <nav class="navbar navbar-default "> <!--navbar-static-top-->
-      <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<%=p_PathRelativo%>index.asp" style="background-color: darkblue; color: white;">
-                <span class="glyphicon glyphicon-menu-hamburger"></span> Centro de Referência Tecnológica
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="example-navbar-collapse">
-          <ul class="nav navbar-nav navbar-left">
-               <ul class="nav navbar-nav">
-                    <!-- <li class="active"><a href="#">PRINCIPAL</a></li> -->
-
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamentos</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<%=p_PathRelativo%>CadAgendamentoCliente.asp" title="Cria um agendamento">Novo</a></li>
-                                <li><a href="<%=p_PathRelativo%>rel_ativ.asp" title="Acompanha a execução de um agendamento e seu resultado">Acompanhamento de Resultados</a></li>
-                                <li><a href="<%=p_PathRelativo%>form_remarca_teste_sel.asp" title="Remarca a execução de um agendamento">Remarcar</a></li>
-    <%				If userCRT Then %>
-                                <li><a href="<%=p_PathRelativo%>rel_gq_filtro.asp" title="Relatório de acompanhamento de um agendamento">Relatório de Acompanhamento</a></li>
-    <%				End If %>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Conhecendo o CRT</a>
-                            <ul class="dropdown-menu">
-    <%				If userCRT Then%>
-                              <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm" title="Ambientes de acomodação e salas disponí­veis">Ambientes</a></li>
-    <%				End If %>
-                              <li><a href="<%=Env.ObtemLinkCodigoEtica()%>" title="Código de Ética">Código de Ética</a></li>
-                              <li><a href="<%=p_PathRelativo%>equ_EstIn.asp" title="Equipe / Infra-estrutura Interna">Equipe / Infra-estrutura interna</a></li>
-	<%			    If userCRT Then %>
-                              <li><a href="http://XPRJO030309/index.htm" title="Espaço reservado aos trabalhos internos do CRT">Espaço CRT</a></li>
-                              <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf" title="Histórico do Centro de Referência Tecnológica">Histórico</a></li>
-                              <li><a href="<%=p_PathRelativo%>loc_area.asp" title="Localização e Área construí­da">Localização / Área</a></li>
-    <%				End If %>
-                              <li><a href="<%=Env.ObtemLinkManualSistemaGestao()%>">Manual do Sistema de Gestão</a></li>
-	<%			    If userCRT Then %>
-                              <li><a href="<%=p_PathRelativo%>videos.asp">Vídeos do CRT</a></li>
-    <%				End If %>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-	<%			    If userCRT Then %>
-                        <li><a href="<%=p_PathRelativo%>sce2/index.asp">Controle de Equipamentos (SCE)</a></li>
-                        <li class="divider"></li>
-                        <li><a href="<%=p_PathRelativo%>arq_disp.asp" title="Arquivos do sistema de gestão disponí­veis para visualização">Sistemas de Gestão</a></li>
-    <%				End If %>
-                        <li><a href="<%=p_PathRelativo%>sit_crt.asp" title="Exibe as atividades do CRT">Lista de Atividades do CRT</a></li>
-	<%			    If userCRT Then %>
-                        <li><a href="<%=p_PathRelativo%>sel_cad_logbook.asp" title="Cadastro de Ocorrências">Log Book</a></li>
-                        <li><a href="<%=p_PathRelativo%>ambientes/cons_agenda.asp" title="Cadastro e reserva de salas">Ocupação dos Ambientes</a></li>
-    <%				End If %>
-                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesquisa de Satisfação</a>
-                            <ul class="dropdown-menu">
-                              <li><a href="<%=p_PathRelativo%>pesqscr.asp" title="Cadastra uma nova pesquisa de satisfação">Cadastrar</a></li>
-	<%			    If userCRT Then %>
-                              <li><a href="<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp" title="Consulta uma pesquisa por número do agendamento">Consultar por AS</a></li>
-    <%				End If %>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos Disponíveis</a>
-                            <ul class="dropdown-menu">
-	<%			    If userCRT Then %>
-                              <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf">Logística</a></li>
-                              <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf">Sala de Apoio</a></li>
-    <%				End If %>
-                              <li><a href="<%=p_PathRelativo%>CadTransporte.asp" title="Horários do transporte para o CRT">Transporte para o CRT</a></li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-
-	<%			    If userRatRt Then %>
-                    <li class="#"><a href="<%=p_PathRelativo%>sislab.asp">ADMINISTRAÇÃO DO SITE</a></li>
-    <%				End If %>
-
-                    <li class="#"><a href="<%=p_PathRelativo%>fale.asp">FALE CONOSCO</a></li>
-
-                    <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
-               </ul>
-          </ul>
-
-            <div>
-                <ul class="nav navbar-nav navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="#">
-                            <small>
-                                <span style="color: darkblue; font-weight:bold;">
-                                    <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;<br />
-					                <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)&nbsp;
-                                </span>
-                            </small>
-                        </li>
-                        
-                    </ul>
-                </ul>
+<!--    <div id="divMenuPrincipal"> -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#main-navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<%=p_PathRelativo%>index.asp" style="/*background-color: darkblue;*/ color: white;">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span> Centro de Referência Tecnológica
+                </a>
             </div>
 
-        </div>
-      </div>
-    </nav>
+            <div class="collapse navbar-collapse" id="main-navbar-collapse">
+              <ul class="nav navbar-nav navbar-left" style="position: relative!important;">
+                   <ul class="nav navbar-nav">
+                        <!-- <li class="active"><a href="#">PRINCIPAL</a></li> -->
+
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVIÇOS<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Agendamentos</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<%=p_PathRelativo%>CadAgendamentoCliente.asp" title="Cria um agendamento">Novo</a></li>
+                                    <li><a href="<%=p_PathRelativo%>rel_ativ.asp" title="Acompanha a execução de um agendamento e seu resultado">Acompanhamento de Resultados</a></li>
+                                    <li><a href="<%=p_PathRelativo%>form_remarca_teste_sel.asp" title="Remarca a execução de um agendamento">Remarcar</a></li>
+    <%				If userCRT Then %>
+                                    <li><a href="<%=p_PathRelativo%>rel_gq_filtro.asp" title="Relatório de acompanhamento de um agendamento">Relatório de Acompanhamento</a></li>
+    <%				End If %>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Conhecendo o CRT</a>
+                                <ul class="dropdown-menu">
+    <%				If userCRT Then%>
+                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm" title="Ambientes de acomodação e salas disponí­veis">Ambientes</a></li>
+    <%				End If %>
+                                  <li><a href="<%=Env.ObtemLinkCodigoEtica()%>" title="Código de Ética">Código de Ética</a></li>
+                                  <li><a href="<%=p_PathRelativo%>equ_EstIn.asp" title="Equipe / Infra-estrutura Interna">Equipe / Infra-estrutura interna</a></li>
+	<%			    If userCRT Then %>
+                                  <li><a href="http://XPRJO030309/index.htm" title="Espaço reservado aos trabalhos internos do CRT">Espaço CRT</a></li>
+                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf" title="Histórico do Centro de Referência Tecnológica">Histórico</a></li>
+                                  <li><a href="<%=p_PathRelativo%>loc_area.asp" title="Localização e Área construí­da">Localização / Área</a></li>
+    <%				End If %>
+                                  <li><a href="<%=Env.ObtemLinkManualSistemaGestao()%>">Manual do Sistema de Gestão</a></li>
+	<%			    If userCRT Then %>
+                                  <li><a href="<%=p_PathRelativo%>videos.asp">Vídeos do CRT</a></li>
+    <%				End If %>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+	<%			    If userCRT Then %>
+                            <li><a href="<%=p_PathRelativo%>sce2/index.asp">Controle de Equipamentos (SCE)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%=p_PathRelativo%>arq_disp.asp" title="Arquivos do sistema de gestão disponí­veis para visualização">Sistemas de Gestão</a></li>
+    <%				End If %>
+                            <li><a href="<%=p_PathRelativo%>sit_crt.asp" title="Exibe as atividades do CRT">Lista de Atividades do CRT</a></li>
+	<%			    If userCRT Then %>
+                            <li><a href="<%=p_PathRelativo%>sel_cad_logbook.asp" title="Cadastro de Ocorrências">Log Book</a></li>
+                            <li><a href="<%=p_PathRelativo%>ambientes/cons_agenda.asp" title="Cadastro e reserva de salas">Ocupação dos Ambientes</a></li>
+    <%				End If %>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesquisa de Satisfação</a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="<%=p_PathRelativo%>pesqscr.asp" title="Cadastra uma nova pesquisa de satisfação">Cadastrar</a></li>
+	<%			    If userCRT Then %>
+                                  <li><a href="<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp" title="Consulta uma pesquisa por número do agendamento">Consultar por AS</a></li>
+    <%				End If %>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos Disponíveis</a>
+                                <ul class="dropdown-menu">
+	<%			    If userCRT Then %>
+                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf">Logística</a></li>
+                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf">Sala de Apoio</a></li>
+    <%				End If %>
+                                  <li><a href="<%=p_PathRelativo%>CadTransporte.asp" title="Horários do transporte para o CRT">Transporte para o CRT</a></li>
+                                </ul>
+                            </li>
+                          </ul>
+                        </li>
+
+	<%			    If userRatRt Then %>
+                        <li class="#"><a href="<%=p_PathRelativo%>sislab.asp">ADMINISTRAÇÃO DO SITE</a></li>
+    <%				End If %>
+
+                        <li class="#"><a href="<%=p_PathRelativo%>fale.asp">FALE CONOSCO</a></li>
+
+                        <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+                   </ul>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                   <ul class="nav navbar-nav">
+                       <li class="nav-divider"></li>
+                            <li class="#">
+                                <span class="navbar-brand">
+                                    <span style="color: white;">
+                                        <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;
+                                    </span>
+                                </span>
+                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-claro.png" width="" /></a>
+                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-net.png" width="" /></a>
+                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-embratel.png" width="" /></a>
+                            </li>
+                    </ul>
+                </ul>
+
+            </div>
+          </div>
+        </nav>
+<!--    </div> -->
+        <p>
+            <br /><br /><br />
+        </p>
 
     <script type="text/javascript">
         /* PRECISA DISSO PARA FUNCIONAR O SUBMENU */
@@ -420,9 +422,113 @@ Private Sub ImprimeMenu()
             });
         })(jQuery);
     </script>
-
 <%
 End Sub
+
+Public Sub ImprimeMenuSce() 
+    Dim perfil
+
+    perfil = Env.PerfilSCE
+%>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#sce-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.asp" style="background-color: lightgray;">SCE</a><!--<span class="navbar-brand">&nbsp;&nbsp;<%'=p_nomeTela%></span>-->
+        </div>
+
+        <div class="collapse navbar-collapse" id="sce-navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+               <ul class="nav navbar-nav">
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastro<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="cad_empresas.asp">Empresas</a></li>
+                        <li><a href="cad_fab.asp">Fabricantes</a></li>
+                        <li><a href="cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
+                        <li><a href="cad_nf.asp">Notas Fiscais</a></li>
+                        <li><a href="cad_doc.asp">Documentos</a></li>
+                        <li><a href="cad_tipos.asp">Fam&iacute;lia Tipo</a></li>
+                        <li><a href="cad_areasutilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
+                        <li><a href="cad_modelos.asp">Modelos</a></li>
+                        <li><a href="cad_acess_item.asp">Itens</a></li>
+<% If perfil = PERFIL_ADM Or perfil = PERFIL_RAT Then %>
+                        <li><a href="cad_reserva.asp">Reservas</a></li>
+<% End If %>
+                      </ul>
+                    </li>
+
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
+                        <li><a href="sel_cad_empresa.asp">Empresas</a></li>
+                        <li><a href="alt_fab.asp">Fabricantes</a></li>
+                        <li><a href="sel_cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
+                        <li><a href="sel_cad_nf.asp">Notas Fiscais</a></li>
+                        <li><a href="alt_doc.asp">Documentos</a></li>
+                        <li><a href="sel_cad_tipo.asp">Fam&iacute;lia Tipo</a></li>
+                        <li><a href="sel_cad_areautilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
+                        <li><a href="sel_cad_modelo.asp">Modelos</a></li>
+<% End If %>
+                        <li><a href="sel_cad_acessorio.asp">Itens</a></li>
+                        <li><a href="sel_cad_reserva.asp?abrir_como=CON">Reservas</a></li>
+                      </ul>
+                    </li>
+
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movimentação<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
+                        <li><a href="mov_acessorio.asp">Movimentação de Itens</a></li>
+                        <li class="divider"></li>
+<% End If %>
+                        <li><a href="mov_passacarga.asp">Passagem de Carga</a></li>
+                        <li><a href="mov_recebecarga.asp">Receber Carga</a></li>
+
+<% if perfil = PERFIL_ADM then%>
+                        <li class="divider"></li>
+                        <li><a href="adm_depara_modelos.asp">De-Para de Modelos</a></li>
+<% End If %>
+                      </ul>
+                    </li>
+
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Relatórios<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="rel_instrumental.asp">Controle de Instrumentais</a></li>
+                        <li><a href="rel_instrumentalnovo.asp">Controle de Instrumentais (NOVO)</a></li>
+<% If perfil = PERFIL_ADM Then %>
+                        <li><a href="rel_consolidado_total_nf.asp">Consolidado - Total por Nota Fiscal</a></li>
+                        <li><a href="rel_consolidado_mov.asp">Consolidado - Movimentações</a></li>
+                        <li><a href="rel_consolidado.asp">Consolidado - Posi&ccedil;&atilde;o do Estoque</a></li>
+<% End If %>
+<% If perfil = PERFIL_ADM Or perfil = PERFIL_LOG Then %>
+                        <li><a href="rel_consolidado_doc.asp">Consolidado - Documentos Gerados</a></li>
+<% End If %>
+                        <li><a href="imp_emp.asp">Empresas</a></li>
+                        <li><a href="rel_equipamento.asp">Equipamentos</a></li>
+                        <li><a href="rel_nf.asp">Notas Fiscais</a></li>
+<% If perfil = PERFIL_ADM or perfil = PERFIL_RAT Or perfil = PERFIL_LOG Then %>
+                        <li><a href="sel_cad_reserva.asp?abrir_como=REL">Reservas</a></li>
+<% End If %>
+                        <li><a href="rel_pas.asp">Passagem de Cargas</a></li>
+                        <li><a href="rel_mov.asp">Movimenta&ccedil;&atilde;o de Itens</a></li>
+<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
+                        <li class="divider"></li>
+                        <li><a href="rel_termoresp.asp">Termo de Responsabilidade</a></li>
+<% End If %>
+                      </ul>
+                    </li>
+                    <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+              </ul>  
+          </ul>
+        </div>
+      </div>
+    </nav>
+<%
+End Sub
+
 
 Private Sub ImprimeMenu1() %>
 <script type="text/javascript" language="JavaScript1.2">
@@ -538,29 +644,49 @@ Private Sub ImprimeNomeTela()
 
 	If p_linkVoltar = "" Then p_linkVoltar = "history.go(-1)" %>
 
-        <div id="tbl_principal_nomeform" style="display: inline;">
+        <table border="0" style="margin-left: 10px; margin-right: 1000px; width: 100%; display: block;" id="tbl_principal_nomeform">
+        <tr>
+            <td style="width: 100%;">
+                <h4>
+                    <span class="texto-vermelho-bold">&raquo;</span>&nbsp;
+			        <span style="color: darkblue;"><strong><%=p_nomeTela%></strong></span>
+                </h4>
+            </td>
+            <td id="td2_tbl_principal_nomeform" style="text-align: right;">
+<%	    If ucase(linkVoltar) <> "NENHUM" then
+			If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
+                <a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%			End If
+            if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+<%			End If
+		End If%>
+            </td>
+        </tr>
+        </table>
+
+    <!--
+        <div id="tbl_principal_nomeform1" style="display: block;">
 
             <div  style="display: inline; vertical-align: middle; float: left; padding-left: 10px; margin-bottom: 15px;" >
                 <h4>
                     <span class="texto-vermelho-bold">&raquo;</span>&nbsp;
-			        <span style="color: darkblue;"><strong><%=p_nomeTela%></strong></span>
+			        <span style="color: darkblue;"><strong><%'=p_nomeTela%></strong></span>
                 </h4>
             </div>
 
             <div style="text-align: right; vertical-align: middle; margin-top: 10px; margin-right: 10px; float: right; margin-bottom: 15px;">
                 <p>
-<%			If ucase(linkVoltar) <> "NENHUM" then
-				If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
+<%	'		If ucase(linkVoltar) <> "NENHUM" then
+	'			If ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
                     <a href="javascript:<%=p_linkVoltar%>;"><strong>Voltar</strong></a>
-<%				End If
-                if ucase(p_linkVoltar) <> "SO_LINK" Then %>
-<%			    End If
-			End If%>
+<%	'			End If
+     '           if ucase(p_linkVoltar) <> "SO_LINK" Then %>
+<%	'		    End If
+	'		End If%>
                 </p>
             </div>
         </div>
-
-        <br />
+    -->
 
         <!--
 		<table width="<%=p_tamanhoTela%>" style="/*border-top: thin dotted Gray; border-bottom: thin dotted Gray;*/">
@@ -642,116 +768,13 @@ Public Sub MostraRodape()
 	chr_Buffer = chr_Buffer & VbCrLf & _
 		"</table>" & VbCrLf & _
 		"</div>" & VbCrLf & _
-		"</div> <!-- class container -->" & VbCrLf & _
+		"<!--</div>--> <!-- class container -->" & VbCrLf & _
 		"</body>" & VbCrLf & _
 		"</html>"
 
 	Response.Write chr_Buffer
 End Sub
 
-Public Sub ImprimeMenuSce() 
-    Dim perfil
-
-    perfil = Env.PerfilSCE
-%>
-    <nav class="navbar navbar-collapse navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#example-navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-          <a class="navbar-brand" href="index.asp" style="background-color: lightgray;">SCE</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="example-navbar-collapse">
-          <ul class="nav navbar-nav navbar-left">
-               <ul class="nav navbar-nav">
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastro<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="cad_empresas.asp">Empresas</a></li>
-                        <li><a href="cad_fab.asp">Fabricantes</a></li>
-                        <li><a href="cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
-                        <li><a href="cad_nf.asp">Notas Fiscais</a></li>
-                        <li><a href="cad_doc.asp">Documentos</a></li>
-                        <li><a href="cad_tipos.asp">Fam&iacute;lia Tipo</a></li>
-                        <li><a href="cad_areasutilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
-                        <li><a href="cad_modelos.asp">Modelos</a></li>
-                        <li><a href="cad_acess_item.asp">Itens</a></li>
-<% If perfil = PERFIL_ADM Or perfil = PERFIL_RAT Then %>
-                        <li><a href="cad_reserva.asp">Reservas</a></li>
-<% End If %>
-                      </ul>
-                    </li>
-
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
-                        <li><a href="sel_cad_empresa.asp">Empresas</a></li>
-                        <li><a href="alt_fab.asp">Fabricantes</a></li>
-                        <li><a href="sel_cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
-                        <li><a href="sel_cad_nf.asp">Notas Fiscais</a></li>
-                        <li><a href="alt_doc.asp">Documentos</a></li>
-                        <li><a href="sel_cad_tipo.asp">Fam&iacute;lia Tipo</a></li>
-                        <li><a href="sel_cad_areautilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
-                        <li><a href="sel_cad_modelo.asp">Modelos</a></li>
-<% End If %>
-                        <li><a href="sel_cad_acessorio.asp">Itens</a></li>
-                        <li><a href="sel_cad_reserva.asp?abrir_como=CON">Reservas</a></li>
-                      </ul>
-                    </li>
-
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movimentação<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
-                        <li><a href="mov_acessorio.asp">Movimentação de Itens</a></li>
-                        <li class="divider"></li>
-<% End If %>
-                        <li><a href="mov_passacarga.asp">Passagem de Carga</a></li>
-                        <li><a href="mov_recebecarga.asp">Receber Carga</a></li>
-
-<% if perfil = PERFIL_ADM then%>
-                        <li class="divider"></li>
-                        <li><a href="adm_depara_modelos.asp">De-Para de Modelos</a></li>
-<% End If %>
-                      </ul>
-                    </li>
-
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Relatórios<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="rel_instrumental.asp">Controle de Instrumentais</a></li>
-                        <li><a href="rel_instrumentalnovo.asp">Controle de Instrumentais (NOVO)</a></li>
-<% If perfil = PERFIL_ADM Then %>
-                        <li><a href="rel_consolidado_total_nf.asp">Consolidado - Total por Nota Fiscal</a></li>
-                        <li><a href="rel_consolidado_mov.asp">Consolidado - Movimentações</a></li>
-                        <li><a href="rel_consolidado.asp">Consolidado - Posi&ccedil;&atilde;o do Estoque</a></li>
-<% End If %>
-<% If perfil = PERFIL_ADM Or perfil = PERFIL_LOG Then %>
-                        <li><a href="rel_consolidado_doc.asp">Consolidado - Documentos Gerados</a></li>
-<% End If %>
-                        <li><a href="imp_emp.asp">Empresas</a></li>
-                        <li><a href="rel_equipamento.asp">Equipamentos</a></li>
-                        <li><a href="rel_nf.asp">Notas Fiscais</a></li>
-<% If perfil = PERFIL_ADM or perfil = PERFIL_RAT Or perfil = PERFIL_LOG Then %>
-                        <li><a href="sel_cad_reserva.asp?abrir_como=REL">Reservas</a></li>
-<% End If %>
-                        <li><a href="rel_pas.asp">Passagem de Cargas</a></li>
-                        <li><a href="rel_mov.asp">Movimenta&ccedil;&atilde;o de Itens</a></li>
-<% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
-                        <li class="divider"></li>
-                        <li><a href="rel_termoresp.asp">Termo de Responsabilidade</a></li>
-<% End If %>
-                      </ul>
-                    </li>
-                    <!--<li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
-              </ul>  
-          </ul>
-        </div>
-      </div>
-    </nav>
-<%
-End Sub
 
 Public Sub ImprimeMenuSce_1()
 	Dim base_dir : base_dir = "includes/menu"

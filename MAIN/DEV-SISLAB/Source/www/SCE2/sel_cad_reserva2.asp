@@ -27,6 +27,7 @@ else
 	Tela.SetNomeTela = "SCE > Consulta > Reserva de Equipamento"
 end if
 
+Tela.SCE = True
 Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
@@ -34,7 +35,7 @@ If Env.UsuarioSCE() Then
     Dim Sce
     Set Sce = New TSce
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 
     ssql =	"SELECT e.*, u.NOME AS [RES_NOME] " & _
 		    "FROM vw_SCE_Reserva_Equipamentos e " & _

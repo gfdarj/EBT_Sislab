@@ -14,12 +14,13 @@ Dim mes
 Dim conta
 Dim dtt_Criacao
 
-Tela.SetNomeTela = "SCE > Relatório > Consolidado de Movimentação" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Consolidado de Movimentação" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
 <table class="largura-total">

@@ -114,8 +114,8 @@ Sub Application_OnStart()
 		Application("SISLAB_PROTOCS") = "http://"
 		Application("SISLAB_SiteFolder") = ""
 		Application("SISLAB_InitialCatalog") = "sislab"
-		'Application("SISLAB_DataSource") = "051843W\SQLEXPRESS"
-		Application("SISLAB_DataSource") = "GILBERTO-PC\SQLEXPRESS"
+		Application("SISLAB_DataSource") = "051843W\SQLEXPRESS"
+		'Application("SISLAB_DataSource") = "GILBERTO-PC\SQLEXPRESS"
 		Application("SISLAB_DataUser") = "sa"
 		Application("SISLAB_DataUserPwd") = "adm123"
 

@@ -10,12 +10,13 @@
 '-- RELATORIO CONSOLIDADO DA POSICAO DO ESTOQUE
 Dim rec, s
 
-Tela.SetNomeTela = "SCE > Relatório > Consolidado do Estoque" : Tela.SetCaminhoRelativo = "../"
+Tela.SCE = True
+Tela.SetNomeTela = "Relatório > Consolidado do Estoque" : Tela.SetCaminhoRelativo = "../"
 Call Tela.MostraCabecalho()
 
 If Env.UsuarioSCE() Then
 
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
 %>
 <div class="margem-10">
 <table class="largura-total">

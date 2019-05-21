@@ -89,9 +89,10 @@ End With
 Call Env.StoredProcedure(False, objSP, "sp_SCE_CADASTRA_NOTAFISCAL")
 
 If Env.oConn.Errors.Count > 0 Or nf_id = "" Or IsNull(nf_id) Then
-    Tela.SetNomeTela = "SCE > Cadastro > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
+    Tela.SCE = True
+    Tela.SetNomeTela = "Cadastro > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"
     Call Tela.MostraCabecalho()
-    Call Tela.ImprimeMenuSce()
+    'Call Tela.ImprimeMenuSce()
     Response.Flush
 	RW Tela.Mensagem.ErroSql()
     Call Tela.MostraRodape
