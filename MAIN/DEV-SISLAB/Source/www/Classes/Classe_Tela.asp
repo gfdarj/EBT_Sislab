@@ -409,6 +409,25 @@ Private Sub ImprimeMenu()
             <br /><br /><br />
         </p>
 
+        <style>
+            #div_fixa { width:45px; height:250px; background:#F90; position:fixed; margin:5px; }
+            #div_topRightNomeUsuario {
+                float: right!important;
+                position: relative;
+                top: -25px;
+                right: 200px;
+                margin-top: 20px;
+                margin-right: 20px;
+                /*background-color: aquamarine; */
+                color: darkblue;
+                font-weight: bold;
+                margin: 5px;
+            }
+        </style>
+        <div id="div_topRightNomeUsuario">
+			<small><%=Env.Ebt.NomeReduzido%>Gilberto almeida (<%=Env.Usuario%>)</small>
+        </div>
+
     <script type="text/javascript">
         /* PRECISA DISSO PARA FUNCIONAR O SUBMENU */
         (function ($) {
