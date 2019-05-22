@@ -14,14 +14,11 @@ Dim bln_ehRT : bln_ehRT = False
 Dim bln_usuarioCRT : bln_usuarioCRT = False
 Dim rsCLI,rsPart
 Dim Nome_Reduzido, Matricula, SiglaOrgao, TEL1_COM
-Dim bln_AchouEBT
 Dim Ebt
 Dim int_sigilo
 Dim chr_Username
-Dim usernameMatricula, usernameNome, usernameTelefone
 
 chr_Username = ""
-bln_AchouEBT = False
 int_sigilo = 0
 bln_ehRat = Env.ehRAT
 bln_ehRT = Env.ehRT
@@ -58,39 +55,43 @@ If num_ag <> "" Then
 		chr_Username = objSiteRS("AG_USERNAME")
 		chr_OrgaoSQL = objSiteRS("AG_ORGAO")
 		If IsNull(chr_OrgaoSQL) Then chr_OrgaoSQL = "--" Else chr_OrgaoSQL = Trim(chr_OrgaoSQL)
-        usernameMatricula = objSiteRS("AG_USERNAME_MATRICULA")
-        usernameNome = objSiteRS("AG_USERNAME_NOME")
-        usernameTelefone = objSiteRS("AG_USERNAME_TELEFONE")
+	    Nome_Reduzido = objSiteRS("AG_USERNAME_NOME")
+	    Matricula = objSiteRS("AG_USERNAME_MATRICULA")
+	    SiglaOrgao = objSiteRS("AG_USERNAME_ORGAO")
+	    TEL1_COM = objSiteRS("AG_USERNAME_TELEFONE")
 	End If
 End If
 %>
+<script type="text/javascript" src="includes/e-mail.js"></script>
 <script type="text/javascript" src="includes/formataMoeda.js"></script>
 <script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
-    function areaRAT(){
+    function areaRAT()
+    {
 	    var frm = document.forms[0];
 	    frm.action = "CadAgendamentoRAT.asp";
 	    frm.method = "POST";
 	    frm.target = "";
 	    frm.submit();
     }
-
-    function areaRT(){
+    function areaRT()
+    {
 	    var frm = document.forms[0];
 	    frm.action = "CadAgendamentoRT.asp";
 	    frm.method = "POST";
 	    frm.target = "";
 	    frm.submit();
     }
-
-    function usarReferencia(){
+    function usarReferencia()
+    {
 	    var frm = document.forms[0];
 	    frm.action = "CadAgendamentoCliente.asp?as_referencia=" + frm.asRef.value;
 	    frm.submit();
     }
 
 <%if Env.EhRat() then%>
-	function BuscarSolicitante(){
+	function BuscarSolicitante()
+	{
 		var frm = document.forms[0];
 		<%if as_referencia <> "" then%>
 			str = "CadAgendamentoCliente.asp?as_referencia=<%=as_referencia%>&solicitante=" + frm.txtSolicitante.value;
@@ -102,15 +103,20 @@ End If
 	}
 <%end if%>
 
-    function ValidaCampos(){
+    function ValidaCampos()
+    {
 	    var frm = document.forms[0];
 
-	    if (frm.txtTitulo.value==""){
+    alert(IsValidEmail(frm.txtEmail));
+
+	    if (frm.txtTitulo.value=="")
+	    {
 		    alert("Informe o título deste agendamento.");
 	        frm.txtTitulo.focus();
 		    return false;
 	    }
-	    if (AchaAspas(frm.txtTitulo.value)){
+	    if (AchaAspas(frm.txtTitulo.value))
+	    {
 		    alert("O título deste agendamento não pode conter aspas ou apóstrofes.");
 	        frm.txtTitulo.focus();
 		    return false;	
@@ -344,9 +350,9 @@ End If
 		        <option value="">--</option>
 		<%
 		if bln_usuarioCRT then
-			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento order by ag_numero desc"
+			ssql = "SELECT AG_NUMERO AS VALOR,AG_NUMERO AS DESCRICAO FROM AGENDAMENTO ORDER BY AG_NUMERO DESC"
 		else
-			ssql = "select ag_numero as valor,ag_numero as descricao from agendamento where ag_username = '" & Env.Usuario & "' order by ag_numero desc"
+			ssql = "SELECT AG_NUMERO AS VALOR,AG_NUMERO AS DESCRICAO FROM AGENDAMENTO WHERE AG_USERNAME = '" & Env.Usuario & "' ORDER BY AG_NUMERO DESC"
 		end if
 		call comboBD(objConn,ssql)%>
 		        </select>
@@ -404,20 +410,18 @@ end if
 	        <div class="linha-fundo" style="width: 100%"><strong>Dados do Solicitante</strong></div><br />
             <div>
 		        Nome do Responsável: &nbsp;
-		        <input type="text" name="txtResponsavel" size="55" tabindex="2" maxlength="200" style="background-color: #EEEEEE;">
+		        <input type="text" name="txtResponsavel" size="55" tabindex="2" maxlength="200">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Matrícula:&nbsp;
-		        <input type="text" name="txtMatricula" size="15" tabindex="3" style="background-color: #EEEEEE;">
+		        <input type="text" name="txtMatricula" size="15" tabindex="3">
             </div>
             <br />
             <div>
-                Órgão:&nbsp;<input type="text" name="txtOrgao" value="" size="20" tabindex="4" maxlength="50" style="background-color: #EEEEEE;">
+                Órgão:&nbsp;<input type="text" name="txtOrgao" value="" size="20" tabindex="4" maxlength="50">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        E-mail:&nbsp;
-                <input type=hidden name="Username">
-		        <input type="text" name="txtEMail" size="30" tabindex="5" maxlength="200" style="background-color: #EEEEEE;">
+		        E-mail:&nbsp;<input type="text" name="txtEMail" size="30" tabindex="5" maxlength="200">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        Ramal:&nbsp;<input type="text" name="txtRamal" size="20" tabindex="6" maxlength="10" style="background-color: #EEEEEE;">
+		        Ramal:&nbsp;<input type="text" name="txtRamal" size="20" tabindex="6" maxlength="10">
             </div>
         </div>
 
@@ -724,34 +728,16 @@ end if
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 if num_ag <> "" then
 
-	Set Ebt = New TEbt
-
-	Call Ebt.LoginUsuario(objSiteRS("ag_username"))
-
-	Nome_Reduzido = Ebt.NomeReduzido
-	Matricula = Ebt.Matricula
-	SiglaOrgao = Ebt.SiglaOrgao
-	TEL1_COM = Ebt.Ramal
-	bln_AchouEBT = Ebt.ehFuncionario
-
-	sSQL = "Select * from participantes_externos where PE_QUEMINCLUIU = 'CLI' AND ag_numero = " & num_ag
+    sSQL = "Select * from participantes_externos where PE_QUEMINCLUIU = 'CLI' AND ag_numero = " & num_ag
 	call Env.RecordSet( true, rsPart, sSQL)
-	%>
+%>
 	frm.hdAG.value = '<%=num_ag%>';
-	<%if bln_AchouEBT then%>
-		frm.txtResponsavel.value = '<%=Nome_Reduzido%>';
-		frm.txtMatricula.value = '<%=Matricula%>';
-		frm.txtOrgao.value = '<%=SiglaOrgao%>';
-		frm.txtRamal.value='<%=TEL1_COM%>';
-	<%else
-		'Usuario não existe mais na base embratel%>
-		frm.txtResponsavel.value = '<%=objSiteRS("ag_username")%>';
-		frm.txtMatricula.value = '--';
-		frm.txtOrgao.value = '<%=chr_OrgaoSQL%>';
-		frm.txtRamal.value='--';
-	<%end if%>
+	frm.txtResponsavel.value = '<%=Nome_Reduzido%>';
+	frm.txtMatricula.value = '<%=Matricula%>';
+	frm.txtOrgao.value = '<%=SiglaOrgao%>';
+	frm.txtRamal.value='<%=TEL1_COM%>';
+
 	frm.txtTitulo.value='<%=objSiteRS("ag_titulo")%>';
-	frm.Username.value='<%=objSiteRS("ag_username")%>';
     frm.txtEMail.value='<%=objSiteRS("ag_username")%>';
 	frm.diaINICIO.value = '<%= itoa(day(objSiteRS("ag_datainicio")),2)%>';
 	frm.mesINICIO.value = '<%=itoa(month(objSiteRS("ag_datainicio")),2)%>';
@@ -779,37 +765,38 @@ if num_ag <> "" then
 		frm.txtValorContratoCliente.value = '<%=mid(formatcurrency(objSiteRS("AG_VALORCONTRATOCLIENTE")),4,len(formatcurrency(objSiteRS("AG_VALORCONTRATOCLIENTE"))))%>';
 	<%END IF%>
 
-	<%while not rsPart.eof%>
-		<%if rsPart("PE_EMPRESA") = "EBT" then%>
+<%  while not rsPart.eof %>
+<%      if rsPart("PE_EMPRESA") = "EBT" Then %>
 			frmAll.cmbPartEBT1.checked = true;
 			PreparaCamposPART();
 			var lista = frm.lst<%="ParticipantesEBT"%>;
 			ultimo_da_lista = lista.options.length;
 			lista.options[ultimo_da_lista]=new Option('<%=rsPart("PE_USERNAME")%>' + ' <%=SEPARADOR_CAMPO%> ' + '<%=rsPart("PE_NOME")%>' + ' <%=SEPARADOR_CAMPO%> ' + '<%=rsPart("PE_MOTIVO")%>');
 			lista.options[ultimo_da_lista].value = '<%=rsPart("PE_USERNAME")%>' + '<%=SEPARADOR_CAMPO%>' + '<%=rsPart("PE_NOME")%>' + '<%=SEPARADOR_CAMPO%>' + '<%=rsPart("PE_MOTIVO")%>';
-		<%else%>
+<%      Else %>
 			frmAll.cmbPartExternos1.checked = true;
 			PreparaCamposPARTEXT();
 			var lista = frm.lst<%="Participantes"%>;
 			ultimo_da_lista = lista.options.length;
 			lista.options[ultimo_da_lista] = new Option('<%=rsPart("PE_NOME")%>' + ' <%=SEPARADOR_CAMPO%> ' + '<%=rsPart("PE_EMPRESA")%>' + ' <%=SEPARADOR_CAMPO%> ' + '<%=rsPart("PE_MOTIVO")%>');
 			lista.options[ultimo_da_lista].value = '<%=rsPart("PE_NOME")%>' + '<%=SEPARADOR_CAMPO%>' + '<%=rsPart("PE_EMPRESA")%>' + '<%=SEPARADOR_CAMPO%>' + '<%=rsPart("PE_MOTIVO")%>';
-		<%end if%>
-<%
-		rsPart.MOVENEXT
-	wend%>
+<%      end if %>
+<%		rsPart.MOVENEXT
+	WEnd %>
 	frm.objetivos.value = '<%=strToTexto(objSiteRS("AG_OBJETIVO"))%>';
 	frm.ambiente.value = '<%=strToTexto(objSiteRS("AG_AMBIENTE"))%>';
 	frm.recursos.value = '<%=strToTexto(objSiteRS("AG_RECURSOS"))%>';
 	frm.obs.value = '<%=strToTexto(objSiteRS("AG_OBSERVACAO"))%>';
-<%else%>
+<%
+else
+%>
 	frm.txtResponsavel.value = '<%=Env.NomeReduzido%>';
 	frm.txtMatricula.value = '<%=Env.Matricula%>';
 	frm.txtOrgao.value = '<%=Env.SiglaOrgao%>';
-	frm.Username.value='<%=Env.usuario%>';
     frm.txtEMail.value='<%=Env.Usuario%>';
 	frm.txtRamal.value='<%=Env.Ramal%>';
-<%end if
+<% 
+end if
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -880,9 +867,8 @@ if as_referencia <> "" then
 		If Ebt.ehFuncionario Then%>
 			frm.txtResponsavel.value = '<%=Ebt.NomeReduzido%>';
 			frm.txtMatricula.value = '<%=Ebt.Matricula%>';
-			frm.txtOrgao.value = '4<%=Ebt.SiglaOrgao()%>';
+			frm.txtOrgao.value = '<%=Ebt.SiglaOrgao()%>';
 			frm.txtRamal.value='<%=Ebt.Ramal%>';
-			frm.Username.value='<%=Ebt.Usuario%>';
 			frm.txtEMail.value='<%=Ebt.Usuario%>';
 		<%else%>
 			alert("Username Inválido!")

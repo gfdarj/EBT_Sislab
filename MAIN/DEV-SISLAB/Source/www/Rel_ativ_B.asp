@@ -138,15 +138,18 @@ If Not(objSiteRS.EOF) Then
 	    </td>
 
 	    <td class="texto-justificado">
+                
 <%			if (aux_SIGILO > 0) then%>
-            <img align="absmiddle" src="img/Iccadeado.gif" border="0" title="Sigilo de resultado">
+            <!--<img align="absmiddle" src="img/Iccadeado.gif" border="0" title="Sigilo de resultado">-->
+            <span class="glyphicon glyphicon-lock" title="Sigilo de resultado" style="color: red;"></span>
 <%			end if
 
 			if TemArq then
 				If bln_MostraDadoSigiloso Then%>
     		<a href="#" onClick="javascript:NewWindow('rel_ativ_arquivos.asp?selecao=<%=atual%>', '', 400, 200, 'yes');">
 <%				End If %>
-	    		<img align="absmiddle" src="img/icnote.gif" border="0" title="Este agendamento possui arquivo(s) anexo(s)">
+	    		<!--<img align="absmiddle" src="img/icnote.gif" border="0" title="Este agendamento possui arquivo(s) anexo(s)">-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>
 <%				If bln_MostraDadoSigiloso Then%>
     		</a>
 <%				End If %>
@@ -193,7 +196,10 @@ If Not(objSiteRS.EOF) Then
 	    </td>
 	    <td class="texto-centralizado">
 <%		If bln_MostraDadoSigiloso Then %>
-	    	<a class="texto_tabela" href="javascript: showAguarde(); chama_as(<%=atual%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+	    	<a class="texto_tabela" href="javascript: showAguarde(); chama_as(<%=atual%>, 1);" title="Clique aqui para editar esta AS">
+                <!--<img src="img/edit.gif" border="0">-->
+                <span class="glyphicon glyphicon-log-in"></span>
+	    	</a>
 <%		Else%>
     		&nbsp;
 <%		End If%>

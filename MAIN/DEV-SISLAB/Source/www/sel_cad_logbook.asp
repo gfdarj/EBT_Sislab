@@ -80,9 +80,11 @@ If Request("enviei") = "SIM" Then
 		    </td>
 		    <td>
 <%			If objSiteRS("QTD_ARQUIVOS") = 1 Then%>
-    		    <img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivo anexo">
+    		    <!--<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivo anexo">-->
+                <span class="glyphicon glyphicon-paperclip" title="Esta ocorrência possui arquivo(s) anexo(s)" style="color: darkblue;"></span>
 <%			ElseIf objSiteRS("QTD_ARQUIVOS") > 1 Then%>
-	    		<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivos anexos">
+	    		<!--<img align="absmiddle" src="img/icnote.gif" border="0" title="Esta ocorrência possui arquivos anexos">-->
+                <span class="glyphicon glyphicon-paperclip" title="Esta ocorrência possui arquivo(s) anexo(s)" style="color: darkblue;"></span>
 <%			End If%>
 		    	<%=objSiteRS("LB_Descricao")%>&nbsp;
 		    </td>

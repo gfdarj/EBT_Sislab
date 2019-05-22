@@ -5,15 +5,15 @@
 <!--#include file="includes/emailHTML.ASP" -->
 <%
 Dim chr_Buf
-Dim usernameMatricula, usernameNome, usernameTelefone
+Dim usernameMatricula, usernameOrgao, usernameNome, usernameTelefone
 
 '-- redireciona caso expirado
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
 
 
 'Dados Básico - Cliente -----------------------------------------------------------
-usuario = request.form("username")
-orgao = request.form("txtOrgao")
+usuario = LCase(request.form("txtEMail"))
+orgao = UCase(request.form("txtOrgao"))
 titulo = trocaPlic2Aspas(request("txtTitulo"))
 data_inicio = request.form("diaINICIO") & "/" & request.form("mesINICIO") & "/" & request.form("anoINICIO")
 data_fim = request.form("diaFIM") & "/" & request.form("mesFIM") & "/" & request.form("anoFIM")
@@ -27,6 +27,11 @@ ambiente = trocaPlic2Aspas(request.form("ambiente"))
 recursos = trocaPlic2Aspas(request.form("recursos"))
 obs = trocaPlic2Aspas(request.form("obs"))
 ag = request("hdAG")
+
+usernameMatricula = UCase(Request("txtMatricula"))
+usernameOrgao = UCase(Request("txtOrgao"))
+usernameNome = UCase(Request("txtResponsavel"))
+usernameTelefone = UCase(Request("txtRamal"))
 
 if request("cmbPartExternos") = "1" then
 	listaParticipantesExternos = Trim(trocaPlic2Aspas(request("strParticipantesExternos")))
@@ -52,17 +57,13 @@ else  '-- cliente externo embratel
 	planodemetas = request("cmbItem")
 end if
 
-usernameMatricula = Request("AG_USERNAME_MATRICULA")
-usernameNome = Request("AG_USERNAME_NOME")
-usernameTelefone = Request("AG_USERNAME_TELEFONE")
-
 if ag = "" then ag = "null"
 
 ssql = "EXEC sp_CadAgendamento '" & SEPARADOR_CAMPO & "','" & SEPARADOR_REGISTRO & "'," & ag & ",'" & titulo & "'," & receber_email & "," & tecnologia & ",'" & _
 	   data_inicio & "','" & data_fim & "','" & sigilo & "','" & objetivos & "','" & _
 	   ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & Cliente_Nome & "'," & _
        Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & _
-       listaParticipantesExternos & "'"
+       listaParticipantesExternos & "','" & usernameMatricula & "','" & usernameOrgao & "','" & usernameNome & "','" & usernameTelefone & "'"
 ssql = replace(ssql,",,",",null,")
 ssql = replace(ssql,"''","null")
 ssql = replace(ssql,"'//'","null")

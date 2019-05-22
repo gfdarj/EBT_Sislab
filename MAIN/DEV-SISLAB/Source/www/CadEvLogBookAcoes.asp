@@ -48,7 +48,8 @@ else
 	<td valign="top">
 <%
 		If objRS("tem_arquivo") = "T" Then
-			Response.Write "<img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)'>&nbsp;&nbsp;"
+			'Response.Write "<img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)'>&nbsp;&nbsp;"
+            Response.Write "<span class='glyphicon glyphicon-paperclip' title='Este agendamento possui arquivo(s) anexo(s)' style='color: darkblue;'></span>&nbsp;&nbsp;"
 		End If
 %>
 		<%=objRS("ACT_DESCRICAO")%>&nbsp;

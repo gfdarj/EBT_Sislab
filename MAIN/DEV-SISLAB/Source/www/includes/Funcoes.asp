@@ -241,12 +241,16 @@ Function MontaAgendamentosDoDia(W)
 
 			If RS("AG_SIGILO") = 1 Then
 				chr_Buf = chr_Buf & _
-					"		<img align='absmiddle' src='img/Iccadeado.gif' title='Este agendamento possui sigilo de resultado' border=0>&nbsp;" & VbCrLf
+					"		<span class='glyphicon glyphicon-lock' title='Sigilo de resultado' style='color: red;'></span>&nbsp;" & VbCrLf
+					'"		<img align='absmiddle' src='img/Iccadeado.gif' title='Este agendamento possui sigilo de resultado' border=0>&nbsp;" & VbCrLf
+            
+
 			End If
 			If RS("TEM_ARQUIVO") > 0 Then
 			'If TemArquivo(Env.oConn, RS("AG_NUMERO")) > 0 Then
 				chr_Buf = chr_Buf & _
-					"		<img src='img/icnote.gif' title='Este agendamento possui arquivo(s) anexo(s)'>&nbsp;" & VbCrLf
+                    "       <span class='glyphicon glyphicon-paperclip' title='Este agendamento possui arquivo(s) anexo(s)' style='color: darkblue;'></span>&nbsp;" & VbCrLf
+					'"		<img src='img/icnote.gif' title='Este agendamento possui arquivo(s) anexo(s)'>&nbsp;" & VbCrLf
 			End If
 
 			chr_Buf = chr_Buf & "		<b>" & RS("AG_TITULO") & "</b>" & VbCrLf
@@ -336,7 +340,8 @@ Function ExibeMensagemSigiloAS(int_Border)
 		"<table border='" & int_Border & "' width='100%' cellpadding='2' cellspacing='1' class='texto1'>" & VbCrLf & _
 		"<tr>" & VbCrLf & _
 		"	<td align='left'>" & VbCrLf & _
-		"		&nbsp;<img align='absmiddle' src='img/Iccadeado.gif' border=0>&nbsp;" & VbCrLf & _
+		"		<!--&nbsp;<img align='absmiddle' src='img/Iccadeado.gif' border=0>&nbsp;-->" & VbCrLf & _
+        "		&nbsp;<span class='glyphicon glyphicon-lock' style='color: red;'></span>&nbsp;" & VbCrLf & _
 		"		<B>O Teste é Sigiloso. Se desejar uma consulta a este(s) documento(s) envie um e-mail para <a href='mailto:" & Application("SISLAB_EMAIL_AUTOMATICO") & "'>" & Application("SISLAB_EMAIL_AUTOMATICO") & "</b></a-->&nbsp;" & VbCrLf & _
 		"	</td>" & VbCrLf & _
 		"</tr>" & VbCrLf & _

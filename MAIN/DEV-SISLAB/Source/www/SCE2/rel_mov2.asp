@@ -162,7 +162,12 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
 %>
 	<tr>
 <%		    if Env.PerfilSce = PERFIL_ADM then%>
-		<td class="texto-centralizado"><a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação"></a></td>
+		<td class="texto-centralizado">
+            <a href="#" onClick="javascript:alteraMovimentacao(<%=rec("MOV_ID")%>);">
+                <!--<img src="img/edit.gif" border="0" alt="Clique aqui para editar esta movimentação">-->
+                <span class="glyphicon glyphicon-edit" style="color: darkblue;" title="Clique aqui para editar esta movimentação"></span>
+            </a>
+		</td>
 		<td class="texto-centralizado">
             <a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a>
 		</td>

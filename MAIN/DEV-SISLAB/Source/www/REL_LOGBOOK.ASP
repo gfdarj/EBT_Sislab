@@ -176,7 +176,9 @@ If Not ObjSiteRS.EOF Then
 	    <td style="text-align: justify; vertical-align: top;" colspan="2">
 <%
 					If ObjSiteRS2("tem_arquivo") = "T" Then
-						Response.Write "<a href='#' title='Clique aqui para visualizar os arquivos' onclick='abreArquivo(" & ObjSiteRS("LB_ID") & ", " & ObjSiteRS2("ACT_ID") & ")'><img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)' border='0'></a>&nbsp;&nbsp;"
+						'Response.Write "<a href='#' title='Clique aqui para visualizar os arquivos' onclick='abreArquivo(" & ObjSiteRS("LB_ID") & ", " & ObjSiteRS2("ACT_ID") & ")'><img src='img/icnote.gif' title='Esta ocorrência possui arquivo(s) anexo(s)' border='0'></a>&nbsp;&nbsp;"
+						Response.Write "<a href='#' title='Clique aqui para visualizar os arquivos' onclick='abreArquivo(" & ObjSiteRS("LB_ID") & ", " & ObjSiteRS2("ACT_ID") & ")'><span class='glyphicon glyphicon-paperclip' title='Este agendamento possui arquivo(s) anexo(s)' style='color: darkblue;'></span></a>&nbsp;&nbsp;"
+    
 					End If
 					Response.Write ObjSiteRS2("act_descricao")
 %>

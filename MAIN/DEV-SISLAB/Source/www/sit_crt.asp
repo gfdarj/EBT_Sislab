@@ -63,7 +63,7 @@ cont = 0
 		        <table style="width: 100%;">
 		        <tr>
 			        <td>
-                        <h4><span class="texto-vermelho-bold">&raquo;</span>&nbsp;Agendamentos do CRT</h4>
+                        <h5>Agendamentos do CRT</h5>
 			        </td>
 			        <td style="color: gray; text-align: right;">
                         Ordenar por:&nbsp;
@@ -302,10 +302,12 @@ Sub MontaVisaoPorSituacao
 
 			<td width="*" align="justify" style="vertical-align: top; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
-				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
+				<!--<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-lock" style="color: red;"></span>&nbsp;
 <%		end if %>
 <%		if auxbarq then %>
-				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
+				<!--<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>&nbsp;
 <%		end if %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
@@ -328,7 +330,10 @@ Sub MontaVisaoPorSituacao
 
 			<td style="vertical-align: middle; text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
+                    <!--<img src="img/edit.gif" border="0">-->
+                    <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
+				</a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -475,10 +480,12 @@ Sub MontaVisaoPorSalas
 
 			<td width="*" align="justify" style="vertical-align: top; text-align:justify;">
 <%		If aux_SIGILO > 0 Then %>
-				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
+				<!--<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-lock" style="color: red;"></span>&nbsp;
 <%		end if %>
 <%		if auxbarq then %>
-				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
+				<!--<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>&nbsp;
 <%		end if %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
@@ -501,7 +508,10 @@ Sub MontaVisaoPorSalas
 
 			<td align="center" style="vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
+                    <!--<img src="img/edit.gif" border="0">-->
+                    <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
+				</a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -653,10 +663,12 @@ Sub MontaVisaoPorPrioridade
 
 			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
-				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
+				<!--<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-lock" style="color: red;"></span>&nbsp;
 <%		end if %>
 <%		if auxbarq then %>
-				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
+				<!--<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>&nbsp;
 <%		end if %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
@@ -679,7 +691,10 @@ Sub MontaVisaoPorPrioridade
 
 			<td style="text-align: center; vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
+                    <!--<img src="img/edit.gif" border="0">-->
+                    <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
+				</a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -827,10 +842,12 @@ Sub MontaVisaoPorDataTermino
 
 			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
-				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
+				<!--<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-lock" style="color: red;"></span>&nbsp;
 <%		end if %>
 <%		if auxbarq then %>
-				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
+				<!--<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>&nbsp;
 <%		end if %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
@@ -853,7 +870,10 @@ Sub MontaVisaoPorDataTermino
 
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
+                    <!--<img src="img/edit.gif" border="0">-->
+                    <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
+				</a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
@@ -1005,10 +1025,12 @@ Sub MontaVisaoPorRT
 
 			<td style="text-align: justify;">
 <%		If aux_SIGILO > 0 Then %>
-				<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;
+				<!--<img align="absmiddle" src="img/Iccadeado.gif" border=0>&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-lock" style="color: red;"></span>&nbsp;
 <%		End If %>
 <%		If auxbarq Then %>
-				<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;
+				<!--<img src="img/icnote.gif" title="Este agendamento possui arquivo(s) anexo(s)">&nbsp;&nbsp;-->
+                <span class="glyphicon glyphicon-paperclip" title="Este agendamento possui arquivo(s) anexo(s)" style="color: darkblue;"></span>&nbsp;
 <%		End If %>
 
 <%	'If Not MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then 
@@ -1031,7 +1053,10 @@ Sub MontaVisaoPorRT
 
 			<td style="text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
-				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS"><img src="img/edit.gif" border="0"></a>
+				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
+                    <!--<img src="img/edit.gif" border="0">-->
+                    <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
+				</a>
 <%			Else%>
 				&nbsp;
 <%		End If%>		
