@@ -355,6 +355,8 @@ ALTER TABLE Agendamento ADD AG_USERNAME_NOME varchar(100)
 go
 ALTER TABLE Agendamento ADD AG_USERNAME_TELEFONE varchar(30)
 go
+ALTER TABLE Agendamento ADD AG_USERNAME_ORGAO varchar(50)
+go
 
 
 /* FIM DO SCRIPT */
