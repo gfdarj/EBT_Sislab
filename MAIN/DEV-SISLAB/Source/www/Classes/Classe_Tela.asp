@@ -425,7 +425,16 @@ Private Sub ImprimeMenu()
             }
         </style>
         <div id="div_topRightNomeUsuario">
-			<small><%=Env.Ebt.NomeReduzido%>Gilberto almeida (<%=Env.Usuario%>)</small>
+			<small>
+<%  If Hour(Now) >= 12 And Hour(Now) < 18 Then %>
+                Boa tarde,&nbsp;
+<%  ElseIf Hour(Now) >= 0 And Hour(Now) < 12 Then %>
+                Bom dia,&nbsp;
+<%  Else %>
+                Boa noite,&nbsp;
+<%  End If %>
+                <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>).
+			</small>
         </div>
 
     <script type="text/javascript">
