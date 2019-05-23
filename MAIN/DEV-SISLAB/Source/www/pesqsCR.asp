@@ -122,7 +122,7 @@ If VVVNZ(auxag) Then
 <%      Response.Flush
 
         If ehCRT Then
-		    sSQL = "SELECT DISTINCT AG_USERNAME " & _
+		    sSQL = "SELECT DISTINCT AG_USERNAME, AG_USERNAME_NOME " & _
 			    "FROM vw_Agendamento a " & _
 			    "LEFT JOIN PesquisaSatisfacao p ON p.PSQ_NAg = a.AG_NUMERO " & _
 			    "WHERE ID_SITUACAO = " & AS_Finalizado & " "
@@ -144,10 +144,10 @@ If VVVNZ(auxag) Then
 	    <option value="<%=Env.Usuario%>" selected><%=Env.Usuario%></option>
 	    <option value="--">-----------------------</option>
 <%  			While Not objRS.Eof
-                    Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
+                    'Call Ebt.LoginUsuario(objRS("AG_USERNAME"))
 
 		    		If LCase(objRS("AG_USERNAME")) <> LCase(Env.Usuario) Then %>
-    	<option value="<%=LCase(objRS("AG_USERNAME"))%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(Ebt.NomeReduzido), "", " - " & Ebt.NomeReduzido)%></option>
+    	<option value="<%=LCase(objRS("AG_USERNAME"))%>" <%=IIf(RQ("solicitante") = objRS("AG_USERNAME"), "selected", "")%>><%=objRS("AG_USERNAME") & IIf(VVVN(objRS("AG_USERNAME_NOME")), "", " - " & objRS("AG_USERNAME_NOME"))%></option>
 <%  				End If
 
 				    objRS.MoveNext
@@ -207,12 +207,19 @@ Else
 
 	'### Pega os dados do(s) agendamento(s) e verifica se sao AS´s do mesmo solicitante ###
 	sSQL = _
-		"SELECT AG_NUMERO, TA_DESCRICAO, TEC_NOME, AG_USERNAME " & _
+		"SELECT AG_NUMERO, TA_DESCRICAO, TEC_NOME, AG_USERNAME, AG_ORGAO, AG_USERNAME_NOME, AG_USERNAME_MATRICULA, AG_USERNAME_TELEFONE " & _
 		"FROM vw_Agendamento a " & _
 		"WHERE AG_NUMERO IN (" & auxag & ")"
 	Call Env.RecordSet(True, RS, sSQL)
 
 	ag_solicitante = IIf(RS.Eof, "", RS("AG_USERNAME"))
+	auxusername = ag_solicitante
+	auxEmail = ag_solicitante
+	Matricula = IIf(RS.Eof, "", RS("AG_USERNAME_MATRICULA"))
+	auxnome = IIf(RS.Eof, "", RS("AG_USERNAME_NOME"))
+	auxOrgao = IIf(RS.Eof, "", RS("AG_ORGAO"))
+	auxRamal = IIf(RS.Eof, "", RS("AG_USERNAME_TELEFONE"))
+
 
 	ta_descricao = "<table border='0' class='texto1' width='100%'>"
 	ta_descricao = ta_descricao & _
@@ -271,16 +278,18 @@ Else
 		bln_ExistePesquisa = True
 
 	Else
-        Call Ebt.LoginUsuario(ag_solicitante)
+        'Call Ebt.LoginUsuario(ag_solicitante)
 
-		auxusername = ag_solicitante
-		auxEmail = ag_solicitante
-		Matricula = Ebt.Matricula()
-		auxnome = Ebt.NomeReduzido
-		auxOrgao = Ebt.SiglaOrgao()
-		auxRamal = Ebt.Ramal()
+		'auxusername = ag_solicitante
+		'auxEmail = ag_solicitante
+		'Matricula = Ebt.Matricula()
+		'auxnome = Ebt.NomeReduzido
+		'auxOrgao = Ebt.SiglaOrgao()
+		'auxRamal = Ebt.Ramal()
 	End If
 %>
+<div class="margem-10">
+
 <script language="javascript" src="includes/anexo.js"></script>
 <form name="formulario" method="POST">
 <input type="hidden" name="ag_numero" value="<%=auxag%>">
@@ -295,7 +304,7 @@ Else
 	Pesquisa do Grau de Satisfação com o Serviço do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
 </p>
 
-<table border="0" width="100%" cellpadding="2" class="table-bordered">
+<table border="0" width="100%" cellpadding="2" class="table-bordered table-condensed">
 <tr class="azul1Bg" style="font-size: 12px;">
 	<td><span class="azul3b"><b>AS</b></span><br>
 		<%=auxag%>
@@ -319,7 +328,7 @@ Else
 	<b>Lembre-se: </b>Sua opinião é fundamental para promover a melhoria dos Nossos Processos.
 </p>
 
-<table border="0" cellpadding="2" width="100%" class="table-bordered">
+<table border="0" cellpadding="2" width="100%" class="table-bordered table-condensed">
 <tr>
 	<th align="left" colspan="2">1. Perfil de Utilização</th>
 </tr>
@@ -330,7 +339,9 @@ Else
 </tr>
 </table>
 
-<table border="0" width="100%" cellspacing="3" cellpadding="3" class="table-bordered">
+<br />
+
+<table border="0" width="100%" cellspacing="3" cellpadding="3" class="table-condensed">
 <tr>
 	<th colspan="2" align="left">2. Por Favor, assinale a opção que melhor representa seu grau de satisfação/insatisfação em relação aos
 		aspectos relacionados ao serviço pesquisado, indicando, se desejar comentários
@@ -416,7 +427,7 @@ Else
 
 <br>
 
-<table border="0" cellpadding="2" width="100%" class="table-bordered">
+<table border="0" cellpadding="2" width="100%" class="table-condensed">
 <tr>
 	<th align="left">3. Observações e sugestões adicionais relativas aos ítens/serviço acima</th>
 </tr>
@@ -458,7 +469,7 @@ Else
 </tr>
 <tr>
 	<td>
-		<table  border="0" width="100%" cellpadding="2" class="table-bordered">
+		<table width="100%" class="table-condensed">
 		<tr>
 			<td>
 				Responsável<br>
@@ -485,7 +496,7 @@ Else
 	</td>
 </tr>
 </table>
-
+<br />
 <p align="center" id="p_conifrmaResposta">
 <%
 If bln_ExistePesquisa And (Not ehRAT) Then%>
@@ -497,6 +508,8 @@ Else%>
 End If
 %>
 </p>
+<br />
+</div>
 </form>
 
 <script type="text/javascript">
@@ -590,7 +603,8 @@ function Confirma()
 	end if
 	call Env.RecordSet(false, objRS_Pesq, null)
 %>
-function desabilitaUserinfo(hab) {
+function desabilitaUserinfo(hab)
+{
 	document.formulario.fNome.disabled = hab;
 	document.formulario.fEMail.disabled = hab;
 	document.formulario.fOrgao.disabled = hab;

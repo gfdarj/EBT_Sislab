@@ -191,7 +191,7 @@ end if
 
 Sub MontaVisaoPorSituacao
 
-	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, iPrioridade, aux_AgNumero
+	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, iPrioridade, aux_AgNumero, auxAG_USERNAME_NOME, auxAG_ORGAO
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
 	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
 %>
@@ -230,6 +230,8 @@ Sub MontaVisaoPorSituacao
 			aux_DescSigilo = objRS("TS_DESCRICAO")
 			auxsituacao = objRS("S_DESCRICAO")
 			auxAG_USERNAME = objRS("AG_USERNAME")
+			auxAG_USERNAME_NOME = Trim(objRS("AG_USERNAME_NOME"))
+            auxAG_ORGAO = Trim(objRS("AG_ORGAO"))
 			auxAG_DATAINICIO = objRS("AG_DATAINICIO")
 			auxAG_DATATERMINO = objRS("AG_DATATERMINO")
 			auxAG_DATAINICIO_F = objRS("AG_DATAINICIO_F")
@@ -317,7 +319,7 @@ Sub MontaVisaoPorSituacao
 		if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
 		if auxAG_OBJETIVO <> "" then response.write auxAG_OBJETIVO & "&nbsp;-&nbsp;"
 		if aux_DescSigilo <> "" then response.write aux_DescSigilo %>
-			<br><b> Solicitante: <%=auxAG_USERNAME%> - RT: <%=auxRT%></b>
+			<br><b> Solicitante: <%=IIf(VVVNZ(auxAG_USERNAME_NOME), "", auxAG_USERNAME_NOME & "&nbsp;(")%><%=auxAG_USERNAME%><%=IIf(VVVNZ(auxAG_ORGAO), "", " / " & auxAG_ORGAO)%><%=IIf(VVVNZ(auxAG_USERNAME_NOME), "", ")")%>&nbsp;&nbsp;-&nbsp;&nbsp;RT: <%=auxRT%></b>
 <%	'End If%>
 			</td>
 

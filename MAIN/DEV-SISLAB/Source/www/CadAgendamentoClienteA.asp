@@ -5,7 +5,7 @@
 <!--#include file="includes/emailHTML.ASP" -->
 <%
 Dim chr_Buf
-Dim usernameMatricula, usernameOrgao, usernameNome, usernameTelefone
+Dim usernameMatricula, usernameNome, usernameTelefone
 
 '-- redireciona caso expirado
 if Env.usuario = "" or IsEmpty(Env.usuario) then response.redirect "msgAcessoNA.ASP"
@@ -29,7 +29,6 @@ obs = trocaPlic2Aspas(request.form("obs"))
 ag = request("hdAG")
 
 usernameMatricula = UCase(Request("txtMatricula"))
-usernameOrgao = UCase(Request("txtOrgao"))
 usernameNome = UCase(Request("txtResponsavel"))
 usernameTelefone = UCase(Request("txtRamal"))
 
@@ -63,7 +62,7 @@ ssql = "EXEC sp_CadAgendamento '" & SEPARADOR_CAMPO & "','" & SEPARADOR_REGISTRO
 	   data_inicio & "','" & data_fim & "','" & sigilo & "','" & objetivos & "','" & _
 	   ambiente & "','" & recursos & "','" & obs & "','" & usuario & "','" & orgao & "','" & Cliente_Nome & "'," & _
        Cliente_Retorno & "," & Cliente_ValorContrato & "," & planodemetas & ",'" & listaParticipantesEBT & "','" & _
-       listaParticipantesExternos & "','" & usernameMatricula & "','" & usernameOrgao & "','" & usernameNome & "','" & usernameTelefone & "'"
+       listaParticipantesExternos & "','" & usernameMatricula & "','" & usernameNome & "','" & usernameTelefone & "'"
 ssql = replace(ssql,",,",",null,")
 ssql = replace(ssql,"''","null")
 ssql = replace(ssql,"'//'","null")

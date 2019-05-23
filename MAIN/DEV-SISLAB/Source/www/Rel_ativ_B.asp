@@ -8,7 +8,7 @@ Server.ScriptTimeout = 100000
 
 dim objConn, rsArquivos
 Dim objSiteRS, objSiteMail, contat, sSQL, tot, objsiteCRT
-Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao, auxsolicitante
+Dim auxareateste,auxtipoteste,auxsituacaoteste,auxdiasteste, auxdescricao
 Dim auxRT, auxRAT, EH_CRT, aux_Sigilo, auxorgao, auxtecnologia, auxAs
 Dim total_registros
 Dim TemArq
@@ -71,13 +71,13 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de A
 	    frm.submit();
     }
 </script>
+
 <div class="margem-10">
     <form action="rel_ativ_B.asp" method="post">
 
     <input type="hidden" name="total_registros" value="<%=total_registros%>">
     <input type=hidden name="pagina">
     <input type="hidden" name="ssql2" value="<%=ssql%>">
-
     <br />
     <table class="largura-total table-condensed table-bordered table-striped table-hover">
     <tr>
@@ -98,7 +98,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Acompanhamento de A
     </tr>
 <%
 If Not(objSiteRS.EOF) Then
-	Dim	auxRES_AS, auxsituacao, auxAG_USERNAME, auxAG_DATAINICIO
+	Dim	auxRES_AS, auxsituacao, auxAG_USERNAME, auxAG_DATAINICIO, auxAG_USERNAME_NOME
 	Dim auxAG_DATATERMINO, atual, testeAtual, aux_DescSigilo, AUXRAT_AG
 
 	if request("pagina") = "" then contpagina = 1 else contpagina = cint(request("pagina"))
@@ -115,6 +115,7 @@ If Not(objSiteRS.EOF) Then
 		auxsituacao = objSiteRS("S_DESCRICAO")
 		auxRAT_AG = objSiteRS("AG_RAT")
 		auxAG_USERNAME = UCase(objSiteRS("AG_USERNAME"))
+		auxAG_USERNAME_NOME = UCase(objSiteRS("AG_USERNAME_NOME"))
 		auxAG_DATAINICIO = objSiteRS("AG_DATAINICIO")
 		auxAG_DATATERMINO = objSiteRS("AG_DATATERMINO")
 		auxAG_DATAINICIO_F = objSiteRS("AG_DATAINICIO_F")
@@ -160,13 +161,14 @@ If Not(objSiteRS.EOF) Then
 			'call Env.RecordSet( true, objSiteMail, sSQL, objConn)
 			if ( (not IsNull(objSiteRS("AG_RELAT_RT"))) or _
 				(not IsNull(objSiteRS("AG_RELAT_RT"))) ) and EH_CRT = true then%>
-	    	<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">
+	    	<!--<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">-->
+            <span class="glyphicon glyphicon-envelope" title="Esta AS possui Relatório de RAT/RT" style="color: darkblue;"></span>
 <%			end if
 
 			if auxRepetido = true then%>
-    		<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">
+    		<!--<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">-->
+            <span class="glyphicon glyphicon-repeat" title="Repetição" style="color: darkblue;"></span>
 <%			end if%>
-
 <%
 			if auxtecnologia <> "" then response.write auxtecnologia & "&nbsp;-&nbsp;"
 			if aux_Atividade <> "" then response.write aux_Atividade & "&nbsp;-&nbsp;"
@@ -184,13 +186,13 @@ If Not(objSiteRS.EOF) Then
 	    </td>
 
 	    <td class="texto-centralizado">
-		    <%=auxAG_USERNAME%><%if auxorgao <> "" then response.write "<br><small>(" & auxorgao & ")</small>"%>&nbsp;
+			<%=IIf(VVVNZ(auxAG_USERNAME_NOME), "<small1>", auxAG_USERNAME_NOME & "<br /><small1>(")%><%=LCase(auxAG_USERNAME)%><%=IIf(VVVNZ(auxAG_ORGAO), "", " / " & auxAG_ORGAO)%><%=IIf(VVVNZ(auxAG_USERNAME_NOME), "", ")") & "</small1>"%>
 	    </td>
 
 	    <td class="texto-centralizado">
-		    <%=UCase(auxRES_AS)%><br><%=UCase(auxRAT_AG)%>&nbsp;
+		    <%=LCase(auxRES_AS)%><br><%=LCase(auxRAT_AG)%>&nbsp;
 	    </td>
-	
+
 	    <td class="texto-centralizado">
 		    <span font-size: 9px;"><%=auxAG_DATAINICIO_F & "-" & auxAG_DATATERMINO_F %></span>
 	    </td>

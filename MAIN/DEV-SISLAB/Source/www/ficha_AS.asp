@@ -42,30 +42,12 @@ auxtitulo = objSiteRS("AG_TITULO")
 
 AuxTipoTeste = objSiteRS("TA_DESCRICAO")
 AuxUsername = objSiteRS("AG_USERNAME")
+AuxResponsavel = objSiteRS("AG_USERNAME_NOME")
+AuxRamal = objSiteRS("AG_USERNAME_TELEFONE")
+AuxMatricula = objSiteRS("AG_USERNAME_MATRICULA")
 
 'Response.Write "AQUI"
 'response.End
-
-Call Ebt.BuscaDadosEmbratel(AuxUsername)
-
-'response.Write Now & "<BR>"
-'response.Write ebt.EhFuncionario & "<BR>"
-'response.Write ebt.NomeReduzido  & "<BR>"
-'response.Write ebt.Usuario & "<BR>"
-'response.end 
-
-If Ebt.EhFuncionario Then
-	AuxResponsavel = Ebt.NomeReduzido
-	AuxMatricula = Ebt.MATRICULA
-	AuxRamal = Ebt.Ramal
-Else
-	AuxResponsavel = "xxxx"
-	AuxMatricula = "xxxx"
-	AuxRamal = "xxxx"
-End If
-
-Set Ebt = nothing
-
 
 AuxOrgao = objSiteRS("AG_ORGAO")
 AuxDataInicio = objSiteRS("AG_DATAINICIO")
