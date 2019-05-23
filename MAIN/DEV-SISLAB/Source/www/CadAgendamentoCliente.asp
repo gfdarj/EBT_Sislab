@@ -107,9 +107,42 @@ End If
     {
 	    var frm = document.forms[0];
 
-        alert(frm.txtEmail);
-        alert(IsValidEmail(frm.txtEmail));
-
+        if (frm.txtResponsavel.value == "")
+	    {
+		    alert("Informe o Nome do Responsável.");
+	        frm.txtResponsavel.focus();
+		    return false;
+	    }
+        if (frm.txtMatricula.value == "")
+        {
+		    alert("Informe a Matrícula do Responsável.");
+	        frm.txtMatricula.focus();
+		    return false;
+        }
+        if (frm.txtOrgao.value == "")
+        {
+		    alert("Informe o Órgão do Responsável.");
+	        frm.txtOrgao.focus();
+		    return false;
+        }
+        if (frm.txtEMail.value == "")
+        {
+		    alert("Informe o E-mail do Responsável.");
+	        frm.txtEMail.focus();
+		    return false;
+        }
+        if (frm.txtRamal.value == "")
+        {
+		    alert("Informe o Telefone/Ramal do Responsável.");
+	        frm.txtRamal.focus();
+		    return false;
+        }
+        if (!IsValidClaroEmail(frm.txtEMail))
+        {
+		    alert("Informe um E-mail (Claro/Embratel/Net) válido.");
+	        frm.txtEMail.focus();
+		    return false;
+        }
 	    if (frm.txtTitulo.value=="")
 	    {
 		    alert("Informe o título deste agendamento.");

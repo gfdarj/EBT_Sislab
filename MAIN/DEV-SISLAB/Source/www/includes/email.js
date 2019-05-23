@@ -23,3 +23,21 @@ function IsValidEmail(field)
         return false;
     }
 }
+
+
+function IsValidClaroEmail(field)
+{
+    var str = field.value.toLowerCase();
+
+    if ((str.search("@claro.com.br") != -1) || (str.search("@embratel.com.br") != -1) || (str.search("@net.com.br") != -1))
+    {
+        //alert("1: " + str.search("@claro"));
+        //alert(IsValidEmail(field));
+        return IsValidEmail(field);
+    }
+    else
+    {
+        //alert("2: " + str.search("@claro"));
+        return false;
+    }
+}
