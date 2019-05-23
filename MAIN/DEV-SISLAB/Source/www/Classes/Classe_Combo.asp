@@ -2,7 +2,7 @@
 '+-------------------------------------------------------------------------------------------
 '+ Monta o código HTML de combos padronizadas ou não que são utilizadas pelo SISLAB
 '+
-'+ dependencia: SCE2/Global_SCE.asp
+'+ dependencia: SCE/Global_SCE.asp
 '+              Geral_Lib.asp
 '+-------------------------------------------------------------------------------------------
 Class TCombo

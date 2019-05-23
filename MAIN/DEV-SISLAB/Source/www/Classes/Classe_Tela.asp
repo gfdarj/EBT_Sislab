@@ -346,7 +346,7 @@ Private Sub ImprimeMenu()
                             </li>
                             <li class="divider"></li>
 	<%			    If userCRT Then %>
-                            <li><a href="<%=p_PathRelativo%>sce2/index.asp">Controle de Equipamentos (SCE)</a></li>
+                            <li><a href="<%=p_PathRelativo%>sce/index.asp">Controle de Equipamentos (SCE)</a></li>
                             <li class="divider"></li>
                             <li><a href="<%=p_PathRelativo%>arq_disp.asp" title="Arquivos do sistema de gestão disponí­veis para visualização">Sistemas de Gestão</a></li>
     <%				End If %>
@@ -609,7 +609,7 @@ Private Sub ImprimeMenu1() %>
 
     <%				If Env.UsuarioCRT Then%>
     //stm_aix("p1i2","p3i7",[0,"Controle de Consumí­veis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumí­veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-    stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+    stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
     stm_aix("p1i3","p2i0",[0,"Sistemas de Gestão","","",-1,-1,0,"<%=p_PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gestão disponí­veis para visualização"]);
     <%				End If%>
 

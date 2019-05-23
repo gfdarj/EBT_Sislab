@@ -1,5 +1,5 @@
 ﻿<!------- SCE ------->
-<!--#include file="../sce2/includes/global_SCE.asp"-->
+<!--#include file="../sce/includes/global_SCE.asp"-->
 <!------- SISLAB ---->
 <!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
 <!--#include file="../includes/Geral_Lib.asp"-->

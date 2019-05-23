@@ -334,7 +334,7 @@ stm_ep();
 
 <%				if Env.usuarioCRT_Cadastrado then%>
 //stm_aix("p1i2","p3i7",[0,"Controle de Consumíveis (SCC)","","",-1,-1,0,"<%=PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumíveis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=PathRelativo%>sce/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 //stm_aix("p1i2","p2i3",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"sce/index.asp","_self","","Sistema de Controle de Equipamentos"]);
 <%				end if%>
 

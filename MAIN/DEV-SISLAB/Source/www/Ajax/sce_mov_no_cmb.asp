@@ -1,8 +1,8 @@
-﻿<!--#incl ude file="../sce2/includes/abre.asp" -->
+﻿<!--#incl ude file="../sce/includes/abre.asp" -->
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#incl ude file="../includes/global.asp"-->
 <!--#inc lude file="../includes/funcoes.asp"-->
-<!--#include file="../sce2/includes/controlesHTML_SCE.asp" -->
+<!--#include file="../sce/includes/controlesHTML_SCE.asp" -->
 <%
 '###
 '###	AJAX DA COMBO DE NATUREZA DE OPERAÇÃO NA TELA DE MOVIMENTAÇÃO DO SCE
