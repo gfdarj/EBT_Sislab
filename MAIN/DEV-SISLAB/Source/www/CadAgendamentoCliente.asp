@@ -62,7 +62,7 @@ If num_ag <> "" Then
 	End If
 End If
 %>
-<script type="text/javascript" src="includes/e-mail.js"></script>
+<script type="text/javascript" src="includes/email.js"></script>
 <script type="text/javascript" src="includes/formataMoeda.js"></script>
 <script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
@@ -107,7 +107,8 @@ End If
     {
 	    var frm = document.forms[0];
 
-    alert(IsValidEmail(frm.txtEmail));
+        alert(frm.txtEmail);
+        alert(IsValidEmail(frm.txtEmail));
 
 	    if (frm.txtTitulo.value=="")
 	    {
