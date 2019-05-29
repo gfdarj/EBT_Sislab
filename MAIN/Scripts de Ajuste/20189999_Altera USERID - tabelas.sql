@@ -419,6 +419,14 @@ ALTER TABLE dbo.SCE_Equipamentos
 GO
 
 
+--Desassocia e apaga a RULE da tabela SCE_Equipamentos
+EXEC sp_unbindrule 'SCE_Equipamentos.EQ_PROPRIEDADE';
+GO
+
+DROP RULE [dbo].[ru_SCE_PROPRIEDADE_EQUIPAMENTO]
+GO
+
+
 
 
 /* FIM DO SCRIPT */

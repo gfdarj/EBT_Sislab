@@ -158,8 +158,15 @@ Class TEnvironment
 
         p_moduloLog = "SISLAB"
 	    chr_PaginaInicial = "index.asp"
-        chr_Nome = "" :  chr_Usuario = "" :  chr_Sigla_Orgao = "" :  chr_DN = "" :  chr_UF_Com = "" :  chr_CID_COM = ""
-		chr_TEL1_COM = "" :  bln_ehGerente = False :  chr_Sigla_Orgao_Gerente = "" :  chr_Matricula = ""
+        chr_Nome = "" :  chr_Usuario = ""
+        'chr_Sigla_Orgao = ""
+        'chr_DN = ""
+        'chr_UF_Com = ""
+        'chr_CID_COM = ""
+		'chr_TEL1_COM = ""
+        'bln_ehGerente = False
+        'chr_Sigla_Orgao_Gerente = ""
+        chr_Matricula = ""
 
 
         Call Ebt.LoginUsuario("")

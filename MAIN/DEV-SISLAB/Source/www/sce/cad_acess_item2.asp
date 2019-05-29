@@ -94,7 +94,7 @@ else
 	lista_acessorios = UCase(Left(lista_acessorios, Len(lista_acessorios)-3))
 end if
 
-'RESPONSE.Write "<BR>" & id
+RESPONSE.Write "<BR>id: " & id
 'RESPONSE.Write "<BR>" & codbarras
 'RESPONSE.Write "<BR>" & codbarrasanterior
 'RESPONSE.Write "<BR>" & numeroserie
@@ -109,11 +109,12 @@ end if
 'RESPONSE.Write "<BR>" & umidadearmazenagem
 'RESPONSE.Write "<BR>" & manutencaopreventiva
 'RESPONSE.Write "<BR>" & instrumental
-'RESPONSE.Write "<BR>" & propriedade
+'RESPONSE.Write "<BR>propriedade: " & propriedade
 'RESPONSE.Write "<BR>" & conforme
 'RESPONSE.Write "<BR>" & lista_acessorios
 'RESPONSE.Write "<BR>" & lista_controles
 'RESPONSE.Write "<BR>" & freq_calibracao
+'response.End
 
 Call Env.StoredProcedure(True, objSP, "SP_SCE_CADASTRA_EQUIPAMENTO")
 With objSP

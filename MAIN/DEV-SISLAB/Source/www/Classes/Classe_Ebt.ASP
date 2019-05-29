@@ -178,7 +178,7 @@ Class TEbt
 		bln_ehRT = False
 		bln_ehRAT = False
 		bln_ehGQ = False
-		bln_usuarioCRT_Cadastrado = False
+		'bln_usuarioCRT_Cadastrado = False
 		bln_UsuarioSCE = False
 		int_PerfilSCE = 0
 		chr_Sigla_Orgao = ""
@@ -255,7 +255,7 @@ Class TEbt
 		    bln_ehRT = False
 		    bln_ehRAT = False
 		    bln_ehGQ = False
-		    bln_usuarioCRT_Cadastrado = False
+		    'bln_usuarioCRT_Cadastrado = False
 		    bln_UsuarioSCE = False
 		    int_PerfilSCE = 0
 	    Else
