@@ -87,7 +87,7 @@ If Env.UsuarioSCE() Then
 			<option value="<%=STATUS_EXPEDIDO_SUBST%>">Substituído</option>
 		</select>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<%=Combo.PropriedadeEquipamento("propriedade", true)%>
+		<%=Combo.ScePropriedadeEquipamento("propriedade", true)%>
 	</td>	
 </tr>
 

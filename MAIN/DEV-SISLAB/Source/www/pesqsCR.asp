@@ -301,7 +301,7 @@ Else
 <input type="hidden" name="pesqID" value="">
 
 <p align="left" style="font-size: 12px;">
-	Pesquisa do Grau de Satisfação com o Serviço do <%=Env.nomeCRT%> (<%=Env.siglaCRT%>)
+	Pesquisa do Grau de Satisfação com o Serviço do <%=Application("SISLAB_CRT_NOME")%> (<%=Application("SISLAB_CRT_SIGLA")%>)
 </p>
 
 <table border="0" width="100%" cellpadding="2" class="table-bordered table-condensed">

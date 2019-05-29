@@ -112,7 +112,7 @@ If Env.UsuarioSCE() Then
 				    <td width="40px">&nbsp;</td>
 				    <td><%RW Combo.SituacaoEquipamento("status", true, true, true, "")%></td>
 				    <td width="40px">&nbsp;</td>
-				    <td><%RW Combo.PropriedadeEquipamento("propriedade", true)%></td>
+				    <td><%RW Combo.ScePropriedadeEquipamento("propriedade", true)%></td>
 			    </tr>
 			    </table>
 		    </td>

@@ -7,7 +7,7 @@
 '#################################################################################################
 
 '-- monta combo de fornecedores
-Sub comboFornecedor(nome, objConn, padrao, todos, tipo, completa)
+Sub ComboFornecedor(nome, objConn, padrao, todos, tipo, completa)
 	dim ssql
 
 	ssql = "select enf_id as VALOR, (case when enf_nome is null then '' else LEFT(enf_nome, 50) end) + "

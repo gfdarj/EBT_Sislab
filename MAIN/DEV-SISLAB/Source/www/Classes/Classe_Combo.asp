@@ -40,7 +40,7 @@ Public Function PadraoSql(nome, SQL, padrao, todos)
 	    buffer = buffer & "<option value=''>--</option>" & VbCrLf
 	End If
 	If todos = true Then
-		buffer = buffer & "<option value='' " & IIf(padrao="", "selected", "") & ">-- Todos --</option>" & VbCrLf
+		buffer = buffer & "<option value='' " & IIf(padrao="", "selected", "") & ">--</option>" & VbCrLf
 	End If
 
 	If IsNull(padrao) Then padrao = ""
@@ -559,20 +559,6 @@ Public Function EquipamentoConforme(nome, mesmalinha)
     EquipamentoConforme = buffer
 End Function
 
-Public Function PropriedadeEquipamento(nome, mesmalinha)
-    buffer = _
-	    "Propriedade" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
-	    "<select name='" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
-	    "	<option value=''>Todos</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_TER & "'>Terceiros</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_COM & "'>" & Application("SISLAB_NOME_EMPRESA") & " - Comodato</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_CRT & "'>" & Application("SISLAB_NOME_EMPRESA") & " - CRT</option>" & VbCrLf & _
-	    "	<option value='" & EQ_PROPRIEDADE_EBT & "'>" & Application("SISLAB_NOME_EMPRESA") & " - Outros</option>" & VbCrLf & _
-	    "	<option value=""'" & EQ_PROPRIEDADE_COM & "','" & EQ_PROPRIEDADE_EBT & "','" & EQ_PROPRIEDADE_CRT & "'"">" & Application("SISLAB_NOME_EMPRESA") & " - Todos</option>" & VbCrLf & _
-	    "</select>" & VbCrLf
-	PropriedadeEquipamento = buffer
-End Function
-
 Public Function SituacaoEquipamento(nome, mesmalinha, todos, mostraCadastrado, padrao)
     buffer = _
 	    "Situação" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
@@ -617,6 +603,25 @@ Public Function AmostraEquipamento(nome, mesmalinha)
 
     AmostraEquipamento = buffer
 End Function
+
+
+Public Function ScePropriedade(nome, padrao, todos)
+	Dim SQL
+
+	SQL = "SELECT ID_PROPRIEDADE as VALOR, NM_PROPRIEDADE as DESCRICAO FROM SCE_Equipamentos_Propriedade ORDER BY NM_PROPRIEDADE"
+    ScePropriedade = PadraoSql(nome, SQL, padrao, todos)
+End Function
+
+
+Public Function ScePropriedadeEquipamento(nome, mesmalinha)
+    Dim buffer
+
+    buffer = "Propriedade" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf
+    buffer = buffer & ScePropriedade(nome, "", True)
+
+	ScePropriedadeEquipamento = buffer
+End Function
+
 
 End Class
 %>

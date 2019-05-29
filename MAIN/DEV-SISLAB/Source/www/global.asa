@@ -3,7 +3,7 @@
 Sub Application_OnStart()
 	'Session.Timeout = 30
 
-	Application("SISLAB_AMBIENTE") = "LOC"
+	Application("SISLAB_AMBIENTE") = "DES"
 
     Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
 	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
@@ -14,6 +14,9 @@ Sub Application_OnStart()
     '---------------------------------------------------------------------------------------------------------
 	Application("SISLAB_ID_APLICACAO_SISLAB")	= 1
 	Application("SISLAB_ID_APLICACAO_SCE") 	= 2
+	Application("SISLAB_APLICACAO_NOME") 	= "Sistema de Gestão de Laboratório"
+	Application("SISLAB_CRT_NOME") 	        = "Centro de Referência Tecnológica"
+	Application("SISLAB_CRT_SIGLA") 	    = "CRT"
 
     '---------------------------------------------------------------------------------------------------------
     ' Define o CharSet da Aplicação e das páginas

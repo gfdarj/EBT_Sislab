@@ -35,9 +35,10 @@ If Env.UsuarioSCE() Then
     'Tem que alterar a view vw_SCE_Equipamentos_Fabricantes
     ssql =	"SELECT DISTINCT top 30 e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_PROPRIEDADE, e.MOD_CODNOME, e.MOD_DESCRICAO, e.EQ_INSTRUMENTAL, " & _
 		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
-		    "e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, CAST(e1.EQ_OBS AS VARCHAR(8000)) AS EQ_OBS, CAST(e1.EQ_MANUT_PREVENTIVA AS VARCHAR(8000)) AS EQ_MANUT_PREVENTIVA " & _
+		    "e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, CAST(e1.EQ_OBS AS VARCHAR(8000)) AS EQ_OBS, CAST(e1.EQ_MANUT_PREVENTIVA AS VARCHAR(8000)) AS EQ_MANUT_PREVENTIVA, eqp.NM_PROPRIEDADE " & _
 		    "FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Equipamentos e1 ON e.EQ_ID = e1.EQ_ID  LEFT JOIN SCE_Equipamentos_Controle ec " & _
-		    "ON e.EQ_ID = ec.EQ_ID "
+		    "ON e.EQ_ID = ec.EQ_ID " & VbCrLf
+
     where = ""
 
     if request("instrumental") <> "" then
@@ -100,6 +101,9 @@ If Env.UsuarioSCE() Then
 	    where = where & "EXISTS (SELECT eqc.EQC_REGISTRO FROM SCE_Equipamentos_Controle eqc WHERE eqc.EQ_ID = e.EQ_ID AND UPPER(eqc.EQC_REGISTRO) LIKE '" & UCase(request("cde_equip")) & "') "
     end if
 
+    ssql = ssql & VbCrLf & _
+            "LEFT JOIN SCE_Equipamentos_Propriedade eqp ON e.EQ_PROPRIEDADE = eqp.ID_PROPRIEDADE " & VbCrLf
+
     if where <> "" then where = "WHERE " & where
     ssql = ssql & where & " order by e.EQ_CODIGOBARRAS;"
 
@@ -149,14 +153,8 @@ If Env.UsuarioSCE() Then
 				<td width="40px">&nbsp;</td>
 				<td>Propriedade:&nbsp;
 <%
-		    If rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_TER Then
-			    Response.Write "Terceiros"
-		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_COM Then
-			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - Comodato"
-		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_CRT Then
-			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - CRT"
-		    ElseIf rec("EQ_PROPRIEDADE") = EQ_PROPRIEDADE_EBT Then
-			    Response.Write Application("SISLAB_NOME_EMPRESA") & " - Outros"
+		    If Not IsNull(rec("NM_PROPRIEDADE")) Then
+			    Response.Write rec("NM_PROPRIEDADE")
 		    Else
 			    Response.Write "&nbsp;"
 		    End If

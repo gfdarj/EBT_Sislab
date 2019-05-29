@@ -30,13 +30,6 @@ Const CONTROLE_MANUTENCAO = "M"
 Const CONTROLE_QUALIFICACAO = "Q"
 Const CONTROLE_MANUTENCAO_PREVENTIVA = "P"
 
-
-'-- Propriedade dos equipamentos (não consumíveis)
-Const EQ_PROPRIEDADE_CRT = "C"  ' embratel/claro crt
-Const EQ_PROPRIEDADE_EBT = "O"  ' embratel/claro outros
-Const EQ_PROPRIEDADE_TER = "T"  ' terceiros
-Const EQ_PROPRIEDADE_COM = "M"	' embratel/claro comodato
-
 Const PERFIL_ADM = 1	'-- Perfil de administrador do sistema
 Const PERFIL_LOG = 2	'-- Perfil de usuário da logistica
 Const PERFIL_RAT = 3	'-- Perfil de usuário SISLAB - RAT ou RT

@@ -230,7 +230,7 @@ Private Sub ImprimeImagemSite()
                     <div style="float: right; text-align:right; top: 0px; vertical-align: top;">
                         <p style="line-height: 14px;">&nbsp;</p>
 				        <h6>
-                            <%=Env.nomeAppHtml%><br />
+                            <%=Application("SISLAB_APLICACAO_NOME")%><br />
 					        <%=Env.Ebt.NomeReduzido%><br />
 					        <%=Env.Usuario%>
 				        </h6>
@@ -390,8 +390,8 @@ Private Sub ImprimeMenu()
                        <li class="nav-divider"></li>
                             <li class="#">
                                 <span class="navbar-brand">
-                                    <span style="color: white;">
-                                        <%=Env.nomeAppHtml%>&nbsp;&nbsp;&nbsp;
+                                    <span style="color: white; font-size: 12px;">
+                                        <%=Application("SISLAB_APLICACAO_NOME")%>
                                     </span>
                                 </span>
                                 <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-claro.png" width="" /></a>

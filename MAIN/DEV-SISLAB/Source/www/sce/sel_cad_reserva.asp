@@ -100,7 +100,7 @@ If Env.UsuarioSCE() Then
 	</td>
 	<td>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<%RW Combo.PropriedadeEquipamento("propriedade", True)%>
+		<%RW Combo.ScePropriedadeEquipamento("propriedade", True)%>
 	</td>
 </tr>
 </table>

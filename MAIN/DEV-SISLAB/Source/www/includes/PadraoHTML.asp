@@ -277,7 +277,7 @@ Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, nomeTela,
 				    </td>
 				    <td valign="middle"  align="right">
 				            <br /><br />
-					        <b><%=Env.nomeAppHtml%></b><br />
+					        <b><%=Application("SISLAB_APLICACAO_NOME")%></b><br />
 					        <b><%=Env.Ebt.NomeReduzido%></b><br>
 					        <b><%=Env.Usuario%></b><br>
 				    </td>

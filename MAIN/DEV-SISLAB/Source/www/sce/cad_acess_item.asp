@@ -217,18 +217,22 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
 		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
+		<tr><td align="left" colspan="3" ><br></td></tr>
 
 		<tr>
-			<td bgcolor="#FFFFFF" align="left" >
+			<td colspan="3" align="left" >
 				Fabricante<br>
 					<select name="fab_id"  style="width:300;" onChange="javascript:buscaModelos(this.value);">
 						<option value="">-- Escolha um Fabricante --</option>
                      <%RW Combo.OptionBD("select f.fab_id as VALOR, f.fab_nome as DESCRICAO from sce_fabricantes f order by f.fab_nome", "", fab_id) %>
 					</select>
 			</td>
+        </tr>
 
-  			<td bgcolor="#FFFFFF" align="left" >
+		<tr><td align="left" colspan="3" ><br></td></tr>
+
+        <tr>
+  			<td align="left" colspan="2">
 			    Modelo<br>
 <%					If mod_id = "" then valor = 0 else valor = cint(mod_id)
 
@@ -254,11 +258,12 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			<td >
 					PN:<br><input type="text" value="" name="txtPN" id="txtPN"  readonly="true">
 			</td>
-    		</tr>
+   		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
+		<tr><td align="left" colspan="3" ><br></td></tr>
+
 		<tr> 
-			<td bgcolor="#FFFFFF" align="left" >
+			<td align="left" >
 				Número de Série:<br>
 				<input type="text"  name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
 				<input type="button" name="btn_ChecaNS" value="Verificar"  title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
@@ -275,7 +280,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
 		</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" >&nbsp;</td></tr>
+		<tr><td align="left" colspan="3" >&nbsp;</td></tr>
 
 		<tr >
 			<td>
@@ -294,10 +299,10 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			</td>
     	</tr>
 
-		<tr><td bgcolor="#FFFFFF" align="left" colspan="3" ><br></td></tr>
+		<tr><td align="left" colspan="3" ><br></td></tr>
 
 		<tr>
-      			<td bgcolor="#FFFFFF" colspan="3" >Observações<br>
+      		<td colspan="3" >Observações<br>
 				<textarea  name="obs" cols="140" rows="9"><%=obs%></textarea>
 			</td>
 		</tr>
@@ -826,25 +831,22 @@ function RemoveAcessorio(linha) {
 	<tr><td colspan="3">&nbsp;</td></tr>
 
 	<tr>	
-		<td  colspan="3">Propriedade:<br>
+		<td  colspan="3">Propriedade:&nbsp;
 <%If bln_AcessoRAT Then
-		Select Case propriedade
-		Case EQ_PROPRIEDADE_TER
-			Response.write "Terceiros"
-		Case EQ_PROPRIEDADE_EBT
-			Response.write Application("SISLAB_NOME_EMPRESA")
-		Case EQ_PROPRIEDADE_CRT
-			Response.write Application("SISLAB_NOME_EMPRESA") & " CRT"
-		Case EQ_PROPRIEDADE_COM
-			Response.write "Comodato"
-		End Select
+    Dim RSProp
+
+    sSQL = "SELECT NM_PROPRIEDADE FROM WHERE ID_PROPRIEDADE = '" & propriedade & "'"
+    Set RSProp = Env.oconn.Execute(sSQL)
+    If Not RSProp.Eof Then
+        Response.write RSProp("NM_PROPRIEDADE")
+    Else
+		Response.write "Não encontrado!"
+	End If
+    Set RSProf = Nothing
 %>
 			<input type="hidden" name="propriedade" value="<%=propriedade%>">
 <%Else %>
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_TER%>" <%if propriedade = EQ_PROPRIEDADE_TER or propriedade = "" then response.write "checked"%>>&nbsp;Terceiros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_EBT%>" <%if propriedade = EQ_PROPRIEDADE_EBT then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - Outros&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_CRT%>" <%if propriedade = EQ_PROPRIEDADE_CRT then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - CRT&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="propriedade" value="<%=EQ_PROPRIEDADE_COM%>" <%if propriedade = EQ_PROPRIEDADE_COM then response.write "checked"%>>&nbsp;<%=Application("SISLAB_NOME_EMPRESA")%> - Comodato
+<%  RW Combo.ScePropriedade("propriedade", propriedade, True) %>
 <%End If %>
 		</td>
 	</tr>

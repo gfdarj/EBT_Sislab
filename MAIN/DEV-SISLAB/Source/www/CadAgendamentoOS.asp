@@ -5,7 +5,8 @@
 <!--#include file="includes/funcoes.asp" -->
 <%
 Dim ssql, motivo, num_ag, num_os, nova_os, servico, plataforma, eq_id
-Dim int_Repetido, os_observacoes, hora, id_situacao, dataAS
+Dim int_Repetido, os_observacoes, hora, id_situacao
+'Dim dataAS
 
 num_ag = request("num_ag")
 num_os = request("num_os")
@@ -17,6 +18,7 @@ int_Repetido = 0
 os_observacoes = ""
 hora = Now
 
+'-- OS Existente
 If nova_os = "0" then
 	ssql = "select * from vw_OrdemDeServico where ag_numero = " & num_ag & " and os_id = " & num_os
 	call Env.RecordSet( true, objSiteRS, sSQL)
@@ -41,18 +43,27 @@ If nova_os = "0" then
 		If Not VVVNZ(objSiteRS("HEOS_DATAINICIO")) Then hora = objSiteRS("HEOS_DATAINICIO")
 		If Not VVVNZ(objSiteRS("id_situacao")) Then id_situacao = objSiteRS("id_situacao")
 	End If
-End If
-
-If num_ag <> "" Then
+Else
     sSQL = "SELECT AG_DATAINICIO FROM Agendamento WHERE ag_numero = " & num_ag 
 	Call Env.RecordSet(true, objSiteRS, sSQL)
 
 	If Not (objSiteRS.Eof And objSiteRS.Bof) Then
-        dataAS = objSiteRS("AG_DATAINICIO")
+        hora = objSiteRS("AG_DATAINICIO")
+    Else
+        hora = Now
     End If
-Else
-    dataAS = Now
 End If
+
+'If num_ag <> "" Then
+'    sSQL = "SELECT AG_DATAINICIO FROM Agendamento WHERE ag_numero = " & num_ag 
+'	Call Env.RecordSet(true, objSiteRS, sSQL)
+'
+'	If Not (objSiteRS.Eof And objSiteRS.Bof) Then
+'        dataAS = objSiteRS("AG_DATAINICIO")
+'    End If
+'Else
+'    dataAS = Now
+'End If
 
 Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false, "100%", "Cadastro de Ordem de Serviço", "window.close()", "")
 %>
@@ -120,8 +131,8 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
     function envia()
     {
         var frm = document.forms[0];
-        var dataHoje = "<%=Year(dataAS) & Right("0" & Month(dataAS), 2) & Right("0" & Day(dataAS), 2)%>";
-        var horaHoje = "<%=Right("0" & Hour(dataAS), 2) & Right("0" & Minute(dataAS), 2)%>";
+        var dataHoje = "<%=Year(hora) & Right("0" & Month(hora), 2) & Right("0" & Day(hora), 2)%>";
+        var horaHoje = "<%=Right("0" & Hour(hora), 2) & Right("0" & Minute(hora), 2)%>";
 
 	    if( (frm.cmbSituacao.value == "") || (frm.cmbSituacao.value == "0") )
 	    {
@@ -322,19 +333,19 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
 
     <script type="text/javascript">
     var frm = document.forms[0];
-<%if nova_os = "0" then
-	    If Not VVVNZ(hora) Then %>
+<%'if nova_os = "0" then
+'	    If Not VVVNZ(hora) Then %>
 	    frm.horaINICIO.value = "<%=itoa(HOUR(hora),2)%>";
 	    frm.minutoINICIO.value = "<%=itoa(MINUTE(hora),2)%>";
 	    frm.diaINICIO.value = "<%=itoa(DAY(hora),2)%>";
 	    frm.mesINICIO.value = "<%=itoa(MONTH(hora),2)%>";
 	    frm.anoINICIO.value = "<%=YEAR(hora)%>";
-<%	End If %>
+<%'	End If %>
 	    //frm.obs.value = '<%'=objSiteRS("os_observacoes")%>';
 	    frm.hdnSituacao.value = '<%=id_situacao%>';
 
 	    avaliaSituacao();
-<%end if%>
+<%'end if%>
 	    var	frm1 = document.all;
     </script>
 

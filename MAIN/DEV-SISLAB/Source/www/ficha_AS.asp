@@ -82,13 +82,7 @@ AuxTipoTesteint=objSiteRS("TA_ID")
 
 <h4>Histórico de Eventos</h4>
 
-<table border="1" width="100%" cellpadding="2" cellspacing="1">
-<tr>
-	<td width="16%"></td>
-	<td width="23%"></td>
-	<td width="23%"></td>
-	<td width="38%"></td>
-</tr>
+<table border="1" width="100%" cellpadding="2" cellspacing="1" class="table-condensed">
 <tr>
 	<td style="text-align: center;">SITUAÇÃO</td>
 	<td style="text-align: center;">DATA DE INÍCIO</td>
@@ -105,7 +99,7 @@ call Env.RecordSet( true, objSiteRS, sSQL)
 objSiteRS.MoveFirst
 Do while Not objSiteRS.eof%>
 <tr >
-	<td>&nbsp;&nbsp;<b><%=objSiteRS("S_Descricao")%></b>&nbsp;</td>
+	<td style="text-align: center;">&nbsp;&nbsp;<b><%=objSiteRS("S_Descricao")%></b>&nbsp;</td>
 	<td style="text-align: center;"><%=(objSiteRS("HE_DataInicio"))%>&nbsp;</td>
 	<td style="text-align: center;"><%=(objSiteRS("HE_DataTermino"))%>&nbsp;</td>
 	<td><%=objSiteRS("HE_MOTIVO")%>&nbsp;</td>
@@ -135,14 +129,7 @@ if Not objSiteRS.eof then
 
 <h4>Histórico de Eventos - Ordem de Serviço</h4>
 
-<table border="1" width="100%" cellpadding="2" cellspacing="1" >
-<tr>
-	<td width="30%"></td>
-	<td width="14%"></td>
-	<td width="15%"></td>
-	<td width="15%"></td>
-	<td width="26%"></td>
-</tr>
+<table border="1" width="100%" cellpadding="2" cellspacing="1" class="table-condensed">
 <tr>
 	<th style="text-align: center;">Nº OS</th>
 	<th style="text-align: center;">SITUAÇÃO</th>
@@ -181,12 +168,7 @@ if not (objSiteRS.Eof and objSiteRS.Bof) then
 
 <h4>Histórico de Alterações de Datas</h4>
 
-<table border="1" width="100%" cellpadding="2" cellspacing="1">
-<tr>
-	<td width="23%"></td>
-	<td width="23%"></td>
-	<td width="*"></td>
-</tr>
+<table border="1" width="100%" class="table-condensed">
 <tr>
 	<th style="text-align: center;">DATA DE INÍCIO</th>
 	<th style="text-align: center;">DATA DE TÉRNINO</th>
@@ -219,18 +201,14 @@ if Not objSiteRS.eof then%>
 <%
 	If MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then
 %>
-<table border="1" width="100%" cellpadding="2" cellspacing="1">
-<tr>
-	<td width="30%"></td>
-	<td width="70%"></td>
-</tr>
+<table border="1" width="100%" class="table-condensed">
 <tr>
 	<td style="text-align: center;">TIPO DE ARQUIVO</td>
 	<td style="text-align: center;">ARQUIVO</td>
 </tr>
 <%		objSiteRS.MoveFirst
 		Do while Not objSiteRS.eof%>
-<tr >
+<tr>
 	<td>&nbsp;&nbsp;<b><%=objSiteRS("TAR_TipoArquivo")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
 		<a href="#" title="Clique aqui para visualizar o arquivo" onclick="abreArquivo('arquivos/<%=Replace(objSiteRS("Arq_nomeArq"), "\", "/")%>');"><%=objSiteRS("Arq_Link")%></a>
@@ -250,19 +228,7 @@ End If%>
 
 <h4>Dados do Agendamento</h4>
 
-<table width="100%" border="1" cellpadding="2" cellspacing="1">
-<tr>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-	<td width="10%"></td>
-</tr>
+<table width="100%" border="1" class="table-condensed">
 <tr>
 	<th colspan="10">TÍTULO DO AGENDAMENTO</th>
 </tr>
@@ -512,13 +478,9 @@ If not (objRes.EOF and objRes.BOF) then
 	objRes.MoveFirst%>
 <br>
 
-<table class="table-bordered" border="0" width="100%" cellpadding="3" cellspacing="0">
-<tr>
-	<th align="left">Dados do Servi&ccedil;o</th>
-</tr>
-</table>
+<h4>Dados do Servi&ccedil;o</h4>
 
-<table width="100%" border="1" cellpadding="2" cellspacing="2">
+<table width="100%" border="1" class="table-condensed">
 <tr>
 <tr>
 	<td style="text-align: center;">Nº OS</td>

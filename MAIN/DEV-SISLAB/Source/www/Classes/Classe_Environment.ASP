@@ -10,16 +10,15 @@ Class TEnvironment
     Private int_PerfilSCE
     Private p_moduloLog
 
-    Public siglaApp
-    Public nomeApp
-    Public nomeAppHtml
-    Public versaoApp
-    Public orgaoEbt
-    Public siglaCrt
-    Public nomeCrt
-    Public ramalContato
-    Public emailContato
-    Public periodoValidacaoDocumento
+    'Public siglaApp
+    'Public nomeApp
+    'Public nomeAppHtml
+    'Public orgaoEbt
+    'Public siglaCrt
+    'Public nomeCrt
+    'Public ramalContato
+    'Public emailContato
+    'Public periodoValidacaoDocumento
 
     Public bln_TemErro
     Public chr_MsgErro
@@ -181,16 +180,15 @@ Class TEnvironment
 	    int_PerfilSCE = 0 'perfil sem acesso
 
 	    '-->>> variáveis de configuração
-	    siglaApp = "CRT"
-	    nomeApp = "Sistema de Gestão de Laboratório"
-	    nomeAppHtml = "Sistema de Gest&atilde;o de Laborat&oacute;rio"
-	    versaoApp = "2006"
-	    orgaoEbt = "VPO28"
-	    siglaCrt = "CRT"
-	    nomeCrt = "Centro de Referência Tecnológica"
-	    ramalContato = "521-8297"
-	    emailContato = Application("SISLAB_EMAIL_AUTOMATICO")
-	    periodoValidacaoDocumento = 6
+	    'siglaApp = "CRT"
+	    'nomeApp = "Sistema de Gestão de Laboratório"
+	    'nomeAppHtml = "Sistema de Gest&atilde;o de Laborat&oacute;rio"
+	    'orgaoEbt = "VPO28"
+	    'siglaCrt = "CRT"
+	    'nomeCrt = "Centro de Referência Tecnológica"
+	    'ramalContato = "521-8297"
+	    'emailContato = Application("SISLAB_EMAIL_AUTOMATICO")
+	    'periodoValidacaoDocumento = 6
 
 	    Call ConectaBD()
 
@@ -277,28 +275,27 @@ Class TEnvironment
 
 
     Private Sub Init()
-	    Dim RS
+	    'Dim RS
 
-	    On Error Resume Next
-	    '-- Pega os dados de Configuracao da aplicacao SISLAB
-	    Set RS = oConn.Execute("SELECT TOP 1 * FROM Configuracao WHERE CFG_ID_APLICACAO = " & Application("SISLAB_ID_APLICACAO_SISLAB") )
+	    'On Error Resume Next
+	    ''-- Pega os dados de Configuracao da aplicacao SISLAB
+	    'Set RS = oConn.Execute("SELECT TOP 1 * FROM Configuracao WHERE CFG_ID_APLICACAO = " & Application("SISLAB_ID_APLICACAO_SISLAB") )
 
-	    If Not(RS Is Nothing) Then
-		    If Not(RS.Eof And RS.Bof) Then
-			    siglaApp = RS("CFG_SIGLA_APLICACAO")
-			    nomeApp = RS("CFG_NOME_APLICACAO")
-			    versaoApp = RS("CFG_VERSAO_APLICACAO")
-			    orgaoEbt = RS("CFG_ORGAO_EBT")
-		 	    siglaCrt = RS("CFG_SIGLA_CRT")
- 			    nomeCrt = RS("CFG_NOME_CRT")
-			    ramalContato = RS("CFG_RAMAL_CONTATO")
-			    emailContato = RS("CFG_EMAIL_CONTATO")
-			    periodoValidacaoDocumento = RS("CFG_VALIDACAO_DOCUMENTOS")
-		    End If
-	    End If
-	    On Error Goto 0
+	    'If Not(RS Is Nothing) Then
+		'    If Not(RS.Eof And RS.Bof) Then
+		'	    siglaApp = RS("CFG_SIGLA_APLICACAO")
+		'	    nomeApp = RS("CFG_NOME_APLICACAO")
+		'	    orgaoEbt = RS("CFG_ORGAO_EBT")
+		'	    siglaCrt = RS("CFG_SIGLA_CRT")
+ 		'	    nomeCrt = RS("CFG_NOME_CRT")
+			    'ramalContato = RS("CFG_RAMAL_CONTATO")
+			    'emailContato = RS("CFG_EMAIL_CONTATO")
+			    'periodoValidacaoDocumento = RS("CFG_VALIDACAO_DOCUMENTOS")
+		'    End If
+	    'End If
+	    'On Error Goto 0
 
-	    Set RS = Nothing
+	    'Set RS = Nothing
     End Sub
 
 

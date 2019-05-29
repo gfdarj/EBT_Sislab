@@ -8,7 +8,6 @@ Dim SolicitouCancela : SolicitouCancela = False
 Dim sSQL, rsArquivos, objSiteRS
 Dim situacao_ag : situacao_ag = 0
 Dim situacao_ag_desc
-Dim chr_OrgaoSQL
 Dim bln_ehRat : bln_ehRat = False
 Dim bln_ehRT : bln_ehRT = False
 Dim bln_usuarioCRT : bln_usuarioCRT = False
@@ -23,7 +22,6 @@ int_sigilo = 0
 bln_ehRat = Env.ehRAT
 bln_ehRT = Env.ehRT
 bln_usuarioCRT = Env.UsuarioCRT
-chr_OrgaoSQL = "--"
 
 '-- DEBUG
 'bln_ehRat = False
@@ -41,7 +39,7 @@ Call Tela.MostraCabecalho()
 num_ag = request("selecao")
 as_referencia = request("as_referencia")
 
-If Env.ehRAT Then solicitante = request("solicitante") else solicitante = "" End If
+If bln_ehRat Then solicitante = request("solicitante") else solicitante = "" End If
 If num_ag = "" Then num_ag = request("hdAG")
 
 If num_ag <> "" Then
@@ -53,11 +51,9 @@ If num_ag <> "" Then
 		situacao_ag_desc = objSiteRS("S_DESCRICAO")
 		int_sigilo = objSiteRS("ag_sigilo")
 		chr_Username = objSiteRS("AG_USERNAME")
-		chr_OrgaoSQL = objSiteRS("AG_ORGAO")
-		If IsNull(chr_OrgaoSQL) Then chr_OrgaoSQL = "--" Else chr_OrgaoSQL = Trim(chr_OrgaoSQL)
 	    Nome_Reduzido = objSiteRS("AG_USERNAME_NOME")
 	    Matricula = objSiteRS("AG_USERNAME_MATRICULA")
-	    SiglaOrgao = objSiteRS("AG_USERNAME_ORGAO")
+	    SiglaOrgao = objSiteRS("AG_ORGAO")
 	    TEL1_COM = objSiteRS("AG_USERNAME_TELEFONE")
 	End If
 End If
@@ -89,7 +85,7 @@ End If
 	    frm.submit();
     }
 
-<%if Env.EhRat() then%>
+<%if bln_ehRat then%>
 	function BuscarSolicitante()
 	{
 		var frm = document.forms[0];
@@ -427,7 +423,7 @@ if num_ag <> "" then
 End if
 %>
 <%
-if Env.EhRat() then
+if bln_ehRat then
 %>
         <div style="width: 100%">
 	        <div class="linha-fundo" style="width: 100%"><strong>Solicitar Agendamento pelo Cliente</strong></div><br />
@@ -707,7 +703,7 @@ end if
 			If bln_ehRAT then 'or bln_ehRT then%>
 	    	<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
 <%			Else %>
-    		<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="41" style="color:grey;">
+    		<!--<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="41" style="color:grey;">-->
 <%			end if
 			if bln_usuarioCRT then %>
 		    <input  type="button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;" tabindex="42">
@@ -892,7 +888,7 @@ if as_referencia <> "" then
 	frm.obs.value = '<%=strToTexto(objSiteRS("AG_OBSERVACAO"))%>';
 <%end if%>
 
-<%if Env.EhRat() then
+<%if bln_ehRat then
 	if solicitante <> "" then
 		Set Ebt = New TEbt
 
