@@ -361,7 +361,8 @@ go
 /*****
 	29-05-2019
 */
-DROP TABLE dbo.SCE_Equipamentos_Propriedade 
+
+-- DROP TABLE dbo.SCE_Equipamentos_Propriedade 
 CREATE TABLE dbo.SCE_Equipamentos_Propriedade (
 	ID_PROPRIEDADE CHAR(1) NOT NULL,
 	NM_PROPRIEDADE VARCHAR(50) NOT NULL
