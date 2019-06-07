@@ -474,15 +474,15 @@ Public Sub ImprimeMenuSce()
                <ul class="nav navbar-nav">
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastro<span class="caret"></span></a>
                       <ul class="dropdown-menu">
+                        <li><a href="cad_areasutilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
+                        <li><a href="cad_doc.asp">Documentos</a></li>
                         <li><a href="cad_empresas.asp">Empresas</a></li>
                         <li><a href="cad_fab.asp">Fabricantes</a></li>
+                        <li><a href="cad_tipos.asp">Fam&iacute;lia Tipo</a></li>
+                        <li><a href="cad_acess_item.asp">Itens</a></li>
                         <li><a href="cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
                         <li><a href="cad_nf.asp">Notas Fiscais</a></li>
-                        <li><a href="cad_doc.asp">Documentos</a></li>
-                        <li><a href="cad_tipos.asp">Fam&iacute;lia Tipo</a></li>
-                        <li><a href="cad_areasutilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
                         <li><a href="cad_modelos.asp">Modelos</a></li>
-                        <li><a href="cad_acess_item.asp">Itens</a></li>
 <% If perfil = PERFIL_ADM Or perfil = PERFIL_RAT Then %>
                         <li><a href="cad_reserva.asp">Reservas</a></li>
 <% End If %>
@@ -492,14 +492,15 @@ Public Sub ImprimeMenuSce()
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas<span class="caret"></span></a>
                       <ul class="dropdown-menu">
 <% If perfil = PERFIL_ADM or perfil = PERFIL_LOG Then %>
+                        <li><a href="sel_cad_areautilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
+                        <li><a href="alt_doc.asp">Documentos</a></li>
                         <li><a href="sel_cad_empresa.asp">Empresas</a></li>
                         <li><a href="alt_fab.asp">Fabricantes</a></li>
+                        <li><a href="sel_cad_tipo.asp">Fam&iacute;lia Tipo</a></li>
                         <li><a href="sel_cad_no.asp">Natureza de Opera&ccedil;&atilde;o</a></li>
                         <li><a href="sel_cad_nf.asp">Notas Fiscais</a></li>
-                        <li><a href="alt_doc.asp">Documentos</a></li>
-                        <li><a href="sel_cad_tipo.asp">Fam&iacute;lia Tipo</a></li>
-                        <li><a href="sel_cad_areautilizacao.asp">&Aacute;reas de Utiliza&ccedil;&atilde;o</a></li>
                         <li><a href="sel_cad_modelo.asp">Modelos</a></li>
+                        <li class="divider"></li>
 <% End If %>
                         <li><a href="sel_cad_acessorio.asp">Itens</a></li>
                         <li><a href="sel_cad_reserva.asp?abrir_como=CON">Reservas</a></li>
