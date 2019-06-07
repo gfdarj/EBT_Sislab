@@ -560,7 +560,7 @@ End Sub
 
 
 Private Sub ImprimeMenu1() %>
-<script type="text/javascript" language="JavaScript1.2">
+<script type="text/javascript">
 	<!--
     var st_path = "<%=p_PathRelativo%>includes/";
     var st_lib = "stm31.js";
