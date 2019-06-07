@@ -81,6 +81,25 @@ Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, text
 		Exit Sub
 	End If
 
+'response.write "<BR><BR><BR>de_email 1: " & de_email
+    If Left(UCase(de_email), 6) = "T3LAIL" Then
+        de_email = "laila.sousa@claro.com.br"
+    End If
+    If Left(UCase(de_email), 6) = "T3MZEN" Then
+        de_email = "maria.neta@claro.com.br"
+    End If
+'response.write "<BR>de_email 2: " & de_email
+
+'response.write "<BR><BR>para_email 1: " & para_email
+    If Left(UCase(para_email), 6) = "T3LAIL" Then
+        para_email = "laila.sousa@claro.com.br"
+    End If
+    If Left(UCase(para_email), 6) = "T3MZEN" Then
+        para_email = "maria.neta@claro.com.br"
+    End If
+'response.write "<BR>para_email 2: " & para_email
+'exit sub
+
 	Dim objMail
 	Set objMail = Server.CreateObject("CDONTS.NewMail") 
 	objMail.from = de_nome & "<" & de_email & ">"
@@ -104,6 +123,16 @@ End Sub
 '----------------------------------------------------------------------------------------------
 Sub Enviar_Email(para_email, para_nome, assunto, texto)
 	Dim objMail
+
+'response.write "<BR>para_email 1: " & para_email
+    If Left(UCase(para_email), 6) = "T3LAIL" Then
+        para_email = "laila.sousa@claro.com.br"
+    End If
+    If Left(UCase(para_email), 6) = "T3MZEN" Then
+        para_email = "maria.neta@claro.com.br"
+    End If
+'response.write "<BR>para_email 2: " & para_email
+'exit sub
 
 	If Application("SISLAB_AMBIENTE") <> "LOC" Then
 		Set objMail = Server.CreateObject("CDONTS.NewMail") 
