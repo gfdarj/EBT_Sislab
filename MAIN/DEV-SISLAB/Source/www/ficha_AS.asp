@@ -14,9 +14,10 @@ Dim Auxselecao
 Dim Auxdadosteste,AuxtipoTesteint,auxAGRT, AuxRetificacao, AuxAmostra
 Dim Auxambiente, AuxObs, AuxRecursos
 Dim AuxRetornoCliente, AuxMetas
-Dim Ebt
+Dim Ebt, Ebt1
 
 Set Ebt = New TEbt
+Set Ebt1 = New TEbt
 
 tot = 0
 Auxselecao = Request("selecao")
@@ -320,7 +321,7 @@ end if
 %>
 
 <%'=============================================================================
-Dim Matricula, ebt1, vIndicEmpregado
+Dim Matricula, vIndicEmpregado
 Dim vNome, vSiglaOrgao
 Dim vRIT
 
@@ -335,16 +336,14 @@ else
 	AuxUsername = ""
 end if
 
-Set ebt1 = New TEbt
-
-Call ebt1.LoginUsuario(AuxUsername)
+'response.write "AQUI 1: " & AuxUsername
+Call Ebt1.LoginUsuario(AuxUsername)
 
 Matricula = Ebt1.Matricula()
 vNome = Ebt1.NomeReduzido()
 vSiglaOrgao = Ebt1.SiglaOrgao
-vRIT =  ebt1.Ramal
-
-Set ebt1  = nothing
+vRIT =  Ebt1.Ramal
+Matricula = ebt1.Matricula()
 
 '=============================================================================%>
 
@@ -371,15 +370,13 @@ vNome = ""
 vSiglaOrgao = ""
 vRIT =  ""
 
-Set ebt1 = New TEbt
-
-Call ebt1.LoginUsuario(AuxUsername)
+'response.write "AQUI 2: " & AuxUsername
+Call Ebt1.LoginUsuario(AuxUsername)
 
 vNome = ebt1.NomeReduzido()
 vSiglaOrgao = ebt1.SiglaOrgao()
 vRIT =  ebt1.Ramal()
-
-Set ebt1 = Nothing
+Matricula = ebt1.Matricula()
 
 '=============================================================================%>
 
@@ -570,5 +567,8 @@ end if
     }
 </script>
 <%
+Set Ebt = nothing
+Set Ebt1  = nothing
+
 Call Tela.MostraRodape()
 %>
