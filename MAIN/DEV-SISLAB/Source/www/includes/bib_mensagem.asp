@@ -62,6 +62,6 @@ function erroDB(menu, rodape, apenasErroSistema, Erro, linkVoltar, path)
 	Next
 	response.write "</p>"
 	response.write "<p class='texto1'>&nbsp;&nbsp;<a href='" & linkVoltar & "'>Voltar</a></p>"
-	call imprimeRodape(rodape)
+	Call Tela.MostraRodape()
 end function
 %>

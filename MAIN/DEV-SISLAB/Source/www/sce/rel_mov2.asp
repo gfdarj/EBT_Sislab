@@ -169,7 +169,10 @@ url_xls = "<div align='right'><a href=""../excel.asp?TITULO=Relatório de Movime
             </a>
 		</td>
 		<td class="texto-centralizado">
-            <a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);"><img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento"></a>
+            <a href="#" onClick="javascript:excluiMovimentacao(<%=rec("MOV_ID")%>);">
+                <!--<img src="img/btn_excluir.gif" border="0" alt="Clique aqui para apagar esta movimento">-->
+                <span class="glyphicon glyphicon-remove" style="color: darkblue;" title="Clique aqui para apagar esta movimentação"></span>
+            </a>
 		</td>
 <%		    end if%>
 		<td class="texto-centralizado">
