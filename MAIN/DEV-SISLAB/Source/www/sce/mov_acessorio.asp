@@ -57,7 +57,7 @@ end if
 	    <th>Selecione o filtro</th>
 	</tr>
 	<tr><td>&nbsp;</td></tr>
-	<tr><td><%if Env.PerfilSce <> PERFIL_ADM then response.write "<b>"%>Movimentar os itens na<%=Combo.SituacaoEquipamento("status", true, false, true, "")%><%if Env.PerfilSce <> PERFIL_ADM then response.write "</b>"%></td></tr>
+	<tr><td><%if Env.PerfilSce <> PERFIL_ADM then response.write "<b>"%>Movimentar os itens na <%=Combo.SituacaoEquipamento("status", true, false, true, "")%><%if Env.PerfilSce <> PERFIL_ADM then response.write "</b>"%></td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td> 

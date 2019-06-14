@@ -76,7 +76,13 @@ If Env.UsuarioSCE() Then
 
 	function mostraCamposNO(mostra) {
 		var exibir;
-		if (mostra) exibir = 'block'; else exibir = 'none';
+        if (mostra) {
+            ajax_comboFornecedor();
+            exibir = 'block';
+        }
+        else {
+            exibir = 'none';
+        }
 		document.all.id_fornecedor.style.display = exibir;
 		document.all.id_notafiscal.style.display = exibir;
 		document.all.id_documento.style.display = exibir;
@@ -152,6 +158,9 @@ If Env.UsuarioSCE() Then
 			    "ON m.NO_ID = n.NO_ID LEFT JOIN SCE_Nota_Fiscal nf ON m.NF_ID = nf.NF_ID " & _
 			    "WHERE MOV_ID = " & mov_id
 	    Set rsMov = Env.oConn.Execute(ssql)
+'response.Write "SSQL: " & ssql & "<BR>"
+'response.End
+
 	    if not (rsMov.Eof and rsMov.Bof) then
 		    if IsNull(rsMov("EQ_ID")) then eq_id = "" else eq_id = CStr(rsMov("EQ_ID"))
 		    if IsNull(rsMov("NO_ID")) then no_id = "" else no_id = CStr(rsMov("NO_ID"))
@@ -385,9 +394,21 @@ end if%>
             <tr id="id_fornecedor" style="display:none;">
 	            <td valign="top"><br>
 		            Fornecedor:<br>
-		            <%=Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
+		            <%'=Combo.Fornecedor("enf_id", "", "N", "FORNECEDOR", false)%>
+                    <select name="enf_id" onchange="ajax_comboNotaFiscal()">
+                    </select>
 		            <script type="text/javascript">
 			            //document.all.enf_id.onchange = enviaDados;
+	                   function ajax_comboFornecedor()
+                       {
+                           var url = "../ajax/sce_combo_fornecedor.asp?tipo=F&completa=F";
+                           var maxAjaxObj = new max.Ajax(url,{update:'',onComplete:
+                               function(texto,xml) {
+                                   document.all.enf_id.innerHTML = texto;
+                               }
+                           });
+                           maxAjaxObj.get();
+                       }
 		            </script>
 	            </td>
             </tr>
@@ -400,9 +421,36 @@ end if%>
 			elseif tipo = cstr(MOV_EXPEDICAO) Or tipo = cstr(MOV_EXPEDICAO_SUBST) then
 				tipoNota = NF_SAIDA
 			else
-				tipoNota = ""
+				tipoNota = "0"
 			end if
-			RW Combo.NotaFiscal("txtnf_id", "nf_id", nf_id, "N", tipoNota, enf_id) %>
+            ''''''''''''''' DEIXAVA LENTA A TELA - FOI SUBSTITUIDA PELO AJAX
+			'RW Combo.NotaFiscal("txtnf_id", "nf_id", nf_id, "N", tipoNota, enf_id) %>
+
+                    <select name="nf_id" >
+                    </select>
+		            <script type="text/javascript">
+	                   function ajax_comboNotaFiscal()
+                       {
+                           var nt = document.all.notipo.value;
+
+                           if (nt == "<%=MOV_ENTRADA%>")
+                               nt = "<%=NF_ENTRADA%>";
+                           else if ((nt == "<%=MOV_EXPEDICAO%>") || (nt == "<%=MOV_EXPEDICAO_SUBST%>"))
+                               nt = "<%=NF_SAIDA%>";
+                           else
+                               nt = "0";
+
+                           //alert("enf_id: " + document.all.enf_id.value + "  .... notipo: " + nt );
+                           var url = "../ajax/sce_combo_notaFiscal.asp?tipo=" + nt + "&fornecedor=" + document.all.enf_id.value;
+                           var maxAjaxObj = new max.Ajax(url,{update:'',onComplete:
+                               function(texto,xml) {
+                                   document.all.nf_id.innerHTML = texto;
+                               }
+                           });
+                           maxAjaxObj.get();
+                       }
+		            </script>
+
 	            </td>
             </tr>
 
@@ -489,7 +537,7 @@ end if%>
            "FROM vw_SCE_Equipamentos_Fabricantes " & _
            "WHERE EQ_ID IN (" & eq_id & ")"
     Set RS = Env.oConn.Execute(ssql) %>
-		                        <table>
+		                        <table class="largura-total table-bordered table-condensed">
 		                        <tr><th>Cód. Barras (novo)</th><th>Modelo</th><th>Situação</th><th>Cód. Barras Anterior (substituído)</th></tr>
 <%  Dim sclasse
     linha=0
@@ -590,24 +638,6 @@ end if%>
 document.all.fl_calibracao.checked = true;
 <%end if%>
 </script>
-
-
-
-<script type="text/javascript">
-    /*	function controleFornecedor(exibir) {
-    if (exibir == 'none') {
-    }
-    else {
-    }
-
-    document.all.id_fornecedor.style.display = exibir;
-    }
-    */
-//    alert(document.all.ID_enf_id.options.length);
-//    alert(document.getElementById("ID_enf_id").options.length);
-
-</script>
-
 
 
 <%
