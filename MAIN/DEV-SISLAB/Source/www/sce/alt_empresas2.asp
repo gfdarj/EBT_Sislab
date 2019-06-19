@@ -1,4 +1,9 @@
-﻿<!--#include file="includes/abre.asp"-->
+﻿<!------- SCE ------->
+<!--#include file="includes/global_SCE.asp"-->
+
+<!------- SISLAB ---->
+<!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 Dim uf, enf_cnpj
 uf = trim(replace(request("enf_uf"), "'", "&#39;"))
@@ -14,13 +19,14 @@ ssql = ssql &"enf_endereco = '"& trim(replace(ucase(request("enf_endereco")), "'
 ssql = ssql &"enf_nome = '"& trim(replace(ucase(request("enf_nome")), "'", "&#39;")) &"', enf_ddd = '"& trim(replace(request("ddd"), "'", "&#39;")) &"', enf_ddd_fax = '"& trim(replace(request("ddd_fax"), "'", "&#39;")) &"', "
 ssql = ssql &"enf_email = '"& trim(replace(request("email"), "'", "&#39;")) &"', enf_tipoempresa = '" & request("tipoempresa") & "' "
 ssql = ssql &"where enf_id = "& trim(replace(request("enf_id"), "'", "&#39;"))
-conn.execute(ssql)
+Env.oConn.execute(ssql)
 
-acao = "O usuário "& session("user_id")&" atualizou a empresa "& trim(replace(request("enf_nome"), "'", "&#39;")) &" de cnpj "& trim(replace(request("enf_cnpj"), "'", "&#39;"))&"."
+acao = "O usuário "& Env.Ebt.NomeReduzido() & " atualizou a empresa "& trim(replace(request("enf_nome"), "'", "&#39;")) &" de cnpj "& trim(replace(request("enf_cnpj"), "'", "&#39;"))&"."
 data = year(now)&"/"&right(month(now)+100,2)&"/"&right(day(now)+100,2)&" "&right(hour(now)+100,2)&":"&right(minute(now)+100,2)&":"&right(second(now)+100,2)
 ssql = "insert into sce_historico (id_usuario,acao,data) values "
-ssql = ssql &"("& session("user_id")&",'"& acao &"','"& data&"')"
-conn.execute(ssql)
+ssql = ssql & "('" & Env.Usuario() & "', '"& acao &"','"& data&"')"
+Env.oConn.execute(ssql)
 
-response.redirect "sel_cad_empresa.asp?msg=1"
+Response.Redirect "sel_cad_empresa.asp?msg=1"
+
 %>

@@ -1,7 +1,4 @@
-﻿<!--#incl ude file="../sce/includes/abre.asp" -->
-<!--#include file="../includes/Sislab_Lib.asp"-->
-<!--#incl ude file="../includes/global.asp"-->
-<!--#inc lude file="../includes/funcoes.asp"-->
+﻿<!--#include file="../includes/Sislab_Lib.asp"-->
 <!--#include file="../sce/includes/controlesHTML_SCE.asp" -->
 <%
 '###

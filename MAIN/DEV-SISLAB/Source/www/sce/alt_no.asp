@@ -42,6 +42,9 @@ function ValidaCampos()
 ssql = "select * from sce_natureza_operacao where no_id = "& request("no_id")
 set rec = Env.oconn.execute(ssql)
 %>
+
+<div class="margem-10">
+
 <form method=post action="alt_no2.asp" name="formulario">
 <input type="hidden" name="no_id" value="<%=request("no_id")%>">
 <table width="790px">
@@ -101,6 +104,7 @@ set rec = Env.oconn.execute(ssql)
     </tr>
  </table>
 </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -8,11 +8,6 @@
 <!--#include file="../includes/Sislab_Lib.asp"-->
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
-
-
-<!--#incl ude file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
-<!--#inc lude file="includes/padraoHTML.asp"-->
-<!--#INC LUDE FILE="includes/abre.asp" -->
 <%
 Tela.SCE = True
 Tela.SetNomeTela = "Consulta > Nota Fiscal" : Tela.SetCaminhoRelativo = "../"

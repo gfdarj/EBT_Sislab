@@ -1,23 +1,33 @@
-﻿<!-- #include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
-<!--#include file="includes/padraoHTML.asp"-->
-<!-- #INCLUDE FILE="includes/estado.asp" -->
-<!-- #INCLUDE FILE="includes/abre.asp" -->
-<!-- #INCLUDE FILE="includes/bib_str.asp" -->
+﻿<!------- SCE ------->
+<!--#include file="includes/global_SCE.asp"-->
+<!--#include FILE="includes/estado.asp" -->
+<!------- SISLAB ---->
+<!--#include file="../includes/bib_str.asp"-->
+<!--#include file="../includes/padraoHTML.asp"-->
+<!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
+<!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../includes/Sislab_Lib.asp"-->
+
 <script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
+
 <%
-call ImprimeCabecalho ("", MENU_ON, true, "Alterar Empresa", "", "history.go(-1);")
+Tela.SCE = True
+Tela.SetNomeTela = "Consulta > Alterar Empresa" : Tela.SetCaminhoRelativo = "../"
+Call Tela.MostraCabecalho()
 
 ssql = "select * from sce_empresa_nota_fiscal where enf_id = "& request("enf_id")
-set rec = conn.execute(ssql)%>
-<form method=post action="alt_empresas2.asp" name="formulario"  onSubmit="vdform('formulario','enf_cnpj','CNPJ','CNPJ','enf_cpf'); return document.ValorPassou; ">
-<input type="hidden" name="enf_id" value="<%=request("enf_id")%>">
-<div align="center">
-<table width="100%">	
-    <tr> 
-      <td>
-  		<table width="100%" cellpadding=0 cellspacing=0>
+set rec = Env.oConn.Execute(ssql)
+%>
+
+<div class="margem-10">
+
+    <form method=post action="alt_empresas2.asp" name="formulario"  onSubmit="vdform('formulario','enf_cnpj','CNPJ','CNPJ','enf_cpf'); return document.ValorPassou; ">
+
+    <input type="hidden" name="enf_id" value="<%=request("enf_id")%>">
+
+  		<table width="100%" cellpadding=0 cellspacing=0 class="table-condensed">
     		<tr> 
       			<td  align="left" >Nome da Empresa<br>
 					<input type="text"  name="enf_nome" style="width:600px" maxlength="100" value="<%=rec("enf_nome")%>"></td>
@@ -51,80 +61,83 @@ set rec = conn.execute(ssql)%>
 						<TR>
 							<TD >
 							IE<br>
-								<input type="text"  name="enf_ie" style="width:170px" maxlength="20"  value="<%=rec("enf_ie")%>"></td>
-								<script language="JavaScript1.1">
-function FormataCNPJ(Campo, teclapres){
+								<input type="text"  name="enf_ie" style="width:170px" maxlength="20"  value="<%=rec("enf_ie")%>">
+								<script type="text/javascript">
+                                    function FormataCNPJ(Campo, teclapres)
+                                    {
+	                                    var tecla = teclapres.keyCode;
 
-	var tecla = teclapres.keyCode;
+	                                    var vr = new String(Campo.value);
+	                                    vr = vr.replace(".", "");
+	                                    vr = vr.replace(".", "");
+	                                    vr = vr.replace("/", "");
+	                                    vr = vr.replace("-", "");
 
-	var vr = new String(Campo.value);
-	vr = vr.replace(".", "");
-	vr = vr.replace(".", "");
-	vr = vr.replace("/", "");
-	vr = vr.replace("-", "");
+	                                    tam = vr.length + 1 ;
 
-	tam = vr.length + 1 ;
-
-	
-	if (tecla != 9 && tecla != 8){
-		if (tam > 2 && tam < 6)
-			Campo.value = vr.substr(0, 2) + '.' + vr.substr(2, tam);
-		if (tam >= 6 && tam < 9)
-			Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,tam-5);
-		if (tam >= 9 && tam < 13)
-			Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,3) + '/' + vr.substr(8,tam-8);
-		if (tam >= 13 && tam < 15)
-			Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,3) + '/' + vr.substr(8,4)+ '-' + vr.substr(12,tam-12);
-		}
-}
-</script>
-					      	<td  > 
+                                        if (tecla != 9 && tecla != 8)
+                                        {
+		                                    if (tam > 2 && tam < 6)
+			                                    Campo.value = vr.substr(0, 2) + '.' + vr.substr(2, tam);
+		                                    if (tam >= 6 && tam < 9)
+			                                    Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,tam-5);
+		                                    if (tam >= 9 && tam < 13)
+			                                    Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,3) + '/' + vr.substr(8,tam-8);
+		                                    if (tam >= 13 && tam < 15)
+			                                    Campo.value = vr.substr(0,2) + '.' + vr.substr(2,3) + '.' + vr.substr(5,3) + '/' + vr.substr(8,4)+ '-' + vr.substr(12,tam-12);
+		                                    }
+                                    }
+                                    </script>
+                            </td>
+                            <td>
 								CNPJ<br>
-								<input type="text"  name="enf_cnpj" style="width:170px" onKeydown="JavaScript:FormataCNPJ(this,event)" maxLength=18 value="<%=FormataCnpj(rec("enf_cnpj"))%>"></td>
+								<input type="text"  name="enf_cnpj" style="width:170px" onKeydown="JavaScript:FormataCNPJ(this,event)" maxLength=18 value="<%=FormataCnpj(rec("enf_cnpj"))%>">
+					      	</td>
 			  	  		</tr>
 					</TABLE>
 				</TD>
 			</TR>
-<SCRIPT>
 
-function FormataCpf(campo,tammax,teclapres) {
- var tecla = teclapres.keyCode;
+            <script type="text/javascript">
+                function FormataCpf(campo, tammax, teclapres)
+                {
+                    var tecla = teclapres.keyCode;
   
- vr = event.srcElement.value;
- vr = vr.replace( "/", "" );
- vr = vr.replace( "/", "" );
- vr = vr.replace( ",", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( ".", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- vr = vr.replace( "-", "" );
- tam = vr.length;
+                    vr = event.srcElement.value;
+                    vr = vr.replace( "/", "" );
+                    vr = vr.replace( "/", "" );
+                    vr = vr.replace( ",", "" );
+                    vr = vr.replace( ".", "" );
+                    vr = vr.replace( ".", "" );
+                    vr = vr.replace( ".", "" );
+                    vr = vr.replace( ".", "" );
+                    vr = vr.replace( "-", "" );
+                    vr = vr.replace( "-", "" );
+                    vr = vr.replace( "-", "" );
+                    vr = vr.replace( "-", "" );
+                    vr = vr.replace( "-", "" );
+                    tam = vr.length;
 
- if (tam < tammax && tecla != 8){ tam = vr.length + 1 ; }
+                    if (tam < tammax && tecla != 8){ tam = vr.length + 1 ; }
 
- if (tecla == 8 ){ tam = tam - 1 ; }
+                    if (tecla == 8 ){ tam = tam - 1 ; }
   
- if ( tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105 ){
-  if ( tam <= 2 ){ 
-    event.srcElement.value = vr ; }
-   if ( (tam > 2) && (tam <= 5) ){
-    event.srcElement.value = vr.substr( 0, tam - 2 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 6) && (tam <= 8) ){
-    event.srcElement.value = vr.substr( 0, tam - 5 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 9) && (tam <= 11) ){
-    event.srcElement.value = vr.substr( 0, tam - 8 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 12) && (tam <= 14) ){
-    event.srcElement.value = vr.substr( 0, tam - 11 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
-   if ( (tam >= 15) && (tam <= 17) ){
-    event.srcElement.value = vr.substr( 0, tam - 14 ) + '.' + vr.substr( tam - 14, 3 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ;}
- }  
-}
-</script>
+                    if ( tecla == 8 || tecla >= 48 && tecla <= 57 || tecla >= 96 && tecla <= 105 ){
+                    if ( tam <= 2 ){ 
+                    event.srcElement.value = vr ; }
+                    if ( (tam > 2) && (tam <= 5) ){
+                    event.srcElement.value = vr.substr( 0, tam - 2 ) + '-' + vr.substr( tam - 2, tam ) ; }
+                    if ( (tam >= 6) && (tam <= 8) ){
+                    event.srcElement.value = vr.substr( 0, tam - 5 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+                    if ( (tam >= 9) && (tam <= 11) ){
+                    event.srcElement.value = vr.substr( 0, tam - 8 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+                    if ( (tam >= 12) && (tam <= 14) ){
+                    event.srcElement.value = vr.substr( 0, tam - 11 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ; }
+                    if ( (tam >= 15) && (tam <= 17) ){
+                    event.srcElement.value = vr.substr( 0, tam - 14 ) + '.' + vr.substr( tam - 14, 3 ) + '.' + vr.substr( tam - 11, 3 ) + '.' + vr.substr( tam - 8, 3 ) + '.' + vr.substr( tam - 5, 3 ) + '-' + vr.substr( tam - 2, tam ) ;}
+                    }  
+                }
+            </script>
 			
 			<tr> 
       			<td  >
@@ -154,7 +167,7 @@ function FormataCpf(campo,tammax,teclapres) {
 				</TD>
 			</TR>
 			<tr> 
-      			<td  >
+      			<td>
 					<TABLE WIDTH="550" cellpadding="0" cellspacing="0">
 						<TR>
 							<td >
@@ -171,23 +184,24 @@ function FormataCpf(campo,tammax,teclapres) {
 					<br>Observação<br>
 					<textarea  name="enf_observacao" rows="2" style="width:600px"><%=rec("enf_observacao")%></textarea></td>
     		</tr>
-			<script>
-			function func2(){
-				document.formulario.action = "exc_empresas.asp"
-			}
+
+			<script type="text/javascript">
+                function func2()
+                {
+                    document.formulario.action = "exc_empresas.asp";
+			    }
 			</script>
+
 			<tr><td>&nbsp;</td></tr>
 			<tr> 
       			<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir "  onclick="func2();"></td>
 		    </tr>
 		</table>
-      </td>
-    </tr>
     
-</form>
-  </table>
+    </form>
+
+</div>
+
 <%
-conn.close
-set conn=nothing
-call ImprimeRodape (RODAPE_OFF)
+Call Tela.MostraRodape()
 %>
