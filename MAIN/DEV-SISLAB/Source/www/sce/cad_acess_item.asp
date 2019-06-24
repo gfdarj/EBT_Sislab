@@ -483,7 +483,7 @@ function InsereControle() {
 	newrow.setAttribute("eqc_id", "0");   // ID do registro na tabela, caso exista
 
 	// troca o conteúdo da ultima coluna colocando
-	newtd.innerHTML = '<span onclick="javascript:RemoveControle('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
+	newtd.innerHTML = '<span onclick="javascript:RemoveControle('+linha+');" style="cursor: pointer;"><img src="img/btn_excluir.gif"></span>';
 
 	// vou inserir a linha na ordem correta
 	var tb = document.getElementById("tb_controle_body");
@@ -596,7 +596,7 @@ function RemoveControle(l) {
 <%'					If (bln_AcessoRAT And (rec("EQC_TIPO") = CONTROLE_MANUTENCAO_PREVENTIVA)) Or _
 '							((Not bln_AcessoRAT) And (rec("EQC_TIPO") <> CONTROLE_MANUTENCAO_PREVENTIVA)) _
 '						Then%>
-								<span onClick="javascript:RemoveControle(<%'=linha%>);" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>
+								<span onClick="javascript:RemoveControle(<%'=linha%>);" style="cursor: pointer;"><img src="img/btn_excluir.gif"></span>
 <%'					Else %>
 							&nbsp;
 <%'					End If %>
@@ -631,145 +631,137 @@ function RemoveControle(l) {
   			<table class="largura-total">
 				<tr>
 				    <td style="vertical-align: top;">
-                        <input type="button" name="adicionar" onclick="NovoAcessorio();" value="Novo acess&oacute;rio"/>
+                        <input type="button" name="adicionar" onclick="NovoAcessorio();" value="Novo Acessório"/>
 					    <br>
 					    Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5"  value="1">
 					</td>
 
 <script type="text/javascript">
-var separa_campo = "¿?¿";
-var linha_acess = 0;
-var total_linhas_acess = 0;
-var seq_acess = 0;
+    var separa_campo = "¿?¿";
+    var linha_acess = 0;
+    var total_linhas_acess = 0;
+    var seq_acess = 0;
 
-/* Cria uma nova combo conformidade para o acessorio Sim/Nao */
-function ComboConformeAcessorio(escreve, id_combo) {
-	var str = '';
-	str += '<select name="' + id_combo + '" >';
-	str += '<option value="1">Sim</option>';
-	str += '<option value="0">Não</option>';
-	str += '</select>';
-	if(escreve) document.write(str);
-	return str;
-}
+    /* Cria uma nova combo conformidade para o acessorio Sim/Nao */
+    function ComboConformeAcessorio(escreve, id_combo) {
+	    var str = '';
+	    str += '<select name="' + id_combo + '" >';
+	    str += '<option value="1">Sim</option>';
+	    str += '<option value="0">Não</option>';
+	    str += '</select>';
+	    if(escreve) document.write(str);
+	    return str;
+    }
 
-/* Cria uma nova combo de situacoes para o acessorio */
-function ComboSituacaoAcessorio(escreve, id_combo) {
-	var str = '';
-	str += '<select name="' + id_combo + '" >';
-	str += '<option value="<%=STATUS_EM_ESTOQUE%>">Em Estoque</option>';
-	str += '<option value="<%=STATUS_EM_USO%>">Em Uso</option>';
-	str += '<option value="<%=STATUS_EXPEDIDO%>">Expedido</option>';
-	str += '<option value="<%=STATUS_EXPEDIDO_SUBST%>">Substituído</option>';
-	str += '</select>';
-	if(escreve) document.write(str);
-	return str;
-}
+    /* Cria uma nova combo de situacoes para o acessorio */
+    function ComboSituacaoAcessorio(escreve, id_combo) {
+	    var str = '';
+	    str += '<select name="' + id_combo + '" >';
+	    str += '<option value="<%=STATUS_EM_ESTOQUE%>">Em Estoque</option>';
+	    str += '<option value="<%=STATUS_EM_USO%>">Em Uso</option>';
+	    str += '<option value="<%=STATUS_EXPEDIDO%>">Expedido</option>';
+	    str += '<option value="<%=STATUS_EXPEDIDO_SUBST%>">Substituído</option>';
+	    str += '</select>';
+	    if(escreve) document.write(str);
+	    return str;
+    }
 
-/* varre todas as linhas criadas validando os acessórios */
-function ValidaAcessorios() {
-	var i;
-	if(total_linhas_acess > 0) {
-		for(i=1; i<=linha_acess; i++)
-			if(document.getElementById("desc_acess_"+i) != null) {
-				if(document.getElementById("desc_acess_"+i).value == '') {
-					alert('Acessório inválido (sequencial ' + document.getElementById("linha_acess_" + i + "_col_1").innerText + ')');
-					document.getElementById("desc_acess_"+i).focus();
-					return false;
-				}
-			}
-	}
-	return true;
-}
+    /* varre todas as linhas criadas validando os acessórios */
+    function ValidaAcessorios() {
+	    var i;
+	    if(total_linhas_acess > 0) {
+		    for(i=1; i<=linha_acess; i++)
+			    if(document.getElementById("desc_acess_"+i) != null) {
+				    if(document.getElementById("desc_acess_"+i).value == '') {
+					    alert('Acessório inválido (sequencial ' + document.getElementById("linha_acess_" + i + "_col_1").innerText + ')');
+					    document.getElementById("desc_acess_"+i).focus();
+					    return false;
+				    }
+			    }
+	    }
+	    return true;
+    }
 
-/* Insere um novo acessorio */
-function NovoAcessorio() {
-	var i, datacontrole;
-	var newrow;	var newtd;	var newtxt;
-
-	// valido a quantidade de novos acessorios
-	if(isNaN(document.all.qtde_acessorios.value) || (document.all.qtde_acessorios.value == '') ) {
-		alert('Quantidade de acessórios não é válida');
-		document.all.qtde_acessorios.focus();
-		return;
-	}
-	else if((document.all.qtde_acessorios.value > 100) || (document.all.qtde_acessorios.value < 1)) {
-		alert('Quantidade deve estar entre 0 e 100');
-		document.all.qtde_acessorios.focus();
-		return;
-	}
+    /* Insere um novo acessorio */
+    function NovoAcessorio()
+    {
+        var i;
+        ////var datacontrole;
+        var newrow; var newtd; var newtxt;
 
 
-	for(i=0; i<document.all.qtde_acessorios.value;i++) {
-		seq_acess++;			// sequencial
-		linha_acess++;
-		total_linhas_acess++;
-	
-		//-- apendo uma nova linha e suas colunas
-		newrow=document.createElement("tr");
+        // valido a quantidade de novos acessorios
+        if (isNaN(document.all.qtde_acessorios.value) || (document.all.qtde_acessorios.value == ''))
+        {
+            alert('Quantidade de acessórios não é válida');
+            document.all.qtde_acessorios.focus();
+            return;
+        }
+        else if ((document.all.qtde_acessorios.value > 100) || (document.all.qtde_acessorios.value < 1))
+        {
+            alert('Quantidade deve estar entre 0 e 100');
+            document.all.qtde_acessorios.focus();
+            return;
+        }
 
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode(total_linhas_acess);
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_acess_"+linha_acess+"_col_1");
-		newrow.appendChild(newtd);
-	
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode("x");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_acess_"+linha_acess+"_col_2");
-		newrow.appendChild(newtd);
-	
-		newtd.innerHTML = "<input type='Text' class='form' size='80' maxlength='255' name='desc_acess_" + linha_acess + "'>";
-	
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode("BLA");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_acess_"+linha_acess+"_col_3");
-		newrow.appendChild(newtd);
-	
-		newtd.innerHTML = ComboSituacaoAcessorio(false, "status_acess_" + linha_acess);
-	
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode("BLA");
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_acess_"+linha_acess+"_col_4");
-		newtd.setAttribute("align","center");
-		newrow.appendChild(newtd);
-	
-		newtd.innerHTML = comboSimNao(false, "conforme_acess_" + linha_acess, 1);
+        for (i = 0; i < document.all.qtde_acessorios.value; i++)
+        {
+            seq_acess++;			// sequencial
+            linha_acess++;
+            total_linhas_acess++;
 
-		newtd=document.createElement("td");
-		newtxt=document.createTextNode('x');
-		newtd.appendChild(newtxt);
-		newtd.setAttribute("id","linha_acess_"+linha_acess+"_col_5");
-		newtd.setAttribute("align","center");
-		newrow.appendChild(newtd);
-	
-		// troca o conteúdo da ultima coluna colocando
-		newtd.innerHTML = '<span onclick="javascript:RemoveAcessorio('+linha_acess+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
-	
-		newrow.setAttribute("id","linha_acess_" + linha_acess);
+            //-- apendo uma nova linha e suas colunas
+            newrow = document.createElement("tr");
 
-		document.getElementById("tb_acessorios_body").appendChild(newrow);
-	}
-	document.getElementById("desc_acess_"+linha_acess).focus();
-}
+            newtd = document.createElement("td");
+            newtxt = document.createTextNode(total_linhas_acess);
+            newtd.appendChild(newtxt);
+            newtd.setAttribute("id", "linha_acess_" + linha_acess + "_col_1");
+            newrow.appendChild(newtd);
 
-/* Remove um acessorio da tabela, reordenando os sequenciais */
-function RemoveAcessorio(linha) {
-	var i, j=1; tb = document.getElementById("tb_acessorios_body");
+            newtd = document.createElement("td");
+            newtxt = document.createTextNode("x");
+            newtd.appendChild(newtxt);
+            newtd.setAttribute("id", "linha_acess_" + linha_acess + "_col_2");
+            newrow.appendChild(newtd);
 
-	document.getElementById("linha_acess_"+linha).removeNode(true);
-	total_linhas_acess--;
+            newtd.innerHTML = "<input type='Text' class='form' size='80' maxlength='255' name='desc_acess_" + linha_acess + "'>";
 
-	// renumera o sequencial varrendo os itens
-	for(i = 1; i<=linha_acess; i++) {
-		if(document.getElementById("linha_acess_"+i) != null) {
-			document.getElementById("linha_acess_" + i + "_col_1").innerText = j++;
-		}
-	}
-}
+            newtd = document.createElement("td");
+            newtxt = document.createTextNode("BLA");
+            newtd.appendChild(newtxt);
+            newtd.setAttribute("id", "linha_acess_" + linha_acess + "_col_3");
+            newrow.appendChild(newtd);
+
+            newtd.innerHTML = ComboSituacaoAcessorio(false, "status_acess_" + linha_acess);
+
+            newtd = document.createElement("td");
+            newtxt = document.createTextNode("BLA");
+            newtd.appendChild(newtxt);
+            newtd.setAttribute("id", "linha_acess_" + linha_acess + "_col_4");
+            newtd.setAttribute("align", "center");
+            newrow.appendChild(newtd);
+
+            newtd.innerHTML = comboSimNao(false, "conforme_acess_" + linha_acess, 1);
+
+            newtd = document.createElement("td");
+            newtxt = document.createTextNode('x');
+            newtd.appendChild(newtxt);
+            newtd.setAttribute("id", "linha_acess_" + linha_acess + "_col_5");
+            newtd.setAttribute("align", "center");
+            newrow.appendChild(newtd);
+
+            // troca o conteúdo da ultima coluna colocando
+            newtd.innerHTML = '<span class="glyphicon glyphicon-remove" style="color: darkblue; cursor: pointer;" title="Clique aqui para apagar" onclick="javascript:RemoveAcessorio(' + linha_acess + ');" ></span >';
+
+            newrow.setAttribute("id", "linha_acess_" + linha_acess);
+
+            document.getElementById("tb_acessorios_body").appendChild(newrow);
+        }
+
+        document.getElementById("desc_acess_" + linha_acess).focus();
+    }
+
 </script>
 
 				    <td style="vertical-align: top;">
@@ -801,7 +793,7 @@ function RemoveAcessorio(linha) {
 <%				    If bln_AcessoRAT Then %>
 							&nbsp;
 <%				    Else %>
-							<span onClick="javascript:RemoveAcessorio('<%=rec("SEQUENCIAL")%>');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>
+                            <span class="glyphicon glyphicon-remove" style="color: darkblue; cursor: pointer;" title="Clique aqui para apagar" onclick="RemoveAcessorio('<%=rec("SEQUENCIAL")%>');"></span>
 <%				    End If %>
 							</td>
 
@@ -827,6 +819,30 @@ function RemoveAcessorio(linha) {
 			</table>
 	  	</td>
 	</tr>
+
+
+<script type="text/javascript">
+    /* Remove um acessorio da tabela, reordenando os sequenciais */
+    function RemoveAcessorio(linha)
+    {
+        var i, j = 1;
+        var tb = document.getElementById("tb_acessorios_body");
+
+        var lin = document.getElementById("linha_acess_" + linha);
+        lin.remove();
+
+        total_linhas_acess--;
+
+        // renumera o sequencial varrendo os itens
+        for (i = 1; i <= linha_acess; i++)
+        {
+            if (document.getElementById("linha_acess_" + i) != null)
+            {
+                document.getElementById("linha_acess_" + i + "_col_1").innerText = j++;
+            }
+        }
+    }
+</script>
 
 	<tr><td colspan="3">&nbsp;</td></tr>
 

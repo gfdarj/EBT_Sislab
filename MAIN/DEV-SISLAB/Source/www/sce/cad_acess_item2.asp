@@ -9,7 +9,8 @@
 <%
 Dim objSP, erroBD, int_Erro
 Dim codbarrasanterior
-Dim id, categoria, descricao, instrumental, fab_id, mod_id
+Dim id, descricao, instrumental, fab_id, mod_id
+'Dim categoria
 Dim numeroserie, codbarras, unidade, estoque, localizacao
 Dim obs, manutencaopreventiva, deltaoperacao, umidadeoperacao
 Dim warmupoperacao, deltaarmazenagem, umidadearmazenagem
@@ -21,7 +22,7 @@ Dim oErro
 
 id = request("eq_id")
 if id = "" then id = null
-categoria = request("categoria")
+'categoria = request("categoria")
 mod_id = request("mod_id")
 if mod_id = "" then mod_id = null
 localizacao = ucase(trim(request("localizacao")))

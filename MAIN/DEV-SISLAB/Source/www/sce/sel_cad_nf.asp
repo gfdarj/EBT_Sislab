@@ -25,6 +25,7 @@ set recnf = Env.oconn.execute(ssql)
 <script type="text/javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
+
 <div class="margem-10">
 <form method=post action="cad_nf.asp" name="formulario">
 <table class="largura-total">
@@ -36,7 +37,7 @@ set recnf = Env.oconn.execute(ssql)
 		end if%>
 		</td>
 	</tr>
-<SCRIPT LANGUAGE="jscript">				
+<script type="text/javascript">
 	var idfornecedor = new Array();
 	var idnota = new Array();				
 	var numero = new Array();
@@ -44,41 +45,45 @@ set recnf = Env.oconn.execute(ssql)
 				ssql = "select distinct enf_id, nf_id, nf_numeronota from sce_nota_fiscal order by nf_numeronota"
 				set rec = Env.oconn.execute(ssql)
 				if not rec.eof then	
-				i=0
-				do while not rec.eof
-					response.write ("idfornecedor[" & i & "]=" & rec("enf_id") & ";" & chr(13))
-					response.write ("idnota[" & i & "]=" & rec("nf_id") & ";" & chr(13))
-					response.write ("numero[" & i & "]='" & rec("nf_numeronota") & "';" & chr(13))
-					i=i+1					
-				rec.movenext
-				loop
-				end if%>
+				    i=0
+				    do while not rec.eof
+					    response.write ("idfornecedor[" & i & "]=" & rec("enf_id") & ";" & chr(13))
+					    response.write ("idnota[" & i & "]=" & rec("nf_id") & ";" & chr(13))
+					    response.write ("numero[" & i & "]='" & rec("nf_numeronota") & "';" & chr(13))
+					    i=i+1					
+			    	    rec.movenext
+				    loop
+				end if
+             %>
 
-function func(){
-	objfabr=document.formulario.enf_id;
-	objmod=document.formulario.nf_id;
+    function func()
+    {
+	    var objfabr = document.formulario.enf_id;
+	    var objmod = document.formulario.nf_id;
 	
-	while (objmod.options.length!=0)
-	{
-		objmod.options.remove(0);	
-	}
-	var temp = document.createElement("OPTION");
-	objmod.options.add(temp);
-	
-	for (i=0; i<idfornecedor.length; i++){
-		if (idfornecedor[i]==objfabr.options[objfabr.selectedIndex].value){
-			var oOption = document.createElement("OPTION");
-			
-			objmod.options.add(oOption);
-			oOption.innerText = "nº NF:"+ numero[i]; //+" - id_forn: "+ idfornecedor[i]+" - id Nota:"+ idnota[i];
-			oOption.value = idnota[i];
-		}
-	}
-}
-function f(){
-	document.formulario.action = "busca_nf.asp";
-	document.formulario.submit();
-}
+	    while (objmod.options.length!=0)
+	    {
+		    objmod.options.remove(0);	
+	    }
+
+        var temp = document.createElement("option");
+	    objmod.options.add(temp);
+
+	    for (i=0; i<idfornecedor.length; i++){
+            if (idfornecedor[i] == objfabr.options[objfabr.selectedIndex].value)
+            {
+                var oOption = document.createElement("option");
+			    objmod.options.add(oOption);
+			    oOption.innerText = "nº NF:"+ numero[i]; //+" - id_forn: "+ idfornecedor[i]+" - id Nota:"+ idnota[i];
+			    oOption.value = idnota[i];
+		    }
+	    }
+    }
+    function f()
+    {
+	    document.formulario.action = "busca_nf.asp";
+	    document.formulario.submit();
+    }
 </script>
 	<tr>
 		<td>
@@ -86,9 +91,9 @@ function f(){
 		    <input type=submit value="buscar"  onclick="f();"><br><br>Busque por Empresa:<br>
 
 <%              RW Combo.Fornecedor("enf_id", "", false, "", true)%>
-			    <script type="text/javascript">
-				    document.all.enf_id.size = 20;
-				    document.all.enf_id.onchange = func;
+			<script type="text/javascript">
+				document.all.enf_id.size = 20;
+				document.all.enf_id.onchange = func;
 			</script>
 		</td>
     </tr>

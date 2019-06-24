@@ -371,7 +371,7 @@ end if
 		    //linha 8
 		    newtd=document.createElement("td");
 		    newtd.vAlign = "top";
-		    newtxt=document.createTextNode('x');
+		    newtxt=document.createTextNode(' ');
 		    newtd.appendChild(newtxt);
 		    newtd.setAttribute("id","linha_"+linha+"_col_8");
 		    newtd.setAttribute("align","center");
@@ -383,7 +383,7 @@ end if
 		    //linha 9
 		    newtd=document.createElement("td");
 		    newtd.vAlign = "top";
-		    newtxt=document.createTextNode('x');
+		    newtxt=document.createTextNode(' ');
 		    newtd.appendChild(newtxt);
 		    newtd.setAttribute("id","linha_"+linha+"_col_9");
 		    newtd.setAttribute("align","center");
@@ -393,8 +393,9 @@ end if
 		    newrow.setAttribute("id","linha_" + linha);
 
 		    // troca o conteúdo da ultima coluna colocando
-		    newtd.innerHTML = '<span onclick="javascript:RemoveItem('+linha+');" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>';
-		    newtd.vAlign = "top";
+            newtd.innerHTML = '<span class="glyphicon glyphicon-remove" style="color: darkblue; cursor: pointer;" title="Clique aqui para apagar" onclick="javascript:RemoveItem(' + linha + ');" ></span >';
+
+            newtd.vAlign = "top";
 
 		    document.getElementById("tb_reserva_body").appendChild(newrow);
 
@@ -494,8 +495,8 @@ if ag_numero <> "" then
 				</script>
 
 <%			else %>
-				<span onClick="javascript:RemoveItem(<%=linha%>);" style="cursor: hand;"><img src="img/btn_excluir.gif"></span>
-<%			end if%>
+                <span class="glyphicon glyphicon-remove" style="color: darkblue; cursor: pointer;" title="Clique aqui para apagar" onclick="javascript:RemoveItem(<%=linha%>);"></span>
+<%			end if %>
 			</td>
 			<script type="text/javascript">
 				document.all["item_<%=linha%>"].eq_id = "<%=rec("EQ_ID")%>";

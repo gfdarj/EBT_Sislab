@@ -276,18 +276,18 @@ A
 	text-align : center;
 	width : 150;
 	background-color : #87CEEB;
-	cursor: hand;
+	cursor: pointer;
 	}
 
 .botao3t {
-	font-family : Verdana, Tahoma;
-	font-size : 12px;
-	font-weight : bolder;
-	text-align : center;
-	width : 150;
-	background-color : #87CEEB;
-	cursor: hand;
-	}
+    font-family: Verdana, Tahoma;
+    font-size: 12px;
+    font-weight: bolder;
+    text-align: center;
+    width: 150;
+    background-color: #87CEEB;
+    cursor: pointer;
+}
 
 .tipomensagem{
 	color : Maroon;

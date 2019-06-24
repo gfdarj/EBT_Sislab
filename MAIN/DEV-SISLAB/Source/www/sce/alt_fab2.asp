@@ -20,6 +20,7 @@ If Env.UsuarioSCE() Then
 ssql = "select * from sce_fabricantes where fab_id = "& request("fab_id")
 set rec = Env.oconn.execute(ssql)
 %>
+<div class="margem-10">
 <form method=post action="alt_fab3.asp" name="formulario">
 <input type="hidden" name="fab_id" value="<%=request("fab_id")%>">
 <table width="100%">
@@ -28,10 +29,10 @@ set rec = Env.oconn.execute(ssql)
 					<input type="text"  name="fab_nome" style="width:600px" maxlength="100" value="<%=rec("fab_nome")%>">
 		</td>
 	</tr>
-	<script>
-	function func2(){
-		document.formulario.action = "exc_fabricantes.asp"
-	}
+	<script type="text/javascript">
+	    function func2(){
+		    document.formulario.action = "exc_fabricantes.asp";
+	    }
 	</script>
 	<tr><td >&nbsp;</td></tr>
 	<tr> 
@@ -41,6 +42,7 @@ set rec = Env.oconn.execute(ssql)
     </tr>
 </form>
 </table>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
