@@ -34,10 +34,10 @@ apagamovimentos = request("apagamovimentos")
 
 	if categoria = CAT_CONSUMIVEL then
 		'-- apaga o consumivel e todo o seu histórico
-		Call Env.StoredProcedure(True, objSP, "SP_SCE_EXCLUI_CONSUMIVEL")
+		Call Env.StoredProcedure(True, objSP, "SP_SCE_EXCLUI_CONSUMIVEL")   '--> NÃO EXISTE MAIS !
 		With objSP
 			.Parameters.item("@CON_ID") = eq_id
-			.Parameters.item("@USER_ID") = session("user_id")
+			.Parameters.item("@USER_ID") = Env.Usuario
 			on error resume next
 			.Execute
 			on error goto 0
@@ -48,7 +48,7 @@ apagamovimentos = request("apagamovimentos")
 		Call Env.StoredProcedure(True, objSP, "SP_SCE_EXCLUI_EQUIPAMENTO")
 		With objSP
 			.Parameters.item("@EQ_ID") = eq_id
-			.Parameters.item("@USER_ID") = session("user_id")
+			.Parameters.item("@USER_ID") = Env.Usuario
 			on error resume next
 			.Execute
 			on error goto 0

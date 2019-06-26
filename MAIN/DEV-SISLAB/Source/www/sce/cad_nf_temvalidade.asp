@@ -1,10 +1,23 @@
-﻿<!--#include file="includes/Abre.asp"-->
+﻿<!------- SCE ------->
+<!--#include file="includes/global_SCE.asp"-->
+
+<!------- SISLAB ---->
+<!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../includes/Sislab_Lib.asp"-->
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>SISLAB</title>
+        <meta charset="<%=Application("SISLAB_CHARSET")%>">
+   </head>
+    <body>
 <%
 Dim s, rec
 
 if request("no_id") <> "" then
 	s = "select PRAZO from SCE_Natureza_Operacao where no_id = " & request("no_id")
-	Set rec = Conn.execute(s)
+	Set rec = Env.oConn.execute(s)
+
 	if not (rec.eof and rec.bof) then
 		if not IsNull(rec(0)) then
 			'--Tem prazo
@@ -25,3 +38,5 @@ if request("no_id") <> "" then
 	end if
 end if
 %>
+    </body>
+</html>

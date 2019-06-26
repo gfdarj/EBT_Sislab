@@ -139,7 +139,6 @@ If CStr(fl_calibracao) <> "1" Then fl_calibracao = Null
 'response.write "eq_id: " & request("eq_id") & "<BR><BR>"
 'response.write "data: " & data & "<BR><BR>"
 'response.write "no id: " & no_id & "<BR><BR>"
-'response.write "user: " & session("user_id") & "<BR><BR>"
 'response.write "solicita: " & solicitante & "<BR><BR>"
 'response.write "no tipo: " & no_tipo  & "<BR><BR>"
 'response.write "cde: " & cde & "<BR><BR>"

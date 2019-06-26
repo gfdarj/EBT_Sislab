@@ -12,9 +12,6 @@ set rec = Env.oConn.execute(ssql)
 ssql = "delete from sce_empresa_nota_fiscal where enf_id = " & request("enf_id")
 Env.oConn.execute(ssql)
 
-'ssql = "select user_nome from sce_usuarios where user_id = " & session("user_id")
-'set reco = Env.oConn.execute(ssql)
-
 'acao = "O usuário " & reco("user_nome") & " excluiu a empresa " & rec("enf_nome") & "."
 acao = "O usuário " & Env.Ebt.NomeReduzido() & " excluiu a empresa " & rec("enf_nome") & "."
 data = year(now) & "/" & right(month(now)+100,2) & "/" & right(day(now)+100,2) & " " & right(hour(now)+100,2) & ":" & right(minute(now)+100,2) & ":" & right(second(now)+100,2)

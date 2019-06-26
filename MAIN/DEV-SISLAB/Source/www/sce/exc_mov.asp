@@ -6,16 +6,16 @@ Dim mov_id, user_id
 Dim Erro
 
 mov_id = request("mov_id")
-user_id = session("user_id")
+user_id = Env.Usuario
 
-response.Write "mov_id: " & mov_id & "<BR>"
-response.Write "user_id: " & user_id & "<BR>"
-response.End
+'response.Write "mov_id: " & mov_id & "<BR>"
+'response.Write "user_id: " & user_id & "<BR>"
+'response.End
 
 Call Env.StoredProcedure(True, objSP, "sp_SCE_EXCLUI_MOVIMENTACAO")
 With objSP
 	.Parameters.item("@mov_id").Value = mov_id
-	.Parameters.item("@user_id").Value = session("user_id")
+	.Parameters.item("@user_id").Value = user_id
 	on error resume next
 	.Execute
     Erro = Env.oConn.Errors.Count
@@ -30,10 +30,11 @@ If Erro > 0 Then
 	Call erroDB (True, True, true, Env.oConn.Errors, "rel_mov.asp", "../")
 Else
 	'-- Submete para o arquivo de relatorio fazendo com que a listagem seja atualizada --%>
+    <!DOCTYPE html>
 	<html>
 	<body>
 		<form name="formulario" action="rel_mov2.asp" method="post">
-		<input type="hidden" name="ssql" value="<%=request("ssql")%>"
+		    <input type="hidden" name="ssql" value="<%=request("ssql")%>" />
 		</form>
 		<script type="text/javascript">
 			document.forms[0].submit();
