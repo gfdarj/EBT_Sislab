@@ -101,7 +101,10 @@ if not objRS.Eof then%>
 <%		while not objRS.Eof%>
 		        <tr>
 <%			if Env.ehRAT Then %>
-        			<td class="texto-centralizado"><a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histórico"><img src="img/btn_excluir.gif" border="0"></a></td>
+        			<td class="texto-centralizado">
+                        <a onclick="javascript:ExcluirItem(<%=objRS("HPE_ID")%>)" href="#" title="Clique aqui para excluir o item <%=objRS("EQ_CODIGOBARRAS")%> do histórico">
+                        <span class="glyphicon glyphicon-remove" style="color: darkblue;" title="Clique aqui para apagar esta movimentação"></span>                        </a>
+        			</td>
 <%			End If %>
 			        <td><%=objRS("EQ_CODIGOBARRAS")%></td>
 			        <td><%=objRS("MOD_CODNOME")%></td>

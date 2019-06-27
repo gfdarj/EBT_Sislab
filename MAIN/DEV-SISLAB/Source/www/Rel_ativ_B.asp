@@ -161,7 +161,6 @@ If Not(objSiteRS.EOF) Then
 			'call Env.RecordSet( true, objSiteMail, sSQL, objConn)
 			if ( (not IsNull(objSiteRS("AG_RELAT_RT"))) or _
 				(not IsNull(objSiteRS("AG_RELAT_RT"))) ) and EH_CRT = true then%>
-	    	<!--<img align="absmiddle" src="img/ico_mail.gif" border="0" title="Esta AS possui Relatório de RAT/RT">-->
             <span class="glyphicon glyphicon-envelope" title="Esta AS possui Relatório de RAT/RT" style="color: darkblue;"></span>
 <%			end if
 
@@ -199,7 +198,6 @@ If Not(objSiteRS.EOF) Then
 	    <td class="texto-centralizado">
 <%		If bln_MostraDadoSigiloso Then %>
 	    	<a class="texto_tabela" href="javascript: showAguarde(); chama_as(<%=atual%>, 1);" title="Clique aqui para editar esta AS">
-                <!--<img src="img/edit.gif" border="0">-->
                 <span class="glyphicon glyphicon-log-in"></span>
 	    	</a>
 <%		Else%>

@@ -141,7 +141,9 @@ Sub ListaImagens()
 			chr_Buf1 = chr_Buf1 & _
 				"<tr id='tr_" & int_conta & "'>" & VbCrLF & _
 				"	<td align='center'>" & VbCrLF & _
-				"		<a href='#' onclick='abreJanela(" & id_Arq & ");'><img border='0' title='Clique aqui para ver a imagem em tamanho natural' width='130px' height='100px' src='arquivos/" & chr_URL & "'></a>" & VbCrLF & _
+				"		<a href='#' onclick='abreJanela(" & id_Arq & ");'>" & VbCrLF & _
+                "           <img border='0' title='Clique aqui para ver a imagem em tamanho natural' width='130px' height='100px' src='arquivos/" & chr_URL & "'>" & VbCrLF & _
+                "       </a>" & VbCrLF & _
 				"	</td>" & VbCrLF & _
 				"	<td>" & VbCrLF & _
 				"		" & chr_Link & "&nbsp;</a>" & VbCrLF & _
@@ -150,7 +152,7 @@ Sub ListaImagens()
 				"	<td align='right'>" & FormataNumero(int_FileSize) &" Kb</td>" & VbCrLF & _
 				"	<td>" & VbCrLF & _
 				"		<a href='#' onclick='apagar(frmUpload, " & id_Arq & ", """ & chr_URL & """);'>" & VbCrLF & _
-				"		<img border='0' src='img/btn_excluir.gif' title='Clique aqui para apagar este arquivo'></a>" & VbCrLF & _
+	            "           <span class='glyphicon glyphicon-remove' style='color: darkblue;' title='Clique aqui para apagar este arquivo'></span>" & VbCrLF & _
 				"	</td>" & VbCrLF & _
 				"</tr>" & VbCrLf
 

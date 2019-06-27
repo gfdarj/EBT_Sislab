@@ -210,7 +210,9 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
     <div class="linha-fundo" style="width: 100%">
         <strong>Ordem de Serviço Nº <%=num_os%></strong>
 <%If int_Repetido > 0 Then %>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img align="absmiddle" src="img/icon3.gif" border="0" title="Repetição">&nbsp;&nbsp;<b>Esta OS está marcada para repetição</b>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-repeat" title="Repetição" style="color: darkblue;"></span>
+        &nbsp;&nbsp;<b>Esta OS está marcada para repetição</b>
 <%End If%>
     </div>
 

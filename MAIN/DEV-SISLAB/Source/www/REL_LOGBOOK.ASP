@@ -217,10 +217,6 @@ Set objSiteRS = Nothing
     </table>
 
     <br />
-
-    <form name="sel" action="ficha_oc.asp" method="post">
-        <input type="hidden" name="selecao">
-    </form>
 </div>
 
 <%

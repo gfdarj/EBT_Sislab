@@ -333,7 +333,6 @@ Sub MontaVisaoPorSituacao
 			<td style="vertical-align: middle; text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
-                    <!--<img src="img/edit.gif" border="0">-->
                     <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
 				</a>
 <%			Else%>
@@ -511,7 +510,6 @@ Sub MontaVisaoPorSalas
 			<td align="center" style="vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
-                    <!--<img src="img/edit.gif" border="0">-->
                     <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
 				</a>
 <%			Else%>
@@ -694,7 +692,6 @@ Sub MontaVisaoPorPrioridade
 			<td style="text-align: center; vertical-align: middle;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
-                    <!--<img src="img/edit.gif" border="0">-->
                     <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
 				</a>
 <%			Else%>
@@ -873,7 +870,6 @@ Sub MontaVisaoPorDataTermino
 			<td align="center">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
-                    <!--<img src="img/edit.gif" border="0">-->
                     <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
 				</a>
 <%			Else%>
@@ -1056,7 +1052,6 @@ Sub MontaVisaoPorRT
 			<td style="text-align: center;">
 <%			If MostraDadoSigiloso(aux_SIGILO, auxAG_USERNAME) Then %>
 				<a href="javascript: chama_as(<%=anterior%>, 1);" title="Clique aqui para editar esta AS">
-                    <!--<img src="img/edit.gif" border="0">-->
                     <span class="glyphicon glyphicon-edit" style="color: darkblue;"></span>
 				</a>
 <%			Else%>

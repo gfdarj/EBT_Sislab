@@ -149,7 +149,9 @@ auxPadronizado = (request("chkPadronizado")="on")
 				Solicitado pelo cliente entre&nbsp;
 				<%call comboData("dataIniCad")%>&nbsp;e&nbsp;<%call comboData("dataFimCad")%>
 				&nbsp;
-				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');"><img src="img/ajuda.gif" border="0"></a>
+				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');">
+                    <span class="glyphicon glyphicon-info-sign" title="Informação" style="color: darkblue;"></span>
+				</a>
 			</td>
 		</tr>
 		<tr>
@@ -157,7 +159,9 @@ auxPadronizado = (request("chkPadronizado")="on")
 				Período agendado&nbsp;
 				<%call comboData("dataIniCadSol")%>&nbsp;até&nbsp;<%call comboData("dataFimCadSol")%>
 				&nbsp;
-				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');"><img src="img/ajuda.gif" border="0"></a>
+				<a href="#" title="<%=msgData%>" onclick="javascript: alert('<%=msgData%>');">
+                    <span class="glyphicon glyphicon-info-sign" title="Informação" style="color: darkblue;"></span>
+				</a>
 			</td>
 			<td colspan="3">
 				Agendado nos últimos <input  name="diasteste" size="5" maxlength="10"> dias
