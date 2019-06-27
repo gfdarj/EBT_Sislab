@@ -415,7 +415,7 @@ Private Sub ImprimeMenu()
                 float: right!important;
                 position: relative;
                 top: -25px;
-                right: 200px;
+                right: 250px;
                 margin-top: 20px;
                 margin-right: 20px;
                 /*background-color: aquamarine; */
