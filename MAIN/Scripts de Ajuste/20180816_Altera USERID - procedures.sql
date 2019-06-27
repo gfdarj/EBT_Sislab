@@ -5816,7 +5816,7 @@ BEGIN
 	SET NOCOUNT ON
 	BEGIN TRANSACTION
 
-	DECLARE @cod_barras VARCHAR(255), @user_nome VARCHAR(255)
+	DECLARE @cod_barras VARCHAR(255)
 
 	IF @eq_id IS NOT NULL BEGIN
 		DELETE FROM SCE_Historico_Movimentacao WHERE EQ_ID = @eq_id
@@ -5862,10 +5862,8 @@ BEGIN
 		END
 
 		-- histórico da operação
-		SELECT @user_nome = USER_NOME FROM SCE_Usuarios WHERE USER_ID = @user_id
-
 		INSERT INTO SCE_Historico (ID_USUARIO, ACAO, DATA)
-			VALUES (@user_id, 'O usuário ' + @user_nome + ' excluiu o equipamento ' + @cod_barras + '.', GETDATE())
+			VALUES (@user_id, 'O usuário ' + @user_id + ' excluiu o equipamento ' + @cod_barras + '.', GETDATE())
 		IF @@error <> 0
 		BEGIN
 			ROLLBACK TRANSACTION
@@ -5884,6 +5882,67 @@ BEGIN
 END
 GO
 
+
+/****** Object:  StoredProcedure [dbo].[sp_SCE_EXCLUI_RESERVA]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_EXCLUI_RESERVA]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
+	DROP PROCEDURE [dbo].[sp_SCE_EXCLUI_RESERVA]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[sp_SCE_EXCLUI_RESERVA]
+	@ag_numero INT,
+	@user_id VARCHAR(80)
+AS
+/*** Remove uma reserva de equipamentos ***/
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRANSACTION
+
+	DECLARE @as INT
+
+	IF @ag_numero IS NOT NULL BEGIN
+
+		DELETE FROM SCE_Reserva_Equipamentos WHERE AG_NUMERO = @ag_numero
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir os itens da reserva', 16, 1)
+			RETURN -1
+		END
+
+		DELETE FROM SCE_Reserva WHERE AG_NUMERO = @ag_numero
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi possível excluir a reserva de equipamentos', 16, 1)
+			RETURN -1
+		END
+
+		-- histórico da operação
+		INSERT INTO SCE_Historico (ID_USUARIO, ACAO, DATA)
+			VALUES (@user_id, 'O usuário ' + @user_id + ' excluiu a reserva de equipamentos para a AS ' + CAST(@ag_numero as VARCHAR) + '.', GETDATE())
+		IF @@error <> 0
+		BEGIN
+			ROLLBACK TRANSACTION
+			RAISERROR( 'Não foi registrar o histórico de exclusão da reserva', 16, 1)
+			RETURN -1
+		END
+	END
+	ELSE BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR( 'O código da reserva é inválido', 16, 1)
+		RETURN -1
+	END
+
+	COMMIT TRANSACTION
+	RETURN 1
+END
+GO
+
+
 /****** Object:  StoredProcedure [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]    Script Date: 07/19/2018 18:45:13 ******/
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
 	DROP PROCEDURE [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]
@@ -5896,19 +5955,17 @@ GO
 CREATE PROCEDURE [dbo].[sp_SCE_EXCLUI_MOVIMENTACAO]
 (
 	@mov_id INT,
-	@user_id INT
+	@user_id VARCHAR(80)
 )
 AS
 	/*** Apago uma nova movimentacao existente ***/
 BEGIN
-	DECLARE @msg_erro VARCHAR(8000), @user_nome VARCHAR(100), @eq_codigobarras VARCHAR(20)
+	DECLARE @msg_erro VARCHAR(8000), @eq_codigobarras VARCHAR(20)
 
 	SET NOCOUNT ON
 
 	BEGIN TRANSACTION
 
-	-- pega o nome do usuario e o codigo de barras
-	SELECT @user_nome = USER_NOME FROM SCE_Usuarios WHERE USER_ID = @user_id
 	SELECT @eq_codigobarras = EQ_CODIGOBARRAS FROM SCE_Equipamentos 
 		WHERE EQ_ID = (SELECT EQ_ID FROM SCE_Movimentacao WHERE MOV_ID = @mov_id)
 
@@ -5921,10 +5978,9 @@ BEGIN
 		END
 	END
 
+	SET @msg_erro = 'O usuário ' + @user_id + ' apagou o movimento #' + CAST(@mov_id AS VARCHAR) + ' do equipamento ' + @eq_codigobarras + '.'
 
-	SET @msg_erro = 'O usuário ' + @user_nome + ' apagou o movimento #' + CAST(@mov_id AS VARCHAR) + ' do equipamento ' + @eq_codigobarras + '.'
-
-	INSERT INTO SCE_Historico ( ID_USUARIO, ACAO, DATA ) 
+	INSERT INTO SCE_Historico (ID_USUARIO, ACAO, DATA)
 		VALUES ( @user_id, @msg_erro, CONVERT( VARCHAR, GETDATE(), 103) )
 	IF @@ERROR <> 0 BEGIN
 		ROLLBACK TRANSACTION
