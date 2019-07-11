@@ -435,6 +435,24 @@ GO
 
 
 
+/* 01/07/2019 */
+ALTER TABLE dbo.Ambientes ADD AMB_MODULO TINYINT
+go
+
+ALTER TABLE dbo.Ambientes ADD AMB_LOCALIZACAO TINYINT
+go
+
+ALTER TABLE dbo.SCE_Equipamentos ADD AMB_ID INT
+go
+ALTER TABLE dbo.SCE_Equipamentos
+	ADD CONSTRAINT FK_SCE_Equipamentos_Ambientes FOREIGN KEY (AMB_ID)
+		REFERENCES dbo.Ambientes (AMB_ID)
+GO
+
+
+
+
+
 /* FIM DO SCRIPT */
 
 

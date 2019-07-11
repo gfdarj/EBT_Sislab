@@ -1770,7 +1770,9 @@ CREATE PROCEDURE [dbo].[sp_CadAmbiente]
 (
 	@pId INT,
 	@pDescricao VARCHAR(510),
-	@pUsadoPorAg BIT
+	@pUsadoPorAg BIT,
+	@pModulo TINYINT,
+	@pLocalizacao TINYINT
 )
 AS
 BEGIN
@@ -1780,7 +1782,7 @@ BEGIN
 	DECLARE @msg VARCHAR(8000)
 
 	IF (@pID IS NULL) OR (@pID = 0) BEGIN
-		INSERT INTO Ambientes (AMB_NOME, AMB_USADOPORAG) VALUES (@pDescricao, @pUsadoPorAg)
+		INSERT INTO Ambientes (AMB_NOME, AMB_USADOPORAG, AMB_MODULO, AMB_LOCALIZACAO) VALUES (@pDescricao, @pUsadoPorAg, @pModulo, @pLocalizacao)
 		IF @@ERROR <> 0 BEGIN
 			ROLLBACK TRANSACTION
 			SET @msg = 'Não foi possível inserir o ambiente ' + @pDescricao
@@ -1791,8 +1793,9 @@ BEGIN
 		SET @pID = @@IDENTITY
 	END
 	ELSE BEGIN
-		UPDATE	Ambientes SET AMB_NOME = @pDescricao, AMB_USADOPORAG = @pUsadoPorAg
-		WHERE	AMB_ID = @pId
+		UPDATE	Ambientes 
+			SET AMB_NOME = @pDescricao, AMB_USADOPORAG = @pUsadoPorAg, AMB_MODULO = @pModulo, AMB_LOCALIZACAO = @pLocalizacao
+			WHERE	AMB_ID = @pId
 		IF @@ERROR <> 0 BEGIN
 			ROLLBACK TRANSACTION
 			SET @msg = 'Não foi possível atualizar o ambiente ' + @pDescricao
@@ -5131,7 +5134,7 @@ CREATE  PROCEDURE [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]
 	@eq_codigobarras VARCHAR(20),
 	@eq_codigobarrasanterior VARCHAR(20),
 	@eq_numeroserie VARCHAR(255),
-	@eq_localizacao VARCHAR(255),
+	@amb_id INT,
 	@mod_id INT,
 	@eq_obs TEXT,
 	@status INT,
@@ -5199,11 +5202,11 @@ BEGIN
 
 	-- insere equipamento
 	IF @eq_id IS NULL BEGIN
-		INSERT INTO SCE_Equipamentos (EQ_CODIGOBARRAS, EQ_CODIGOBARRASANTERIOR, EQ_NUMEROSERIE, EQ_LOCALIZACAO,
+		INSERT INTO SCE_Equipamentos (EQ_CODIGOBARRAS, EQ_CODIGOBARRASANTERIOR, EQ_NUMEROSERIE, AMB_ID,
 				MOD_ID, EQ_OBS, STATUS,
 				EQ_OPER_DELTA, EQ_OPER_UMIDADE, EQ_OPER_WARMUP, EQ_ARMA_DELTA, EQ_ARMA_UMIDADE,
 				EQ_MANUT_PREVENTIVA, EQ_INSTRUMENTAL, EQ_PROPRIEDADE, EQ_CONFORME, EQ_FREQ_CALIBRACAO)
-			VALUES (@eq_codigobarras, @eq_codigobarrasanterior, @eq_numeroserie, @eq_localizacao, @mod_id, @eq_obs, @status,
+			VALUES (@eq_codigobarras, @eq_codigobarrasanterior, @eq_numeroserie, @amb_id, @mod_id, @eq_obs, @status,
 				@eq_oper_delta, @eq_oper_umidade, @eq_oper_warmup, @eq_arma_delta, @eq_arma_umidade,
 				@eq_manut_preventiva, @eq_instrumental, @eq_propriedade, @eq_conforme, @eq_freq_calibracao)
 		IF @@error <> 0
@@ -5220,7 +5223,7 @@ BEGIN
 
 		UPDATE SCE_Equipamentos SET EQ_CODIGOBARRAS = @eq_codigobarras, 
 				EQ_CODIGOBARRASANTERIOR = @eq_codigobarrasanterior, EQ_NUMEROSERIE = @eq_numeroserie,
-				EQ_LOCALIZACAO = @eq_localizacao,
+				AMB_ID = @amb_id,
 				MOD_ID = @mod_id, EQ_OBS = @eq_obs, STATUS = @status, EQ_OPER_DELTA = @eq_oper_delta, EQ_OPER_UMIDADE = @eq_oper_umidade,
 				EQ_OPER_WARMUP = @eq_oper_warmup, EQ_ARMA_DELTA = @eq_arma_delta, EQ_ARMA_UMIDADE = @eq_arma_umidade,
 				EQ_MANUT_PREVENTIVA = @eq_manut_preventiva, EQ_INSTRUMENTAL = @eq_instrumental, EQ_PROPRIEDADE = @eq_propriedade,
@@ -5367,7 +5370,7 @@ CREATE  PROCEDURE [dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]
 	@nf_id INT,
 	@doc_id INT,
 	@mov_passagem BIT,
-	@eq_localizacao VARCHAR(255),
+	@amb_id INT,
 	@fl_calibracao TINYINT = NULL,
 	@eq_codigobarrasanterior VARCHAR(20) = NULL,
 	@usuario_log VARCHAR(80)
@@ -5425,11 +5428,9 @@ BEGIN
 	END
 
 	-- Atualizo automaticamente a localizacao do equipamento
-	IF (@eq_localizacao IS NOT NULL) OR (@eq_localizacao <> '')
+	IF (@amb_id IS NOT NULL) OR (@amb_id > 0)
 	BEGIN
-		UPDATE	SCE_Equipamentos
-		SET		eq_localizacao = @eq_localizacao
-		WHERE	eq_id = @eq_id
+		UPDATE SCE_Equipamentos SET amb_id = @amb_id WHERE eq_id = @eq_id
 
 		IF @@ERROR <> 0 BEGIN
 			RAISERROR( 'Não foi possível atualizar localização do equipamento', 16, 1)
@@ -6715,3 +6716,63 @@ BEGIN
 	RETURN @pAG_NUMEROIn
 END
 GO
+
+
+
+
+/****** Object:  UserDefinedFunction [dbo].[F_ACHA_PT]    Script Date: 05/11/2012 15:37:32 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[F_SEPARA_ID_LST]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+	DROP FUNCTION [dbo].[F_SEPARA_ID_LST]
+GO
+
+/***
+	Função que retorna os IDs Emenda a partir de uma lista utilizando um caracter separador
+	Parametros de Entrada:
+		@id			  = Número ou lista das emendas
+		@cd_separador = separador da numeração das emendas
+	Retorno:
+		SELECT com ID_EMENDA e NR_EMENDA
+
+	SELECT * from dbo.F_SEPARA_ID_LST('13, 15, 28', ',')
+***/
+CREATE FUNCTION [dbo].[F_SEPARA_ID_LST] (
+	@id VARCHAR(8000),
+	@cd_separador varchar(2)
+) RETURNS @tbLista TABLE (
+	id_lista int
+)
+BEGIN
+	DECLARE @tb_SeparaLista TABLE 
+	(
+		ID_LISTA INT
+	)
+
+	DECLARE @s VARCHAR(5)
+	DECLARE @fim BIT
+	DECLARE @iini SMALLINT
+	DECLARE @ifim SMALLINT
+	SET @id = RTRIM(LTRIM(@id))
+	SET @fim = 0
+	set @iini = 1
+	WHILE ( @fim = 0 )
+	BEGIN
+		SET @ifim = PATINDEX('%' + @cd_separador + '%', @id ) -- procura pelo caracter passado em @cd_separador
+		IF @ifim = 0
+			SET @s = SUBSTRING(@id, @iini, LEN(@id))
+		ELSE
+			SET @s = substring(@id, @iini, @ifim -1)
+
+		INSERT INTO @tb_SeparaLista (id_lista) VALUES (CAST(@s AS INT))
+
+		SET @id = LTRIM(SUBSTRING(@id, @ifim + 1, LEN(@id)))
+		IF @ifim = 0 SET @fim = 1
+	END
+
+	INSERT INTO @tbLista
+		SELECT id_lista FROM @tb_SeparaLista ORDER BY id_lista
+
+	RETURN
+END
+GO
+
+
