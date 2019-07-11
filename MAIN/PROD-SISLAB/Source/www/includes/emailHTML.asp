@@ -82,21 +82,33 @@ Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, text
 	End If
 
 'response.write "<BR><BR><BR>de_email 1: " & de_email
-    If Left(UCase(de_email), 6) = "T3LAIL" Then
+    If InStr(UCase(de_email), UCase("T3LAIL")) > 0 Then
         de_email = "laila.sousa@claro.com.br"
     End If
-    If Left(UCase(de_email), 6) = "T3MZEN" Then
+    If InStr(UCase(de_email), UCase("T3MZEN")) > 0 Then
         de_email = "maria.neta@claro.com.br"
     End If
+    'If Left(UCase(de_email), 6) = "T3LAIL" Then
+    '    de_email = "laila.sousa@claro.com.br"
+    'End If
+    'If Left(UCase(de_email), 6) = "T3MZEN" Then
+    '    de_email = "maria.neta@claro.com.br"
+    'End If
 'response.write "<BR>de_email 2: " & de_email
 
 'response.write "<BR><BR>para_email 1: " & para_email
-    If Left(UCase(para_email), 6) = "T3LAIL" Then
+    If InStr(UCase(para_email), UCase("T3LAIL")) > 0 Then
         para_email = "laila.sousa@claro.com.br"
     End If
-    If Left(UCase(para_email), 6) = "T3MZEN" Then
+    If InStr(UCase(para_email), UCase("T3MZEN")) > 0 Then
         para_email = "maria.neta@claro.com.br"
     End If
+    'If Left(UCase(para_email), 6) = "T3LAIL" Then
+    '    para_email = "laila.sousa@claro.com.br"
+    'End If
+    'If Left(UCase(para_email), 6) = "T3MZEN" Then
+    '    para_email = "maria.neta@claro.com.br"
+    'End If
 'response.write "<BR>para_email 2: " & para_email
 'exit sub
 
@@ -125,12 +137,18 @@ Sub Enviar_Email(para_email, para_nome, assunto, texto)
 	Dim objMail
 
 'response.write "<BR>para_email 1: " & para_email
-    If Left(UCase(para_email), 6) = "T3LAIL" Then
+    If InStr(UCase(para_email), UCase("T3LAIL")) > 0 Then
         para_email = "laila.sousa@claro.com.br"
     End If
-    If Left(UCase(para_email), 6) = "T3MZEN" Then
+    If InStr(UCase(para_email), UCase("T3MZEN")) > 0 Then
         para_email = "maria.neta@claro.com.br"
     End If
+    'If Left(UCase(para_email), 6) = "T3LAIL" Then
+    '    para_email = "laila.sousa@claro.com.br"
+    'End If
+    'If Left(UCase(para_email), 6) = "T3MZEN" Then
+    '    para_email = "maria.neta@claro.com.br"
+    'End If
 'response.write "<BR>para_email 2: " & para_email
 'exit sub
 
@@ -150,6 +168,7 @@ Sub Enviar_Email(para_email, para_nome, assunto, texto)
 		set objmail = nothing
 	End If
 End Sub
+
 
 'FUNÇÃO QUE DADO UM NOVO DOCUMENTO VERIFICA SE É UM DOCUMENTO DA QUALIDADE E ENVIA
 'UM EMAIL DE NOTIFICAÇÃO A TODOS OS FUNCONÁRIOS DO CRT
