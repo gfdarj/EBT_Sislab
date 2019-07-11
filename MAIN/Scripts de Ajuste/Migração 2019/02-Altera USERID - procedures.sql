@@ -6719,19 +6719,18 @@ GO
 
 
 
-
 /****** Object:  UserDefinedFunction [dbo].[F_ACHA_PT]    Script Date: 05/11/2012 15:37:32 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[F_SEPARA_ID_LST]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[F_SEPARA_ID_LST]'))
 	DROP FUNCTION [dbo].[F_SEPARA_ID_LST]
 GO
 
 /***
 	Função que retorna os IDs Emenda a partir de uma lista utilizando um caracter separador
 	Parametros de Entrada:
-		@id			  = Número ou lista das emendas
+		@id			  = Número ou lista de chaves identificadoras
 		@cd_separador = separador da numeração das emendas
 	Retorno:
-		SELECT com ID_EMENDA e NR_EMENDA
+		SELECT com os ID´s passados
 
 	SELECT * from dbo.F_SEPARA_ID_LST('13, 15, 28', ',')
 ***/
