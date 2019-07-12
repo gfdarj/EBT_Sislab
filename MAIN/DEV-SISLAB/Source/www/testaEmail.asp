@@ -94,20 +94,58 @@ Sub Enviar_EmailGenerico(de_email, de_nome, para_email, para_nome, assunto, text
 'exit sub
 
 	Dim objMail
-	Set objMail = Server.CreateObject("CDONTS.NewMail") 
-	objMail.from = de_nome & "<" & de_email & ">"
-	objMail.to = para_nome & "<" & para_email & ">"
-	objMail.MailFormat = 0  ' formato MIME
-	objMail.BodyFormat = 0  ' html
-	objMail.subject = assunto 
-	objMail.body = _
-			"<html>" & _
-			"<head><title>" & assunto & "</title></head>" & _
-			"<body>" & Replace(texto, VbCrLf, "<BR>") & "</body>" & _
-			"</html>"
-	objMail.send
+	'Set objMail = Server.CreateObject("CDONTS.NewMail") 
+	'objMail.from = de_nome & "<" & de_email & ">"
+	'objMail.to = para_nome & "<" & para_email & ">"
+	'objMail.MailFormat = 0  ' formato MIME
+	'objMail.BodyFormat = 0  ' html
+	'objMail.subject = assunto 
+	'objMail.body = _
+	'		"<html>" & _
+	'		"<head><title>" & assunto & "</title></head>" & _
+	'		"<body>" & Replace(texto, VbCrLf, "<BR>") & "</body>" & _
+	'		"</html>"
+	'objMail.send
+	'set objmail = nothing
 
-	set objmail = nothing
+
+    Set myMail = CreateObject("CDO.Message")
+    myMail.Subject = assunto
+    myMail.From = de_email
+    myMail.To = para_email
+    'myMail.From = de_nome & "<" & de_email & ">"
+    'myMail.To = para_nome & "<" & para_email & ">"
+    myMail.TextBody = texto
+
+
+
+
+    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp.gmail.com"
+
+    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 465
+    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1
+            
+    'Abaixo você preencherá o nome do usuário. Se o seu e-mail é @hotmail, @xbox, @live,
+    '@msn ou outros serviços associados à Windows Live, é necessário que você preencha
+    'o seu endereço completo no campo abaixo.
+    'Se você usa GMail, você deve suprimir o @gmail.com e no campo abaixo deixar apenas
+    'o nome do usuário.
+    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "gilberto.rjo"
+    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "Timbau230175c"
+
+
+
+
+'    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
+'    ''* Name or IP of remote SMTP server
+'    myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "localhost"
+'    '* Server port
+'    'myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 25
+'    myMail.Configuration.Fields.Update
+
+    myMail.Send
+    set myMail = nothing
+
 End Sub
 
 
