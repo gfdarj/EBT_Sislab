@@ -13,9 +13,10 @@ Call Tela.MostraCabecalho()
 
 if not Env.ehRAT then response.redirect "index.asp"
 %>
-<script language="javascript" src="includes/anexo.js"></script>
+<script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
-	function BuscarAmbiente(){
+    function BuscarAmbiente()
+    {
 		var frm = document.forms[0];
 		frm.action = "CadAmbientes.asp";
 		frm.target = "_parent";
@@ -24,13 +25,15 @@ if not Env.ehRAT then response.redirect "index.asp"
 		frm.btnSalvar.disabled = false;
 		frm.btnCancelar.disabled = false;	
 	}
-	function Cancela(){
+    function Cancela()
+    {
 		var frm = document.forms[0];
 		frm.action = "sislab.asp";
 		frm.target = "_parent";
 		frm.submit();
 	}
-	function ValidaCampos(){
+    function ValidaCampos()
+    {
 		var frm = document.forms[0];
 
 		if (frm.desc.value == ""){
@@ -42,7 +45,8 @@ if not Env.ehRAT then response.redirect "index.asp"
 		frm.target = "_parent";
 		frm.submit();
 	}
-	function IncluirNovo(){
+    function IncluirNovo()
+    {
 		var frm = document.forms[0];
 		frm.ehNovoAmbiente.value = 1;
 		frm.desc.value = "";
@@ -53,7 +57,8 @@ if not Env.ehRAT then response.redirect "index.asp"
 		frm.btnSalvar.disabled = false;
 		frm.btnCancelar.disabled = false;	
 	}
-	function Excluir() {
+    function Excluir()
+    {
 		var frm = document.forms[0];
 		if(frm.ambiente.value == '') {
 			alert('Nenhum ambiente selecionado para exclusão !');
@@ -68,56 +73,56 @@ if not Env.ehRAT then response.redirect "index.asp"
 	}
 </script>
 
-<form method="post" action="CadAmbientewA.asp" name="frm">
+<div class="margem-10">
+    <form method="post" action="CadAmbientewA.asp" name="frm">
 
-<input type="hidden" name="ehNovoAmbiente" value="0">
-<input type="hidden" name="excluir" value="0">
+        <input type="hidden" name="ehNovoAmbiente" value="0">
+        <input type="hidden" name="excluir" value="0">
 
-<table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
-<tr> 
-	<td colspan="2">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp; Indica um Campo Obrigatório</b></td>
-</tr>
+	    <div><span class="texto-vermelho-bold"><b>*</b></span>&nbsp; Indica um Campo Obrigatório</div>
+        <br />
+        <div class="linha-fundo" style="width: 100%"><strong>Lista de Ambientes</strong></div>
+        <br />
+        <div>
+	        <b>Ambiente:&nbsp;</b>
+            <%call comboBDSQL("ambiente", Env.oConn, "SELECT AMB_ID as valor, AMB_NOME as descricao FROM Ambientes ORDER BY AMB_NOME", "N", true)%>
+		    &nbsp;&nbsp;
+            <input  type="button" value="Buscar" onclick="BuscarAmbiente();">
+        </div>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <br />
 
-<tr><th align="left" colspan="2">Ambientes</td></tr>
+        <div class="linha-fundo" style="width: 100%"><strong>Dados do Ambiente</strong></div>
 
-<tr>
-	<td width="100px">&nbsp;&nbsp;<b>Ambiente:</b></td>
-	<td>
-		<%call comboBDSQL("ambiente", Env.oConn, "SELECT AMB_ID as valor, AMB_NOME as descricao FROM Ambientes ORDER BY AMB_NOME", "N", true)%>
-		&nbsp;&nbsp;
-		<input  type="button" value="Buscar" onclick="BuscarAmbiente();">
-	</td>
-</tr>
+        <br />
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-condensed">
 
-<tr><th align="left" colspan="2">&nbsp;&nbsp;Dados do Ambiente</th></tr>
+        <tr>
+	        <td width="100px"><span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
+	        <td><input type="text" name="desc" size="60" ></td>
+        </tr>
 
-<tr>
-	<td width="100px">&nbsp;<span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
-	<td><input type="text" name="desc" size="60" ></td>
-<tr>
+        <tr>
+	        <td colspan="2">Reserva este ambiente apenas pela área do RAT (possuí AS)</b>&nbsp;
+	        <input type="Checkbox" name="usadoporag" value="1"></td>
+        <tr>
 
-<tr>
-	<td colspan="2">&nbsp;&nbsp;Reserva este ambiente apenas pela área do RAT (possuí AS)</b>&nbsp;
-	<input type="Checkbox" name="usadoporag" value="1"></td>
-<tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
 
-<tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td colspan="2">
+		        <input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
+		        <input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		        <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+	        </td>
+        </tr>
+        </table>
+    </form>
+    <iframe name="escondido" style="display: none;"></iframe>
+</div>
 
-<tr>
-	<td colspan="2">&nbsp;&nbsp;
-		<input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
-		<input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		<input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		<input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
-	</td>
-</tr>
-</table>
-</form>
-<iframe name="escondido" style="display: none;"></iframe>
 <script>
 var frm = document.forms[0];
 var frmAll = document.all;

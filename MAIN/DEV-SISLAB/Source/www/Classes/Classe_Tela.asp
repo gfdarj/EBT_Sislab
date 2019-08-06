@@ -296,6 +296,7 @@ Private Sub ImprimeMenu()
     </style>
 
 <!--    <div id="divMenuPrincipal"> -->
+    <!--<div>-->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -394,9 +395,7 @@ Private Sub ImprimeMenu()
                                         <%=Application("SISLAB_APLICACAO_NOME")%>
                                     </span>
                                 </span>
-                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-claro.png" width="" /></a>
-                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-net.png" width="" /></a>
-                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-embratel.png" width="" /></a>
+                                <a class="navbar-brand" href="#"><img src="<%=p_PathRelativo%>img/novo/logo-claro.png" width="" /><!--<span style="font-size: 10pt;">SISLAB</span>--></a>
                             </li>
                     </ul>
                 </ul>
@@ -410,18 +409,23 @@ Private Sub ImprimeMenu()
         </p>
 
         <style>
-            #div_fixa { width:45px; height:250px; background:#F90; position:fixed; margin:5px; }
             #div_topRightNomeUsuario {
-                float: right!important;
-                position: relative;
-                top: -25px;
-                right: 250px;
-                margin-top: 20px;
-                margin-right: 20px;
-                /*background-color: aquamarine; */
-                color: darkblue;
+                float: left!important;
+                position: fixed!important;
+                top: 50px;
+                right: 100px;
+                left: 0px;
+                margin-top: 15px;
+                padding-left: 50px;
+                padding-right: 80px;
+                width: 100%;
+                min-width: 100%;
+                height: 30px;
+                color: red;
                 font-weight: bold;
-                margin: 5px;
+                margin: 0px;
+                text-align: right;
+                z-index: 2;
             }
         </style>
         <div id="div_topRightNomeUsuario">
@@ -437,19 +441,20 @@ Private Sub ImprimeMenu()
 			</small>
         </div>
 
-    <script type="text/javascript">
-        /* PRECISA DISSO PARA FUNCIONAR O SUBMENU */
-        (function ($) {
-            $(document).ready(function () {
-                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    $(this).parent().siblings().removeClass('open');
-                    $(this).parent().toggleClass('open');
+        <script type="text/javascript">
+            /* PRECISA DISSO PARA FUNCIONAR O SUBMENU */
+            (function ($) {
+                $(document).ready(function () {
+                    $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $(this).parent().siblings().removeClass('open');
+                        $(this).parent().toggleClass('open');
+                    });
                 });
-            });
-        })(jQuery);
-    </script>
+            })(jQuery);
+        </script>
+    <!--</div>-->
 <%
 End Sub
 
@@ -864,7 +869,9 @@ End Sub
 Public Sub MostraErroSql()
     Call Tela.MostraCabecalho()
 
-    If Env.Modulo = "SCE" Then Call Tela.ImprimeMenuSce()
+    If Env.Modulo = "SCE" Then 
+        Call Tela.ImprimeMenuSce()
+    End If
 
     Response.Flush
 	Response.Write Tela.Mensagem.ErroSql()
@@ -877,7 +884,9 @@ End Sub
 Public Sub MostraObjetoErroSql(oErr)
     Call Tela.MostraCabecalho()
 
-    If Env.Modulo = "SCE" Then Call Tela.ImprimeMenuSce()
+    If Env.Modulo = "SCE" Then 
+        Call Tela.ImprimeMenuSce()
+    End If
 
     Response.Flush
 	Response.Write Tela.Mensagem.ErroSql(oErr)
