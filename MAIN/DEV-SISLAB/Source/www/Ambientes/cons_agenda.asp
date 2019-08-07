@@ -18,19 +18,26 @@ End if
 
 <div class="margem-10">
 
-<p style="font-weight: bold;"><span class="texto-vermelho-bold">&raquo;</span>&nbsp;<span style="font-size: 12px;">Lista de Ocupação dos Ambientes (Atual e Futura)</span></p>
+    <br />
+    <p style="font-weight: bold;">Lista de Ocupação dos Ambientes (Atual e Futura)</p>
 
-<table border="0" width="100%" class="table-condensed" cellpadding="3" cellspacing="3">
-<tr>
-	<td>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" class="table-condensed">
-		<tr>
+    <table class="table-bordered table-condensed table-striped table-hover largura-total">
+    <tr>
+        <th>Ambiente/Sala</th>
+        <th>CRT</th>
+        <th>Observação</th>
+    </tr>
 <%
-s = "SELECT Reserva_ambientes.RAM_id, RAM_descricao, RAM_Titulo, RAM_horario, RAM_contato, Ambientes.AMB_ID, RAM_AS, RAM_Responsavel, CONVERT(VARCHAR, RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, RAM_datafim, 103) AS RAM_datafim, AMB_NOME " & _
-	"FROM dbo.Ambientes LEFT OUTER JOIN Reserva_ambientes ON Ambientes.AMB_ID = Reserva_ambientes.AMB_ID " & _
-	"where (RAM_datafim >= getDate()-1 OR (RAM_ID Is Null)) " & _
-	"order by AMB_Nome, RAM_datainicio asc;"
-call Env.RecordSet( true, objRS, s)
+s = "SELECT ra.RAM_id, ra.RAM_descricao, ra.RAM_Titulo, ra.RAM_horario, ra.RAM_contato, a.AMB_ID, ra.RAM_AS, ra.RAM_Responsavel, CONVERT(VARCHAR, ra.RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, ra.RAM_datafim, 103) AS RAM_datafim, a.AMB_NOME, crt.NM_CRT " & _
+	"FROM Ambientes a " & _
+    "   LEFT JOIN Reserva_ambientes ra ON a.AMB_ID = ra.AMB_ID " & _
+    "   LEFT JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT " & _
+	"WHERE (a.AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SISLAB") & ") AND (RAM_datafim >= getDate()-1 OR (RAM_ID Is Null)) " & _
+	"ORDER BY AMB_Nome, RAM_datainicio asc;"
+Call Env.RecordSet( true, objRS, s)
+
+'response.Write s
+'response.End
 
 If Not objRS.EOF Then
 	objRS.Movefirst
@@ -39,14 +46,14 @@ If Not objRS.EOF Then
 	auxanoant=""
 	auxlocalizacaoant=""
 
-	do while not objRS.EOF
+	Do While Not objRS.Eof
 		auxIDagenda=objRS("RAM_id")
 		auxdescricao=objRS("RAM_descricao")
 		auxtitulo=objRS("RAM_Titulo")
 		auxdatainicio=objRS("RAM_datainicio")
 		auxdatafim=objRS("RAM_datafim")
 		auxhorario=objRS("RAM_horario")
-		auxcontato=objRS("RAM_contato")
+		auxcontato = objRS("RAM_contato")
 		auxlocalizacao=objRS("AMB_NOME")
 		auxAS=objRS("RAM_AS")
 		auxResponsavel=objRS("RAM_Responsavel")
@@ -56,18 +63,19 @@ If Not objRS.EOF Then
 		end if
 
 		if auxlocalizacaoant <> auxlocalizacao then
-			if auxlocalizacaoant <> "" then%>
-			</td>
-		</tr>
-		<tr>
+			if auxlocalizacaoant <> "" then %>
+	<tr>
 <%			end if%>
-			<td valign="top">
-			    <%=auxlocalizacao%>
-			</td>
-			<td align="justify">
+	    <td valign="top">
+			    <%=auxlocalizacao%>&nbsp;
+		</td>
+
+        <td><%=objRS("NM_CRT")%></td>
+
+		<td align="justify">
 <%		end if%>
 
-<%		if Not(IsNull(auxIDagenda) or auxIDagenda="")  then%>
+<%		If Not(IsNull(auxIDagenda) or auxIDagenda="") Then %>
 				<table width="100%" class="table-condensed">
 				<tr valign="top">
 					<td width="7px"><span class="cinza1">&raquo;</span></td>
@@ -99,7 +107,6 @@ If Not objRS.EOF Then
 					</td>
 				</tr>
 				</table>
-				<br>
 <%		else%>
 				&nbsp;Ambiente Disponível (sem previsão de utilização)	 
 <%		end if
@@ -109,19 +116,23 @@ If Not objRS.EOF Then
 		auxlocalizacaoant=auxlocalizacao
 
 		objRS.movenext
-	loop
+	Loop
+%>
+		</td>
+	</tr>
+<%
 else
 %>
-				Nenhum evento previsto ou em andamento registrado no momento.
+	<tr>
+		<td colspan="3" style="text-align: center;">
+		    Nenhum evento previsto ou em andamento registrado no momento.
+		</td>
+	</tr>
 <%
 end if%>
-			</td>
-		</tr>
-		</table>
-	</td>
-</tr>
-</table>
-<br>
+	</table>
+
+    <br>
 
 </div>
 

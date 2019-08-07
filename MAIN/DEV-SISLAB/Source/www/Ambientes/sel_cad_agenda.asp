@@ -7,68 +7,75 @@ cont=0
 
 Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Reserva de Ambientes", "location.href='../sislab.asp'", "../")
 %>
-<script language=javascript>
-function navselecao(id_res)
-{
-	document.all.sel.value = id_res;
-	document.formulario.submit();
-}
+<script type="text/javascript">
+    function navselecao(id_res)
+    {
+	    document.all.sel.value = id_res;
+	    document.formulario.submit();
+    }
 </script>
-<form name="formulario" method="post" action="cad_agenda.asp">
-<input type="hidden" name="tipocomando" value="Alterar">
-<input type="hidden" name="sel" value="">
-<table width="100%" border="0" class="table-bordered">
-<tr valign="middle">
-	<td height="40">
-		<a href="cad_agenda.asp"><b>&lt;Cadastrar Novo Evento&gt;</b></a>
-	</td>
-</tr>
-<tr>
-<tr valign="top">
-	<td valign="top">
-		<b>Editar Evento Cadastrado</b><br><br>
-		<div style="overflow: auto; width: 100%; height=200px; border: thin solid gray;">
-			<table border="1" cellpadding="2" cellspacing="0" class="table-bordered" width="100%" style="border: solid thin;">
+
+<div class="margem-10">
+    <form name="formulario" method="post" action="cad_agenda.asp">
+        <input type="hidden" name="tipocomando" value="Alterar">
+        <input type="hidden" name="sel" value="">
+
+
+        <div>
+		    <p><a href="cad_agenda.asp">&lt;Cadastrar Novo Evento&gt;</a></p>
+            <br />
+        </div>
+
+        <div>
+		    <p><b>Editar Evento Cadastrado</b></p>
+        </div>
+
+		<table class="table-bordered table-condensed" width="100%" >
 			<tr>
-				<th style="font-size: xx-small;">Data Inicial</th>
-				<th style="font-size: xx-small;">Data Final</th>
-				<th style="font-size: xx-small;">Ambiente</th>
-				<th style="font-size: xx-small;">Título do Evento</th>
-				<th style="font-size: xx-small;">AS</th>
-				<th style="font-size: xx-small;">&nbsp;</th>
+				<th style="text-align: center;">Data Inicial</th>
+				<th style="text-align: center;">Data Final</th>
+				<th>Ambiente</th>
+				<th>Título do Evento</th>
+				<th style="text-align: center;">AS</th>
+				<th style="text-align: center;">Ação</th>
 			</tr>
 <%
-s = "Select RAM_ID, RAM_AS, RAM_titulo, CONVERT(VARCHAR, RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, RAM_datafim, 103) AS RAM_datafim, AMB_NOME " & _
-	"From reserva_ambientes, ambientes " & _
-	"where reserva_ambientes.AMB_ID=ambientes.AMB_ID AND " & _
-	"ambientes.AMB_USADOPORAG = 0 " & _
-	"order by CAST(RAM_datainicio AS DATETIME) desc;"
-call Env.RecordSet( true, objRS, s)
+s = "SELECT ra.RAM_ID, ra.RAM_AS, ra.RAM_titulo, CONVERT(VARCHAR, ra.RAM_datainicio, 103) as RAM_DATAINICIO, CONVERT(VARCHAR, ra.RAM_datafim, 103) AS RAM_datafim, a.AMB_NOME, crt.NM_CRT " & _
+	"FROM reserva_ambientes ra INNER JOIN Ambientes a ON ra.AMB_ID = a.AMB_ID " & _
+    "   INNER JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT " & _
+	"WHERE a.AMB_USADOPORAG = 0 AND a.AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SISLAB") & " " & _
+	"order by CAST(ra.RAM_datainicio AS DATETIME) desc;"
+'response.write s
+'response.End
+Call Env.RecordSet( true, objRS, s)
 
 if Not objRS.EOF then
 	objRS.MoveFirst
 	do while not objRS.EOF%>
 			<tr>
-				<td align="center"><%=objRS("RAM_datainicio")%>&nbsp;</td>
-				<td align="center"><%=objRS("RAM_datafim")%>&nbsp;</td>
-				<td><a href="#" onclick="navselecao(<%=objRS("RAM_ID")%>);" title="Clique aqui para editar evento"><%=objRS("AMB_NOME")%></a>&nbsp;</td>
+				<td style="text-align: center;"><%=objRS("RAM_datainicio")%>&nbsp;</td>
+				<td style="text-align: center;"><%=objRS("RAM_datafim")%>&nbsp;</td>
+				<td>
+                    <a href="#" onclick="navselecao(<%=objRS("RAM_ID")%>);" title="Clique aqui para editar evento"><%=objRS("AMB_NOME")%></a>&nbsp;<br />
+                    <i><small><%=objRS("NM_CRT") %></small></i>
+				</td>
 				<td><%=objRS("RAM_titulo")%>&nbsp;</td>
-				<td align="center"><a href="../ficha_as.asp?emjanela=1&selecao=<%=objRS("RAM_AS")%>" title="Clique aqui para ver os dados do Agendamento" target="_blank"><%=objRS("RAM_AS")%></a>&nbsp;</td>
-				<td align="center"><a href="#" onclick="navselecao(<%=objRS("RAM_ID")%>);" title="Clique aqui para editar evento">Editar</a></td>
+				<td style="text-align: center;"><a href="../ficha_as.asp?emjanela=1&selecao=<%=objRS("RAM_AS")%>" title="Clique aqui para ver os dados do Agendamento" target="_blank"><%=objRS("RAM_AS")%></a>&nbsp;</td>
+				<td style="text-align: center;"><a href="#" onclick="navselecao(<%=objRS("RAM_ID")%>);" title="Clique aqui para editar evento">Editar</a></td>
 			</tr>
 <%		objRS.movenext
 	loop
 else%>
-			<tr><td colspan="5" align="center"><b><i>Não existem reservas cadastradas no momento</i></b></td></tr>
+        	<tr>
+                <td colspan="5" style="text-align: center;"><b><i>Não existem reservas cadastradas no momento</i></b></td>
+        	</tr>
 <%
 end if%>
 		</table>
-		</div>
-	</td>
-</tr>
-</table>
-</form>
-<br>
+
+    </form>
+    <br />
+</div>
 <%
 Call Env.RecordSet( false, objRS, null)
 

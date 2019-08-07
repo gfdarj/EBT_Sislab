@@ -1,4 +1,5 @@
-﻿<!--#include file="../includes/Sislab_Lib.asp"-->
+﻿<!--#include file="../includes/global.asp" -->
+<!--#include file="../includes/Sislab_Lib.asp"-->
 <%
 Dim  objRS, s
 Dim auxcadastradopor, auxtipocomando,auxselecao
@@ -54,46 +55,25 @@ End if
 'response.end
 
 call Env.RecordSet( true, objRS, s)
+
+Response.AddHeader "refresh", "3; url=sel_cad_agenda.asp"
+
+Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Reserva de Ambientes", "location.href='../sislab.asp'", "../")
 %>
-<html>
-<head>
-<title>SISLAB - Cadastro de Eventos - Reserva de Ambiente</title>
-<meta http-equiv="refresh" content="3; url=sel_cad_agenda.asp">
-</head>
-<body bgcolor="#B1D0DD">
-<div align="center">
-<center>
-<br><br><br>
-
-<table border="1" height="200" valign="bottom" bgcolor="#B1D0DD" width="80%">
-<tr>
-<td>
-<div align="center">
+<div class="margem-10">
 <% 
-
 If Err Then %>
-    <font style="font-size=10pt;" color="#000000"> 
-	<b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%>- <%=s%><br>
-	<b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
-	<b>Houve um erro na inclusão das informações digitadas.<br>
-	Por favor, tente mais tarde.</b>
- 	 </font>
+	    <b>&nbsp;&nbsp;Erro Nº:</b> <%=Err.Number%>- <%=s%><br>
+	    <b>&nbsp;&nbsp;Descrição:</b> <%=Err.Description%><br>
+	    <b>Houve um erro na inclusão das informações digitadas.<br>
+	        Por favor, tente mais tarde.
+	    </b>
 <% else %>
-  <FONT SIZE=3 FACE="Arial" color=#000000><i><b>
-   <%=strDesc%> da reserva : </i></b><br><br></font>
-	<FONT SIZE=2 FACE="Arial" color=#000000><b><%=auxtitulo%></b><br></font>
-	<FONT SIZE=3 FACE="Arial" color=#000000><i><b> foi realizada com Sucesso! <br><br>
-<b>	Por favor, aguarde...</i></b><br><br><br>
-  </font>
+   <%=strDesc%> da reserva : <b><%=auxtitulo%></b> foi realizada com Sucesso! <br><br>
+   <small>	Por favor, aguarde...</small><br><br><br>
 <% end if %>
 </div>
-</td>
-</tr>
-</table>
-<br><br><br><br><br><br>
-</center>
-<%
-'call Env.RecordSet( false, objRS, null)
-%>
-</html>
 
+<%
+Call Tela.MostraRodape()
+%>

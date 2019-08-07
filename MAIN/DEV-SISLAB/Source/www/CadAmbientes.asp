@@ -4,14 +4,23 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/funcoes.asp" -->
 <%
+If Not Env.ehRAT Then Response.Redirect "index.asp"
+
+Dim ambiente, achou, amb_id, amb_nome, amb_usadoporag, amb_modulo, amb_crt
+
+ambiente = Trim(Request("ambiente"))
+achou = False
+amb_id = ""
+amb_nome = ""
+amb_usadoporag = ""
+amb_modulo = ""
+amb_crt = ""
+
 Tela.SetMostraMenu = MENU_ON
 Tela.SetMostraImagem = True
 Tela.SetNomeTela = "Cadastro de Ambientes"
 Tela.SetLinkVoltar = "location.href='sislab.asp'"
 Call Tela.MostraCabecalho()
-''''Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Ambientes", "location.href='sislab.asp'", "")
-
-if not Env.ehRAT then response.redirect "index.asp"
 %>
 <script type="text/javascript" src="includes/anexo.js"></script>
 <script type="text/javascript">
@@ -81,65 +90,99 @@ if not Env.ehRAT then response.redirect "index.asp"
 
 	    <div><span class="texto-vermelho-bold"><b>*</b></span>&nbsp; Indica um Campo Obrigatório</div>
         <br />
-        <div class="linha-fundo" style="width: 100%"><strong>Lista de Ambientes</strong></div>
+        <div class="linha-fundo" style="width: 100%"><strong>Busca de Ambientes</strong></div>
         <br />
         <div>
-	        <b>Ambiente:&nbsp;</b>
-            <%call comboBDSQL("ambiente", Env.oConn, "SELECT AMB_ID as valor, AMB_NOME as descricao FROM Ambientes ORDER BY AMB_NOME", "N", true)%>
-		    &nbsp;&nbsp;
-            <input  type="button" value="Buscar" onclick="BuscarAmbiente();">
+            <p>
+                Módulo do Sistema:&nbsp;<%=ModuloSistema("filtro_modulo", "")%>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	            Centro de Referência:&nbsp;<%=CentroReferencia("filtro_crt", "")%>
+            </p>
+            <p>
+	            <b>Ambiente:&nbsp;</b>
+                <%call comboBDSQL("ambiente", _
+                        Env.oConn, _
+                        "SELECT AMB_ID as valor, a.AMB_NOME + ' (' + crt.NM_CRT + ' / ' + CASE WHEN AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SISLAB") & " THEN 'SISLAB' ELSE 'SCE' END + ')' as descricao FROM Ambientes a INNER JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT ORDER BY AMB_NOME", _
+                        "N", _
+                        true) %>
+		        &nbsp;&nbsp;
+                <input  type="button" value="Buscar" onclick="BuscarAmbiente();">
+            </p>
         </div>
 
         <br />
+<%
 
+If ambiente <> "" then
+	ssql = "select * from ambientes where amb_id = " & ambiente
+	'response.write ssql
+	'response.end
+	Call Env.RecordSet(true, objSiteRS, sSQL)
+	If Not objSiteRS.Eof Then
+        achou = True
+
+        amb_id = Cstr(objSiteRS("amb_id"))
+		amb_nome = Cstr(objSiteRS("amb_nome"))
+        amb_usadoporag = Cstr(objSiteRS("amb_usadoporag"))
+        amb_modulo = Cstr(objSiteRS("amb_modulo"))
+        amb_crt = Cstr(objSiteRS("id_crt"))
+    End If
+    Set objSiteRS = Nothing
+End If
+%>
         <div class="linha-fundo" style="width: 100%"><strong>Dados do Ambiente</strong></div>
 
         <br />
 
         <table border="0" width="100%" cellpadding="2" cellspacing="0" class="table-condensed">
+            <tr>
+	            <td style="width: 170px;"><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Descrição :</td>
+	            <td><input type="text" name="desc" size="60" value="<%=amb_nome%>" ></td>
+            </tr>
 
-        <tr>
-	        <td width="100px"><span class="texto-vermelho-bold"><b>*</span>&nbsp;Descrição :</b></td>
-	        <td><input type="text" name="desc" size="60" ></td>
-        </tr>
+            <tr>
+	            <td colspan="2">Reserva este ambiente apenas pela área do RAT (possuí AS)&nbsp;<input type="Checkbox" name="usadoporag" value="1"></td>
+            <tr>
 
-        <tr>
-	        <td colspan="2">Reserva este ambiente apenas pela área do RAT (possuí AS)</b>&nbsp;
-	        <input type="Checkbox" name="usadoporag" value="1"></td>
-        <tr>
+            <tr>
+	            <td><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Centro de Referência:</td>
+	            <td>
+	                <%=CentroReferencia("crt", amb_crt)%>
+	            </td>
+            </tr>
 
-        <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+	            <td><span class="texto-vermelho-bold"><b>*</b></span>&nbsp;Módulo do Sistema:</td>
+	            <td>
+                    <%=ModuloSistema("modulo", amb_modulo)%>
+	            </td>
+            </tr>
 
-        <tr>
-	        <td colspan="2">
-		        <input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
-		        <input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		        <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
-	        </td>
-        </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+
+            <tr>
+	            <td colspan="2">
+		            <input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
+		            <input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		            <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		            <input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+	            </td>
+            </tr>
         </table>
     </form>
     <iframe name="escondido" style="display: none;"></iframe>
 </div>
 
-<script>
-var frm = document.forms[0];
-var frmAll = document.all;
+<script type="text/javascript">
+    var frm = document.forms[0];
+    var frmAll = document.all;
 <%
-Dim ambiente
-ambiente = request("ambiente")
-if ambiente <> "" then
-	ssql = "select * from ambientes where amb_id = " & ambiente
-	'response.write ssql
-	'response.end
-	call Env.RecordSet( true, objSiteRS, sSQL)
-	if objSiteRS.eof = false then%>
+If ambiente <> "" Then
+	If achou Then %>
 		frm.btnIncluir.disabled = false;
 		frm.btnExcluir.disabled = false;
-		frm.ambiente.value = '<%=ucase(objSiteRS("amb_id"))%>';
-		frm.desc.value = '<%=ucase(objSiteRS("amb_nome"))%>';
-<%		if objSiteRS("amb_usadoporag") then%>
+		frm.ambiente.value = '<%=amb_id%>';
+<%		if amb_usadoporag = "1" Then %>
 		frm.usadoporag.checked = true;
 <%		end if%>
 	<%else%>
@@ -153,4 +196,33 @@ else%>
 </script>
 <%
 Call Tela.MostraRodape()
+
+
+Function ModuloSistema(nome, valor) %>
+    <select name="<%=nome%>" >
+	    <option value="">--</option>
+	    <option value="<%=Application("SISLAB_ID_APLICACAO_SISLAB")%>" <%=IIf(CStr(valor) = Cstr(Application("SISLAB_ID_APLICACAO_SISLAB")), "selected", "")%>>SISLAB</option>
+	    <option value="<%=Application("SISLAB_ID_APLICACAO_SCE")%>" <%=IIf(CStr(valor) = Cstr(Application("SISLAB_ID_APLICACAO_SCE")), "selected", "")%>>SCE</option>
+    </select>
+<%
+End Function
+
+
+Function CentroReferencia(nome, valor)
+    '-- pego os ambientes que não são reservados por AS, nestes, a reserva é feita pelo
+    '-- cadastro de agendamento / área do RAT
+    s = "SELECT crt.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT FROM CentroReferencia crt ORDER BY crt.NM_CRT;"
+    call Env.RecordSet( true, objRS, s)
+    If Not objRS.EOF Then
+	    objRS.MoveFirst %>
+		        <select name="<%=nome%>" >
+		            <option value="">--</option>
+	 <% do while not objRS.EOF %>
+    	    	    <option value="<%=objRS("ID_CRT")%>" <%=IIf(CStr(valor) = Cstr(objRS("ID_CRT")), " selected", "")%>><%=objRS("NM_CRT")%> - [<%=objRS("SIGLA_CRT")%>]</option>
+	<%      objRS.movenext %>
+	<%  loop %>
+        		</select>
+<%  end if
+End Function
 %>
+
