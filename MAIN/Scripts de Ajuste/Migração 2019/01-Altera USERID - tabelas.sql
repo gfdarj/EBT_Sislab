@@ -435,12 +435,34 @@ GO
 
 
 
+
+
 /* 01/07/2019 */
+
+CREATE TABLE dbo.CentroReferencia (
+	ID_CRT TINYINT NOT NULL,
+	NM_CRT VARCHAR(100) NOT NULL,
+	SIGLA_CRT VARCHAR(5) 
+)
+GO
+
+ALTER TABLE dbo.CentroReferencia ADD CONSTRAINT PK_CentroReferencia PRIMARY KEY (ID_CRT)
+GO
+
+
 ALTER TABLE dbo.Ambientes ADD AMB_MODULO TINYINT
 go
 
-ALTER TABLE dbo.Ambientes ADD AMB_LOCALIZACAO TINYINT
+ALTER TABLE dbo.Ambientes ADD ID_CRT TINYINT
 go
+
+ALTER TABLE dbo.Ambientes
+	ADD CONSTRAINT FK_Ambientes_CentroReferencia FOREIGN KEY (ID_CRT)
+		REFERENCES dbo.CentroReferencia (ID_CRT)
+GO
+
+--ALTER TABLE dbo.Ambientes drop column AMB_LOCALIZACAO
+--GO
 
 ALTER TABLE dbo.SCE_Equipamentos ADD AMB_ID INT
 go
