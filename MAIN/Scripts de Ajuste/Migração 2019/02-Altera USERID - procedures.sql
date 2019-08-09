@@ -1772,7 +1772,7 @@ CREATE PROCEDURE [dbo].[sp_CadAmbiente]
 	@pDescricao VARCHAR(510),
 	@pUsadoPorAg BIT,
 	@pModulo TINYINT,
-	@pLocalizacao TINYINT
+	@pCRT TINYINT
 )
 AS
 BEGIN
@@ -1782,7 +1782,7 @@ BEGIN
 	DECLARE @msg VARCHAR(8000)
 
 	IF (@pID IS NULL) OR (@pID = 0) BEGIN
-		INSERT INTO Ambientes (AMB_NOME, AMB_USADOPORAG, AMB_MODULO, AMB_LOCALIZACAO) VALUES (@pDescricao, @pUsadoPorAg, @pModulo, @pLocalizacao)
+		INSERT INTO Ambientes (AMB_NOME, AMB_USADOPORAG, AMB_MODULO, ID_CRT) VALUES (@pDescricao, @pUsadoPorAg, @pModulo, @pCRT)
 		IF @@ERROR <> 0 BEGIN
 			ROLLBACK TRANSACTION
 			SET @msg = 'Não foi possível inserir o ambiente ' + @pDescricao
@@ -1794,7 +1794,7 @@ BEGIN
 	END
 	ELSE BEGIN
 		UPDATE	Ambientes 
-			SET AMB_NOME = @pDescricao, AMB_USADOPORAG = @pUsadoPorAg, AMB_MODULO = @pModulo, AMB_LOCALIZACAO = @pLocalizacao
+			SET AMB_NOME = @pDescricao, AMB_USADOPORAG = @pUsadoPorAg, AMB_MODULO = @pModulo, ID_CRT = @pCRT
 			WHERE	AMB_ID = @pId
 		IF @@ERROR <> 0 BEGIN
 			ROLLBACK TRANSACTION
