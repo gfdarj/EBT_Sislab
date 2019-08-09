@@ -36,8 +36,11 @@ ehRat = Env.EhRat
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <h4 class="linha-destaque">Controle de Ambientes</h4>
-<%If ehRAT or Env.ehGQ then%>
+
+<%If ehRAT or Env.ehGQ or Env.PerfilSce = PERFIL_LOG Then%>
 	        <h5><a href="CadAmbientes.asp" target="_parent">Cadastro de Ambientes e Salas</a></h5>
+<%end if%>
+<%If ehRAT or Env.ehGQ then%>
             <h5><a href="ambientes/sel_cad_agenda.asp" target="_parent">Reservar Ambiente</a></h5>
 <%end if%>
             <h5><a href="ambientes/cons_agenda.asp" target="_parent">Consultar Ambientes Reservados</a></h5>

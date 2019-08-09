@@ -11,11 +11,9 @@ Dim ambiente, descricao, rsRET, ssql, usadoporag, modulo, qualCRT
 '-- o acontecimento de algum erro. Caso positivo, chamo uma rotina para processar
 '-- e pegar o erro através de um RAISERROR (T-SQL)
 
-if request("excluir") = "1" then
+If request("excluir") = "1" then
 	ambiente = request("ambiente")
 	if ambiente = "" then ambiente = "0"
-    modulo = request("modulo")
-    qualCRT = request("id_crt")
 
 	ssql = "exec sp_ApagaAmbiente " & ambiente
 
@@ -28,11 +26,13 @@ if request("excluir") = "1" then
 	else
 		response.redirect "CadAmbientes.asp"
 	end if
-else
+Else
 	if request("ehNovoAmbiente") = "1" then ambiente = "" else ambiente = request("ambiente")
 	descricao = ucase(request("desc"))
 	usadoporag = request("usadoporag")
 	if usadoporag = "" then usadoporag = "0"
+    modulo = request("modulo")
+    qualCRT = request("crt")
 
 	ssql = "exec sp_CadAmbiente " & ambiente & ", '" & descricao & "'," & usadoporag & ", " & modulo & ", " & qualCRT
 
@@ -48,7 +48,7 @@ else
 	else
 		response.redirect "CadAmbientes.asp?ambiente=" & rsRET(0)
 	end if
-end if
+End if
 
 set rsRET = nothing
 %>
