@@ -158,7 +158,7 @@ If Err.number <> 0 Then Call Tela.MostraErroSqlRB()
 'Grava os movimentos para os Equipamentos da Lista
 For Each eq In arrEq
 
-RW eq & "<BR>"
+'RW eq & "<BR>"
 
     eqAnt = Request("eq_id" & eq) : eqAnt = IIf(VVVNZ(eqAnt), Null, eqAnt)
 
@@ -177,7 +177,7 @@ RW eq & "<BR>"
 	    .Parameters.item("@nf_id").Value = nf_id
 	    .Parameters.item("@doc_id").Value = doc_id
 	    .Parameters.item("@mov_passagem").Value = 0
-	    .Parameters.item("@eq_localizacao").Value = localizacao
+	    .Parameters.item("@amb_id").Value = localizacao
 	    .Parameters.item("@fl_calibracao").Value = fl_calibracao
 	    .Parameters.item("@eq_codigobarrasanterior").Value = eqAnt
 	    .Parameters.item("@usuario_log").Value = Env.Usuario

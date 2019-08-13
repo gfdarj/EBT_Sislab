@@ -35,15 +35,19 @@ If Env.UsuarioSCE() Then
 	    if request("busca") <> "" then
 		    ssql =	"SELECT distinct a.status, a.eq_id, a.eq_codigobarras AS [EQ_CODIGOBARRAS_M], mod_descricao AS [MOD_DESCRICAO_M], " & _
 				    "   a.eq_numeroserie AS [EQ_NUMEROSERIE_M], a.mod_id, e.mod_codnome AS [MOD_CODNOME_M], " & _
-				    "   ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, a.EQ_LOCALIZACAO, " & _
+				    "   ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, amb.AMB_NOME, " & _
 				    "   CASE WHEN (SELECT count(*) FROM SCE_Acessorios where EQ_ID = a.EQ_ID) > 0 THEN 'Sim' ELSE 'Não' END AS [EQ_TEMACESSORIO_M], fab_nome AS [FAB_NOME_M], " & _
 				    "   CASE WHEN A.STATUS = 2 THEN 'Em Uso' " & _
 				    "   WHEN A.STATUS = 1 THEN 'Estoque' " & _
 				    "   WHEN A.STATUS = 3 THEN 'Expedido' " & _
 				    "   WHEN A.STATUS = 0 THEN 'Cadastrado' END AS STATUS_M " & _
-				    "FROM  sce_modelos e, SCE_Equipamentos a LEFT JOIN vw_SCE_Movimentacao_Atual AS ma ON ma.EQ_ID = a.EQ_ID, " & VbCrLf & _
-				    "   SCE_Fabricantes f " & _
-				    "WHERE (a.mod_id = e.mod_id)  AND (e.fab_id = f.fab_id) "
+				    "FROM " & VbCrLf & _
+                    "	SCE_Equipamentos a " & _
+                    "	INNER JOIN sce_modelos e ON a.mod_id = e.mod_id " & _
+                    "	INNER JOIN SCE_Fabricantes f ON e.fab_id = f.fab_id " & _
+                    "	LEFT JOIN vw_SCE_Movimentacao_Atual AS ma ON ma.EQ_ID = a.EQ_ID " & _
+                    "	LEFT JOIN Ambientes amb ON amb.AMB_ID = a.AMB_ID " & _
+				    "WHERE (1 = 1) "
 
 		    If request("documento") <> "" and isnumeric(request("documento")) Then
 			    ssql = ssql & _
@@ -102,7 +106,7 @@ If Env.UsuarioSCE() Then
 			    ssql = ssql &"and a.EQ_INSTRUMENTAL = "& request("instrumental") & " "
 		    end if
 		    if request("localizacao") <> "" then
-			    ssql = ssql &"and UPPER(a.EQ_LOCALIZACAO) like '%" & UCase(request("localizacao")) & "%' "
+			    ssql = ssql &"and UPPER(amb.AMB_NOME) like '%" & UCase(request("localizacao")) & "%' "
 		    end if
 		    if request("cde_equip") <> "" then  '-- registro de controle do equipamento
 			    ssql = ssql &"and EXISTS (SELECT eqc.EQC_REGISTRO FROM SCE_Equipamentos_Controle eqc WHERE eqc.EQ_ID = a.EQ_ID AND UPPER(eqc.EQC_REGISTRO) LIKE '" & UCase(request("cde_equip")) & "') "

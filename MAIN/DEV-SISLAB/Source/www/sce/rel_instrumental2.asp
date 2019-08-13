@@ -95,7 +95,7 @@ If Not bln_exportaExcel Then
     Set Sce = New TSce
 
 	ssql =	"SELECT e.EQ_ID, e.EQ_CODIGOBARRAS, e.MOD_CODNOME, e.MOD_DESCRICAO, " & _
-			"e.EQ_INSTRUMENTAL, EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, " & _
+			"e.EQ_INSTRUMENTAL, EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.AMB_NOME, e.FAB_NOME, " & _
 			"EQC_TIPO, CONVERT(varchar, EQC_VENCIMENTO, 103) AS EQC_VENCIMENTO FROM vw_SCE_EQ_CONTROLE_ATUAL e "
 
 	ssql = ssql & where & " order by /*EQ_CODIGOBARRAS,*/ EQC_TIPO, CAST(EQC_VENCIMENTO AS DATETIME);"
@@ -183,12 +183,13 @@ Else
 		    "	WHEN e.STATUS = " & STATUS_EXPEDIDO & " THEN 'Expedido'" & _
 		    "	WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído'" & _
 		    "	WHEN e.STATUS = " & STATUS_EM_USO & " THEN 'Em Uso'" & _
-		    "END as [Status], e.EQ_LOCALIZACAO as [Localização], e.FAB_NOME as [Fabricante], " & _
+		    "END as [Status], e.AMB_NOME as [Localização], e.FAB_NOME as [Fabricante], " & _
 		    "CASE WHEN EQC_TIPO = 'M' THEN 'Manutenção' " & _
 		    "	WHEN EQC_TIPO = 'C' THEN 'Calibração' " & _
 		    "	WHEN EQC_TIPO = 'Q' THEN 'Qualificação' " & _
 		    "END as [Tipo], " & _
-		    "CONVERT(varchar, EQC_VENCIMENTO, 103) AS [Vencimento] FROM vw_SCE_EQ_CONTROLE_ATUAL e "
+		    "CONVERT(varchar, EQC_VENCIMENTO, 103) AS [Vencimento] " & _
+            "FROM vw_SCE_EQ_CONTROLE_ATUAL e "
 
     ssql = ssql & where & " order by /*EQ_CODIGOBARRAS,*/ EQC_TIPO, CAST(EQC_VENCIMENTO AS DATETIME);"
 

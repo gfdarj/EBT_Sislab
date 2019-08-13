@@ -8,6 +8,7 @@
 <!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
+<!--#include file="../includes/controlesHTML.asp" -->
 <%
 Dim tipousuario : tipousuario = ""
 Dim Ok_Alterar_Mov
@@ -50,7 +51,8 @@ If Env.UsuarioSCE() Then
 				mostraCamposNO(mostra);
 				mostraCalibracao(mostra);
 				mostraCamposCde(false);
-				mostraCamposAsa(false);
+                mostraCamposAsa(false);
+                ajax_AtualizaLocalizacao();
 			}
 		});
 		maxAjaxObj.get();
@@ -236,10 +238,14 @@ If Env.UsuarioSCE() Then
 		    alert("Natureza da Operação não foi selecionada");
 		    frm.noid.focus();
 	    }
-	    else if( frm.solicitante.value == "" ) {
-		    alert("Nenhum solicitante foi informado");
-		    frm.solicitante.focus();
-	    }
+        else if (frm.solicitante.value == "") {
+            alert("Nenhum solicitante foi informado");
+            frm.solicitante.focus();
+        }
+        else if (frm.localizacao.value == "") {
+            alert("Informe a localização do(s) equipamento(s)");
+            frm.localizacao.focus();
+        }
 	    else if(isNaN(frm.cde.value)) {
 		    alert("CDE inválido");
 		    frm.cde.focus();
@@ -510,8 +516,36 @@ end if%>
             <tr><td>&nbsp;</td></tr>
             <tr>
 	            <td>
-		            Localização: (<i>Informar apenas quando for devolução</i>)<BR>
-		            <input type="text"  name="localizacao" size="25" value="">
+		            Localização: (<i>* campo obrigatório</i>)<BR>
+<%
+                    call comboBDSQL("localizacao", Env.oConn, "SELECT NULL as valor, '*** Selecione o Tipo de Movimentação ***' as descricao ", "N", "N") 
+%>
+                    <script type="text/javascript">
+                        function ajax_AtualizaLocalizacao()
+                        {
+                            var frm = document.forms[0];
+                            var amb_id = ""; //documents.frm.ambiente.value;
+                            var id_crt = "1";  //Tabela CentroReferencia
+                            var amb_modulo;
+                            var notipo = frm.notipo.value;
+
+                            if ((notipo == "<%=MOV_ENTRADA%>") || (notipo == "<%=MOV_LOGISTICA_ENTRADA%>") || (notipo == "<%=MOV_EXPEDICAO%>") || (notipo == "<%=MOV_EXPEDICAO_SUBST%>"))
+                                amb_modulo = "<%=Application("SISLAB_ID_APLICACAO_SCE")%>";
+                            else // MOV_LOGISTICA_SAIDA = <%=MOV_LOGISTICA_SAIDA%>
+                                amb_modulo = "<%=Application("SISLAB_ID_APLICACAO_SISLAB")%>";
+
+                            var url = '../ajax/sislab_combo_ambiente.asp?amb_id=' + amb_id + '&id_crt=' + id_crt + '&amb_modulo=' + amb_modulo;
+                            var maxAjaxObj = new max.Ajax(url, {
+                                update: '', onComplete:
+                                    function (texto, xml) {
+                                        var frm = document.forms[0];
+                                        frm.localizacao.innerHTML = texto;
+                                    }
+                            });
+                            maxAjaxObj.get();
+                        }
+                    </script>
+
 	            </td>
             </tr>
 

@@ -437,7 +437,7 @@ GO
 
 
 
-/* 01/07/2019 */
+/* 13/08/2019 */
 
 CREATE TABLE dbo.CentroReferencia (
 	ID_CRT TINYINT NOT NULL,
@@ -471,6 +471,13 @@ ALTER TABLE dbo.SCE_Equipamentos
 		REFERENCES dbo.Ambientes (AMB_ID)
 GO
 
+
+ALTER TABLE UserCRT ADD ID_CRT TINYINT
+go
+ALTER TABLE dbo.UserCRT
+	ADD CONSTRAINT FK_UserCRT_CentroReferencia FOREIGN KEY (ID_CRT)
+		REFERENCES dbo.CentroReferencia (ID_CRT)
+GO
 
 
 

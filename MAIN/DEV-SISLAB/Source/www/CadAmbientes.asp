@@ -121,7 +121,6 @@ Call Tela.MostraCabecalho()
 
         <br />
 <%
-
 If ambiente <> "" then
 	ssql = "select * from ambientes where amb_id = " & ambiente
 	'response.write ssql

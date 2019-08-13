@@ -123,7 +123,7 @@ With objSP
 	.Parameters.item("@EQ_CODIGOBARRAS") = codbarras
 	.Parameters.item("@EQ_CODIGOBARRASANTERIOR") = codbarrasanterior
 	.Parameters.item("@EQ_NUMEROSERIE") = numeroserie
-	.Parameters.item("@EQ_LOCALIZACAO") = localizacao
+	.Parameters.item("@AMB_ID") = localizacao
 	.Parameters.item("@MOD_ID") = mod_id
 	.Parameters.item("@EQ_OBS") = obs
 	.Parameters.item("@STATUS") = status

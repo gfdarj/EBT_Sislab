@@ -3422,7 +3422,8 @@ CREATE PROCEDURE [dbo].[sp_CadUserCRT]
 	@pRT BIT,
 	@pQG BIT,
 	@pEXIBIR BIT,
-	@pPerfilSce TINYINT
+	@pPerfilSce TINYINT,
+	@pCRT TINYINT
 )
 AS
 BEGIN
@@ -3433,7 +3434,7 @@ BEGIN
 	DECLARE @msg VARCHAR(8000)
 
 	IF @pEhNovoUsuario = 0 BEGIN
-		UPDATE USERCRT SET
+		UPDATE UserCRT SET
 			Matricula = @pMatricula,
 			Nome = @pNome,
 			Celular = @pCelular,
@@ -3443,7 +3444,8 @@ BEGIN
 			RT = @pRT,
 			GQ = @pQG,
 			EXIBIR = @pEXIBIR,
-			ID_PERFIL_SCE = @pPerfilSce
+			ID_PERFIL_SCE = @pPerfilSce,
+			ID_CRT = @pCRT
 		WHERE
 			USERID = @pUsername
 		IF @@ERROR <> 0 BEGIN
@@ -3455,8 +3457,8 @@ BEGIN
 		END
 	END
 	ELSE BEGIN
-		INSERT INTO USERCRT (USERID,MATRICULA,NOME,CELULAR,RAMAL,ORGA_ID,RAT,RT,GQ,EXIBIR,ID_PERFIL_SCE)
-		VALUES (@pUsername,@pMatricula,@pNome,@pCelular,@pRamal,@pOrgao,@pRAT,@pRT,@pQG,@pEXIBIR,@pPerfilSce)
+		INSERT INTO UserCRT (USERID, MATRICULA, NOME, CELULAR, RAMAL, ORGA_ID, RAT, RT, GQ, EXIBIR, ID_PERFIL_SCE, ID_CRT)
+		VALUES (@pUsername, @pMatricula, @pNome, @pCelular, @pRamal, @pOrgao, @pRAT, @pRT, @pQG, @pEXIBIR, @pPerfilSce, @pCRT)
 		IF @@ERROR <> 0 BEGIN
 			ROLLBACK TRANSACTION
 			SET @msg = 'Não foi possível inserir os dados do usuário ' + @pUsername + '. Atenção ao tentar cadastrar um usuário cujo USERNAME já exista.'
@@ -6772,6 +6774,159 @@ BEGIN
 
 	RETURN
 END
+GO
+
+
+
+/****** Object:  View [dbo].[vw_SCE_Equipamentos]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Equipamentos]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW [dbo].[vw_SCE_Equipamentos]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[vw_SCE_Equipamentos]
+AS
+	/***
+		Visão de contendo a UNIÃO de todos os itens ( Equipamentos e Consumiveis )
+
+		Gilberto Almeida - COPPETEC
+		Criado em: 27/08/2003
+		Alterada em: 05/04/2012 - retirado as referencias de consumiveis
+	***/
+	SELECT
+		e.EQ_ID as ID, NULL as COD_SGP, e.AMB_ID, amb.AMB_NOME,
+		cast(e.EQ_OBS as varchar(8000)) as EQ_OBS, 
+		e.MOD_ID, null AS EQ_SGP, e.EQ_CODIGOBARRAS, e.EQ_CODIGOBARRASANTERIOR, e.EQ_NUMEROSERIE, 
+		e.STATUS, e.EQ_PROPRIEDADE, e.EQ_OPER_DELTA,
+		e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, 
+		cast(e.EQ_MANUT_PREVENTIVA as varchar(8000)) as EQ_MANUT_PREVENTIVA, 
+		e.EQ_INSTRUMENTAL, e.EQ_CONFORME,
+		null as NF_ID, null as CON_UNIDADE, null as CON_MODELO_PN, 
+		null as CON_ESTOQUE, 
+		null as con_uso, null as con_desc, 
+		e.EQ_DT_ULT_INVENTARIO, 
+		EQ_FREQ_CALIBRACAO
+	FROM
+		SCE_Equipamentos e LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+GO
+
+/****** Object:  View [dbo].[vw_SCE_Equipamentos_Fabricantes]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Equipamentos_Fabricantes]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW [dbo].[vw_SCE_Equipamentos_Fabricantes]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE   VIEW [dbo].[vw_SCE_Equipamentos_Fabricantes] 
+AS
+	/***
+		Visão exibindo todos os equipamentos e seus fabricantes / modelos
+		Coppetec - Gilberto Almeida - 23/09/2003
+
+		Atualizado em: 10/10/2006
+	***/
+	SELECT -- DISTINCT 
+		e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_CODIGOBARRASANTERIOR, e.AMB_ID, amb.AMB_NOME, e.EQ_INSTRUMENTAL, 
+		e.EQ_CONFORME,m.MOD_CODNOME, m.MOD_DESCRICAO, f.FAB_ID, f.FAB_NOME, e.STATUS, e.EQ_NUMEROSERIE,
+		CASE
+			WHEN STATUS = 2 THEN 'Em Uso'
+			WHEN STATUS = 1 THEN 'Estoque'
+			WHEN STATUS = 3 THEN 'Expedido'
+			WHEN STATUS = 0 THEN 'Cadastrado'
+		END AS DESC_STATUS,
+		e.EQ_OPER_DELTA, e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA,
+		e.EQ_ARMA_UMIDADE, e.EQ_MANUT_PREVENTIVA, e.EQ_PROPRIEDADE
+	FROM	
+		SCE_Equipamentos e 
+		INNER join sce_modelos m on e.mod_id = m.mod_id
+		INNER join sce_fabricantes f on f.fab_id = m.fab_id
+		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+GO
+
+
+/****** Object:  View [dbo].[vw_SCE_Reserva_Equipamentos]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Reserva_Equipamentos]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW [dbo].[vw_SCE_Reserva_Equipamentos]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE  VIEW [dbo].[vw_SCE_Reserva_Equipamentos]
+AS
+	SELECT A.AG_NUMERO, 
+		CONVERT(DATETIME, A.AG_DATAINICIO, 103) as AG_DATAINICIO,
+		CONVERT(DATETIME, A.AG_DATATERMINO, 103) AS AG_DATATERMINO,
+		CONVERT(DATETIME, R.RES_DATACADASTRO, 103) AS RES_DATACADASTRO,
+		R.RES_RESPONSAVEL, Amb.AMB_ID AS [AMB_ID_RESERVA], Amb.AMB_NOME AS [AMB_NOME_RESERVA], 
+		E.EQ_ID, E.EQ_CODIGOBARRAS, E.EQ_NUMEROSERIE, E.AMB_ID, amb1.AMB_NOME,
+		E.STATUS,
+		CASE
+			WHEN STATUS = 0 THEN 'Cadastrado'
+			WHEN STATUS = 2 THEN 'Em Uso'
+			WHEN STATUS = 1 THEN 'Estoque'
+			WHEN STATUS = 3 THEN 'Expedido'
+		END AS DESC_STATUS,
+		E.EQ_INSTRUMENTAL, E.EQ_PROPRIEDADE, E.EQ_CONFORME, R.RES_OBSERVACAO,
+		CONVERT(DATETIME, RE.REQ_DATAINICIO, 103) AS REQ_DATAINICIO,
+		CONVERT(DATETIME, RE.REQ_DATATERMINO, 103) AS REQ_DATATERMINO,
+		RE.REQ_ACEITO, RE.REQ_MOVIMENTOU, M.MOD_ID, M.MOD_CODNOME, M.mod_descricao, 
+		F.fab_id, F.fab_nome, U.NOME AS NOME_RESPONSAVEL
+	FROM
+		SCE_Reserva R 
+		INNER JOIN UserCRT U ON R.RES_RESPONSAVEL = U.USERID
+		INNER JOIN SCE_Reserva_Equipamentos RE ON RE.AG_NUMERO = R.AG_NUMERO
+		INNER JOIN Agendamento A ON RE.AG_NUMERO = A.AG_NUMERO
+		INNER JOIN SCE_Equipamentos E ON RE.EQ_ID = E.EQ_ID
+		INNER JOIN SCE_Modelos M ON E.MOD_ID = M.MOD_ID
+		INNER JOIN SCE_Fabricantes F ON M.FAB_ID = F.fab_id
+		LEFT JOIN Ambientes Amb ON Amb.AMB_ID = RE.AMB_ID
+		LEFT JOIN Ambientes Amb1 ON Amb1.AMB_ID = E.AMB_ID
+GO
+
+
+/****** Object:  View [dbo].[vw_SCE_EQ_CONTROLE_ATUAL]    Script Date: 07/19/2018 18:45:13 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_EQ_CONTROLE_ATUAL]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW [dbo].[vw_SCE_EQ_CONTROLE_ATUAL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE VIEW [dbo].[vw_SCE_EQ_CONTROLE_ATUAL]
+AS
+	/***
+		Visao com os ultimos controles (Calibracao/Manutencao/Qualificacao)
+		dos equipamentos, bem como seu prazo de vencimento
+
+		Gilberto Almeida - COPPETEC
+		30/10/2003
+	***/
+	SELECT e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_NUMEROSERIE, e.AMB_ID, amb.AMB_NOME,
+		e.EQ_OBS, e.STATUS, e.EQ_OPER_DELTA, e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, 
+		e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, e.EQ_MANUT_PREVENTIVA, e.EQ_INSTRUMENTAL,
+		e.EQ_PROPRIEDADE, e.EQ_CONFORME, m.MOD_ID, m.MOD_CODNOME, m.mod_descricao,
+		f.fab_id, f.fab_nome,
+		ec.EQC_DIAS, ec.EQC_DATA, ec.EQC_REGISTRO, ec.EQC_RESPONSAVEL, ec.EQC_TIPO, 
+		ec.EQC_DATA + ec.EQC_DIAS AS EQC_VENCIMENTO
+	FROM SCE_Equipamentos e
+		INNER JOIN SCE_Equipamentos_Controle ec ON e.EQ_ID = ec.EQ_ID
+		INNER JOIN (
+			SELECT ect.EQ_ID, MAX(ect.EQC_DATA) AS EQC_DATA, ect.EQC_TIPO
+				FROM SCE_Equipamentos_Controle ect
+				GROUP BY ect.EQ_ID, ect.EQC_TIPO
+				--HAVING ect.EQC_TIPO = ''M''
+		) ec1 ON e.EQ_ID = ec1.EQ_ID AND ec.EQC_DATA = ec1.EQC_DATA AND ec.EQC_TIPO = ec1.EQC_TIPO
+		INNER JOIN SCE_Modelos m ON e.MOD_ID = m.MOD_ID
+		INNER JOIN SCE_Fabricantes f ON m.FAB_ID = f.fab_id
+		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
 GO
 
 

@@ -54,7 +54,7 @@ If Env.UsuarioSCE() Then
 		</tr>
 <%
 Dim s, rec
-s =	"SELECT EQ_ID, EQ_CODIGOBARRAS, MOD_CODNOME, MOD_DESCRICAO, FAB_NOME, EQ_LOCALIZACAO, AMB_NOME " & _
+s =	"SELECT EQ_ID, EQ_CODIGOBARRAS, MOD_CODNOME, MOD_DESCRICAO, FAB_NOME, AMB_NOME, AMB_NOME_RESERVA " & _
 	"FROM vw_SCE_Reserva_Equipamentos WHERE AG_NUMERO = " & request("ag_numero") & " AND " & _
 	"EQ_ID IN (" & lista_itens & ") " & _
 	"ORDER BY EQ_CODIGOBARRAS, MOD_CODNOME"
@@ -65,8 +65,8 @@ while not rec.eof%>
 			<td><%=rec("MOD_CODNOME")%></td>
 			<td><%=rec("MOD_DESCRICAO")%></td>
 			<td><%=rec("FAB_NOME")%></td>
-			<td><%=rec("EQ_LOCALIZACAO")%></td>
-			<td align="center"><%=rec("AMB_NOME")%></td>
+			<td><%=rec("AMB_NOME")%></td>
+			<td align="center"><%=rec("AMB_NOME_RESERVA")%></td>
 		</tr>
 <%	rec.MoveNext
 wend%>

@@ -26,7 +26,7 @@ If Env.UsuarioSCE() Then
 
     s =	"SELECT DISTINCT e.EQ_ID, e.EQ_CODIGOBARRAS, e.STATUS, ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, " & _
         "e.MOD_CODNOME, e.MOD_DESCRICAO, " & _
-	    "e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_INSTRUMENTAL, e.EQ_CONFORME, e.EQ_NUMEROSERIE "
+	    "amb.AMB_NOME, e.FAB_NOME, e.EQ_INSTRUMENTAL, e.EQ_CONFORME, e.EQ_NUMEROSERIE "
 
     '-- nao pego o campo de NF porque podem existir várias notas para o item,
     '-- logo os mesmos aparecerao repetidos. Utilizo uma funcao para pegar a lista de
@@ -152,7 +152,7 @@ else
 			<td id="<%="linha_"&linha&"_col_2"%>"><%if isNull(objRS("EQ_CODIGOBARRAS")) then response.write "&nbsp;" else response.write objRS("EQ_CODIGOBARRAS")%></td>
 			<td id="<%="linha_"&linha&"_col_3"%>"><%if isNull(objRS("MOD_CODNOME")) then response.write "&nbsp;" else response.write objRS("MOD_CODNOME")%></td>
 			<td id="<%="linha_"&linha&"_col_4"%>"><%if isNull(objRS("MOD_DESCRICAO")) then response.write "&nbsp;" else response.write objRS("MOD_DESCRICAO")%></td>
-<!--			<td id="<%'="linha_"&linha&"_col_5"%>"><%'if isNull(objRS("EQ_LOCALIZACAO")) then response.write "&nbsp;" else response.write objRS("EQ_LOCALIZACAO")%></td>-->
+<!--			<td id="<%'="linha_"&linha&"_col_5"%>"><%'if isNull(objRS("AMB_NOME")) then response.write "&nbsp;" else response.write objRS("AMB_NOME")%></td>-->
 			<td id="<%="linha_"&linha&"_col_5"%>"><%if isNull(objRS("EQ_NUMEROSERIE")) then response.write "&nbsp;" else response.write objRS("EQ_NUMEROSERIE")%></td>
 			<td id="<%="linha_"&linha&"_col_6"%>"><%if isNull(objRS("FAB_NOME")) then response.write "&nbsp;" else response.write objRS("FAB_NOME")%></td>
 			<td id="<%="linha_"&linha&"_col_7"%>" align="center">

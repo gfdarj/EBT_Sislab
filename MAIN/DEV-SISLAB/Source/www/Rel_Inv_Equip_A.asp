@@ -17,7 +17,7 @@ If Not EH_RAT Then
 End If
 
 sSQL = _
-	"SELECT	ISNULL(E.EQ_LOCALIZACAO, '') AS LOCALIZACAO, E.EQ_CODIGOBARRAS AS CODIGOBARRAS, " & _
+	"SELECT	ISNULL(amb.AMB_NOME, '') AS LOCALIZACAO, E.EQ_CODIGOBARRAS AS CODIGOBARRAS, " & _
 	"		ISNULL(E.EQ_NUMEROSERIE, '') AS NUMEROSERIE, " & _
 	"		CASE WHEN E.EQ_PROPRIEDADE = 'C' THEN 'EBT - CRT' " & _
 	"			WHEN E.EQ_PROPRIEDADE = 'M' THEN 'EBT - Comodato' " & _
@@ -34,6 +34,7 @@ sSQL = _
 	"		ISNULL(QTD_MOV.TOTAL_MOVIMENTOS, 0) AS QTDMOVIMENTOS " & _
 	"FROM " & _
 	"	SCE_Equipamentos AS E LEFT JOIN " & _
+    "   Ambientes amb ON e.AMB_ID = amb.AMB_ID LEFT JOIN " & _
 	"	SCE_Modelos AS MOD ON E.MOD_ID = MOD.MOD_ID LEFT JOIN " & _
 	"	SCE_Fabricantes AS F ON MOD.FAB_ID = F.fab_id LEFT JOIN " & _
 	"	vw_SCE_Movimentacao_Atual AS M ON M.EQ_ID = E.EQ_ID LEFT JOIN " & _
@@ -50,7 +51,7 @@ If Not VVVN(RQ("propriedade")) Then
 	sSQL = sSQL & " AND E.EQ_PROPRIEDADE = '" & RQ("propriedade") & "'"
 End If
 If Not VVVN(RQ("localizacao")) Then
-	sSQL = sSQL & " AND E.EQ_LOCALIZACAO LIKE '%" & RQ("localizacao") & "%'"
+	sSQL = sSQL & " AND amb.AMB_NOME LIKE '%" & RQ("localizacao") & "%'"
 End If
 If Not VVVN(RQ("numeroserie")) Then
 	sSQL = sSQL & " AND E.EQ_NUMEROSERIE = '" & RQ("numeroserie") & "'"

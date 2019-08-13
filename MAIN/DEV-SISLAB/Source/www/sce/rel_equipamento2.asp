@@ -34,9 +34,9 @@ If Env.UsuarioSCE() Then
 
     'Tem que alterar a view vw_SCE_Equipamentos_Fabricantes
     ssql =	"SELECT DISTINCT top 30 e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_PROPRIEDADE, e.MOD_CODNOME, e.MOD_DESCRICAO, e.EQ_INSTRUMENTAL, " & _
-		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.EQ_LOCALIZACAO, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
+		    "CASE WHEN e.STATUS = " & STATUS_EXPEDIDO_SUBST & " THEN 'Substituído' ELSE e.DESC_STATUS END AS DESC_STATUS, e.EQ_NUMEROSERIE, e.EQ_CONFORME, e.STATUS, e.AMB_NOME, e.FAB_NOME, e.EQ_OPER_DELTA, " & _
 		    "e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA, e.EQ_ARMA_UMIDADE, CAST(e1.EQ_OBS AS VARCHAR(8000)) AS EQ_OBS, CAST(e1.EQ_MANUT_PREVENTIVA AS VARCHAR(8000)) AS EQ_MANUT_PREVENTIVA, eqp.NM_PROPRIEDADE " & _
-		    "FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Equipamentos e1 ON e.EQ_ID = e1.EQ_ID  LEFT JOIN SCE_Equipamentos_Controle ec " & _
+		    "FROM vw_SCE_Equipamentos_Fabricantes e INNER JOIN SCE_Equipamentos e1 ON e.EQ_ID = e1.EQ_ID LEFT JOIN SCE_Equipamentos_Controle ec " & _
 		    "ON e.EQ_ID = ec.EQ_ID " & VbCrLf
 
     where = ""
@@ -148,7 +148,7 @@ If Env.UsuarioSCE() Then
 	<td colspan="2">
 		<table  cellpadding="0" cellspacing="0">
 			<tr>
-				<td>Localiza&ccedil;&atilde;o: <%=rec("EQ_LOCALIZACAO")%></td>
+				<td>Localiza&ccedil;&atilde;o: <%=rec("AMB_NOME")%></td>
 				<td width="40px">&nbsp;</td>
 				<td width="40px">&nbsp;</td>
 				<td>Propriedade:&nbsp;

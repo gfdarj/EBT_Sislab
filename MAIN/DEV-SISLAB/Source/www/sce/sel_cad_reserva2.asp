@@ -117,7 +117,7 @@ If Env.UsuarioSCE() Then
 
     if where <> "" then where = " where " & where & " "
 
-    ssql = ssql & where & "order by AG_NUMERO, RES_DATACADASTRO, AMB_NOME, EQ_CODIGOBARRAS;"
+    ssql = ssql & where & "order by AG_NUMERO, RES_DATACADASTRO, AMB_NOME_RESERVA, EQ_CODIGOBARRAS;"
 
     'response.write "<!--SQL:" & ssql & "-->"
     'response.end
@@ -194,14 +194,14 @@ While Not rec.eof
         agtemp = rec("AG_NUMERO")
 
         While (Not rec.Eof) And (agnumero = IIf(VVVN(rec("AG_NUMERO")), 0, rec("AG_NUMERO")))
-            If ambiente <> rec("AMB_NOME") Then
+            If ambiente <> rec("AMB_NOME_RESERVA") Then
                 If ambiente <> "" Then %>
                 </table>
             </td>
         </tr>
 	    <tr><td>&nbsp;</td></tr>
 <%              End If %>
-	    <tr><th><%=rec("AMB_NOME")%>&nbsp;</th></tr>
+	    <tr><th><%=rec("AMB_NOME_RESERVA")%>&nbsp;</th></tr>
 	    <tr><td>&nbsp;</td></tr>
 	    <tr>
 		    <td>
@@ -258,7 +258,7 @@ While Not rec.eof
 			        <td colspan="9">
                         <small>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				            Localiza&ccedil;&atilde;o:&nbsp;<%=rec("EQ_LOCALIZACAO")%>
+				            Localiza&ccedil;&atilde;o:&nbsp;<%=rec("AMB_NOME")%>
 				            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				            Status:&nbsp;<%=rec("DESC_STATUS")%>
 				            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -273,7 +273,7 @@ While Not rec.eof
 			    </tr>
 <%
             agnumero = rec("AG_NUMERO")
-            ambiente = rec("AMB_NOME")
+            ambiente = rec("AMB_NOME_RESERVA")
             agtemp = rec("AG_NUMERO")   'fiz isso porque dava erro !!!
 
             rec.MoveNext

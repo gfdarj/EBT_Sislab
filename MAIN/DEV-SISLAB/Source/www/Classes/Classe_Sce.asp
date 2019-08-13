@@ -113,10 +113,10 @@ Public Function ImprimeStatusItem(rec)
 	else
 	    status = rec("STATUS")
 	end if
-	if isNull(rec("EQ_LOCALIZACAO")) then
+	if isNull(rec("AMB_NOME")) then
 	    localiz = ""
 	else
-	    localiz = rec("EQ_LOCALIZACAO")
+	    localiz = rec("AMB_NOME")
 	end if
 
 	if status = STATUS_EM_USO then
@@ -162,11 +162,11 @@ Public Function PegaStatusItem(item, ehHTML)
 	Dim retorno : retorno = ""
 
 	if item <> "" then
-		s = "SELECT STATUS, EQ_LOCALIZACAO FROM SCE_Equipamentos WHERE EQ_ID = " & item
+		s = "SELECT STATUS, AMB_NOME FROM SCE_Equipamentos e LEFT JOIN Ambientes amb ON amb.AMB_ID = e.AMB_ID WHERE EQ_ID = " & item
 		Set rec = Env.oConn.execute(s)
 		if not (rec.eof and rec.bof) then
 			if isNull(rec("STATUS")) then status = -1 else status = rec("STATUS")
-			if isNull(rec("EQ_LOCALIZACAO")) then local = "" else local = rec("EQ_LOCALIZACAO")
+			if isNull(rec("AMB_NOME")) then local = "" else local = rec("AMB_NOME")
 		end if
 		rec.Close
 

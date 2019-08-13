@@ -6,6 +6,7 @@
 <!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
 <!--#include file="../includes/Geral_Lib.asp"-->
 <!--#include file="../includes/Sislab_Lib.asp"-->
+<!--#include file="../includes/controlesHTML.asp" -->
 <!------- LIB ------->
 <!--#include file="../Classes/Classe_Combo.asp"-->
 <%
@@ -93,7 +94,7 @@ else
 				set recFab = Nothing
 			end if
 
-			localizacao = rec("EQ_LOCALIZACAO")
+			localizacao = rec("AMB_ID")
 			if isNull(localizacao) then localizacao = ""
 			obs = rec("EQ_OBS")
 			if isNull(obs) then obs = ""
@@ -285,9 +286,17 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		<tr >
 			<td>
 				Localização<br>
-				<input type="text" name="localizacao"  size="50" maxlength="255" value="<%=localizacao%>">
-				</td>
-				<td colspan="2">
+<%
+                    Call comboBDSQL("localizacao", _
+                        Env.oConn, _
+                        "SELECT a.AMB_ID as valor, a.AMB_NOME + ' (' + crt.NM_CRT + ' / ' + CASE WHEN AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SISLAB") & " THEN 'SISLAB' ELSE 'SCE' END + ')' as descricao FROM Ambientes a INNER JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT " & _
+                        IIf(p_PerfilSCE, "WHERE a.AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SCE"), "") & " " & _
+                        "ORDER BY a.AMB_NOME", _
+                        localizacao, "N")
+ %>
+			</td>
+
+			<td colspan="2">
 				Conforme<br>
 <%				If bln_AcessoRAT Then %>
 				<%if conforme or eq_id = "" then response.write "Sim" Else  response.write "Não" end if%>
@@ -924,10 +933,10 @@ function CadastraItem() {
 		alert('Nenhum modelo selecionado');
 		frm.mod_id.focus();
 	}
-//	else if(frm.localizacao.value == '') {
-//		alert('Localização do equipamento não foi informada');
-//		frm.localizacao.focus();
-//	}
+	else if(frm.localizacao.value == '') {
+		alert('Localização do equipamento não foi informada');
+		frm.localizacao.focus();
+	}
 	else if(frm.codbarras.value == '') {
 		alert('Código de barras deve ser preenchido');
 		frm.codbarras.focus();

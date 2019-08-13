@@ -5,7 +5,7 @@
 <!--#include file="includes/funcoes.asp" -->
 <!--#include file="includes/bib_mensagem.asp" -->
 <%
-Dim username, rsRET
+Dim username, rsRET, id_crt
 
 if request("excluir") = "1" then
 	username = ucase(request("user"))
@@ -29,6 +29,7 @@ else
 	celular = request("celular")
 	Ramal = request("Ramal")
 	orgao = request("orgao")
+    id_crt = Request("id_crt")
 
 	if (request("chkRAT") = "on") THEN chkRAT = 1 ELSE chkRAT = 0
 	if (request("chkRT") = "on") THEN chkRT = 1 ELSE chkRT = 0
@@ -38,7 +39,7 @@ else
 	perfilSce = IIf(Request("perfilSce") = "", "NULL", Request("perfilSce"))
 
 	ssql = "exec sp_CadUserCRT " & ehNovoUsuario & ",'" & username & "'," & matricula & ",'" & Nome & "','" & celular & "'," & _
-		   Ramal & "," & orgao & "," & chkRAT & "," & chkRT & "," & chkGQ & "," & chkEXIBIR & "," & perfilSce
+		   Ramal & "," & orgao & "," & chkRAT & "," & chkRT & "," & chkGQ & "," & chkEXIBIR & "," & perfilSce & "," & id_crt
 
 	'response.write ssql
 	'response.end

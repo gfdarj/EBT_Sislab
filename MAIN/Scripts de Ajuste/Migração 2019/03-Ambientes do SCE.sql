@@ -33,6 +33,20 @@ INSERT INTO AMBIENTES
 	FROM SCE_EQUIPAMENTOS
 GO
 
+
+UPDATE SCE_Equipamentos
+SET AMB_ID = amb.AMB_ID
+FROM 
+	SCE_Equipamentos e 
+	INNER JOIN Ambientes amb ON e.EQ_LOCALIZACAO = amb.AMB_NOME
+WHERE
+	amb.AMB_MODULO = 2 AND amb.ID_CRT = 1
+
+
+UPDATE UserCRT SET ID_CRT = 1
+GO
+
+
 ROLLBACK TRANSACTION
 COMMIT TRANSACTION
 
@@ -42,6 +56,19 @@ COMMIT TRANSACTION
 
 select * from ambientes
 
+select --amb.AMB_NOME, 
+		e.*
+	from 
+		SCE_Equipamentos e inner join Ambientes amb ON e.EQ_LOCALIZACAO = amb.AMB_NOME
+	where
+		amb.AMB_MODULO = 2 and amb.ID_CRT = 1
+--	order by EQ_LOCALIZACAO
+except 
+	select *
+	from 
+		SCE_Equipamentos e 
+	where EQ_LOCALIZACAO is not null
+--order by EQ_LOCALIZACAO
 
 select distinct eq_localizacao from sce_equipamentos
 

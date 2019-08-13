@@ -79,7 +79,12 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 		    alert('É necessário informar o órgão.');
 		    frm.orgao.focus();
 		    return false
-	    }
+        }
+        if (frm.id_crt.value == "") {
+            alert('É necessário informar o Centro de Referência.');
+            frm.id_crt.focus();
+            return false
+        }
 	    frm.username.disabled = false
 	    frm.action = "CadUserCRTA.asp";
 	    frm.method = "POST";
@@ -91,13 +96,14 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	    frm.ehNovoUsuario.value = 1;
 	    frm.username.disabled = false;
 	    frm.username.style.backgroundColor = "#FFFFFF";	
-	    frm.user.value  = ''
-	    frm.username.value = ''
-	    frm.matricula.value = ''
-	    frm.Nome.value = ''
-	    frm.celular.value = ''
-	    frm.Ramal.value = ''
-	    frm.orgao.value = ''		
+        frm.user.value = '';
+        frm.username.value = '';
+        frm.matricula.value = '';
+        frm.Nome.value = '';
+        frm.celular.value = '';
+        frm.Ramal.value = '';
+        frm.orgao.value = '';
+        frm.id_crt.value = '';
 	    frm.chkRAT.checked = false;
 	    frm.chkRT.checked = false;
 	    frm.chkGQ.checked = false;
@@ -128,13 +134,14 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
         <input type="hidden" name="ehNovoUsuario" value="0">
         <input type="hidden" name="excluir" value="0">
 
-        <table >
-        <tr><td></td><td></td></tr>
-        <tr> 
-	        <td colspan="2"><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</td>
+        <table class="largura-total">
+        <tr><td style="width: 170px;"></td><td></td></tr>
+        <tr>
+            <th colspan="2">
+                <div class="linha-fundo" style="width: 100%"><strong>Lista de Usuários Cadastrados</strong></div>
+            </th>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><th align="left" colspan="2">Usuários do CRT</th></tr>
         <tr>
 	        <td>Usuários CRT:&nbsp;</td>
 	        <td>
@@ -143,16 +150,29 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	        </td>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
-        <tr><th align="left" colspan="2">Dados do Usuário</th></tr>
+        <tr>
+            <th align="left" colspan="2">
+                <div class="linha-fundo" style="width: 100%;"><strong>Dados do Usuário</strong></div>
+            </th>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr> 
+	        <td colspan="2"><small><span class="texto-vermelho-bold">*</span>&nbsp; Indica um Campo Obrigatório</small></td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
 	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Username:</td>
 	        <td>
 		        <input type="text" name="username" size="50" maxlength="80">
-		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        <span class="texto-vermelho-bold">*</span>&nbsp;Matrícula:&nbsp;
-		        <input type="text" name="matricula"  size="15">
 	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
+            <td><span class="texto-vermelho-bold">*</span>&nbsp;Matrícula:&nbsp;</td>
+            <td>
+		        <input type="text" name="matricula"  size="15">
+            </td>
+        </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
 	        <td><span class="texto-vermelho-bold">*</span>&nbsp;Nome:</td>
@@ -176,6 +196,28 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	        <td>
 		        <%call comboOrgao("orgao",Env.oConn,"N")%>
 	        </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr>
+	        <td>
+                <span class="texto-vermelho-bold">*</span>&nbsp;Centro de Referência:&nbsp;
+            </td>
+            <td>
+		        <select name="id_crt">
+		            <option value="">--</option>
+<%  '-- pego os ambientes que não são reservados por AS, nestes, a reserva é feita pelo
+    '-- cadastro de agendamento / área do RAT
+    s = "SELECT crt.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT FROM CentroReferencia crt ORDER BY crt.NM_CRT;"
+    Call Env.RecordSet(True, objRS, s)
+    If Not objRS.EOF Then
+	    objRS.MoveFirst %>
+	 <% do while not objRS.EOF %>
+    	    	    <option value="<%=objRS("ID_CRT")%>" <%=IIf(CStr(valor) = Cstr(objRS("ID_CRT")), " selected", "")%>><%=objRS("NM_CRT")%> - [<%=objRS("SIGLA_CRT")%>]</option>
+	<%      objRS.movenext %>
+	<%  loop %>
+<%  end if %>
+        		</select>
+            </td>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
@@ -241,6 +283,9 @@ if objSiteRS.eof = false then
 	<%if Not IsNull(objSiteRS("ID_PERFIL_SCE")) then%>
 	    frm.perfilSce.value = <%=objSiteRS("ID_PERFIL_SCE")%>;
 	<%end if%>
+	<%if Not IsNull(objSiteRS("ID_CRT")) then %>
+        frm.id_crt.value = <%=objSiteRS("ID_CRT") %>;
+	<% end if%>
 <%else%>
 	frm.btnSalvar.disabled = true;
 	frm.btnCancelar.disabled = true;	

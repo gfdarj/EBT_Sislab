@@ -26,6 +26,7 @@ If Env.UsuarioSCE() Then
 	    ssql = ssql & "d.MOV_SOLICITANTE AS [MOV_SOLICITANTE_M], d.MOV_PASSAGEM, h.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
 	    ssql = ssql & "d.CDE AS [CDE_M], doc.DOC_ID AS [DOC_ID_M], no_descricao as [NO_DESCRICAO_M], d.FL_CALIBRACAO AS [FL_CALIBRACAO_M] " & VbCrLf
 	    ssql = ssql & "FROM SCE_Equipamentos a " & VbCrLf
+        ssql = ssql & "  LEFT JOIN Ambientes amb ON a.AMB_ID = amb.AMB_ID " & VbCrLf
 	    ssql = ssql & "  INNER JOIN SCE_Modelos b ON a.MOD_ID = b.MOD_ID " & VbCrLf
 	    ssql = ssql & "  INNER JOIN SCE_Fabricantes c ON b.FAB_ID = c.fab_id " & VbCrLf
 	    ssql = ssql & "  INNER JOIN SCE_Movimentacao d ON a.EQ_ID = d.EQ_ID " & VbCrLf
@@ -57,7 +58,7 @@ If Env.UsuarioSCE() Then
 		    ssql = ssql &" and a.eq_codigobarras like '%"& request("codbarras") &"%'"
 	    end if
 	    if request("localizacao") <> "" then
-		    ssql = ssql &" and a.eq_localizacao like '%"& request("localizacao") &"%'"
+		    ssql = ssql &" and amb.AMB_NOME like '%" & request("localizacao") &"%'"
 	    end if
 	    if request("fabricante") <> "" then
 		    ssql = ssql &" and  b.fab_id = "& request("fabricante")
