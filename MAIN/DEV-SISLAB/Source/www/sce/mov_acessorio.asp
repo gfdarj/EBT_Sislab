@@ -64,7 +64,7 @@ end if
       		<table class="largura-total">
 	  			<tr>
 	    			<td  colspan="2">
-						Código Barras:&nbsp;<input type="text"  name="codbarras" style="width:120px" maxlength="50">
+						Código Barras:&nbsp;<input type="text"  name="codbarras" style="width:160px" maxlength="50">
 						<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" value=" Procurar " onclick="buscaCB()" >-->
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

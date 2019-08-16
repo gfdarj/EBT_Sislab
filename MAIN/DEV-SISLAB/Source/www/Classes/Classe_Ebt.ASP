@@ -37,6 +37,9 @@ Class TEbt
     Private chr_DataNascimento
     Private chr_Empresa
 	Private chr_RetornoWS
+    Private int_ID_CRT
+    Private chr_Nome_CRT
+    Private chr_SIGLA_CRT
 
     Private oSql
     Private ws
@@ -163,8 +166,19 @@ Class TEbt
     Public Property Get RetornoWebService()
 	    RetornoWebService = chr_RetornoWS
     End Property
-	
-	
+
+    Public Property Get IdCRT()
+	    IdCRT = int_ID_CRT
+    End Property
+
+    Public Property Get NomeCRT()
+        NomeCRT = chr_Nome_CRT
+    End Property
+
+    Public Property Get SiglaCRT()
+        SiglaCRT = chr_SIGLA_CRT
+    End Property
+
     '-INIT------------------------------------------------------------------------'
 
     Private Sub Class_Initialize()
@@ -190,6 +204,9 @@ Class TEbt
         chr_CodigoLotacao = ""      :         chr_Departamento = "" :        chr_Diretoria = ""         :         chr_Sexo = ""
         chr_CategoriaEmpregado = "" :         chr_DataAdmissao = "" :        chr_AreaLotacao = ""       :         chr_CategoriaCargo = ""
         chr_Lotacao = ""            :         chr_Matricula = ""    :        chr_DataNascimento = ""    :         chr_Empresa = ""
+        int_ID_CRT = 0
+        chr_Nome_CRT = ""
+        chr_SIGLA_CRT = ""
     End Sub
 
 
@@ -244,8 +261,11 @@ Class TEbt
 
 	    '-- Pega os dados do usuario se for do CRT
 	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
+                  "     u.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT, " & _
                   "     o.ORGA_SIGLA, o.ORGA_DESCRICAO, o.ORGA_USERIDCHEFE " & _
-                  "FROM UserCRT u LEFT JOIN Orgao o ON u.ORGA_ID = o.ORGA_ID " & _
+                  "FROM UserCRT u " & _
+                  "     LEFT JOIN Orgao o ON u.ORGA_ID = o.ORGA_ID " & _
+                  "     LEFT JOIN CentroReferencia crt ON u.ID_CRT = crt.ID_CRT " & _
                   "WHERE LOWER(USERID) = '" & chr_Login & "'"
 	    Set objRS = oSQL.Executar(chr_SQL)
 
@@ -265,6 +285,10 @@ Class TEbt
 		    bln_ehGQ = CBool(objRS("GQ"))
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
+
+            int_ID_CRT = IIf(IsNull(objRS("ID_CRT")), 0, objRS("ID_CRT"))
+            chr_Nome_CRT = IIf(IsNull(objRS("NM_CRT")), "", objRS("NM_CRT"))
+            chr_SIGLA_CRT = IIf(IsNull(objRS("SIGLA_CRT")), "", objRS("SIGLA_CRT"))
 
             'Se for usuario Terceirizado, pega, se existir, da tabela
             If UCase(Left(chr_Login, 2)) = "T3" Then

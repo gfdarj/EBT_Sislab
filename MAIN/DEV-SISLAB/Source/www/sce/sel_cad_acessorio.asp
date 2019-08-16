@@ -24,6 +24,7 @@ If Env.UsuarioSCE() Then
 	<!--#include file="includes/montacnpj.inc"-->
 	<!--#include file="includes/estado.asp"-->
 </script>
+
 <div class="margem-10">
     <form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="vdform('formulario','notafiscal','Nota Fiscal','Number', 'documento','Documento','Number'); return document.ValorPassou;">
         <input type="hidden" name="busca" value="1">
@@ -46,7 +47,7 @@ If Env.UsuarioSCE() Then
 		    <td>
 			    Código Barras:&nbsp;<input type="text"  name="codbarras" size="25">
 			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    Localização:&nbsp;<input type="text"  name="localizacao" size="25">
+			    Localização/Ambiente:&nbsp;<input type="text"  name="localizacao" size="25">
 		    </td>
 	    </tr>
 	    <tr><td>&nbsp;</td></tr>

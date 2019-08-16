@@ -7,7 +7,7 @@ Public Sub criaExcel(Titulo, objRS, ordenacao)
 		if not(isNull(ordenacao) or ordenacao = "") then _
 			objRS.SORT = trocaAspasColchetes(ordenacao)
 		Call montaListagemExcel(objRS, Titulo, Null, Null, str)
-		str = "<HTML><HEAD><META HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel""><title>" & Titulo & "</title></HEAD><BODY>" & str & "</BODY></HTML>"
+		str = "<html><head><meta HTTP-EQUIV=""Content-Type"" CONTENT=""application/vnd.ms-excel""><meta charset='" & Application("SISLAB_CHARSET") & "'><title>" & Titulo & "</title></head><body>" & str & "</body></html>"
 		Response.ContentType = "application/excel"
 		Response.Clear
 		'Se tirarmos o attachment da linha baixo, ele não vai pedir 2 vezes pra abrir, mas vai abrir na própria janela...

@@ -289,9 +289,9 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 <%
                     Call comboBDSQL("localizacao", _
                         Env.oConn, _
-                        "SELECT a.AMB_ID as valor, a.AMB_NOME + ' (' + crt.NM_CRT + ' / ' + CASE WHEN AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SISLAB") & " THEN 'SISLAB' ELSE 'SCE' END + ')' as descricao FROM Ambientes a INNER JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT " & _
-                        IIf(p_PerfilSCE, "WHERE a.AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SCE"), "") & " " & _
-                        "ORDER BY a.AMB_NOME", _
+                        "SELECT a.AMB_ID as valor, crt.SIGLA_CRT + '-' + a.AMB_NOME as descricao FROM Ambientes a INNER JOIN CentroReferencia crt ON a.ID_CRT = crt.ID_CRT " & _
+                        "WHERE a.AMB_MODULO = " & Application("SISLAB_ID_APLICACAO_SCE") & " " & _
+                        "ORDER BY crt.SIGLA_CRT, a.AMB_NOME", _
                         localizacao, "N")
  %>
 			</td>

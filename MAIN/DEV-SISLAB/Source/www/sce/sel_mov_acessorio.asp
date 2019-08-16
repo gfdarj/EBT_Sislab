@@ -99,7 +99,7 @@ If Env.UsuarioSCE() Then
 		document.all.id_cde.style.display = exibir;
 		document.all.cde.value = '';
 
-		if (document.all.notipo.value == '<%=MOV_ENTRADA%>') {
+        if (document.all.notipo.value == '<%=MOV_ENTRADA%>') {
 		    LimpaEquipamentosSubstituidos(document.all.eq_id.value);
 		    document.all.id_substituicaoeq.style.display = exibir;
 		}
@@ -271,7 +271,7 @@ If Env.UsuarioSCE() Then
 		    frm.minutoMov.focus();
 	    }
 	    else if(!ValidaEquipamentosSubstituidos(frm.eq_id.value))
-	    {
+        {
 		    alert("Existem códigos inválidos para equipamentos de substituição");
 	    }
 	    else {<%
@@ -516,7 +516,7 @@ end if%>
             <tr><td>&nbsp;</td></tr>
             <tr>
 	            <td>
-		            Localização: (<i>* campo obrigatório</i>)<BR>
+		            Localização/Ambiente: (<i>* campo obrigatório</i>)<BR>
 <%
                     call comboBDSQL("localizacao", Env.oConn, "SELECT NULL as valor, '*** Selecione o Tipo de Movimentação ***' as descricao ", "N", "N") 
 %>
@@ -535,6 +535,7 @@ end if%>
                                 amb_modulo = "<%=Application("SISLAB_ID_APLICACAO_SISLAB")%>";
 
                             var url = '../ajax/sislab_combo_ambiente.asp?amb_id=' + amb_id + '&id_crt=' + id_crt + '&amb_modulo=' + amb_modulo;
+
                             var maxAjaxObj = new max.Ajax(url, {
                                 update: '', onComplete:
                                     function (texto, xml) {

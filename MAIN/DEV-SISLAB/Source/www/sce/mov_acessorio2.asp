@@ -29,7 +29,7 @@ If Env.UsuarioSCE() Then
 
 	    ssql =	"SELECT distinct a.eq_id, e.fab_id, a.status,a.eq_codigobarras, " & _
 			    "a.eq_numeroserie, a.mod_id, e.mod_codnome, e.mod_descricao, " & _
-				"ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, amb.AMB_NOME, " & _
+				"ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, amb.AMB_NOME, crt.SIGLA_CRT, " & _
 				"   CASE WHEN A.STATUS = 2 THEN 'Em Uso' " & _
 				"   WHEN A.STATUS = 1 THEN 'Estoque' " & _
 				"   WHEN A.STATUS = 3 THEN 'Expedido' " & _
@@ -38,7 +38,8 @@ If Env.UsuarioSCE() Then
                 "   sce_modelos e INNER JOIN SCE_Equipamentos a ON a.mod_id = e.mod_id " & _
 				"   LEFT JOIN vw_SCE_Movimentacao_Atual AS ma ON ma.EQ_ID = a.EQ_ID " & VbCrLf & _
 			    "   LEFT JOIN SCE_Movimentacao b ON a.EQ_ID = b.EQ_ID " & VbCrLf & _
-                "   LEFT JOIN Ambientes amb ON a.AMB_ID = amb.AMB_ID " & VbCrLf
+                "   LEFT JOIN Ambientes amb ON a.AMB_ID = amb.AMB_ID " & VbCrLf & _
+                "   LEFT JOIN CentroReferencia crt ON amb.ID_CRT = crt.ID_CRT " & VbCrLf
 
 	    if request("notafiscal") <> "" or request("enf_id") <> "" then
 		    ssql = ssql &" LEFT JOIN SCE_Nota_Fiscal nf ON b.nf_id = nf.nf_id "

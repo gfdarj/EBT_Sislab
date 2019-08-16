@@ -133,6 +133,7 @@ if ag_numero = "" then ag_numero = null
 if reserva = "" then reserva = null
 if mov_id = "" then mov_id = null
 If CStr(fl_calibracao) <> "1" Then fl_calibracao = Null
+if localizacao = "" then localizacao = null
 
 
 'response.write "mov_id: " & mov_id & "<BR><BR>"
@@ -146,6 +147,7 @@ If CStr(fl_calibracao) <> "1" Then fl_calibracao = Null
 'response.write "resreva: " & reserva & "<BR><BR>"
 'response.write "nf: " & nf_id & "<BR><BR>"
 'response.write "doc: " & doc_id & "<BR><BR>"
+'response.write "localizacao: " & localizacao & "<BR><BR>"
 'response.end
 
 Tela.SetNomeTela = "SCE > Movimentação > Item" : Tela.SetCaminhoRelativo = "../"

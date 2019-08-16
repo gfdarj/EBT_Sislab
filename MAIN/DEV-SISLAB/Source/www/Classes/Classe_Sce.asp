@@ -116,7 +116,7 @@ Public Function ImprimeStatusItem(rec)
 	if isNull(rec("AMB_NOME")) then
 	    localiz = ""
 	else
-	    localiz = rec("AMB_NOME")
+	    localiz = rec("SIGLA_CRT") & "-" & rec("AMB_NOME")
 	end if
 
 	if status = STATUS_EM_USO then

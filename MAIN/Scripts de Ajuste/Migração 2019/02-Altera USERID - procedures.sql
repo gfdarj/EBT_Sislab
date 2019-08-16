@@ -6777,7 +6777,6 @@ END
 GO
 
 
-
 /****** Object:  View [dbo].[vw_SCE_Equipamentos]    Script Date: 07/19/2018 18:45:13 ******/
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Equipamentos]') AND OBJECTPROPERTY(id, N'IsView') = 1)
 	DROP VIEW [dbo].[vw_SCE_Equipamentos]
@@ -6797,7 +6796,7 @@ AS
 		Alterada em: 05/04/2012 - retirado as referencias de consumiveis
 	***/
 	SELECT
-		e.EQ_ID as ID, NULL as COD_SGP, e.AMB_ID, amb.AMB_NOME,
+		e.EQ_ID as ID, NULL as COD_SGP, e.AMB_ID, amb.AMB_NOME, crt.SIGLA_CRT,
 		cast(e.EQ_OBS as varchar(8000)) as EQ_OBS, 
 		e.MOD_ID, null AS EQ_SGP, e.EQ_CODIGOBARRAS, e.EQ_CODIGOBARRASANTERIOR, e.EQ_NUMEROSERIE, 
 		e.STATUS, e.EQ_PROPRIEDADE, e.EQ_OPER_DELTA,
@@ -6810,8 +6809,11 @@ AS
 		e.EQ_DT_ULT_INVENTARIO, 
 		EQ_FREQ_CALIBRACAO
 	FROM
-		SCE_Equipamentos e LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+		SCE_Equipamentos e 
+		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+		LEFT JOIN CentroReferencia crt ON Amb.ID_CRT = crt.ID_CRT
 GO
+
 
 /****** Object:  View [dbo].[vw_SCE_Equipamentos_Fabricantes]    Script Date: 07/19/2018 18:45:13 ******/
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Equipamentos_Fabricantes]') AND OBJECTPROPERTY(id, N'IsView') = 1)
@@ -6831,7 +6833,8 @@ AS
 		Atualizado em: 10/10/2006
 	***/
 	SELECT -- DISTINCT 
-		e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_CODIGOBARRASANTERIOR, e.AMB_ID, amb.AMB_NOME, e.EQ_INSTRUMENTAL, 
+		e.EQ_ID, e.EQ_CODIGOBARRAS, e.EQ_CODIGOBARRASANTERIOR, e.AMB_ID, amb.AMB_NOME, crt.SIGLA_CRT,
+		e.EQ_INSTRUMENTAL, 
 		e.EQ_CONFORME,m.MOD_CODNOME, m.MOD_DESCRICAO, f.FAB_ID, f.FAB_NOME, e.STATUS, e.EQ_NUMEROSERIE,
 		CASE
 			WHEN STATUS = 2 THEN 'Em Uso'
@@ -6846,6 +6849,7 @@ AS
 		INNER join sce_modelos m on e.mod_id = m.mod_id
 		INNER join sce_fabricantes f on f.fab_id = m.fab_id
 		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+		LEFT JOIN CentroReferencia crt ON Amb.ID_CRT = crt.ID_CRT
 GO
 
 
@@ -6864,8 +6868,9 @@ AS
 		CONVERT(DATETIME, A.AG_DATAINICIO, 103) as AG_DATAINICIO,
 		CONVERT(DATETIME, A.AG_DATATERMINO, 103) AS AG_DATATERMINO,
 		CONVERT(DATETIME, R.RES_DATACADASTRO, 103) AS RES_DATACADASTRO,
-		R.RES_RESPONSAVEL, Amb.AMB_ID AS [AMB_ID_RESERVA], Amb.AMB_NOME AS [AMB_NOME_RESERVA], 
-		E.EQ_ID, E.EQ_CODIGOBARRAS, E.EQ_NUMEROSERIE, E.AMB_ID, amb1.AMB_NOME,
+		R.RES_RESPONSAVEL, 
+		Amb.AMB_ID AS [AMB_ID_RESERVA], Amb.AMB_NOME AS [AMB_NOME_RESERVA], crt.SIGLA_CRT AS [SIGLA_CRT_RESERVA],
+		E.EQ_ID, E.EQ_CODIGOBARRAS, E.EQ_NUMEROSERIE, E.AMB_ID, amb1.AMB_NOME, crt1.SIGLA_CRT,
 		E.STATUS,
 		CASE
 			WHEN STATUS = 0 THEN 'Cadastrado'
@@ -6887,7 +6892,9 @@ AS
 		INNER JOIN SCE_Modelos M ON E.MOD_ID = M.MOD_ID
 		INNER JOIN SCE_Fabricantes F ON M.FAB_ID = F.fab_id
 		LEFT JOIN Ambientes Amb ON Amb.AMB_ID = RE.AMB_ID
+		INNER JOIN CentroReferencia crt ON Amb.ID_CRT = crt.ID_CRT
 		LEFT JOIN Ambientes Amb1 ON Amb1.AMB_ID = E.AMB_ID
+		LEFT JOIN CentroReferencia crt1 ON Amb1.ID_CRT = crt1.ID_CRT
 GO
 
 
@@ -6927,6 +6934,7 @@ AS
 		INNER JOIN SCE_Modelos m ON e.MOD_ID = m.MOD_ID
 		INNER JOIN SCE_Fabricantes f ON m.FAB_ID = f.fab_id
 		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
+		LEFT JOIN CentroReferencia crt ON Amb.ID_CRT = crt.ID_CRT
 GO
 
 

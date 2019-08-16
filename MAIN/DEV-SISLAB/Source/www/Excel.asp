@@ -1,5 +1,8 @@
 ﻿<%
 Response.Clear
+Response.CharSet = Application("SISLAB_CHARSET")
+
+Server.ScriptTimeout = 10000
 %>
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/global.asp" -->
@@ -28,4 +31,3 @@ Set RS = Env.oConn.Execute(chr_SQL)
 
 Call CriaExcel(Titulo, RS, ordenacao)
 %>
-

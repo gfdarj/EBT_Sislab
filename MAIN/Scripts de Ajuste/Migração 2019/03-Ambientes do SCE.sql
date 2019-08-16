@@ -2,11 +2,11 @@
 
 BEGIN TRANSACTION
 
-INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (1, 'CRT FUNDÃO', 'FUN')
+INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (1, 'CRT FUNDÃO', 'CRTFUN')
 GO
-INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (2, 'CRT MORUMBI', 'MRB')
+INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (2, 'CRT MORUMBI', 'CRTMBI')
 GO
-INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (3, 'CRT CAMPINAS', 'CPS')
+INSERT INTO CentroReferencia (ID_CRT, NM_CRT, SIGLA_CRT) VALUES (3, 'CRT CAMPINAS', 'CRTCPS')
 GO
 
 
@@ -31,6 +31,7 @@ GO
 INSERT INTO AMBIENTES
 	SELECT DISTINCT EQ_LOCALIZACAO, 0 AS 'AMB_USADOPORAG', 2 AS AMB_MODULO, 1 AS 'ID_CRT'
 	FROM SCE_EQUIPAMENTOS
+	WHERE EQ_LOCALIZACAO IS NOT NULL
 GO
 
 
@@ -47,12 +48,36 @@ UPDATE UserCRT SET ID_CRT = 1
 GO
 
 
+UPDATE Ambientes
+	SET AMB_NOME = RIGHT(AMB_NOME, LEN(AMB_NOME)-3)
+	WHERE AMB_MODULO = 2 AND LEFT(AMB_NOME,3) = 'CRT'
+GO
+
+
 ROLLBACK TRANSACTION
 COMMIT TRANSACTION
 
 
 
 /*
+
+* Encontrei esses erros
+		update SCE_Fabricantes
+			set fab_nome = 'FABRICANTE DE TESTE'
+			where fab_id = 855	
+		GO
+
+		update SCE_Fabricantes
+		set fab_nome = 'CARTHOM'
+		where fab_id = 972
+		GO
+
+		update SCE_Fabricantes
+		set fab_nome = 'CARTHOMÁS'
+		where fab_id = 620
+		GO
+
+
 
 select * from ambientes
 

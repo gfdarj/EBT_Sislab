@@ -37,10 +37,11 @@ If chr_UsuarioSCE Then
     Dim sqlSaidaParaManutencao, sqlSaidaCalibracao, sqlControles2, sqlNotaFiscalVencida
 
     sqlSaidaCalibracao = _
-			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, amb.AMB_NOME AS EQ_LOCALIZACAO_M, M.CDE AS CDE_M, " & _
+			"SELECT E.EQ_ID, E.EQ_CODIGOBARRAS AS EQ_CODIGOBARRAS_M, crt.SIGLA_CRT + '-' + amb.AMB_NOME AS EQ_LOCALIZACAO_M, M.CDE AS CDE_M, " & _
 			"		CONVERT(VARCHAR, (m.MOV_DATA + ISNULL(e.EQ_FREQ_CALIBRACAO, 0)), 103) AS DT_PROX_CALIBRACAO_M " & _
 			"FROM SCE_Equipamentos e " & _
             "   LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID " & _
+            "   INNER JOIN CentroReferencia crt ON amb.ID_CRT = crt.ID_CRT " & _
             "   INNER JOIN SCE_Movimentacao m ON e.EQ_ID = m.EQ_ID  INNER JOIN ( " & _
 			"	SELECT m1.EQ_ID, MAX(m1.MOV_ID) AS MOV_ID FROM SCE_Movimentacao m1 " & _
 			"	INNER JOIN ( " & _
@@ -60,8 +61,10 @@ If chr_UsuarioSCE Then
 			"WHERE EAnt.EQ_CODIGOBARRASANTERIOR IS NULL AND M.CDE IS NOT NULL AND LTRIM(RTRIM(M.CDE)) <> '' AND LTRIM(RTRIM(M.CDE)) <> ' ' AND (M.TIPO = " & MOV_EXPEDICAO & ") " & _
 			"      AND GETDATE() > m.MOV_DATA + 90"
 
-    sqlControles2 = "SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], AMB_NOME AS EQ_LOCALIZACAO_M " & _
-		            "FROM vw_SCE_Equipamentos_Fabricantes " & _
+    sqlControles2 = "SELECT EQ_ID, EQ_CODIGOBARRAS AS [Código Barras_M], MOD_CODNOME AS [Modelo_M], CASE WHEN STATUS = 0 THEN 'Cadastrado' ELSE DESC_STATUS END AS [Status_M], STATUS AS [Cod. Status], crt.SIGLA_CRT + '-' + e.AMB_NOME AS EQ_LOCALIZACAO_M " & _
+		            "FROM vw_SCE_Equipamentos_Fabricantes e " & _
+                    "   LEFT JOIN Ambientes amb ON amb.AMB_ID = e.AMB_ID " & _
+                    "   INNER JOIN CentroReferencia crt ON amb.ID_CRT = crt.ID_CRT " & _
 		            "WHERE STATUS <> " & STATUS_EXPEDIDO & _
 		            " AND STATUS <> " & STATUS_EXPEDIDO_SUBST & _
 		            " AND EQ_CONFORME = 0 " & _
@@ -69,17 +72,17 @@ If chr_UsuarioSCE Then
 
 	sqlNotaFiscalVencida = ""
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "SELECT DISTINCT " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	e.EQ_ID, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	ag.AG_NUMERO AS [AG_NUMERO_M], " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	ag.AG_RESPONSAVEL AS [AG_RESPONSAVEL_M], " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	nf.nf_id, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	m.mov_id, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	nf.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	e.EQ_CODIGOBARRAS AS [EQ_CODIGOBARRAS_M], amb.AMB_NOME AS [EQ_LOCALIZACAO_M], md.MOD_CODNOME AS [MOD_CODNOME_M], " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CONVERT(varchar, nf.nf_dataemissao, 103) AS nf_dataemissao_M, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CONVERT(varchar, nf.nf_recebimento, 103) AS nf_recebimento_M, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CASE WHEN nf.NF_VALIDADE IS NULL THEN NULL ELSE CONVERT(varchar, nf.nf_dataemissao + CAST(nf.nf_validade AS INT), 103) END AS nf_datavencimento_M, " & VbCrLf
-	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	emp.enf_nome AS [ENF_NOME_M] " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    e.EQ_ID, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    ag.AG_NUMERO AS [AG_NUMERO_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    ag.AG_RESPONSAVEL AS [AG_RESPONSAVEL_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    nf.nf_id, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    m.mov_id, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    nf.nf_numeronota AS [NF_NUMERONOTA_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    e.EQ_CODIGOBARRAS AS [EQ_CODIGOBARRAS_M], crt.SIGLA_CRT + '-' + amb.AMB_NOME AS [EQ_LOCALIZACAO_M], md.MOD_CODNOME AS [MOD_CODNOME_M], " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    CONVERT(varchar, nf.nf_dataemissao, 103) AS nf_dataemissao_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    CONVERT(varchar, nf.nf_recebimento, 103) AS nf_recebimento_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    CASE WHEN nf.NF_VALIDADE IS NULL THEN NULL ELSE CONVERT(varchar, nf.nf_dataemissao + CAST(nf.nf_validade AS INT), 103) END AS nf_datavencimento_M, " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	    emp.enf_nome AS [ENF_NOME_M] " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "FROM " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	sce_nota_fiscal nf " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "INNER JOIN " & VbCrLf
@@ -96,6 +99,8 @@ If chr_UsuarioSCE Then
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	SCE_Modelos md ON e.MOD_ID = md.MOD_ID " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "LEFT JOIN " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	Ambientes amb ON e.AMB_ID = amb.AMB_ID " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "LEFT JOIN " & VbCrLf
+	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	CentroReferencia crt ON crt.ID_CRT = amb.ID_CRT " & VbCrLf
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "WHERE " & VbCrLf
 	'# Notas Vencidas
 	sqlNotaFiscalVencida = sqlNotaFiscalVencida & "	( ((nf.nf_dataemissao + CAST(nf.nf_validade AS INT)) <= GETDATE()) " & VbCrLf

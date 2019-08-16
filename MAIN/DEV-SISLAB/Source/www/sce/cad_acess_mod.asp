@@ -22,20 +22,20 @@ If Env.UsuarioSCE() Then
 
     Server.ScriptTimeout = 10000
 
-    dim status, doc_id, rec, nserie
+    Dim status, doc_id, rec, nserie
     Dim chr_Buf
 
-    if request("enf_id") <> "" or request("codbarras") <> "" or request("modelo") <> "" or _
-	    request("notafiscal") <> "" or request("numeroserie") <> "" or request("codbarras") <> "" or _
-	    request("fabricante") <> "" or request("documento") <> "" or request("desc_modelo") <> "" or _
-	    request("conforme") <> "" or request("instrumental") <> "" or request("status") <> "" or _
-	    request("cde_equip") <> "" or request("localizacao") <> "" or request("propriedade") <> "" or _
-	    request("idtipo") <> "" or request("plataforma") <> "" then
+'    if request("enf_id") <> "" or request("codbarras") <> "" or request("modelo") <> "" or _
+'	    request("notafiscal") <> "" or request("numeroserie") <> "" or request("codbarras") <> "" or _
+'	    request("fabricante") <> "" or request("documento") <> "" or request("desc_modelo") <> "" or _
+'	    request("conforme") <> "" or request("instrumental") <> "" or request("status") <> "" or _
+'	    request("cde_equip") <> "" or request("localizacao") <> "" or request("propriedade") <> "" or _
+'	    request("idtipo") <> "" or request("plataforma") <> "" then
 
-	    if request("busca") <> "" then
+	    If Request("busca") <> "" Then
 		    ssql =	"SELECT distinct a.status, a.eq_id, a.eq_codigobarras AS [EQ_CODIGOBARRAS_M], mod_descricao AS [MOD_DESCRICAO_M], " & _
 				    "   a.eq_numeroserie AS [EQ_NUMEROSERIE_M], a.mod_id, e.mod_codnome AS [MOD_CODNOME_M], " & _
-				    "   ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, amb.AMB_NOME, " & _
+				    "   ma.ASA AS AG_NUMERO, ma.MOV_SOLICITANTE, amb.AMB_NOME, crt.SIGLA_CRT, amb.AMB_NOME AS [AMB_NOME_M], crt.SIGLA_CRT AS [SIGLA_CRT_M], " & _
 				    "   CASE WHEN (SELECT count(*) FROM SCE_Acessorios where EQ_ID = a.EQ_ID) > 0 THEN 'Sim' ELSE 'Não' END AS [EQ_TEMACESSORIO_M], fab_nome AS [FAB_NOME_M], " & _
 				    "   CASE WHEN A.STATUS = 2 THEN 'Em Uso' " & _
 				    "   WHEN A.STATUS = 1 THEN 'Estoque' " & _
@@ -43,10 +43,11 @@ If Env.UsuarioSCE() Then
 				    "   WHEN A.STATUS = 0 THEN 'Cadastrado' END AS STATUS_M " & _
 				    "FROM " & VbCrLf & _
                     "	SCE_Equipamentos a " & _
-                    "	INNER JOIN sce_modelos e ON a.mod_id = e.mod_id " & _
-                    "	INNER JOIN SCE_Fabricantes f ON e.fab_id = f.fab_id " & _
+                    "	LEFT JOIN sce_modelos e ON a.mod_id = e.mod_id " & _
+                    "	LEFT JOIN SCE_Fabricantes f ON e.fab_id = f.fab_id " & _
                     "	LEFT JOIN vw_SCE_Movimentacao_Atual AS ma ON ma.EQ_ID = a.EQ_ID " & _
                     "	LEFT JOIN Ambientes amb ON amb.AMB_ID = a.AMB_ID " & _
+                    "	LEFT JOIN CentroReferencia crt ON amb.ID_CRT = crt.ID_CRT " & _
 				    "WHERE (1 = 1) "
 
 		    If request("documento") <> "" and isnumeric(request("documento")) Then
@@ -116,9 +117,9 @@ If Env.UsuarioSCE() Then
 		    end if
 		    ssql = ssql &" order by e.mod_codnome asc, a.EQ_CODIGOBARRAS ASC;"
 
-    '		response.write ssql & "<BR>" & request("fabricante")
+    		'response.write ssql & "<BR>" & request("fabricante")
 		    response.write "<!-- SQL:" & VbCrLf & ssql & VbCrLf & "-->" & VbCrLf & VbCrLf
-    '		response.end
+    		'response.end
 
 		    set rec = Env.oconn.execute(ssql)
 	    end if
@@ -199,10 +200,10 @@ If Env.UsuarioSCE() Then
 	    Response.Write chr_Buf
 	    Response.Flush
 
-	    call ImprimeRodape (RODAPE_OFF)
-    else
-	    response.redirect("sel_cad_acessorio.asp?msg=4")
-    end if
+	    Call ImprimeRodape(RODAPE_OFF)
+'    Else
+'	    response.redirect("sel_cad_acessorio.asp?msg=4")
+'    End If
 
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()
