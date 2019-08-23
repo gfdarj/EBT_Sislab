@@ -1,0 +1,28 @@
+/* faz o ajuste dos dados da tabela Modelos */
+
+BEGIN TRANSACTION
+
+
+UPDATE SCE_MODELOS
+	SET MOD_PARTNUMBER = pn.PN_PARTNUMBER
+	FROM SCE_MODELOS m 
+		INNER JOIN SCE_PartNumberModelo pn ON m.MOD_ID = pn.MOD_ID
+GO
+
+UPDATE SCE_MODELOS
+	SET AU_ID = aum.AU_ID
+	FROM SCE_MODELOS m 
+		INNER JOIN SCE_AREASUTIL_MODELO aum ON m.MOD_ID = aum.MOD_ID
+GO
+
+
+
+DROP TABLE dbo.SCE_PartNumberModelo
+GO
+DROP TABLE dbo.sce_areasutil_modelo
+GO
+
+
+--ROLLBACK TRANSACTION
+COMMIT TRANSACTION
+
