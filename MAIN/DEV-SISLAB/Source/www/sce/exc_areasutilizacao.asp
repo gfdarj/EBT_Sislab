@@ -2,10 +2,11 @@
 <%
 ssql = "select * from sce_areautilizacao where au_id = "& request("au_id")
 set rec = Env.oconn.execute(ssql)
-ssql = "delete from sce_areautilizacao where au_id = "& request("au_id")
+
+ssql = "UPDATE SCe_Modelos SET AU_ID = NULL WHERE au_id = " & request("au_id")
 Env.oconn.execute(ssql)
 
-ssql = "delete from sce_areasutil_modelo where au_id = "& request("au_id")
+ssql = "delete from sce_areautilizacao where au_id = "& request("au_id")
 Env.oconn.execute(ssql)
 
 acao = "O usuário "& Env.Usuario &" excluiu a área "& rec("au_descricao") &"."

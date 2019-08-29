@@ -47,15 +47,15 @@ If Env.UsuarioSCE() Then
 		        <td>
 <%		msg =  request("msg")
 		if msg = 1 then
-		response.write "Modelo inserido com sucesso!<br><br>"
+		response.write "<b>Modelo inserido com sucesso!</b><br><br>"
 		elseif msg = 2 then
-		response.write "Este Part Number já existe<br><br>"
+		response.write "<b>Este Part Number já existe</b><br><br>"
 		end if%>
 		        </td>
 	        </tr>
 	        <tr>
 		        <td>
-  			        <table class="largura-total">
+  			        <table class="largura-total" style="">
                         <tr>
                             <td>
                                 Modelo:&nbsp;<input type="text"  name="mod_codnome" size=35 maxlength="50">
@@ -82,9 +82,10 @@ If Env.UsuarioSCE() Then
 				          set rec = Env.oconn.execute(ssql)
 				          if not rec.eof then%>
 					        <select name="au_id" >
+                                <option value="">--</option>
 					        <%i = 0
 					        while not rec.eof%>
-						        <option value="<%=rec("au_id")%>" <%if i = 0 then response.write "selected"%>><%=rec("au_descricao")%></option>
+						        <option value="<%=rec("au_id")%>"><%=rec("au_descricao")%></option>
 						        <%rec.movenext
 					        wend%>
 					        </select>
@@ -142,7 +143,7 @@ If Env.UsuarioSCE() Then
 	        <tr> 
       	        <td>
                     Part Number:<br>
-    		        <input type="text"  name="p_number" size="100" maxlength="100">
+    		        <input type="text"  name="p_number" size="60" maxlength="50">
       	        </td>
 	        </tr>
 	        <tr>

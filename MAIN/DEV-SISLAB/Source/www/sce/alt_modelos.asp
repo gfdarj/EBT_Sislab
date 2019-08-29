@@ -25,24 +25,26 @@ If Env.UsuarioSCE() Then
     set recm = Env.oconn.execute(ssql)
 %>
 <script type="text/javascript">
-function ValidaCampos()
-{
-	var frm = document.formulario;
-	if (frm.mod_codnome.value.length == 0)
-	{
-		alert("Defina o Modelo!");
-		frm.mod_codnome.focus();
-		return false;
-	}
-	else if (frm.fab_id.value.length == 0)
-	{
-		alert("Defina o fabricante do Modelo!");
-		frm.fab_id.focus();
-		return false;
-	}
-	return true;
-}
+    function ValidaCampos()
+    {
+	    var frm = document.formulario;
+	    if (frm.mod_codnome.value.length == 0)
+	    {
+		    alert("Defina o Modelo!");
+		    frm.mod_codnome.focus();
+		    return false;
+	    }
+	    else if (frm.fab_id.value.length == 0)
+	    {
+		    alert("Defina o fabricante do Modelo!");
+		    frm.fab_id.focus();
+		    return false;
+	    }
+	    return true;
+    }
 </script>
+
+<div class="margem-10">
 <form method=post action="alt_modelos2.asp" name="formulario"  onsubmit="return ValidaCampos();">
 <input type=hidden name=mod_id value="<%=recm("mod_id")%>">
 <div align="left">
@@ -74,10 +76,8 @@ function ValidaCampos()
 				  if not rec.eof then%>
 					<select name="au_id" >
 					<%i = 0
-					while not rec.eof
-						ssql = "select * from sce_areasutil_modelo where mod_id = "& recm("mod_id") &" and au_id = "& rec("au_id")
-						set rec2 = Env.oconn.execute(ssql)%>
-						<option value="<%=rec("au_id")%>" <%if not rec2.eof then response.write "selected"%>><%=rec("au_descricao")%></option>
+					while not rec.eof %>
+						<option value="<%=recm("au_id")%>" <%if recm("au_id") = rec("au_id") then response.write "selected"%>><%=rec("au_descricao")%></option>
 						<%rec.movenext
 					wend%>
 					</select>
@@ -113,11 +113,9 @@ function ValidaCampos()
       	<td bgcolor="#FFFFFF" >Observações<br>
 		<textarea  name="mod_obs" style="width:550" cols="80" rows="5"><%=recm("mod_obs")%></textarea></td>
 	</tr>
-	<%ssql = "select * from sce_partnumbermodelo where mod_id = "& recm("mod_id")
-	set rec = Env.oconn.execute(ssql)%>
 	<tr> 
       	<td bgcolor="#FFFFFF"  ><br>Part Number:<br>
-		<input type="text"  name="p_number" size="100" maxlength="100"  <%if not rec.eof then%>value="<%=rec("pn_partnumber")%>"<%end if%>></td>
+		<input type="text"  name="p_number" size="60" maxlength="50" value="<%=recm("mod_partnumber")%>"></td>
 	</tr>
 
 	<tr>
@@ -136,6 +134,7 @@ function ValidaCampos()
     </tr>
   </table>
   </form>
+</div>
 <%
 Else
     RW Tela.Mensagem.AcessoRestritoSCE()

@@ -16,17 +16,17 @@ If Env.UsuarioSCE() Then
 
     Dim ssql, rec, where
 %>
-<table width="100%">	
+<div class="margem-10">
+<table width="100%">
 	<tr>
 		<td>
 <%
-ssql =	"select distinct m.mod_id, m.mod_descricao, f.fab_id, m.mod_codnome, f.fab_nome, pn.pn_partnumber " & _
+ssql =	"select distinct m.mod_id, m.mod_descricao, f.fab_id, m.mod_codnome, f.fab_nome, m.mod_partnumber " & _
 			"from sce_fabricantes f inner join sce_modelos m on f.fab_id = m.fab_id " & _
-			"left join sce_partnumbermodelo pn on pn.mod_id = m.mod_id " & _
 			"where "
 where = ""
 if request("partnumber") <> "" then
-	where = "pn.pn_partnumber Like '%"& request("partnumber") &"%' "
+	where = "m.mod_partnumber Like '%"& request("partnumber") &"%' "
 end if
 
 if request("modelo") <> "" then
@@ -53,7 +53,7 @@ Set rec = Env.oconn.execute(Ssql)
 if rec.recordcount = 1 then
 	response.redirect "alt_modelos.asp?mod_id=" & rec("mod_id")
 else%>
-			<table border="1" align="center" cellpadding="2" cellspacing="2"><%
+        <table class="largura-total table-condensed table-bordered table-striped table-hover"><%
 		if not (rec.eof and rec.bof) then%>
 			<tr  bgcolor="#C0E0EF">
 				<th>Modelo</th>
@@ -62,11 +62,11 @@ else%>
 				<th>Part Number</th>
 			</tr>
 <%			while not rec.eof%>
-			<tr  bgcolor="#C0E0EF">
+			<tr>
 				<td><a href=alt_modelos.asp?mod_id=<%=rec("mod_id")%>><%=rec("mod_codnome")%></a></td>
 				<td><%if isnull(rec("fab_nome")) then response.write "&nbsp;" else response.write rec("fab_nome")%></td>
 				<td><%if isnull(rec("mod_descricao")) then response.write "&nbsp;" else response.write rec("mod_descricao") end if%></td>
-				<td><%if isnull(rec("pn_partnumber")) then response.write "&nbsp;" else response.write rec("pn_partnumber") end if%></td>
+				<td><%if isnull(rec("mod_partnumber")) then response.write "&nbsp;" else response.write rec("mod_partnumber") end if%></td>
 			</tr>
 <%				rec.MoveNext
 			wend
@@ -81,7 +81,7 @@ set rec = nothing
 	<tr ><td>&nbsp;</td></tr>
 	<tr><td align="center"><input type="button"  value="Voltar" onclick="javascript:history.go(-1);"></td></tr>
 </table>
-</form>
+</div>
 <br>
 <%
 Else

@@ -4,7 +4,7 @@
 Dim s, rec
 
 if request("mod_id") <> "" then
-	s = "select PN_PARTNUMBER from SCE_PartNumberModelo where MOD_ID = " & request("mod_id") & " "
+	s = "select MOD_PARTNUMBER from SCE_modelos where MOD_ID = " & request("mod_id") & " "
 
 	Set rec = Env.oConn.execute(s)
 	If Not (rec.Eof And rec.Bof) Then
