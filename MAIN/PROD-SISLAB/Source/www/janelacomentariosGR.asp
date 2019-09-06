@@ -42,7 +42,7 @@ function retornaopcao1(opcao)
 end function
 %>
 
-<table width="300" bgcolor="#666666" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" bgcolor="#666666" border="0" cellspacing="0" cellpadding="0">
 <tr bgcolor="#000000">
 <td width=20>
 </td>
@@ -90,21 +90,25 @@ Satisfação Geral
 </td>
 </tr>
 <%
-sSQL = "Select * "
-sSQL = sSQL&"  from PesquisaSatisfacao p INNER JOIN Agendamento a ON p.PSQ_NAg = a.AG_NUMERO "
-sSQL = sSQL&"  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID "
+sSQL = sSQL & "SELECT * "
+sSQL = sSQL & "  from PesquisaSatisfacao p INNER JOIN Agendamento a ON p.PSQ_NAg = a.AG_NUMERO "
+sSQL = sSQL & "  INNER JOIN Tipo_atividade t ON t.TA_ID = a.TA_ID "
 sSQL = sSQL & " WHERE t.TA_ID = " & auxselag & " "
+
 if dataIni <> "" and dataFim = "" then
-	sSQL=sSQL&"  AND "
-	sSQL=sSQL&"  PSQ_DataHoraCadastro >= CONVERT(DATETIME, '" & dataIni & "', 103) "
+	sSQL=sSQL & "  AND "
+	'sSQL=sSQL & "  PSQ_DataHoraCadastro >= CONVERT(DATETIME, '" & dataIni & "', 103) "
+	sSQL=sSQL & "  AG_DATATERMINO >= CONVERT(DATETIME, '" & dataIni & "', 103) "
 elseif dataIni = "" and dataFim <> "" then
-	sSQL=sSQL&"  AND "
-	sSQL=sSQL&"  (PSQ_DataHoraCadastro < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 "
+	sSQL=sSQL & "  AND "
+	'sSQL=sSQL & "  (PSQ_DataHoraCadastro < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 "
+	sSQL=sSQL & "  (AG_DATATERMINO < CONVERT(DATETIME, '" & dataFim & "', 103) + 1 "
 elseif dataIni <> "" and dataFim <> "" then
-	sSQL=sSQL&"  AND "
-	sSQL=sSQL&"  PSQ_DataHoraCadastro BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
+	sSQL=sSQL & "  AND "
+	'sSQL=sSQL & "  PSQ_DataHoraCadastro BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
+	sSQL=sSQL & "  AG_DATATERMINO BETWEEN CONVERT(DATETIME, '" & dataIni & "', 103) AND CONVERT(DATETIME, '" & dataFim & "', 103) "
 end if
-sSQL = sSQL&"  ORDER by t.TA_ID;"
+sSQL = sSQL & "  ORDER by t.TA_ID;"
 call Env.recordset(true, objSiteRS, sSQL)
 
 if Not ObjSiteRS.EOF Then 
