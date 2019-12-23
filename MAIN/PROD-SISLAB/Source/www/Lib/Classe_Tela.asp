@@ -232,22 +232,49 @@ stm_aix("p2i3","p0i1",[0,"Relatório de Acompanhamento","","",-1,-1,0,"<%=p_PathR
 stm_ep();
 stm_aix("p1i1","p0i1",[0,"Conhecendo o CRT","","",-1,-1,0,"","_self","","Conhecendo o CRT"]);
 stm_bpx("p3","p2",[]);
-stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodação e salas disponíveis"]);
-stm_aix("p3i1","p2i0",[0,"Código de Ética","","",-1,-1,0,"http://ntspo907/hpembratel/pdf/codigo_de_etica_embrapar.pdf","_self","","Código de Ética"]);
-stm_aix("p3i2","p2i0",[0,"Equipe / Infra-estrutura Interna","","",-1,-1,0,"<%=p_PathRelativo%>equ_EstIn.asp","_self","","Equipe / Infra-estrutura Interna"]);
+
+/* SUB MENU CONHECENDO O CRT 
+
+    Obs: rotina duplicada no arquivo Classe_Tela.asp e no PadraoHTML.asp (23/12/2019)
+ */
+<%
+    Dim rsSubMenu, s
+
+    '-- Pega os dados de Configuracao da aplicacao SISLAB
+    s = "SELECT ARQ_LINK, ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") & " ORDER BY ARQ_LINK"
+	call Env.RecordSet(true, rsSubMenu, s)
+'    Set  = oConn.Execute(s)
+    If Not(rsSubMenu.Eof And rsSubMenu.Bof) Then
+        While Not rsSubMenu.Eof %>
+stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenu("ARQ_LINK")%>1111", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenu("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenu("ARQ_LINK")%>"]);
+<%          rsSubMenu.MoveNext
+        WEnd %>
+stm_aix("p3i0", "p2i0", [0, "---", "", "", -1, -1, 0, "#", "_self", "", ""]);
+<%  End If %>
+
+//stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodação e salas disponíveis"]);
+//stm_aix("p3i0", "p2i0", [0, "Ambientes", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm", "_blank", "", "Ambientes de acomodação e salas disponíveis"]);
+
+stm_aix("p3i1", "p2i0", [0, "Código de Ética", "", "", -1, -1, 0, "<%=Env.ObtemLinkCodigoEtica()%>", "_self", "", "Código de Ética"]);
+
+//stm_aix("p3i2", "p2i0", [0, "Equipe / Infra-estrutura Interna", "", "", -1, -1, 0, "<%=p_PathRelativo%>equ_EstIn.asp", "_self", "", "Equipe / Infra-estrutura Interna"]);
 
 <%				'-- se for do CRT exibe o link para o servidor local
 				If Env.usuarioCRT Then %>
-stm_aix("p3i3","p2i3",[0,"Espaço CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","Espaço reservado aos trabalhos internos do CRT"]);
+//stm_aix("p3i3","p2i3",[0,"Espaço CRT","","",-1,-1,0,"alert('aqiu');","_self","","Espaço reservado aos trabalhos internos do CRT"]);
 <%				End If %>
 
-stm_aix("p3i4","p2i0",[0,"Histórico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","Histórico do Centro de Referência Tecnológica"]);
-stm_aix("p3i5","p2i0",[0,"Localização / Área","","",-1,-1,0,"<%=p_PathRelativo%>loc_area.asp","_self","","Localização e área construída"]);
-stm_aix("p3i6","p2i0",[0,"Manual do Sistema de Gestão","","",-1,-1,0,"arquivos/MSG Rev 08 de 20-02-06 .pdf","_self","","Manual do Sistema de Gestão"]);
-stm_aix("p3i7","p2i0",[0,"Videos do CRT","","",-1,-1,0,"videos.asp","_self","","Vídeos do CRT"]);
+//stm_aix("p3i4","p2i0",[0,"Histórico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","Histórico do Centro de Referência Tecnológica"]);
+//stm_aix("p3i5","p2i0",[0,"Localização / Área","","",-1,-1,0,"<%=p_PathRelativo%>loc_area.asp","_self","","Localização e área construída"]);
+
+stm_aix("p3i6", "p2i0", [0, "Manual do Sistema de Gestão", "", "", -1, -1, 0, "<%=Env.ObtemLinkManualSistemaGestao()%>", "_self", "", "Manual do Sistema de Gestão"]);
+stm_aix("p3i7", "p2i0", [0, "Videos do CRT", "", "", -1, -1, 0, "videos.asp", "_self", "", "Vídeos do CRT"]);
 stm_ep();
 
-<%				If Env.usuarioCRT_Cadastrado Then%>
+
+
+
+<% If Env.usuarioCRT_Cadastrado Then %>
 //stm_aix("p1i2","p3i7",[0,"Controle de Consumíveis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumíveis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 <%				End If%>
@@ -261,12 +288,37 @@ stm_bpx("p4","p2",[]);
 stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=p_PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfação"]);
 stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por número do agendamento"]);
 stm_ep();
-stm_aix("p1i8","p0i1",[0,"Recursos Disponíveis","","",-1,-1,0,"","_self","","Recursos Disponíveis"]);
+
+stm_aix("p1i8", "p0i1", [0, "Recursos Disponíveis", "", "", -1, -1, 0, "", "_self", "", "Recursos Disponíveis"]);
 stm_bpx("p5","p2",[]);
-stm_aix("p5i0","p2i0",[0,"Logística","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","Logística"]);
-stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
+
+/* SUB MENU RECURSOS DISPONIVEIS
+
+    Obs: rotina duplicada no arquivo Classe_Tela.asp e no PadraoHTML.asp (23/12/2019)
+ */
+<%
+    Dim rsSubMenuRec
+
+    '-- Pega os dados de Configuracao da aplicacao SISLAB
+    s = "SELECT ARQ_LINK, ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") & " ORDER BY ARQ_LINK"
+	call Env.RecordSet(true, rsSubMenuRec, s)
+'    Set  = oConn.Execute(s)
+    If Not(rsSubMenuRec.Eof And rsSubMenuRec.Bof) Then
+        While Not rsSubMenuRec.Eof %>
+stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenuRec("ARQ_LINK")%>1111", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenuRec("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenuRec("ARQ_LINK")%>"]);
+<%          rsSubMenuRec.MoveNext
+        WEnd %>
+stm_aix("p3i0", "p2i0", [0, "---", "", "", -1, -1, 0, "#", "_self", "", ""]);
+<%  End If %>
+
+////stm_aix("p5i0", "p2i0", [0, "Logística", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf", "_blank", "", "Logística"]);
+////stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
 stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=p_PathRelativo%>CadTransporte.asp","_self","","Horários do transporte para o CRT"]);
 stm_ep();
+
+
+
+
 //stm_aix("p1i9","p2i0",[0,"Sugestões (Fale Conosco)","","",-1,-1,0,"<%'=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
 stm_ep();
 <%				if Env.ehRAT or Env.ehRT then %>

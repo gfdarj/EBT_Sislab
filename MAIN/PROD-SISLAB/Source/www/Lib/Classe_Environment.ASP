@@ -412,5 +412,31 @@ Public Function LogSCE(mensagem)
     Call Me.Log(mensagem)
 End Function
 
+
+    'INCLUÍDO EM 23/12/2019
+    Public Function ObtemLinkCodigoEtica()
+	    Dim RS
+
+	    '-- Pega os dados de Configuracao da aplicacao SISLAB
+	    Set RS = oConn.Execute("SELECT top 1 ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO"))
+        If RS.Eof And RS.Bof Then
+            ObtemLinkCodigoEtica = "#"
+        Else
+            ObtemLinkCodigoEtica = "Arquivos/" & RS("ARQ_NOMEARQ")
+        End If
+    End Function
+
+    Public Function ObtemLinkManualSistemaGestao()
+	    Dim RS
+
+	    '-- Pega os dados de Configuracao da aplicacao SISLAB
+	    Set RS = oConn.Execute("SELECT top 1 ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO"))
+        If RS.Eof And RS.Bof Then
+            ObtemLinkManualSistemaGestao = "#"
+        Else
+            ObtemLinkManualSistemaGestao = "Arquivos/" & RS("ARQ_NOMEARQ")
+        End If
+    End Function
+
 End Class
 %>
