@@ -327,6 +327,8 @@ Private Sub ImprimeMenu()
     <%				End If %>
                                 </ul>
                             </li>
+
+                            <!--Conhecendo o CRT-->
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Conhecendo o CRT</a>
                                 <ul class="dropdown-menu">
     <%				If userCRT Then%>
@@ -345,7 +347,9 @@ Private Sub ImprimeMenu()
     <%				End If %>
                                 </ul>
                             </li>
+
                             <li class="divider"></li>
+
 	<%			    If userCRT Then %>
                             <li><a href="<%=p_PathRelativo%>sce/index.asp">Controle de Equipamentos (SCE)</a></li>
                             <li class="divider"></li>
@@ -364,6 +368,8 @@ Private Sub ImprimeMenu()
     <%				End If %>
                                 </ul>
                             </li>
+
+                            <!--Recursos Disponíveis-->
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos Disponíveis</a>
                                 <ul class="dropdown-menu">
 	<%			    If userCRT Then %>
@@ -373,6 +379,7 @@ Private Sub ImprimeMenu()
                                   <li><a href="<%=p_PathRelativo%>CadTransporte.asp" title="Horários do transporte para o CRT">Transporte para o CRT</a></li>
                                 </ul>
                             </li>
+
                           </ul>
                         </li>
 
@@ -591,8 +598,10 @@ Private Sub ImprimeMenu1() %>
     <%				If Env.UsuarioCRT Then %>
     stm_aix("p2i3","p0i1",[0,"Relatório de Acompanhamento","","",-1,-1,0,"<%=p_PathRelativo%>REL_GQ_filtro.asp","_self","","Relatório de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
     <%				End If %>
+
     stm_ep();
-    stm_aix("p1i1","p0i1",[0,"Conhecendo o CRT","","",-1,-1,0,"","_self","","Conhecendo o CRT"]);
+
+    stm_aix("p1i1", "p0i1", [0, "Conhecendo o CRT", "", "", -1, -1, 0, "", "_self", "", "Conhecendo o CRT"]);
     stm_bpx("p3","p2",[]);
     <%				If Env.UsuarioCRT Then%>
     stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodação e salas disponí­veis"]);
@@ -620,9 +629,10 @@ Private Sub ImprimeMenu1() %>
     stm_aix("p3i7","p2i0",[0,"Vídeos do CRT","","",-1,-1,0,"videos.asp","_self","","Ví­deos do CRT"]);
     <%				End If %>
 
+
     stm_ep();
 
-    <%				If Env.UsuarioCRT Then%>
+    <% If Env.UsuarioCRT Then %>
     //stm_aix("p1i2","p3i7",[0,"Controle de Consumí­veis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumí­veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
     stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
     stm_aix("p1i3","p2i0",[0,"Sistemas de Gestão","","",-1,-1,0,"<%=p_PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gestão disponí­veis para visualização"]);

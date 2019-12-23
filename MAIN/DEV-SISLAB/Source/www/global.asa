@@ -55,6 +55,8 @@ Sub Application_OnStart()
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
+	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
@@ -79,6 +81,8 @@ Sub Application_OnStart()
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
+	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
@@ -101,6 +105,8 @@ Sub Application_OnStart()
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
+	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
@@ -125,6 +131,8 @@ Sub Application_OnStart()
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
+	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
+	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
