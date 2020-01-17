@@ -163,6 +163,6 @@ For i=0 To UBound(arrAG)
 	iTot_AS = iTot_AS + 1
 Next
 
-response.redirect "pesqsCR.asp" & IIf(iTot_AS > 1, "", "?num_ag=" & auxNAg)
+Response.Redirect "pesqsCR.asp" & IIf(iTot_AS > 1, "", "?num_ag=" & auxNAg & "&r=1")
 %>
 

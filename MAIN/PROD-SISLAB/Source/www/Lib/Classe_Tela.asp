@@ -246,7 +246,7 @@ stm_bpx("p3","p2",[]);
 '    Set  = oConn.Execute(s)
     If Not(rsSubMenu.Eof And rsSubMenu.Bof) Then
         While Not rsSubMenu.Eof %>
-stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenu("ARQ_LINK")%>1111", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenu("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenu("ARQ_LINK")%>"]);
+stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenu("ARQ_LINK")%>", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenu("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenu("ARQ_LINK")%>"]);
 <%          rsSubMenu.MoveNext
         WEnd %>
 stm_aix("p3i0", "p2i0", [0, "---", "", "", -1, -1, 0, "#", "_self", "", ""]);
@@ -305,7 +305,7 @@ stm_bpx("p5","p2",[]);
 '    Set  = oConn.Execute(s)
     If Not(rsSubMenuRec.Eof And rsSubMenuRec.Bof) Then
         While Not rsSubMenuRec.Eof %>
-stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenuRec("ARQ_LINK")%>1111", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenuRec("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenuRec("ARQ_LINK")%>"]);
+stm_aix("p3i0", "p2i0", [0, "<%=rsSubMenuRec("ARQ_LINK")%>", "", "", -1, -1, 0, "Arquivos/<%=rsSubMenuRec("ARQ_NOMEARQ")%>", "_blank", "", "<%=rsSubMenuRec("ARQ_LINK")%>"]);
 <%          rsSubMenuRec.MoveNext
         WEnd %>
 stm_aix("p3i0", "p2i0", [0, "---", "", "", -1, -1, 0, "#", "_self", "", ""]);

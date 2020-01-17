@@ -104,7 +104,7 @@ If (nomeArquivo <> "") Or (tipoArquivo <> "") Then
             objSiteRS.movenext
 		loop
 	else %>
-			<tr><td colspan="5" align="center"><b><i>Não existem arquivos cadastrados no Momento</i></b></td></tr>
+			<tr><td colspan="6" align="center"><b><i>Não existem arquivos cadastrados no Momento</i></b></td></tr>
 <%	end if%>
 		</table>
 		<!--</div>-->

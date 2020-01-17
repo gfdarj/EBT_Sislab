@@ -613,6 +613,13 @@ document.formulario.fRamal.value = "<%=auxRamal%>";
 document.formulario.fUsername.value = "<%=auxUsername%>";
 
 desabilitaUserinfo(<%=IIf(ehCRT, "false", "true")%>);
+
+
+if ("<%=Request("r")%>" == "1")
+{
+    alert("Obrigado por responder a esta Pesquisa!");
+    location.href = "index.asp";
+}
 </script>
 <%
 end if

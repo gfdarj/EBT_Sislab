@@ -206,7 +206,27 @@ Public Sub Salva(chr_AS)
 				End If
 
 				Set objFS = Nothing
+
+            ' Se houver um prefixo de pasta sem correlação com um Agendamento
+            ElseIf chr_PrefixoNomePasta <> "AS_" And chr_PrefixoNomePasta <> "" Then
+
+				chr_Folder = chr_Folder & chr_PrefixoNomePasta & "\"
+
+				'	Verifica se a pasta existe
+'				On Error Resume Next
+				Set objFS = Server.CreateObject("Scripting.FileSystemObject")
+				If Err.Number <> 0 Then bln_TemErro = True
+'				On Error Goto 0
+
+				If Not bln_TemErro Then
+					If Not objFS.FolderExists(chr_Folder) Then
+						Call objFS.CreateFolder(chr_Folder)
+					End If
+				End If
+
+				Set objFS = Nothing
 			End If
+
 
 			'	Salva os arquivos
 			If Not bln_TemErro Then
@@ -223,6 +243,7 @@ Public Sub Salva(chr_AS)
 					File.SaveAs chr_Salvar
 				Next
 			End If
+
 		End If
 
 	End If

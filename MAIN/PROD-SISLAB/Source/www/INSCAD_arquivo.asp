@@ -118,6 +118,11 @@ if o2 = "" then o2 = "null"
 o3 = Arquivo.Campo("o3")
 if o3 = "" then o3 = "null"
 
+' Se for arquivo de VÍDEO então gravo na pasta correspondente
+If CStr(auxtipoArquivo) = CStr(Application("SISLAB_ID_CODARQTIPO_VIDEOS")) Then
+    Arquivo.SetNomePasta = "Videos"
+End If
+
 '	SALVA O ARQUIVO NO DISCO
 Call Arquivo.Salva(auxAS)
 
@@ -179,7 +184,6 @@ If RETORNO <> "-1" then
 			  "Arquivo: " & auxnomearq
 		assunto = "Sislab - Upload de Arquivos"
 		Call enviaEmailUserCRT(Env.oConn,assunto,msg)
-		Call enviar_email("gilberto.rj@ig.com.br", "Gilberto", assunto, msg)
 	end if
 %>
 	<html>
