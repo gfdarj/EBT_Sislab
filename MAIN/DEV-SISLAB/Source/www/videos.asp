@@ -11,7 +11,7 @@ Dim int_Conta
 Dim chr_Buf
 Dim chr_href
 
-chr_Path = Server.MapPath("videos/")
+chr_Path = Server.MapPath("arquivos/videos/")
 
 Set objFSO = Server.CreateObject("Scripting.FileSystemObject")
 
@@ -30,7 +30,7 @@ For Each objFile in objFolder.Files
 	int_Conta = int_Conta + 1
 
 	If UCase(objFile.Name) <> "THUMBS.DB" Then
-		chr_href = "videos/" & objFile.Name
+		chr_href = "arquivos/videos/" & objFile.Name
 		chr_Buf = chr_Buf & _
 			"<tr><td><a href='" & chr_href & "'>" & objFile.Name & "</a></td><td align='right'>" & FormataNumero(int(objFile.Size/1024)) &" Kb</td><td><a href='" & chr_href & "'>" & VbCrLf & _
             "   <span class='glyphicon glyphicon-download-alt' title='Clique aqui para abrir o vídeo' style='color: darkblue;'></span>" & VbCrLf & _

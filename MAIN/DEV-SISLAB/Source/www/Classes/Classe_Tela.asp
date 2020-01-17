@@ -331,16 +331,23 @@ Private Sub ImprimeMenu()
                             <!--Conhecendo o CRT-->
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Conhecendo o CRT</a>
                                 <ul class="dropdown-menu">
-    <%				If userCRT Then%>
-                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm" title="Ambientes de acomodação e salas disponí­veis">Ambientes</a></li>
-    <%				End If %>
+<%
+                    ' SUB MENU CONHECENDO O CRT 
+                    '
+                    '    Obs: rotina duplicada no arquivo Classe_Tela.asp e no PadraoHTML.asp 
+                    Dim rsSubMenu, s
+
+                    '-- Pega os dados de Configuracao da aplicacao SISLAB
+                    s = "SELECT ARQ_LINK, ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") & " ORDER BY ARQ_LINK"
+	                Call Env.RecordSet(True, rsSubMenu, s)
+                    If Not (rsSubMenu.Eof And rsSubMenu.Bof) Then
+                        While Not rsSubMenu.Eof %>
+                                  <li><a href="Arquivos/<%=rsSubMenu("ARQ_NOMEARQ")%>" title="<%=rsSubMenu("ARQ_LINK")%>"><%=rsSubMenu("ARQ_LINK")%></a></li>
+<%                          rsSubMenu.MoveNext
+                        WEnd %>
+                                  <li class="divider"></li>
+<%                  End If %>
                                   <li><a href="<%=Env.ObtemLinkCodigoEtica()%>" title="Código de Ética">Código de Ética</a></li>
-                                  <li><a href="<%=p_PathRelativo%>equ_EstIn.asp" title="Equipe / Infra-estrutura Interna">Equipe / Infra-estrutura interna</a></li>
-	<%			    If userCRT Then %>
-                                  <li><a href="http://XPRJO030309/index.htm" title="Espaço reservado aos trabalhos internos do CRT">Espaço CRT</a></li>
-                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf" title="Histórico do Centro de Referência Tecnológica">Histórico</a></li>
-                                  <li><a href="<%=p_PathRelativo%>loc_area.asp" title="Localização e Área construí­da">Localização / Área</a></li>
-    <%				End If %>
                                   <li><a href="<%=Env.ObtemLinkManualSistemaGestao()%>">Manual do Sistema de Gestão</a></li>
 	<%			    If userCRT Then %>
                                   <li><a href="<%=p_PathRelativo%>videos.asp">Vídeos do CRT</a></li>
@@ -372,10 +379,23 @@ Private Sub ImprimeMenu()
                             <!--Recursos Disponíveis-->
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Recursos Disponíveis</a>
                                 <ul class="dropdown-menu">
-	<%			    If userCRT Then %>
-                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf">Logística</a></li>
-                                  <li><a href="<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf">Sala de Apoio</a></li>
-    <%				End If %>
+	<%			    If userCRT Then
+                        ' SUB MENU RECURSOS DISPONIVEIS
+                        '
+                        '    Obs: rotina duplicada no arquivo Classe_Tela.asp e no PadraoHTML.asp (23/12/2019)
+                        Dim rsSubMenuRec
+
+                        '-- Pega os dados de Configuracao da aplicacao SISLAB
+                        s = "SELECT ARQ_LINK, ARQ_NOMEARQ FROM ARQUIVOS WHERE ARQ_CODARQTIPO = " & Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") & " AND ARQ_IDSITUACAO = " & Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") & " ORDER BY ARQ_LINK"
+	                    Call Env.RecordSet(true, rsSubMenuRec, s)
+                        If Not(rsSubMenuRec.Eof And rsSubMenuRec.Bof) Then
+                            While Not rsSubMenuRec.Eof %>
+                                  <li><a href="Arquivos/<%=rsSubMenu("ARQ_NOMEARQ")%>" title="<%=rsSubMenu("ARQ_LINK")%>"><%=rsSubMenu("ARQ_LINK")%></a></li>
+<%                              rsSubMenuRec.MoveNext
+                            WEnd %>
+                                  <li class="divider"></li>
+<%                      End If %>
+<%				    End If %>
                                   <li><a href="<%=p_PathRelativo%>CadTransporte.asp" title="Horários do transporte para o CRT">Transporte para o CRT</a></li>
                                 </ul>
                             </li>

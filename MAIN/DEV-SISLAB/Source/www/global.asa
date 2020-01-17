@@ -3,7 +3,7 @@
 Sub Application_OnStart()
 	'Session.Timeout = 30
 
-	Application("SISLAB_AMBIENTE") = "LOC"
+	Application("SISLAB_AMBIENTE") = "DV2"
 
     Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
 	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
@@ -57,6 +57,7 @@ Sub Application_OnStart()
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
 	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
 	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
+	    Application("SISLAB_ID_CODARQTIPO_VIDEOS") = 37
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
@@ -83,6 +84,7 @@ Sub Application_OnStart()
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
 	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
 	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
+	    Application("SISLAB_ID_CODARQTIPO_VIDEOS") = 37
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		Application("SISLAB_ServidorLocalCRT") = "Arquivos/"
@@ -107,6 +109,7 @@ Sub Application_OnStart()
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
 	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
 	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
+	    Application("SISLAB_ID_CODARQTIPO_VIDEOS") = 37
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
@@ -133,6 +136,7 @@ Sub Application_OnStart()
 	    Application("SISLAB_ID_CODARQTIPO_CODIGOETICA") = 34
 	    Application("SISLAB_ID_CODARQTIPO_CONHECENDOCRT") = 35
 	    Application("SISLAB_ID_CODARQTIPO_RECURSOSDISPONIVEISCRT") = 36
+	    Application("SISLAB_ID_CODARQTIPO_VIDEOS") = 37
 	    Application("SISLAB_ID_SITUACAOARQUIVO_APROVADO") = 2
 
 		'Application("SISLAB_ServidorLocalCRT") = "http://localhost/sislab1_arquivoslocais/"
