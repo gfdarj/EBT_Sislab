@@ -7,3 +7,7 @@ go
 --id 36
 insert into tipoArquivo values ('Recursos Disponíveis do CRT', 0, null, 0)
 go
+
+--id 37
+insert into tipoArquivo values ('Vídeos', 0, null, 0)
+go
