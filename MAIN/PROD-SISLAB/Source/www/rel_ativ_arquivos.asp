@@ -1,4 +1,5 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
+<!-- #include file="includes/Funcoes.asp" -->
 <!-- #include file="includes/PadraoHTML.asp" -->
 <!-- #include file="includes/global.asp" -->
 <%
@@ -10,7 +11,17 @@ if request("selecao") = "" then
 <%
 else
 	Dim objRS, sSQL
-	Dim bln_ehLogBook
+	Dim bln_ehLogBook, AuxIdSigilo, AuxUsername
+
+    AuxIdSigilo = 0
+    AuxUsername = ""
+
+    sSQL = "SELECT AG_SIGILO, AG_USERNAME FROM AGENDAMENTO WHERE AG_NUMERO = " & request("selecao")
+	call Env.RecordSet(true, objRS, sSQL)
+    If Not (objRS.Eof And objRS.Bof) Then
+        AuxIdSigilo = objRS("AG_SIGILO")
+        AuxUsername = objRS("AG_USERNAME")
+    End If
 
 	If request("oc") <> "" Then	'-- ocorrencia do logbook
 		call ImprimeCabecalho2("Ocorrência " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma ação", "NENHUM", "")
@@ -29,33 +40,36 @@ else
 	if Not objRS.eof then%>
 <br>
 <table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
-<tr>
-	<td width="30%"></td>
-	<td width="70%"></td>
-</tr>
 <tr class="realce1">
-	<td align="center">Tipo de Arquivo</td>
-	<td align="center">Arquivo</td>
+	<td align="center" width="30%">Tipo de Arquivo</td>
+	<td align="center" width="70%">Arquivo</td>
 </tr>
 <%		objRS.MoveFirst
 		Do while Not objRS.eof%>
 <tr class="texto1">
 	<td>&nbsp;&nbsp;<b><%=objRS("TIPOARQUIVO")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
+<%          If Not MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then %>
 		<a href="#" onclick="abreArquivo('<%=objRS("NOMEARQUIVO")%>');"><%=objRS("LINK")%></a>
+<%          Else%>
+        <%=Left(objRS("LINK"),5) & "***"%>
+<%          End If %>
 		&nbsp;
 	</td>
 </tr>
 <%			objRS.MoveNext
 		Loop%>
 </table>
-<p class="texto1" align="center"><a href="javascript:window.close();">Fechar</a></p>
+
+<p align="center"><input type="button" class="combo" value=" Fechar " onclick="javascript:window.close();" /></p>
+
 <script language="JavaScript">
-function abreArquivo(nome){
-	var janela;
-	janela = window.open(nome, '', 'width=550,toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
-	janela.focus();
-}
+    function abreArquivo(nome)
+    {
+	    var janela;
+	    janela = window.open(nome, '', 'width=550,toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+	    janela.focus();
+    }
 </script>
 <%
 	end if

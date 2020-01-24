@@ -343,9 +343,9 @@ Private Sub ImprimeNomeTela()
     linkVoltar = p_linkVoltar
 
 			if p_linkVoltar = "" then p_linkVoltar = "history.go(-1)"%>
-		<table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" border="0" style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
+        <table width="<%=p_tamanhoTela%>" cellpadding="0" cellspacing="0" border="0" style="border-top: thin dotted Gray; border-bottom: thin dotted Gray;">
         <tr>
-			<td class="realce1"> <!-- #d9d9d9 -->
+			<td class="realce1">
 				<table width="<%=w_princ%>" cellpadding="2" cellspacing="0" class="Menu" id="tbl_principal_nomeform" style="display: block;">
 				<tr valign="middle">
 					<td valign="middle">
@@ -354,6 +354,7 @@ Private Sub ImprimeNomeTela()
 						</span>
 					</td>
 					<td align="right" id="td2_tbl_principal_nomeform" style="display: inline;">
+<!--
 <%			if ucase(linkVoltar) <> "NENHUM" then
 				if ucase(linkVoltar) <> "SO_IMPRESSORA" then%>
 						</b><a href="javascript:<%=p_linkVoltar%>;">Voltar</a>
@@ -363,6 +364,7 @@ Private Sub ImprimeNomeTela()
 						<button id="btn_imprimeTelaPrincipalSistema" style="border: none; height: 14px; width: 16px; background-color: none;" onclick="javascript:imprimeTelaPrincipalSistema();"><a href="#"><img src="<%=p_PathRelativo%>img/impressora.gif" border="0" align="absmiddle" alt="Imprimir conteúdo da tela"></a></button>
 <%				end if
 			end if%>
+-->
 						&nbsp;&nbsp;
 					</td>
 				</tr>

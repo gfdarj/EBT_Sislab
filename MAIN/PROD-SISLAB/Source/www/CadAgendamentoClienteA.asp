@@ -19,6 +19,10 @@ data_fim = request.form("diaFIM") & "/" & request.form("mesFIM") & "/" & request
 'tipoatividade = ""'request.form("tipoatividade")
 tecnologia = request.form("cmbTec")
 sigilo = request.form("cmbSigilo")
+
+'response.Write "sigilo: " & sigilo
+'response.End
+
 receber_email = request.form("cmbEmail")
 if receber_email = "" then receber_email = "0"
 objetivos = trocaPlic2Aspas(request.form("objetivos"))

@@ -120,8 +120,9 @@ Public Sub Init_UP()	'Objeto Persists Upload
 
 	objUpload.OverwriteFiles = bln_OverWrite
 
-    	' Limita o tamanho máximo do arquivo em 100MB 
-    	objUpload.SetMaxSize 104857600, True
+    ' Limita o tamanho máximo do arquivo em 100MB 
+    'objUpload.SetMaxSize 104857600, True
+    objUpload.SetMaxSize 1000000000, True
 
 	If Err.Number <> 0 Then
 	    bln_TemErro = True

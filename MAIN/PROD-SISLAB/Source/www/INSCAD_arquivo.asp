@@ -139,14 +139,20 @@ auxorgao = objSiteRS1("Orga_ID")
 'response.end
 
 '-- se ja existir o arquivo apenas pego o nome do arquivo
-if auxcodarquivo > 0 then
+if CStr(auxcodarquivo) > "0" then
 	auxnomearq = Arquivo.Campo("nome")
 else
 	'auxnomearq = Upload.Files(1).ExtractFileName
 	auxnomearq = Arquivo.ArquivoSubPasta(1)
 end if
 
+If VVVNZ(Arquivo.Arquivo(0)) And CStr(auxtipoarquivo) = CStr(Application("SISLAB_ID_CODARQTIPO_VIDEOS")) Then
+    auxnomearq = "Videos\" & auxnomearq
+End If
+
+'RW "<BR><b>auxcodarquivo:</b> " & auxcodarquivo
 'RW "<BR><b>auxnomearq:</b> " & auxnomearq
+'RW "<BR><b>Arquivo.ArquivoSubPasta(0):</b> " & Arquivo.Arquivo(0)
 'RW "<BR><b>Arquivo.ArquivoSubPasta(1):</b> " & Arquivo.Arquivo(1)
 'RW "<BR><b>GetPastaRaiz:</b> " & Arquivo.GetPastaRaiz
 'RE
