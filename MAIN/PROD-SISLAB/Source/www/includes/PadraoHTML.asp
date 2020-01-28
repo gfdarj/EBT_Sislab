@@ -295,8 +295,7 @@ stm_bp("p2",[1,2,0,0,0,3,0,0,100,"",-2,"",-2,90,0,0,"#7f7f7f","#ffffff","",3,1,1
 stm_aix("p2i0","p0i1",[0,"Novo","","",-1,-1,0,"<%=PathRelativo%>CadAgendamentoCliente.asp","_self","","Cria um agendamento","","",0,0,0,"","",0,0]);
 stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=PathRelativo%>rel_ativ.asp","_self","","Acompanha a execução de um agendamento e seu resultado"]);
 stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execução de um agendamento"]);
-<%
-				If Env.UsuarioCRT then%>
+<%				If Env.UsuarioCRTVisivel then%>
 stm_aix("p2i3","p0i1",[0,"Relatório de Acompanhamento","","",-1,-1,0,"<%=PathRelativo%>REL_GQ_filtro.asp","_self","","Relatório de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 <%				End If%>
 stm_ep();
@@ -330,7 +329,7 @@ stm_aix("p3i1", "p2i0", [0, "Código de Ética", "", "", -1, -1, 0, "<%=Env.ObtemL
 //stm_aix("p3i2", "p2i0", [0, "Equipe / Infra-estrutura Interna", "", "", -1, -1, 0, "<%=p_PathRelativo%>equ_EstIn.asp", "_self", "", "Equipe / Infra-estrutura Interna"]);
 
 <%				'-- se for do CRT exibe o link para o servidor local
-				If Env.usuarioCRT Then %>
+				If Env.UsuarioCRTVisivel Then %>
 //stm_aix("p3i3","p2i3",[0,"Espaço CRT","","",-1,-1,0,"Espaço CRT","_self","","Espaço reservado aos trabalhos internos do CRT"]);
 <%				End If %>
 
@@ -341,20 +340,31 @@ stm_aix("p3i6", "p2i0", [0, "Manual do Sistema de Gestão", "", "", -1, -1, 0, "<
 stm_aix("p3i7", "p2i0", [0, "Videos do CRT", "", "", -1, -1, 0, "videos.asp", "_self", "", "Vídeos do CRT"]);
 stm_ep();
 
-<%				if Env.usuarioCRT_Cadastrado then%>
+<%				if Env.UsuarioCRTVisivel then%>
 //stm_aix("p1i2","p3i7",[0,"Controle de Consumíveis (SCC)","","",-1,-1,0,"<%=PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumíveis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=PathRelativo%>sce2/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
 //stm_aix("p1i2","p2i3",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"sce/index.asp","_self","","Sistema de Controle de Equipamentos"]);
 <%				end if%>
 
+<%				if Env.UsuarioCRTVisivel then%>
 stm_aix("p1i3","p2i0",[0,"Sistemas de Gestão","","",-1,-1,0,"<%=PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gestão disponíveis para visualização"]);
-stm_aix("p1i4","p2i0",[0,"Lista de Atividades do CRT","","",-1,-1,0,"<%=PathRelativo%>sit_crt.asp","_self","","Exibe as atividades do CRT"]);
-stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorrências"]);
+<%				end if%>
+
+stm_aix("p1i4", "p2i0", [0, "Lista de Atividades do CRT", "", "", -1, -1, 0, "<%=PathRelativo%>sit_crt.asp", "_self", "", "Exibe as atividades do CRT"]);
+
+<%				if Env.UsuarioCRTVisivel then %>
+stm_aix("p1i5", "p2i0", [0, "Log Book", "", "", -1, -1, 0, "<%=PathRelativo%>sel_cad_logbook.asp", "_self", "", "Log Book - cadastro de ocorrências"]);
 stm_aix("p1i6","p2i0",[0,"Ocupação dos Ambientes","","",-1,-1,0,"<%=PathRelativo%>ambientes/cons_agenda.asp","_self","","Cadastro e reserva de salas"]);
+<%				end if%>
+
 stm_aix("p1i7","p0i1",[0,"Pesquisa de Satisfação","","",-1,-1,0,"","_self","","Pesquisa de Satisfação"]);
 stm_bpx("p4","p2",[]);
 stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfação"]);
-stm_aix("p4i1","p2i0",[0,"Consultar por AS","","",-1,-1,0,"<%=PathRelativo%>cons_ind_pesqscr_filtro.asp","_self","","Consulta uma pesquisa por número do agendamento"]);
+
+<%				if Env.UsuarioCRTVisivel then %>
+stm_aix("p4i1", "p2i0", [0, "Consultar por AS", "", "", -1, -1, 0, "<%=PathRelativo%>cons_ind_pesqscr_filtro.asp", "_self", "", "Consulta uma pesquisa por número do agendamento"]);
+<%				end if%>
+
 stm_ep();
 
 stm_aix("p1i8", "p0i1", [0, "Recursos Disponíveis", "", "", -1, -1, 0, "", "_self", "", "Recursos Disponíveis"]);
@@ -386,7 +396,7 @@ stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=PathRelativo%
 stm_ep();
 //stm_aix("p1i9","p2i0",[0,"Sugestões (Fale Conosco)","","",-1,-1,0,"<%=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
 stm_ep();
-<%				if Env.ehRAT or Env.ehRT then%>
+<%				if (Env.ehRAT or Env.ehRT) And Env.UsuarioCRTVisivel then%>
 stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
 stm_aix("p0i2","p2i0",[0,"Administração do Site","","",-1,-1,0,"<%=PathRelativo%>sislab.asp","_self","","Administração do SISLAB"]);
 stm_ep();

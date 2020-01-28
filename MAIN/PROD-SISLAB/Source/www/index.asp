@@ -35,8 +35,8 @@
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
-dim usuarioCRT
-usuarioCRT = Env.UsuarioCRT
+Dim usuarioCRTVisivel
+usuarioCRTVisivel = Env.UsuarioCRTVisivel
 
 'O SISTEMA VERIFICA SE EXISTEM DOCUMENTOS FORA DA VIGENCIA E ENVIA E-MAIL PARA RAT'S GQ'S PARA QUE POSSAM VALIDAR
 'call VerificaVigenciaArquivos()
@@ -49,7 +49,7 @@ Call Tela.MostraCabecalho()
 
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 <%
-if usuarioCRT then%>
+if usuarioCRTVisivel then%>
 		<tr> 
 			<td bgcolor="#FFFFFF" width="260px" valign="top">
 				<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#003366">
@@ -82,7 +82,7 @@ end if%>
 				<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#003366">
 				<tr> 
 					<td bgcolor="#FFFFFF">
-						<!--<div style="height=<%if usuarioCRT then response.write "225" else response.write "336"%>px; overflow: auto;">-->
+						<!--<div style="height=<%if usuarioCRTVisivel then response.write "225" else response.write "336"%>px; overflow: auto;">-->
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr> 
 							<td width="5px">&nbsp;</td>
@@ -264,7 +264,7 @@ end if%>
 						</table>
 						<!--</div>-->
 <!--
-						<iframe src="index_principal.asp" frameborder="0" width="588" <%if usuarioCRT then response.write "height='225px'" else response.write "height='336'"%> scrolling="auto" name="teste_iframe">
+						<iframe src="index_principal.asp" frameborder="0" width="588" <%if usuarioCRTVisivel then response.write "height='225px'" else response.write "height='336'"%> scrolling="auto" name="teste_iframe">
 							<font face="Arial, Helvetica, sans-serif" size="1">Sorry your browser does not support IFRAMES.</font>
 						</iframe>
 -->

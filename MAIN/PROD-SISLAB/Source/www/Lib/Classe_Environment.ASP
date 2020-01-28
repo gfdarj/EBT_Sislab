@@ -8,6 +8,7 @@ Private bln_ehGQ
 Private chr_Usuario
 Private chr_Matricula
 Private bln_usuarioCRT_Cadastrado
+Private bln_usuarioCRT_Exibir
 Private chr_PaginaInicial
 Private bln_ehFuncionario
 Private chr_CaminhoAnt
@@ -44,6 +45,7 @@ Private Sub Class_Initialize()
 	bln_ehGQ = False
 	bln_UsuarioCRT = False
 	bln_UsuarioCRT_Cadastrado = False
+    bln_usuarioCRT_Exibir = False
 	bln_UsuarioSCE = False
     p_moduloLog = "SISLAB"
 
@@ -127,6 +129,10 @@ End Property
 
 Public Property Get UsuarioCRT_Cadastrado()
 	UsuarioCRT_Cadastrado = bln_UsuarioCRT_Cadastrado
+End Property
+
+Public Property Get UsuarioCRTVisivel()
+	UsuarioCRTVisivel = bln_usuarioCRT_Exibir
 End Property
 
 Public Property Get Usuario()
@@ -296,7 +302,7 @@ Public Sub LoginUsuario(chr_LoginName)
 	End If
 
 	'-- Pega os dados do usuario se for do CRT
-	chr_SQL = "select USERID, RAT, GQ, RT, EXIBIR, ID_PERFIL_SCE FROM UserCRT where UPPER(USERID) = '" & chr_Usuario & "'"
+	chr_SQL = "select USERID, RAT, GQ, RT, ISNULL(EXIBIR, 0) AS [EXIBIR], ID_PERFIL_SCE FROM UserCRT where UPPER(USERID) = '" & chr_Usuario & "'"
 	Call RecordSet(True, objRS, chr_SQL)
 
 	If objRS.BOF And objRS.EOF Then 
@@ -304,6 +310,7 @@ Public Sub LoginUsuario(chr_LoginName)
 		bln_ehRT = False
 		bln_ehRAT = False
 		bln_ehGQ = False
+        bln_usuarioCRT_Exibir = False
 		bln_usuarioCRT_Cadastrado = False
 		bln_UsuarioSCE = False
 		int_PerfilSCE = 0
@@ -313,6 +320,7 @@ Public Sub LoginUsuario(chr_LoginName)
 		bln_ehRAT = CBool(objRS("RAT"))
 		bln_ehGQ = CBool(objRS("GQ"))
 		bln_usuarioCRT_Cadastrado = True 'CBool(objRS("EXIBIR"))
+        bln_usuarioCRT_Exibir = CBool(objRS("EXIBIR"))
 		int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		bln_UsuarioSCE = (int_PerfilSCE > 0)
 	End If
