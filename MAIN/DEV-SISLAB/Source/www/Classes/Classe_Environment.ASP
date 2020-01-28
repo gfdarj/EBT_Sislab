@@ -98,6 +98,10 @@ Class TEnvironment
 	    UsuarioCRT_Cadastrado = Ebt.UsuarioCRTCadastrado
     End Property
 
+    Public Property Get UsuarioCRTVisivel()
+	    UsuarioCRTVisivel = Ebt.UsuarioCRTVisivel
+    End Property
+
     Public Property Get Usuario()
 	    Usuario = Ebt.Usuario
     End Property

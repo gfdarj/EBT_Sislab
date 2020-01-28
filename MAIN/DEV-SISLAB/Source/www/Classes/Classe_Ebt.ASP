@@ -17,6 +17,7 @@ Class TEbt
 	Private bln_ehRT
 	Private bln_ehRAT
 	Private bln_ehGQ
+    Private bln_Exibir
 	Private bln_UsuarioSCE
 	Private int_PerfilSCE
 	Private chr_Sigla_Orgao
@@ -121,6 +122,10 @@ Class TEbt
 
     Public Property Get ehGQ()
 	    ehGQ = bln_ehGQ
+    End Property
+
+    Public Property Get UsuarioCRTVisivel()
+        UsuarioCRTVisivel = bln_Exibir
     End Property
 
     Public Property Get UsuarioCRT()
@@ -275,6 +280,7 @@ Class TEbt
 		    bln_ehRT = False
 		    bln_ehRAT = False
 		    bln_ehGQ = False
+            bln_Exibir = False
 		    'bln_usuarioCRT_Cadastrado = False
 		    bln_UsuarioSCE = False
 		    int_PerfilSCE = 0
@@ -283,6 +289,7 @@ Class TEbt
 		    bln_ehRT = CBool(objRS("RT"))
 		    bln_ehRAT = CBool(objRS("RAT"))
 		    bln_ehGQ = CBool(objRS("GQ"))
+            bln_Exibir = CBool(objRS("EXIBIR"))
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
 

@@ -245,9 +245,10 @@ Private Sub ImprimeImagemSite()
 End Sub
 
 Private Sub ImprimeMenu()
-    Dim userCRT, userRatRt
+    Dim userCRT, userRatRt, userCRTVisivel
 
     userCRT = Env.usuarioCRT
+    userCRTVisivel = Env.UsuarioCRTVisivel
     userRatRt = (Env.ehRAT or Env.ehRT)
 %>
     <style type="text/css">
@@ -322,7 +323,7 @@ Private Sub ImprimeMenu()
                                     <li><a href="<%=p_PathRelativo%>CadAgendamentoCliente.asp" title="Cria um agendamento">Novo</a></li>
                                     <li><a href="<%=p_PathRelativo%>rel_ativ.asp" title="Acompanha a execução de um agendamento e seu resultado">Acompanhamento de Resultados</a></li>
                                     <li><a href="<%=p_PathRelativo%>form_remarca_teste_sel.asp" title="Remarca a execução de um agendamento">Remarcar</a></li>
-    <%				If userCRT Then %>
+    <%				If userCRTVisivel Then %>
                                     <li><a href="<%=p_PathRelativo%>rel_gq_filtro.asp" title="Relatório de acompanhamento de um agendamento">Relatório de Acompanhamento</a></li>
     <%				End If %>
                                 </ul>
@@ -349,7 +350,7 @@ Private Sub ImprimeMenu()
 <%                  End If %>
                                   <li><a href="<%=Env.ObtemLinkCodigoEtica()%>" title="Código de Ética">Código de Ética</a></li>
                                   <li><a href="<%=Env.ObtemLinkManualSistemaGestao()%>">Manual do Sistema de Gestão</a></li>
-	<%			    If userCRT Then %>
+	<%			    If userCRTVisivel Then %>
                                   <li><a href="<%=p_PathRelativo%>videos.asp">Vídeos do CRT</a></li>
     <%				End If %>
                                 </ul>
@@ -357,20 +358,20 @@ Private Sub ImprimeMenu()
 
                             <li class="divider"></li>
 
-	<%			    If userCRT Then %>
+	<%			    If userCRTVisivel Then %>
                             <li><a href="<%=p_PathRelativo%>sce/index.asp">Controle de Equipamentos (SCE)</a></li>
                             <li class="divider"></li>
                             <li><a href="<%=p_PathRelativo%>arq_disp.asp" title="Arquivos do sistema de gestão disponí­veis para visualização">Sistemas de Gestão</a></li>
     <%				End If %>
                             <li><a href="<%=p_PathRelativo%>sit_crt.asp" title="Exibe as atividades do CRT">Lista de Atividades do CRT</a></li>
-	<%			    If userCRT Then %>
+	<%			    If userCRTVisivel Then %>
                             <li><a href="<%=p_PathRelativo%>sel_cad_logbook.asp" title="Cadastro de Ocorrências">Log Book</a></li>
                             <li><a href="<%=p_PathRelativo%>ambientes/cons_agenda.asp" title="Cadastro e reserva de salas">Ocupação dos Ambientes</a></li>
     <%				End If %>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesquisa de Satisfação</a>
                                 <ul class="dropdown-menu">
                                   <li><a href="<%=p_PathRelativo%>pesqscr.asp" title="Cadastra uma nova pesquisa de satisfação">Cadastrar</a></li>
-	<%			    If userCRT Then %>
+	<%			    If userCRTVisivel Then %>
                                   <li><a href="<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp" title="Consulta uma pesquisa por número do agendamento">Consultar por AS</a></li>
     <%				End If %>
                                 </ul>
@@ -403,7 +404,7 @@ Private Sub ImprimeMenu()
                           </ul>
                         </li>
 
-	<%			    If userRatRt Then %>
+	<%			    If userRatRt And userCRTVisivel Then %>
                         <li class="#"><a href="<%=p_PathRelativo%>sislab.asp">ADMINISTRAÇÃO DO SITE</a></li>
     <%				End If %>
 

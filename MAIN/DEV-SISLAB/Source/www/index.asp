@@ -33,6 +33,7 @@
 'Response.Write "ehRT: " & Ebt1.ehRT& "<BR>"
 'Response.Write "Matricula: " & Ebt1.Matricula & "<BR>"
 'Response.Write "UsuarioCRT: " & Ebt1.UsuarioCRT & "<BR>"
+'Response.Write "UsuarioCRTVisivel: " & Ebt1.UsuarioCRTVisivel & "<BR>"
 'Response.Write "UsuarioSCE: " & Ebt1.UsuarioSCE & "<BR>"
 'Response.Write "PerfilSCE: " & Ebt1.PerfilSCE & "<BR>"
 'Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
@@ -44,7 +45,7 @@
 Dim usuarioCRT, chr_SQL, RS,conta, navegador
 
 navegador = MeuNavegador()
-usuarioCRT = Env.UsuarioCRT
+usuarioCRTVisivel = Env.UsuarioCRTVisivel
 
 'usuarioCRT = false
 'Response.write Env.EhRat & "<BR>" & Now
@@ -74,7 +75,7 @@ Call Tela.MostraCabecalho()
 						<h5><a href="rel_ativ.asp" class="menu">Acompanhamento e Resultados</a><br />
 						&nbsp;&nbsp;&nbsp;<small>Informações dos agendamentos no CRT</small></h5>
 
-                <% If usuarioCRT Then %>
+                <% If usuarioCRTVisivel Then %>
 						<h5><a href="sit_crt.asp?hoje=1" onClick="javascript: showAguarde();" class="menu"><%=indicador%>Em execução no CRT</a><br />
 						&nbsp;&nbsp;&nbsp;<small>Veja os agendamentos do dia</small></h5>
                 <% End If %>
@@ -88,7 +89,7 @@ Call Tela.MostraCabecalho()
 						<h5><a href="form_remarca_teste_sel.asp" class="menu"><%=indicador%>Remarcar Agendamento</a><br />
 			    			&nbsp;&nbsp;&nbsp;<small>Altere a data do seu agendamento no CRT</small></h5>
 
-                <% If usuarioCRT Then %>
+                <% If usuarioCRTVisivel Then %>
 						<h5><a href="rel_tecnologia_fabricante.asp?index=1" class="menu" target="_blank"><%=indicador%>Tecnologias empregadas</a><br />
 		    				&nbsp;&nbsp;&nbsp;<small>Tecnologias utilizadas nos agendamentos e seus fabricantes</small></h5>
 
@@ -100,7 +101,7 @@ Call Tela.MostraCabecalho()
                 <% End If %>
                 </div>
 
-<% If usuarioCRT Then %>
+<% If usuarioCRTVisivel Then %>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 
                     <div class="row">
@@ -249,7 +250,7 @@ Call Tela.MostraCabecalho()
 
             </div> <!-- row -->
 
-<% Else '--> If usuarioCRT %>
+<% Else '--> If usuarioCRTVisivel %>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="row">
@@ -274,7 +275,7 @@ Call Tela.MostraCabecalho()
 
             </div> <!-- row -->
 
-<% End If '--> If usuarioCRT %>
+<% End If '--> If usuarioCRTVisivel %>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
