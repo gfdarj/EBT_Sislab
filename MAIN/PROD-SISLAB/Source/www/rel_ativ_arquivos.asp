@@ -41,15 +41,15 @@ else
 <br>
 <table border="1" width="100%" cellpadding="2" cellspacing="0" class="tabela1">
 <tr class="realce1">
-	<td align="center" width="30%">Tipo de Arquivo</td>
-	<td align="center" width="70%">Arquivo</td>
+	<td align="center">Tipo de Arquivo</td>
+	<td align="center">Arquivo</td>
 </tr>
 <%		objRS.MoveFirst
 		Do while Not objRS.eof%>
 <tr class="texto1">
 	<td>&nbsp;&nbsp;<b><%=objRS("TIPOARQUIVO")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
-<%          If Not MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then %>
+<%          If MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then %>
 		<a href="#" onclick="abreArquivo('<%=objRS("NOMEARQUIVO")%>');"><%=objRS("LINK")%></a>
 <%          Else%>
         <%=Left(objRS("LINK"),5) & "***"%>

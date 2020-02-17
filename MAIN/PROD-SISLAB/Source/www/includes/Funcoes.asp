@@ -284,7 +284,7 @@ Function MostraDadoSigiloso(int_Sigilo, chr_Username)
 
 	MostraDadoSigiloso = False
 
-	bln_EhCRT = Env.UsuarioCRT
+	bln_EhCRT = Env.UsuarioCRTVisivel
 	chr_UserLogado = UCase(Env.Usuario)
 	chr_Username = UCase(Trim(chr_Username))
 
@@ -302,6 +302,7 @@ Function MostraDadoSigiloso(int_Sigilo, chr_Username)
 			'(chr_UserLogado = "ADAO" And (chr_Username = "ADAO" Or chr_Username = "CORDOVA" Or chr_Username = "CESAREI" Or chr_Username = "JOAOJ" Or chr_Username = "NALDOP" Or chr_Username = "GASAFER" Or chr_Username = "BORDALO" Or chr_Username = "RMMELLO"))
 End Function
 
+
 '###
 '	Verifica se um usuario nao CRT é um gerente de uma equipe. Caso seja, permite o acesso do mesmo aos dados
 '	dos agendamentos de sua equipe
@@ -315,9 +316,6 @@ Function EhGerenteDeEquipeEBT(chr_UserResponsavelAS)
 
 	EhGerenteDeEquipeEBT = False
 
-'RW "JUBA: SELECT COUNT(*) FROM EquipeEmbratel WHERE UserId_Gerente = '" & chr_UserLogado & "' AND UserId_Membro = '" & chr_UserResponsavelAS & "'" & "<BR>"
-'RE
-
 	If (Not bln_EhCRT) And (chr_UserLogado <> "") And (chr_UserResponsavelAS <>  "") Then
 		Set RS = Env.oConn.Execute("SELECT COUNT(*) FROM EquipeEmbratel WHERE UserId_Gerente = '" & chr_UserLogado & "' AND UserId_Membro = '" & chr_UserResponsavelAS & "'")
 		If Not RS.Eof Then
@@ -328,6 +326,7 @@ Function EhGerenteDeEquipeEBT(chr_UserResponsavelAS)
 		Set RS = Nothing
 	End If
 End Function
+
 
 Function ExibeMensagemSigiloAS(int_Border)
 	Dim chr_Buf
