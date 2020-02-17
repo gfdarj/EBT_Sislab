@@ -288,7 +288,7 @@ Function MostraDadoSigiloso(int_Sigilo, chr_Username)
 
 	MostraDadoSigiloso = False
 
-	bln_EhCRT = Env.UsuarioCRT
+	bln_EhCRT = Env.UsuarioCRTVisivel
 	chr_UserLogado = UCase(Env.Usuario)
 	chr_Username = UCase(Trim(chr_Username))
 

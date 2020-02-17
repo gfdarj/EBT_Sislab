@@ -10,7 +10,17 @@ if request("selecao") = "" then
 <%
 else
 	Dim objRS, sSQL
-	Dim bln_ehLogBook
+	Dim bln_ehLogBook, AuxIdSigilo, AuxUsername
+
+    AuxIdSigilo = 0
+    AuxUsername = ""
+
+    sSQL = "SELECT AG_SIGILO, AG_USERNAME FROM AGENDAMENTO WHERE AG_NUMERO = " & request("selecao")
+	call Env.RecordSet(true, objRS, sSQL)
+    If Not (objRS.Eof And objRS.Bof) Then
+        AuxIdSigilo = objRS("AG_SIGILO")
+        AuxUsername = objRS("AG_USERNAME")
+    End If
 
 	If request("oc") <> "" Then	'-- ocorrencia do logbook
 		Call Tela.ImprimeCabecalho2("Ocorrência " & request("oc") & " - Arquivos anexos", MENU_OFF, false, "100%", "Arquivos anexados a uma ação", "NENHUM", "")
@@ -25,8 +35,9 @@ else
 		sSQL = sSQL & " WHERE VW.AG_NUMERO=" & request("selecao")
 	End If
 
-	call Env.RecordSet(true, objRS, sSQL)
-	if Not objRS.eof then%>
+	Call Env.RecordSet(true, objRS, sSQL)
+
+	If Not objRS.eof then%>
 <br>
 <table border="1" width="100%" cellpadding="2" cellspacing="0" class="table-bordered">
 <tr>
@@ -42,7 +53,11 @@ else
 <tr >
 	<td>&nbsp;&nbsp;<b><%=objRS("TIPOARQUIVO")%>&nbsp;</b></td>
 	<td>&nbsp;&nbsp;
+<%          If MostraDadoSigiloso(AuxIdSigilo, AuxUsername) Then %>
 		<a href="#" onclick="abreArquivo('<%=objRS("NOMEARQUIVO")%>');"><%=objRS("LINK")%></a>
+<%          Else%>
+        <%=Left(objRS("LINK"),5) & "***"%>
+<%          End If %>
 		&nbsp;
 	</td>
 </tr>
