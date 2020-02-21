@@ -38,10 +38,10 @@ function comboAmostraEq(escreve, id_combo, padrao) {
 }
 
 function inputText(escreve, id_input, padrao, sizeInput, maxlength, eventos) {
-	var str = '';
-	str += '<input type="text" name="' + id_input + '" class="form" ';
-	str += 'value="' + padrao + '" size="' + sizeInput + '" maxlength="' + maxlength + '" ';
-	str += eventos + ' >';   // eventos deve conter apenas aspas duplas !!!
-	if(escreve) document.write(str);
-	return str;
+    var str = '';
+    str += '<input type="text" name="' + id_input + '" id="' + id_input + '" ';
+    str += 'value="' + padrao + '" size="' + sizeInput + '" maxlength="' + maxlength + '" ';
+    str += eventos + ' >';   // eventos deve conter apenas aspas duplas !!!
+    if (escreve) document.write(str);
+    return str;
 }
