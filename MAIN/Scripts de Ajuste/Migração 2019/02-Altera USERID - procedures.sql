@@ -6824,7 +6824,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE   VIEW [dbo].[vw_SCE_Equipamentos_Fabricantes] 
+CREATE   VIEW [dbo].[vw_SCE_Equipamentos_Fabricantes]
 AS
 	/***
 		Visão exibindo todos os equipamentos e seus fabricantes / modelos
@@ -6843,7 +6843,7 @@ AS
 			WHEN STATUS = 0 THEN 'Cadastrado'
 		END AS DESC_STATUS,
 		e.EQ_OPER_DELTA, e.EQ_OPER_UMIDADE, e.EQ_OPER_WARMUP, e.EQ_ARMA_DELTA,
-		e.EQ_ARMA_UMIDADE, e.EQ_MANUT_PREVENTIVA, e.EQ_PROPRIEDADE
+		e.EQ_ARMA_UMIDADE, e.EQ_MANUT_PREVENTIVA, e.EQ_PROPRIEDADE, E.EQ_LOCALIZACAO
 	FROM	
 		SCE_Equipamentos e 
 		INNER join sce_modelos m on e.mod_id = m.mod_id
