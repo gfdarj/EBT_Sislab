@@ -19,7 +19,7 @@ function proxCampo(curObj, nextObj) {
 
 function comboSimNao(escreve, id_combo, padrao) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="form">';
+	str += '<select name="' + id_combo + '" id="' + id_combo + '" class="form">';
 	str += '<option value="1"' + (padrao == '1'? ' selected ' : '') + '>Sim</option>';
 	str += '<option value="0"' + (padrao == '0'? ' selected ' : '') + '>Não</option>';
 	str += '</select>';
@@ -29,7 +29,7 @@ function comboSimNao(escreve, id_combo, padrao) {
 
 function comboAmostraEq(escreve, id_combo, padrao) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="form">';
+	str += '<select name="' + id_combo + '" id="' + id_combo + '" class="form">';
 	str += '<option value="A"' + (padrao == 'A'? ' selected ' : '') + '>Amostra</option>';
 	str += '<option value="E"' + (padrao == 'E'? ' selected ' : '') + '>Equipamento</option>';
 	str += '</select>';

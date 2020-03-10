@@ -73,7 +73,7 @@ If ag_numero <> "" Then
 	//---- cria os combos de ambiente ---
 	function comboAmbiente(escreve, id_combo, padrao) {
 		var str = '';
-		str += '<select name="' + id_combo + '" class="texto1">';
+		str += '<select name="' + id_combo + '" id="' + id_combo + '" class="texto1">';
 <%
 	chr_SQL = _
 				"select a.AMB_ID as VALOR, a.AMB_NOME as DESCRICAO " & _
@@ -286,7 +286,7 @@ end if
 		    newtd.setAttribute("eq_id","");
 		    newrow.appendChild(newtd);
 
-    //		newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descrição do item --</i></span>";
+    		//newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"') + "<br><span id='" + "linha_"+linha+"_col_2' style='font-size: 8px; color: gray;'><i>-- descrição do item --</i></span>";
 		    newtd.innerHTML = inputText(false, 'item_'+linha, '', 21, 16, 'onKeyUp="proxCampo(this, dt_ini_' + linha + ');" onBlur="javascript:validaCodBarras(document.all.item_' + linha + ', ' + linha + ');"');
 		    newtd.vAlign = "top";
 
@@ -627,15 +627,6 @@ function validaReserva(frm) {
 
     function cadastraReserva()
     {
-alert(document.all["item_"+i].eq_id);
-alert(document.getElementById("dt_ini_" + i).value);
-alert(document.getElementById("dt_fim_" + i).value);
-alert(document.getElementById("cmb_setup_" + i).value);
-alert(document.getElementById("cmb_amb_" + i).value);
-
-
-
-        debugger;
 <%
 if (not ehAgValido) and (Env.PerfilSCE = PERFIL_RAT) then
 %>
@@ -648,9 +639,11 @@ else
 		//var separa_campo = "¿?¿";		//mudei o separador para ","
 		var separa_campo = ",";
 
-		if(validaReserva(frm)) {
-
-			// pega os itens e concatena a lista
+		if(validaReserva(frm))
+		{
+		    //debugger;
+		    
+		    // pega os itens e concatena a lista
 			if(total_linhas > 0) {
 				frm.lista_itens.length = 0;  // limpa o select
 
@@ -660,7 +653,21 @@ else
                 {
                     if (document.getElementById("linha_" + i) != null)
                     {
-						oOption = document.createElement("OPTION");
+                        /*
+                        var x = document.all["item_"+i];
+                        alert(i);
+                        alert(document.all["item_"+i]);
+                        alert(document.all["item_1"]);
+                        alert(x.eq_id);
+                        alert(document.getElementById("item_" + i).value);
+                        alert(document.all["item_"+i].eq_id);
+                        alert(document.getElementById("dt_ini_" + i).value);
+                        alert(document.getElementById("dt_fim_" + i).value);
+                        alert(document.getElementById("cmb_setup_" + i).value);
+                        alert(document.getElementById("cmb_amb_" + i).value);
+                        */
+
+                        oOption = document.createElement("OPTION");
 						frm.lista_itens.options.add(oOption);
 						oOption.innerText = document.all["item_"+i].eq_id;  // ID do registro na tabela, caso exista
 						oOption.innerText += separa_campo;

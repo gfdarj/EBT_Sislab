@@ -19,7 +19,7 @@ function proxCampo(curObj, nextObj) {
 
 function comboSimNao(escreve, id_combo, padrao) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="texto1">';
+	str += '<select name="' + id_combo + '" id="' + id_combo + '" class="texto1">';
 	str += '<option value="1"' + (padrao == '1'? ' selected ' : '') + '>Sim</option>';
 	str += '<option value="0"' + (padrao == '0'? ' selected ' : '') + '>Não</option>';
 	str += '</select>';
@@ -29,11 +29,12 @@ function comboSimNao(escreve, id_combo, padrao) {
 
 function comboAmostraEq(escreve, id_combo, padrao) {
 	var str = '';
-	str += '<select name="' + id_combo + '" class="texto1">';
+	str += '<select name="' + id_combo + '" id="' + id_combo + '" class="texto1">';
 	str += '<option value="A"' + (padrao == 'A'? ' selected ' : '') + '>Amostra</option>';
 	str += '<option value="E"' + (padrao == 'E'? ' selected ' : '') + '>Equipamento</option>';
 	str += '</select>';
 	if(escreve) document.write(str);
+    //alert(str)
 	return str;
 }
 
@@ -43,6 +44,6 @@ function inputText(escreve, id_input, padrao, sizeInput, maxlength, eventos) {
     str += 'value="' + padrao + '" size="' + sizeInput + '" maxlength="' + maxlength + '" ';
     str += eventos + ' >';   // eventos deve conter apenas aspas duplas !!!
     if (escreve) document.write(str);
-    alert(str);
+    //alert(str);
     return str;
 }

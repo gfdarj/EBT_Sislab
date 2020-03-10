@@ -351,7 +351,14 @@ Public Sub RecordSet(opcao, record, strExec)
 		Set record = Server.CreateObject("ADODB.RecordSet")
 		record.PageSize = int_TAMANHOPAGINA + 1
 		record.cursortype = 3
+
+        On Error Resume Next
 		record.Open strExec, Me.oConn
+        If Err.number <> 0 Then
+            Response.Write "<p><b>ERRO DE SQL</b></p><p>" & Err.Description & "</p><p>Comando Executado:</p><p>&nbsp;&nbsp;&nbsp;&nbsp;" & strExec & "</p>"
+            Response.End
+        End If
+        On Error Goto 0
 
 		if oConn.Errors.Count <> 0 then
 			Call Me.ImprimeErrosConexao()
