@@ -140,9 +140,11 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 
 <div class="margem-10">
 <form method="post" name="formulario">
-<input type="hidden" name="enviou" value="1">
-<input type="hidden" name="eq_id" value="<%=eq_id%>">
-<input type="hidden" name="status" value="<%=status%>">
+
+<input type="hidden" name="enviou" value="1" />
+<input type="hidden" name="eq_id" value="<%=eq_id%>" />
+<input type="hidden" name="status" value="<%=status%>" />
+<input type="hidden" name="testouRepeticaoNumeroSerie" value="" id="ID_testouRepeticaoNumeroSerie" />
 
 <table border="0">
 
@@ -195,6 +197,23 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			}
 		});
 		maxAjaxObj.get();
+	}
+
+    function testaRepeticaoNumeroSerie(eq_id, eq_numeroserie)
+    {
+		var url = "../ajax/sce_valida_numeroserie.asp?eq_id=" + eq_id + "&eq_numeroserie=" + eq_numeroserie;
+
+		var maxAjaxObj = new max.Ajax(url,{update:"",onComplete:
+            function (texto, xml) {
+                var sp = document.getElementById("ID_AvisoNumeroSerie");
+                document.all.testouRepeticaoNumeroSerie.value = texto;
+                if (texto == "OK")
+                    sp.innerHTML = "<label style='color: green;'>Válido!</label>";
+                else
+                    sp.innerHTML = "<label style='color: red;'>Inválido!</label>";
+			}
+		});
+        maxAjaxObj.get();
 	}
 </script>
 			<td  align="right" colspan="2">
@@ -266,8 +285,9 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 		<tr> 
 			<td align="left" >
 				Número de Série:<br>
-				<input type="text"  name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>">
+				<input type="text"  name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>" onblur="testaRepeticaoNumeroSerie(document.all.eq_id.value, document.all.numeroserie.value);">
 				<input type="button" name="btn_ChecaNS" value="Verificar"  title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
+                <span id="ID_AvisoNumeroSerie"></span>
 			</td>
 
 			<td  colspan="1">
@@ -906,7 +926,10 @@ end if%>
 <script type="text/javascript">
 var MSG_SEM_ACESSO = "ATENÇÂO !!!\n\nUsuário sem privilégios para executar esta operação";
 
-function NovoEquipamento() {
+testaRepeticaoNumeroSerie(document.all.eq_id.value, document.all.numeroserie.value);
+
+
+    function NovoEquipamento() {
 <%
 If bln_AcessoRAT Then%>
 	alert(MSG_SEM_ACESSO);<%
@@ -955,6 +978,12 @@ function CadastraItem() {
 		alert('Frequencia de calibração inválida');
 		frm.freq_calibracao.focus();
 		frm.freq_calibracao.select();
+	}
+	else if(frm.testouRepeticaoNumeroSerie.value == "ERRO")
+    {
+		alert('Número de Série já existe em outro Equipamento');
+		frm.numeroserie.focus();
+		frm.numeroserie.select();
 	}
 	else if(!ValidaAcessorios()) {
 		// valida o preenchimento dos acessorios, caso existam
