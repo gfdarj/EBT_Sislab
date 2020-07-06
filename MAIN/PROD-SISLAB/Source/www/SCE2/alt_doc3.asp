@@ -14,7 +14,7 @@ ssql =	_
 		"', doc_mail = '"& trim(replace(request("doc_mail"), "'", "&#39;")) & _
 		"',enf_id = "& enf_id & " " & _
 		" where doc_id = "& trim(replace(request("doc_id"), "'", "&#39;"))
-response.write ssql
+'response.write ssql
 Env.oconn.execute(ssql)
 
 acao = "O usuário " & Env.Usuario & " atualizou o documento " & request("doc_id")

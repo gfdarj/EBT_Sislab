@@ -1,16 +1,25 @@
-<!-- #include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
-<!--#include file="includes/padraoHTML.asp"-->
-<!-- #INCLUDE FILE="includes/estado.asp" -->
-<!-- #INCLUDE FILE="includes/abre.asp" -->
-<!-- #INCLUDE FILE="includes/bib_str.asp" -->
+<!------- SCE ------->
+<!--#include file="includes/global_SCE.asp"-->
+<!--#include file="includes/estado.asp"-->
+<!------- SISLAB ---->
+<!--#include file="../includes/bib_str.asp"-->
+<!--#include file="../includes/padraoHTML.asp"-->
+<!--#include file="../includes/global.asp" -->   <!-- constantes usada pelo menu -->
+<!--#include file="../includes/Geral_Lib.asp"-->
+<!--#include file="../includes/Sislab_Lib.asp"-->
+
 <script language="javascript">
 	<!--#include file="includes/vform.js"-->
 </script>
 <%
-call ImprimeCabecalho ("", MENU_ON, true, "Alterar Empresa", "", "history.go(-1);")
+Tela.SetNomeTela = "SCE > Consulta > Alterar Empresa" : Tela.SetCaminhoRelativo = "../"
+Call Tela.MostraCabecalho()
+Call Tela.ImprimeMenuSce()
+
+'call ImprimeCabecalho ("", MENU_ON, true, "Alterar Empresa", "", "history.go(-1);")
 
 ssql = "select * from sce_empresa_nota_fiscal where enf_id = "& request("enf_id")
-set rec = conn.execute(ssql)%>
+set rec = Env.oconn.execute(ssql)%>
 <form method=post action="alt_empresas2.asp" name="formulario"  onSubmit="vdform('formulario','enf_cnpj','CNPJ','CNPJ','enf_cpf'); return document.ValorPassou; ">
 <input type="hidden" name="enf_id" value="<%=request("enf_id")%>">
 <div align="center">
@@ -52,7 +61,7 @@ set rec = conn.execute(ssql)%>
 							<TD CLASS="TEXTO">
 							IE<br>
 								<input type="text" class="form" name="enf_ie" style="width:170px" maxlength="20"  value="<%=rec("enf_ie")%>"></td>
-								<script language="JavaScript1.1">
+								<script language="JavaScript">
 function FormataCNPJ(Campo, teclapres){
 
 	var tecla = teclapres.keyCode;
@@ -187,7 +196,5 @@ function FormataCpf(campo,tammax,teclapres) {
 </form>
   </table>
 <%
-conn.close
-set conn=nothing
-call ImprimeRodape (RODAPE_OFF)
+call ImprimeRodape(RODAPE_OFF)
 %>
