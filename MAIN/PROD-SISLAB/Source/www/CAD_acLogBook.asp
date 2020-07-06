@@ -50,11 +50,13 @@ if idacao <> "" then
 end if
 %>
 <form name="frm" method="post" action="inscad_aclogbook.asp" enctype="multipart/form-data">
-<input type="Hidden" name="idacao" value="<%=idacao%>">
-<input type="Hidden" name="ocorrencia" value="<%=oc%>">
-<input type="Hidden" name="id_ArquivoExclusao" value="">
-<input type="Hidden" name="id_ArquivoExclusaoNome" value="">
-<input type="Hidden" name="resposta" value="N">
+
+<input type="hidden" name="idacao" value="<%=idacao%>" />
+<input type="hidden" name="ocorrencia" value="<%=oc%>" />
+<input type="hidden" name="id_ArquivoExclusao" value="" />
+<input type="hidden" name="id_ArquivoExclusaoNome" value="" />
+<input type="hidden" name="resposta" value="N" />
+
 <table width="100%" class="tabela1">
 <tr>
 	<td><b>Tipo da Ação:&nbsp;</b></td>
@@ -178,65 +180,73 @@ call Env.RecordSet(false, objRS, null)
 <tr><td colspan="2">&nbsp;</td></tr>
 </table>
 </form>
-<script language="JavaScript" src="includes/anexo.js"></script>
-<script>
-var frm = document.forms[0];
 
-function Excluir(ac, acnome)
-{
-	frm.id_ArquivoExclusao.value = ac;
-	frm.id_ArquivoExclusaoNome.value = acnome;
-	frm.submit();
-}
-function envia(){
-	if (frm.cmbAcao.value == "") {
-		alert("Informe a ação tomada.");
-	    frm.cmbAcao.focus();
-		return false;
-	}
-	if (frm.descricao.value==""){
-		alert("Informe a descrição da Ação.");
-	    frm.descricao.focus();
-		return false;
-	}
-	if (frm.responsavel.value==""){
-		alert("Informe o responsável embratel da Ação.");
-	    frm.responsavel.focus();
-		return false;
-	}
-	if (frm.executor.value==""){
-		alert("Informe o executor da Ação.");
-	    frm.descricao.focus();
-		return false;
-	}
+<script language="JavaScript" src="includes/anexo.js"></script>
+
+<script language="JavaScript">
+    var frm = document.forms[0];
+
+    function Excluir(ac, acnome)
+    {
+	    frm.id_ArquivoExclusao.value = ac;
+	    frm.id_ArquivoExclusaoNome.value = acnome;
+	    frm.submit();
+    }
+
+    function envia()
+    {
+        if (frm.cmbAcao.value == "")
+        {
+		    alert("Informe a ação tomada.");
+	        frm.cmbAcao.focus();
+		    return false;
+	    }
+	    if (frm.descricao.value == "")
+	    {
+		    alert("Informe a descrição da Ação.");
+	        frm.descricao.focus();
+		    return false;
+	    }
+	    if (frm.responsavel.value == "")
+	    {
+		    alert("Informe o responsável embratel da Ação.");
+	        frm.responsavel.focus();
+		    return false;
+	    }
+	    if (frm.executor.value == "")
+	    {
+		    alert("Informe o executor da Ação.");
+	        frm.descricao.focus();
+		    return false;
+	    }
 
 <%if not IsNull(prazo) then%>
-	prazo = frm.diaprazo.value + '/' + frm.mesprazo.value + '/' + frm.anoprazo.value
-	if (!ValidaDataMesAno(prazo,'Prazo'))
-		return false;
+	    prazo = frm.diaprazo.value + '\/' + frm.mesprazo.value + '\/' + frm.anoprazo.value;
+	    if (!ValidaDataMesAno(prazo,'Prazo'))
+		    return false;
 <%end if%>
 
 <%if acao = "finalizar" then%>
-	conc = frm.diaconc.value + '/' + frm.mesconc.value + '/' + frm.anoconc.value
-	if (!ValidaDataMesAno(conc,'Finalização'))
-		return false;
+	    conc = frm.diaconc.value + '\/' + frm.mesconc.value + '\/' + frm.anoconc.value;
+	    if (!ValidaDataMesAno(conc,'Finalização'))
+		    return false;
 <%end if%>
 
-	if (!validaNomeArquivo(extractFileName(frm.arquivo.value))) {
-		alert('O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.');
-		frm.arquivo.focus();
-		return false;
-	}
+	    if (!validaNomeArquivo(extractFileName(frm.arquivo.value))) 
+        {
+		    alert('O nome do arquivo está inválido. Retire acentuação e espaços antes de prosseguir.');
+		    frm.arquivo.focus();
+		    return false;
+	    }
 
-	var resposta = confirm("Deseja que este cadastro comunique via e-mail o responsável por esta ação ?");
-	if (resposta) {
-		frm.resposta.value = "S";
-	}
+	    var resposta = confirm("Deseja que este cadastro comunique via e-mail o responsável por esta ação ?");
+	    if (resposta)
+		    frm.resposta.value = "S";
 
-	frm.submit();
-}
+	    frm.submit();
+    }
 
-<%if acao = "visualizar" then%>
+<% if acao = "visualizar" then %>
 	frm.cmbAcao.disabled = true;
 	frm.obs.readonly = true;
 	frm.descricao.disabled = true;
@@ -247,13 +257,13 @@ function envia(){
 	frm.responsavel.disabled = true;
 	frm.obs.disabled = true;
 	frm.arquivo.disabled = true;
-	<%if (not isNull(conclusao)) Or (Not Env.UsuarioCRT) then%>
-		frm.diaconc.disabled = true;
-		frm.mesconc.disabled = true;
-		frm.anoconc.disabled = true;
-		frm.opteficacia.disabled = true;
-	<%end if%>
-<%end if%>
+	<% if (not isNull(conclusao)) Or (Not Env.UsuarioCRT) then %>
+	frm.diaconc.disabled = true;
+	frm.mesconc.disabled = true;
+	frm.anoconc.disabled = true;
+	frm.opteficacia.disabled = true;
+	<% end if%>
+<% end if%>
 </script>
 <%
 Call imprimeRodape(RODAPE_OFF)

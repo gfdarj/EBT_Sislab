@@ -110,17 +110,21 @@ Else
 		tipoacao = Arquivo.Campo("cmbAcao")
 		if tipoacao = "" then tipoacao = null else tipoacao = cint(tipoacao)
 
-'response.write "<BR>idacao: " & idacao
-'response.write "<BR>ocorrencia: " & Arquivo.Campo("ocorrencia")
-'response.write "<BR>descricao: " & descricao
-'response.write "<BR>executante: " & executante
-'response.write "<BR>prazo: " & prazo
-'response.write "<BR>conclusao: " & conclusao
-'response.write "<BR>eficacia: " & eficacia
-'response.write "<BR>obs: " & obs
-'response.write "<BR>tipoacao: " & tipoacao
-'response.write "<BR>arquivo: " & arquivo
-'response.write "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
+'-- TESTE PARA RECEBER OS PARAMETROS PASSADOS A PROCEDURE sp_CadLogBookAcaoTomada
+Dim p_msg1 : p_msg1 = ""
+p_msg1 = p_msg1 & "<p><b>TESTE PARA RECEBER OS PARAMETROS PASSADOS A PROCEDURE sp_CadLogBookAcaoTomada</b></p>" & VbCrLf
+p_msg1 = p_msg1 & "<BR>idacao: " & idacao & VbCrLf
+p_msg1 = p_msg1 & "<BR>ocorrencia: " & Arquivo.Campo("ocorrencia") & VbCrLf
+p_msg1 = p_msg1 & "<BR>descricao: " & descricao & VbCrLf
+p_msg1 = p_msg1 & "<BR>executante: " & executante & VbCrLf
+p_msg1 = p_msg1 & "<BR>prazo: " & prazo & VbCrLf
+p_msg1 = p_msg1 & "<BR>conclusao: " & conclusao & VbCrLf
+p_msg1 = p_msg1 & "<BR>eficacia: " & eficacia & VbCrLf
+p_msg1 = p_msg1 & "<BR>obs: " & obs & VbCrLf
+p_msg1 = p_msg1 & "<BR>tipoacao: " & tipoacao & VbCrLf
+p_msg1 = p_msg1 & "<BR>arquivo: " & arquivo & VbCrLf
+p_msg1 = p_msg1 & "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & VbCrLf
+Call Enviar_Email("gilbertorjo@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", p_msg1)
 
 		call Env.StoredProcedure(true, objSP, "sp_CadLogBookAcaoTomada")
 		with objSP
