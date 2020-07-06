@@ -20,6 +20,11 @@ Arquivo.SetPastaRaiz = Application("SISLAB_FolderArquivosLB")
 Arquivo.SetOverwrite = False
 
 Call Arquivo.Init_UP()
+
+If Arquivo.TemErro Then
+    Call Enviar_Email("gilbertorjo@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", Arquivo.MensagemErro)
+End If
+
 Call Arquivo.Upload()
 
 int_Conta = Arquivo.TotalArquivos
@@ -50,9 +55,6 @@ If Arquivo.Campo("id_ArquivoExclusao") <> "" Then
 Else
     '--> Não quer funcionar no Chrome, somente no Explorer (pelo menos na versão ainda em uso de produção - NTSPO901)
     ocorrencia = Arquivo.Campo("ocorrencia")
-    If VVVNZ(ocorrencia) Then
-        ocorrencia = Request("ocorrencia")
-    End If
 
 	idacao = Arquivo.Campo("idacao")
 	if idacao = "" then 
