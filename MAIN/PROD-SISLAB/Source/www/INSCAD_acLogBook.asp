@@ -127,7 +127,7 @@ p_msg1 = p_msg1 & "<BR>conclusao: " & conclusao & VbCrLf
 p_msg1 = p_msg1 & "<BR>eficacia: " & eficacia & VbCrLf
 p_msg1 = p_msg1 & "<BR>obs: " & obs & VbCrLf
 p_msg1 = p_msg1 & "<BR>tipoacao: " & tipoacao & VbCrLf
-p_msg1 = p_msg1 & "<BR>arquivo: " & arquivo & VbCrLf
+'p_msg1 = p_msg1 & "<BR>arquivo: " & arquivo & VbCrLf
 p_msg1 = p_msg1 & "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & VbCrLf
 Call Enviar_Email("gilbertorjo@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", p_msg1)
 
