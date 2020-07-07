@@ -22,7 +22,9 @@ Arquivo.SetOverwrite = False
 Call Arquivo.Init_UP()
 
 If Arquivo.TemErro Then
+    Response.Write "<b>ERRO</b><br><br>" & Arquivo.MensagemErro
     Call Enviar_Email("gilbertorjo@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", Arquivo.MensagemErro)
+    Response.End
 End If
 
 Call Arquivo.Upload()
