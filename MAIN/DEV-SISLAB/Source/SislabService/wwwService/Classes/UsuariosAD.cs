@@ -40,7 +40,9 @@ namespace Embratel.Sislab.Classes
             //if (dominio == "")
             //    dominio = "alerj";
 
-            adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";  // Funcionando!
+            //// adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";  // Funcionando!
+            adSearch.Filter = "(&(objectClass=person)(cn=" + login + "))";  // Funcionando!
+            
 
             //adSearch.Filter = "(&(objectClass=user)(mail=" + login + "))";
 

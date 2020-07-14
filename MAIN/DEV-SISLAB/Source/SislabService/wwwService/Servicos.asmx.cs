@@ -26,7 +26,7 @@ namespace Embratel.Sislab.Servico
             string ret = "";
             try
             {
-                ret = ad.ObtemUsuario(login);
+                ret = ad.ObtemUsuario(login, dominio);
             }
             catch (Exception ex)
             {
