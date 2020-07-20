@@ -919,8 +919,6 @@ function CadastraItem()
 %>
 	var frm = document.all.formulario;
 
-alert("OI 1");
-
 	if(frm.fab_id.value == '') {
 		alert('Nenhum fabricante selecionado');
 		frm.fab_id.focus();

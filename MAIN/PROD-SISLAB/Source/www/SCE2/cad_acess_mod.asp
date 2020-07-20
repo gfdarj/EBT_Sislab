@@ -21,15 +21,22 @@ If Env.UsuarioSCE() Then
 
     Server.ScriptTimeout = 10000
 
-    dim status, doc_id, rec, nserie
+    Dim status, doc_id, rec, nserie
+    Dim dtIni, dtFim
     Dim chr_Buf
+
+    dtIni = Request("anoinicio") & "-" & Request("mesinicio") & "-" & Request("diainicio")
+    dtFim = Request("anotermino") & "-" & Request("mestermino") & "-" & Request("diatermino")
+
+    If Not IsDate(dtIni) Then dtIni = "" End If
+    If Not IsDate(dtFim) Then dtFim = "" End If
 
     if request("enf_id") <> "" or request("codbarras") <> "" or request("modelo") <> "" or _
 	    request("notafiscal") <> "" or request("numeroserie") <> "" or request("codbarras") <> "" or _
 	    request("fabricante") <> "" or request("documento") <> "" or request("desc_modelo") <> "" or _
 	    request("conforme") <> "" or request("instrumental") <> "" or request("status") <> "" or _
 	    request("cde_equip") <> "" or request("localizacao") <> "" or request("propriedade") <> "" or _
-	    request("idtipo") <> "" or request("plataforma") <> "" then
+	    request("idtipo") <> "" or request("plataforma") <> "" or dtIni <> "" Or dtFim <> "" then
 
 	    if request("busca") <> "" then
 		    ssql =	"SELECT distinct a.status, a.eq_id, a.eq_codigobarras AS [EQ_CODIGOBARRAS_M], mod_descricao AS [MOD_DESCRICAO_M], " & _
@@ -107,13 +114,22 @@ If Env.UsuarioSCE() Then
 			    ssql = ssql &"and EXISTS (SELECT eqc.EQC_REGISTRO FROM SCE_Equipamentos_Controle eqc WHERE eqc.EQ_ID = a.EQ_ID AND UPPER(eqc.EQC_REGISTRO) LIKE '" & UCase(request("cde_equip")) & "') "
 		    end if
 		    if request("propriedade") <> "" then
-			    ssql = ssql &"and a.EQ_PROPRIEDADE IN ('" & request("propriedade") & "') "
+			    ssql = ssql & "and a.EQ_PROPRIEDADE IN ('" & request("propriedade") & "') "
 		    end if
+
+            If dtIni <> "" Then
+                ssql = ssql & "AND a.EQ_DT_CADASTRO >= CAST('" & dtIni & " 00:00' AS DATETIME) "
+            End If
+
+            If dtFim <> "" Then
+                ssql = ssql & "AND a.EQ_DT_CADASTRO <= CAST('" & dtFim & " 23:59' AS DATETIME) "
+            End If
+
 		    ssql = ssql &" order by e.mod_codnome asc, a.EQ_CODIGOBARRAS ASC;"
 
-    '		response.write ssql & "<BR>" & request("fabricante")
-		    response.write "<!-- SQL:" & VbCrLf & ssql & VbCrLf & "-->" & VbCrLf & VbCrLf
-    '		response.end
+    		'response.write ssql & "<BR>" & request("fabricante")
+		    'response.write "<!-- SQL:" & VbCrLf & ssql & VbCrLf & "-->" & VbCrLf & VbCrLf
+    		'response.end
 
 		    set rec = Env.oconn.execute(ssql)
 	    end if

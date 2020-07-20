@@ -19,12 +19,23 @@ If Env.UsuarioSCE() Then
     Call Tela.ImprimeMenuSce()
 %>
 <script language=javascript>
-	<!--#include file="includes/vform.js"-->
+	<!--#inc    lude file="includes/vform.js"-->
 	<!--#include file="includes/montacnpj.inc"-->
 	<!--#include file="includes/estado.asp"-->
 </script>
-<form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="vdform('formulario','notafiscal','Nota Fiscal','Number', 'documento','Documento','Number'); return document.ValorPassou;">
+
+<script language=javascript>
+    function ValidaForm()
+    {
+        return true;
+    }
+</script>
+
+<!-- <form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="vdform('formulario','notafiscal','Nota Fiscal','Number', 'documento','Documento','Number'); return document.ValorPassou;"> -->
+<form name="formulario" method="post" action="cad_acess_mod.asp" onSubmit="return ValidaForm();">
+
 <input type="hidden" name="busca" value="1">
+
 <table width="780px" class="texto1">
 	<tr>
 		<td>
@@ -101,7 +112,6 @@ If Env.UsuarioSCE() Then
 			</table>
 		</td>
 	</TR>
-	<tr class="tr"><td>&nbsp;</td></tr>
 
 	<tr class="texto1"><td>&nbsp;</td></tr>
 
@@ -121,6 +131,16 @@ If Env.UsuarioSCE() Then
 		</td>
 	</tr>
 	<tr class="texto1"><td>&nbsp;</td></tr>
+
+    <tr>
+	    <td class="texto1">
+		    Data de Cadastro:&nbsp;
+		    <%RW Combo.Data("inicio")%>
+		    &nbsp;at&eacute;&nbsp;
+		    <%RW Combo.Data("termino")%>
+	    </td>
+    </tr>
+
 	<tr>
 		<td class="texto1" align="right">
 			<input type="submit" name="buscar" value="próximo &gt;&gt;" class="texto1">
