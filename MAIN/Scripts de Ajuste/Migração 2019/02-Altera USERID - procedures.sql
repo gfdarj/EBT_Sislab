@@ -5121,6 +5121,7 @@ END
 GO
 
 
+
 /****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]    Script Date: 07/19/2018 18:45:13 ******/
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]') AND OBJECTPROPERTY(id,N'IsProcedure') = 1)
 	DROP PROCEDURE [dbo].[sp_SCE_CADASTRA_EQUIPAMENTO]
@@ -5207,10 +5208,10 @@ BEGIN
 		INSERT INTO SCE_Equipamentos (EQ_CODIGOBARRAS, EQ_CODIGOBARRASANTERIOR, EQ_NUMEROSERIE, AMB_ID,
 				MOD_ID, EQ_OBS, STATUS,
 				EQ_OPER_DELTA, EQ_OPER_UMIDADE, EQ_OPER_WARMUP, EQ_ARMA_DELTA, EQ_ARMA_UMIDADE,
-				EQ_MANUT_PREVENTIVA, EQ_INSTRUMENTAL, EQ_PROPRIEDADE, EQ_CONFORME, EQ_FREQ_CALIBRACAO)
+				EQ_MANUT_PREVENTIVA, EQ_INSTRUMENTAL, EQ_PROPRIEDADE, EQ_CONFORME, EQ_FREQ_CALIBRACAO, EQ_DT_CADASTRO)
 			VALUES (@eq_codigobarras, @eq_codigobarrasanterior, @eq_numeroserie, @amb_id, @mod_id, @eq_obs, @status,
 				@eq_oper_delta, @eq_oper_umidade, @eq_oper_warmup, @eq_arma_delta, @eq_arma_umidade,
-				@eq_manut_preventiva, @eq_instrumental, @eq_propriedade, @eq_conforme, @eq_freq_calibracao)
+				@eq_manut_preventiva, @eq_instrumental, @eq_propriedade, @eq_conforme, @eq_freq_calibracao, GETDATE())
 		IF @@error <> 0
 		BEGIN
 			ROLLBACK TRANSACTION
@@ -5346,6 +5347,7 @@ BEGIN
 	RETURN @EQ_ID
 END
 GO
+
 
 
 /****** Object:  StoredProcedure [dbo].[sp_SCE_CADASTRA_MOVIMENTACAO]    Script Date: 07/19/2018 18:45:13 ******/
