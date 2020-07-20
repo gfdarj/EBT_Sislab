@@ -146,7 +146,7 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
 	        <td>Usuários CRT:&nbsp;</td>
 	        <td>
 		        <%call comboUSERCRTVIVOEMORTOS("user", Env.oConn,"N")%>&nbsp;&nbsp;
-		        <input type="button" value="Buscar" onclick="BuscarUsuario();">
+		        <input type="button" class="btn btn-primary" value="Buscar" onclick="BuscarUsuario();">
 	        </td>
         </tr>
         <tr><td colspan="2">&nbsp;</td></tr>
@@ -236,10 +236,10 @@ If Not Env.ehRAT Then Response.Redirect "INDEX.ASP"
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr>
 	        <td colspan="2">
-		        <input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
-		        <input type="button"  onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
-		        <input type="button"  onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button"  onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
+		        <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar"/>
+		        <input type="button" class="btn btn-primary" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir Usuário &nbsp;&nbsp;" name="btnIncluir"/>
+		        <input type="button" class="btn btn-primary" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="btn btn-primary" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar"/>
 	        </td>
         </tr>
         </table>

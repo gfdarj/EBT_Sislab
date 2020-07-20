@@ -169,11 +169,11 @@ Call Env.RecordSet(false, objRS, null)
 	        <td colspan="2" align="center">
 <%
 	If (oc <> "") And (Not Env.UsuarioCRT) Then	%>
-        		<input type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+        		<input type="button" class="btn btn-primary" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
 <%	Else%>
-		        <input type="button" onclick="envia();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+		        <input type="button" class="btn btn-primary" onclick="envia();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-        		<input type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;Fechar&nbsp;&nbsp;" />
+        		<input type="button" class="btn btn-primary" onclick="javascript:window.close();" value="&nbsp;&nbsp;Fechar&nbsp;&nbsp;" />
 <%	End If%>
 	        </td>
         </tr>

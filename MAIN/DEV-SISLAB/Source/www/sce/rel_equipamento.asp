@@ -109,7 +109,7 @@ If Env.UsuarioSCE() Then
 </tr>
 </table>
 <br />
-<p><input type="submit" name="buscar" value="Pesquisar" ></p>
+<p><input type="submit" class="btn btn-primary" name="buscar" value="Pesquisar" ></p>
 </form>
 </div>
 <%

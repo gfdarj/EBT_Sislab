@@ -110,9 +110,9 @@ call Env.RecordSet( false, objRS, null)
         <tr>
 	        <td width="75px">&nbsp;Título:</td>
 	        <td>
-		        <input type="text" value="<%=auxtitulo%>" name="titulo" size="80" >
+		        <input type="text" class="btn btn-primary" value="<%=auxtitulo%>" name="titulo" size="80" >
 		        &nbsp;&nbsp;&nbsp;
-		        <input type="button"  value=" Ver Reservas " onclick="javascript:abreLista();">
+		        <input type="button" class="btn btn-primary" value=" Ver Reservas " onclick="javascript:abreLista();">
 	        </td>
         </tr>
         <tr>
@@ -204,9 +204,9 @@ If Not objRS.EOF Then
         <br />
 
         <p>
-	    	<input type="button" value="Cadastrar" onClick="ValidaCampos();">
+	    	<input type="button" class="btn btn-primary" value="Cadastrar" onClick="ValidaCampos();">
 <% If auxaltera="Alterar" Then %>
-    		<input type="button" value="Cancelar Reserva"  onClick="Apagar();">&nbsp;
+    		<input type="button" class="btn btn-primary" value="Cancelar Reserva"  onClick="Apagar();">&nbsp;
 <% End If %>
         </p>
     </form>

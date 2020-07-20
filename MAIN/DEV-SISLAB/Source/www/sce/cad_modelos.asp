@@ -151,7 +151,7 @@ If Env.UsuarioSCE() Then
 	        </tr>
             <tr><td>&nbsp;</td></tr>
             <tr> 
-                <td><%if n <> 1 then%><input type="submit" name="Submit" value=" Cadastrar " ><%end if%></td>
+                <td><%if n <> 1 then%><input type="submit" class="btn btn-primary" name="Submit" value=" Cadastrar " ><%end if%></td>
             </tr>
           </table>
     </form>

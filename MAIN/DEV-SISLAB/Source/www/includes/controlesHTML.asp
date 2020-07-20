@@ -100,9 +100,9 @@ Function ControleParticipantesInternos(nome, index, titulo1, titulo2, ag_numero)
         </div>
         <br />
         <div>
-            <input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index + 2%>" title="Adiciona um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
+            <input type="button" class="btn btn-primary" name="btninsere" value="Adicionar" onClick="adiciona_retira_participantes<%=nome%>(1)" tabindex="<%=index + 2%>" title="Adiciona um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
 		    &nbsp;
-		    <input  type="button" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index + 3%>" title="Remove um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
+		    <input type="button" class="btn btn-primary" name="btnretira" value="Remover" onClick="adiciona_retira_participantes<%=nome%>(0)" tabindex="<%=index + 3%>" title="Remove um participante <%=Application("SISLAB_NOME_EMPRESA")%> na lista">
         </div>
         <br />
         <div>
@@ -190,11 +190,11 @@ fac.focus();
                 <table width="30%" border="0">
                 <tr>
 		            <td>
-						<input class="cxtexto" type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>"></td>
+						<input type="button" class="btn btn-primary" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>"></td>
                 </tr>
                 <tr>
 					<td>
-	                    <input class="cxtexto" type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>"></td>
+	                    <input type="button" class="btn btn-primary" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>"></td>
                 </tr>
 		</tr>
         </table>
@@ -279,12 +279,12 @@ Function ControleComboMultiplo(nome,titulo,nomeCampo1,sql,index)%>
                 <table width="30%" border="0" class="table-bordered">
                 <tr>
 		            <td>
-						<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
+						<input type="button" class="btn btn-primary" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
 					</td>
                 </tr>
                 <tr>
 					<td>
-	                    <input  type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
+	                    <input type="button" class="btn btn-primary" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
 					</td>
                 </tr>
 				</table>
@@ -294,7 +294,7 @@ Function ControleComboMultiplo(nome,titulo,nomeCampo1,sql,index)%>
 	</td>
     <td  rowspan="3" width="46%"> 
 		<%=titulo%>:
-        <select name="lst<%=nome%>" size="4"  style="WIDTH: 250px" multiple tabindex="<%=index+5%>">
+        <select name="lst<%=nome%>" size="4" style="WIDTH: 250px" multiple tabindex="<%=index+5%>">
         </select>
 	</td>
 </tr>
@@ -381,8 +381,8 @@ Function ControleComboMultiplo2(nome, titulo, nomeCampo1, sql, index, TIPOCAMPO)
 		</tr>
 		<tr>
 			<td style="text-align: center;">
-				<input  type="button" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
-				<input  type="button" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
+				<input type="button" class="btn btn-primary" name="btnretira" value="Retirar" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+3%>">&nbsp;
+				<input type="button" class="btn btn-primary" name="btninsere" value="Adicionar" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+4%>">
 			</td>
 		</tr>
 		<tr>
@@ -484,12 +484,12 @@ Function ControleComboMultiplo3(nome, titulo, nomeCampo1, sql, index) %>
                 <table>
                 <tr>
 		            <td>
-						<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
+						<input type="button" class="btn btn-primary" name="btninsere" value=">" onClick="adiciona_retira_<%=nome%>(1)" tabindex="<%=index+3%>">
 					</td>
                 </tr>
                 <tr>
 					<td>
-	                    <input  type="button" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
+	                    <input type="button" class="btn btn-primary" name="btnretira" value="<" onClick="adiciona_retira_<%=nome%>(0)" tabindex="<%=index+4%>">
 					</td>
                 </tr>
 				</table>

@@ -427,7 +427,7 @@ End If%>
 	            <td colspan="2">
 		            De <%call comboData("dataIni")%>&nbsp;até&nbsp;<%call comboData("dataFim")%>
 		            &nbsp;&nbsp;&nbsp;&nbsp;
-		            <input type="button" value="Pesquisar" onclick="retornavalor();">
+		            <input type="button" class="btn btn-primary" value="Pesquisar" onclick="retornavalor();">
 		            <script type="text/javascript">
 <%
 If dataIni <> "" Then%>

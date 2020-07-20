@@ -42,7 +42,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Fale Conosco - Emai
 	    </td>
     </tr>
     <tr><td height="30px"></td></tr>
-    <tr><td align="center"><input type="button" value="Voltar para a página inicial" onclick="javascript:location.href='index.asp';"></td></tr>
+    <tr><td align="center"><input type="button" class="btn btn-primary" value="Voltar para a página inicial" onclick="javascript:location.href='index.asp';"></td></tr>
 </table>
 <%
 Call Tela.MostraRodape()

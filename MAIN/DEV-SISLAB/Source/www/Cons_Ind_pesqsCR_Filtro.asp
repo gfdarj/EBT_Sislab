@@ -109,7 +109,7 @@ auxClientes = (request.form("chkClientes")="on")
     </tr>
     <tr>
 	    <td>
-		    <input type="submit" Value="Aplicar filtro">
+		    <input type="submit" class="btn btn-primary" Value="Aplicar filtro">
 	    </td>
     </tr>
     </table>

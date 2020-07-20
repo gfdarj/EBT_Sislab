@@ -214,7 +214,7 @@ end if
 		Ações Tomadas:<br>
 	<td colspan="5" align="right">
 		<%if ehRat then%>
-			<input type="button" name="btAcao" value="Tomar Nova Ação" onClick="NovaAcao()">
+			<input type="button" class="btn btn-primary" name="btAcao" value="Tomar Nova Ação" onClick="NovaAcao()">
 		<%end if%>
 		&nbsp;&nbsp;
 	</td>
@@ -242,11 +242,11 @@ end if
 		<td colspan="10">
 			&nbsp;
 			<%if ocorrencia = "" and not ehRat then%>
-				<input type="button" onClick="ValidaCampos()" name="bt" value="&nbsp;Cadastra&nbsp;" />
+				<input type="button" class="btn btn-primary" onClick="ValidaCampos()" name="bt" value="&nbsp;Cadastra&nbsp;" />
 			<%elseif ocorrencia <> "" and not ehRat then%>
-				<input type="button" onClick="volta()" name="bt" value="&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;" />
+				<input type="button" class="btn btn-primary" onClick="volta()" name="bt" value="&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;" />
 			<%elseif ehRat then%>
-				<input type="button" onClick="document.forms[0].concluidoGQ.value='1';ValidaCampos()" name="bt" value="Salvar Ocorrência" />
+				<input type="button" class="btn btn-primary" onClick="document.forms[0].concluidoGQ.value='1';ValidaCampos()" name="bt" value="Salvar Ocorrência" />
 			<%end if%>
 		</td>
 	</tr>

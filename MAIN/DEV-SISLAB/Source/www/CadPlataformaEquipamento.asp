@@ -154,8 +154,8 @@ mod_id = Trim(request("mod_id"))
         </tr>
         <tr>
 			<td class="texto-direito">
-				<input type="button" value="Adicionar" onclick="javascript: adicionar();">&nbsp;&nbsp;
-				<input type="button" value=" Remover " onclick="javascript: remover();">
+				<input type="button" class="btn btn-primary" value="Adicionar" onclick="javascript: adicionar();">&nbsp;&nbsp;
+				<input type="button" class="btn btn-primary" value=" Remover " onclick="javascript: remover();">
 			</td>
         </tr>
 
@@ -188,7 +188,7 @@ call Env.RecordSet(false, objRS, null)
 
         <tr><td>&nbsp;</td></tr>
 
-        <tr><td><input type="button" value=" Salvar " onclick="javascript:return salvaPlataforma(document.forms[0]);"></td></tr>
+        <tr><td><input type="button" class="btn btn-primary" value=" Salvar " onclick="javascript:return salvaPlataforma(document.forms[0]);"></td></tr>
 
         </table>
     </form>

@@ -55,7 +55,7 @@ function ValidaCampos()
 	    <tr><td>&nbsp;</td></tr>
 	    <tr><td>Tipo:<br><input type="text" name="tipo_descricao" style="width:600" maxlength="100"></td></tr>
 	    <tr><td>&nbsp;</td></tr>
-	    <tr><td><input type="submit" name="Submit" value="Cadastrar" ></td></tr>
+	    <tr><td><input type="submit" class="btn btn-primary" name="Submit" value="Cadastrar" ></td></tr>
      </table>
     </form>
 </div>

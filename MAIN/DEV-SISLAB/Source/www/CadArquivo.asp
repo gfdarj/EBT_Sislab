@@ -305,8 +305,8 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 					    <b>Nome do arquivo:</b><br>
 					    <div id="arqatu">
 						    <input type="text" name="nome" size="80" maxlength="90" readonly value="<%=auxnomearq%>">&nbsp;
-						    <input type="button" onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=150, width=500, toolbars=1no, directory=1no' );" value="&nbsp;Alterar&nbsp;" />&nbsp;&nbsp;
-						    <input type="button" onclick="javascript:visualizaArquivo();" value="Visualizar Arquivo" />
+						    <input type="button" class="btn btn-primary" onclick="javascript:window.open('muda_arq.asp?ag_numero=<%=auxAS%>&codarq=<%=auxselecao%>&ant=<%=Replace(auxnomearq, "\", "\\")%>', 'muda_arq', 'height=150, width=500, toolbars=1no, directory=1no' );" value="&nbsp;Alterar&nbsp;" />&nbsp;&nbsp;
+						    <input type="button" class="btn btn-primary" onclick="javascript:visualizaArquivo();" value="Visualizar Arquivo" />
 					    </div>
 					    <input id="arqcad" TYPE="File" size="60" name="FILE1">
 					    <script type="text/javascript">
@@ -412,10 +412,10 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de Arquivo
 			    <tr><td colspan="10">&nbsp;</td></tr>
 		        <tr valign="middle">
 				    <td colspan="10"> 
-					    <input type="submit" name="btnEnviar" value=" Atualizar " />
+					    <input type="submit" class="btn btn-primary" name="btnEnviar" value=" Atualizar " />
 					    &nbsp;&nbsp;&nbsp;<%
 		if auxaltera="Alterar" then %>
-    					<input type="button" name="Excluir" value="  Excluir  " onclick="selexcluir();" />
+    					<input type="button" class="btn btn-primary" name="Excluir" value="  Excluir  " onclick="selexcluir();" />
 	    				&nbsp;&nbsp;<%
 		end if %>
 				    </td>

@@ -87,7 +87,7 @@ If Env.UsuarioSCE() Then
 	</tr>
 	<tr ><td>&nbsp;</td></tr>
 	<tr>
-	   <td><input type="button" name="Submit" value=" Cadastrar "  onclick="ValidaCampos()"></td>
+	   <td><input type="button" class="btn btn-primary" name="Submit" value=" Cadastrar "  onclick="ValidaCampos()"></td>
     </tr>
  </table>
 </form>

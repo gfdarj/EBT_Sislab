@@ -327,8 +327,8 @@ set rs_agendamento = nothing
     <br>
 
     <p >
-        <input  type="submit" value="    Ok    " name="btnOk" style="width: 80px;">
-        <input  type="button" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
+        <input  type="submit" class="btn btn-primary" value="    Ok    " name="btnOk" style="width: 80px;">
+        <input  type="button" class="btn btn-primary" name="Submit2" value="Voltar" onclick="voltar()" style="width: 80px;">
     </p>
 
 </form>

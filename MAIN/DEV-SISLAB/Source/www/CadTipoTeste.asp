@@ -94,7 +94,7 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 	        <td width="120px">Tipo de Atividade:</td>
 	        <td>
 		        <%call comboTipoTeste("tipoteste", Env.oConn, "", "N")%>&nbsp;&nbsp;
-		        <input   type="button" value="Buscar" onclick="BuscarUsuario();">
+		        <input type="button" class="btn btn-primary" value="Buscar" onclick="BuscarUsuario();">
 	        </td>
         </tr>
 
@@ -111,10 +111,10 @@ if not Env.ehRAT then RESPONSE.REDIRECT "INDEX.ASP"
 
         <tr>
 	        <td colspan="2">
-		        <input type="button" onclick="ValidaCampos()" value=" &nbsp;Salvar Dados&nbsp;" name="btnSalvar">
-		        <input type="button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
-		        <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
+		        <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" &nbsp;Salvar Dados&nbsp;" name="btnSalvar">
+		        <input type="button" class="btn btn-primary" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
+		        <input type="button" class="btn btn-primary" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="btn btn-primary" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
 	        </td>
         </tr>
         </table>

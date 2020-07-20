@@ -68,7 +68,7 @@ If Env.UsuarioSCE() Then
 </tr>
 </table>
 <p>
-    <input type="button"  value="Pesquisar" onclick="javascript:validaCampos();">
+    <input type="button" class="btn btn-primary" value="Pesquisar" onclick="javascript:validaCampos();">
 </p>
 </form>
 </div>

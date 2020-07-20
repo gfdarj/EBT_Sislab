@@ -49,7 +49,7 @@ If Env.UsuarioSCE() Then
     </tr>
 	<tr><td >&nbsp;</td></tr>
 	<tr>
-	    <td valign="middle" class="titulo"><input type="submit" value=" Editar " ></td>
+	    <td valign="middle" class="titulo"><input type="submit" class="btn btn-primary" value=" Editar " ></td>
 	</tr>
  </table>
  </form>

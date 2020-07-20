@@ -301,7 +301,7 @@ Private Sub ImprimeMenu()
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#main-navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -494,7 +494,7 @@ Public Sub ImprimeMenuSce()
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button"class="navbar-toggle"data-toggle="collapse" data-target="#sce-navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sce-navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

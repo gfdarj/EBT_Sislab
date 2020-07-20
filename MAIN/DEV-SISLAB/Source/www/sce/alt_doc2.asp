@@ -132,8 +132,8 @@ If Env.UsuarioSCE() Then
         <tr><td>&nbsp;</td></tr>
         <tr> 
             <td>
-                <input type="submit" name="Submit" value=" Alterar ">&nbsp;&nbsp;
-	            <input type="submit" name="Submit" value=" Excluir " onClick="func();">
+                <input type="submit" class="btn btn-primary" name="Submit" value=" Alterar ">&nbsp;&nbsp;
+	            <input type="submit" class="btn btn-primary" name="Submit" value=" Excluir " onClick="func();">
             </td>
         </tr>
         </table>

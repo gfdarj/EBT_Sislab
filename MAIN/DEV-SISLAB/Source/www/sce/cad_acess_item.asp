@@ -224,8 +224,8 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 						Último Inventário:<br>&nbsp;&nbsp;&nbsp;<input type="text" id="dtUltInventario" name="dtUltInventario" size="19"  value="<%=DtUltInventario%>">
 <%				    'If session("status") = PERFIL_RAT Then %>
 <%				    If session("status") = PERFIL_ADM Then %>
-						&nbsp;&nbsp;<input type="button" value=" Marcar "  onClick="javascript:atualizarInventario(<%=eq_id%>, false);">
-						&nbsp;&nbsp;<input type="button" value="Desmarcar"  onClick="javascript:atualizarInventario(<%=eq_id%>, true);">
+						&nbsp;&nbsp;<input type="button" class="btn btn-primary" value=" Marcar "  onClick="javascript:atualizarInventario(<%=eq_id%>, false);">
+						&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Desmarcar"  onClick="javascript:atualizarInventario(<%=eq_id%>, true);">
 <%				    End If %>
 					</td>
 				</tr>
@@ -286,7 +286,7 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			<td align="left" >
 				Número de Série:<br>
 				<input type="text"  name="numeroserie" size="40" maxlength="255" value="<%=numeroserie%>" onblur="testaRepeticaoNumeroSerie(document.all.eq_id.value, document.all.numeroserie.value);">
-				<input type="button" name="btn_ChecaNS" value="Verificar"  title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
+				<input type="button" class="btn btn-primary" name="btn_ChecaNS" value="Verificar"  title="Verifica se o número de série já está cadastrado em um equipamento" onClick="javascript:checaNS(this.value);">
                 <span id="ID_AvisoNumeroSerie"></span>
 			</td>
 
@@ -660,7 +660,7 @@ function RemoveControle(l) {
   			<table class="largura-total">
 				<tr>
 				    <td style="vertical-align: top;">
-                        <input type="button" name="adicionar" onclick="NovoAcessorio();" value="Novo Acessório"/>
+                        <input type="button" class="btn btn-primary" name="adicionar" onclick="NovoAcessorio();" value="Novo Acessório"/>
 					    <br>
 					    Qtde: <input type="text" name="qtde_acessorios" size="4" maxlength="5"  value="1">
 					</td>
@@ -900,11 +900,11 @@ function RemoveControle(l) {
 
 	<tr> 
 		<td colspan="3">
-		  	<input type="button" name="Submit" value="<%if eq_id = "" then response.write "Cadastrar" else response.write "Alterar"%>"  onClick="javascript:CadastraItem();">&nbsp;&nbsp;
+		  	<input type="button" class="btn btn-primary" name="Submit" value="<%if eq_id = "" then response.write "Cadastrar" else response.write "Alterar"%>"  onClick="javascript:CadastraItem();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if eq_id <> "" then%>
-		  	<input type="button" name="btnNovo" value="Novo Equipamento"  onClick="javascript:NovoEquipamento();">&nbsp;&nbsp;
-	  		<input type="button" name="btnExcluir" value="Excluir"  onClick="javascript:ExcluirItem();">&nbsp;&nbsp;
+		  	<input type="button" class="btn btn-primary" name="btnNovo" value="Novo Equipamento"  onClick="javascript:NovoEquipamento();">&nbsp;&nbsp;
+	  		<input type="button" class="btn btn-primary" name="btnExcluir" value="Excluir"  onClick="javascript:ExcluirItem();">&nbsp;&nbsp;
 		<script type="text/javascript">
 		function ExcluirItem() {
 <%If bln_AcessoRAT Then%>

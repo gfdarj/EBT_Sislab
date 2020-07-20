@@ -109,8 +109,8 @@ end if
         <tr><td>&nbsp;</td></tr>
         <tr>
 	        <td>
-	            <input type="submit" value="     Ok     " name="btnOk">
-    	        <input type="button" value="Cancelar" onclick="javascript:location.href='form_atualiza_teste_sel.asp';">
+	            <input type="submit" class="btn btn-primary" value="     Ok     " name="btnOk">
+    	        <input type="button" class="btn btn-primary" value="Cancelar" onclick="javascript:location.href='form_atualiza_teste_sel.asp';">
 	        </td>
         </tr>
         </table>

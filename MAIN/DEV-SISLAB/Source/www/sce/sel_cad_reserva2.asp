@@ -297,7 +297,7 @@ While Not rec.eof
 
 		If Env.PerfilSce <> PERFIL_RAT and (not ReservaOK) and (not ehRelatorio) then%>
             <br />
-		    <p class="texto-direito"><input type="button"  value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p class="texto-direito"><input type="button" class="btn btn-primary" value="Aceitar AS <%=agnumero%>" onclick="javascript:movimentarAS(<%=agnumero%>, <%=contaAS-1%>);">&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <%	    Elseif ReservaOK then%>
             <br />
     		<p class="texto-direito"><small>Reserva da AS <%=agnumero%> movimentada pela Log&iacute;stica</small></p>

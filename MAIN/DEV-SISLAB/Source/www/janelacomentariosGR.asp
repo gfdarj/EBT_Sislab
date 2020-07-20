@@ -193,7 +193,7 @@ end if
 %>
     </table>
 
-    <div style="text-align: center;"><input type="button" value=" Fechar " onclick="javascript: window.close();" /></div>
+    <div style="text-align: center;"><input type="button" class="btn btn-primary" value=" Fechar " onclick="javascript: window.close();" /></div>
     <br />
 </div>
 

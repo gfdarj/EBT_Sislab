@@ -69,7 +69,7 @@ If Env.UsuarioSCE() Then
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Descrição: <input type="text" name="txtDescricao" size="40" maxlength="50" >
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="Filtrar" onclick="javascript:filtrar();" >
+						<input type="button" class="btn btn-primary" value="Filtrar" onclick="javascript:filtrar();" >
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
@@ -84,7 +84,7 @@ If request("CNPJ") <> "" Or request("Desc") <> "" Then
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td ><%if a <> 1 then%><input type="submit" value=" Alterar " ><%end if%></td>
+					<td ><%if a <> 1 then%><input type="submit" class="btn btn-primary" value=" Alterar " ><%end if%></td>
 			    </tr>
 <%
 End If

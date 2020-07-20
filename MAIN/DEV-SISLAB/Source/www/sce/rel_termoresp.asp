@@ -64,7 +64,7 @@ end if%>
     <tr><td>&nbsp;</td></tr>
     <tr>
 	    <td colspan="2">
-	    <input  type="submit" value=" Gerar Termo de Responsabilidade ">
+	    <input type="submit" class="btn btn-primary" value=" Gerar Termo de Responsabilidade ">
 	    </td>
     </table>
     </form>

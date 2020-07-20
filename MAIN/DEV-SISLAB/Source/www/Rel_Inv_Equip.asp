@@ -123,7 +123,7 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Relatório para Inv
 		<tr><td>&nbsp;</td></tr>
         </table>
 
-        <p><input type="submit" name="btnConsultar" Value="Consultar" ></p>
+        <p><input type="submit" class="btn btn-primary" name="btnConsultar" Value="Consultar" ></p>
 
     </form>
 </div>

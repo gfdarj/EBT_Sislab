@@ -162,7 +162,7 @@ If VVVNZ(auxag) Then
     	<input type="hidden" name="solicitante" value="<%=auxusername%>">
 <%	    End If '### EhCRT %>
     </p>
-    <p><input type="button"  value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
+    <p><input type="button" class="btn btn-primary" value="Ver Formulário" onclick="javascript:/*showAguarde();*/ enviaAS();"></p>
     </form>
 <%  End If %>
 
@@ -500,10 +500,10 @@ Else
 <p align="center" id="p_conifrmaResposta">
 <%
 If bln_ExistePesquisa And (Not ehRAT) Then%>
-	<input type="button" class='texto1' value="Voltar ao início" name="btnConfirma" onclick="javascript:location.href='index.asp';">
+	<input type="button" class="btn btn-primary" value="Voltar ao início" name="btnConfirma" onclick="javascript:location.href='index.asp';">
 <%
 Else%>
-	<input type="button" class='texto1' value="Confirmar Respostas" name="btnConfirma" onclick="javascript:Confirma();">
+	<input type="button" class="btn btn-primary" value="Confirmar Respostas" name="btnConfirma" onclick="javascript:Confirma();">
 <%
 End If
 %>
@@ -664,7 +664,7 @@ Function MensagemSolicitantesInvalidos
 <p  align="center"><font color="red"><b>AVISO !</b></font></p>
 <p >Você selecionou 2 ou mais solicitantes diferentes.</p>
 <p >Para usar a funcionalidade de resposta vários agendamentos é necessário que todos os agendamentos sejam do mesmo solicitante.</p>
-<p align="center"><input type="button" class='texto1' value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
+<p align="center"><input type="button" class="btn btn-primary" value="Voltar" name="btnConfirma" onclick="javascript:history.go(-1);"></p>
 </div>
 </center>
 <%

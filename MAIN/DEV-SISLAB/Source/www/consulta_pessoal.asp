@@ -120,7 +120,7 @@ function submeter()
 	  <INPUT type="text" NAME="anoFim" size="4" MAXLENGTH="4" >
 	</td>
 	<td>
-	  <INPUT type="button" VALUE=" Ok " onclick="submeter()">
+	  <INPUT type="button" class="btn btn-primary" VALUE=" Ok " onclick="submeter()">
 	</td>
 </tr>
 <tr>

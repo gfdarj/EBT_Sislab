@@ -97,7 +97,7 @@ End If
 	        <td>
 		        <%call comboBDSQL("tipoarquivo", Env.oConn, "SELECT TAR_CODTIPOARQUIVO as valor, TAR_TIPOARQUIVO as descricao FROM TipoArquivo ORDER BY TAR_TIPOARQUIVO", "N", true)%>
 		        &nbsp;&nbsp;
-		        <input type="button" value="Buscar" onclick="Buscar();">
+		        <input type="button" class="btn btn-primary" value="Buscar" onclick="Buscar();">
 	        </td>
         </tr>
 
@@ -136,10 +136,10 @@ End If
 
         <tr>
 	        <td colspan="2">
-		        <input type="button" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
-		        <input type="button" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		        <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+		        <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" Salvar Dados " name="btnSalvar">
+		        <input type="button" class="btn btn-primary" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		        <input type="button" class="btn btn-primary" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="btn btn-primary" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
 	        </td>
         </tr>
         </table>

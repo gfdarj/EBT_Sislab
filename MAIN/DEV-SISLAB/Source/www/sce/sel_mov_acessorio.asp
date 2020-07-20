@@ -635,9 +635,9 @@ end if%>
             <tr>
 	            <td valign="top" ><br><%
 if Ok_Alterar_Mov then%>
-		            <input type="button" value=" Alterar este Movimento "  onClick="javascript:validaMovimentacao();"><%
+		            <input type="button" class="btn btn-primary" value=" Alterar este Movimento "  onClick="javascript:validaMovimentacao();"><%
 else%>
-            		<input type="button" value=" Movimentar "  onClick="javascript:validaMovimentacao();"><%
+            		<input type="button" class="btn btn-primary" value=" Movimentar "  onClick="javascript:validaMovimentacao();"><%
 end if
 %>		            <br>
             	</td>

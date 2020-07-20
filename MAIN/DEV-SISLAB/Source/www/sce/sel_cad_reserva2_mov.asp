@@ -76,11 +76,11 @@ wend%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td align="center">
-		<input type="button" name="btnNovaConsulta" value="Nova Consulta"  onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 120px;  display: inline;">
+		<input type="button" class="btn btn-primary" name="btnNovaConsulta" value="Nova Consulta"  onclick="javascript:location.href='sel_cad_reserva.asp';" style="width: 120px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnImprimir" value="Imprimir"  onclick="javascript:imprimirLista();" style="width: 120px;  display: inline;">
+		<input type="button" class="btn btn-primary" name="btnImprimir" value="Imprimir"  onclick="javascript:imprimirLista();" style="width: 120px;  display: inline;">
 		&nbsp;&nbsp;
-		<input type="button" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();"  style="width: 120px; display: inline;">
+		<input type="button" class="btn btn-primary" name="btnMovimentar" value="Movimentar" onclick="javascript:movimentarReserva();"  style="width: 120px; display: inline;">
 	</td></tr>
 </table>
 </form>

@@ -66,7 +66,7 @@ function Mascara2 (keypress, objeto){
     		</tr>
 			<tr><td>&nbsp;</td></tr>
 			<tr>
-      			<td><input type="submit" name="Submit" value="Cadastrar" ></td>
+      			<td><input type="submit" class="btn btn-primary" name="Submit" value="Cadastrar" ></td>
 		    </tr>
 		</table>
       </td>

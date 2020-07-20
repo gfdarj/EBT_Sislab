@@ -16,12 +16,12 @@ Call Tela.ImprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Sistema de Gestão 
     <tr>
 	    <td align="center">
 		    <br>
-		    <p><input type="button" value="Cadastrar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='componentes.asp';"></p>
-		    <p><input type="button" value="Editar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_compos.asp';"></p>
-		    <p><input type="button" value="Consultar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_componentes.asp';"></p>
-		    <p><input type="button" value="Cadastrar/Editar Tipo de Componente (Modelo)" class="botaoMenu" onclick="javascript:location.href='sel_tipocomponentes.asp';"></p>
-		    <p><input type="button" value="Locais Genéricos" class="botaoMenu" onclick="javascript:location.href='sel_localgenerico.asp';"></p>
-		    <p><input type="button" value="Circuitos" class="botaoMenu" onclick="javascript:location.href='circuitos.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Cadastrar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='componentes.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Editar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_compos.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Consultar Componente (Elemento)" class="botaoMenu" onclick="javascript:location.href='lista_componentes.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Cadastrar/Editar Tipo de Componente (Modelo)" class="botaoMenu" onclick="javascript:location.href='sel_tipocomponentes.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Locais Genéricos" class="botaoMenu" onclick="javascript:location.href='sel_localgenerico.asp';"></p>
+		    <p><input type="button" class="btn btn-primary" value="Circuitos" class="botaoMenu" onclick="javascript:location.href='circuitos.asp';"></p>
 		    <br>
 	    </td>
     </tr>

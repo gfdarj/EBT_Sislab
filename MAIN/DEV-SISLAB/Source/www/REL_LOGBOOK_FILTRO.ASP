@@ -110,7 +110,7 @@ EH_CRT = Env.UsuarioCRT()
             <tr><td colspan="10">&nbsp;</td></tr>
             <tr>
 	            <td colspan="10">
-		            <input type="button" name="Filtro" Value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;" onclick="envia();">
+		            <input type="button" class="btn btn-primary" name="Filtro" Value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;" onclick="envia();">
 	            </td>
             </tr>
         </table>

@@ -94,7 +94,7 @@ If Env.UsuarioSCE() Then
 			next%>
             <div class="texto-direito">
 				<small>Para Impressão, clique no botão "Imprimir" e configure a página para ser impressa no formato de Paisagem.</small>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="Imprimir" onclick="window.print();"/>
+                    <input type="button" class="btn btn-primary" value="Imprimir" onclick="window.print();"/>
             </div>
 		</td>
 	</tr>

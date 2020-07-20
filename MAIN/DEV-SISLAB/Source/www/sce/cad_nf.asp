@@ -335,13 +335,13 @@ end if
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td>
-			<input  type="submit" <%if nf_id = "" then%> value="Cadastrar" <%else%> value="Alterar" <%end if%>>
+			<input type="submit" class="btn btn-primary" <%if nf_id = "" then%> value="Cadastrar" <%else%> value="Alterar" <%end if%>>
 <%
 if nf_id <> "" then%>
 			&nbsp;&nbsp;
-			<input  type="button" value="Nova Nota" onClick="javascript:location.href='cad_nf.asp';">
+			<input  type="button" class="btn btn-primary" value="Nova Nota" onClick="javascript:location.href='cad_nf.asp';">
 			&nbsp;&nbsp;
-			<input  type="button" value=" Excluir " onClick="javascript:excluirNota();"><%
+			<input  type="button" class="btn btn-primary" value=" Excluir " onClick="javascript:excluirNota();"><%
 end if
 %>
 		</td>

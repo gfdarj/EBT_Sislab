@@ -281,7 +281,7 @@ auxPadronizado = (request("chkPadronizado")="on")
 </table>
 
 <br />
-<p><input type="submit" name="Filtro" Value="Consultar" ></p>
+<p><input type="submit" class="btn btn-primary" name="Filtro" Value="Consultar" ></p>
 
 </form>
 </div>

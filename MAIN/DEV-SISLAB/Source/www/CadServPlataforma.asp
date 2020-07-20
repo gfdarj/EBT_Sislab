@@ -102,7 +102,7 @@ Call Tela.imprimeCabecalho2(TITULO_SITE, MENU_ON, true, "", "Cadastro de " & tit
         <tr>
 	        <td><%=titulo%>: &nbsp;
 		        <%call comboServicosPlataformas("serv", objConn, "N", request("Acao"))%>
-		        <input  type="button" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
+		        <input  type="button" class="btn btn-primary" value="Buscar" onclick="BuscarServicosPlataformas('<%=request("Acao")%>');">
 		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	        </td>
         </tr>
@@ -150,10 +150,10 @@ end if
 
         <tr>
 	        <td>&nbsp;&nbsp;
-		        <input type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar">
-		        <input type="button" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
-		        <input type="button" onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
+		        <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" name="btnSalvar">
+		        <input type="button" class="btn btn-primary" onclick="IncluirNovo()" value=" &nbsp;&nbsp;Incluir &nbsp;&nbsp;" name="btnIncluir">
+		        <input type="button" class="btn btn-primary" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="btn btn-primary" onclick="Cancela()" value=" &nbsp;&nbsp;Cancelar&nbsp;&nbsp;" name="btnCancelar">
 	        </td>
         </tr>
     </table>

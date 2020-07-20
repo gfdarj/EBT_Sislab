@@ -93,7 +93,7 @@ auxusername = Env.Usuario
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td>
-                <input type="submit" name="Submit" value=" Enviar ">
+                <input type="submit" class="btn btn-primary" name="Submit" value=" Enviar ">
             </td>
         </tr>
         </table>

@@ -128,8 +128,8 @@ If Env.UsuarioSCE() Then
 	</script>
 	 <tr> 
       <td><br>
-        <input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;
-        <input type="submit" name="Submit" value=" Excluir "  onClick="func2();">
+        <input type="submit" class="btn btn-primary" name="Submit" value=" Alterar " >&nbsp;&nbsp;
+        <input type="submit" class="btn btn-primary" name="Submit" value=" Excluir "  onClick="func2();">
       </td>
     </tr>
   </table>

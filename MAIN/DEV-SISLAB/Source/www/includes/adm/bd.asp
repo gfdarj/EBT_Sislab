@@ -119,7 +119,7 @@ If Comando <> "" Then
 </table>
 <%		Call Env.oConn.CommitTrans
 	End If%>
-<p align="center"><button type="button" onclick="javascript:history.go(-1);">Voltar...</button></p>
+<p align="center"><button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">Voltar...</button></p>
 <%Else%>
 <script type="text/javascript">
 function vai(){
@@ -138,7 +138,7 @@ function vai(){
 		<td align="center"><textarea rows="20" cols="70" name="sql" wrap="off"></textarea></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2"><br/><button type="button" onclick="vai();">Executar !</button></td>
+		<td align="center" colspan="2"><br/><button type="button" class="btn btn-primary" onclick="vai();">Executar !</button></td>
 	</tr>
 </table>
 </form>

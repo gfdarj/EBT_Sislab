@@ -91,9 +91,9 @@ If Env.UsuarioSCE() Then
 		    <td>
 			    <table class="largura-total">
 			    <tr>
-				    <td>Nota Fiscal:&nbsp;<input type="text"  name="notafiscal" size="10"></td>
+				    <td>Nota Fiscal:&nbsp;<input type="text" name="notafiscal" size="10"></td>
 				    <td width="10px">&nbsp;</td>
-				    <td>Documento:&nbsp;<input type="text"  name="documento" size="7" maxlength="10"></td>
+				    <td>Documento:&nbsp;<input type="text" name="documento" size="7" maxlength="10"></td>
 				    <td width="10px">&nbsp;</td>
 				    <td>Registro/Certificado/CDE/RMA:&nbsp;<input type="text"  name="cde_equip" size="7"></td>
 				    <td width="10px">&nbsp;</td>
@@ -118,9 +118,18 @@ If Env.UsuarioSCE() Then
 			    </table>
 		    </td>
 	    </tr>
+	    <tr><td>&nbsp;</td></tr>
+        <tr>
+	        <td>
+		        Data de Cadastro:&nbsp;
+		        <%RW Combo.Data("inicio")%>
+		        &nbsp;at&eacute;&nbsp;
+		        <%RW Combo.Data("termino")%>
+	        </td>
+        </tr>
         </table>
         <br />
-        <p><input type="submit" name="buscar" value="Pesquisar"></p>
+        <p><input type="submit" class="btn btn-primary" name="buscar" value="Pesquisar"></p>
     </form>
 </div>
 <%

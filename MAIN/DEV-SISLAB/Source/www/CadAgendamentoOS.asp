@@ -322,9 +322,9 @@ Call Tela.ImprimeCabecalho2("Ordem de Serviço - AS " & NUM_AG, MENU_OFF, false,
     <tr>
 	    <td colspan="2">
 <%	if Env.ehRAT or Env.ehRT then%>
-	    	<input type="button" onclick="envia()" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+	    	<input type="button" class="btn btn-primary" onclick="envia()" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
 	<%else%>
-    		<input type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+    		<input type="button" class="btn btn-primary" onclick="javascript:window.close();" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fechar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
 	<%end if%>
 	    </td>
     </tr>

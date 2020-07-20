@@ -139,7 +139,7 @@ WEnd
 	</tr>
 </table>
 <p align="center">
-<button name="btn_OK" type="submit">&nbsp;OK&nbsp;</button>
+<button name="btn_OK" class="btn btn-primary" type="submit">&nbsp;OK&nbsp;</button>
 </p>
 </form>
 <script type="text/javascript">

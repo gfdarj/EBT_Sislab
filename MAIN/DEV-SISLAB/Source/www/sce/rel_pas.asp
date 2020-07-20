@@ -38,7 +38,7 @@ If Env.UsuarioSCE() Then
 	        </td>
         </tr>
         <tr><td>&nbsp;</td></tr>
-        <tr><td><input type="submit"  value=" Gerar "></td></tr>
+        <tr><td><input type="submit" class="btn btn-primary" value=" Gerar "></td></tr>
         </table>
     </form>
 </div>

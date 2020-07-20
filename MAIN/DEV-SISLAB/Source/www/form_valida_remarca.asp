@@ -187,8 +187,8 @@ else
 		        </td>
             </tr>
         </table>
-            <input  type="submit" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
-            <input  type="button" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
+            <input type="submit" class="btn btn-primary" value="Confirmar" name="btnOk" tabindex="71" style="width: 80px;" title="Confirma solicitação do usuário">&nbsp;
+            <input type="button" class="btn btn-primary" name="Submit2" value="Voltar" tabindex="72" onclick="voltar()" style="width: 80px;" title="Volta para lista de solicitações">&nbsp;
         <input type="hidden" name="solicitouCancelamento" value="<%=cancelou%>">
     </div>
 </form>

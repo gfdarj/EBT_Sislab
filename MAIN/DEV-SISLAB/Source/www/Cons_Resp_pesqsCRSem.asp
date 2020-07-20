@@ -253,7 +253,7 @@ Else %>
 <%
 End If
 %>
-        <div style="text-align: center;"><input type="button" value=" Fechar " onclick="javascript: window.close();" /></div>
+        <div style="text-align: center;"><input type="button" class="btn btn-primary" value=" Fechar " onclick="javascript: window.close();" /></div>
 
         <form name="formulario" action="Cons_Ind_pesqsCR.asp" method="post">
             <input type="hidden" name="regprimeiro" value="<%=prireg%>">

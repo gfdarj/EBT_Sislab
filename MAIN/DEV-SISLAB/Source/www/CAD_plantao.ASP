@@ -193,10 +193,10 @@ Call Env.RecordSet(false, objSiteRS, null)
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<input type="submit" name="Submit" value=" Atualizar ">
+		<input type="submit" class="btn btn-primary" name="Submit" value=" Atualizar ">
         &nbsp;&nbsp;&nbsp; 
 <%if auxaltera="Alterar \ Excluir" then %>
-        <input type="button" name="Excluir" value="  Excluir  " onclick="javascript: selexcluir()">
+        <input type="button" class="btn btn-primary" name="Excluir" value="  Excluir  " onclick="javascript: selexcluir()">
 <%end if%>
 	</td>
 </tr>

@@ -185,9 +185,9 @@ end if%>
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td align="center">
-		<input type="button" value=" Incluir "  onClick="javascript:IncluiListaItens();">
+		<input type="button" class="btn btn-primary" value=" Incluir "  onClick="javascript:IncluiListaItens();">
 		&nbsp;&nbsp;&nbsp;
-		<input type="button" value=" Voltar "  onClick="javascript:window.close();">
+		<input type="button" class="btn btn-primary" value=" Voltar "  onClick="javascript:window.close();">
 	</td>
 </tr>
 </table>

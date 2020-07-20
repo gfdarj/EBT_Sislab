@@ -41,9 +41,9 @@ Call Tela.ImprimeCabecalho2("Alteração de Arquivo", MENU_OFF, false, "100%", "
 	    </tr>
 	    <tr>
 		    <td colspan="2" align="center">
-			    <input type="button" style="width: 80px;" onclick="javascript:return atualiza();" value="Ok" />
+			    <input type="button" class="btn btn-primary" style="width: 80px;" onclick="javascript:return atualiza();" value="Ok" />
 			    &nbsp;&nbsp;
-			    <input type="button" style="width: 80px;" onclick="javascript:window.close();" value="Cancelar" />
+			    <input type="button" class="btn btn-primary" style="width: 80px;" onclick="javascript:window.close();" value="Cancelar" />
 		    </td>
 	    </tr>
 	    </table>

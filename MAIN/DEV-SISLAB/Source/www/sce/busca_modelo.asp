@@ -79,7 +79,7 @@ set rec = nothing
 		</td>
 	</tr>
 	<tr ><td>&nbsp;</td></tr>
-	<tr><td align="center"><input type="button"  value="Voltar" onclick="javascript:history.go(-1);"></td></tr>
+	<tr><td align="center"><input type="button" class="btn btn-primary" value="Voltar" onclick="javascript:history.go(-1);"></td></tr>
 </table>
 </div>
 <br>

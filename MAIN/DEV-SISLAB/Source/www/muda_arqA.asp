@@ -54,8 +54,8 @@ Function Erro( msg )
 <div class="margem-10">
     <p style="font-weight: bold;"><%= msg %></p>
     <p style="text-align:center;">
-	    <input type="button" onclick="javascript:reload();" value="Tentar&nbsp;Novamente" />&nbsp;&nbsp;&nbsp;&nbsp;
-	    <input type="button" onclick="javascript:window.close();" value="&nbsp;&nbsp;Fechar&nbsp;&nbsp;" />
+	    <input type="button" class="btn btn-primary" onclick="javascript:reload();" value="Tentar&nbsp;Novamente" />&nbsp;&nbsp;&nbsp;&nbsp;
+	    <input type="button" class="btn btn-primary" onclick="javascript:window.close();" value="&nbsp;&nbsp;Fechar&nbsp;&nbsp;" />
     </p>
 </div>
 <%	Call Tela.MostraRodape()
@@ -71,7 +71,7 @@ function Terminar( nome_arq )
 	</script>
 	<p>
 		<span style="font-size: 12px;">Arquivo alterado com sucesso!</span><br><br>
-		<input type="button" onclick="javascript:window.close()" value="&nbsp;Fechar&nbsp;" />
+		<input type="button" class="btn btn-primary" onclick="javascript:window.close()" value="&nbsp;Fechar&nbsp;" />
 	</p>
 </div>
 <%	Call Tela.MostraRodape()

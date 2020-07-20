@@ -181,7 +181,7 @@ end if
 			ajax_comboAgendamentoBuscaAStxtAS(f.txtAS.value);
 <%      End If %>
 		</script>
-        &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Buscar AS" onclick="BuscaDadosAS();"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Buscar AS" onclick="BuscaDadosAS();"/>
 	</td>
 </tr>
 <tr><td>&nbsp;</td></tr>
@@ -228,7 +228,7 @@ end if
 				<td>
 					<input type="text" name="coditem" size="25">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" value="Filtrar &gt;&gt;"  onClick="javascript:filtraItem();">
+					<input type="button" class="btn btn-primary" value="Filtrar &gt;&gt;"  onClick="javascript:filtraItem();">
 				</td>
 			</tr>
 			<tr>
@@ -525,11 +525,11 @@ end if
 </table>
 
 <p>
-	<input type="button" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>"  onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
+	<input type="button" class="btn btn-primary" name="Submit" value="<%if ehNovo then response.write "Cadastrar Reserva" else response.write "Alterar Reserva"%>"  onClick="javascript:cadastraReserva();">&nbsp;&nbsp;
 <%'-- se for um equipamneto ja cadastrado entao exibo o botao excluir
 if not ehNovo then%>
-	<input type="button" name="btnNovo" value="Nova Reserva"  onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
-	<input type="button" name="btnExcluir" value="Excluir Reserva"  onClick="javascript:excluirReserva();">&nbsp;&nbsp;
+	<input type="button" class="btn btn-primary" name="btnNovo" value="Nova Reserva"  onClick="javascript:location.href='cad_reserva.asp';">&nbsp;&nbsp;
+	<input type="button" class="btn btn-primary" name="btnExcluir" value="Excluir Reserva"  onClick="javascript:excluirReserva();">&nbsp;&nbsp;
 		<script type="text/javascript">
 		function excluirReserva() {
 			location.href = 'exc_reserva.asp?ag_numero=<%=ag_numero%>';

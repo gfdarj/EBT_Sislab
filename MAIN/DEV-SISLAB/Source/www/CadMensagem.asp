@@ -68,8 +68,8 @@ Call Tela.MostraCabecalho()
         <tr><td>&nbsp;</td></tr>
 		<tr>
 		    <td colspan=10>
-			    &nbsp;<input type="button"  name="botao" value="    Ok    " onclick="envia();">
-			    &nbsp;<input type="button"  name="botao" value="  Preview " onclick="preview(document.forms[0].s_descricao.value);">
+			    &nbsp;<input type="button" class="btn btn-primary" name="botao" value="    Ok    " onclick="envia();">
+			    &nbsp;<input type="button" class="btn btn-primary" name="botao" value="  Preview " onclick="preview(document.forms[0].s_descricao.value);">
 		    </td>
 	    </tr>
     </table>
@@ -88,7 +88,7 @@ Call Tela.MostraCabecalho()
 	    <td>Enviar um teste para o email:</td>
 	    <td>
 	        <input type="text" name="txtEmail" size="40" maxlength="80" value="" />&nbsp;
-	        <input type="button" name="btnTeste" value="Enviar" onclick="javascript:return TestarMensagem(document.forms[0].s_descricao.value, document.forms[0].txtEmail.value);" />
+	        <input type="button" class="btn btn-primary" name="btnTeste" value="Enviar" onclick="javascript:return TestarMensagem(document.forms[0].s_descricao.value, document.forms[0].txtEmail.value);" />
 	    </td>
     </tr>
     </table>

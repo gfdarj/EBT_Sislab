@@ -47,7 +47,7 @@ Call Tela.MostraCabecalho()
 	        <td>
 		        Período :&nbsp;<%call comboData("Ini")%>&nbsp;até&nbsp;<%call comboData("Fim")%>
 		        &nbsp;&nbsp;&nbsp;
-		        <input type="submit" value="Pesquisar">
+		        <input type="submit" class="btn btn-primary" value="Pesquisar">
 	        </td>
         </tr>
         <tr><td>&nbsp;</td></tr>

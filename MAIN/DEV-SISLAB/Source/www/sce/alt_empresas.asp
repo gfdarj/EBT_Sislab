@@ -194,7 +194,7 @@ set rec = Env.oConn.Execute(ssql)
 
 			<tr><td>&nbsp;</td></tr>
 			<tr> 
-      			<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir "  onclick="func2();"></td>
+      			<td><input type="submit" class="btn btn-primary" name="Submit" value=" Alterar " >&nbsp;&nbsp;<input type="submit" name="Submit" value=" Excluir "  onclick="func2();"></td>
 		    </tr>
 		</table>
     

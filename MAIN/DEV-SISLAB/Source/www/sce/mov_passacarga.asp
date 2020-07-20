@@ -67,7 +67,7 @@ End If
 		<%'call comboMeusAgendamentos(false, "txtAS_destino", "ag_numero_destino", Env.oConn, cstr(ag_numero), "N")%>
 		<%=Combo.MeusAgendamentos(False, "txtAS_destino", "ag_numero_destino", CStr(ag_numero), "N")%>
 		&nbsp;&nbsp;&nbsp;
-		<input type="button" value="Mover para destino" onclick="passarEqDestino();">
+		<input type="button" class="btn btn-primary" value="Mover para destino" onclick="passarEqDestino();">
 		<span id="responsavel_destino" style="font-weight: bold; font-style: italic;">&nbsp;</span>
 		<script type="text/javascript">
 			f.ag_numero_destino.onchange = BuscaEqDestino;
@@ -92,7 +92,7 @@ End If
 </tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-	<td><input type="button" onclick="javascript:validaPassagem();" value="Passar a carga dos itens selecionados &gt;&gt;"></td>
+	<td><input type="button" class="btn btn-primary" onclick="javascript:validaPassagem();" value="Passar a carga dos itens selecionados &gt;&gt;"></td>
 </tr>
 </table>
 </form>

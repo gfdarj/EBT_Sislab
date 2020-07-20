@@ -85,7 +85,7 @@ Call Tela.MostraCabecalho()
 </tr>
 <tr style="height: 55px;">
     <td>
-        <input type="submit" name="Submit" value="Pesquisar" >
+        <input type="submit" class="btn btn-primary" name="Submit" value="Pesquisar" >
     </td>
 </tr>
 </table>

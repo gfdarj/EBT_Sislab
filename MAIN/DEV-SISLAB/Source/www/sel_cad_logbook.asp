@@ -46,7 +46,7 @@ If Env.UsuarioCRT Then
 
         <p><b>Descrição :</b><input type="text" name="descricao" value="<%=request("descricao")%>"></p>
 
-        <p><input type="submit" value="Pesquisar" name="btnPesq"></p>
+        <p><input type="submit" class="btn btn-primary" value="Pesquisar" name="btnPesq"></p>
 
 <%
 If Request("enviei") = "SIM" Then

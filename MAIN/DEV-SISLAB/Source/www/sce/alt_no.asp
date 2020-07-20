@@ -97,9 +97,9 @@ set rec = Env.oconn.execute(ssql)
 	<tr><td>&nbsp;</td></tr>
 	<tr> 
 	   <td>
-           <input type="button" name="Submit" value="Alterar"  onClick="ValidaCampos()">
+           <input type="button" class="btn btn-primary" name="Submit" value="Alterar"  onClick="ValidaCampos()">
            &nbsp;&nbsp;
-           <input type="button" name="Submit" value="Excluir"  onClick="func2()">
+           <input type="button" class="btn btn-primary" name="Submit" value="Excluir"  onClick="func2()">
 	   </td>
     </tr>
  </table>

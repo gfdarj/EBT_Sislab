@@ -90,7 +90,7 @@ END SELECT
         <p>
             De - Para Disponíveis :
 		    <%call comboDePara("depara", objConn,"N")%>&nbsp;&nbsp;
-		    <input type="button" value="Buscar" onclick="Buscar();" />
+		    <input type="button" class="btn btn-primary" value="Buscar" onclick="Buscar();" />
         </p>
 
         <p>
@@ -107,7 +107,7 @@ END SELECT
         </p>
 
         <p>
-            <input  type="button" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
+            <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Substituir&nbsp;&nbsp;" name="btnSalvar"/>
         </p>
 
     </form>

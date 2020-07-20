@@ -94,7 +94,7 @@ If Comando <> "" Then
 		End If
 	End If
 %>
-<p align="center"><button type="button" onClick="javascript:history.go(-1);">Voltar...</button></p>
+<p align="center"><button type="button" class="btn btn-primary" onClick="javascript:history.go(-1);">Voltar...</button></p>
 <%Else%>
 <script type="text/javascript">
 function vai(){
@@ -116,7 +116,7 @@ function vai(){
 		<td align="center"><textarea rows="20" cols="70" name="sql" wrap="off"></textarea></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2"><br/><button type="button" onClick="vai();">Executar !</button></td>
+		<td align="center" colspan="2"><br/><button type="button" class="btn btn-primary" onClick="vai();">Executar !</button></td>
 	</tr>
 </table>
 </form>

@@ -110,7 +110,7 @@ bEof = True
 	        <td>
 		        <%Call comboBDSQL_2("gerente", Env.oConn, "select DISTINCT UserId_Gerente AS VALOR, UserId_Gerente AS DESCRICAO from EquipeEmbratel ORDER BY UserId_Gerente", "N", true)%>
 		        &nbsp;&nbsp;
-		        <input type="button" value="Buscar" onclick="BuscarGerente();">
+		        <input type="button" class="btn btn-primary" value="Buscar" onclick="BuscarGerente();">
 	        </td>
         </tr>
 
@@ -134,8 +134,8 @@ bEof = True
 				        <input type="text" name="novo_participante" size="50" maxlength="80">
 			        </td>
 			        <td valign="middle">
-				        <input type="button" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
-				        <input type="button" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
+				        <input type="button" class="btn btn-primary" name="add" value="&gt;" onclick="javascript:adiciona_retira_participantes(1);"><br>
+				        <input type="button" class="btn btn-primary" name="remove" value="&lt;" onclick="javascript:adiciona_retira_participantes(0);">
 			        </td>
 			        <td>
 				        Usuários adicionados<BR>
@@ -195,10 +195,10 @@ End If %>
 
         <tr>
 	        <td colspan="2">
-		        <input type="button"  onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
-		        <input type="button"  onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
-		        <input type="button"  onclick="Excluir()" value=" Excluir " name="btnExcluir">
-		        <input type="button"  onclick="Cancela()" value=" Cancelar " name="btnCancelar">
+		        <input type="button" class="btn btn-primary" onclick="ValidaCampos()" value="Salvar Dados" name="btnSalvar">
+		        <input type="button" class="btn btn-primary" onclick="IncluirNovo()" value=" Incluir " name="btnIncluir">
+		        <input type="button" class="btn btn-primary" onclick="Excluir()" value=" Excluir " name="btnExcluir">
+		        <input type="button" class="btn btn-primary" onclick="Cancela()" value=" Cancelar " name="btnCancelar">
 	        </td>
         </tr>
         </table>

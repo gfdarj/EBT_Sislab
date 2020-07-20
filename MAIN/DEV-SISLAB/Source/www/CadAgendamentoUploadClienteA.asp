@@ -98,7 +98,7 @@ If Form.State = 0 Then
 	    <td class="cinza1"><i>Gravado por: <%=auxusername%>&nbsp;&nbsp;&nbsp;IP: <%=auxip%></i></td>
     </tr>
     <tr>
-	    <td align="center"><input type="button"  value="Fechar" onclick="javascript:window.close();"></td>
+	    <td align="center"><input type="button" class="btn btn-primary" value="Fechar" onclick="javascript:window.close();"></td>
     </tr>
     </table>
 </div>
@@ -113,7 +113,7 @@ Else
 	    </td>
     </tr>
     <tr>
-	    <td align="center"><input type="button"  value="Fechar" onclick="javascript:window.close();"></td>
+	    <td align="center"><input type="button" class="btn btn-primary" value="Fechar" onclick="javascript:window.close();"></td>
     </tr>
     </table>
 </div>

@@ -74,7 +74,7 @@ end if
         <br />
 	    <p>Arquivo 3:&nbsp;<input type="file" size="80" name="FILE3"></p>
         <br />
-	    <p><input type="submit" value="Enviar Arquivo(s)"></p>
+	    <p><input type="submit" class="btn btn-primary" value="Enviar Arquivo(s)"></p>
     </form>
 
     <br />

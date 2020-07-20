@@ -36,8 +36,8 @@ set rec = Env.oconn.execute(ssql)
 	</script>
 	<tr><td >&nbsp;</td></tr>
 	<tr> 
-		<td><input type="submit" name="Submit" value=" Alterar " >&nbsp;&nbsp;
-		    <input type="submit" name="Submit" value=" Excluir "  onclick="func2();">
+		<td><input type="submit" class="btn btn-primary" name="Submit" value=" Alterar " >&nbsp;&nbsp;
+		    <input type="submit" class="btn btn-primary" name="Submit" value=" Excluir "  onclick="func2();">
 		</td>
     </tr>
 </form>

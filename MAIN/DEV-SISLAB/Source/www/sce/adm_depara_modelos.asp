@@ -35,7 +35,7 @@ End If
             <tr><td colspan="2">Modelo antigo: (De)</td></tr>
             <tr><td><%=Combo.PadraoSql("mod_id_old", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td class="texto-centralizado"><input type="submit" value="Executar !"></td></tr>
+            <tr><td class="texto-centralizado"><input type="submit" class="btn btn-primary" value="Executar !"></td></tr>
             <tr><td>Modelo novo: (Para)</td></tr>
             <tr><td><%=Combo.PadraoSql("mod_id_new", "select mod_id as VALOR, mod_codnome + ' - ' + f.fab_nome as DESCRICAO from sce_modelos m inner join sce_fabricantes f on m.fab_id = f.fab_id order by mod_codnome", valor, "N")%></td></tr>
         </table>

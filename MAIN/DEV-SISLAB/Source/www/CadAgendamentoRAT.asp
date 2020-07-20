@@ -330,13 +330,13 @@ End If
 <tr height="34">
 	<td colspan="10" align="left">
 		<%if Env.ehRAT then%>
-			<input type="button"  onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
+			<input type="button" class="btn btn-primary" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;"/>
 		<%else%>
-			<input type="button"  onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
+			<input type="button" class="btn btn-primary" onclick="" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled/>
 		<%end if%>
 
-		<input type="button"  onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
-		<input type="button"  onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
+		<input type="button" class="btn btn-primary" onclick="areaCliente()" value=" &nbsp;&nbsp;Área do Cliente &nbsp;&nbsp;"/>
+		<input type="button" class="btn btn-primary" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;"/>
 	</td>
 </tr>
 </table>

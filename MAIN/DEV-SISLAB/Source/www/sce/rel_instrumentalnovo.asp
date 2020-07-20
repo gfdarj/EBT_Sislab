@@ -122,9 +122,9 @@ If Env.UsuarioSCE() Then
 </tr>
 </table>
 <p>
-   	<input type="button" name="buscar" value="Pesquisar"  onclick='javascript: envia();'>
+   	<input type="button" class="btn btn-primary" name="buscar" value="Pesquisar"  onclick='javascript: envia();'>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="button" name="buscar" value="Exportar para Excel"  onclick="javascript:exportaParaExcel();">
+	<input type="button" class="btn btn-primary" name="buscar" value="Exportar para Excel"  onclick="javascript:exportaParaExcel();">
 </p>
 </form>
 </div>

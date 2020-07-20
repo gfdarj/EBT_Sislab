@@ -3,7 +3,7 @@
 Sub Application_OnStart()
 	'Session.Timeout = 30
 
-	Application("SISLAB_AMBIENTE") = "DV2"
+	Application("SISLAB_AMBIENTE") = "LOC"
 
     Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
 	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO

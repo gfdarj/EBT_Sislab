@@ -16,7 +16,12 @@ Call Tela.MostraCabecalho()
 If Env.UsuarioSCE() Then
 
     Dim Sce
+    Dim dtIni, dtFim
+
     Set Sce = New TSce
+
+    dtIni = Request("anoinicio") & "-" & Request("mesinicio") & "-" & Request("diainicio")
+    dtFim = Request("anotermino") & "-" & Request("mestermino") & "-" & Request("diatermino")
 
     'Call Tela.ImprimeMenuSce()
 
@@ -115,6 +120,13 @@ If Env.UsuarioSCE() Then
 		    if request("propriedade") <> "" then
 			    ssql = ssql &"and a.EQ_PROPRIEDADE IN ('" & request("propriedade") & "') "
 		    end if
+            If dtIni <> "" Then
+                ssql = ssql & "AND a.EQ_DT_CADASTRO >= CAST('" & dtIni & " 00:00' AS DATETIME) "
+            End If
+            If dtFim <> "" Then
+                ssql = ssql & "AND a.EQ_DT_CADASTRO <= CAST('" & dtFim & " 23:59' AS DATETIME) "
+            End If
+
 		    ssql = ssql &" order by e.mod_codnome asc, a.EQ_CODIGOBARRAS ASC;"
 
     		'response.write ssql & "<BR>" & request("fabricante")

@@ -386,7 +386,7 @@ End If
 		end if
 		call comboBD(objConn,ssql)%>
 		        </select>
-		        <input type="button" value="Ok" onclick="usarReferencia();">
+		        <input type="button" class="btn btn-primary" value="Ok" onclick="usarReferencia();">
 	<%end if%>
 	        </td>
         </tr>
@@ -429,7 +429,7 @@ if bln_ehRat then
 	        <div class="linha-fundo" style="width: 100%"><strong>Solicitar Agendamento pelo Cliente</strong></div><br />
             E-mail do Solicitante: &nbsp;
             <input type="text"  name="txtSolicitante" size="35"  maxlength="80">
-		    <input type="button" value="Buscar" onclick="BuscarSolicitante();">
+		    <input type="button" class="btn btn-primary" value="Buscar" onclick="BuscarSolicitante();">
         </div>
 
         <br />
@@ -583,10 +583,10 @@ end if
 				<td>&nbsp;&nbsp;</td>
 				<td>
 					&nbsp;
-					<input  type="button" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="23">
+					<input type="button" class="btn btn-primary" name="btninsere" value=">" onClick="adiciona_retira_participantesParticipantes(1)" tabindex="23">
 					<br />
 					&nbsp;
-					<input  type="button" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="24">
+					<input type="button" class="btn btn-primary" name="btnretira" value="<" onClick="adiciona_retira_participantesParticipantes(0)" tabindex="24">
 					&nbsp;
 				</td>
 				<td>&nbsp;&nbsp;</td>
@@ -698,20 +698,20 @@ end if
         <div>
 
 <%		If num_ag = "" then %>
-		    <input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
+		    <input type="button" class="btn btn-primary" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
 <%		Else
 			If bln_ehRAT then 'or bln_ehRT then%>
-	    	<input  type="button" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
+	    	<input  type="button" class="btn btn-primary" name="btn_Salvar" onclick="ValidaCampos()" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" tabindex="41">
 <%			Else %>
     		<!--<input type="button" value=" &nbsp;&nbsp;Salvar Dados&nbsp;&nbsp;" disabled tabindex="41" style="color:grey;">-->
 <%			end if
 			if bln_usuarioCRT then %>
-		    <input  type="button" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;" tabindex="42">
-		    <input  type="button" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;" tabindex="43">
+		    <input  type="button" class="btn btn-primary" onclick="areaRAT()" value=" &nbsp;&nbsp;Área do RAT &nbsp;&nbsp;" tabindex="42">
+		    <input  type="button" class="btn btn-primary" onclick="areaRT()" value=" &nbsp;&nbsp;Área do RT &nbsp;&nbsp;" tabindex="43">
 <%			end if %>
 <%		End If %>
 <%		If Env.Usuario = chr_Username Or bln_usuarioCRT Then %>
-		    <input  type="button" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento" tabindex="44">
+		    <input  type="button" class="btn btn-primary" onclick="javascript:uploadArquivo()" value="Anexar Arquivos" title="Anexa um ou mais arquivos associados ao Agendamento" tabindex="44">
 <%		End If %>
 
 <%'if not SolicitouCancela then%>

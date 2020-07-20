@@ -120,9 +120,9 @@ function validaCampos(form)
         <tr><td colspan="3">&nbsp;</td></tr>
 
         <tr>
-          <td valign="top" align="center" colspan="3"><input class="cxtexto" name="btnOk" type="submit" value="   Ok   ">&nbsp;&nbsp;
-            <input class="cxtexto" name="btnLimpar" type="reset" value=" Limpar ">&nbsp;&nbsp;
-            <input class="cxtexto" name="dataretifica" type="button" value="Cancelar" onclick="javascript:history.back();">
+          <td valign="top" align="center" colspan="3"><input class="btn btn-primary" name="btnOk" type="submit" value="   Ok   ">&nbsp;&nbsp;
+            <input name="btnLimpar" type="reset" class="btn btn-primary" value=" Limpar ">&nbsp;&nbsp;
+            <input name="dataretifica" type="button" class="btn btn-primary" value="Cancelar" onclick="javascript:history.back();">
           </td>
         </tr>
       </table>
