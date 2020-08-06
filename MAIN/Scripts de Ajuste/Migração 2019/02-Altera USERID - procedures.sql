@@ -6796,6 +6796,7 @@ AS
 		Gilberto Almeida - COPPETEC
 		Criado em: 27/08/2003
 		Alterada em: 05/04/2012 - retirado as referencias de consumiveis
+		Alterada em: 06/08/2020 - incluída a coluna EQ_DT_CADASTRO
 	***/
 	SELECT
 		e.EQ_ID as ID, NULL as COD_SGP, e.AMB_ID, amb.AMB_NOME, crt.SIGLA_CRT,
@@ -6809,13 +6810,13 @@ AS
 		null as CON_ESTOQUE, 
 		null as con_uso, null as con_desc, 
 		e.EQ_DT_ULT_INVENTARIO, 
-		EQ_FREQ_CALIBRACAO
+		EQ_FREQ_CALIBRACAO,
+		EQ_DT_CADASTRO
 	FROM
 		SCE_Equipamentos e 
 		LEFT JOIN Ambientes amb ON e.AMB_ID = amb.AMB_ID
 		LEFT JOIN CentroReferencia crt ON Amb.ID_CRT = crt.ID_CRT
 GO
-
 
 /****** Object:  View [dbo].[vw_SCE_Equipamentos_Fabricantes]    Script Date: 07/19/2018 18:45:13 ******/
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_SCE_Equipamentos_Fabricantes]') AND OBJECTPROPERTY(id, N'IsView') = 1)

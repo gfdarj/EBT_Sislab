@@ -36,7 +36,9 @@ Dim id_Plataforma, id_PlataformaAnterior
 Dim linha
 Dim bln_AcessoRAT
 Dim DtUltInventario
-Dim iSeq
+Dim iSeq, eqDataCadastro
+
+eqDataCadastro = ""
 
 'bln_AcessoRAT = (Cstr(Session("status")) = Cstr(PERFIL_ADM))
 bln_AcessoRAT = (Cstr(Session("status") )= Cstr(PERFIL_RAT))
@@ -129,6 +131,7 @@ else
 			DtUltInventario = rec("ULT_INVENT")
 			freq_calibracao = rec("EQ_FREQ_CALIBRACAO")
 			if IsNull(freq_calibracao) then freq_calibracao = ""
+            If Not IsNull(rec("EQ_DT_CADASTRO")) Then eqDataCadastro = Right("0" & Day(rec("EQ_DT_CADASTRO")), 2) & "/" & Right("0" & Month(rec("EQ_DT_CADASTRO")), 2) & "/" & Year(rec("EQ_DT_CADASTRO"))
 		end if
 	end if
 end if
@@ -300,8 +303,8 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 			<td>
 				Localização<br>
 				<input type="text" name="localizacao" class="texto1" size="50" maxlength="255" value="<%=localizacao%>">
-				</td>
-				<td colspan="2">
+			</td>
+			<td colspan="">
 				Conforme<br>
 <%				If bln_AcessoRAT Then %>
 				<%if conforme or eq_id = "" then response.write "Sim" Else  response.write "Não" end if%>
@@ -310,6 +313,10 @@ fab_id_old = fab_id		'-- guardo o id do fabricante original
 				<input type="Radio" name="conforme" value="1" <%if conforme or eq_id = "" then response.write "checked" end if%>>Sim&nbsp;&nbsp;&nbsp;
 				<input type="Radio" name="conforme" value="0" <%if not conforme then response.write "checked" end if%>>N&atilde;o
 <%				End If  %>
+			</td>
+			<td colspan="">
+                Data de Cadastro<br />
+                <%= eqDataCadastro %>
 			</td>
     	</tr>
 

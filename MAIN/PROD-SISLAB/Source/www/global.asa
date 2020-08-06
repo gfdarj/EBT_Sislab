@@ -62,17 +62,17 @@ Sub Application_OnStart()
 
 		Application("SISLAB_InitialCatalog") = "sislab"
 
-		''Application("SISLAB_DataSource") = "NTSPO930"
-		''Application("SISLAB_DataUser") = "sislab_dsv"
-		''Application("SISLAB_DataUserPwd") = "Embratel@21"
+		'Application("SISLAB_DataSource") = "NTSPO930"
+		'Application("SISLAB_DataUser") = "sislab_dsv"
+		'Application("SISLAB_DataUserPwd") = "Embratel@21"
 
 		Application("SISLAB_DataSource") = "ntspo006"
 		Application("SISLAB_DataUser") = "sislab1"
 		Application("SISLAB_DataUserPwd") = "sislab1001"
 
-		Application("SISLAB_DataSource") = "051843W\SQLEXPRESS"
-		Application("SISLAB_DataUser") = "sa"
-		Application("SISLAB_DataUserPwd") = "adm123"
+		'Application("SISLAB_DataSource") = "051843W\SQLEXPRESS"
+		'Application("SISLAB_DataUser") = "sa"
+		'Application("SISLAB_DataUserPwd") = "adm123"
 
 		Application("SISLAB_id_TipoArquivo_Imagem") = 31
 	    Application("SISLAB_ID_CODARQTIPO_MANUALGESTAO") = 9
