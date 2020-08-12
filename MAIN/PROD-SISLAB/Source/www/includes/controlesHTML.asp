@@ -1090,18 +1090,4 @@ Sub comboSimNao(nome, objConn, todos)
 	call comboBDSQL( nome, objConn, sSQL, "", todos)
 End Sub
 
-
-
-
-Sub ComboPrioridadeTecnologia
-
-sub comboBDpadrao(objConn,sql,padrao)
-
-
-
-
-
-
-
-
 %>

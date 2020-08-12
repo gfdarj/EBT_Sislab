@@ -12,48 +12,49 @@ Dim auxRT, auxRAT, auxusername, EH_CRT, auxorgao, auxtecnologia, auxorgaosel,aux
 
 EH_CRT = Env.UsuarioCRT
 %>
-<script language="javascript">
-function testaPreenchimento()
-{
-	var f = document.forms[0];
+<script type="text/javascript">
+    function testaPreenchimento()
+    {
+	    var f = document.forms[0];
 
-	//alert(f.diadataIniCad.value);
+	    //alert(f.diadataIniCad.value);
 
-	if((f.tiposigilo.value == '') && (f.situacao.value == '') &&
-		(f.tempesquisa.value == '') && (f.rt.value == '') &&
-		(f.participante.value == '') && (f.sol_dias.value == '') &&
-		(f.ini_dias.value == '') && (!f.chkRoteiro.checked) &&
-		(!f.chkLaudo.checked) && (!f.chkRelEnsaio.checked) &&
-		(!f.chkEquipSis.checked) && (f.tip_te.value == '') &&
-		((f.diadataIniCad.value == '') || (f.mesdataIniCad.value == '') || (f.anodataIniCad.value == '')) &&
-		((f.diadataFimCad.value == '') || (f.mesdataFimCad.value == '') || (f.anodataFimCad.value == '')) &&
-		((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
-		((f.diadataFimCadSol.value == '') || (f.mesdataFimCadSol.value == '') || (f.anodataFimCadSol.value == '')) )
-		return false;
-	else {
-		//alert('aqui');
-		return true;
-	}
-}
-function montaExcel()
-{
-	if(testaPreenchimento())
-	{
-		//var tmp, x;
-	    //x = window.open("", "janelaRelatorioExcel", "width=800, height=600, toolbar=no, status=no, menubar=yes, scrollbars=yes, left=0, top=0, resizable=yes");
-	    //document.forms[0].target = "janelaRelatorioExcel";
-	    //tmp = document.forms[0].target;
-		//document.forms[0].submit();
-		//document.forms[0].target = tmp;
-		//x.close();
+	    if((f.tiposigilo.value == '') && (f.situacao.value == '') &&
+		    (f.tempesquisa.value == '') && (f.rt.value == '') &&
+		    (f.participante.value == '') && (f.sol_dias.value == '') &&
+		    (f.ini_dias.value == '') && (!f.chkRoteiro.checked) &&
+		    (!f.chkLaudo.checked) && (!f.chkRelEnsaio.checked) &&
+		    (!f.chkEquipSis.checked) && (f.tip_te.value == '') &&
+		    ((f.diadataIniCad.value == '') || (f.mesdataIniCad.value == '') || (f.anodataIniCad.value == '')) &&
+		    ((f.diadataFimCad.value == '') || (f.mesdataFimCad.value == '') || (f.anodataFimCad.value == '')) &&
+		    ((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
+		    ((f.diadataFimCadSol.value == '') || (f.mesdataFimCadSol.value == '') || (f.anodataFimCadSol.value == '')) )
+		    return false;
+	    else {
+		    //alert('aqui');
+		    return true;
+	    }
+    }
+    function montaExcel()
+    {
+	    if(testaPreenchimento())
+	    {
+		    //var tmp, x;
+	        //x = window.open("", "janelaRelatorioExcel", "width=800, height=600, toolbar=no, status=no, menubar=yes, scrollbars=yes, left=0, top=0, resizable=yes");
+	        //document.forms[0].target = "janelaRelatorioExcel";
+	        //tmp = document.forms[0].target;
+		    //document.forms[0].submit();
+		    //document.forms[0].target = tmp;
+		    //x.close();
 
-	    document.forms[0].target = "_blank";
-	    document.forms[0].submit();
-	}
-	else
-		alert('Selecione ao menos uma condição de filtro !');
-}
+	        document.forms[0].target = "_blank";
+	        document.forms[0].submit();
+	    }
+	    else
+		    alert('Selecione ao menos uma condição de filtro !');
+    }
 </script>
+
 <iframe width="770" height="50" name="1111___janelaRelatorioExcel" style="display: none;"></iframe>
 
 <form name="formteste" method="post" action="rel_gq.asp">

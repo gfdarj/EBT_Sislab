@@ -45,6 +45,7 @@ sSQL = sSQL & "SET @id_situacao = (SELECT id_situacao  FROM Situacoes WHERE S_OS
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "select * from (SELECT" & VbCrLf
 sSQL = sSQL & "	a.AG_NUMERO AS Num_AG_M, " & VbCrLf
+sSQL = sSQL & "	a.AG_TITULO AS [Título AS_M], " & VbCrLf
 sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
