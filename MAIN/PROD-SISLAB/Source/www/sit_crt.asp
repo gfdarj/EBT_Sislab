@@ -1,5 +1,6 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
 <!--#include file="includes/PadraoHTML.asp" -->
+<!--#include file="Lib/Classe_Combo.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/bib_data.inc" -->
 <!--#include file="includes/funcoes.asp" -->
@@ -13,6 +14,9 @@ Dim conta : conta = 0
 Username = Env.Usuario
 EhRat = Env.EhRat : EhRat = False
 EhCrt = Env.UsuarioCrt : EhCrt = False
+
+'EhRat = true
+
 chr_Ordem = UCase(RQ("ordem"))
 
 If Request("emjanela") = "1" Then
@@ -35,11 +39,11 @@ Dim objRS, s, objSiteRS, sSQL, indice, cont
 <!-- AJAX -->
 <script type="text/javascript" src="ajax/max_ajax_ref.js" ></script>
 <script type="text/javascript">
-	function trocaPrioridade(agNumero, idPrioridade){
+    function trocaPrioridade(agNumero, idPrioridade)
+    {
 		var url = "ajax/sislab_ag_prioridade_upd.asp";
 		url += "?ag_numero=" + agNumero;
 		url += "&id_prioridade=" + idPrioridade;
-
 		var maxAjaxObj = new max.Ajax(url,{update:"",onComplete:
 			function(texto,xml){
 				//document.all.dtUltInventario.value = texto;
@@ -179,7 +183,7 @@ Sub MontaVisaoPorSituacao
 
 	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, iPrioridade, aux_AgNumero
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
-	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
+	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, nomePrioridade
 %>
       <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
         <tr>
@@ -191,8 +195,9 @@ Sub MontaVisaoPorSituacao
           <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, ptec.* " & _
 		"FROM vw_Agendamento a  " & _
+        "   LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & _
 		"WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
@@ -224,6 +229,7 @@ Sub MontaVisaoPorSituacao
 			auxTEC = objRS("TEC_NOME")
 			if IsNull(auxTEC) then auxTEC = ""
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
+            nomePrioridade = IIf(IsNull(objRS("NM_PRIORIDADE")), "", objRS("NM_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
 
 			if (auxAG_DATATERMINO < date() or (auxsituacao="Agendado" and auxAG_DATAINICIO < date())) then
@@ -288,7 +294,13 @@ Sub MontaVisaoPorSituacao
 				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;">
+<%      If EhRat Then %>
+            <%=MostraPrioridade(iPrioridade, aux_AgNumero) %>
+<%		Else %>
+            <%=nomePrioridade%>
+<%		End If %>
+			</td>
 
 			<td width="*" align="justify">
 <%		If aux_SIGILO > 0 Then %>
@@ -351,7 +363,7 @@ Sub MontaVisaoPorSalas
 '###
 	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, auxSala, auxSalaOld, iPrioridade, aux_AgNumero
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
-	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
+	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, nomePrioridade
 	Dim bln_Primeira : bln_Primeira = True
 %>
       <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
@@ -364,10 +376,11 @@ Sub MontaVisaoPorSalas
           <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, ptec.* " & _
 		"FROM vw_Agendamento a " & _
 		"LEFT JOIN Reserva_Ambientes ra ON ra.RAM_AS = a.AG_NUMERO " & _
 		"LEFT JOIN Ambientes ab ON ra.AMB_ID = ab.AMB_ID " & _
+        "   LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & _
 		"WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
@@ -402,6 +415,7 @@ Sub MontaVisaoPorSalas
 			auxTEC = objRS("TEC_NOME")
 			auxSala = objRS("AMB_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
+            nomePrioridade = IIf(IsNull(objRS("NM_PRIORIDADE")), "", objRS("NM_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
 
 			if IsNull(auxSala) then auxSala = "Nenhum Ambiente Selecionado"
@@ -469,7 +483,13 @@ Sub MontaVisaoPorSalas
 				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;">
+<%      If EhRat Then %>
+            <%=MostraPrioridade(iPrioridade, aux_AgNumero) %>
+<%		Else %>
+            <%=nomePrioridade%>
+<%		End If %>
+			</td>
 
 			<td width="*" align="justify">
 <%		If aux_SIGILO > 0 Then %>
@@ -533,7 +553,7 @@ Sub MontaVisaoPorPrioridade
 '###
 	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, auxSala, auxSalaOld
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC, aux_AgNumero
-	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, iPrioridade, iPrioridadeOld
+	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, iPrioridade, iPrioridadeOld, nomePrioridade
 	Dim bln_Primeira : bln_Primeira = True
 %>
       <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
@@ -548,10 +568,11 @@ Sub MontaVisaoPorPrioridade
           <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT ab.AMB_NOME, a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, ptec.* " & _
 		"FROM vw_Agendamento a " & _
 		"LEFT JOIN Reserva_Ambientes ra ON ra.RAM_AS = a.AG_NUMERO " & _
 		"LEFT JOIN Ambientes ab ON ra.AMB_ID = ab.AMB_ID " & _
+        "   LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & _
 		"WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
@@ -560,14 +581,16 @@ Sub MontaVisaoPorPrioridade
 		s = s & "(1, 2, 3, 6, 7) "
 	end if
 
-	s = s & "ORDER BY ISNULL(AG_PRIORIDADE, 99), a.ID_SITUACAO ASC, a.AG_NUMERO DESC"
+	s = s & "ORDER BY ISNULL(AG_PRIORIDADE, 99), ptec.NM_PRIORIDADE, a.ID_SITUACAO ASC, a.AG_NUMERO DESC"
 
 'RW s & "<BR>"
+'RE
 
 	Call Env.RecordSet( true, objRS, s)
 	if not (objRS.EOF and objRS.BOF) then
 		atual = objRS("AG_NUMERO")
 		auxSalaOld = ""
+        iPrioridadeOld = -999
 
 		'-- pego o titulo do agendamento, caso nao exista mostro o objetivo
 		if not IsNull(objRS("AG_TITULO")) then auxAG_OBJETIVO = objRS("AG_TITULO") else auxAG_OBJETIVO = objRS("AG_OBJETIVO")
@@ -587,6 +610,7 @@ Sub MontaVisaoPorPrioridade
 			auxTEC = objRS("TEC_NOME")
 			auxSala = objRS("AMB_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
+            nomePrioridade = IIf(IsNull(objRS("NM_PRIORIDADE")), "N/A", objRS("NM_PRIORIDADE"))
 
 			if IsNull(auxSala) then auxSala = "Nenhum Ambiente Selecionado"
 			if IsNull(auxTEC) then auxTEC = ""
@@ -629,7 +653,7 @@ Sub MontaVisaoPorPrioridade
 
 		<tr bgcolor="#ffffff"> 
 			<td align="LEFT" class="texto_tabela" COLSPAN="5"><br>
-			<B>Prioridade: <%=MostraPrioridade(iPrioridade, "")%></B>
+			<B>Prioridade: <%=nomePrioridade%></B>
 			</td>
 		</tr>
 <%
@@ -654,7 +678,9 @@ Sub MontaVisaoPorPrioridade
 			</td>
 
 <%	If EhRat Then %>
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;">
+            <%=MostraPrioridade(iPrioridade, aux_AgNumero) %>
+			</td>
 <%	End If %>
 
 			<td width="*" align="justify">
@@ -719,7 +745,7 @@ Sub MontaVisaoPorDataTermino
 '###
 	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, iPrioridade, aux_AgNumero
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
-	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
+	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, nomePrioridade
 	Dim auxMesAnoOld : auxMesAnoOld = CDate("01/01/1980")
 %>
       <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
@@ -732,8 +758,9 @@ Sub MontaVisaoPorDataTermino
           <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, ptec.* " & _
 		"FROM vw_Agendamento a " & _
+        "   LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & _
 		"WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
@@ -766,6 +793,7 @@ Sub MontaVisaoPorDataTermino
 			auxRT = objRS("AG_RESPONSAVEL")
 			auxTEC = objRS("TEC_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
+            nomePrioridade = IIf(IsNull(objRS("NM_PRIORIDADE")), "", objRS("NM_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
 
 			if IsNull(auxSala) then auxSala = ""
@@ -833,7 +861,13 @@ Sub MontaVisaoPorDataTermino
 				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;">
+<%      If EhRat Then %>
+            <%=MostraPrioridade(iPrioridade, aux_AgNumero) %>
+<%		Else %>
+            <%=nomePrioridade%>
+<%		End If %>
+			</td>
 
 			<td width="*" align="justify">
 <%		If aux_SIGILO > 0 Then %>
@@ -897,7 +931,7 @@ Sub MontaVisaoPorRT
 '###
 	Dim	auxAG_OBJETIVO, auxsituacao, auxAG_USERNAME, auxRT, auxRTOld, auxRespTec, iPrioridade, aux_AgNumero
 	Dim auxAG_DATAINICIO, auxAG_DATATERMINO, anterior, atual, aux_DescSigilo, auxTEC
-	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade
+	Dim aux_Sigilo, auxbarq, auxbgcolor, AUXSITUACAOCHG, aux_Atividade, nomePrioridade
 %>
       <table border="0" width="100%" cellspacing="3" cellpadding="4" class="texto_tabela" align="center" class="tabela1">
         <tr>
@@ -909,8 +943,9 @@ Sub MontaVisaoPorRT
           <th>&nbsp;</th>
         </tr>
 <%
-	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F " & _
+	s = "SELECT a.*, CONVERT(VARCHAR, AG_DATAINICIO, 103) AS AG_DATAINICIO_F, CONVERT(VARCHAR, AG_DATATERMINO, 103) AS AG_DATATERMINO_F, ptec.* " & _
 		"FROM vw_Agendamento a  " & _
+        "   LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & _
 		"WHERE a.ID_SITUACAO in "
 
 	if request("hoje") = "1" then
@@ -941,6 +976,7 @@ Sub MontaVisaoPorRT
 			auxRT = objRS("AG_RESPONSAVEL")
 			auxTEC = objRS("TEC_NOME")
 			iPrioridade = IIf(IsNull(objRS("AG_PRIORIDADE")), "", objRS("AG_PRIORIDADE"))
+            nomePrioridade = IIf(IsNull(objRS("NM_PRIORIDADE")), "", objRS("NM_PRIORIDADE"))
 			aux_AgNumero = objRS("AG_NUMERO")
 
 			if IsNull(auxRT) then auxRT = ""
@@ -1009,7 +1045,13 @@ Sub MontaVisaoPorRT
 				</b>
 			</td>
 
-			<td><%=MostraPrioridade(iPrioridade, aux_AgNumero)%></td>
+			<td style="text-align: center;">
+<%      If EhRat Then %>
+            <%=MostraPrioridade(iPrioridade, aux_AgNumero) %>
+<%		Else %>
+            <%=nomePrioridade%>
+<%		End If %>
+			</td>
 
 			<td width="*" align="justify">
 <%		If aux_SIGILO > 0 Then %>
@@ -1069,33 +1111,26 @@ End Sub
 
 '#########################################################################################################
 Function MostraPrioridade(valor, agnumero)
-	Dim Val
+	Dim ag, Val, Cmb
+
+    Set Cmb = New TCombo
+
+    If VVVNZ(agnumero) Then
+        ag = "0"
+    Else
+        ag = CStr(agnumero)
+    End If
 
 	If IsNull(valor) Then
 		Val = ""
 	Else
 		Val = CStr(valor)
 	End If
-
-	If EhRat And Not VVVNZ(agnumero) Then
-		MostraPrioridade = _
-			"<select name='idPrioridade' class='texto' style='width: 60px;' onChange='javascript:return trocaPrioridade(" & agnumero& ", this.value);'>" & VbCrLf & _
-			"<option value='1'" & IIf(Val = "1", "selected", "") & ">Alta</option>" & VbCrLf & _
-			"<option value='2'" & IIf(Val = "2", "selected", "") & ">Média</option>" & VbCrLf & _
-			"<option value='3'" & IIf(Val = "3", "selected", "") & ">Baixa</option>" & VbCrLf & _
-			"<option value=''" & IIf(Val = "", "selected", "") & ">N/A</option>" & VbCrLf & _
-			"</select>" & VbCrLf
-	Else
-		Select Case Val
-		Case "1"
-			MostraPrioridade = "Alta"
-		Case "2"
-			MostraPrioridade = "Média"
-		Case "3"
-			MostraPrioridade = "Baixa"
-		Case Else
-			MostraPrioridade = "N/A"
-		End Select
-	End If
+%>
+	<select name='idPrioridade' style='' onChange='javascript:return trocaPrioridade(<%=agnumero %>, this.value);' <%=IIf(Not EhRat, "disabled", "") %>>
+        <%= Cmb.PrioridadeTecnologia("N/A", Val) %>
+	</select>
+<%
+    Set Cmb = Nothing
 End Function
 %>

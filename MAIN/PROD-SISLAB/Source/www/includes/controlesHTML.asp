@@ -1089,4 +1089,19 @@ Sub comboSimNao(nome, objConn, todos)
 	sSQL = "select 'S' as valor, 'Sim' as descricao UNION SELECT 'N', 'Não' ORDER BY valor desc"
 	call comboBDSQL( nome, objConn, sSQL, "", todos)
 End Sub
+
+
+
+
+Sub ComboPrioridadeTecnologia
+
+sub comboBDpadrao(objConn,sql,padrao)
+
+
+
+
+
+
+
+
 %>

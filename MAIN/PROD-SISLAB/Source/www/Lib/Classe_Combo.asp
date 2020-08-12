@@ -577,29 +577,34 @@ Public Function SituacaoEquipamento(nome, mesmalinha, todos, mostraCadastrado, p
     SituacaoEquipamento = buffer
 End Function
 
-Public Function SimNaoInstrumental(nome, mesmalinha)
-    buffer = _
-		"Instrumental" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
-		"<select name='instrumental' class='" & p_classe & "'>" & VbCrLf & _
-		"	<option value=''>Todos</option>" & VbCrLf & _
-		"	<option value='1'>Sim</option>" & VbCrLf & _
-		"	<option value='0'>Não</option>" & VbCrLf & _
-		"</select>" & VbCrLf
+    Public Function SimNaoInstrumental(nome, mesmalinha)
+        buffer = _
+		    "Instrumental" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
+		    "<select name='instrumental' class='" & p_classe & "'>" & VbCrLf & _
+		    "	<option value=''>Todos</option>" & VbCrLf & _
+		    "	<option value='1'>Sim</option>" & VbCrLf & _
+		    "	<option value='0'>Não</option>" & VbCrLf & _
+		    "</select>" & VbCrLf
 
-    SimNaoInstrumental = buffer
-End Function
+        SimNaoInstrumental = buffer
+    End Function
 
-Public Function AmostraEquipamento(nome, mesmalinha)
-    buffer = _
-		"Eq. Setup" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
-		"<select name='setup' class='" & p_classe & "'>" & VbCrLf & _
-		"	<option value=''>Todos</option>" & VbCrLf & _
-		"	<option value='" & EQSETUP_AMOSTRA & "'>Amostra</option>" & VbCrLf & _
-		"	<option value='" & EQSETUP_EQUIPAMENTO & "'>Equipamento</option>" & VbCrLf & _
-		"</select>" & VbCrLf
+    Public Function AmostraEquipamento(nome, mesmalinha)
+        buffer = _
+		    "Eq. Setup" & IIf(mesmalinha, ":&nbsp;", "<br>") & VbCrLf & _
+		    "<select name='setup' class='" & p_classe & "'>" & VbCrLf & _
+		    "	<option value=''>Todos</option>" & VbCrLf & _
+		    "	<option value='" & EQSETUP_AMOSTRA & "'>Amostra</option>" & VbCrLf & _
+		    "	<option value='" & EQSETUP_EQUIPAMENTO & "'>Equipamento</option>" & VbCrLf & _
+		    "</select>" & VbCrLf
 
-    AmostraEquipamento = buffer
-End Function
+        AmostraEquipamento = buffer
+    End Function
+
+    Public Function PrioridadeTecnologia(padrao, valorSelecionado)
+        PrioridadeTecnologia = Me.OptionBD("select CD_PRIORIDADE, ID_PRIORIDADE as valor, NM_PRIORIDADE as descricao from Prioridade_Tecnologia order by ID_PRIORIDADE, NM_PRIORIDADE" _
+                                           , padrao, valorSelecionado)
+    End Function
 
 End Class
 %>
