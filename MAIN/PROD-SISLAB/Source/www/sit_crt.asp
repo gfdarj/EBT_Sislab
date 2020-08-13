@@ -12,8 +12,8 @@ Dim chr_Ordem
 Dim conta : conta = 0
 
 Username = Env.Usuario
-EhRat = Env.EhRat : EhRat = False
-EhCrt = Env.UsuarioCrt : EhCrt = False
+EhRat = Env.EhRat ': EhRat = False
+EhCrt = Env.UsuarioCrt ': EhCrt = False
 
 'EhRat = true
 
