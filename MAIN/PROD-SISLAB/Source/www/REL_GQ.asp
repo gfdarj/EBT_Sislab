@@ -4,39 +4,7 @@ Server.ScriptTimeout = 3500
 <!--#include file="includes/Sislab_Lib.asp"-->
 <%
 Dim dataIniCad, dataFimCad, dataIniCadRealSol, dataFimCadSol, Participante
-Dim tempesquisa
-
-'sSQL  = "Select CG.*, " & VbCrLf & _
-'		"/* RETIRAR ESTA PARTE QUANDO COLOCAR ALGO DE SQL NA PRODUCAO !!!! */" & VbCrLf & _
-'		"CASE CG.AG_NECESSITA_OS" & VbCrLf & _
-'		"	WHEN 1 THEN " & VbCrLf & _
-'		"		CASE " & VbCrLf & _
-'		"		WHEN	/* N. Testes certificados = N. Testes) */" & VbCrLf & _
-'		"			(SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN Testes t1 ON t1.T_ID = os.T_ID WHERE os.AG_NUMERO = CG.num_AG_M AND t1.TIT_ID = 3 /*CERTIFICADO*/) > 0" & VbCrLf & _
-'		"			AND" & VbCrLf & _
-'		"			(SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN Testes t1 ON t1.T_ID = os.T_ID WHERE os.AG_NUMERO = CG.num_AG_M AND t1.TIT_ID = 3 /*CERTIFICADO*/) = (SELECT COUNT(*) FROM Ordem_de_Servico os WHERE os.AG_NUMERO = CG.num_AG_M)" & VbCrLf & _
-'		"		THEN 'TESTE ACREDITADO'" & VbCrLf & _
-'		"		WHEN	/* N. Testes certificados = N. Testes) */" & VbCrLf & _
-'		"			(SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN Testes t1 ON t1.T_ID = os.T_ID WHERE os.AG_NUMERO = CG.num_AG_M AND t1.TIT_ID = 2 /*EM CERTIFICACAO*/) > 0" & VbCrLf & _
-'		"			AND" & VbCrLf & _
-'		"			(SELECT COUNT(*) FROM Ordem_de_Servico os INNER JOIN Testes t1 ON t1.T_ID = os.T_ID WHERE os.AG_NUMERO = CG.num_AG_M AND t1.TIT_ID = 2 /*EM CERTIFICACAO*/) = (SELECT COUNT(*) FROM Ordem_de_Servico os WHERE os.AG_NUMERO = CG.num_AG_M)" & VbCrLf & _
-'		"		THEN 'TESTE PADRONIZADO'" & VbCrLf & _
-'		"		ELSE" & VbCrLf & _
-'		"			CASE" & VbCrLf & _
-'		"			WHEN	(" & VbCrLf & _
-'		"				select count(arq_codarqtipo)" & VbCrLf & _
-'		"				from DIAGRAMAS d inner join arquivos arq1 on arq1.arq_codarq = d.arq_codarq " & VbCrLf & _
-'		"				WHERE (arq_codarqtipo = 33) " & VbCrLf & _
-'		"				and d.AG_NUMERO = CG.num_AG_M) >= 1" & VbCrLf & _
-'		"			THEN 'RELATÓRIO ELABORADO' " & VbCrLf & _
-'		"			ELSE 'RELATÓRIO NÃO ELABORADO' " & VbCrLf & _
-'		"			END" & VbCrLf & _
-'		"		END" & VbCrLf & _
-'		"	ELSE 'N/A'" & VbCrLf & _
-'		"END AS 'Relatório_de_Ensaio_M'" & VbCrLf & _
-'		"from vw_ConsultaGerencial CG where CG.num_AG_M = CG.num_AG_M  "
-
-
+Dim tempesquisa, dataIniFinalizadoReal, dataFimFinalizadoReal
 
 sSQL = "" & VbCrLf
 sSQL = sSQL & "DECLARE @id_situacao INT" & VbCrLf
@@ -44,8 +12,8 @@ sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "SET @id_situacao = (SELECT id_situacao  FROM Situacoes WHERE S_OS = 0 AND s_descricao = 'Finalizado')" & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "select * from (SELECT" & VbCrLf
-sSQL = sSQL & "	a.AG_NUMERO AS Num_AG_M, " & VbCrLf
-sSQL = sSQL & "	a.AG_TITULO AS [Título AS_M], " & VbCrLf
+sSQL = sSQL & "	a.AG_NUMERO AS Num_AS_M, " & VbCrLf
+sSQL = sSQL & "	a.AG_TITULO AS 'Título AS_M', " & VbCrLf
 sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
@@ -61,8 +29,9 @@ sSQL = sSQL & "	a.ID_SITUACAO," & VbCrLf
 sSQL = sSQL & "	a.S_DESCRICAO AS Situação_M," & VbCrLf
 sSQL = sSQL & "	a.AG_RESPONSAVEL AS 'Responsável_Técnico_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
-sSQL = sSQL & "	Hist_Min.Data_Min AS 'Data_de_Início_Real_M'," & VbCrLf
-sSQL = sSQL & "	Hist_Max.Data_Max AS 'Data_Término_Real_M'," & VbCrLf
+sSQL = sSQL & "	Hist_Min.Data_Min AS 'Data_Início_Execução_Real_M'," & VbCrLf
+sSQL = sSQL & "	Hist_Max.Data_Max AS 'Data_Término_Execução_Real_M'," & VbCrLf
+sSQL = sSQL & "	Hist_Final.Data_Max AS 'Data_Finalização_Real_M'," & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "	a.AG_USERNAME as 'Solicitante_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_CLIENTEEXTERNO as 'Cliente_Externo_M'," & VbCrLf
@@ -148,19 +117,27 @@ sSQL = sSQL & "	vw_Agendamento a" & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "LEFT JOIN" & VbCrLf
 sSQL = sSQL & "	(" & VbCrLf
-sSQL = sSQL & "	SELECT AG_NUMERO, MIN(heosR.HE_DATAINICIO) AS DATA_MIN FROM Historico_Eventos heosR " & VbCrLf
-sSQL = sSQL & "	WHERE 	heosR.ID_SITUACAO = 6 /*Em Execucao*/" & VbCrLf
-sSQL = sSQL & "		AND heosR.HE_DATAINICIO IS NOT NULL" & VbCrLf
-sSQL = sSQL & "	GROUP BY heosR.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "	    SELECT AG_NUMERO, MIN(heosR.HE_DATAINICIO) AS DATA_MIN FROM Historico_Eventos heosR " & VbCrLf
+sSQL = sSQL & "	    WHERE 	heosR.ID_SITUACAO = 6 /*Em Execucao*/" & VbCrLf
+sSQL = sSQL & "		    AND heosR.HE_DATAINICIO IS NOT NULL" & VbCrLf
+sSQL = sSQL & "	    GROUP BY heosR.AG_NUMERO" & VbCrLf
 sSQL = sSQL & "	) AS Hist_Min ON Hist_Min.AG_NUMERO = a.AG_NUMERO" & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "LEFT JOIN" & VbCrLf
 sSQL = sSQL & "	(" & VbCrLf
-sSQL = sSQL & "	SELECT AG_NUMERO, MAX(heosR.HE_DATATERMINO) AS DATA_MAX FROM Historico_Eventos heosR" & VbCrLf
-sSQL = sSQL & "	WHERE	heosR.ID_SITUACAO = 6 /*Em Execucao*/" & VbCrLf
-sSQL = sSQL & "		AND heosR.HE_DATATERMINO IS NOT NULL" & VbCrLf
-sSQL = sSQL & "	GROUP BY heosR.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "	    SELECT AG_NUMERO, MAX(heosR.HE_DATATERMINO) AS DATA_MAX FROM Historico_Eventos heosR" & VbCrLf
+sSQL = sSQL & "	    WHERE	heosR.ID_SITUACAO = 6 /*Em Execucao*/" & VbCrLf
+sSQL = sSQL & "		    AND heosR.HE_DATATERMINO IS NOT NULL" & VbCrLf
+sSQL = sSQL & "	    GROUP BY heosR.AG_NUMERO" & VbCrLf
 sSQL = sSQL & "	) AS Hist_Max ON Hist_Max.AG_NUMERO = a.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "" & VbCrLf
+sSQL = sSQL & "LEFT JOIN" & VbCrLf
+sSQL = sSQL & "	(" & VbCrLf
+sSQL = sSQL & "	    SELECT AG_NUMERO, MAX(heosR.HE_DATATERMINO) AS DATA_MAX FROM Historico_Eventos heosR" & VbCrLf
+sSQL = sSQL & "	    WHERE	heosR.ID_SITUACAO = 8 /* Finalizado */" & VbCrLf
+sSQL = sSQL & "		    AND heosR.HE_DATATERMINO IS NOT NULL" & VbCrLf
+sSQL = sSQL & "	    GROUP BY heosR.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "	) AS Hist_Final ON Hist_Final.AG_NUMERO = a.AG_NUMERO" & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "/*Pesquisa de satisfacao*/" & VbCrLf
 sSQL = sSQL & "LEFT JOIN" & VbCrLf
@@ -241,7 +218,7 @@ if soldias <> "" then
 end if
 
 if ini_dias <> "" then
-	sSQL = sSQL & " AND DATEDIFF(day, Data_de_Início_Real_M,getDate()-" & ini_dias & ")<0 "
+	sSQL = sSQL & " AND DATEDIFF(day, Data_Início_Execução_Real_M,getDate()-" & ini_dias & ")<0 "
 	'sSQL = sSQL & " AND DATEDIFF(day, Data_Min, getDate()-" & ini_dias & ")<0 "
 end if
 
@@ -289,7 +266,7 @@ if sigilo <> "" then
 end if
 
 if Participante <> "" then
-	sSQL = sSQL & " and (EXISTS (SELECT DISTINCT pes.AG_NUMERO FROM Participantes_Externos pes WHERE (UPPER(pes.PE_NOME) LIKE '%" & Participante & "%' OR UPPER(pes.PE_USERNAME) LIKE '%" & Participante & "%') AND pes.AG_NUMERO = Num_AG_M) "
+	sSQL = sSQL & " and (EXISTS (SELECT DISTINCT pes.AG_NUMERO FROM Participantes_Externos pes WHERE (UPPER(pes.PE_NOME) LIKE '%" & Participante & "%' OR UPPER(pes.PE_USERNAME) LIKE '%" & Participante & "%') AND pes.AG_NUMERO = Num_AS_M) "
 	sSQL = sSQL & " OR (Solicitante_M LIKE '%" & Participante & "%')) "
 
 	'sSQL = sSQL & " and (EXISTS (SELECT DISTINCT pes.AG_NUMERO FROM Participantes_Externos pes WHERE UPPER(pes.PE_NOME) LIKE '%" & Participante & "%' OR UPPER(pes.PE_USERNAME) LIKE '%" & Participante & "%' AND pes.AG_NUMERO = a.AG_NUMERO) "
@@ -321,7 +298,17 @@ if dataFimCadSol <> "'//'" then
 	'sSQL = sSQL & " and AG_DATATERMINO < CONVERT(SMALLDATETIME," & dataFimCadSol & ",103)+1 "
 end if
 
-sSQL = sSQL & " ORDER BY Num_AG_M"
+dataIniFinalizadoReal = Trim(request("diadataIniFinalizadoReal") & "/" & request("mesdataIniFinalizadoReal") & "/" & request("anodataIniFinalizadoReal"))
+dataFimFinalizadoReal = Trim(request("diadataFimFinalizadoReal") & "/" & request("mesdataFimFinalizadoReal") & "/" & request("anodataFimFinalizadoReal"))
+
+if dataIniFinalizadoReal <> "//" then
+	sSQL = sSQL & " and Data_Finalização_Real_M >= CONVERT(SMALLDATETIME,'" & dataIniFinalizadoReal & "',103) " & VbCrLf
+end if
+if dataFimFinalizadoReal <> "//" then
+	sSQL = sSQL & " and Data_Finalização_Real_M < (CONVERT(SMALLDATETIME,'" & dataFimFinalizadoReal & "',103)+1) " & VbCrLf
+end if
+
+sSQL = sSQL & " ORDER BY Num_AS_M" & VbCrLf
 
 
 'RESPONSE.WRITE replace(sSQL, vbcrlf, "<br>")
@@ -332,7 +319,6 @@ sSQL = sSQL & " ORDER BY Num_AG_M"
 
 Session("XLS_EXPORTA_SQL") = sSQL
 Response.Redirect "excel.asp?titulo=Relatório de Acompanhamento&sql="
-
 
 
 '=============================================================================

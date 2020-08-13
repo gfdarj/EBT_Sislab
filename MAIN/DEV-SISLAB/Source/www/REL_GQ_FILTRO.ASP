@@ -13,46 +13,48 @@ Dim auxRT, auxRAT, auxusername, EH_CRT, auxorgao, auxtecnologia, auxorgaosel,aux
 EH_CRT = Env.UsuarioCRT
 %>
 <script type="text/javascript">
-function testaPreenchimento()
-{
-	var f = document.forms[0];
+    function testaPreenchimento()
+    {
+	    var f = document.forms[0];
 
-	//alert(f.diadataIniCad.value);
+	    //alert(f.diadataIniCad.value);
 
-	if((f.tiposigilo.value == '') && (f.situacao.value == '') &&
-		(f.tempesquisa.value == '') && (f.rt.value == '') &&
-		(f.participante.value == '') && (f.sol_dias.value == '') &&
-		(f.ini_dias.value == '') && (!f.chkRoteiro.checked) &&
-		(!f.chkLaudo.checked) && (!f.chkRelEnsaio.checked) &&
-		(!f.chkEquipSis.checked) && (f.tip_te.value == '') &&
-		((f.diadataIniCad.value == '') || (f.mesdataIniCad.value == '') || (f.anodataIniCad.value == '')) &&
-		((f.diadataFimCad.value == '') || (f.mesdataFimCad.value == '') || (f.anodataFimCad.value == '')) &&
-		((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
-		((f.diadataFimCadSol.value == '') || (f.mesdataFimCadSol.value == '') || (f.anodataFimCadSol.value == '')) )
-		return false;
-	else {
-		//alert('aqui');
-		return true;
-	}
-}
-function montaExcel()
-{
-	if(testaPreenchimento())
-	{
-		//var tmp, x;
-	    //x = window.open("", "janelaRelatorioExcel", "width=800, height=600, toolbar=no, status=no, menubar=yes, scrollbars=yes, left=0, top=0, resizable=yes");
-	    //document.forms[0].target = "janelaRelatorioExcel";
-	    //tmp = document.forms[0].target;
-		//document.forms[0].submit();
-		//document.forms[0].target = tmp;
-		//x.close();
+	    if((f.tiposigilo.value == '') && (f.situacao.value == '') &&
+		    (f.tempesquisa.value == '') && (f.rt.value == '') &&
+		    (f.participante.value == '') && (f.sol_dias.value == '') &&
+		    (f.ini_dias.value == '') && (!f.chkRoteiro.checked) &&
+		    (!f.chkLaudo.checked) && (!f.chkRelEnsaio.checked) &&
+		    (!f.chkEquipSis.checked) && (f.tip_te.value == '') &&
+		    ((f.diadataIniCad.value == '') || (f.mesdataIniCad.value == '') || (f.anodataIniCad.value == '')) &&
+		    ((f.diadataFimCad.value == '') || (f.mesdataFimCad.value == '') || (f.anodataFimCad.value == '')) &&
+            ((f.diadataIniFinalizadoReal.value == '') || (f.mesdataIniFinalizadoReal.value == '') || (f.anodataIniFinalizadoReal.value == '')) &&
+		    ((f.diadataFimFinalizadoReal.value == '') || (f.mesdataFimFinalizadoReal.value == '') || (f.anodataFimFinalizadoReal.value == '')) &&
+		    ((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
+		    ((f.diadataFimCadSol.value == '') || (f.mesdataFimCadSol.value == '') || (f.anodataFimCadSol.value == '')) )
+		    return false;
+	    else {
+		    //alert('aqui');
+		    return true;
+	    }
+    }
+    function montaExcel()
+    {
+	    if(testaPreenchimento())
+	    {
+		    //var tmp, x;
+	        //x = window.open("", "janelaRelatorioExcel", "width=800, height=600, toolbar=no, status=no, menubar=yes, scrollbars=yes, left=0, top=0, resizable=yes");
+	        //document.forms[0].target = "janelaRelatorioExcel";
+	        //tmp = document.forms[0].target;
+		    //document.forms[0].submit();
+		    //document.forms[0].target = tmp;
+		    //x.close();
 
-	    document.forms[0].target = "_blank";
-	    document.forms[0].submit();
-	}
-	else
-		alert('Selecione ao menos uma condição de filtro !');
-}
+	        document.forms[0].target = "_blank";
+	        document.forms[0].submit();
+	    }
+	    else
+		    alert('Selecione ao menos uma condição de filtro !');
+    }
 </script>
 
 <div class="margem-10">
@@ -152,6 +154,13 @@ function montaExcel()
         <div>
 		    <a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Período agendado pelo cliente </u></a>&nbsp;
 		    <%call comboData("dataIniCadSol")%>&nbsp;até&nbsp;<%call comboData("dataFimCadSol")%>
+        </div>
+
+        <br />
+
+        <div>
+		    <a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Período de finalização pelo RAT/RT</u></a>&nbsp;
+		    <%call comboData("dataIniFinalizadoReal")%>&nbsp;até&nbsp;<%call comboData("dataFimFinalizadoReal")%>
         </div>
 
         <br />

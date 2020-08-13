@@ -27,7 +27,9 @@ EH_CRT = Env.UsuarioCRT
 		    (!f.chkEquipSis.checked) && (f.tip_te.value == '') &&
 		    ((f.diadataIniCad.value == '') || (f.mesdataIniCad.value == '') || (f.anodataIniCad.value == '')) &&
 		    ((f.diadataFimCad.value == '') || (f.mesdataFimCad.value == '') || (f.anodataFimCad.value == '')) &&
-		    ((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
+            ((f.diadataIniFinalizadoReal.value == '') || (f.mesdataIniFinalizadoReal.value == '') || (f.anodataIniFinalizadoReal.value == '')) &&
+		    ((f.diadataFimFinalizadoReal.value == '') || (f.mesdataFimFinalizadoReal.value == '') || (f.anodataFimFinalizadoReal.value == '')) &&
+            ((f.diadataIniCadSol.value == '') || (f.mesdataIniCadSol.value == '') || (f.anodataIniCadSol.value == '')) &&
 		    ((f.diadataFimCadSol.value == '') || (f.mesdataFimCadSol.value == '') || (f.anodataFimCadSol.value == '')) )
 		    return false;
 	    else {
@@ -144,6 +146,12 @@ EH_CRT = Env.UsuarioCRT
 	<td>
 		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Período agendado pelo cliente </u></a>&nbsp;
 		<%call comboData("dataIniCadSol")%>&nbsp;até&nbsp;<%call comboData("dataFimCadSol")%>
+	</td>
+</tr>
+<tr>
+	<td>
+		<a href="#" title="Selecione uma data para pesquisa. Caso uma das datas estejam em branco é considerado apenas a data selecionada como limite inferior ou superior, conforme o preenchimento."><u>Período de finalização pelo RAT/RT</u></a>&nbsp;
+		<%call comboData("dataIniFinalizadoReal")%>&nbsp;até&nbsp;<%call comboData("dataFimFinalizadoReal")%>
 	</td>
 </tr>
 <tr>

@@ -1,13 +1,3 @@
-select * from Agendamento
-
-select * from prioridade
-
-select * from TECNOLOGIA
-
-select * from Area_Tecnologica
-
-
--- DROP TABLE dbo.Prioridade_Tecnologia
 
 CREATE TABLE dbo.Prioridade_Tecnologia
 (
@@ -20,37 +10,61 @@ ALTER TABLE dbo.Prioridade_Tecnologia ADD CONSTRAINT PK_Prioridade_Tecnologia PR
 GO
 
 INSERT INTO Prioridade_Tecnologia VALUES (1, '01', 'DTA01')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (2, '02', 'DTA02')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (3, '03', 'DTA03')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (4, '04', 'DTA04')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (5, '05', 'DTA05')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (6, '99', 'DTA')
+GO
 
 INSERT INTO Prioridade_Tecnologia VALUES (7, '01', 'TFM01')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (8, '02', 'TFM02')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (9, '03', 'TFM03')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (10, '04', 'TFM04')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (11, '05', 'TFM05')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (12, '99', 'TFM')
+GO
 
 INSERT INTO Prioridade_Tecnologia VALUES (13, '01', 'TNL01')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (14, '02', 'TNL02')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (15, '03', 'TNL03')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (16, '04', 'TNL04')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (17, '05', 'TNL05')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (18, '99', 'TNL')
+GO
 
 INSERT INTO Prioridade_Tecnologia VALUES (19, '01', 'TNO01')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (20, '02', 'TNO02')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (21, '03', 'TNO03')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (22, '04', 'TNO04')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (23, '05', 'TNO05')
+GO
 INSERT INTO Prioridade_Tecnologia VALUES (24, '99', 'TNO')
+GO
 
-
-select * from Prioridade_Tecnologia
 
 /*
+	VERIFICAÇÃO APENAS
+
 1 - DTA01
 2 - DTA02
 3 - DTA03
@@ -75,5 +89,17 @@ select * from Prioridade_Tecnologia
 22 - TNO04
 23 - TNO05
 24 - TNO
+
+	-- DROP TABLE dbo.Prioridade_Tecnologia
+
+	select * from Prioridade_Tecnologia
+
+	select * from Agendamento
+
+	select * from prioridade
+
+	select * from TECNOLOGIA
+
+	select * from Area_Tecnologica
 */
 
