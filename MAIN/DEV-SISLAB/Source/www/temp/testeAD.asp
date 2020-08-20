@@ -52,9 +52,14 @@ objCommand.Properties("Searchscope") = 2 'ADS_SCOPE_SUBTREE
 '109305
 'jose.paulajunior@claro.com.br
 
+'email(1) = "JOSESP"
+'email(1) = "laila.desousa@claro.com.br"
+email(1) = "walderson.vidal@claro.com.br"
+'email(1) = "Jose.PaulaJunior@claro.com.br"
+
 objCommand.CommandText = "SELECT * FROM 'LDAP://" & containerName & "'" & _
-                         "WHERE cn = '" & email(1) & "'"
-                         '"WHERE mail = 'jose.paulajunior@claro.com.br'"
+                         "WHERE mail = '" & email(1) & "'"
+                         '"WHERE cn = '" & email(1) & "'"
                          '"WHERE objectCategory='user' "
                          '"AND sAMAccountName = 'negociacao01'"
                          '"AND mail = 'joaquim.carvalho@claro.com.br'"

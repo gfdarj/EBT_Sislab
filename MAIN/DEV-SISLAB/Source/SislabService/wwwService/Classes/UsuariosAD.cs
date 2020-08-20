@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.DirectoryServices;
+using System.DirectoryServices.ActiveDirectory;
 using System.Xml;
 using System.Xml.Linq;
 using System.Web;
-using System.DirectoryServices;
 using Embratel.Sislab.Entidades;
 using Embratel.Sislab.Util;
 
@@ -41,8 +42,8 @@ namespace Embratel.Sislab.Classes
             //    dominio = "alerj";
 
             //// adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";  // Funcionando!
-            adSearch.Filter = "(&(objectClass=person)(cn=" + login + "))";  // Funcionando!
-            
+            //adSearch.Filter = "(&(objectClass=person)(cn=" + login + "))";  // Funcionando!
+            adSearch.Filter = string.Format("(&(objectCategory=person)(objectClass=user)(mail={0}))", login);
 
             //adSearch.Filter = "(&(objectClass=user)(mail=" + login + "))";
 
