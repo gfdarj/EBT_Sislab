@@ -14,6 +14,7 @@ sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "select * from (SELECT" & VbCrLf
 sSQL = sSQL & "	a.AG_NUMERO AS Num_AS_M, " & VbCrLf
 sSQL = sSQL & "	a.AG_TITULO AS 'Título AS_M', " & VbCrLf
+sSQL = sSQL & "	ptec.NM_PRIORIDADE AS 'Prioridade_M', " & VbCrLf
 sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
@@ -114,6 +115,8 @@ sSQL = sSQL & "		'Não'" & VbCrLf
 sSQL = sSQL & "	END AS 'Pesquisa_de_Satisfação_M'" & VbCrLf
 sSQL = sSQL & "FROM" & VbCrLf
 sSQL = sSQL & "	vw_Agendamento a" & VbCrLf
+sSQL = sSQL & "" & VbCrLf
+sSQL = sSQL & "LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID_PRIORIDADE " & VbCrLf
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "LEFT JOIN" & VbCrLf
 sSQL = sSQL & "	(" & VbCrLf
