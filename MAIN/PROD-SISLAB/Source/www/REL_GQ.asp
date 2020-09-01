@@ -5,6 +5,7 @@ Server.ScriptTimeout = 3500
 <%
 Dim dataIniCad, dataFimCad, dataIniCadRealSol, dataFimCadSol, Participante
 Dim tempesquisa, dataIniFinalizadoReal, dataFimFinalizadoReal
+Dim id_crt
 
 sSQL = "" & VbCrLf
 sSQL = sSQL & "DECLARE @id_situacao INT" & VbCrLf
@@ -19,6 +20,7 @@ sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
 sSQL = sSQL & "	a.AG_DATATERMINO as 'Data_de_Término_Solicitada_pelo_Cliente_M'," & VbCrLf
+sSQL = sSQL & "	Hist_1DT_fim.Data_Min as '1ª_Data_de_Término_Solicitada_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.TEC_NOME as 'Tecnologia_M'," & VbCrLf
 sSQL = sSQL & "	a.TA_ID," & VbCrLf
 sSQL = sSQL & "	a.TA_DESCRICAO AS 'Tipo_Teste_M'," & VbCrLf
@@ -120,6 +122,12 @@ sSQL = sSQL & "LEFT JOIN Prioridade_Tecnologia ptec ON a.AG_PRIORIDADE = ptec.ID
 sSQL = sSQL & "" & VbCrLf
 sSQL = sSQL & "LEFT JOIN" & VbCrLf
 sSQL = sSQL & "	(" & VbCrLf
+sSQL = sSQL & "	    SELECT AG_NUMERO, MIN(hd.HD_DATATERMINO) AS DATA_MIN FROM Historico_Datas hd " & VbCrLf
+sSQL = sSQL & "	    GROUP BY hd.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "	) AS Hist_1DT_fim ON Hist_1DT_fim.AG_NUMERO = a.AG_NUMERO" & VbCrLf
+sSQL = sSQL & "" & VbCrLf
+sSQL = sSQL & "LEFT JOIN" & VbCrLf
+sSQL = sSQL & "	(" & VbCrLf
 sSQL = sSQL & "	    SELECT AG_NUMERO, MIN(heosR.HE_DATAINICIO) AS DATA_MIN FROM Historico_Eventos heosR " & VbCrLf
 sSQL = sSQL & "	    WHERE 	heosR.ID_SITUACAO = 6 /*Em Execucao*/" & VbCrLf
 sSQL = sSQL & "		    AND heosR.HE_DATAINICIO IS NOT NULL" & VbCrLf
@@ -206,6 +214,7 @@ auxRT = request("rt")
 sigilo = request("tiposigilo")
 ini_dias = request("ini_dias")
 tempesquisa = request("tempesquisa")
+id_crt = request("id_crt")
 
 auxLaudo = (request.form("chkLaudo")="on")
 auxRoteiro = (request.form("chkRoteiro")="on")
@@ -276,7 +285,6 @@ if Participante <> "" then
 	'sSQL = sSQL & " OR (AG_USERNAME LIKE '%" & Participante & "%' )) "
 end if
 
-
 dataIniCad = Trim(request("diadataIniCad") & "/" & request("mesdataIniCad") & "/" & request("anodataIniCad"))
 dataFimCad = Trim(request("diadataFimCad") & "/" & request("mesdataFimCad") & "/" & request("anodataFimCad"))
 
@@ -310,6 +318,10 @@ end if
 if dataFimFinalizadoReal <> "//" then
 	sSQL = sSQL & " and Data_Finalização_Real_M < (CONVERT(SMALLDATETIME,'" & dataFimFinalizadoReal & "',103)+1) " & VbCrLf
 end if
+
+If id_crt <> "" Then
+	sSQL = sSQL & " and EXISTS (SELECT ra.RAM_AS FROM Reserva_ambientes ra INNER JOIN Ambientes amb ON amb.AMB_ID = ra.AMB_ID WHERE ra.RAM_AS = Num_AS_M AND amb.ID_CRT = " & id_crt & ") " & VbCrLf
+End If
 
 sSQL = sSQL & " ORDER BY Num_AS_M" & VbCrLf
 

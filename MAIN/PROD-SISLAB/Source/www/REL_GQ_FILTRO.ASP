@@ -20,7 +20,7 @@ EH_CRT = Env.UsuarioCRT
 	    //alert(f.diadataIniCad.value);
 
 	    if((f.tiposigilo.value == '') && (f.situacao.value == '') &&
-		    (f.tempesquisa.value == '') && (f.rt.value == '') &&
+            (f.tempesquisa.value == '') && (f.rt.value == '') && (f.id_crt.value == '') &&
 		    (f.participante.value == '') && (f.sol_dias.value == '') &&
 		    (f.ini_dias.value == '') && (!f.chkRoteiro.checked) &&
 		    (!f.chkLaudo.checked) && (!f.chkRelEnsaio.checked) &&
@@ -134,6 +134,8 @@ EH_CRT = Env.UsuarioCRT
 		<!--Área Tecnológica:&nbsp;
 		<%'call comboAreaTecnologica("at_id", Env.oConn, "N")%>
 		-->
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Centro de Referencia: <%=CentroReferencia("id_crt", "")%>
 	</td>
 </tr>
 <tr>
@@ -163,4 +165,21 @@ EH_CRT = Env.UsuarioCRT
 </form>
 <%
 Call imprimeRodape(RODAPE_OFF)
+
+Function CentroReferencia(nome, valor)
+    '-- pego os ambientes que não são reservados por AS, nestes, a reserva é feita pelo
+    '-- cadastro de agendamento / área do RAT
+    s = "SELECT crt.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT FROM CentroReferencia crt ORDER BY crt.NM_CRT;"
+    Call Env.RecordSet(True, objRS, s)
+    If Not objRS.EOF Then
+	    objRS.MoveFirst %>
+		        <select class="combo" name="<%=nome%>" onchange="ajax_comboAmbientes();">
+		            <option value="">--</option>
+	 <% do while not objRS.EOF %>
+    	    	    <option value="<%=objRS("ID_CRT")%>" <%=IIf(CStr(valor) = Cstr(objRS("ID_CRT")), " selected", "")%>><%=objRS("NM_CRT")%> - [<%=objRS("SIGLA_CRT")%>]</option>
+	<%      objRS.movenext %>
+	<%  loop %>
+        		</select>
+<%  end if
+End Function
 %>
