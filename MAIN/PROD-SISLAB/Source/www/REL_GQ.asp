@@ -16,6 +16,7 @@ sSQL = sSQL & "select * from (SELECT" & VbCrLf
 sSQL = sSQL & "	a.AG_NUMERO AS Num_AS_M, " & VbCrLf
 sSQL = sSQL & "	a.AG_TITULO AS 'Título AS_M', " & VbCrLf
 sSQL = sSQL & "	ptec.NM_PRIORIDADE AS 'Prioridade_M', " & VbCrLf
+sSQL = sSQL & "	dbo.F_ListaCRT(a.AG_NUMERO) AS 'CRT_M', " & VbCrLf
 sSQL = sSQL & "	Tot_OS.Total AS 'Nº_OS_Geradas_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATASOLICITACAO as 'Data_da_Solicitação_pelo_Cliente_M'," & VbCrLf
 sSQL = sSQL & "	a.AG_DATAINICIO as 'Data_de_Início_Solicitada_pelo_Cliente_M', " & VbCrLf
@@ -389,7 +390,7 @@ Sub montaListagemExcel( objRecordSet, Titulo, Link, Acao,str )
 			End If
 
 			For each tmp in objRecordSet.Fields
-				If(tmp.Name <> "ID" and Right(tmp.Name, 2) = "_M")Then
+				If (tmp.Name <> "ID" and Right(tmp.Name, 2) = "_M") Then
 					str = str & "<td>"
 					If(isNull(Link) AND isNull(Acao) AND NOT(isNull(tmp.Value)))Then
 						If tmp.Type = adCurrency Then

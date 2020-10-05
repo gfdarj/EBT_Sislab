@@ -27,7 +27,8 @@ If request("excluir") = "1" then
 		response.redirect "CadAmbientes.asp"
 	end if
 Else
-	if request("ehNovoAmbiente") = "1" then ambiente = "" else ambiente = request("ambiente")
+	if CStr(request("ehNovoAmbiente")) = "1" then ambiente = "" else ambiente = request("ambiente")
+
 	descricao = ucase(request("desc"))
 	usadoporag = request("usadoporag")
 	if usadoporag = "" then usadoporag = "0"
@@ -36,12 +37,14 @@ Else
 
 	ssql = "exec sp_CadAmbiente " & ambiente & ", '" & descricao & "'," & usadoporag & ", " & modulo & ", " & qualCRT
 
-	on error resume next
-	Set rsRET = Env.oConn.execute(PreparaStrSQL(sSQL))
-	on error goto 0
-
-'response.write PreparaStrSQL(sSQL)
+'response.write "ehNovoAmbiente: " & request("ehNovoAmbiente")
+'response.write "<BR><BR>" & PreparaStrSQL(sSQL)
 'response.end
+
+'	on error resume next
+	Set rsRET = Env.oConn.execute(PreparaStrSQL(sSQL))
+'	on error goto 0
+
 
 	If Env.oConn.Errors.Count > 0 Then
 		call erroDB(true, false, true, Env.oConn.Errors, "CadAmbientes.asp?ambiente=" & ambiente, "")

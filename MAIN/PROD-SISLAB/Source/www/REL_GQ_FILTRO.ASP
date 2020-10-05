@@ -135,7 +135,7 @@ EH_CRT = Env.UsuarioCRT
 		<%'call comboAreaTecnologica("at_id", Env.oConn, "N")%>
 		-->
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Centro de Referencia: <%=CentroReferencia("id_crt", "")%>
+		Centro de Referência: <%=CentroReferencia("id_crt", "")%>
 	</td>
 </tr>
 <tr>
@@ -173,7 +173,7 @@ Function CentroReferencia(nome, valor)
     Call Env.RecordSet(True, objRS, s)
     If Not objRS.EOF Then
 	    objRS.MoveFirst %>
-		        <select class="combo" name="<%=nome%>" onchange="ajax_comboAmbientes();">
+		        <select class="combo" name="<%=nome%>">
 		            <option value="">--</option>
 	 <% do while not objRS.EOF %>
     	    	    <option value="<%=objRS("ID_CRT")%>" <%=IIf(CStr(valor) = Cstr(objRS("ID_CRT")), " selected", "")%>><%=objRS("NM_CRT")%> - [<%=objRS("SIGLA_CRT")%>]</option>

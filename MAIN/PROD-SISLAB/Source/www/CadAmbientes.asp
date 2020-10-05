@@ -80,9 +80,9 @@ if not Env.ehRAT then response.redirect "index.asp"
 <tr>
 	<td>&nbsp;&nbsp;Módulo do Sistema:</td>
 	<td>
-		<%=ModuloSistema("filtro_modulo", "")%>
+		<%=ModuloSistema("filtro_modulo", "", True)%>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    Centro de Referência:&nbsp;<%=CentroReferencia("filtro_crt", "")%>
+	    Centro de Referência:&nbsp;<%=CentroReferencia("filtro_crt", "", True)%>
 	</td>
 </tr>
 
@@ -115,14 +115,14 @@ if not Env.ehRAT then response.redirect "index.asp"
 <tr>
 	<td><span class="vermelho2"><b>*</b></span>&nbsp;<b>Centro de Referência:</b></td>
 	<td>
-	    <%=CentroReferencia("crt", amb_crt)%>
+	    <%=CentroReferencia("crt", amb_crt, False)%>
 	</td>
 </tr>
 
 <tr>
 	<td><span class="vermelho2"><b>*</b></span>&nbsp;<b>Módulo do Sistema:</b></td>
 	<td>
-        <%=ModuloSistema("modulo", amb_modulo)%>
+        <%=ModuloSistema("modulo", amb_modulo, False)%>
 	</td>
 </tr>
 
@@ -179,8 +179,8 @@ if ambiente <> "" then
 		frm.btnExcluir.disabled = false;
 		frm.ambiente.value = '<%=ucase(objSiteRS("amb_id"))%>';
 		frm.desc.value = '<%=ucase(objSiteRS("amb_nome"))%>';
-		frm.modulo.value = "<%=objSiteRS("ID_CRT")%>";
-		frm.crt.value = "<%=objSiteRS("AMB_MODULO")%>";
+		frm.modulo.value = "<%=objSiteRS("AMB_MODULO")%>";
+		frm.crt.value = "<%=objSiteRS("ID_CRT")%>";
 
 <%		if objSiteRS("amb_usadoporag") then%>
 		frm.usadoporag.checked = true;
@@ -198,8 +198,8 @@ else%>
 Call imprimeRodape(RODAPE_OFF)
 
 
-Function ModuloSistema(nome, valor) %>
-    <select name="<%=nome%>" class="combo" onchange="ajax_comboAmbientes();">
+Function ModuloSistema(nome, valor, UsaOnChange) %>
+    <select name="<%=nome%>" class="combo" <%=IIf(UsaOnChange, "onchange='ajax_comboAmbientes();'", "")%>>
 <%  If Not p_PerfilSCE Then  %>
 	    <option value="">--</option>
 	    <option value="<%=Application("SISLAB_ID_APLICACAO_SISLAB")%>" <%=IIf(CStr(valor) = Cstr(Application("SISLAB_ID_APLICACAO_SISLAB")), "selected", "")%>>SISLAB</option>
@@ -210,14 +210,14 @@ Function ModuloSistema(nome, valor) %>
 End Function
 
 
-Function CentroReferencia(nome, valor)
+Function CentroReferencia(nome, valor, UsaOnChange)
     '-- pego os ambientes que não são reservados por AS, nestes, a reserva é feita pelo
     '-- cadastro de agendamento / área do RAT
     s = "SELECT crt.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT FROM CentroReferencia crt ORDER BY crt.NM_CRT;"
     Call Env.RecordSet(True, objRS, s)
     If Not objRS.EOF Then
 	    objRS.MoveFirst %>
-		        <select class="combo" name="<%=nome%>" onchange="ajax_comboAmbientes();">
+		        <select class="combo" name="<%=nome%>" <%=IIf(UsaOnChange, "onchange='ajax_comboAmbientes();'", "")%>>
 		            <option value="">--</option>
 	 <% do while not objRS.EOF %>
     	    	    <option value="<%=objRS("ID_CRT")%>" <%=IIf(CStr(valor) = Cstr(objRS("ID_CRT")), " selected", "")%>><%=objRS("NM_CRT")%> - [<%=objRS("SIGLA_CRT")%>]</option>
