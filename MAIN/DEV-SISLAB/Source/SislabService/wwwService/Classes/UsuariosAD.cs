@@ -22,6 +22,11 @@ namespace Embratel.Sislab.Classes
             return GeraXML(BuscaDadosAD(login, dominio));
         }
 
+        public string ObtemTodosOsDadosUsuario(string login, string dominio)
+        {
+            return BuscaTodosOsDadosAD(login, dominio);
+        }
+
         private UsuarioENT BuscaDadosAD(string login, string dominio)
         {
             UsuarioENT ent = new UsuarioENT();
@@ -43,14 +48,18 @@ namespace Embratel.Sislab.Classes
 
             //// adSearch.Filter = "(&(objectClass=user)(anr=" + login + "))";  // Funcionando!
             //adSearch.Filter = "(&(objectClass=person)(cn=" + login + "))";  // Funcionando!
-            adSearch.Filter = string.Format("(&(objectCategory=person)(objectClass=user)(mail={0}))", login);
-
-            //adSearch.Filter = "(&(objectClass=user)(mail=" + login + "))";
-
+            //adSearch.Filter = string.Format("(&(objectCategory=person)(objectClass=user)(mail={0}))", login);
+            //adSearch.Filter = "(&(objectClass=user)(mail=" + "Walderson.vidal@claro.com.br" + "))";
+            //            adSearch.Filter = "(&(mail=" + "Walderson.vidal@claro.com.br" + "))";
             //adSearch.Filter = "(&(objectClass=user)(| (cn = *" + dominio + "*)(sAMAccountName = " + login + ")))";
             //adSearch.PropertiesToLoad.Add("mail");
             //adSearch.PropertiesToLoad.Add("displayname");
 
+            //adSearch.PropertiesToLoad.Add("accountNameHistory");
+            adSearch.Filter = "(&(accountNameHistory=" + dominio.ToUpper() + "\\" + login.ToUpper() + "))";
+            //adSearch.Filter = "(&(accountNameHistory=EMBRATEL\\VIDAL))";
+
+            //SearchResultCollection singleADUsersssss = adSearch.FindAll();
             SearchResult singleADUser = adSearch.FindOne();
 
             // Go through all entries from the active directory.
@@ -58,9 +67,12 @@ namespace Embratel.Sislab.Classes
             {
                 // Go through all the values found in the search
                 ent.DN = (string)singleADUser.Properties["distinguishedName"][0];
-                ent.Nome = (string)singleADUser.Properties["displayname"][0].ToString();
+                ent.Nome = (string)singleADUser.Properties["displayName"][0].ToString();
                 try { ent.Email = (string)singleADUser.Properties["mail"][0]; } catch { ent.Email = (string)singleADUser.Properties["sAMAccountName"][0]; }
+                try { ent.Empresa = (string)singleADUser.Properties["company"][0]; } catch { ent.Empresa = ""; }
+                try { ent.Celular = (string)singleADUser.Properties["mobile"][0]; } catch { ent.Celular = ""; }
 
+                /*
                 if (ConfigHelper.Ambiente == "EMBRATEL")
                 {
                     try { ent.CodigoLotacao = (string)singleADUser.Properties["embratellotacao"][0]; } catch { ent.CodigoLotacao = ""; }
@@ -77,15 +89,42 @@ namespace Embratel.Sislab.Classes
                     try { ent.Telefone = (string)singleADUser.Properties["telephonenumber"][0]; } catch { ent.Telefone = ""; }
                     try { ent.Celular = (string)singleADUser.Properties["mobile"][0]; } catch { ent.Celular = ""; }
                 }
-                else
-                {
-                    ent.CodigoLotacao = ""; ent.Diretoria = "";  ent.Sexo = ""; ent.CategoriaEmpregado = ""; 
-                    ent.DataAdmissao = ""; ent.AreaLotacao = ""; ent.CategoriaCargo = ""; ent.Lotacao = ""; 
-                    ent.Matricula = ""; ent.DataNascimento = ""; ent.Empresa = ""; ent.Telefone = ""; ent.Celular = "";
-                }
+                */
             }
 
             return ent;
+        }
+
+        private String BuscaTodosOsDadosAD(string login, string dominio)
+        {
+            UsuarioENT ent = new UsuarioENT();
+
+            string domainContext = ConfigHelper.LDAP;
+            String retornoStr = "";
+
+            DirectoryEntry entry = new DirectoryEntry(domainContext);
+            DirectorySearcher adSearch = new DirectorySearcher(entry);
+
+            adSearch.Filter = "(&(accountNameHistory=" + dominio.ToUpper() + "\\" + login.ToUpper() + "))";
+            SearchResult singleADUser = adSearch.FindOne();
+
+            // Go through all entries from the active directory.
+            if (singleADUser != null)
+            {
+                foreach (var valueCollection in singleADUser.Properties.PropertyNames)
+                {
+                    try
+                    {
+                        retornoStr += (valueCollection.ToString() + " = " + singleADUser.Properties[valueCollection.ToString()][0].ToString()) + "<br />";
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return retornoStr;
         }
 
         private string GeraXML(UsuarioENT ent)

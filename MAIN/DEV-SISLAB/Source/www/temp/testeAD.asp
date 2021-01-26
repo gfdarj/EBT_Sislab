@@ -5,15 +5,21 @@
 
 '===============================================================================================
 
+
 strNTUser = Request.ServerVariables("AUTH_USER")
 
 email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
 
-Response.Write "strNTUSer: " & strNTUSer
-Response.Write "<BR>Domain/User: " & email(0) & " ---- " & email(1)
+Response.Write "Mid: " & Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+
+'strNTUSer = "EMBRATEL\JOACA"
+
+Response.Write "<BR><BR>strNTUSer: " & strNTUSer
+Response.Write "<BR><BR>Domain / User: " & email(0) & " ---- " & email(1)
 
 Response.Write "<br><br>"
 
+'response.End
 
 ' Get the inputs.
 'containerName = "10.54.24.197/OU=User Accounts,DC=corp,DC=clarobr"
@@ -54,11 +60,12 @@ objCommand.Properties("Searchscope") = 2 'ADS_SCOPE_SUBTREE
 
 'email(1) = "JOSESP"
 'email(1) = "laila.desousa@claro.com.br"
-email(1) = "walderson.vidal@claro.com.br"
-'email(1) = "Jose.PaulaJunior@claro.com.br"
+'email(1) = "walderson.vidal@claro.com.br"
+email(1) = "Jose.PaulaJunior@claro.com.br"
 
 objCommand.CommandText = "SELECT * FROM 'LDAP://" & containerName & "'" & _
-                         "WHERE mail = '" & email(1) & "'"
+                         "WHERE accountNameHistory = '" & strNTUSer & "'"
+                         '"WHERE mail = '" & email(1) & "'"
                          '"WHERE cn = '" & email(1) & "'"
                          '"WHERE objectCategory='user' "
                          '"AND sAMAccountName = 'negociacao01'"

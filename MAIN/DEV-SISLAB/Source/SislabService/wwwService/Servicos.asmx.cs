@@ -36,6 +36,24 @@ namespace Embratel.Sislab.Servico
         }
 
         [WebMethod]
+        public string ObtemTodosOsDadosUsuario(string login, string dominio)
+        {
+            UsuariosAD ad = new UsuariosAD();
+            string ret = "";
+            try
+            {
+                ret = ad.ObtemTodosOsDadosUsuario(login, dominio);
+            }
+            catch (Exception ex)
+            {
+                ret = "ERRO[ObtemTodosOsDadosUsuario]: " + ex.Message;
+            }
+            return ret;
+        }
+
+        
+
+        [WebMethod]
         public string EnviaEmail(string remetente, string destinatario, string assunto, string mensagem)
         {
             string ret = "OK";
