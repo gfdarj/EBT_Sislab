@@ -251,14 +251,18 @@ Class TEbt
         Dim strNTUser, email
         strNTUser = Request.ServerVariables("AUTH_USER")
         email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-        MeuUsuario = email(1)
+        If UBound(email) >= 0 Then
+            MeuUsuario = email(1)
+        End If
     End Function
 
     Public Function MeuDominio()
         Dim strNTUser, email
         strNTUser = Request.ServerVariables("AUTH_USER")
         email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-        MeuDominio = email(0)
+        If UBound(email) >= 0 Then
+            MeuUsuario = email(0)
+        End If
     End Function
 
     Public Sub LoginUsuario(chr_Usuario, chr_Dominio)
@@ -332,7 +336,7 @@ Class TEbt
     '---------------------------------------------------------------------------------'
 
     Public Sub BuscaDadosEmbratel(chr_Usuario, chr_Dominio)
-        Me.LoginUsuario(chr_Usuario, chr_Dominio)
+        Call Me.LoginUsuario(chr_Usuario, chr_Dominio)
     End Sub
 
     'Busca os dados do AD

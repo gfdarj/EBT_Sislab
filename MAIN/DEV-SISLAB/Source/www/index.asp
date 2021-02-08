@@ -1,4 +1,12 @@
 ﻿<%
+            Dim strNTUser, email
+        strNTUser = Request.ServerVariables("AUTH_USER")
+        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+    'response.Write isempty(email) & "<BR>"
+    'response.Write ubound(email) & "<BR>"
+    'response.Write strntuser
+    'response.End
+
 'dim strNTUser , email 
 'strNTUser = Request.ServerVariables("AUTH_USER")
 'email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
