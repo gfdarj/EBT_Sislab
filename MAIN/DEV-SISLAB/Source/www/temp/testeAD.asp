@@ -19,7 +19,7 @@ Response.Write "<BR><BR>Domain / User: " & email(0) & " ---- " & email(1)
 
 Response.Write "<br><br>"
 
-'response.End
+response.End
 
 ' Get the inputs.
 'containerName = "10.54.24.197/OU=User Accounts,DC=corp,DC=clarobr"

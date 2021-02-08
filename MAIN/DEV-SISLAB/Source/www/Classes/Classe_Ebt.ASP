@@ -247,22 +247,35 @@ Class TEbt
 
 
     '-Métodos------------------------------------------------------------------------'
-    Public Sub LoginUsuario(chr_Usuario)
+    Public Function MeuUsuario()
+        Dim strNTUser, email
+        strNTUser = Request.ServerVariables("AUTH_USER")
+        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+        MeuUsuario = email(1)
+    End Function
+
+    Public Function MeuDominio()
+        Dim strNTUser, email
+        strNTUser = Request.ServerVariables("AUTH_USER")
+        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+        MeuDominio = email(0)
+    End Function
+
+    Public Sub LoginUsuario(chr_Usuario, chr_Dominio)
 	    Dim chr_SQL
 	    Dim objRS
         Dim bln_EhAmbienteLocal
 
         chr_Login = ""
 
-        If Application("SISLAB_DEBUG") <> "SIM" Then
-            Call BuscaDadosEmbratelAD(chr_Usuario)    'Preenche as vari?veis Login e FullName, vindas do AD
-        End If
-
-        '--- SE ESTIVERMOS LOCALMENTE COLOCO O USUARIO GERENTE
-        If chr_Login = "" Then
+        If Application("SISLAB_DEBUG") = "SIM" Then
             chr_Login = "josesp"
+            chr_Dominio = "EMBRATEL"
+            chr_usuario = "Visitante_Debug"
+        Else
+            chr_Login = chr_Usuario
+            Call BuscaDadosEmbratelAD(chr_Usuario, chr_Dominio)    'Preenche as vari?veis Login e FullName, vindas do AD
         End If
-
 
 	    '-- Pega os dados do usuario se for do CRT
 	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
@@ -318,17 +331,16 @@ Class TEbt
 
     '---------------------------------------------------------------------------------'
 
-    Public Sub BuscaDadosEmbratel(chr_Usuario)
-        Me.LoginUsuario(chr_Usuario)
+    Public Sub BuscaDadosEmbratel(chr_Usuario, chr_Dominio)
+        Me.LoginUsuario(chr_Usuario, chr_Dominio)
     End Sub
 
-
     'Busca os dados do AD
-    Public Sub BuscaDadosEmbratelAD(ByVal chr_Usuario)
+    Public Sub BuscaDadosEmbratelAD(ByVal chr_Usuario, ByVal chr_Dominio)
         Dim objSysInfo
 	    Dim objUser
         Dim strNTUser, strUser
-        Dim email, adress, dc, str_dc, str_cn
+        Dim email, adress, dc, str_dc
         Dim ldap_testeAL
         Dim xmlResult
 
@@ -348,53 +360,32 @@ Class TEbt
 
             email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
 
-            str_cn = "CN=" & email(1)
-
             'Verifica o domínio do usuário logado
-            If UCase(Trim(email(0))) = "EMBRATEL" Then
-                str_dc = "DC=nt,DC=embratel,DC=com,DC=br"
-            ElseIf UCase(Trim(email(0))) = "CLARO" Then
-                str_dc = "DC=claro,DC=com,DC=br"
-            ElseIf UCase(Trim(email(0))) = "AL" Then
-                str_dc = "DC=alerj,DC=gov,DC=br"
+            If UCase(Trim(email(0))) = "AL" Then
+                chr_Dominio = "DC=alerj,DC=gov,DC=br"
                 ldap_testeAL = True
             Else
-                str_dc = "DC=net,DC=com,DC=br"
+                chr_Dominio = UCase(Trim(email(0)))
             End If
 
             strUser = email(1)
 
         'EMAIL: precisa buscar o usuario no AD
         Else
-
-            If InStr(1, chr_Usuario, "@") = 0 Then
-                chr_Usuario = Trim(chr_Usuario) & Application("SISLAB_EMAIL_SUFIXO")
-            End If
-
-            email = Split(chr_Usuario, "@")
-            adress = Split(email(1), ".")
-            'response.Write email(0) & " ---- " & email(1) & "<BR><BR>" & adress(0) & " ---- " & adress(1) & "<BR><BR>"
-            For Each dc in adress
-                str_dc = str_dc & "DC=" & dc & ","
-                'response.Write "DC=" & dc & ","
-            Next
-
-            strUser = email(0)
-            str_cn = "CN=" & email(0)
-            str_dc =  Left(str_dc, Len(str_dc) - 1)
-            'response.Write "<br><br>str_dc --> " & str_dc & "<BR><BR>"
+            strUser = chr_Usuario
+            str_dc = chr_Dominio
         End If
 
         'Faz requisição para o WebService
-        xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
-		chr_RetornoWS = xmlResult
+'        xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
+'		chr_RetornoWS = xmlResult
+xmlResult = "ERRO"
 
         If Left(xmlResult, 4) <> "ERRO" Then
             Dim oXml ', nodes
             Set oXml = Server.CreateObject("MSXML2.DOMDocument.3.0")
             oxml.async = false
             oxml.LoadXML(xmlResult)
-'chr_login = xmlResult
             'Set nodes = oxml.selectNodes("//Usuario")
 
             chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
@@ -416,21 +407,13 @@ Class TEbt
             chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
 
             Set oXml = Nothing
-        'Set nodes = Nothing
+            'Set nodes = Nothing
         Else
             bln_TemErro = True
             chr_Login = chr_Usuario
-            chr_Nome_Reduzido = "***ERRO AO LER SERVICO SISLAB****"
+            chr_Nome_Reduzido = "ERRO AO LER SERVICO SISLAB"
             chr_MsgErro = xmlResult
         End If
-'chr_login = "AQUI:" & str_cn & "<BR>str_dc:" & str_dc
-'chr_usuario = str_dc
-'exit sub
-
-
-'    chr_login = "AQUI:" & chr_Celular & " ---- " & chr_login
-    'chr_login = "AQUI:" & objRs.Fields("mail") & " / " & objRs.Fields("displayName")
-'    exit sub
 
         If VVVNZ(chr_Login) Or bln_TemErro Then
             bln_ehFuncionario = False
@@ -446,25 +429,24 @@ Class TEbt
         Dim ini, fim
         Dim strEnc
 
-'STR = "<Usuario><DN>CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br</DN><Email>galmeida@alerj.rj.gov.br</Email><Nome>Gilberto Almeida</Nome><CodigoLotacao></CodigoLotacao><Departamento></Departamento><Diretoria></Diretoria><Sexo></Sexo><CategoriaEmpregado></CategoriaEmpregado><DataAdmissao></DataAdmissao><AreaLotacao></AreaLotacao><CategoriaCargo></CategoriaCargo><Lotacao></Lotacao><Matricula></Matricula><DataNascimento></DataNascimento><Empresa></Empresa><Telefone></Telefone><Celular></Celular></Usuario>"
+        'STR = "<Usuario><DN>CN=galmeida,OU=CORC,OU=Departamentos,OU=ALERJ,DC=alerj,DC=gov,DC=br</DN><Email>galmeida@alerj.rj.gov.br</Email><Nome>Gilberto Almeida</Nome><CodigoLotacao></CodigoLotacao><Departamento></Departamento><Diretoria></Diretoria><Sexo></Sexo><CategoriaEmpregado></CategoriaEmpregado><DataAdmissao></DataAdmissao><AreaLotacao></AreaLotacao><CategoriaCargo></CategoriaCargo><Lotacao></Lotacao><Matricula></Matricula><DataNascimento></DataNascimento><Empresa></Empresa><Telefone></Telefone><Celular></Celular></Usuario>"
         ini = InStr(1, str, "<" & tag & ">")
         fim = InStr(1, str, "</" & tag & ">")
 
-'response.Write "<BR><BR>ValorXML / UCase(strEnc): " & UCase(strEnc)
-''response.Write "<BR>ValorXML / TAG: " & UCase("&lt;/" & tag & "&gt;")
-'response.Write "<BR><BR>ValorXML / str: " & str
-'response.Write "<BR><BR>ValorXML / ini: " & ini
-'response.Write "<BR><BR>ValorXML / fim: " & fim
+        'response.Write "<BR><BR>ValorXML / UCase(strEnc): " & UCase(strEnc)
+        ''response.Write "<BR>ValorXML / TAG: " & UCase("&lt;/" & tag & "&gt;")
+        'response.Write "<BR><BR>ValorXML / str: " & str
+        'response.Write "<BR><BR>ValorXML / ini: " & ini
+        'response.Write "<BR><BR>ValorXML / fim: " & fim
 
         If fim - ini > 0 Then
             ValorXML = Mid(strEnc, ini, fim - ini)
         Else
             ValorXML = ""
         End If
-'response.Write "<BR>ValorXML: " & ValorXML
-'response.Write "<BR>----<BR>"
+        'response.Write "<BR>ValorXML: " & ValorXML
+        'response.Write "<BR>----<BR>"
     End Function
-
 
 End Class
 %>

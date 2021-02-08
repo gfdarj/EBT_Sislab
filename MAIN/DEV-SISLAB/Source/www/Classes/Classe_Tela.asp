@@ -176,7 +176,7 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
         ImprimeMenuSce()
 	End If
 
-    If p_nomeTela <> "" And usuario <> "" then
+    If p_nomeTela <> "" Then 'And usuario <> "" 
         Call ImprimeNomeTela
 	End If
 
@@ -188,11 +188,11 @@ Public Sub ImprimeCabecalho2(titulo, imprimeMenu, imprimeImagem, tamanhoTela, no
 			<td>
 <%
     'mostra mensagem de acesso nÃ£o autorizado ao sistema
-    If usuario = "" Then
-        Response.Write Mensagem.AcessoNegadoSistema
-        Call MostraRodape()
-        Response.End
-	End If
+'    If usuario = "" Then
+'        Response.Write Mensagem.AcessoNegadoSistema
+'        Call MostraRodape()
+'        Response.End
+'	End If
 
 End Sub
 
@@ -204,7 +204,7 @@ Private Sub ImprimeImagemSite()
     PathRelativo = p_PathRelativo
 %>
 <%
-    If p_imprimeMenu And Env.Usuario <> "" Then
+    If p_imprimeMenu Then 'And Env.Usuario <> "" Then
         Call ImprimeMenu()
     end if
 %>
@@ -465,7 +465,11 @@ Private Sub ImprimeMenu()
 <%  Else %>
                 Boa noite,&nbsp;
 <%  End If %>
+<%  If Env.Usuario = "" Then %>
+                Visitante ()
+<%  Else %>
                 <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>).
+<%  End If %>
 			</small>
         </div>
 
@@ -605,93 +609,93 @@ Private Sub ImprimeMenu1() %>
 
 <script type="text/javascript">
     <!--
-    stm_bm(["tubtehr",400,"","<%=p_PathRelativo%>img/blank.gif",1,"0","stgct()",0,0,250,0,1000,1,0,0,"","",0],this);
-    stm_bp("p0",[0,4,0,0,0,2/*Height*/,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,3,2,"#ffffff #ffffff #006699 #ffffff"]);
-    stm_ai("p0i0",[0,"Principal","","",-1,-1,0,"<%=p_PathRelativo%>index.asp","_self","","Retorna à página principal","","",0,0,0,"","",0,0,0,0,1,"#cccccc",0,"#006699",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#ffffff","bold 7pt 'Arial','Verdana'","bold 7pt Arial",0,0]);
-    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-    stm_aix("p0i1","p0i0",[0,"Serviços","","",-1,-1,0,"","_self","","Serviços e Agendamentos","","",0,0,0,"<%=p_PathRelativo%>img/arrow_r.gif","<%=p_PathRelativo%>img/arrow_r.gif",7,7,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#006699","#000000","7pt Arial","7pt Arial"]);
-    stm_bp("p1",[1,4,0,0,0,3,0,7,100,"",-2,"",-2,90,0,0,"#000000","transparent","",3,1,1,"#006699"]);
-    stm_aix("p1i0","p0i1",[0,"Agendamentos","","",-1,-1,0,"","_self","","Agendamentos - Opções"]);
-    stm_bp("p2",[1,2,0,0,0,3,0,0,100,"",-2,"",-2,90,0,0,"#7f7f7f","#ffffff","",3,1,1,"#000000"]);
-    stm_aix("p2i0","p0i1",[0,"Novo","","",-1,-1,0,"<%=p_PathRelativo%>CadAgendamentoCliente.asp","_self","","Cria um agendamento","","",0,0,0,"","",0,0]);
-    stm_aix("p2i1","p2i0",[0,"Acompanhamento e Resultados","","",-1,-1,0,"<%=p_PathRelativo%>rel_ativ.asp","_self","","Acompanha a execução de um agendamento e seu resultado"]);
-    stm_aix("p2i2","p2i0",[0,"Remarcar","","",-1,-1,0,"<%=p_PathRelativo%>form_remarca_teste_sel.asp","_self","","Remarca a execução de um agendamento"]);
-    <%				If Env.UsuarioCRT Then %>
-    stm_aix("p2i3","p0i1",[0,"Relatório de Acompanhamento","","",-1,-1,0,"<%=p_PathRelativo%>REL_GQ_filtro.asp","_self","","Relatório de acompanhamento de um agendamento","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-    <%				End If %>
+    stm_bm(["tubtehr", 400, "", "<%=p_PathRelativo%>img/blank.gif", 1, "0", "stgct()", 0, 0, 250, 0, 1000, 1, 0, 0, "", "", 0], this);
+    stm_bp("p0", [0, 4, 0, 0, 0, 2/*Height*/, 0, 7, 100, "", -2, "", -2, 90, 0, 0, "#000000", "transparent", "", 3, 3, 2, "#ffffff #ffffff #006699 #ffffff"]);
+    stm_ai("p0i0", [0, "Principal", "", "", -1, -1, 0, "<%=p_PathRelativo%>index.asp", "_self", "", "Retorna à página principal", "", "", 0, 0, 0, "", "", 0, 0, 0, 0, 1, "#cccccc", 0, "#006699", 0, "", "", 3, 3, 0, 0, "#ffffff", "#ffffff", "#006699", "#ffffff", "bold 7pt 'Arial','Verdana'", "bold 7pt Arial", 0, 0]);
+    stm_ai("p0i1", [6, 15, "#ffffff", "", -1, -1, 0]); /*separador*/
+    stm_aix("p0i1", "p0i0", [0, "Serviços", "", "", -1, -1, 0, "", "_self", "", "Serviços e Agendamentos", "", "", 0, 0, 0, "<%=p_PathRelativo%>img/arrow_r.gif", "<%=p_PathRelativo%>img/arrow_r.gif", 7, 7, 0, 0, 1, "#ffffff", 0, "#ffffff", 0, "", "", 3, 3, 0, 0, "#ffffff", "#ffffff", "#006699", "#000000", "7pt Arial", "7pt Arial"]);
+    stm_bp("p1", [1, 4, 0, 0, 0, 3, 0, 7, 100, "", -2, "", -2, 90, 0, 0, "#000000", "transparent", "", 3, 1, 1, "#006699"]);
+    stm_aix("p1i0", "p0i1", [0, "Agendamentos", "", "", -1, -1, 0, "", "_self", "", "Agendamentos - Opções"]);
+    stm_bp("p2", [1, 2, 0, 0, 0, 3, 0, 0, 100, "", -2, "", -2, 90, 0, 0, "#7f7f7f", "#ffffff", "", 3, 1, 1, "#000000"]);
+    stm_aix("p2i0", "p0i1", [0, "Novo", "", "", -1, -1, 0, "<%=p_PathRelativo%>CadAgendamentoCliente.asp", "_self", "", "Cria um agendamento", "", "", 0, 0, 0, "", "", 0, 0]);
+    stm_aix("p2i1", "p2i0", [0, "Acompanhamento e Resultados", "", "", -1, -1, 0, "<%=p_PathRelativo%>rel_ativ.asp", "_self", "", "Acompanha a execução de um agendamento e seu resultado"]);
+    stm_aix("p2i2", "p2i0", [0, "Remarcar", "", "", -1, -1, 0, "<%=p_PathRelativo%>form_remarca_teste_sel.asp", "_self", "", "Remarca a execução de um agendamento"]);
+    <% If Env.UsuarioCRT Then %>
+        stm_aix("p2i3", "p0i1", [0, "Relatório de Acompanhamento", "", "", -1, -1, 0, "<%=p_PathRelativo%>REL_GQ_filtro.asp", "_self", "", "Relatório de acompanhamento de um agendamento", "", "", 0, 0, 0, "", "", 0, 0, 0, 0, 1, "#ffffff", 0, "#ffffff", 0, "", "", 3, 3, 0, 0, "#ffffff", "#ffffff", "#cc0000"]);
+    <% End If %>
 
-    stm_ep();
+        stm_ep();
 
     stm_aix("p1i1", "p0i1", [0, "Conhecendo o CRT", "", "", -1, -1, 0, "", "_self", "", "Conhecendo o CRT"]);
-    stm_bpx("p3","p2",[]);
-    <%				If Env.UsuarioCRT Then%>
-    stm_aix("p3i0","p2i0",[0,"Ambientes","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm","_blank","","Ambientes de acomodação e salas disponí­veis"]);
-    <%				End If %>
+    stm_bpx("p3", "p2", []);
+    <% If Env.UsuarioCRT Then %>
+        stm_aix("p3i0", "p2i0", [0, "Ambientes", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>plantacrt/labcrt1.htm", "_blank", "", "Ambientes de acomodação e salas disponí­veis"]);
+    <% End If %>
 
-    stm_aix("p3i1", "p2i0", [0, "Código de Ética", "", "", -1, -1, 0, "<%=Env.ObtemLinkCodigoEtica()%>", "_blank", "", "Código de Ética"]);
-    stm_aix("p3i2","p2i0",[0,"Equipe / Infra-estrutura Interna","","",-1,-1,0,"<%=p_PathRelativo%>equ_EstIn.asp","_self","","Equipe / Infra-estrutura Interna"]);
+        stm_aix("p3i1", "p2i0", [0, "Código de Ética", "", "", -1, -1, 0, "<%=Env.ObtemLinkCodigoEtica()%>", "_blank", "", "Código de Ética"]);
+    stm_aix("p3i2", "p2i0", [0, "Equipe / Infra-estrutura Interna", "", "", -1, -1, 0, "<%=p_PathRelativo%>equ_EstIn.asp", "_self", "", "Equipe / Infra-estrutura Interna"]);
 
-    <%				'-- se for do CRT exibe o link para o servidor local
-				    If Env.usuarioCRT Then %>
-    stm_aix("p3i3","p2i3",[0,"Espaço CRT","","",-1,-1,0,"http://XPRJO030309/index.htm","_self","","Espaço reservado aos trabalhos internos do CRT"]);
-    <%				End If %>
-
-    <%				If Env.UsuarioCRT Then%>
-    stm_aix("p3i4","p2i0",[0,"Histórico","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf","_blank","","Histórico do Centro de Referência Tecnológica"]);
-    <%				End If %>
-
-    <%				If Env.UsuarioCRT Then%>
-    stm_aix("p3i5", "p2i0", [0, "Localização / Área", "", "", -1, -1, 0, "<%=p_PathRelativo%>loc_area.asp", "_self", "", "Localização e Área construí­da"]);
-    <%				End If %>
-
-    stm_aix("p3i6", "p2i0", [0, "Manual do Sistema de Gestão", "", "", -1, -1, 0, "<%=Env.ObtemLinkManualSistemaGestao()%>", "_blank", "", "Manual do Sistema de Gestão"]);
+    <% '-- se for do CRT exibe o link para o servidor local
+    If Env.usuarioCRT Then %>
+        stm_aix("p3i3", "p2i3", [0, "Espaço CRT", "", "", -1, -1, 0, "http://XPRJO030309/index.htm", "_self", "", "Espaço reservado aos trabalhos internos do CRT"]);
+    <% End If %>
 
     <% If Env.UsuarioCRT Then %>
-    stm_aix("p3i7","p2i0",[0,"Vídeos do CRT","","",-1,-1,0,"videos.asp","_self","","Ví­deos do CRT"]);
-    <%				End If %>
-
-
-    stm_ep();
+        stm_aix("p3i4", "p2i0", [0, "Histórico", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>Historico.pdf", "_blank", "", "Histórico do Centro de Referência Tecnológica"]);
+    <% End If %>
 
     <% If Env.UsuarioCRT Then %>
-    //stm_aix("p1i2","p3i7",[0,"Controle de Consumí­veis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumí­veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-    stm_aix("p1i2","p3i7",[0,"Controle de Equipamentos (SCE)","","",-1,-1,0,"<%=p_PathRelativo%>sce/index.asp","_self","","Sistema de Controle de Equipamentos","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
-    stm_aix("p1i3","p2i0",[0,"Sistemas de Gestão","","",-1,-1,0,"<%=p_PathRelativo%>arq_disp.asp","_self","","Arquivos do sistema de gestão disponí­veis para visualização"]);
-    <%				End If%>
+        stm_aix("p3i5", "p2i0", [0, "Localização / Área", "", "", -1, -1, 0, "<%=p_PathRelativo%>loc_area.asp", "_self", "", "Localização e Área construí­da"]);
+    <% End If %>
 
-    stm_aix("p1i4","p2i0",[0,"Lista de Atividades do CRT","","",-1,-1,0,"<%=p_PathRelativo%>sit_crt.asp","_self","","Exibe as atividades do CRT"]);
+        stm_aix("p3i6", "p2i0", [0, "Manual do Sistema de Gestão", "", "", -1, -1, 0, "<%=Env.ObtemLinkManualSistemaGestao()%>", "_blank", "", "Manual do Sistema de Gestão"]);
 
     <% If Env.UsuarioCRT Then %>
-    stm_aix("p1i5","p2i0",[0,"Log Book","","",-1,-1,0,"<%=p_PathRelativo%>sel_cad_logbook.asp","_self","","Log Book - cadastro de ocorrências"]);
+        stm_aix("p3i7", "p2i0", [0, "Vídeos do CRT", "", "", -1, -1, 0, "videos.asp", "_self", "", "Ví­deos do CRT"]);
+    <% End If %>
+
+
+        stm_ep();
+
+    <% If Env.UsuarioCRT Then %>
+        //stm_aix("p1i2","p3i7",[0,"Controle de Consumí­veis (SCC)","","",-1,-1,0,"<%=p_PathRelativo%>scc/index.asp","_self","","Sistema de Controle de Consumí­veis","","",0,0,0,"","",0,0,0,0,1,"#ffffff",0,"#ffffff",0,"","",3,3,0,0,"#ffffff","#ffffff","#cc0000"]);
+        stm_aix("p1i2", "p3i7", [0, "Controle de Equipamentos (SCE)", "", "", -1, -1, 0, "<%=p_PathRelativo%>sce/index.asp", "_self", "", "Sistema de Controle de Equipamentos", "", "", 0, 0, 0, "", "", 0, 0, 0, 0, 1, "#ffffff", 0, "#ffffff", 0, "", "", 3, 3, 0, 0, "#ffffff", "#ffffff", "#cc0000"]);
+    stm_aix("p1i3", "p2i0", [0, "Sistemas de Gestão", "", "", -1, -1, 0, "<%=p_PathRelativo%>arq_disp.asp", "_self", "", "Arquivos do sistema de gestão disponí­veis para visualização"]);
+    <% End If %>
+
+        stm_aix("p1i4", "p2i0", [0, "Lista de Atividades do CRT", "", "", -1, -1, 0, "<%=p_PathRelativo%>sit_crt.asp", "_self", "", "Exibe as atividades do CRT"]);
+
+    <% If Env.UsuarioCRT Then %>
+        stm_aix("p1i5", "p2i0", [0, "Log Book", "", "", -1, -1, 0, "<%=p_PathRelativo%>sel_cad_logbook.asp", "_self", "", "Log Book - cadastro de ocorrências"]);
     stm_aix("p1i6", "p2i0", [0, "Ocupação dos Ambientes", "", "", -1, -1, 0, "<%=p_PathRelativo%>ambientes/cons_agenda.asp", "_self", "", "Cadastro e reserva de salas"]);
-    <%				End If%>
+    <% End If %>
 
-    stm_aix("p1i7","p0i1",[0,"Pesquisa de Satisfação","","",-1,-1,0,"","_self","","Pesquisa de Satisfação"]);
-    stm_bpx("p4","p2",[]);
-    stm_aix("p4i0","p2i0",[0,"Cadastrar","","",-1,-1,0,"<%=p_PathRelativo%>pesqscr.asp","_self","","Cadastra uma nova pesquisa de satisfação"]);
+        stm_aix("p1i7", "p0i1", [0, "Pesquisa de Satisfação", "", "", -1, -1, 0, "", "_self", "", "Pesquisa de Satisfação"]);
+    stm_bpx("p4", "p2", []);
+    stm_aix("p4i0", "p2i0", [0, "Cadastrar", "", "", -1, -1, 0, "<%=p_PathRelativo%>pesqscr.asp", "_self", "", "Cadastra uma nova pesquisa de satisfação"]);
 
-    <%				If Env.UsuarioCRT Then%>
-    stm_aix("p4i1", "p2i0", [0, "Consultar por AS", "", "", -1, -1, 0, "<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp", "_self", "", "Consulta uma pesquisa por número do agendamento"]);
-    <%				End If%>
+    <% If Env.UsuarioCRT Then %>
+        stm_aix("p4i1", "p2i0", [0, "Consultar por AS", "", "", -1, -1, 0, "<%=p_PathRelativo%>cons_ind_pesqscr_filtro.asp", "_self", "", "Consulta uma pesquisa por número do agendamento"]);
+    <% End If %>
 
-    stm_ep();
-    stm_aix("p1i8","p0i1",[0,"Recursos Disponí­veis","","",-1,-1,0,"","_self","","Recursos Disponí­veis"]);
-    stm_bpx("p5","p2",[]);
-    <%				If Env.UsuarioCRT Then%>
-    stm_aix("p5i0","p2i0",[0,"Logística","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf","_blank","","Logí­stica"]);
-    stm_aix("p5i1","p2i0",[0,"Salas de Apoio","","",-1,-1,0,"<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf","_blank","","Salas de Apoio"]);
-    <%				End If%>
-    stm_aix("p5i2","p2i0",[0,"Transporte para o CRT","","",-1,-1,0,"<%=p_PathRelativo%>CadTransporte.asp","_self","","Horários do transporte para o CRT"]);
+        stm_ep();
+    stm_aix("p1i8", "p0i1", [0, "Recursos Disponí­veis", "", "", -1, -1, 0, "", "_self", "", "Recursos Disponí­veis"]);
+    stm_bpx("p5", "p2", []);
+    <% If Env.UsuarioCRT Then %>
+        stm_aix("p5i0", "p2i0", [0, "Logística", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>Logistica.pdf", "_blank", "", "Logí­stica"]);
+    stm_aix("p5i1", "p2i0", [0, "Salas de Apoio", "", "", -1, -1, 0, "<%=Application("SISLAB_ServidorLocalCRT")%>SalaApoio.pdf", "_blank", "", "Salas de Apoio"]);
+    <% End If %>
+        stm_aix("p5i2", "p2i0", [0, "Transporte para o CRT", "", "", -1, -1, 0, "<%=p_PathRelativo%>CadTransporte.asp", "_self", "", "Horários do transporte para o CRT"]);
     stm_ep();
     //stm_aix("p1i9","p2i0",[0,"SugestÃµes (Fale Conosco)","","",-1,-1,0,"<%'=PathRelativo%>fale.asp","_self","","Fale Conosco"]);
     stm_ep();
     <%				if Env.ehRAT or Env.ehRT then %>
-    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-    stm_aix("p0i2","p2i0",[0,"Administração do Site","","",-1,-1,0,"<%=p_PathRelativo%>sislab.asp","_self","","Administração do SISLAB"]);
+        stm_ai("p0i1", [6, 15, "#ffffff", "", -1, -1, 0]); /*separador*/
+    stm_aix("p0i2", "p2i0", [0, "Administração do Site", "", "", -1, -1, 0, "<%=p_PathRelativo%>sislab.asp", "_self", "", "Administração do SISLAB"]);
     stm_ep();
-    <%				end if %>
-    stm_ai("p0i1",[6,15,"#ffffff","",-1,-1,0]); /*separador*/
-    stm_aix("p0i2","p2i0",[0,"Fale Conosco","","",-1,-1,0,"<%=p_PathRelativo%>fale.asp","_self","","Administração do SISLAB"]);
+    <% end if %>
+        stm_ai("p0i1", [6, 15, "#ffffff", "", -1, -1, 0]); /*separador*/
+    stm_aix("p0i2", "p2i0", [0, "Fale Conosco", "", "", -1, -1, 0, "<%=p_PathRelativo%>fale.asp", "_self", "", "Administração do SISLAB"]);
     stm_em();
     //-->
 </script>
@@ -793,28 +797,27 @@ Private Sub ImprimeNomeTela()
         -->
 
 		<script type="text/javascript">
-		    function imprimeTelaPrincipalSistema()
-		    {
-		        var d = document.all;
-		        var undef;
+            function imprimeTelaPrincipalSistema() {
+                var d = document.all;
+                var undef;
 
-		        if (document.all.tr_princ_rodape != undef)
-		            document.all.tr_princ_rodape.style.display = "none";
-		        if (document.all.td2_tbl_principal_nomeform != undef)
-		            document.all.td2_tbl_principal_nomeform.style.display = "none";
-		        if (document.all.Stm0p0i != undef)
-		            document.all.Stm0p0i.style.display = "none";
+                if (document.all.tr_princ_rodape != undef)
+                    document.all.tr_princ_rodape.style.display = "none";
+                if (document.all.td2_tbl_principal_nomeform != undef)
+                    document.all.td2_tbl_principal_nomeform.style.display = "none";
+                if (document.all.Stm0p0i != undef)
+                    document.all.Stm0p0i.style.display = "none";
 
-		        window.print();
+                window.print();
 
-		        if (document.all.tr_princ_rodape != undef)
-		            document.all.tr_princ_rodape.style.display = "block";
-		        if (document.all.td2_tbl_principal_nomeform != undef)
-		            document.all.td2_tbl_principal_nomeform.style.display = "inline";
-		        if (document.all.Stm0p0i != undef)  // menu
-		            document.all.Stm0p0i.style.display = "inline";
-		    }
-		</script> <%
+                if (document.all.tr_princ_rodape != undef)
+                    document.all.tr_princ_rodape.style.display = "block";
+                if (document.all.td2_tbl_principal_nomeform != undef)
+                    document.all.td2_tbl_principal_nomeform.style.display = "inline";
+                if (document.all.Stm0p0i != undef)  // menu
+                    document.all.Stm0p0i.style.display = "inline";
+            }
+        </script> <%
 End Sub
 
 

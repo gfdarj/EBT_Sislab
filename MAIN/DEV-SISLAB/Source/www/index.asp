@@ -19,7 +19,8 @@
 'response.Write "<BR>AQUI2 : " & now
 'response.End
 'response.Write ebt1.MensagemErro
-'Call Ebt1.LoginUsuario("")
+'REspsonse.write Ebt1.MeuUsuario
+'response.End
 ''Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
 'Call Ebt1.BuscaDadosEmbratel("")
 'WS_ObtemUsuarioAD
@@ -39,8 +40,8 @@
 'Response.Write "UsuarioCRT_Cadastrado: " & Ebt1.UsuarioCRTCadastrado & "<BR>"
 'Response.Write "Celular: " & Ebt1.Celular & "<BR>"
 'Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
-'Response.Write "NOW: " & now & "<BR>"
-'Response.End
+Response.Write "NOW: " & now & "<BR>"
+Response.End
 
 Dim usuarioCRT, chr_SQL, RS,conta, navegador
 
@@ -122,13 +123,12 @@ Call Tela.MostraCabecalho()
                             <h4 class="linha-destaque">Informações de LogBook</h4>
 
 							<script type="text/javascript">
-							function chama_oc(cod_oc)
-							{
-								var selOC = document.getElementById("id_selOC");
-								selOC.ocorrencia.value = cod_oc;
-								selOC.submit();
-							}
-							</script>
+                                function chama_oc(cod_oc) {
+                                    var selOC = document.getElementById("id_selOC");
+                                    selOC.ocorrencia.value = cod_oc;
+                                    selOC.submit();
+                                }
+                            </script>
 							<form name="seloc" id="id_selOC" target="_parent" action="CadEvLogBook.asp" method="post">
 								<input type="hidden" name="ocorrencia" value="">
 							</form>
@@ -316,36 +316,35 @@ Private Sub MostraNoticias %>
                                     <script type="text/javascript">
                                         var pausecontent = new Array();
 <%
-        chr_SQL = "select * From Plantao Where PLA_DATATERMINO >= GETDATE() order by PLA_CODNOTICIA desc"
-        Call Env.RecordSet(True, RS, chr_SQL)
-        conta = 0
+                                            chr_SQL = "select * From Plantao Where PLA_DATATERMINO >= GETDATE() order by PLA_CODNOTICIA desc"
+                                        Call Env.RecordSet(True, RS, chr_SQL)
+                                        conta = 0
 
-        If not (RS.EOF and RS.BOF) Then
-            While Not RS.Eof
-		        conta = conta + 1
-                If Not(VVVNZ(RS("PLA_LINK")) or RS("PLA_LINK")="") Then %>
-                                        pausecontent[<%=conta-1%>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);"  target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
-<%		        Else%>
-                                        pausecontent[<%=conta-1%>]= '<font ><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
-<%		        End If
-		        RS.MoveNext
-	        WEnd 
-%>
-                                        pausecontent[<%=conta%>]=  '';
+                                        If not(RS.EOF and RS.BOF) Then
+                                        While Not RS.Eof
+                                        conta = conta + 1
+                                        If Not(VVVNZ(RS("PLA_LINK")) or RS("PLA_LINK") = "") Then %>
+                                            pausecontent[<%=conta - 1 %>]= '<a href="#" onclick="javascript:novaJanela(<%=RS("pla_codnoticia")%>);"  target="_self"><%=Reticencias(trim(RS("PLA_TITNOTICIA")),80)%></a>';
+<% Else %>
+                                            pausecontent[<%=conta - 1 %>]= '<font ><%=Reticencias(RS("PLA_TitNoticia"),80)%></font>';
+<% End If
+                                        RS.MoveNext
+                                        WEnd
+                                            %>
+                                            pausecontent[<%=conta %>]=  '';
 
                                         new pausescroller(pausecontent, "pscroller1", "someclass", 3000)
 
-<%      Else %>
-                                        pausecontent[0]=  '<center><i>Nenhuma notícia cadastrada</i></center>';
+                                            <% Else %>
+                                            pausecontent[0]=  '<center><i>Nenhuma notícia cadastrada</i></center>';
                                         document.write(pausecontent[0]);
-<%      End If 
-        Call Env.RecordSet(False, RS, "")
-%>
-                                        function novaJanela(id_noticia)
-                                        {
-                                            var jan = window.open('noticias_exibe.asp?id_noticia=' + id_noticia, 'Noticias_CRT', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=690,height=400,top=5,left=5');
-                                            jan.focus();
-                                        }
+<% End If
+                                        Call Env.RecordSet(False, RS, "")
+                                            %>
+                                            function novaJanela(id_noticia) {
+                                                var jan = window.open('noticias_exibe.asp?id_noticia=' + id_noticia, 'Noticias_CRT', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=690,height=400,top=5,left=5');
+                                                jan.focus();
+                                            }
                                     </script>
                                 </div>
 <%
@@ -378,30 +377,30 @@ Private Sub MostraFotos %>
         Call Env.RecordSet(False, RS, "")
 %>
                             <script type="text/javascript">
-						        //Faz a troca das imagens em um intervalo pré-definido
-						        var myIndex = 0;
-						        carousel();
+                                //Faz a troca das imagens em um intervalo pré-definido
+                                var myIndex = 0;
+                                carousel();
 
-						        function carousel() {
-							        var i;
-							        var x = document.getElementsByClassName("mySlides");
-							        for (i = 0; i < x.length; i++) {
-								        x[i].style.display = "none";
-							        }
-							        myIndex++;
-							        if (myIndex > x.length) { myIndex = 1 }
-							        x[myIndex - 1].style.display = "block";
-							        setTimeout(carousel, 5000); // Change image every 5 seconds
-						        }
+                                function carousel() {
+                                    var i;
+                                    var x = document.getElementsByClassName("mySlides");
+                                    for (i = 0; i < x.length; i++) {
+                                        x[i].style.display = "none";
+                                    }
+                                    myIndex++;
+                                    if (myIndex > x.length) { myIndex = 1 }
+                                    x[myIndex - 1].style.display = "block";
+                                    setTimeout(carousel, 5000); // Change image every 5 seconds
+                                }
 
-						        //fancybox
-						        $('[data-fancybox="gallery"]').fancybox({
-							        // Options will go here
-							        slideShow : {
-								        autoStart : true,
-								        playSpeed: 3000
-							        }
-						        });
+                                //fancybox
+                                $('[data-fancybox="gallery"]').fancybox({
+                                    // Options will go here
+                                    slideShow: {
+                                        autoStart: true,
+                                        playSpeed: 3000
+                                    }
+                                });
                             </script>
 <%
     End If

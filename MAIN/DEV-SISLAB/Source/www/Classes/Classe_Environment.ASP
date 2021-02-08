@@ -173,7 +173,7 @@ Class TEnvironment
         chr_Matricula = ""
 
 
-        Call Ebt.LoginUsuario("")
+        Call Ebt.LoginUsuario(Ebt.MeuUsuario, Ebt.MeuDominio)
 
 
 	    'chr_Usuario = replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","")
@@ -317,7 +317,7 @@ Class TEnvironment
 
 
 	' Métodos trazidos da Classe_Ebt 
-    Public Function ExisteUsuario(chr_Usuario)
+    Public Function ExisteUsuario(chr_Usuario, chr_Dominio)
 	    Dim objUser
 
         ExisteUsuario = False
@@ -325,7 +325,7 @@ Class TEnvironment
         If Not VVVNZ(chr_Usuario) Then
 			Set objUser = New TEbt
 
-			Call objUser.LoginUsuario(chr_Usuario)
+			Call objUser.LoginUsuario(chr_Usuario, chr_Dominio)
 
             If Not VVVNZ(objUser.Matricula) Then
 	            ExisteUsuario = True
@@ -337,7 +337,7 @@ Class TEnvironment
 
 
 	' Métodos trazidos da Classe_Ebt 
-    Public Function AchaNomeEmbratel(chr_Usuario)
+    Public Function AchaNomeEmbratel(chr_Usuario, chr_Dominio)
 	    Dim objUser
 
 		AchaNomeEmbratel = ""
@@ -345,7 +345,7 @@ Class TEnvironment
         If Not VVVNZ(chr_Usuario) Then
 			Set objUser = New TEbt
 
-			Call objUser.LoginUsuario(chr_Usuario)
+			Call objUser.LoginUsuario(chr_Usuario, chr_Dominio)
 
             If Not VVVNZ(objUser.NomeReduzido) Then
 	            AchaNomeEmbratel = objUser.NomeReduzido
