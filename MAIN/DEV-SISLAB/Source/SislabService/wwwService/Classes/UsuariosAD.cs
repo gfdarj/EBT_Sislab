@@ -13,6 +13,24 @@ namespace Embratel.Sislab.Classes
 {
     public class UsuariosAD
     {
+        public string ObtemUsuarioTeste()
+        {
+            UsuarioENT ent = new UsuarioENT();
+
+            ent.ID = "fulano01";
+            ent.Nome = "Fulano da Silva Ciclano";
+            ent.Matricula = "000000-0";
+            ent.Lotacao = "Lotado Aqui";
+            ent.Sexo = "M";
+            ent.Telefone = "99999-9999";
+            ent.Email = "fulano@ciclano.com.br";
+            ent.DataNascimento = "01/01/1980";
+            ent.Celular = ent.Telefone;
+            ent.Empresa = "WebService";
+
+            return GeraXML(ent);
+        }
+
         public string ObtemUsuario(string login)
         {
             return GeraXML(BuscaDadosAD(login, ""));
@@ -140,6 +158,11 @@ namespace Embratel.Sislab.Classes
 
             //tag Documentos <Documentos>
             xmlnode = xmldoc.CreateElement("", "Usuario", "");
+
+            //Elemento ID
+            XmlNode xmlNodeID = xmldoc.CreateElement("Dados", "ID", null);
+            xmlNodeID.InnerText = ent.ID;
+            xmlnode.AppendChild(xmlNodeID);
 
             //Elemento DN
             XmlNode xmlNodeDN = xmldoc.CreateElement("Dados", "DN", null);

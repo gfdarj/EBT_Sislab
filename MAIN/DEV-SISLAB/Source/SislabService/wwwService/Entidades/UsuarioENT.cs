@@ -7,6 +7,7 @@ namespace Embratel.Sislab.Entidades
 {
     public class UsuarioENT
     {
+        public string ID { get; set; }
         public string CodigoLotacao { get; set; }
         public string Departamento { get; set; }
         public string Nome { get; set; }
