@@ -246,6 +246,20 @@ Class TEbt
     End Function
 
 
+    Public Function WS_ObtemUsuarioTeste()
+        dim ret
+        Call InicializaWebService()
+        ws.method = "ObtemUsuarioTeste"
+        ws.Invoke
+        ret = ws.Response
+        ret = Replace(ret, "&gt;", ">")
+        ret = Replace(ret, "&lt;", "<")
+        Call FinalizaWebService()
+        WS_ObtemUsuarioTeste = ret
+    End Function
+
+
+
     '-Métodos------------------------------------------------------------------------'
     Public Function MeuUsuario()
         Dim strNTUser, email

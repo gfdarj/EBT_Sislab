@@ -1,28 +1,21 @@
 ﻿<%
-            Dim strNTUser, email
-        strNTUser = Request.ServerVariables("AUTH_USER")
-        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-    'response.Write isempty(email) & "<BR>"
-    'response.Write ubound(email) & "<BR>"
-    'response.Write strntuser
-    'response.End
-
-'dim strNTUser , email 
+'Dim strNTUser, email
 'strNTUser = Request.ServerVariables("AUTH_USER")
 'email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-'response.Write "AQUI 1<BR>"
-'response.write email(0)
-'response.Write "<BR>AQUI 2<BR>"
-'response.write email(1)
+    'response.Write isempty(email) & "<BR>"
+    'response.Write ubound(email) & "<BR>"
+'response.Write "strntuser: " & strntuser
 'response.End
 %>
+
 <!--#include file="includes/PadraoHTML.asp" -->
 <!--#include file="includes/Geral_Lib.asp" -->
 <!--#include file="includes/EmailHTML.asp" -->
 <!--#include file="includes/global.asp" -->
 <!--#include file="includes/Sislab_Lib.asp"-->
+
 <%
-'Set ebt1 = new TEbt
+Set ebt1 = new TEbt
 'response.Write "AQUI1 : " & now
 'response.Write "<BR>AQUI2 : " & now
 'response.End
@@ -30,7 +23,7 @@
 'REspsonse.write Ebt1.MeuUsuario
 'response.End
 ''Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
-'Call Ebt1.BuscaDadosEmbratel("")
+Call Ebt1.BuscaDadosEmbratel("", "")
 'WS_ObtemUsuarioAD
 'Call ebt1.BuscaDadosEmbratelAD("galmeida")
 
