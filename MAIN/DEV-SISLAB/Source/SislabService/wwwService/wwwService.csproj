@@ -86,6 +86,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\C-Publish-SislabSvc.pubxml" />
     <None Include="Properties\PublishProfiles\CRT.pubxml" />
     <None Include="Properties\PublishProfiles\SislabWS.pubxml" />
     <None Include="Web.Debug.config">
