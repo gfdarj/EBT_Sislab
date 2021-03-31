@@ -18,8 +18,10 @@ Dim parnag, partadesc, tipopesquisa, auxAg_Numero
 
 tipopesquisa = UCase(request("tipopesquisa"))	'-- Analitico / Consolidado
 parnag = request("numag")
-dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
-dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))
+'dataIni = Trim(request("diadataIni") & "/" & request("mesdataIni") & "/" & request("anodataIni"))
+'dataFim= Trim(request("diadataFim") & "/" & request("mesdataFim") & "/" & request("anodataFim"))
+dataIni = Trim(request("di"))
+dataFim = Trim(request("df"))
 
 If TipoPesquisa = "A" Then
 	sSQL="Select TA_DESCRICAO from Tipo_Atividade where TA_ID = (SELECT TA_ID FROM Agendamento WHERE AG_NUMERO = " & parnag & ")"
@@ -115,8 +117,9 @@ Else
 	end if
 End If
 sSQL=sSQL&" order by AG_NUMERO asc; "
-'response.write ssql
-'response.end
+	'response.Write dataini & " ------ " & datafim
+	'response.write ssql
+	'response.end
 call Env.Recordset(true, objSiteRS, sSQL)
 
 objSiteRS.MoveFirst

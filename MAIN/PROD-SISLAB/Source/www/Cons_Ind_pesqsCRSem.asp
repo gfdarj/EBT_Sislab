@@ -88,7 +88,9 @@ function respostas(nag) {
 	//formulario.numag.value=nag;
 	//document.formulario.action="Cons_Resp_pesqsCRSem.asp";
 	//formulario.submit();
-	var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag, '', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+    var jan = window.open('Cons_Resp_PesqsCRSem.asp?tipopesquisa=C&numag=' + nag + '&di=<%=dataIni%>&df=<%=dataFim%>'
+		, ''
+		, 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
 	jan.focus();
 }
 function contC(parag, paritem, parativ, pardataini, pardatafim) {
