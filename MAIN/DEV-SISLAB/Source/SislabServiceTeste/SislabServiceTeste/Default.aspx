@@ -11,9 +11,25 @@
         <div>
             TESTE<br />
             <br />
+            Usuário remoto:
+            <asp:Label ID="lblRemoteUser" runat="server" Text="Label"></asp:Label>
             <br />
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Executar" />
             <br />
+            Usuário:
+            <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            Domínio:
+            <asp:TextBox ID="txtDominio" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblAviso" runat="server" ForeColor="Red" Text="Label"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Executa ObtemUsuarioTeste" />
+            <br />
+            <br />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Executa ObtemUsuario" />
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
