@@ -17,7 +17,9 @@ namespace SislabServiceTeste
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Label1.Text = "TESTE";
+            var cliente = new UsuarioSvc.UsuariosSoapClient();
+
+            Label1.Text = cliente.ObtemUsuarioTeste();
         }
     }
 }

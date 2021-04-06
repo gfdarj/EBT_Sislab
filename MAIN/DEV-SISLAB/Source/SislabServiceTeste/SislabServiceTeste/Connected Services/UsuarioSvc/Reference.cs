@@ -8,61 +8,61 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SislabServiceTeste.SislabService {
+namespace SislabServiceTeste.UsuarioSvc {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SislabService.UsuariosSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UsuarioSvc.UsuariosSoap")]
     public interface UsuariosSoap {
         
         // CODEGEN: Generating message contract since element name ObtemUsuarioTesteResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemUsuarioTeste", ReplyAction="*")]
-        SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse ObtemUsuarioTeste(SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest request);
+        SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse ObtemUsuarioTeste(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemUsuarioTeste", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse> ObtemUsuarioTesteAsync(SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse> ObtemUsuarioTesteAsync(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest request);
         
         // CODEGEN: Generating message contract since element name login from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemUsuario", ReplyAction="*")]
-        SislabServiceTeste.SislabService.ObtemUsuarioResponse ObtemUsuario(SislabServiceTeste.SislabService.ObtemUsuarioRequest request);
+        SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse ObtemUsuario(SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemUsuario", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioResponse> ObtemUsuarioAsync(SislabServiceTeste.SislabService.ObtemUsuarioRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse> ObtemUsuarioAsync(SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest request);
         
         // CODEGEN: Generating message contract since element name login from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemTodosOsDadosUsuario", ReplyAction="*")]
-        SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse ObtemTodosOsDadosUsuario(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest request);
+        SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse ObtemTodosOsDadosUsuario(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtemTodosOsDadosUsuario", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse> ObtemTodosOsDadosUsuarioAsync(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse> ObtemTodosOsDadosUsuarioAsync(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest request);
         
         // CODEGEN: Generating message contract since element name remetente from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmail", ReplyAction="*")]
-        SislabServiceTeste.SislabService.EnviaEmailResponse EnviaEmail(SislabServiceTeste.SislabService.EnviaEmailRequest request);
+        SislabServiceTeste.UsuarioSvc.EnviaEmailResponse EnviaEmail(SislabServiceTeste.UsuarioSvc.EnviaEmailRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmail", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailResponse> EnviaEmailAsync(SislabServiceTeste.SislabService.EnviaEmailRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailResponse> EnviaEmailAsync(SislabServiceTeste.UsuarioSvc.EnviaEmailRequest request);
         
         // CODEGEN: Generating message contract since element name smtpServer from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmailGenerico", ReplyAction="*")]
-        SislabServiceTeste.SislabService.EnviaEmailGenericoResponse EnviaEmailGenerico(SislabServiceTeste.SislabService.EnviaEmailGenericoRequest request);
+        SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse EnviaEmailGenerico(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EnviaEmailGenerico", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailGenericoResponse> EnviaEmailGenericoAsync(SislabServiceTeste.SislabService.EnviaEmailGenericoRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse> EnviaEmailGenericoAsync(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest request);
         
         // CODEGEN: Generating message contract since element name numeroAS from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UploadArquivo", ReplyAction="*")]
-        SislabServiceTeste.SislabService.UploadArquivoResponse UploadArquivo(SislabServiceTeste.SislabService.UploadArquivoRequest request);
+        SislabServiceTeste.UsuarioSvc.UploadArquivoResponse UploadArquivo(SislabServiceTeste.UsuarioSvc.UploadArquivoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UploadArquivo", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.UploadArquivoResponse> UploadArquivoAsync(SislabServiceTeste.SislabService.UploadArquivoRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.UploadArquivoResponse> UploadArquivoAsync(SislabServiceTeste.UsuarioSvc.UploadArquivoRequest request);
         
         // CODEGEN: Generating message contract since element name nomeDoArquivo from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DownloadArquivo", ReplyAction="*")]
-        SislabServiceTeste.SislabService.DownloadArquivoResponse DownloadArquivo(SislabServiceTeste.SislabService.DownloadArquivoRequest request);
+        SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse DownloadArquivo(SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DownloadArquivo", ReplyAction="*")]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.DownloadArquivoResponse> DownloadArquivoAsync(SislabServiceTeste.SislabService.DownloadArquivoRequest request);
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse> DownloadArquivoAsync(SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -72,12 +72,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemUsuarioTesteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemUsuarioTeste", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemUsuarioTesteRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequestBody Body;
         
         public ObtemUsuarioTesteRequest() {
         }
         
-        public ObtemUsuarioTesteRequest(SislabServiceTeste.SislabService.ObtemUsuarioTesteRequestBody Body) {
+        public ObtemUsuarioTesteRequest(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -99,12 +99,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemUsuarioTesteResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemUsuarioTesteResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemUsuarioTesteResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponseBody Body;
         
         public ObtemUsuarioTesteResponse() {
         }
         
-        public ObtemUsuarioTesteResponse(SislabServiceTeste.SislabService.ObtemUsuarioTesteResponseBody Body) {
+        public ObtemUsuarioTesteResponse(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -133,12 +133,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemUsuario", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemUsuarioRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequestBody Body;
         
         public ObtemUsuarioRequest() {
         }
         
-        public ObtemUsuarioRequest(SislabServiceTeste.SislabService.ObtemUsuarioRequestBody Body) {
+        public ObtemUsuarioRequest(SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -171,12 +171,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemUsuarioResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemUsuarioResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponseBody Body;
         
         public ObtemUsuarioResponse() {
         }
         
-        public ObtemUsuarioResponse(SislabServiceTeste.SislabService.ObtemUsuarioResponseBody Body) {
+        public ObtemUsuarioResponse(SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -205,12 +205,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemTodosOsDadosUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemTodosOsDadosUsuario", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequestBody Body;
         
         public ObtemTodosOsDadosUsuarioRequest() {
         }
         
-        public ObtemTodosOsDadosUsuarioRequest(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequestBody Body) {
+        public ObtemTodosOsDadosUsuarioRequest(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -243,12 +243,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class ObtemTodosOsDadosUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtemTodosOsDadosUsuarioResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponseBody Body;
         
         public ObtemTodosOsDadosUsuarioResponse() {
         }
         
-        public ObtemTodosOsDadosUsuarioResponse(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponseBody Body) {
+        public ObtemTodosOsDadosUsuarioResponse(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -277,12 +277,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class EnviaEmailRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmail", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.EnviaEmailRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.EnviaEmailRequestBody Body;
         
         public EnviaEmailRequest() {
         }
         
-        public EnviaEmailRequest(SislabServiceTeste.SislabService.EnviaEmailRequestBody Body) {
+        public EnviaEmailRequest(SislabServiceTeste.UsuarioSvc.EnviaEmailRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -323,12 +323,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class EnviaEmailResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmailResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.EnviaEmailResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.EnviaEmailResponseBody Body;
         
         public EnviaEmailResponse() {
         }
         
-        public EnviaEmailResponse(SislabServiceTeste.SislabService.EnviaEmailResponseBody Body) {
+        public EnviaEmailResponse(SislabServiceTeste.UsuarioSvc.EnviaEmailResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -357,12 +357,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class EnviaEmailGenericoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmailGenerico", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.EnviaEmailGenericoRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequestBody Body;
         
         public EnviaEmailGenericoRequest() {
         }
         
-        public EnviaEmailGenericoRequest(SislabServiceTeste.SislabService.EnviaEmailGenericoRequestBody Body) {
+        public EnviaEmailGenericoRequest(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -419,12 +419,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class EnviaEmailGenericoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="EnviaEmailGenericoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.EnviaEmailGenericoResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponseBody Body;
         
         public EnviaEmailGenericoResponse() {
         }
         
-        public EnviaEmailGenericoResponse(SislabServiceTeste.SislabService.EnviaEmailGenericoResponseBody Body) {
+        public EnviaEmailGenericoResponse(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -453,12 +453,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class UploadArquivoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="UploadArquivo", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.UploadArquivoRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.UploadArquivoRequestBody Body;
         
         public UploadArquivoRequest() {
         }
         
-        public UploadArquivoRequest(SislabServiceTeste.SislabService.UploadArquivoRequestBody Body) {
+        public UploadArquivoRequest(SislabServiceTeste.UsuarioSvc.UploadArquivoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -495,12 +495,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class UploadArquivoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="UploadArquivoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.UploadArquivoResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.UploadArquivoResponseBody Body;
         
         public UploadArquivoResponse() {
         }
         
-        public UploadArquivoResponse(SislabServiceTeste.SislabService.UploadArquivoResponseBody Body) {
+        public UploadArquivoResponse(SislabServiceTeste.UsuarioSvc.UploadArquivoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -529,12 +529,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class DownloadArquivoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DownloadArquivo", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.DownloadArquivoRequestBody Body;
+        public SislabServiceTeste.UsuarioSvc.DownloadArquivoRequestBody Body;
         
         public DownloadArquivoRequest() {
         }
         
-        public DownloadArquivoRequest(SislabServiceTeste.SislabService.DownloadArquivoRequestBody Body) {
+        public DownloadArquivoRequest(SislabServiceTeste.UsuarioSvc.DownloadArquivoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -563,12 +563,12 @@ namespace SislabServiceTeste.SislabService {
     public partial class DownloadArquivoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="DownloadArquivoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public SislabServiceTeste.SislabService.DownloadArquivoResponseBody Body;
+        public SislabServiceTeste.UsuarioSvc.DownloadArquivoResponseBody Body;
         
         public DownloadArquivoResponse() {
         }
         
-        public DownloadArquivoResponse(SislabServiceTeste.SislabService.DownloadArquivoResponseBody Body) {
+        public DownloadArquivoResponse(SislabServiceTeste.UsuarioSvc.DownloadArquivoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -591,12 +591,12 @@ namespace SislabServiceTeste.SislabService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface UsuariosSoapChannel : SislabServiceTeste.SislabService.UsuariosSoap, System.ServiceModel.IClientChannel {
+    public interface UsuariosSoapChannel : SislabServiceTeste.UsuarioSvc.UsuariosSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UsuariosSoapClient : System.ServiceModel.ClientBase<SislabServiceTeste.SislabService.UsuariosSoap>, SislabServiceTeste.SislabService.UsuariosSoap {
+    public partial class UsuariosSoapClient : System.ServiceModel.ClientBase<SislabServiceTeste.UsuarioSvc.UsuariosSoap>, SislabServiceTeste.UsuarioSvc.UsuariosSoap {
         
         public UsuariosSoapClient() {
         }
@@ -618,121 +618,121 @@ namespace SislabServiceTeste.SislabService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse SislabServiceTeste.SislabService.UsuariosSoap.ObtemUsuarioTeste(SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest request) {
+        SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemUsuarioTeste(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest request) {
             return base.Channel.ObtemUsuarioTeste(request);
         }
         
         public string ObtemUsuarioTeste() {
-            SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest inValue = new SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemUsuarioTesteRequestBody();
-            SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemUsuarioTeste(inValue);
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequestBody();
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemUsuarioTeste(inValue);
             return retVal.Body.ObtemUsuarioTesteResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse> SislabServiceTeste.SislabService.UsuariosSoap.ObtemUsuarioTesteAsync(SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemUsuarioTesteAsync(SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest request) {
             return base.Channel.ObtemUsuarioTesteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse> ObtemUsuarioTesteAsync() {
-            SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest inValue = new SislabServiceTeste.SislabService.ObtemUsuarioTesteRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemUsuarioTesteRequestBody();
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemUsuarioTesteAsync(inValue);
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse> ObtemUsuarioTesteAsync() {
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteRequestBody();
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemUsuarioTesteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.ObtemUsuarioResponse SislabServiceTeste.SislabService.UsuariosSoap.ObtemUsuario(SislabServiceTeste.SislabService.ObtemUsuarioRequest request) {
+        SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemUsuario(SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest request) {
             return base.Channel.ObtemUsuario(request);
         }
         
         public string ObtemUsuario(string login, string dominio) {
-            SislabServiceTeste.SislabService.ObtemUsuarioRequest inValue = new SislabServiceTeste.SislabService.ObtemUsuarioRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemUsuarioRequestBody();
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequestBody();
             inValue.Body.login = login;
             inValue.Body.dominio = dominio;
-            SislabServiceTeste.SislabService.ObtemUsuarioResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemUsuario(inValue);
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemUsuario(inValue);
             return retVal.Body.ObtemUsuarioResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioResponse> SislabServiceTeste.SislabService.UsuariosSoap.ObtemUsuarioAsync(SislabServiceTeste.SislabService.ObtemUsuarioRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemUsuarioAsync(SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest request) {
             return base.Channel.ObtemUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemUsuarioResponse> ObtemUsuarioAsync(string login, string dominio) {
-            SislabServiceTeste.SislabService.ObtemUsuarioRequest inValue = new SislabServiceTeste.SislabService.ObtemUsuarioRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemUsuarioRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse> ObtemUsuarioAsync(string login, string dominio) {
+            SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemUsuarioRequestBody();
             inValue.Body.login = login;
             inValue.Body.dominio = dominio;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemUsuarioAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse SislabServiceTeste.SislabService.UsuariosSoap.ObtemTodosOsDadosUsuario(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest request) {
+        SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemTodosOsDadosUsuario(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest request) {
             return base.Channel.ObtemTodosOsDadosUsuario(request);
         }
         
         public string ObtemTodosOsDadosUsuario(string login, string dominio) {
-            SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest inValue = new SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequestBody();
+            SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequestBody();
             inValue.Body.login = login;
             inValue.Body.dominio = dominio;
-            SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemTodosOsDadosUsuario(inValue);
+            SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemTodosOsDadosUsuario(inValue);
             return retVal.Body.ObtemTodosOsDadosUsuarioResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse> SislabServiceTeste.SislabService.UsuariosSoap.ObtemTodosOsDadosUsuarioAsync(SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.ObtemTodosOsDadosUsuarioAsync(SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest request) {
             return base.Channel.ObtemTodosOsDadosUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse> ObtemTodosOsDadosUsuarioAsync(string login, string dominio) {
-            SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest inValue = new SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse> ObtemTodosOsDadosUsuarioAsync(string login, string dominio) {
+            SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest inValue = new SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioRequestBody();
             inValue.Body.login = login;
             inValue.Body.dominio = dominio;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).ObtemTodosOsDadosUsuarioAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).ObtemTodosOsDadosUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.EnviaEmailResponse SislabServiceTeste.SislabService.UsuariosSoap.EnviaEmail(SislabServiceTeste.SislabService.EnviaEmailRequest request) {
+        SislabServiceTeste.UsuarioSvc.EnviaEmailResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.EnviaEmail(SislabServiceTeste.UsuarioSvc.EnviaEmailRequest request) {
             return base.Channel.EnviaEmail(request);
         }
         
         public string EnviaEmail(string remetente, string destinatario, string assunto, string mensagem) {
-            SislabServiceTeste.SislabService.EnviaEmailRequest inValue = new SislabServiceTeste.SislabService.EnviaEmailRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.EnviaEmailRequestBody();
+            SislabServiceTeste.UsuarioSvc.EnviaEmailRequest inValue = new SislabServiceTeste.UsuarioSvc.EnviaEmailRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.EnviaEmailRequestBody();
             inValue.Body.remetente = remetente;
             inValue.Body.destinatario = destinatario;
             inValue.Body.assunto = assunto;
             inValue.Body.mensagem = mensagem;
-            SislabServiceTeste.SislabService.EnviaEmailResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).EnviaEmail(inValue);
+            SislabServiceTeste.UsuarioSvc.EnviaEmailResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).EnviaEmail(inValue);
             return retVal.Body.EnviaEmailResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailResponse> SislabServiceTeste.SislabService.UsuariosSoap.EnviaEmailAsync(SislabServiceTeste.SislabService.EnviaEmailRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.EnviaEmailAsync(SislabServiceTeste.UsuarioSvc.EnviaEmailRequest request) {
             return base.Channel.EnviaEmailAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailResponse> EnviaEmailAsync(string remetente, string destinatario, string assunto, string mensagem) {
-            SislabServiceTeste.SislabService.EnviaEmailRequest inValue = new SislabServiceTeste.SislabService.EnviaEmailRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.EnviaEmailRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailResponse> EnviaEmailAsync(string remetente, string destinatario, string assunto, string mensagem) {
+            SislabServiceTeste.UsuarioSvc.EnviaEmailRequest inValue = new SislabServiceTeste.UsuarioSvc.EnviaEmailRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.EnviaEmailRequestBody();
             inValue.Body.remetente = remetente;
             inValue.Body.destinatario = destinatario;
             inValue.Body.assunto = assunto;
             inValue.Body.mensagem = mensagem;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).EnviaEmailAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).EnviaEmailAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.EnviaEmailGenericoResponse SislabServiceTeste.SislabService.UsuariosSoap.EnviaEmailGenerico(SislabServiceTeste.SislabService.EnviaEmailGenericoRequest request) {
+        SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.EnviaEmailGenerico(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest request) {
             return base.Channel.EnviaEmailGenerico(request);
         }
         
         public string EnviaEmailGenerico(string smtpServer, string numeroPorta, bool habilitarSSL, string remetente, string senha, string destinatario, string assunto, string mensagem) {
-            SislabServiceTeste.SislabService.EnviaEmailGenericoRequest inValue = new SislabServiceTeste.SislabService.EnviaEmailGenericoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.EnviaEmailGenericoRequestBody();
+            SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest inValue = new SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequestBody();
             inValue.Body.smtpServer = smtpServer;
             inValue.Body.numeroPorta = numeroPorta;
             inValue.Body.habilitarSSL = habilitarSSL;
@@ -741,18 +741,18 @@ namespace SislabServiceTeste.SislabService {
             inValue.Body.destinatario = destinatario;
             inValue.Body.assunto = assunto;
             inValue.Body.mensagem = mensagem;
-            SislabServiceTeste.SislabService.EnviaEmailGenericoResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).EnviaEmailGenerico(inValue);
+            SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).EnviaEmailGenerico(inValue);
             return retVal.Body.EnviaEmailGenericoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailGenericoResponse> SislabServiceTeste.SislabService.UsuariosSoap.EnviaEmailGenericoAsync(SislabServiceTeste.SislabService.EnviaEmailGenericoRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.EnviaEmailGenericoAsync(SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest request) {
             return base.Channel.EnviaEmailGenericoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.EnviaEmailGenericoResponse> EnviaEmailGenericoAsync(string smtpServer, string numeroPorta, bool habilitarSSL, string remetente, string senha, string destinatario, string assunto, string mensagem) {
-            SislabServiceTeste.SislabService.EnviaEmailGenericoRequest inValue = new SislabServiceTeste.SislabService.EnviaEmailGenericoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.EnviaEmailGenericoRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse> EnviaEmailGenericoAsync(string smtpServer, string numeroPorta, bool habilitarSSL, string remetente, string senha, string destinatario, string assunto, string mensagem) {
+            SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest inValue = new SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoRequestBody();
             inValue.Body.smtpServer = smtpServer;
             inValue.Body.numeroPorta = numeroPorta;
             inValue.Body.habilitarSSL = habilitarSSL;
@@ -761,61 +761,61 @@ namespace SislabServiceTeste.SislabService {
             inValue.Body.destinatario = destinatario;
             inValue.Body.assunto = assunto;
             inValue.Body.mensagem = mensagem;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).EnviaEmailGenericoAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).EnviaEmailGenericoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.UploadArquivoResponse SislabServiceTeste.SislabService.UsuariosSoap.UploadArquivo(SislabServiceTeste.SislabService.UploadArquivoRequest request) {
+        SislabServiceTeste.UsuarioSvc.UploadArquivoResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.UploadArquivo(SislabServiceTeste.UsuarioSvc.UploadArquivoRequest request) {
             return base.Channel.UploadArquivo(request);
         }
         
         public string UploadArquivo(string numeroAS, string nomeDoArquivo, byte[] arquivoByte) {
-            SislabServiceTeste.SislabService.UploadArquivoRequest inValue = new SislabServiceTeste.SislabService.UploadArquivoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.UploadArquivoRequestBody();
+            SislabServiceTeste.UsuarioSvc.UploadArquivoRequest inValue = new SislabServiceTeste.UsuarioSvc.UploadArquivoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.UploadArquivoRequestBody();
             inValue.Body.numeroAS = numeroAS;
             inValue.Body.nomeDoArquivo = nomeDoArquivo;
             inValue.Body.arquivoByte = arquivoByte;
-            SislabServiceTeste.SislabService.UploadArquivoResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).UploadArquivo(inValue);
+            SislabServiceTeste.UsuarioSvc.UploadArquivoResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).UploadArquivo(inValue);
             return retVal.Body.UploadArquivoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.UploadArquivoResponse> SislabServiceTeste.SislabService.UsuariosSoap.UploadArquivoAsync(SislabServiceTeste.SislabService.UploadArquivoRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.UploadArquivoResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.UploadArquivoAsync(SislabServiceTeste.UsuarioSvc.UploadArquivoRequest request) {
             return base.Channel.UploadArquivoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.UploadArquivoResponse> UploadArquivoAsync(string numeroAS, string nomeDoArquivo, byte[] arquivoByte) {
-            SislabServiceTeste.SislabService.UploadArquivoRequest inValue = new SislabServiceTeste.SislabService.UploadArquivoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.UploadArquivoRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.UploadArquivoResponse> UploadArquivoAsync(string numeroAS, string nomeDoArquivo, byte[] arquivoByte) {
+            SislabServiceTeste.UsuarioSvc.UploadArquivoRequest inValue = new SislabServiceTeste.UsuarioSvc.UploadArquivoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.UploadArquivoRequestBody();
             inValue.Body.numeroAS = numeroAS;
             inValue.Body.nomeDoArquivo = nomeDoArquivo;
             inValue.Body.arquivoByte = arquivoByte;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).UploadArquivoAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).UploadArquivoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SislabServiceTeste.SislabService.DownloadArquivoResponse SislabServiceTeste.SislabService.UsuariosSoap.DownloadArquivo(SislabServiceTeste.SislabService.DownloadArquivoRequest request) {
+        SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse SislabServiceTeste.UsuarioSvc.UsuariosSoap.DownloadArquivo(SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest request) {
             return base.Channel.DownloadArquivo(request);
         }
         
         public byte[] DownloadArquivo(string nomeDoArquivo) {
-            SislabServiceTeste.SislabService.DownloadArquivoRequest inValue = new SislabServiceTeste.SislabService.DownloadArquivoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.DownloadArquivoRequestBody();
+            SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest inValue = new SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.DownloadArquivoRequestBody();
             inValue.Body.nomeDoArquivo = nomeDoArquivo;
-            SislabServiceTeste.SislabService.DownloadArquivoResponse retVal = ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).DownloadArquivo(inValue);
+            SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse retVal = ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).DownloadArquivo(inValue);
             return retVal.Body.DownloadArquivoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SislabServiceTeste.SislabService.DownloadArquivoResponse> SislabServiceTeste.SislabService.UsuariosSoap.DownloadArquivoAsync(SislabServiceTeste.SislabService.DownloadArquivoRequest request) {
+        System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse> SislabServiceTeste.UsuarioSvc.UsuariosSoap.DownloadArquivoAsync(SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest request) {
             return base.Channel.DownloadArquivoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SislabServiceTeste.SislabService.DownloadArquivoResponse> DownloadArquivoAsync(string nomeDoArquivo) {
-            SislabServiceTeste.SislabService.DownloadArquivoRequest inValue = new SislabServiceTeste.SislabService.DownloadArquivoRequest();
-            inValue.Body = new SislabServiceTeste.SislabService.DownloadArquivoRequestBody();
+        public System.Threading.Tasks.Task<SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse> DownloadArquivoAsync(string nomeDoArquivo) {
+            SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest inValue = new SislabServiceTeste.UsuarioSvc.DownloadArquivoRequest();
+            inValue.Body = new SislabServiceTeste.UsuarioSvc.DownloadArquivoRequestBody();
             inValue.Body.nomeDoArquivo = nomeDoArquivo;
-            return ((SislabServiceTeste.SislabService.UsuariosSoap)(this)).DownloadArquivoAsync(inValue);
+            return ((SislabServiceTeste.UsuarioSvc.UsuariosSoap)(this)).DownloadArquivoAsync(inValue);
         }
     }
 }

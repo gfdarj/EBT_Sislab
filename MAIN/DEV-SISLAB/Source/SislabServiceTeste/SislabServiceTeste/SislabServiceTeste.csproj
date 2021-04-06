@@ -76,10 +76,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\SislabService\servicos.disco" />
-    <None Include="Connected Services\SislabService\configuration91.svcinfo" />
-    <None Include="Connected Services\SislabService\configuration.svcinfo" />
-    <None Include="Connected Services\SislabService\Reference.svcmap">
+    <None Include="Connected Services\UsuarioSvc\servicos.disco" />
+    <None Include="Connected Services\UsuarioSvc\configuration91.svcinfo" />
+    <None Include="Connected Services\UsuarioSvc\configuration.svcinfo" />
+    <None Include="Connected Services\UsuarioSvc\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -91,30 +91,30 @@
       <SourceUri>http://rjojurisdev01/sislabsvc/servicos.asmx</SourceUri>
     </Content>
     <Content Include="Web.config" />
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.DownloadArquivoResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.DownloadArquivoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.EnviaEmailGenericoResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.EnviaEmailGenericoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.EnviaEmailResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.EnviaEmailResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.ObtemTodosOsDadosUsuarioResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.ObtemTodosOsDadosUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.ObtemUsuarioResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.ObtemUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.ObtemUsuarioTesteResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.ObtemUsuarioTesteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\SislabService\SislabServiceTeste.SislabService.UploadArquivoResponse.datasource">
+    <Content Include="Connected Services\UsuarioSvc\SislabServiceTeste.UsuarioSvc.UploadArquivoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\SislabService\Reference.cs">
+    <Compile Include="Connected Services\UsuarioSvc\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -129,7 +129,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\SislabService\servicos.wsdl" />
+    <None Include="Connected Services\UsuarioSvc\servicos.wsdl" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -142,7 +142,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\SislabService\" />
+    <WCFMetadataStorage Include="Connected Services\UsuarioSvc\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
