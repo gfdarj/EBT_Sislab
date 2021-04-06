@@ -17,16 +17,16 @@ namespace Embratel.Sislab.Classes
         {
             UsuarioENT ent = new UsuarioENT();
 
-            ent.ID = "fulano01";
-            ent.Nome = "Fulano da Silva Ciclano";
-            ent.Matricula = "000000-0";
-            ent.Lotacao = "Lotado Aqui";
+            ent.ID = "teste01";
+            ent.Nome = "Usuário de Teste Fulano Ciclano da Silva";
+            ent.Matricula = "000001";
+            ent.Lotacao = "Lotação de Teste";
             ent.Sexo = "M";
             ent.Telefone = "99999-9999";
-            ent.Email = "fulano@ciclano.com.br";
+            ent.Email = "teste01@teste.com.br";
             ent.DataNascimento = "01/01/1980";
             ent.Celular = ent.Telefone;
-            ent.Empresa = "WebService";
+            ent.Empresa = "Teste WebService";
 
             return GeraXML(ent);
         }
