@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://rjojurisdev01/sislabsvc/servicos.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/sislabsvc/servicos.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="servicos.wsdl" MetadataType="Wsdl" ID="f2ca5516-7f60-4f33-a4da-fc7e20d50738" SourceId="1" SourceUrl="http://rjojurisdev01/sislabsvc/servicos.asmx?wsdl" />
-    <MetadataFile FileName="servicos.disco" MetadataType="Disco" ID="1dc7a347-3e4a-4ef5-9abe-1fc42d49de79" SourceId="1" SourceUrl="http://rjojurisdev01/sislabsvc/servicos.asmx?disco" />
+    <MetadataFile FileName="servicos1.disco" MetadataType="Disco" ID="770a986a-2267-4374-a296-a2678618f2ca" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?disco" />
+    <MetadataFile FileName="servicos1.wsdl" MetadataType="Wsdl" ID="132f7ecc-a231-4fb0-8c3b-a589d13fe5cb" SourceId="1" SourceUrl="http://localhost/sislabsvc/servicos.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

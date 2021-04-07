@@ -76,13 +76,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\UsuarioSvc\servicos.disco" />
     <None Include="Connected Services\UsuarioSvc\configuration91.svcinfo" />
     <None Include="Connected Services\UsuarioSvc\configuration.svcinfo" />
     <None Include="Connected Services\UsuarioSvc\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\UsuarioSvc\servicos1.disco" />
     <Content Include="Default.aspx" />
     <Content Include="OpenAPIs\servicos.asmx">
       <Namespace>Embratel.Sislab.Servico</Namespace>
@@ -129,7 +129,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\UsuarioSvc\servicos.wsdl" />
+    <None Include="Connected Services\UsuarioSvc\servicos1.wsdl" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

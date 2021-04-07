@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="zr33l2exeSI46jbRmXtubml9i2IE/ps9+xGDqxFRb54=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="nh/wRgYvnX09Shw2TihW2VxZnw+uP6GXqv0hKBVhOJ0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="UsuariosSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="UsuariosSoap" contract="UsuarioSvc.UsuariosSoap" bindingType="basicHttpBinding" address="http://rjojurisdev01/sislabsvc/servicos.asmx" bindingConfiguration="UsuariosSoap">
+    <endpoint name="UsuariosSoap" contract="UsuarioSvc.UsuariosSoap" bindingType="basicHttpBinding" address="http://localhost/sislabsvc/servicos.asmx" bindingConfiguration="UsuariosSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://rjojurisdev01/sislabsvc/servicos.asmx</serializedValue>
+          <serializedValue>http://localhost/sislabsvc/servicos.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
