@@ -23,7 +23,7 @@ namespace Embratel.Sislab.Classes
             ent.Lotacao = "Lotação de Teste";
             ent.Sexo = "M";
             ent.Telefone = "99999-9999";
-            ent.Email = "usuariocrt@webservice.com.br";
+            ent.Email = "teste1@webservice.com.br";
             ent.DataNascimento = "23/01/1975";
             ent.Celular = ent.Telefone;
             ent.Empresa = "Teste WebService";
