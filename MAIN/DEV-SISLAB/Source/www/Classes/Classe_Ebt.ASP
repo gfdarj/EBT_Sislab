@@ -12,6 +12,8 @@ Class TEbt
     Private chr_MsgErro
     Private chr_Login
     Private bln_ehFuncionario
+    Private chr_ID
+    Private chr_DN
     Private chr_Nome_Reduzido
 	Private bln_usuarioCRT
 	Private bln_ehRT
@@ -189,6 +191,8 @@ Class TEbt
     Private Sub Class_Initialize()
         Set oSql = New TSql
 
+        chr_ID = 0
+        chr_DN = ""
 		chr_RetornoWS = ""
         chr_Login = ""
         bln_TemErro = False
@@ -230,6 +234,20 @@ Class TEbt
         Set ws = Nothing
     End Sub
 
+    Public Function WS_ObtemUsuarioTeste()
+        dim ret
+        Call InicializaWebService()
+        ws.method = "ObtemUsuarioTeste"
+        ws.Invoke
+        ret = ws.Response
+        ret = Replace(ret, "&gt;", ">")
+        ret = Replace(ret, "&lt;", "<")
+'response.write "<BR><BR>AQUI: " & ws.Response
+'response.End
+        Call FinalizaWebService()
+        WS_ObtemUsuarioTeste = ret
+    End Function
+
     Public Function WS_ObtemUsuarioAD(usuario, dominio)
         dim ret
         Call InicializaWebService()
@@ -246,36 +264,29 @@ Class TEbt
     End Function
 
 
-    Public Function WS_ObtemUsuarioTeste()
-        dim ret
-        Call InicializaWebService()
-        ws.method = "ObtemUsuarioTeste"
-        ws.Invoke
-        ret = ws.Response
-        ret = Replace(ret, "&gt;", ">")
-        ret = Replace(ret, "&lt;", "<")
-        Call FinalizaWebService()
-        WS_ObtemUsuarioTeste = ret
-    End Function
-
-
 
     '-Métodos------------------------------------------------------------------------'
     Public Function MeuUsuario()
         Dim strNTUser, email
+        MeuUsuario = ""
         strNTUser = Request.ServerVariables("AUTH_USER")
-        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-        If UBound(email) >= 0 Then
-            MeuUsuario = email(1)
+        If InStr(1, strNTUser, "\") > 0 Then
+            email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+            If UBound(email) >= 0 Then
+                MeuUsuario = email(1)
+            End If
         End If
     End Function
 
     Public Function MeuDominio()
         Dim strNTUser, email
-        strNTUser = Request.ServerVariables("AUTH_USER")
-        email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-        If UBound(email) >= 0 Then
-            MeuUsuario = email(0)
+        MeuDominio = ""
+        If InStr(1, strNTUser, "\") > 0 Then
+            strNTUser = Request.ServerVariables("AUTH_USER")
+            email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+            If UBound(email) >= 0 Then
+                MeuUsuario = email(0)
+            End If
         End If
     End Function
 
@@ -284,16 +295,10 @@ Class TEbt
 	    Dim objRS
         Dim bln_EhAmbienteLocal
 
-        chr_Login = ""
 
-        If Application("SISLAB_DEBUG") = "SIM" Then
-            chr_Login = "josesp"
-            chr_Dominio = "EMBRATEL"
-            chr_usuario = "Visitante_Debug"
-        Else
-            chr_Login = chr_Usuario
-            Call BuscaDadosEmbratelAD(chr_Usuario, chr_Dominio)    'Preenche as vari?veis Login e FullName, vindas do AD
-        End If
+        chr_Login = chr_Usuario
+        Call BuscaDadosEmbratelAD(chr_Usuario, chr_Dominio)    'Preenche as vari?veis Login e FullName, vindas do AD
+
 
 	    '-- Pega os dados do usuario se for do CRT
 	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
@@ -395,9 +400,13 @@ Class TEbt
         End If
 
         'Faz requisição para o WebService
-'        xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
-'		chr_RetornoWS = xmlResult
-xmlResult = "ERRO"
+       If Application("SISLAB_DEBUG") = "SIM" Then
+           xmlResult = WS_ObtemUsuarioTeste()
+       Else
+           xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
+       End If
+		chr_RetornoWS = xmlResult
+        'xmlResult = "ERRO"
 
         If Left(xmlResult, 4) <> "ERRO" Then
             Dim oXml ', nodes
@@ -406,6 +415,8 @@ xmlResult = "ERRO"
             oxml.LoadXML(xmlResult)
             'Set nodes = oxml.selectNodes("//Usuario")
 
+            chr_ID = oxml.SelectSingleNode("Usuario/ID").text
+            chr_DN = oxml.SelectSingleNode("Usuario/DN").text
             chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
             chr_Login = oXml.SelectSingleNode("Usuario/Email").text
             chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text

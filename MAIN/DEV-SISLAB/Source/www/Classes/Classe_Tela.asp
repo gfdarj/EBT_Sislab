@@ -459,14 +459,16 @@ Private Sub ImprimeMenu()
         <div id="div_topRightNomeUsuario">
 			<small>
 <%  If Hour(Now) >= 12 And Hour(Now) < 18 Then %>
-                Boa tarde,&nbsp;
+                Boa tarde,
 <%  ElseIf Hour(Now) >= 0 And Hour(Now) < 12 Then %>
-                Bom dia,&nbsp;
+                Bom dia,
 <%  Else %>
-                Boa noite,&nbsp;
+                Boa noite,
 <%  End If %>
 <%  If Env.Usuario = "" Then %>
-                Visitante ()
+                Visitante  <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)<br />
+               retorno: <%=env.ebt.RetornoWebService %> <br />
+                mensagem erro: <%=env.ebt.MensagemErro %>
 <%  Else %>
                 <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>).
 <%  End If %>

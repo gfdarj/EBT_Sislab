@@ -8,8 +8,6 @@ Sub Application_OnStart()
     Application("SISLAB_DEBUG") = "SIM"		'-- SIM / NAO
 	'Application("SISLAB_DEBUG") = "NAO"		'-- SIM / NAO
 
-    Application("SISLAB_WS_OBTEMUSUARIO") = "TESTE"		'-- TESTE: metodo de teste / PROD: método que busca o usuario no AD 
-
 
     '---------------------------------------------------------------------------------------------------------
     ' Define os parâmetros necessários ao sistema
