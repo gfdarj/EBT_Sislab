@@ -17,14 +17,14 @@ namespace Embratel.Sislab.Classes
         {
             UsuarioENT ent = new UsuarioENT();
 
-            ent.ID = "teste01";
-            ent.Nome = "Usuário de Teste Fulano Ciclano da Silva";
+            ent.ID = "teste1";
+            ent.Nome = "Teste do Webservice CRT Embratel";
             ent.Matricula = "000001";
             ent.Lotacao = "Lotação de Teste";
             ent.Sexo = "M";
             ent.Telefone = "99999-9999";
-            ent.Email = "teste01@teste.com.br";
-            ent.DataNascimento = "01/01/1980";
+            ent.Email = "usuariocrt@webservice.com.br";
+            ent.DataNascimento = "23/01/1975";
             ent.Celular = ent.Telefone;
             ent.Empresa = "Teste WebService";
 
