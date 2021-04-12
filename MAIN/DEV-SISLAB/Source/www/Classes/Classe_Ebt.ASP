@@ -50,6 +50,14 @@ Class TEbt
 
     '-Property------------------------------------------------------------------------'
 
+    Public Property Get ID()
+        ID = chr_ID
+    End Property
+
+    Public Property Get DN()
+        DN = chr_DN
+    End Property
+
     Public Property Get CodigoLotacao()
         CodigoLotacao = chr_CodigoLotacao
     End Property
@@ -102,8 +110,26 @@ Class TEbt
 	    Usuario = chr_Login
     End Property
 
+    Public Property Get Login()
+	    Login = chr_Login
+    End Property
+
+    Public Property Get Email()
+	    Email = chr_Login
+    End Property
+
+    Public Property Get Nome()
+	    Nome = chr_Nome_Reduzido
+    End Property
+
     Public Property Get NomeReduzido()
 	    NomeReduzido = chr_Nome_Reduzido
+    End Property
+
+    Public Property Get PrimeiroNome()
+        Dim temp
+        temp = Split(chr_Nome_Reduzido, chr(32))
+        PrimeiroNome =  temp(0)
     End Property
 
     Public Property Get TemErro()
@@ -300,8 +326,12 @@ Class TEbt
         Call BuscaDadosEmbratelAD(chr_Usuario, chr_Dominio)    'Preenche as vari?veis Login e FullName, vindas do AD
 
 
+'select * from UserCRT
+'insert into UserCRT values ('teste1@webservice.com.br', 'Web_Teste WebService DB', '00000-0000', null, null, null, 1, 1, 1, 0, 1, 1)
+'delete from UserCRT where USERID = 'teste1@webservice.com.br'
+
 	    '-- Pega os dados do usuario se for do CRT
-	    chr_SQL = "SELECT u.USERID, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
+	    chr_SQL = "SELECT u.USERID, u.NOME, u.RAT, u.GQ, u.RT, u.EXIBIR, u.ID_PERFIL_SCE, u.CELULAR, u.RAMAL, u.MATRICULA, " & _
                   "     u.ID_CRT, crt.NM_CRT, crt.SIGLA_CRT, " & _
                   "     o.ORGA_SIGLA, o.ORGA_DESCRICAO, o.ORGA_USERIDCHEFE " & _
                   "FROM UserCRT u " & _
@@ -328,6 +358,10 @@ Class TEbt
             bln_Exibir = CBool(objRS("EXIBIR"))
 		    int_PerfilSCE = IIf(IsNull(objRS("ID_PERFIL_SCE")), 0, objRS("ID_PERFIL_SCE"))
 		    bln_UsuarioSCE = (int_PerfilSCE > 0)
+
+            If Not IsNull(objRS("NOME")) Then
+                chr_Nome_Reduzido = objRS("NOME")
+            End If
 
             int_ID_CRT = IIf(IsNull(objRS("ID_CRT")), 0, objRS("ID_CRT"))
             chr_Nome_CRT = IIf(IsNull(objRS("NM_CRT")), "", objRS("NM_CRT"))
@@ -360,83 +394,53 @@ Class TEbt
 
     'Busca os dados do AD
     Public Sub BuscaDadosEmbratelAD(ByVal chr_Usuario, ByVal chr_Dominio)
-        Dim objSysInfo
-	    Dim objUser
         Dim strNTUser, strUser
         Dim email, adress, dc, str_dc
         Dim ldap_testeAL
         Dim xmlResult
 
-        'monta o DC
-        dc = ""
-        str_dc = ""
-        ldap_testeAL = False
-
-'chr_login =    Request.ServerVariables("AUTH_USER")
-'exit sub
-
-        'VAZIO: Pega o usuario logado no sistema
-        If VVVNZ(chr_Usuario) Then
-            strNTUser = Request.ServerVariables("AUTH_USER")
-
-            If strNTUser = "" Then Exit Sub
-
-            email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-
-            'Verifica o domínio do usuário logado
-            If UCase(Trim(email(0))) = "AL" Then
-                chr_Dominio = "DC=alerj,DC=gov,DC=br"
-                ldap_testeAL = True
-            Else
-                chr_Dominio = UCase(Trim(email(0)))
-            End If
-
-            strUser = email(1)
-
-        'EMAIL: precisa buscar o usuario no AD
-        Else
-            strUser = chr_Usuario
-            str_dc = chr_Dominio
-        End If
-
         'Faz requisição para o WebService
        If Application("SISLAB_DEBUG") = "SIM" Then
            xmlResult = WS_ObtemUsuarioTeste()
        Else
+            'monta o DC
+            dc = ""
+            str_dc = ""
+            ldap_testeAL = False
+
+            'VAZIO: Pega o usuario logado no sistema
+            If VVVNZ(chr_Usuario) Then
+                strNTUser = Request.ServerVariables("AUTH_USER")
+
+                If strNTUser = "" Then Exit Sub
+
+                email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
+
+                'Verifica o domínio do usuário logado
+                If UCase(Trim(email(0))) = "AL" Then
+                    chr_Dominio = "DC=alerj,DC=gov,DC=br"
+                    ldap_testeAL = True
+                Else
+                    chr_Dominio = UCase(Trim(email(0)))
+                End If
+
+                strUser = email(1)
+
+            'EMAIL: precisa buscar o usuario no AD
+            Else
+                strUser = chr_Usuario
+                str_dc = chr_Dominio
+            End If
+
            xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
-       End If
+        End If
+
 		chr_RetornoWS = xmlResult
         'xmlResult = "ERRO"
+        'xmlResult = "<Usuario><ID></ID><DN></DN><Email></Email><Nome></Nome><CodigoLotacao></CodigoLotacao><Departamento></Departamento><Diretoria></Diretoria><Sexo></Sexo><CategoriaEmpregado></CategoriaEmpregado><DataAdmissao></DataAdmissao><AreaLotacao></AreaLotacao><CategoriaCargo></CategoriaCargo><Lotacao></Lotacao><Matricula></Matricula><DataNascimento></DataNascimento><Empresa></Empresa><Telefone></Telefone><Celular></Celular></Usuario>"
 
         If Left(xmlResult, 4) <> "ERRO" Then
-            Dim oXml ', nodes
-            Set oXml = Server.CreateObject("MSXML2.DOMDocument.3.0")
-            oxml.async = false
-            oxml.LoadXML(xmlResult)
-            'Set nodes = oxml.selectNodes("//Usuario")
-
-            chr_ID = oxml.SelectSingleNode("Usuario/ID").text
-            chr_DN = oxml.SelectSingleNode("Usuario/DN").text
-            chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
-            chr_Login = oXml.SelectSingleNode("Usuario/Email").text
-            chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text
-            chr_Ramal = oXml.SelectSingleNode("Usuario/Telefone").text
-            chr_Celular = oXml.SelectSingleNode("Usuario/Celular").text
-            chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
-            chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
-            chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
-            chr_Sigla_Orgao = chr_CodigoLotacao
-            chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
-            chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
-            chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
-            chr_DataAdmissao = oXml.SelectSingleNode("Usuario/DataAdmissao").text
-            chr_AreaLotacao = oXml.SelectSingleNode("Usuario/AreaLotacao").text
-            chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
-            chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
-            chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
-
-            Set oXml = Nothing
-            'Set nodes = Nothing
+            ConverteXML(xmlResult)
         Else
             bln_TemErro = True
             chr_Login = chr_Usuario
@@ -476,6 +480,37 @@ Class TEbt
         'response.Write "<BR>ValorXML: " & ValorXML
         'response.Write "<BR>----<BR>"
     End Function
+
+    Private Sub ConverteXML(xmlResult)
+        Dim oXml ', nodes
+        Set oXml = Server.CreateObject("MSXML2.DOMDocument.3.0")
+        oxml.async = false
+        oxml.LoadXML(xmlResult)
+        'Set nodes = oxml.selectNodes("//Usuario")
+
+        chr_ID = oxml.SelectSingleNode("Usuario/ID").text
+        chr_DN = oxml.SelectSingleNode("Usuario/DN").text
+        chr_Nome_Reduzido = oxml.SelectSingleNode("Usuario/Nome").text
+        chr_Login = oXml.SelectSingleNode("Usuario/Email").text
+        chr_Diretoria = oxml.SelectSingleNode("Usuario/Diretoria").text
+        chr_Ramal = oXml.SelectSingleNode("Usuario/Telefone").text
+        chr_Celular = oXml.SelectSingleNode("Usuario/Celular").text
+        chr_Matricula = oXml.SelectSingleNode("Usuario/Matricula").text
+        chr_Empresa = oXml.SelectSingleNode("Usuario/Empresa").text
+        chr_CodigoLotacao = oXml.SelectSingleNode("Usuario/CodigoLotacao").text
+        chr_Sigla_Orgao = chr_CodigoLotacao
+        chr_Departamento = oXml.SelectSingleNode("Usuario/Departamento").text
+        chr_Sexo = oXml.SelectSingleNode("Usuario/Sexo").text
+        chr_CategoriaEmpregado = oXml.SelectSingleNode("Usuario/CategoriaEmpregado").text
+        chr_DataAdmissao = oXml.SelectSingleNode("Usuario/DataAdmissao").text
+        chr_AreaLotacao = oXml.SelectSingleNode("Usuario/AreaLotacao").text
+        chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
+        chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
+        chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
+
+        Set oXml = Nothing
+        'Set nodes = Nothing
+    End Sub
 
 End Class
 %>

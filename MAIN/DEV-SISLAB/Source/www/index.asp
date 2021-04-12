@@ -15,15 +15,17 @@
 <!--#include file="includes/Sislab_Lib.asp"-->
 
 <%
-Set ebt1 = new TEbt
-response.Write "AQUI1 : " & now & "<BR>"
+'Set ebt1 = new TEbt
+'response.Write "AQUI1 : " & now & "<BR>"
 'response.Write "<BR>AQUI2 : " & now
 'response.End
 ''Call Ebt1.LoginUsuario("aalmeida@alerj.rj.gov.br")
-Call Ebt1.BuscaDadosEmbratel("", "")
-response.Write "SISLAB_DEBUG: " & Application("SISLAB_DEBUG") & "<BR>"
-response.Write ebt1.MensagemErro & "<BR>"
-response.Write Ebt1.MeuUsuario & "<BR>"
+'Call Ebt1.BuscaDadosEmbratel("", "")
+'response.Write "SISLAB_DEBUG: " & Application("SISLAB_DEBUG") & "<BR>"
+'response.Write ebt1.MensagemErro & "<BR>"
+'response.Write Ebt1.MeuUsuario & "<BR>"
+'response.Write Ebt1.Login & "<BR>"
+'response.Write Ebt1.NomeReduzido & "<BR>"
 
 'WS_ObtemUsuarioAD
 'Call ebt1.BuscaDadosEmbratelAD("galmeida")
@@ -43,7 +45,7 @@ response.Write Ebt1.MeuUsuario & "<BR>"
 'Response.Write "Celular: " & Ebt1.Celular & "<BR>"
 'Response.Write "Ramal: " & Ebt1.Ramal & "<BR>"
 'Response.Write "NOW: " & now & "<BR>"
-Response.End
+'Response.End
 
 Dim usuarioCRT, chr_SQL, RS,conta, navegador
 

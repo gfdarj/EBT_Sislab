@@ -466,11 +466,9 @@ Private Sub ImprimeMenu()
                 Boa noite,
 <%  End If %>
 <%  If Env.Usuario = "" Then %>
-                Visitante  <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>)<br />
-               retorno: <%=env.ebt.RetornoWebService %> <br />
-                mensagem erro: <%=env.ebt.MensagemErro %>
+                Visitante
 <%  Else %>
-                <%=Env.Ebt.NomeReduzido%> (<%=Env.Usuario%>).
+                <%=Env.Ebt.PrimeiroNome%> (<%=Env.Usuario%>).
 <%  End If %>
 			</small>
         </div>
