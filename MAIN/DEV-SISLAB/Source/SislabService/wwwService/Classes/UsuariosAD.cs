@@ -17,18 +17,23 @@ namespace Embratel.Sislab.Classes
         {
             UsuarioENT ent = new UsuarioENT();
 
-            ent.ID = "teste1";
-            ent.Nome = "Teste do Webservice CRT Embratel";
+            ent.ID = "webservice_crt";
+            ent.Nome = "ServiçoWeb da Embratel";
             ent.Matricula = "000001";
-            ent.Lotacao = "Lotação de Teste";
+            ent.Lotacao = "Lotado Aqui";
             ent.Sexo = "M";
             ent.Telefone = "99999-9999";
-            ent.Email = "teste1@webservice.com.br";
+            ent.Email = "webservice_crt@claro.com.br";
             ent.DataNascimento = "23/01/1975";
             ent.Celular = ent.Telefone;
-            ent.Empresa = "Teste WebService";
+            ent.Empresa = "Embratel/CRT";
 
             return GeraXML(ent);
+        }
+
+        public string ObtemUsuarioVazio()
+        {
+            return GeraXML(new UsuarioENT());
         }
 
         public string ObtemUsuario(string login)

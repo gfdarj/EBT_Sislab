@@ -36,6 +36,22 @@ namespace Embratel.Sislab.Servico
         }
 
         [WebMethod]
+        public string ObtemUsuarioVazio()
+        {
+            UsuariosAD ad = new UsuariosAD();
+            string ret = "";
+            try
+            {
+                ret = ad.ObtemUsuarioVazio();
+            }
+            catch (Exception ex)
+            {
+                ret = "ERRO[ObtemUsuarioVazio]: " + ex.Message;
+            }
+            return ret;
+        }
+
+        [WebMethod]
         public string ObtemUsuario(string login, string dominio)
         {
             UsuariosAD ad = new UsuariosAD();
