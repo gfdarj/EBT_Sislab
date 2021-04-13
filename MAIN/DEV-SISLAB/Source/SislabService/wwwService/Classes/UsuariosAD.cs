@@ -25,6 +25,7 @@ namespace Embratel.Sislab.Classes
             ent.Telefone = "99999-9999";
             ent.Email = "webservice_crt@claro.com.br";
             ent.DataNascimento = "23/01/1975";
+            ent.CodigoLotacao = "Orgao1";
             ent.Celular = ent.Telefone;
             ent.Empresa = "Embratel/CRT";
 
