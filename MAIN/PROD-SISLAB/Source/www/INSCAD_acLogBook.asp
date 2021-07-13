@@ -59,8 +59,8 @@ Else
     ocorrencia = Arquivo.Campo("ocorrencia")
 
 	idacao = Arquivo.Campo("idacao")
-	if idacao = "" then 
-		idacao = null
+	if VVVNZ(idacao) then 
+		idacao = 0
 		EhnovaAcao = true
 	end if
 
@@ -118,20 +118,22 @@ Else
 		if tipoacao = "" then tipoacao = null else tipoacao = cint(tipoacao)
 
 '-- TESTE PARA RECEBER OS PARAMETROS PASSADOS A PROCEDURE sp_CadLogBookAcaoTomada
-Dim p_msg1 : p_msg1 = ""
-p_msg1 = p_msg1 & "<p><b>TESTE PARA RECEBER OS PARAMETROS PASSADOS A PROCEDURE sp_CadLogBookAcaoTomada</b></p>" & VbCrLf
-p_msg1 = p_msg1 & "<BR>idacao: " & idacao & VbCrLf
-p_msg1 = p_msg1 & "<BR>ocorrencia: " & ocorrencia & VbCrLf
-p_msg1 = p_msg1 & "<BR>descricao: " & descricao & VbCrLf
-p_msg1 = p_msg1 & "<BR>executante: " & executante & VbCrLf
-p_msg1 = p_msg1 & "<BR>prazo: " & prazo & VbCrLf
-p_msg1 = p_msg1 & "<BR>conclusao: " & conclusao & VbCrLf
-p_msg1 = p_msg1 & "<BR>eficacia: " & eficacia & VbCrLf
-p_msg1 = p_msg1 & "<BR>obs: " & obs & VbCrLf
-p_msg1 = p_msg1 & "<BR>tipoacao: " & tipoacao & VbCrLf
+'Dim p_msg1 : p_msg1 = ""
+'p_msg1 = p_msg1 & "<p><b>TESTE PARA RECEBER OS PARAMETROS PASSADOS A PROCEDURE sp_CadLogBookAcaoTomada</b></p>" & VbCrLf
+'p_msg1 = p_msg1 & "<BR>idacao: " & idacao & VbCrLf
+'p_msg1 = p_msg1 & "<BR>ocorrencia: " & ocorrencia & VbCrLf
+'p_msg1 = p_msg1 & "<BR>descricao: " & descricao & VbCrLf
+'p_msg1 = p_msg1 & "<BR>executante: " & executante & VbCrLf
+'p_msg1 = p_msg1 & "<BR>prazo: " & prazo & VbCrLf
+'p_msg1 = p_msg1 & "<BR>conclusao: " & conclusao & VbCrLf
+'p_msg1 = p_msg1 & "<BR>eficacia: " & eficacia & VbCrLf
+'p_msg1 = p_msg1 & "<BR>obs: " & obs & VbCrLf
+'p_msg1 = p_msg1 & "<BR>tipoacao: " & tipoacao & VbCrLf
 'p_msg1 = p_msg1 & "<BR>arquivo: " & arquivo & VbCrLf
-p_msg1 = p_msg1 & "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & VbCrLf
-Call Enviar_Email("gilbertorjo@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", p_msg1)
+'response.write p_msg1
+'p_msg1 = p_msg1 & "<BR>" & replace(ucase(Request.ServerVariables("REMOTE_USER")),"EMBRATEL\","") & VbCrLf
+'Call Enviar_Email("gfdarj@gmail.com", "iLab", "[SISLAB] - InsCad_acLogBook.asp (" & Now & ")", p_msg1)
+
 
 		call Env.StoredProcedure(true, objSP, "sp_CadLogBookAcaoTomada")
 		with objSP

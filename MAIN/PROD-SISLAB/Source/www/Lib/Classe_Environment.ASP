@@ -356,6 +356,7 @@ Public Sub RecordSet(opcao, record, strExec)
 		record.Open strExec, Me.oConn
         If Err.number <> 0 Then
             Response.Write "<p><b>ERRO DE SQL</b></p><p>" & Err.Description & "</p><p>Comando Executado:</p><p>&nbsp;&nbsp;&nbsp;&nbsp;" & strExec & "</p>"
+			Response.Write "<p>String de conexão: " & Me.oConn & "</p>"
             Response.End
         End If
         On Error Goto 0

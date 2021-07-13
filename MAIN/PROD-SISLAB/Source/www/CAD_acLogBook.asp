@@ -56,6 +56,10 @@ end if
 <input type="hidden" name="id_ArquivoExclusao" value="" />
 <input type="hidden" name="id_ArquivoExclusaoNome" value="" />
 <input type="hidden" name="resposta" value="N" />
+<input type="hidden" name="diaconc" value="" />
+<input type="hidden" name="mesconc" value="" />
+<input type="hidden" name="anoconc" value="" />
+
 
 <table width="100%" class="tabela1">
 <tr>

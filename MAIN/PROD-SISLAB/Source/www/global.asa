@@ -60,10 +60,9 @@ Sub Application_OnStart()
 		Application("SISLAB_PROTOCS") = "http://"
 		Application("SISLAB_SiteFolder") = ""
 
-		'Application("SISLAB_InitialCatalog") = "sislab"
-		Application("SISLAB_InitialCatalog") = "SISLAB_PROD_20210330"
+		Application("SISLAB_InitialCatalog") = "SISLAB_PROD_20170619"    ' -- "SISLAB_PROD_20210330"
 
-		Application("SISLAB_DataSource") = "DESKTOP-0AATJG3\SQLEXPRESS"
+		Application("SISLAB_DataSource") = "TESTE-PC\SQLEXPRESS2008"
 		Application("SISLAB_DataUser") = "sislab"
 		Application("SISLAB_DataUserPwd") = "sislab"
 
