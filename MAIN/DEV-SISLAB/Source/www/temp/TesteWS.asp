@@ -3,6 +3,9 @@
     Set ws = New Twebservice
     ws.url = Application("SISLAB_HTTP_WEBSERVICE")
 
+response.write 	Application("SISLAB_HTTP_WEBSERVICE")
+'response.end
+	
     Public Function WS_ObtemUsuarioTeste()
         dim ret
 
@@ -11,6 +14,7 @@
         ret = ws.Response
         ret = Replace(ret, "&gt;", ">")
         ret = Replace(ret, "&lt;", "<")
+
 response.write "<BR><BR>ws.Response: " & ws.Response & "<BR>"
 'response.End
 
@@ -21,14 +25,22 @@ response.write "<BR><BR>ws.Response: " & ws.Response & "<BR>"
     'Busca os dados do AD
     Public Sub BuscaDadosEmbratel
 
+	on error goto 0
         'Faz requisição para o WebService
        If Application("SISLAB_DEBUG") = "SIM" Then
            xmlResult = WS_ObtemUsuarioTeste()
 '       Else
 '           xmlResult = WS_ObtemUsuarioAD(strUser, str_dc)
        End If
-		chr_RetornoWS = xmlResult
+
+   If Err.number <> 0 Then
+		Response.Write "<br><br>ERRO: " & Err.number & " ...... DESCRIPTION: " & Err.description & "<br>"
+	End If
+	on error goto 0
+
+	   chr_RetornoWS = xmlResult
         'xmlResult = "ERRO"
+
 response.write "<BR><BR>xmlResult: " & xmlResult & "<BR>"
 
         If Left(xmlResult, 4) <> "ERRO" Then
@@ -57,7 +69,6 @@ response.write "<BR><BR>xmlResult: " & xmlResult & "<BR>"
             chr_CategoriaCargo = oXml.SelectSingleNode("Usuario/CategoriaCargo").text
             chr_Lotacao = oXml.SelectSingleNode("Usuario/Lotacao").text
             chr_DataNascimento = oXml.SelectSingleNode("Usuario/DataNascimento").text
-
 response.write "<BR>chr_ID: " & chr_ID
 response.write "<BR>chr_DN: " & chr_DN
 response.write "<BR>chr_Nome_Reduzido: " & chr_Nome_Reduzido
@@ -102,7 +113,14 @@ response.write "<BR>chr_DataNascimento:" & chr_DataNascimento
     <h2>TESTE DE WEBSERVICE</h2>
 
     AQUI:
-    <%Call BuscaDadosEmbratel %>
+<%
+	On error Resume Next
+	Call BuscaDadosEmbratel
+	If Err.number <> 0 Then
+		Response.Write "<br><br>ERRO: " & Err.number & " ...... DESCRIPTION: " & Err.description & "<br>"
+	End If
+	On error goto 0
+%>
 </body>
 </html>
 
