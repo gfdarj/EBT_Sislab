@@ -6,20 +6,19 @@
 '===============================================================================================
 
 
-strNTUser = Request.ServerVariables("AUTH_USER")
+strNTUSer = "EMBRATEL\JOACAR"
+'strNTUser = Request.ServerVariables("AUTH_USER")
 
 email = Split(strNTUser, "\")  'Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
 
 Response.Write "Mid: " & Mid(strNTUser,(instr(1,strNTUser,"\")+1),len(strNTUser))
-
-'strNTUSer = "EMBRATEL\JOACA"
 
 Response.Write "<BR><BR>strNTUSer: " & strNTUSer
 Response.Write "<BR><BR>Domain / User: " & email(0) & " ---- " & email(1)
 
 Response.Write "<br><br>"
 
-response.End
+' response.End
 
 ' Get the inputs.
 'containerName = "10.54.24.197/OU=User Accounts,DC=corp,DC=clarobr"
