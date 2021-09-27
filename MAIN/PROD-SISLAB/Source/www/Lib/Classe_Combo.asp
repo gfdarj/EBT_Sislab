@@ -272,8 +272,9 @@ Public Function Data(nome)
     buffer = buffer & _
 	    "<select name='ano" & nome & "' class='" & p_classe & "'>" & VbCrLf & _
 		"    <option value=''>Ano</option>" & VbCrLf
-    For i=-1 To 10
-        cbano = year( now ) - i
+
+    For i=-1 To year(now) - 2000
+        cbano = year(now) - i
         buffer = buffer & "   <option value='" & cbano & "'>" & cbano & "</option>"
     Next
 
