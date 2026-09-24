@@ -1,8 +1,13 @@
-# EBT_Sislab
-Centro de Referência Tecnológica - Claro/Embratel
+# Sislab - Sistema de Laboratório
+- Centro de Referência Tecnológica (Claro/Embratel)
 
-Sistema do laboratório do Centro de Referência Tecnológica (CRT).
+- Sistema do laboratório do Centro de Referência Tecnológica (CRT).
 
-Baseado em ASP Clássico com SQL Server.
+
+        Front-end: Baseado em ASP Clássico
+        Base de dados: SQL Server versão 2008.
+
+<br>
+<br>
 
 Migrado do TFS em 18/09/2022
