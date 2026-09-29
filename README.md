@@ -12,6 +12,9 @@
 
 # Instalar o SQL SERVER no Docker
 
+* Instalar o Docker
+
+
 * Criar o volume
 
         docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=SuaSenhaForte@123" -p 1433:1433 --name sql_server -d mcr.microsoft.com/mssql/server:2022-latest
